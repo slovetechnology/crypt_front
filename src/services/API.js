@@ -29,10 +29,13 @@ const deposit_urls = {
 
 const notification_urls = {
     user_notifications: 'notification/user-notifications',
+    admin_notifications: 'notification/admin-notifications',
+    unread_notis: 'notification/unread-notis',
+    admin_unread_notis: 'notification/admin-unread-notis',
     delete_notification: 'notification/delete-notification',
     update_all: 'notification/update-all',
-    update_single: 'notification/update-single',
-    unread_notis: 'notification/unread-notis'
+    update_admin_all: 'notification/update-admin-all',
+    update_single: 'notification/update-single'
 }
 
 const withdrawal_urls = {
@@ -49,9 +52,11 @@ const investment_urls = {
 const admin_urls = {
     all_users: 'admin/all-users',
     all_deposits: 'admin/all-deposits',
+    all_withdrawals: 'admin/all-withdrawals',
     update_deposits: 'admin/update-deposits',
     delete_users: 'admin/delete-users',
-    get_user_total_investment: 'admin/get-user-total'
+    get_user_total_investment: 'admin/get-user-total',
+    update_withdrawals: 'admin/update-withdrawals'
 }
 
 export const Apis = {

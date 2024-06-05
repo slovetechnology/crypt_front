@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Loading from '../../../../PageComponents/Loading';
-import { Apis, PostApi, imageurl } from '../../../../services/API';
+import Loading from '../../../PageComponents/Loading';
+import { Apis, PostApi, imageurl } from '../../../services/API';
 import moment from 'moment';
 import { FaRegRectangleXmark } from "react-icons/fa6";
 import { IoWarningOutline } from "react-icons/io5";
 import { MdOutlineDeleteForever } from 'react-icons/md';
-import { Alert } from '../../../../utils/utils';
+import { Alert } from '../../../utils/utils';
 import { IoEye } from 'react-icons/io5';
 import { IoMdEyeOff } from 'react-icons/io';
 import { SlLockOpen } from 'react-icons/sl';
@@ -131,7 +131,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                             {deleted === 1 && <div className='flex items-center justify-center'>
                                 <button className='w-fit h-fit py-[0.5rem] px-[1.5rem] text-[0.85rem] capitalize bg-[#462c7c] rounded-lg text-white font-[550]' onClick={() => { setDeleted(2); MoveToBottom() }}>delete user</button>
                             </div>}
-                            {deleted !== 1 &&<div className='w-fit h-fit py-[1rem] px-[1.5rem] rounded-md bg-white sha mx-auto  text-black'>
+                            {deleted !== 1 &&<div className='w-fit h-fit py-[1rem] px-[1.5rem] rounded-md bg-white adsha mx-auto  text-black'>
                                 {deleted === 2 && <div className='flex flex-col gap-[1rem] items-center justify-center'>
                                     <div className='flex flex-col gap-1'>
                                         <div className='text-[0.95rem] font-[550] text-center'>Are you sure you want to delete this user?</div>

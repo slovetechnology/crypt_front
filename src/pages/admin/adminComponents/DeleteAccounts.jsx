@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { IoIosSearch, IoIosSettings } from 'react-icons/io'
 import { FiX } from 'react-icons/fi'
-import { ADMINALLUSERS } from '../../../../store'
+import { ADMINALLUSERS } from '../../../store'
 import { useAtom } from 'jotai'
 import moment from 'moment';
 import DeleteModal from './DeleteModal'
-import { Apis, PostApi } from '../../../../services/API'
+import { Apis, PostApi } from '../../../services/API'
 
 
 
-const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchUnreadNotis }) => {
+const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
   const [fromAtom] = useAtom(ADMINALLUSERS)
   const [allusers, setAllUsers] = useState(fromAtom)
-  
+
 
   const [modal, setModal] = useState(false)
   const [singleUser, setSingleUser] = useState({})
@@ -37,7 +37,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchUnreadNoti
       setEnd(6)
     }
     else {
-      const showSearch = allusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()))
+      const showSearch = allusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase())  || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
       setAllUsers(showSearch)
       setPagelengthend(showSearch.length / 6)
       setWrite(true)
@@ -117,26 +117,30 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchUnreadNoti
     }
   }
 
-  
+
 
   document.documentElement.style.overflow = modal === true ? 'hidden' : 'auto'
 
   return (
     <div className=''>
       {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setPagelengthstart={setPagelengthstart} setPagelengthend={setPagelengthend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} />}
-      
+
       <div className='uppercase font-bold text-[1.5rem] text-[black] pt-[2.5rem]'>delete accounts</div>
       <div className='mt-[2rem]'>
         <div className='relative w-fit mx-auto'>
           <input className='border border-[grey] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-black ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
           <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#462c7c] shantf2' >
             <IoIosSearch />
-            {write && <FiX className='absolute top-[1.15rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#979797] rounded-[50%] p-[0.2rem] w-fit h-fit' onClick={CancelWrite} />}
+            {write &&
+              <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#979797] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                <FiX />
+              </div>
+            }
           </div>
         </div>
 
 
-        
+
 
         <div className='relative overflow-x-auto shadow-xl sm:rounded-lg mt-[1rem]'>
           <table className='w-full'>
@@ -165,7 +169,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchUnreadNoti
           </table>
         </div>
         <div className='flex flex-col gap-1 text-[0.75rem] py-4'>
-          {pagelengthend > 0 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+          {Math.ceil(pagelengthend) > 1 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
           <div className='flex items-center justify-end  gap-2 text-white '>
             {pagelengthstart > 1 && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#71628f] hover:bg-[#462c7c] capitalize' onClick={BackPage}>prev</button>}
             {end < allusers.length && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#71628f] hover:bg-[#462c7c] capitalize' onClick={MovePage}>next</button>}

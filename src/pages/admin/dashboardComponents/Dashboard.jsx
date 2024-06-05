@@ -36,7 +36,7 @@ const Dashboard = () => {
     const [, setDeposits] = useAtom(DEPOSITS)
     const [, setInvestment] = useAtom(INVESTMENTS)
     const [, setInvestUnclaim] = useAtom(INVESTMENTUNCLAIM)
-    const [, setNotifications] = useAtom(NOTIFICATIONS)
+    const [notifications, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
     const [, setWithdrawals] = useAtom(WITHDRAWALS)
     const [wallet, setWallet] = useAtom(WALLET)
@@ -45,6 +45,7 @@ const Dashboard = () => {
     const [purchaseState, setPurchaseState] = useState(false)
     const [loading, setLoading] = useState(true)
     const [altnotis, setAltNotis] = useState([])
+    const [pagelengthend, setPagelengthend] = useState(notifications.length / 3)
     const navigate = useNavigate()
 
 
@@ -63,6 +64,7 @@ const Dashboard = () => {
             if (response.status === 200) {
                 setNotifications(response.msg)
                 setAltNotis(response.msg)
+                setPagelengthend(response.msg.length / 3)
             }
 
         } catch (error) {
@@ -281,7 +283,10 @@ const Dashboard = () => {
                                         refetchNotifications={() => FetchNotifications()}
                                         refetchUnreadNotis={() => FetchUnreadNotis()}
                                         setToggle={setToggle}
-                                        setUrlState={setUrlState} />
+                                        setUrlState={setUrlState} 
+                                        pagelengthend={pagelengthend}
+                                        setPagelengthend={setPagelengthend}
+                                    />
                                 </div>}
                         </div>
                         <div className='flex gap-2 capitalize items-center text-[grey] text-[0.85rem] font-bold'>

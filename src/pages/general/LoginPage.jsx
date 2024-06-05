@@ -33,7 +33,7 @@ const LoginPage = () => {
             [event.target.name]: event.target.value
         })
     }
-    
+
     const submitForm = async event => {
         event.preventDefault()
         setTimeout(() => {
@@ -120,7 +120,9 @@ const LoginPage = () => {
                                             <div className={`text-[0.75rem] mt-[-0.3rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-[black]'}`}> {passmsg} </div>
                                         </div>
                                     </div>
-                                    <div className='text-[0.8rem] font-[550] text-[#E96E28] text-right pt-[0.5rem] cursor-pointer capitalize' onClick={() => setForgotPass(!forgotPass)}>forgot password?</div>
+                                    <div className='w-fit flex ml-auto'>
+                                        <div className='text-[0.8rem] font-[550] text-[#E96E28] pt-[0.5rem] cursor-pointer capitalize' onClick={() => setForgotPass(!forgotPass)}>forgot password?</div>
+                                    </div>
                                     <div className='flex flex-col gap-[0.5rem] items-center mt-[3rem]'>
                                         <button className='outline-none bg-[#E96E28] py-[0.5rem] px-[8rem] h-fit w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' type='submit' >login</button>
                                         <div className='text-[#6b6a6a] text-[0.8rem] font-[550]'>Don't have an account?

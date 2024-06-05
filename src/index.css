@@ -293,7 +293,7 @@ body {
 
 
 .plan_bg {
-  background-image: url('./assets/images/planbg2.jpg');
+  background-image: url('./assets/images/planbg.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -303,6 +303,10 @@ body {
 .text-sha {
   color: #50318f;
   text-shadow: -1px 1px 3px #101011;
+}
+
+.adsha {
+  box-shadow: 0px 1px 6px rgb(168, 168, 168);
 }
 
 .text-sha2 {

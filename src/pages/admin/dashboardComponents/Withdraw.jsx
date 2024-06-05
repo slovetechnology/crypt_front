@@ -28,7 +28,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
     const [wallet, setWallet] = useState('')
     const [walletError, setWalletError] = useState(false)
     const [selectState, setSelectState] = useState(false)
-    const [selectValue, setSelectValue] = useState('')
+    const [selectValue, setSelectValue] = useState({})
     const [selectError, setSelectError] = useState(false)
     const [withdraw, setWithdraw] = useState('withdraw')
     const [withdrawError, setWithdrawError] = useState('')
@@ -48,7 +48,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
             setLimitError(false)
         }, 1000)
         if (!amount) return setAmountError(true)
-        if (amount < 10) return setAmountError(true)
+        if (amount < 20) return setAmountError(true)
         if (amount > userwallet.balance) return setLimitError(true)
         if (selectValue === '') return setSelectError(true)
         if (!wallet) return setWalletError(true)
@@ -58,7 +58,8 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
         const formbody = {
             amount: parseFloat(amount),
             wallet_address: wallet,
-            crypto: selectValue,
+            crypto: selectValue.coin,
+            network: selectValue.network,
             wthuser: user.username
         }
 
@@ -91,6 +92,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
         } finally {
             setLoading(false)
         }
+        
     }
 
     const HandleSearch = () => {
@@ -104,7 +106,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
             setEnd(6)
         }
         else {
-            const showSearch = allwithdrawals.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()))
+            const showSearch = allwithdrawals.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase())  || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
             setWrite(true)
             setPagelengthend(showSearch.length / 6)
@@ -214,7 +216,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         {selectState && <div>
                             {supportedCoins.map((item, i) => (
                                 <div className='flex flex-col mt-1' key={i}>
-                                    <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item.coin) }}>
+                                    <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item) }}>
                                         <img src={item.img} className='h-auto w-[1rem]'></img>
                                         <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
                                     </div>
@@ -222,8 +224,8 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             ))}
                         </div>}
                     </div>
-                    {selectValue !== '' && <div className='flex flex-col gap-2 items-center mt-[2rem]'>
-                        <div className='text-[0.9rem]  text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue}</span> below</div>
+                    {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-[2rem]'>
+                        <div className='text-[0.9rem]  text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
                         <input className={`outline-none border bg-[#0C091A] text-[0.85rem] w-[24rem] h-[2rem] rounded-[5px] pl-[1rem]  ${walletError ? 'border-[red]' : 'border-[#7665D5]'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
                     </div>}
                     <div className='flex flex-col gap-2 items-center relative mt-[2.5rem]'>
@@ -252,7 +254,11 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <input className='border border-[white] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
-                            {write && <FiX className='absolute top-[1.15rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] p-[0.2rem] w-fit h-fit' onClick={CancelWrite} />}
+                            {write &&
+                                <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                                    <FiX />
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-[1rem] '>
@@ -287,7 +293,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         </div>}
                     </div>
                     <div className='flex flex-col gap-1 text-[0.75rem] py-4'>
-                        {Math.ceil(pagelengthend) > 1 &&   <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                        {Math.ceil(pagelengthend) > 1 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
                         <div className='flex items-center justify-end  gap-2 text-white '>
                             {pagelengthstart > 1 && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={BackPage}>prev</button>}
                             {end < allwithdrawals.length && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={MovePage}>next</button>}

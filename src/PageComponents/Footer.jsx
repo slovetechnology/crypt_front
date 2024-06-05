@@ -50,7 +50,7 @@ const Footer = () => {
           </div>
         </div>
         <div className='flex gap-[0.3rem] w-full h-[3.3rem] bg-[#172029] items-center  text-[#94A3B8] mt-[3rem] pl-[1rem]'>
-          <FaRegCopyright className='text-[0.75rem] mt-[-0.15rem]' />
+          <FaRegCopyright className='text-[0.8rem]' />
           <div className=' text-[0.8rem]'>2024, Al Algo, All rights reserved.</div>
         </div>
       </div>

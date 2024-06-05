@@ -1,21 +1,21 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { ADMINALLDEPOSITS, ADMINALLUSERS, NOTIFICATIONS, UNREADNOTIS } from '../../../../store'
+import { ADMINALLDEPOSITS, ADMINALLUSERS, ADMINALLWITHDRAWALS, NOTIFICATIONS, UNREADNOTIS } from '../../../store'
 import { useAtom } from 'jotai'
 import Cookies from 'js-cookie'
-import { CookieName } from '../../../../utils/utils'
+import { CookieName } from '../../../utils/utils'
 import { useNavigate } from 'react-router-dom'
-import logo from '../../../../assets/images/logobrand.png'
-import { BiLogOutCircle } from 'react-icons/bi'
+import logo from '../../../assets/images/logobrand.png'
+import { BiLogOutCircle, BiMoneyWithdraw } from 'react-icons/bi'
 import { TiCancel } from 'react-icons/ti'
 import { IoMdLogOut } from 'react-icons/io'
 import { GrDocumentUpdate } from "react-icons/gr";
 import { RiDeleteBin3Line } from "react-icons/ri";
 import UpdateTransactions from './UpdateTransactions'
 import DeleteAccounts from './DeleteAccounts'
-import { Apis, UserGetApi } from '../../../../services/API'
+import { Apis, UserGetApi } from '../../../services/API'
 import { FaAngleRight } from 'react-icons/fa6'
-import adminbg from '../../../../assets/images/adminbg.png'
-import AdminNotis from '../AdminComponents/AdminNotis'
+import AdminNotis from './AdminNotis'
+import Withdrawals from './Withdrawals'
 
 const AdminHome = () => {
   const navigate = useNavigate()
@@ -25,9 +25,11 @@ const AdminHome = () => {
   const [, setAllUsers] = useAtom(ADMINALLUSERS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
+  const [, setAllWithdrawals] = useAtom(ADMINALLWITHDRAWALS)
 
   const [loading, setLoading] = useState(true)
   const [altnotis, setAltNotis] = useState([])
+  const [altdeposits, setAltDeposits] = useState([])
 
   const logoutAccount = () => {
     Cookies.remove(CookieName)
@@ -36,7 +38,7 @@ const AdminHome = () => {
 
   const FetchNotifications = useCallback(async () => {
     try {
-      const response = await UserGetApi(Apis.notification.user_notifications)
+      const response = await UserGetApi(Apis.notification.admin_notifications)
       if (response.status === 200) {
         setNotifications(response.msg)
         setAltNotis(response.msg)
@@ -54,7 +56,7 @@ const AdminHome = () => {
 
   const FetchUnreadNotis = useCallback(async () => {
     try {
-      const response = await UserGetApi(Apis.notification.unread_notis)
+      const response = await UserGetApi(Apis.notification.admin_unread_notis)
       if (response.status === 200) {
         setUnreadNotis(response.msg)
       }
@@ -68,26 +70,6 @@ const AdminHome = () => {
     FetchUnreadNotis()
   }, [FetchUnreadNotis])
 
-
-
-  const FetchAllDeposits = useCallback(async () => {
-    setLoading(true)
-    try {
-      const response = await UserGetApi(Apis.admin.all_deposits)
-      if (response.status === 200) {
-        setAllDeposits(response.msg)
-      }
-
-    } catch (error) {
-      //
-    } finally {
-      setLoading(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    FetchAllDeposits()
-  }, [FetchAllDeposits])
 
 
   const FetchAllUsers = useCallback(async () => {
@@ -107,6 +89,43 @@ const AdminHome = () => {
   }, [FetchAllUsers])
 
 
+  const FetchAllWithdrawals = useCallback(async () => {
+    try {
+      const response = await UserGetApi(Apis.admin.all_withdrawals)
+      if (response.status === 200) {
+        setAllWithdrawals(response.msg)
+      }
+
+    } catch (error) {
+      //
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchAllWithdrawals()
+  }, [FetchAllWithdrawals])
+
+
+  const FetchAllDeposits = useCallback(async () => {
+    setLoading(true)
+    try {
+      const response = await UserGetApi(Apis.admin.all_deposits)
+      if (response.status === 200) {
+        setAllDeposits(response.msg)
+        setAltDeposits(response.msg)
+        console.log(response.msg)
+      }
+
+    } catch (error) {
+      //
+    } finally {
+      setLoading(false)
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchAllDeposits()
+  }, [FetchAllDeposits])
 
 
 
@@ -131,6 +150,10 @@ const AdminHome = () => {
             <div className='flex gap-4 flex-col'>
               <div className='text-[0.65rem] uppercase'>others</div>
               <div className='flex flex-col gap-[2rem]'>
+                <div className={`flex gap-3 text-[#d4d3d3] hover:text-[white] items-center cursor-pointer ${toggle === 'withdrawals' ? 'border-r-[3px] rounded-sm border-[white]' : ''}`} onClick={() => setToggle('withdrawals')}>
+                  <BiMoneyWithdraw className='text-[1.3rem] ' />
+                  <div className='capitalize text-[0.85rem] font-bold'>withdrawals</div>
+                </div>
                 <div className={`flex gap-3 text-[#d4d3d3] hover:text-[white] items-center cursor-pointer ${toggle === 'delete accounts' ? 'border-r-[3px] rounded-sm border-[white]' : ''}`} onClick={() => setToggle('delete accounts')}>
                   <RiDeleteBin3Line className='text-[1.3rem] ' />
                   <div className='capitalize text-[0.85rem] font-bold'>delete accounts</div>
@@ -155,9 +178,6 @@ const AdminHome = () => {
                   </div>}
                 </div>
               </div>
-            </div>
-            <div className='mt-[3rem]'>
-              <img src={adminbg} className='h-[10rem] w-auto'></img>
             </div>
           </div>
         </div>
@@ -200,12 +220,17 @@ const AdminHome = () => {
           }
           {!loading && <div>
             {toggle === 'update transactions' && <UpdateTransactions
+              altdeposits={altdeposits} setAltDeposits={setAltDeposits}
               refetchAllDeposits={() => FetchAllDeposits()}
             />}
 
             {toggle === 'delete accounts' && <DeleteAccounts
               refetchAllUsers={() => FetchAllUsers()}
               refetchAllDeposits={() => FetchAllDeposits()}
+            />}
+
+            {toggle === 'withdrawals' && <Withdrawals
+              refetchAllWithdrawals={() => FetchAllWithdrawals()}
             />}
           </div>}
         </div>

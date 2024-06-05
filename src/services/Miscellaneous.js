@@ -73,45 +73,52 @@ export const supportedCoins = [
     {
         coin: 'bitcoin',
         img: bitcoin,
-        network: 'Below is your Bitcoin deposit address for Bitcoin network, copy and paste.',
-        address: '14y635WCNGk2LbwWGDfZgYEWHSZhiEjXm'
+        textnw: 'Below is your Bitcoin deposit address for Bitcoin network, copy and paste.',
+        address: '14y635WCNGk2LbwWGDfZgYEWHSZhiEjXm',
+        network: 'bitcoin network'
     },
     {
         coin: 'USDT',
         img: usdt,
-        network: 'Below is your USDT deposit address for Tron network, copy and paste.',
-        address: 'TRcyNJLKUPW4wVpxpUgmTJckN7bz4DWSvV'
+        textnw: 'Below is your USDT deposit address for Tron network, copy and paste.',
+        address: 'TRcyNJLKUPW4wVpxpUgmTJckN7bz4DWSvV',
+        network: 'tron network'
     },
     {
         coin: 'ethereum',
         img: ethereum,
-        network: 'Below is your Ethereum deposit address for ERC20 network, copy and paste.',
-        address: '0x72dab9d1e0376858579921c7id3ffb6d9db2183'
+        textnw: 'Below is your Ethereum deposit address for ERC20 network, copy and paste.',
+        address: '0x72dab9d1e0376858579921c7id3ffb6d9db2183',
+        network: 'ERC20 network'
     }
     ,
     {
         coin: 'litecoin',
         img: litecoin,
-        network: 'Below is your Litecoin deposit address for Litecoin network, copy and paste.',
-        address: 'LUjUZv7UpYnnxS1FsUkkHJt7t8sHUATq8p'
+        textnw: 'Below is your Litecoin deposit address for Litecoin network, copy and paste.',
+        address: 'LUjUZv7UpYnnxS1FsUkkHJt7t8sHUATq8p',
+        network: 'litecoin network'
     },
     {
         coin: 'solana',
         img: solana,
-        network: 'Below is your Solana deposit address for Solana network, copy and paste.',
-        address: 'CZXopsQvqwS8YZquCQLTh7jZ4PCfZ5FEVBTHcmA5wWwY'
+        textnw: 'Below is your Solana deposit address for Solana network, copy and paste.',
+        address: 'CZXopsQvqwS8YZquCQLTh7jZ4PCfZ5FEVBTHcmA5wWwY',
+        network: 'solana network'
     },
     {
         coin: 'XRP',
         img: xrp,
-        network: 'Below is your XRP deposit address for Ripple network, copy and paste.',
-        address: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV'
+        textnw: 'Below is your XRP deposit address for Ripple network, copy and paste.',
+        address: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV',
+        network: 'ripple network'
     },
     {
         coin: 'dogecoin',
         img: dogecoin,
-        network: 'Below is your Dogecoin deposit address for dogecoin network, copy and paste.',
-        address: 'DSuNQpbJwVYWoEMqooGSf93ZdiyYnkYMfj'
+        textnw: 'Below is your Dogecoin deposit address for Dogecoin network, copy and paste.',
+        address: 'DSuNQpbJwVYWoEMqooGSf93ZdiyYnkYMfj',
+        network: 'dogecoin network'
     }
 ]
 

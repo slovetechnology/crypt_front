@@ -9,7 +9,7 @@ import LoadingAdmin from '../../../PageComponents/LoadingAdmin';
 import { Apis, PostApi } from '../../../services/API';
 import { Alert, MoveToTopDivs } from '../../../utils/utils';
 import moment from 'moment';
-import { FaAngleDown, FaAngleUp, FaCheck, FaRegRectangleXmark } from 'react-icons/fa6';
+import { FaAngleDown, FaAngleUp, FaCheck, FaRegCopyright, FaRegRectangleXmark } from 'react-icons/fa6';
 import { FiX } from "react-icons/fi";
 import { supportedCoins, tradingPlans } from '../../../services/Miscellaneous';
 import nothnyet from '../../../assets/images/nothn.png'
@@ -64,7 +64,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setSelectError(false)
         }, 1000)
         if (!amount) return setAmountError(true)
-        if (amount <= 20) return setAmountError(true)
+        if (amount < 20) return setAmountError(true)
         if (selectValue === '') return setSelectError(true)
         if (!check) return setCheckError(true)
 
@@ -139,7 +139,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             if (response.status === 200) {
                 Alert('Request Successful', `Investment successful`, 'success')
                 setModal(false)
-                setAmount()
+                setAmount('')
                 refetchDeposits()
                 refetchInvestments()
                 refetchInvestmentsUnclaim()
@@ -177,7 +177,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setEnd(6)
         }
         else {
-            const showSearch = userDeposits.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.crypto.includes(search.toLowerCase()))
+            const showSearch = userDeposits.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.crypto.includes(search.toLowerCase())  || item.deposit_status.includes(search.toLowerCase()))
             setUserDeposits(showSearch)
             setWrite(true)
             setPagelengthend(showSearch.length / 6)
@@ -244,14 +244,18 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         <div className={`pt-[2.5rem] ${screen === 2 ? ' h-screen' : 'h-fit'}  z-10`}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>{deposit}</div>
-                {screen === 1 && <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center mt-[1rem] cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
-                    <span>deposit history</span>
-                    <RiHistoryFill />
-                </div>}
-                {screen === 2 && <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center mt-[1rem] cursor-pointer' onClick={() => { setScreen(1); setDeposit('deposit') }}>
-                    <span>make new deposit</span>
-                    <RiMoneyDollarCircleFill />
-                </div>}
+                {screen === 1 &&
+                    <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center mt-[1rem] cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
+                        <span>deposit history</span>
+                        <RiHistoryFill />
+                    </div>
+                }
+                {screen === 2 &&
+                    <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center mt-[1rem] cursor-pointer' onClick={() => { setScreen(1); setDeposit('deposit') }}>
+                        <span>make new deposit</span>
+                        <RiMoneyDollarCircleFill />
+                    </div>
+                }
             </div>
             {screen === 1 && <div className='w-[80%] mx-auto my-[2.5rem] flex items-center justify-center bgdeposit'>
                 <div className={`h-[32rem] w-[36rem] bg-[#0E0B1C] shlz rounded-xl  scroll relative thediv ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
@@ -289,7 +293,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             {selectState && <div>
                                 {supportedCoins.map((item, i) => (
                                     <div className='flex flex-col mt-1' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item.coin); setNetwork(item.network); setAddress(item.address) }}>
+                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item.coin); setNetwork(item.textnw); setAddress(item.address) }}>
                                             <img src={item.img} className='h-auto w-[1rem]'></img>
                                             <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
                                         </div>
@@ -323,46 +327,52 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     {depositScreen === 2 &&
                         <div className='w-[90%] mx-auto'>
                             <div className='text-[2rem] text-center text-[#e0dfdf] capitalize mt-[1rem]'>trading plans</div>
-                            <div className='flex flex-wrap gap-4 mt-[1rem] mb-[2rem]'>
-                                {tradingPlans.map((item, i) => (
-                                    <div key={i} className=''>
-                                        <div className='w-[15rem] h-[fit] rounded-[10px] flex flex-col text-[white] shlz bg-[white]'>
-                                            <div className='plan_bg w-full h-[5rem] rounded-t-md'>
-                                                <div className='uppercase font-[800]  text-center text-[1.1rem] pt-[1rem]'>{item.title}</div>
-                                            </div>
-                                            <div className='mt-[-1.5rem] flex flex-col gap-3 items-center justify-center'>
-                                                <div className='h-[5.1rem] w-[5.1rem] rounded-[50%] bg-[white] flex items-center justify-center'>
-                                                    <div className='h-[4.3rem] w-[4.3rem] rounded-[50%] bg-[#252525] text-[0.65rem] flex flex-col gap-1 items-center justify-center'>
-                                                        <div className='italic'>from</div>
-                                                        <div className='flex items-center gap-[0.1rem] font-bold text-[#5BB4FD]'>
-                                                            <div className='mt-[-0.2rem]'>$</div>
-                                                            <div className='text-[1rem]  '>{item.price_start}</div>
-                                                        </div>
-                                                    </div>
+                            <div className='flex flex-col gap-4 mt-[1rem] items-center'>
+                                <div className='flex flex-wrap gap-4 '>
+                                    {tradingPlans.map((item, i) => (
+                                        <div key={i} className=''>
+                                            <div className='w-[15rem] h-[fit] rounded-[10px] flex flex-col text-[white] shlz bg-[white]'>
+                                                <div className='plan_bg w-full h-[5rem] rounded-t-md'>
+                                                    <div className='uppercase font-[800]  text-center text-[1.1rem] pt-[1rem]'>{item.title}</div>
                                                 </div>
-                                                <div className=' w-[88%] mx-auto'>
-                                                    <div className='w-full flex gap-3 items-center'>
-                                                        <div className='w-[5%]'>
-                                                            <div className='w-[1rem] h-[1rem] rounded-full flex items-center justify-center  bg-[#252525]'>
-                                                                <FaCheck className='text-[0.5rem]' />
-                                                            </div>
-                                                        </div>
-                                                        <div className='w-[95%]'>
-                                                            <div className='text-[0.75rem] text-[#5f5e5e] font-[550]'>
-                                                                60% profit return on investment plus additional bonus up to ${item.bonus}
+                                                <div className='mt-[-1.5rem] flex flex-col gap-3 items-center justify-center'>
+                                                    <div className='h-[5.1rem] w-[5.1rem] rounded-[50%] bg-[white] flex items-center justify-center'>
+                                                        <div className='h-[4.3rem] w-[4.3rem] rounded-[50%] bg-[#252525] text-[0.65rem] flex flex-col gap-1 items-center justify-center'>
+                                                            <div className='italic'>from</div>
+                                                            <div className='flex items-center gap-[0.1rem] font-bold text-[#5BB4FD]'>
+                                                                <div className='mt-[-0.2rem]'>$</div>
+                                                                <div className='text-[1rem]  '>{item.price_start}</div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className='mb-[1rem] mt-[0.5rem]'>
-                                                    <button className='w-fit h-fit py-[0.5rem] px-[1.5rem] rounded-[10rem] bg-[#5BB4FD] text-white uppercase font-bold text-[0.65rem] flex items-center justify-center' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
-                                                        buy now
-                                                    </button>
+                                                    <div className=' w-[88%] mx-auto'>
+                                                        <div className='w-full flex gap-3 items-center'>
+                                                            <div className='w-[5%]'>
+                                                                <div className='w-[1rem] h-[1rem] rounded-full flex items-center justify-center  bg-[#252525]'>
+                                                                    <FaCheck className='text-[0.5rem]' />
+                                                                </div>
+                                                            </div>
+                                                            <div className='w-[95%]'>
+                                                                <div className='text-[0.75rem] text-[#353434] font-bold'>
+                                                                    60% profit return on investment + additional bonus up to ${item.bonus}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className='mb-[1rem] mt-[0.5rem]'>
+                                                        <button className='w-fit h-fit py-[0.5rem] px-[1.5rem] rounded-[10rem] bg-[#5BB4FD] text-white uppercase font-bold text-[0.65rem] flex items-center justify-center' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
+                                                            buy now
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+                                <div className='bg-white w-[15rem] h-[1.3rem] rounded-t-md flex gap-[0.3rem] justify-center items-center font-[800] text-[0.65rem]'>
+                                    <FaRegCopyright />
+                                    <div>2024, Al Algo, All rights reserved.</div>
+                                </div>
                             </div>
                         </div>
                     }
@@ -401,10 +411,13 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         <input className='border border-[white] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
-                            {write && <FiX className='absolute top-[1.15rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] p-[0.2rem] w-fit h-fit' onClick={CancelWrite} />}
+                            {write &&
+                                <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                                    <FiX />
+                                </div>
+                            }
                         </div>
                     </div>
-
                     <div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-[1rem]'>
                         <table className='w-full'>
                             <thead >
@@ -414,7 +427,6 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                     <td className='text-center  capitalize p-2'>amount</td>
                                     <td className='text-center  capitalize p-2'>trading plan</td>
                                     <td className='text-center  capitalize p-2'>crypto</td>
-                                    <td className='text-center  capitalize p-2'>from </td>
                                     <td className='text-center  capitalize p-2'>status </td>
                                 </tr>
                             </thead>
@@ -426,7 +438,6 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                         <td className='p-4  flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
                                         <td className='p-4 text-center'>{item.trading_plan}</td>
                                         <td className='p-4 text-center'> {item.crypto}</td>
-                                        <td className='p-4 text-center'> {item.from}</td>
                                         <td className={`p-4  text-center italic ${item.deposit_status === 'confirmed' && 'text-[#adad40]'}  ${item.deposit_status === 'pending' && 'text-[#6f6ff5]'}   ${item.deposit_status === 'failed' && 'text-[#eb4242] '}  `}>{item.deposit_status}</td>
                                     </tr>
                                 ))}
@@ -439,7 +450,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         </div>}
                     </div>
                     <div className='flex flex-col gap-1 text-[0.75rem] py-4'>
-                        {Math.ceil(pagelengthend) > 1 &&  <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                        {Math.ceil(pagelengthend) > 1 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
                         <div className='flex items-center justify-end  gap-2 text-white '>
                             {pagelengthstart > 1 && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={BackPage}>prev</button>}
                             {end < userDeposits.length && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={MovePage}>next</button>}

@@ -6,11 +6,11 @@ import { HiCheckCircle } from 'react-icons/hi2'
 import { useAtom } from 'jotai'
 import moment from 'moment'
 import { FiX } from 'react-icons/fi'
-import { Apis, UserPutApi } from '../../../../services/API'
+import { Apis, UserPutApi } from '../../../services/API'
 import { IoMdNotificationsOff, IoMdSearch } from 'react-icons/io'
-import { NOTIFICATIONS, UNREADNOTIS } from '../../../../store'
+import { NOTIFICATIONS, UNREADNOTIS } from '../../../store'
 
-const AdminNotis = ({altnotis, setAltNotis}) => {
+const AdminNotis = ({ altnotis, setAltNotis }) => {
     const [notifications] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
 
@@ -51,9 +51,9 @@ const AdminNotis = ({altnotis, setAltNotis}) => {
 
     const MarkAllRead = async () => {
         try {
-            const response = await UserPutApi(Apis.notification.update_all)
+            const response = await UserPutApi(Apis.notification.update_admin_all)
             if (response.status === 200) {
-               setUnreadNotis(0)
+                setUnreadNotis(0)
             }
         } catch (error) {
         }
@@ -132,7 +132,7 @@ const AdminNotis = ({altnotis, setAltNotis}) => {
                 <IoNotificationsOutline />
             </div>
             <div className='rounded-full w-[1.25rem] h-[1.2rem] absolute top-[-0.5rem] right-[-0.3rem] cursor-pointer text-[#462c7c] text-[0.65rem] font-[900] bg-white flex items-center justify-center notisha' onClick={MarkAllRead}>
-                <div className=' rounded-full flex justify-center items-center w-full h-full' onClick={() => {setShowNotis(true)}} style={reverseShow}>
+                <div className=' rounded-full flex items-center justify-center w-full h-full' onClick={() => { setShowNotis(true) }} style={reverseShow}>
                     {unreadNotis.length > 0 ?
                         <span>{unreadNotis.length}</span>
                         :
@@ -157,10 +157,14 @@ const AdminNotis = ({altnotis, setAltNotis}) => {
                             <div className='rounded-full w-[1.4rem] h-[1.4rem] flex items-center justify-center bg-[#8d8c8c] cursor-pointer text-white' onClick={() => setSearchNoti(!searchNoti)}>
                                 <IoMdSearch className='text-[0.9rem]' />
                             </div>
-                            {searchNoti && <div className='w-[10rem] h-[1.5rem] absolute top-6 right-0'>
+                            {searchNoti && <div className='w-[10rem] h-[1.5rem] absolute top-7 right-0'>
                                 <div className='w-full h-full relative'>
                                     <input className='outline-none pl-2 shantf2 rounded-[5px]  w-full h-full bg-[white]' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
-                                    {write && <FiX className='absolute top-[0.35rem] right-2 text-[0.75rem] cursor-pointer text-[white] bg-[#696969] rounded-[50%] p-[0.1rem]' onClick={CancelWrite} />}
+                                    {write &&
+                                        <div className='absolute top-[0.35rem] right-2 text-[0.5rem] cursor-pointer bg-[#585858] rounded-[50%] w-[0.75rem] h-[0.75rem] flex items-center text-[white] justify-center' onClick={CancelWrite}>
+                                            <FiX />
+                                        </div>
+                                    }
                                 </div>
                             </div>}
                         </div>

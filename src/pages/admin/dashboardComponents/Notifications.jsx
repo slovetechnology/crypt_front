@@ -12,7 +12,7 @@ import { IoNotificationsOutline } from 'react-icons/io5';
 import { Apis, PostApi, UserPutApi } from '../../../services/API';
 import moment from 'moment';
 
-const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotifications, setToggle, setUrlState }) => {
+const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotifications, setToggle, setUrlState, pagelengthend, setPagelengthend }) => {
     const [user, setUser] = useAtom(PROFILE)
     const [notis] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
@@ -28,7 +28,6 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(3)
     const [pagelengthstart, setPagelengthstart] = useState(1)
-    const [pagelengthend, setPagelengthend] = useState(altnotis.length / end)
 
 
     const styleShow = {
@@ -166,9 +165,9 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
         try {
             const response = await UserPutApi(Apis.notification.update_all)
             if (response.status === 200) {
+                setAltNotis(response.msg)
                 refetchNotifications()
                 setUnreadNotis(0)
-                setAltNotis(response.msg)
             }
         } catch (error) {
         }
@@ -254,7 +253,11 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 {searchNoti && <div className='w-[10rem] h-[1.5rem] absolute top-6 right-0'>
                                     <div className='w-full h-full relative'>
                                         <input className='outline-none pl-2 shantf2 rounded-[5px]  w-full h-full bg-[white]' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
-                                        {write && <FiX className='absolute top-[0.35rem] right-2 text-[0.75rem] cursor-pointer text-[white] bg-[#696969] rounded-[50%] p-[0.1rem]' onClick={CancelWrite} />}
+                                        {write &&
+                                            <div className='absolute top-[0.35rem] right-2 text-[0.5rem] cursor-pointer bg-[#585858] rounded-[50%] w-[0.75rem] h-[0.75rem] flex items-center text-[white] justify-center' onClick={CancelWrite}>
+                                                <FiX />
+                                            </div>
+                                        }
                                     </div>
                                 </div>}
                             </div>
@@ -262,8 +265,8 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                     </div>
                     {altnotis.slice(start, end).map((item, i) => (
                         <div key={i} className='flex flex-col items-center pt-2 px-2'>
-                            <div className={` p-[0.5rem] rounded-md ${item.read === 'true' ? '' : 'bg-[#c0b9e4]'} relative shantf  w-full h-fit cursor-pointer `} onMouseOver={() => singleUpdateNotification(item)} >
-                                <div onClick={() => { setToggle(item.URL); setUrlState(item.URL_state); MarkSingleRead(); setShowNotis(false)}} className='flex flex-col gap-1'>
+                            <div className={` p-[0.5rem] rounded-md ${item.read === 'true' ? '' : 'bg-[#c0b9e4]'} relative shantf  w-full h-fit cursor-pointer overflow-hidden`} onMouseOver={() => singleUpdateNotification(item)} >
+                                <div onClick={() => { setToggle(item.URL); setUrlState(item.URL_state); MarkSingleRead(); setShowNotis(false) }} className='flex flex-col gap-1'>
                                     <div className='flex items-center'>
                                         <div className='flex gap-[0.2rem] items-center'>
                                             <div className='capitalize font-[800] border-b text-[0.8rem] border-[grey] w-fit'>{item.title}</div>

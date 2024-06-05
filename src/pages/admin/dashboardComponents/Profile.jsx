@@ -215,7 +215,7 @@ const Profile = ({ setToggle }) => {
                                 </div>}
                                 {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer' onClick={() => setToggle('verify account')}>
                                     <span className='text-[#e46b6b] text-[0.8rem]'>unverified</span>
-                                    <MdSentimentVeryDissatisfied className='text-[#7665D5] text-[0.8rem]' />
+                                    <MdSentimentVeryDissatisfied className='text-[#e46b6b] text-[0.8rem]' />
                                 </div>}
                             </div>
                             <div className='border-r-2 h-[3rem]'></div>

@@ -11,7 +11,7 @@ import AuthRoute from './services/AuthRoute'
 import TermsPage from './pages/general/TermsPage'
 import PrivacyPage from './pages/general/PrivacyPage'
 import Dashboard from './pages/admin/dashboardComponents/Dashboard'
-import AdminHome from './pages/admin/adminComponents/AdminComponents/AdminHome'
+import AdminHome from './pages/admin/adminComponents/AdminHome'
 
 const App = () => {
   return (

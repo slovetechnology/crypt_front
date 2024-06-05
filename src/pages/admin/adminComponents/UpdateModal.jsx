@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Apis, UserPutApi, imageurl } from '../../../../services/API'
+import { Apis, UserPutApi, imageurl } from '../../../services/API'
 import moment from 'moment';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
-import Loading from '../../../../PageComponents/Loading';
-import { Alert } from '../../../../utils/utils';
+import Loading from '../../../PageComponents/Loading';
+import { Alert } from '../../../utils/utils';
 
-const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEnd, setPagelengthstart, setPagelengthend, setSearch, setWrite, refetchAllDeposits }) => {
+const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEnd, setPagelengthstart, setPagelengthend, setSearch, setWrite, refetchAllDeposits }) => {
     const toggler = useRef()
     const [depositShow, setdepositShow] = useState(false)
     const [depositStatus, setDepositStatus] = useState(singleDeposit.deposit_status)
@@ -75,7 +75,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
 
         const formbody = {
             deposit_id: singleDeposit.id,
-            user: singleDeposit.deposituser.id,
+            user: singleDeposit.user,
             profit: parseFloat(form.profit),
             bonus: parseFloat(form.bonus),
             deposit_status: depositStatus,
@@ -87,7 +87,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
             try {
                 const response = await UserPutApi(Apis.admin.update_deposits, formbody)
                 if (response.status === 200) {
-                    setAllDeposits(response.msg)
+                    setAltDeposits(response.msg)
                     Alert('Request Successful', 'Deposit updated successfully', 'success')
                     refetchAllDeposits()
                     setWrite(false)
@@ -183,14 +183,14 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                     <div className='flex justify-between items-center'>
                                         <div className='italic text-[0.9rem]'>deposit status:</div>
                                         <div className='flex flex-col'>
-                                            <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] sha cursor-pointer' onClick={() => {setdepositShow(!depositShow); MoveToBottom()}} >
+                                            <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha cursor-pointer' onClick={() => {setdepositShow(!depositShow); MoveToBottom()}} >
                                                 <div className='flex justify-between items-center text-[0.8rem]'>
                                                     <span >{depositStatus}</span>
                                                     {!depositShow && <FaAngleDown className='hover:bg-[#e6e5e5] rounded-full ' />}
                                                     {depositShow && <FaAngleUp className='hover:bg-[#e6e5e5] rounded-full ' />}
                                                 </div>
                                             </div>
-                                            {depositShow && <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] sha'>
+                                            {depositShow && <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha'>
                                                 {depositStatuses.map((item, i) => (
                                                     <div className='flex flex-col mt-2' key={i}>
                                                         <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setDepositStatus(item.status); setdepositShow(false); setUpdate(true) }}>
@@ -204,14 +204,14 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                     <div className='flex justify-between items-center'>
                                         <div className='italic text-[0.9rem]'>profit status:</div>
                                         <div className='flex flex-col'>
-                                            <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] sha cursor-pointer' onClick={() => {setprofitShow(!profitShow); MoveToBottom()}} >
+                                            <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha cursor-pointer' onClick={() => {setprofitShow(!profitShow); MoveToBottom()}} >
                                                 <div className='flex justify-between items-center text-[0.8rem]'>
                                                     <span >{profitStatus}</span>
                                                     {!profitShow && <FaAngleDown className='hover:bg-[#e6e5e5] rounded-full ' />}
                                                     {profitShow && <FaAngleUp className='hover:bg-[#e6e5e5] rounded-full ' />}
                                                 </div>
                                             </div>
-                                            {profitShow && <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] sha'>
+                                            {profitShow && <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha'>
                                                 {profitStatuses.map((item, i) => (
                                                     <div className='flex flex-col mt-2' key={i}>
                                                         <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setProfitStatus(item.status); setprofitShow(false); setUpdate(true) }}>

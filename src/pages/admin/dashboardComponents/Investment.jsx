@@ -14,6 +14,7 @@ import { BiMoney } from "react-icons/bi";
 import { FiX } from 'react-icons/fi';
 import investbg from '../../../assets/images/investbg.png'
 import ClaimButtons from './ClaimButtons';
+import nothnyet from '../../../assets/images/nothn.png'
 
 
 
@@ -40,7 +41,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
             setEnd(6)
 
         } else {
-            const showSearch = investment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()))
+            const showSearch = investment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase())  || item.profit_status.includes(search.toLowerCase())  || item.claim.includes(search.toLowerCase()))
             setInvestment(showSearch)
             setWrite(true)
             setPagelengthend(showSearch.length / 6)
@@ -103,7 +104,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
 
 
     return (
-        <div className={`py-[2.5rem] ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 1 ? 'h-fit' : 'h-screen'} z-10 `}>
+        <div className={`py-[2.5rem] ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>{investtitle}</div>
                 {screen === 1 && <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
@@ -115,7 +116,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                     <IoListOutline className='text-[1.1rem]' />
                 </div>}
             </div>
-            
+
             {screen === 1 && <div>
                 {investmentUnclaim.length > 0 ? <div>
                     {investmentUnclaim.map((item, i) => (
@@ -200,7 +201,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                 </div>
                             </div>
                             {item.investment_status === 'confirmed' &&
-                                <ClaimButtons item={item} refetchWallet={refetchWallet} refetchInvestments={refetchInvestments} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} refetchUps={refetchUps} refetchInvestmentsUnclaim={refetchInvestmentsUnclaim}  setInvestment={setInvestment}/>
+                                <ClaimButtons item={item} refetchWallet={refetchWallet} refetchInvestments={refetchInvestments} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} refetchUps={refetchUps} refetchInvestmentsUnclaim={refetchInvestmentsUnclaim} setInvestment={setInvestment} />
                             }
                         </div>
                     ))}
@@ -228,7 +229,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                         <input className='border border-[white] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
-                            {write && <FiX className='absolute top-[1.15rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] p-[0.2rem] w-fit h-fit' onClick={CancelWrite} />}
+                            {write &&
+                                <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                                    <FiX />
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-[1rem] '>
@@ -245,7 +250,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <td className='text-center  capitalize p-2'>claimed</td>
                                 </tr>
                             </thead>
-                            {fromAtom.length > 0 ? <tbody>
+                            {fromAtom.length > 0 && <tbody>
                                 {investment.slice(start, end).map((item, i) => (
                                     <tr className='text-[0.8rem]  text-[#e0dfdf] bg-[#272727] even:bg-[#313131]' key={i}>
                                         <td className='p-4  text-center'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -259,13 +264,15 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     </tr>
                                 ))}
                             </tbody>
-                                :
-                                <div className='flex items-center text-white justify-center w-full h-fit bg-[#272727] px-[1rem] py-[0.5rem] text-[0.85rem] italic'>no investment made yet...</div>
                             }
                         </table>
+                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] px-[1rem] py-[0.5rem] text-[0.8rem] italic'>
+                            <div>no investment made yet...</div>
+                            <img src={nothnyet} className='h-[1rem] w-auto'></img>
+                        </div>}
                     </div>
                     <div className='flex flex-col gap-1 text-[0.75rem] py-4'>
-                        {Math.ceil(pagelengthend) > 1 &&  <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                        {Math.ceil(pagelengthend) > 1 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
                         <div className='flex items-center justify-end  gap-2 text-white '>
                             {pagelengthstart > 1 && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={BackNotisPage}>prev</button>}
                             {end < investment.length && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={MoveNotisPage}>next</button>}

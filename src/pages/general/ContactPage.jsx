@@ -137,20 +137,22 @@ const ContactPage = () => {
             </div>
             <div className={`w-full ${show === 1 ? 'h-[10vh]' : 'h-fit'}   bg-[#9e5c36] overflow-hidden trans pb-[2rem] relative`}>
               <div className='w-[93%] mx-auto '>
-                {show === 1 && <div className='flex justify-between items-center' >
-                  <div className='text-[white] text-[0.9rem] capitalize font-[550] pt-[1rem]'>follow account manager on:</div>
-                  <div className='flex gap-4 mt-[1rem]' onClick={() => setShow(2)}>
-                    <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#E96E28] text-[1.2rem] hover:text-[black]'>
-                      <PiTelegramLogoLight />
-                    </div>
-                    <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
-                      <TfiInstagram />
-                    </div>
-                    <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
-                      <TiSocialFacebook />
+                {show === 1 &&
+                  <div className='flex justify-between items-center h-[10vh]' >
+                    <div className='text-[white] text-[0.9rem] capitalize font-[550]'>follow account manager on:</div>
+                    <div className='flex gap-4' onClick={() => setShow(2)}>
+                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#E96E28] text-[1.2rem] hover:text-[black]'>
+                        <PiTelegramLogoLight />
+                      </div>
+                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
+                        <TfiInstagram />
+                      </div>
+                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
+                        <TiSocialFacebook />
+                      </div>
                     </div>
                   </div>
-                </div>}
+                }
                 <div className='mt-[1rem] text-[2rem] text-[white] cursor-pointer' onClick={() => setShow(1)}>
                   <MdCancel />
                 </div>
