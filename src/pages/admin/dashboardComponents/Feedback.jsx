@@ -52,6 +52,8 @@ const Feedback = () => {
         }
     }
 
+    document.documentElement.style.overflow = loading === true ? 'hidden' : 'auto'
+
     return (
         <div className='h-screen pt-[2.5rem] relative '>
             <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>send feedback</div>

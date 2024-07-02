@@ -118,7 +118,6 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()
-                setAltNotis(response.msg)
                 setSearch('')
                 setWrite(false)
                 setPagelengthend(response.msg.length / 3)
@@ -155,7 +154,6 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()
-                setAltNotis(response.msg)
             }
         } catch (error) {
         }
@@ -165,7 +163,6 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
         try {
             const response = await UserPutApi(Apis.notification.update_all)
             if (response.status === 200) {
-                setAltNotis(response.msg)
                 refetchNotifications()
                 setUnreadNotis(0)
             }

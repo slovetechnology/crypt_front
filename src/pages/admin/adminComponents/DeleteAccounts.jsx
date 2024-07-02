@@ -142,27 +142,27 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
 
 
 
-        <div className='relative overflow-x-auto shadow-xl sm:rounded-lg mt-[1rem]'>
+        <div className='relative overflow-x-auto shadow-xl rounded-lg mt-[1rem]'>
           <table className='w-full'>
             <thead >
               <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-[white]'>
-                <td className='text-center  capitalize p-2'>joined</td>
-                <td className='text-center  capitalize p-2'>full name</td>
-                <td className='text-center  capitalize p-2'>username</td>
-                <td className='text-center  capitalize p-2'>email</td>
-                <td className='text-center  capitalize p-2'>country</td>
-                <td className='text-center  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
+                <td className='text-center truncate  capitalize p-2'>joined</td>
+                <td className='text-center truncate  capitalize p-2'>full name</td>
+                <td className='text-center truncate  capitalize p-2'>username</td>
+                <td className='text-center truncate  capitalize p-2'>email</td>
+                <td className='text-center truncate  capitalize p-2'>country</td>
+                <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
               </tr>
             </thead>
             <tbody>
               {allusers.slice(start, end).map((item, i) => (
                 <tr className='text-[0.8rem] font-[550]  text-black bg-[white] even:bg-[#e2e0e0] ' key={i}>
-                  <td className='p-4  text-center'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                  <td className='p-4  text-center'>{item.full_name}</td>
-                  <td className='p-4  text-center'>{item.username}</td>
-                  <td className='p-4  text-center'>{item.email}</td>
-                  <td className='p-4  text-center'><img src={item.country_flag} className='w-[1rem] h-auto mx-auto'></img></td>
-                  <td className='text-center  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserTotalInvestment}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
+                  <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                  <td className='p-4  text-center truncate'>{item.full_name}</td>
+                  <td className='p-4  text-center truncate'>{item.username}</td>
+                  <td className='p-4  text-center truncate'>{item.email}</td>
+                  <td className='p-4  text-center truncate'><img src={item.country_flag} className='w-[1rem] h-auto mx-auto'></img></td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserTotalInvestment}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
                 </tr>
               ))}
             </tbody>

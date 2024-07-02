@@ -172,10 +172,7 @@ const Profile = ({ setToggle }) => {
         }
     }
 
-
-
-   
-
+    document.documentElement.style.overflow = loading === true ? 'hidden' : 'auto'
 
     return (
         <div className='relative py-[2.5rem] h-fit '>

@@ -10,7 +10,6 @@ import bonus3d from '../../../assets/images/bonus3d.png'
 import trading3d from '../../../assets/images/trading3d.png'
 import { IoIosSearch, IoMdArrowBack } from "react-icons/io";
 import moment from 'moment';
-import { BiMoney } from "react-icons/bi";
 import { FiX } from 'react-icons/fi';
 import investbg from '../../../assets/images/investbg.png'
 import ClaimButtons from './ClaimButtons';
@@ -41,7 +40,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
             setEnd(6)
 
         } else {
-            const showSearch = investment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase())  || item.profit_status.includes(search.toLowerCase())  || item.claim.includes(search.toLowerCase()))
+            const showSearch = investment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
             setInvestment(showSearch)
             setWrite(true)
             setPagelengthend(showSearch.length / 6)
@@ -133,7 +132,12 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                             <div className='flex items-center'>
                                                 {item.investment_status === 'confirmed' && <BiDollar />}
                                                 {item.investment_status === 'confirmed' && <div>{item.amount.toLocaleString()}</div>}
-                                                {item.investment_status === 'pending' && <div className='text-[0.8rem] italic'>verifying...</div>}
+                                                {item.investment_status === 'pending' &&
+                                                    <div className='flex gap-2 items-center'>
+                                                        <div className='text-[0.8rem] italic'>verifying</div>
+                                                        <div className='verifyload '></div>
+                                                    </div>
+                                                }
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
@@ -156,7 +160,12 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                             <div className='flex items-center'>
                                                 {item.investment_status === 'confirmed' && <BiDollar />}
                                                 {item.investment_status === 'confirmed' && <div>{item.profit.toLocaleString()}</div>}
-                                                {item.investment_status === 'pending' && <div className='text-[0.8rem] italic'>verifying...</div>}
+                                                {item.investment_status === 'pending' &&
+                                                    <div className='flex gap-2 items-center'>
+                                                        <div className='text-[0.8rem] italic'>verifying</div>
+                                                        <div className='verifyload '></div>
+                                                    </div>
+                                                }
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
 
                                             </div>
@@ -179,7 +188,12 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                             <div className='flex items-center'>
                                                 {item.investment_status === 'confirmed' && <BiDollar />}
                                                 {item.investment_status === 'confirmed' && <div>{item.bonus.toLocaleString()}</div>}
-                                                {item.investment_status === 'pending' && <div className='text-[0.8rem] italic'>verifying...</div>}
+                                                {item.investment_status === 'pending' &&
+                                                    <div className='flex gap-2 items-center'>
+                                                        <div className='text-[0.8rem] italic'>verifying</div>
+                                                        <div className='verifyload '></div>
+                                                    </div>
+                                                }
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
@@ -192,7 +206,12 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                         <div>
                                             <div className='flex gap-1 items-center'>
                                                 {item.investment_status === 'confirmed' && <div className='capitalize'>{item.trading_plan}</div>}
-                                                {item.investment_status === 'pending' && <div className='text-[0.8rem] italic'>verifying...</div>}
+                                                {item.investment_status === 'pending' &&
+                                                    <div className='flex gap-2 items-center'>
+                                                        <div className='text-[0.8rem] italic'>verifying</div>
+                                                        <div className='verifyload '></div>
+                                                    </div>
+                                                }
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
@@ -211,9 +230,9 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                         <div className='w-[28rem] h-[fit] rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-[1rem] px-[2rem]  text-[#e0dfdf] gap-4 border border-[grey] bg-[#130e27] mx-auto'>
                             <div className='text-[1.2rem]  italic'>No new investment made</div>
                             <img src={investbg} className='w-[20rem] h-auto'></img>
-                            <button className='outline-none w-fit h-fit py-[0.4rem] px-[1.5rem] text-[0.85rem] text-[#cfcdcd] font-bold bg-[#A16534] rounded-[10rem] flex items-center gap-1 mt-[1rem]' onClick={() => setToggle('deposit')}>
+                            <button className='outline-none w-fit h-fit py-[0.4rem] px-[1.5rem] text-[0.85rem] text-white font-[550] bg-[#A16534] rounded-[10rem] flex items-center gap-3 mt-[1rem]' onClick={() => setToggle('deposit')}>
                                 <span>Make new</span>
-                                <BiMoney />
+                                <div className='makenew'></div>
                             </button>
                         </div>
                     </div>
@@ -236,31 +255,31 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             }
                         </div>
                     </div>
-                    <div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-[1rem] '>
+                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem] '>
                         <table className='w-full'>
                             <thead >
                                 <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-[white]'>
-                                    <td className='text-center  capitalize p-2'>date</td>
-                                    <td className='text-center  capitalize p-2'>time</td>
-                                    <td className='text-center  capitalize p-2'>amount</td>
-                                    <td className='text-center  capitalize p-2'>trading plan</td>
-                                    <td className='text-center  capitalize p-2'>profit</td>
-                                    <td className='text-center  capitalize p-2'>profit status</td>
-                                    <td className='text-center  capitalize p-2'>bonus</td>
-                                    <td className='text-center  capitalize p-2'>claimed</td>
+                                    <td className='text-center  capitalize p-2 truncate'>date</td>
+                                    <td className='text-center  capitalize p-2 truncate'>time</td>
+                                    <td className='text-center  capitalize p-2 truncate'>amount</td>
+                                    <td className='text-center  capitalize p-2 truncate'>trading plan</td>
+                                    <td className='text-center  capitalize p-2 truncate'>profit</td>
+                                    <td className='text-center  capitalize p-2 truncate'>profit status</td>
+                                    <td className='text-center  capitalize p-2 truncate'>bonus</td>
+                                    <td className='text-center  capitalize p-2 truncate'>claimed</td>
                                 </tr>
                             </thead>
                             {fromAtom.length > 0 && <tbody>
                                 {investment.slice(start, end).map((item, i) => (
                                     <tr className='text-[0.8rem]  text-[#e0dfdf] bg-[#272727] even:bg-[#313131]' key={i}>
-                                        <td className='p-4  text-center'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                        <td className='p-4  text-center'>{moment(item.createdAt).format('h:mm')}</td>
-                                        <td className='p-4  text-center flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
-                                        <td className='p-4  text-center'>{item.trading_plan}</td>
-                                        <td className='p-4  text-center flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.profit.toLocaleString()}</span></td>
-                                        <td className={`p-4  text-center italic ${item.profit_status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.profit_status}</td>
-                                        <td className='p-4  text-center flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.bonus.toLocaleString()}</span></td>
-                                        <td className={`p-4  text-center italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-[#e0dfdf]'}`}>{item.claim} </td>
+                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
+                                        <td className='p-4  text-center truncate'>{item.trading_plan}</td>
+                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.profit.toLocaleString()}</span></td>
+                                        <td className={`p-4  text-center truncate italic ${item.profit_status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.profit_status}</td>
+                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.bonus.toLocaleString()}</span></td>
+                                        <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-[#e0dfdf]'}`}>{item.claim} </td>
                                     </tr>
                                 ))}
                             </tbody>

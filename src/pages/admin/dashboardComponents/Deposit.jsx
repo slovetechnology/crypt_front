@@ -177,7 +177,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setEnd(6)
         }
         else {
-            const showSearch = userDeposits.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.crypto.includes(search.toLowerCase())  || item.deposit_status.includes(search.toLowerCase()))
+            const showSearch = userDeposits.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.crypto.includes(search.toLowerCase()) || item.deposit_status.includes(search.toLowerCase()))
             setUserDeposits(showSearch)
             setWrite(true)
             setPagelengthend(showSearch.length / 6)
@@ -282,25 +282,28 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <div className='italic text-[0.85rem] text-[#7665D5]'>enter an amount to show the trading plan it falls under</div>
                             }
                         </div>
-                        <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.8rem] ' : 'h-[1.6rem]'}  w-[13rem] px-[0.5rem] py-[0.25rem]  bg-[white] shlz rounded-[0.2rem] mt-[2.5rem] overflow-y-auto scroll text-black ${selectError && 'border border-[red]'} trans`}>
-                            <div className={`${selectState && 'border-b'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
-                                <div className='flex justify-between items-center capitalize text-[0.8rem]  font-bold'>
-                                    <span >choose cryptocurrency</span>
-                                    {!selectState && <FaAngleDown className='text-[0.7rem]' />}
-                                    {selectState && <FaAngleUp className='text-[0.7rem]' />}
-                                </div>
-                            </div>
-                            {selectState && <div>
-                                {supportedCoins.map((item, i) => (
-                                    <div className='flex flex-col mt-1' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item.coin); setNetwork(item.textnw); setAddress(item.address) }}>
-                                            <img src={item.img} className='h-auto w-[1rem]'></img>
-                                            <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
-                                        </div>
+                        <div className='h-fit w-fit rounded-[0.2rem] bg-[grey] mt-[2.5rem] p-1'>
+                            <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-[0.5rem] py-[0.25rem]  bg-[white] shlz rounded-[0.2rem]   text-black ${selectError && 'border border-[red]'} trans`}>
+                                <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
+                                    <div className='flex justify-between items-center capitalize text-[0.8rem]  font-bold'>
+                                        <span >choose cryptocurrency</span>
+                                        {!selectState && <FaAngleDown className='text-[0.7rem]' />}
+                                        {selectState && <FaAngleUp className='text-[0.7rem]' />}
                                     </div>
-                                ))}
-                            </div>}
+                                </div>
+                                {selectState && <div>
+                                    {supportedCoins.map((item, i) => (
+                                        <div className='flex flex-col mt-1' key={i}>
+                                            <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item.coin); setNetwork(item.textnw); setAddress(item.address) }}>
+                                                <img src={item.img} className='h-auto w-[1rem]'></img>
+                                                <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>}
+                            </div>
                         </div>
+
                         <div className='flex flex-col gap-4 items-center text-[#e0dfdf] mt-[2.5rem]' >
                             <div className='text-[0.8rem]'>{network}</div>
                             <div className='flex gap-2 items-center relative'>
@@ -418,27 +421,27 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             }
                         </div>
                     </div>
-                    <div className='relative overflow-x-auto shadow-md sm:rounded-lg mt-[1rem]'>
+                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem]'>
                         <table className='w-full'>
                             <thead >
                                 <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-[white]'>
-                                    <td className='text-center  capitalize p-2'>date</td>
-                                    <td className='text-center  capitalize p-2'>time</td>
-                                    <td className='text-center  capitalize p-2'>amount</td>
-                                    <td className='text-center  capitalize p-2'>trading plan</td>
-                                    <td className='text-center  capitalize p-2'>crypto</td>
-                                    <td className='text-center  capitalize p-2'>status </td>
+                                    <td className='text-center truncate  capitalize p-2'>date</td>
+                                    <td className='text-center truncate  capitalize p-2'>time</td>
+                                    <td className='text-center truncate  capitalize p-2'>amount</td>
+                                    <td className='text-center truncate  capitalize p-2'>trading plan</td>
+                                    <td className='text-center truncate  capitalize p-2'>crypto</td>
+                                    <td className='text-center truncate  capitalize p-2'>status </td>
                                 </tr>
                             </thead>
                             {fromAtom.length > 0 && <tbody>
                                 {userDeposits.slice(start, end).map((item, i) => (
                                     <tr className='text-[0.8rem] text-[#e0dfdf] bg-[#272727] even:bg-[#313131]' key={i}>
-                                        <td className='p-4 text-center'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                        <td className='p-4 text-center'>{moment(item.createdAt).format('h:mm')}</td>
+                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
                                         <td className='p-4  flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
-                                        <td className='p-4 text-center'>{item.trading_plan}</td>
-                                        <td className='p-4 text-center'> {item.crypto}</td>
-                                        <td className={`p-4  text-center italic ${item.deposit_status === 'confirmed' && 'text-[#adad40]'}  ${item.deposit_status === 'pending' && 'text-[#6f6ff5]'}   ${item.deposit_status === 'failed' && 'text-[#eb4242] '}  `}>{item.deposit_status}</td>
+                                        <td className='p-4 text-center truncate'>{item.trading_plan}</td>
+                                        <td className='p-4 text-center truncate'> {item.crypto}</td>
+                                        <td className={`p-4  text-center truncate italic ${item.deposit_status === 'confirmed' && 'text-[#adad40]'}  ${item.deposit_status === 'pending' && 'text-[#6f6ff5]'}   ${item.deposit_status === 'failed' && 'text-[#eb4242] '}  `}>{item.deposit_status}</td>
                                     </tr>
                                 ))}
                             </tbody>

@@ -74,7 +74,6 @@ const LoginPage = () => {
 
     return (
         <Pagelayout>
-
             <div className='py-[5rem] bg-[whitesmoke]'>
                 {forgotPass === true && <ForgottenPassword closePass={() => setForgotPass(false)} />}
                 <div className="w-[85%] bg-[white] mx-auto py-[1.2rem] rounded-xl relative shb">

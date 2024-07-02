@@ -10,6 +10,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPa
     const [statusShow, setStatusShow] = useState(false)
     const [status, setStatus] = useState(singleWithdrawal.status)
     const [update, setUpdate] = useState(false)
+    const [beforeshow, setBeforeshow] = useState(true)
     const toggler = useRef()
 
     const withdrawalStatuses = [
@@ -42,9 +43,14 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPa
     }
 
     useEffect(() => {
-        MoveToBottom()
+        if (statusShow) {
+            MoveToBottom()
+        }
     }, [MoveToBottom])
 
+    setTimeout(() => {
+        setBeforeshow(false)
+    }, 1500)
 
     const AdminUpdateWithdrawal = async () => {
 
@@ -56,6 +62,10 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPa
 
         if (update) {
             setLoading(true)
+            const move = document.querySelector('.move')
+            move.scrollTo({
+                top: 0,
+            })
             try {
                 const response = await UserPutApi(Apis.admin.update_withdrawals, formbody)
                 if (response.status === 200) {
@@ -82,10 +92,11 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPa
 
     return (
         <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20'>
-            <div className='bg-white rounded-lg w-[50vw] h-[90vh] overflow-y-auto scroll move' ref={toggler}>
-                <div className='w-full h-full relative'>
+            <div className={`bg-white rounded-lg w-[50vw] h-[90vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
+                <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {loading && <Loading />}
-                    <div className='w-[90%] mx-auto py-[2rem] flex flex-col gap-[2rem]'>
+                    {beforeshow && <div className='beforeshow'></div>}
+                    {!beforeshow && <div className='w-[90%] mx-auto py-[2rem] flex flex-col gap-[2rem]'>
                         <div className='flex flex-col gap-[1rem] border p-1'>
                             <div className='text-[0.9rem] uppercase font-bold border px-1 '>user details:</div>
                             <div className='flex items-center justify-center w-[5.8rem] h-[5.8rem] rounded-full bg-[#c9b8eb] mx-auto'>
@@ -151,7 +162,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPa
                         {update && <div className='flex items-center justify-center mt-[-1rem]'>
                             <button className='w-fit h-fit py-[0.5rem] px-[1.5rem] text-[0.85rem] capitalize bg-[#462c7c] rounded-lg text-white font-[550]' onClick={AdminUpdateWithdrawal}>update details</button>
                         </div>}
-                    </div>
+                    </div>}
                 </div>
             </div>
         </div>

@@ -109,33 +109,33 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
             }
           </div>
         </div>
-        <div className='relative overflow-x-auto shadow-xl sm:rounded-lg mt-[1rem]'>
+        <div className='relative overflow-x-auto shadow-xl rounded-lg mt-[1rem]'>
           <table className='w-full '>
             <thead >
               <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-[white]'>
-                <td className='text-center  capitalize p-2 '>date</td>
-                <td className='text-center  capitalize p-2 '>username</td>
-                <td className='text-center  capitalize p-2 '>email</td>
-                <td className='text-center  capitalize p-2 '>amount</td>
-                <td className='text-center  capitalize p-2 '>deposit status</td>
-                <td className='text-center  capitalize p-2 '>profit</td>
-                <td className='text-center  capitalize p-2 '>profit status </td>
-                <td className='text-center  capitalize p-2 '>bonus </td>
-                <td className='text-center  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
+                <td className='text-center truncate  capitalize p-2 '>date</td>
+                <td className='text-center truncate  capitalize p-2 '>username</td>
+                <td className='text-center truncate  capitalize p-2 '>email</td>
+                <td className='text-center truncate  capitalize p-2 '>amount</td>
+                <td className='text-center truncate  capitalize p-2 '>deposit status</td>
+                <td className='text-center truncate  capitalize p-2 '>profit</td>
+                <td className='text-center truncate  capitalize p-2 '>profit status </td>
+                <td className='text-center truncate  capitalize p-2 '>bonus </td>
+                <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
               </tr>
             </thead>
             <tbody className=''>
               {altdeposits.slice(start, end).map((item, i) => (
                 <tr className='text-[0.8rem]  text-[black] font-[550] bg-[white] even:bg-[#e2e0e0]' key={i}>
-                  <td className='p-4  text-center'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                  <td className='p-4  text-center'>{item.deposituser.username}</td>
-                  <td className='p-4  text-center'>{item.deposituser.email}</td>
+                  <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                  <td className='p-4  text-center truncate'>{item.deposituser.username}</td>
+                  <td className='p-4  text-center truncate'>{item.deposituser.email}</td>
                   <td className='p-4  justify-center flex items-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
-                  <td className={`p-4  text-center ${item.deposit_status === 'failed' && 'text-[red]'}  ${item.deposit_status === 'confirmed' && 'text-[#459e45]'}`}>{item.deposit_status}</td>
+                  <td className={`p-4  text-center truncate ${item.deposit_status === 'failed' && 'text-[red]'}  ${item.deposit_status === 'confirmed' && 'text-[#459e45]'}`}>{item.deposit_status}</td>
                   <td className='p-4  justify-center flex items-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.profit.toLocaleString()}</span></td>
-                  <td className={`p-4  text-center ${item.profit_status === 'completed' ? 'text-[#459e45]' : 'text-black'}`}>{item.profit_status}</td>
+                  <td className={`p-4  text-center truncate ${item.profit_status === 'completed' ? 'text-[#459e45]' : 'text-black'}`}>{item.profit_status}</td>
                   <td className='p-4  justify-center flex items-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.bonus.toLocaleString()}</span></td>
-                  <td className='text-center  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleDepositFunction(item) }}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleDepositFunction(item) }}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
                 </tr>
               ))}
             </tbody>

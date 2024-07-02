@@ -18,6 +18,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
     const EyeIcon = eye === true ? IoEye : IoMdEyeOff
     const [deletePassword, setDeletePassword] = useState('')
     const [deleteError, setDeleteError] = useState('')
+    const [beforeshow, setBeforeshow] = useState(true)
 
     useEffect(() => {
         if (toggler) {
@@ -41,21 +42,25 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
 
     useEffect(() => {
         MoveToBottom()
-    }, [MoveToBottom]
-    )
+    }, [MoveToBottom])
+
+    setTimeout(() => {
+        setBeforeshow(false)
+    }, 1500)
 
     const DeleteUserAccount = async () => {
         setTimeout(() => {
             setDeleteError('')
         }, 1500)
 
-        if(!deletePassword) return setDeleteError('field cannot be void')
+        if (!deletePassword) return setDeleteError('field cannot be void')
 
         const formbody = {
             user_id: singleUser.id,
             password: deletePassword
         }
 
+        setDeleted(1)
         setLoading(true)
 
         try {
@@ -86,10 +91,11 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
 
     return (
         <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
-            <div className='bg-white rounded-lg w-[50vw] h-[90vh] overflow-y-auto scroll move' ref={toggler}>
-                <div className='w-full h-full relative'>
+            <div className={`bg-white rounded-lg w-[50vw] h-[90vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
+                <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {loading && <Loading />}
-                    <div className='w-[90%] mx-auto py-[2rem] flex flex-col gap-[2rem]'>
+                    {beforeshow && <div className='beforeshow'></div>}
+                    {!beforeshow && <div className='w-[90%] mx-auto py-[2rem] flex flex-col gap-[2rem]'>
                         <div className='flex flex-col gap-[1rem] border p-1'>
                             <div className='text-[0.9rem] uppercase font-bold border px-1 '>user details:</div>
                             <div className='flex items-center justify-center w-[5.8rem] h-[5.8rem] rounded-full bg-[#c9b8eb] mx-auto' >
@@ -131,7 +137,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                             {deleted === 1 && <div className='flex items-center justify-center'>
                                 <button className='w-fit h-fit py-[0.5rem] px-[1.5rem] text-[0.85rem] capitalize bg-[#462c7c] rounded-lg text-white font-[550]' onClick={() => { setDeleted(2); MoveToBottom() }}>delete user</button>
                             </div>}
-                            {deleted !== 1 &&<div className='w-fit h-fit py-[1rem] px-[1.5rem] rounded-md bg-white adsha mx-auto  text-black'>
+                            {deleted !== 1 && <div className='w-fit h-fit py-[1rem] px-[1.5rem] rounded-md bg-white adsha mx-auto  text-black'>
                                 {deleted === 2 && <div className='flex flex-col gap-[1rem] items-center justify-center'>
                                     <div className='flex flex-col gap-1'>
                                         <div className='text-[0.95rem] font-[550] text-center'>Are you sure you want to delete this user?</div>
@@ -178,7 +184,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                 </div>}
                             </div>}
                         </div>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </div>
