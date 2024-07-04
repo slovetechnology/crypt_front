@@ -111,7 +111,7 @@ const LoginPage = () => {
                                                                 <div className='text-sm capitalize font-[550]'>password</div>
                                                             </div>
                                                             <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-[0.5rem]  bg-[#e9e9e9] pl-[1rem] justify-center text-[0.9rem] ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
-                                                            <EyeIcon className='absolute top-[2.3rem] right-2 cursor-pointer' onClick={() => setEye(!eye)} />
+                                                            <EyeIcon className='absolute top-10 right-2 cursor-pointer' onClick={() => setEye(!eye)} />
                                                             <div className={`text-sm mt-[-0.3rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-[black]'}`}> {passmsg} </div>
                                                         </div>
                                                     </div>
@@ -164,7 +164,7 @@ const LoginPage = () => {
                                                 <div className='text-[0.75rem] capitalize font-[550]'>password</div>
                                             </div>
                                             <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-[0.5rem]  bg-[#e9e9e9] pl-[1rem] justify-center text-[0.9rem] ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
-                                            <EyeIcon className='absolute top-[2.3rem] right-2 cursor-pointer' onClick={() => setEye(!eye)} />
+                                            <EyeIcon className='absolute top-10 right-2 cursor-pointer' onClick={() => setEye(!eye)} />
                                             <div className={`text-[0.75rem] mt-[-0.3rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-[black]'}`}> {passmsg} </div>
                                         </div>
                                     </div>

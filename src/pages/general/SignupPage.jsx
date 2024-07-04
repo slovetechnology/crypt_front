@@ -272,12 +272,12 @@ const SignupPage = () => {
                     <div className='flex w-full gap-[2rem]'>
                       <div className='flex flex-col gap-[0.3rem] relative w-[50%]'>
                         <div className='text-[0.9rem] capitalize font-[550] '>username:</div>
-                        <input className={`outline-none w-full  border-b  ${userError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] ipt`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
+                        <input className={`outline-none w-full  border-b focus:outline-none  ${userError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] ipt`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
                         <div></div>
                       </div>
                       <div className='flex flex-col gap-[0.3rem] relative w-[50%]'>
                         <div className='text-[0.9rem] capitalize font-[550] '>e-mail address:</div>
-                        <input className={`outline-none w-full   border-b   ${emailError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] ipt`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
+                        <input className={`outline-none w-full   border-b focus:outline-none   ${emailError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] focus:outline-none ipt`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
                       </div>
                     </div>
                     <div className='flex gap-[2rem] w-full'>
@@ -297,7 +297,7 @@ const SignupPage = () => {
                         </div>
                         {countryshow && <div className='h-[11rem] w-full bg-[#ebeaea] absolute top-[3.4rem] left-0 z-10  py-[0.5rem] rounded-sm overflow-y-auto scroll'>
                           <div className='px-[1rem]'>
-                            <input className='ipt border border-[grey] bg-transparent text-black pl-[0.5rem] w-full outline-none text-[0.85rem] h-[1.5rem] rounded-sm' type='text' placeholder='search' onKeyUp={FilterCountry}></input>
+                            <input className='ipt border border-[grey] bg-transparent text-black pl-[0.5rem] w-full outline-none text-[0.85rem] h-[1.5rem] rounded-sm ' type='text' placeholder='search' onKeyUp={FilterCountry}></input>
                             {countries.map((item, i) => (
                               <div className='flex flex-col mt-2' key={i}>
                                 <div className='flex gap-2 items-center cursor-pointer hover:bg-[white]' onClick={() => { UserCountry(item); setCountryShow(false) }}>
@@ -311,20 +311,20 @@ const SignupPage = () => {
                       </div>
                       <div className='flex flex-col gap-[0.3rem] w-[50%] relative'>
                         <div className='text-[0.9rem] capitalize font-[550] '>trader's code:</div>
-                        <input className={`outline-none w-full   border-b   ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] ipt`} placeholder='Seven characters long' type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
+                        <input className={`outline-none w-full   border-b focus:outline-none  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] ipt`} placeholder='Seven characters long' type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
                         <div className='absolute bottom-[-1rem] left-0 text-[0.75rem] text-[red]'>{codeMsg}</div>
                       </div>
                     </div>
                     <div className='flex gap-[2rem] w-full'>
                       <div className='flex flex-col gap-[0.3rem] relative w-[50%]'>
                         <div className='text-[0.9rem] capitalize font-[550]'>password:</div>
-                        <input className={`outline-none w-full border-b  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  text-[0.9rem] ipt`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
+                        <input className={`outline-none w-full border-b focus:outline-none  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  text-[0.9rem] ipt`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
                         <EyeIcon className='absolute top-[2.2rem] right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye(!eye)} />
                         <div className='absolute bottom-[-1rem] left-0 text-[0.75rem] text-[red]'>{passMsg}</div>
                       </div>
                       <div className='flex flex-col gap-[0.3rem] relative w-[50%]'>
                         <div className='text-[0.9rem] capitalize font-[550] '>confirm password:</div>
-                        <input className={`outline-none w-full border-b  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] ipt`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
+                        <input className={`outline-none w-full border-b focus:outline-none  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-[0.9rem] ipt`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
                         <EyeIcon2 className='absolute top-[2.2rem] right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye2(!eye2)} />
                         <div className='absolute bottom-[-1rem] left-0 text-[0.75rem] text-[red]'>{conMsg}</div>
                       </div>

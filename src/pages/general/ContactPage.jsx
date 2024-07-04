@@ -162,7 +162,7 @@ const ContactPage = () => {
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border-b border-[white] bg-[#9e5c36] text-[0.85rem] w-[12rem] h-[1.9rem]  pl-[1rem] text-[white]' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
+                      <input className='outline-none border-b border-[white] bg-[#9e5c36] text-[0.85rem] w-[12rem] pl-[1rem] text-[white]' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
                       <MdOutlineEdit className=' text-[0.8rem] text-[#E96E28] absolute bottom-0 right-0 h-[1.2rem]' />
                       <div className='w-[0.3rem] h-[0.3rem] rounded-full bg-white absolute bottom-[-0.1rem] left-0'></div>
                       <div className='text-[0.85rem] absolute bottom-[-1.5rem] left-0 font-bold text-[#361e1e]'>{codeError}</div>

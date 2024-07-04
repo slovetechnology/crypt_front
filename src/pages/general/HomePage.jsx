@@ -22,7 +22,7 @@ const HomePage = () => {
 
   return (
     <Pagelayout>
-      <div className='bg-[#1E2833] pb-8'>
+      <div className='bg-[#1E2833] pb-16'>
         <div className='bgi'>
           <div className='w-11/12 mx-auto pt-20 relative grid grid-cols-3 lg:grid-cols-4'>
             <div className='col-span-1'>
