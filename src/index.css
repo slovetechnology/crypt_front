@@ -36,6 +36,10 @@ body {
   border-radius: 3px;
 }
 
+.scrollsdown::-webkit-scrollbar {
+  height: 0px;
+}
+
 /*loading component css */
 
 .loader {
@@ -308,7 +312,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .shb {

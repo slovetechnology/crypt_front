@@ -7,15 +7,15 @@ const PrivacyPage = () => {
     return (
         <Pagelayout>
             <div className='bg-[whitesmoke]'>
-                <div className='w-[85%] mx-auto py-[5rem]'>
+                <div className='lg:w-5/6 mx-auto py-16'>
                     <div className='w-full h-fit bg-[white] mx-auto rounded-xl relative shb py-[3rem] overflow-hidden'>
-                        <div className='w-[85%] mx-auto'>
+                        <div className='w-[90%] mx-auto'>
                             <div className='flex flex-col gap-1 '>
-                                <span className='border-b w-full text-[2.5rem] uppercase font-bold'>privacy policy</span>
+                                <span className='border-b w-full text-[1.8rem] lg:text-[2.5rem] uppercase font-bold'>privacy policy</span>
                                 <span className='text-[0.9rem] text-[#757575]'>last updated: 28th of February 2024</span>
                             </div>
                             <div className='flex flex-col gap-[0.5rem] pt-[2rem]'>
-                                <div className='text-[1.7rem] capitalize font-bold'>general</div>
+                                <div className='text-[1.5rem] lg:text-[1.7rem] capitalize font-bold'>general</div>
                                 <div>
                                     The privacy policy applies to all users of the AI ALGO TRADE Site. By agreeing to this Privacy Policy and the <Link to='/terms' onClick={MoveToTop} className='text-[#E96E28] underline'>Terms of Use</Link> you are entering into an electronic agreement between you and a specific AI ALGO TRADE entity. This Privacy Policy (together with our Terms of Use) describes our policies and procedures on the collection, use, and disclosure of personal information we collect when you use CEX.IO’s website, any and all services, products, and content, and tells you about your privacy rights and how the law protects you.
 
@@ -33,7 +33,7 @@ const PrivacyPage = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.5rem] uppercase font-bold'>1. Definitions</div>
+                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>1. Definitions</div>
                                 <div className='text-[#494949]'> <span className='font-bold capitalize'>definitions</span> for the purposes of this Privacy Policy:</div>
                                 <div className='w-[85%] mx-auto text-[#494949]'>
                                     <div className='flex flex-col gap-4'>
@@ -105,7 +105,7 @@ const PrivacyPage = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.5rem] uppercase font-bold'>2. who we are</div>
+                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>2. who we are</div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <span>
                                         AI ALGO is a leading trading system ecosystem comprised of entities defined in Terms of Use.
@@ -119,7 +119,7 @@ const PrivacyPage = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.5rem] uppercase font-bold'>3. Collecting and Using Your Personal Information</div>
+                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>3. Collecting and Using Your Personal Information</div>
                                 <div className='text-[#494949] flex flex-col gap-4'>
                                     <div>
                                         <span className='text-black font-bold'>3.1.</span> We may collect your Personal Information if you open an account or perform any transactions. This is defined as collection for the purpose of provision of service(s) to you in accordance with our Terms of Use. Please note, if you refuse to share your Personal Information for this purpose, we will not be able to provide our services to you.
@@ -211,7 +211,7 @@ const PrivacyPage = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.5rem] uppercase font-bold'>4. Your rights in relation to your personal data</div>
+                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>4. Your rights in relation to your personal data</div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <div><span className='font-bold capitalize'>4.1. Right to be informed:</span>  you have the right to be informed about the collection and use of your personal data. This Privacy Policy is intended to provide you with clear and concise information about how we process your personal data. </div>
                                 </div>
@@ -233,7 +233,7 @@ const PrivacyPage = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.5rem] uppercase font-bold'>5. Exercising of your Data Protection Rights</div>
+                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>5. Exercising of your Data Protection Rights</div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <div><span className='font-bold capitalize'>5.1. </span>  You may exercise your rights of access, rectification, cancellation, and opposition directly from your account. </div>
                                 </div>
@@ -242,7 +242,7 @@ const PrivacyPage = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.5rem] uppercase font-bold'>6. Retention of Personal Information</div>
+                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>6. Retention of Personal Information</div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <div><span className='font-bold capitalize'>6.1. </span>  Your information is held within our website secured servers. </div>
                                 </div>
@@ -257,7 +257,7 @@ const PrivacyPage = () => {
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.5rem] uppercase font-bold'>7. Disposal of Personal Information</div>
+                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>7. Disposal of Personal Information</div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <div>Once we do not have any obligation to provide you with a service you requested, nor an obligation to hold Personal Information for regulatory or legal purpose, we will anonymise or dispose of your Personal Information in line with acceptable industry and security standards so that this cannot be subsequently retrieved and associated with you.</div>
                                 </div>

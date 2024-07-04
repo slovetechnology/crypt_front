@@ -135,7 +135,7 @@ const ForgottenPassword = ({ closePass }) => {
 
 
     return (
-        <div className='fixed bg-black/40 w-full h-[100%]  left-0 top-0 flex items-center justify-center z-[50]'>
+        <div className='fixed bg-black/40 w-full h-[100%]  left-0 top-0 flex items-center justify-center z-[50] px-4'>
             <div className={`bg-[white]  py-[1rem] w-fit h-fit rounded-xl  shld overflow-auto relative`} ref={passwordField}>
             {loading && <Loading/>}
                 {screen === 1 && <>

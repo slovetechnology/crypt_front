@@ -5,8 +5,6 @@ import ethereum from '../assets/images/ethereum.png'
 import usdt from '../assets/images/usdt.png'
 import xrp from '../assets/images/xrp.png'
 import solana from '../assets/images/solana.png'
-import dogecoin from '../assets/images/dogecoin.png'
-import litecoin from '../assets/images/litecoin.png'
 
 export const AItraders = [
     {
@@ -92,13 +90,7 @@ export const supportedCoins = [
         network: 'ERC20 network'
     }
     ,
-    {
-        coin: 'litecoin',
-        img: litecoin,
-        textnw: 'Below is your Litecoin deposit address for Litecoin network, copy and paste.',
-        address: 'LUjUZv7UpYnnxS1FsUkkHJt7t8sHUATq8p',
-        network: 'litecoin network'
-    },
+   
     {
         coin: 'solana',
         img: solana,
@@ -113,19 +105,13 @@ export const supportedCoins = [
         address: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV',
         network: 'ripple network'
     },
-    {
-        coin: 'dogecoin',
-        img: dogecoin,
-        textnw: 'Below is your Dogecoin deposit address for Dogecoin network, copy and paste.',
-        address: 'DSuNQpbJwVYWoEMqooGSf93ZdiyYnkYMfj',
-        network: 'dogecoin network'
-    }
+
 ]
 
 export const questions = [
     {
         title: 'What is artificial intelligence',
-        content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo consequuntur, est repellendus repudiandae culpa mollitia nemo incidunt commodi libero adipisci!'
+        content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo consequuntur, est repellee repudiandae culpa mollitia nemo incidunt commodi libero adipisci!'
     },
     {
         title: 'What is artificial intelligence',

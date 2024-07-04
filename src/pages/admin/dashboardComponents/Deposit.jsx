@@ -421,7 +421,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             }
                         </div>
                     </div>
-                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem]'>
+                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem] scrollsdown'>
                         <table className='w-full'>
                             <thead >
                                 <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-[white]'>

@@ -142,7 +142,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
 
 
 
-        <div className='relative overflow-x-auto shadow-xl rounded-lg mt-[1rem]'>
+        <div className='relative overflow-x-auto shadow-xl rounded-lg mt-[1rem] scrollsdown'>
           <table className='w-full'>
             <thead >
               <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-[white]'>

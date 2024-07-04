@@ -9,7 +9,6 @@ import { BiMailSend } from "react-icons/bi";
 import { Alert } from '../../utils/utils';
 import { Apis, UserPostApi } from '../../services/API';
 import Loading from '../../PageComponents/Loading';
-import { FaUsers } from "react-icons/fa6";
 import { LuSearchCheck } from "react-icons/lu";
 import { TfiUser } from "react-icons/tfi";
 import { AItraders } from '../../services/Miscellaneous';
@@ -90,16 +89,16 @@ const ContactPage = () => {
 
   return (
     <Pagelayout>
-      <div className="bg-[#1E2833] py-[5rem]">
-        <div className='w-[90%] mx-auto '>
+      <div className="bg-[#1E2833] py-16">
+        <div className='w-11/12 mx-auto '>
           <div className='flex flex-col shlct'>
-            <div className='w-full h-[70vh] flex'>
-              <div className='w-[50%] h-full '>
-                <img src={contactimg} className='h-[70vh] object-cover'></img>
+            <div className='w-full lg:h-[70vh] h-fit grid grid-cols-1 lg:grid-cols-2'>
+              <div className='col-span-1 lg:h-full h-[20vh] w-full'>
+                <img src={contactimg} className='lg:h-[70vh] h-[20vh] w-full object-cover'></img>
               </div>
-              <div className='w-[50%] h-full bg-[#faf9f9] py-[2rem] overflow-hidden relative'>
+              <div className='col-span-1 lg:h-full h-fit bg-[#faf9f9] py-[1.5rem] overflow-hidden relative'>
                 {loading && <Loading />}
-                <div className='w-[75%] mx-auto'>
+                <div className='lg:w-10/12 w-11/12 mx-auto'>
                   <div className='text-[2rem] capitalize text-center font-bold text-[#636262] '>get in touch</div>
                   <div className='text-[0.85rem] capitalize font-bold text-[#636262] flex items-center justify-center gap-1'>
                     <div>
@@ -110,14 +109,14 @@ const ContactPage = () => {
                   </div>
                   <form onSubmit={submitForm}>
                     <div className='flex flex-col gap-4 mt-[3rem]'>
-                      <div className='flex gap-[3rem]'>
+                      <div className='grid grid-cols-1 lg:grid-cols-2 gap-[2rem]'>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-[0.75rem] uppercase font-bold text-[#636262] '>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 text-[0.8rem] capitalize pl-[0.5rem] ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 text-[0.8rem] capitalize pl-[0.5rem] p-1 ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-[0.75rem] uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 text-[0.8rem] text-[#E96E28] pl-[0.5rem] ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 text-[0.8rem] text-[#E96E28] p-1 pl-[0.5rem] ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
@@ -135,12 +134,12 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-            <div className={`w-full ${show === 1 ? 'h-[10vh]' : 'h-fit'}   bg-[#9e5c36] overflow-hidden trans pb-[2rem] relative`}>
-              <div className='w-[93%] mx-auto '>
+            <div className={`w-full h-fit ${show !== 1 ? 'py-8' : 'py-4'}  bg-[#9e5c36] overflow-hidden trans relative`}>
+              <div className='w-11/12 mx-auto '>
                 {show === 1 &&
-                  <div className='flex justify-between items-center h-[10vh]' >
-                    <div className='text-[white] text-[0.9rem] capitalize font-[550]'>follow account manager on:</div>
-                    <div className='flex gap-4' onClick={() => setShow(2)}>
+                  <div className='grid grid-cols-1 gap-[0.5rem] items-center lg:flex lg:justify-between h-full' >
+                    <div className='text-[white] text-[0.9rem] capitalize font-[550] text-center'>follow account manager on:</div>
+                    <div className='flex gap-4 justify-center' onClick={() => setShow(2)}>
                       <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#E96E28] text-[1.2rem] hover:text-[black]'>
                         <PiTelegramLogoLight />
                       </div>
@@ -153,16 +152,13 @@ const ContactPage = () => {
                     </div>
                   </div>
                 }
-                <div className='mt-[1rem] text-[2rem] text-[white] cursor-pointer' onClick={() => setShow(1)}>
+                {show !== 1 && <div className='text-[2rem] text-[white] cursor-pointer absolute top-0 left-0' onClick={() => setShow(1)}>
                   <MdCancel />
-                </div>
-                {show !== 1 && <div className='border-b w-full absolute top-[3.1rem] left-0 border-[#a0a0a0]'></div>}
-                <div className='mt-[2rem] flex flex-col gap-2 relative items-center'>
-                  <div className=' text-[0.85rem] text-[white] flex gap-2 items-center  capitalize'>
-                    <span>Enter trader's code to reveal account manager</span>
-                    <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center'>
-                      <FaUsers className='text-[1.1rem] text-[#E96E28]' />
-                    </div>
+                </div>}
+                {show !== 1 &&<div className='border-t w-full absolute top-8 left-0 border-[#a0a0a0]'></div>}
+                {show !== 1 && <div className='flex flex-col gap-2 relative items-center'>
+                  <div className=' text-[0.85rem] text-[white] capitalize text-center w-full mt-8 font-medium'>
+                    Enter trader's code to reveal account manager
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
@@ -176,18 +172,18 @@ const ContactPage = () => {
                       <LuSearchCheck className='text-[0.8rem]' />
                     </button>
                   </div>
-                </div>
+                </div>}
               </div>
-              {show === 3 && <div className='mt-[1.8rem] relative'>
+              {show === 3 && <div className='mt-8 relative'>
                 <div className='border-b w-full absolute top-0 left-0 border-[#a0a0a0]'></div>
-                <div className='justify-center text-[white] text-[1.5rem] uppercase   flex gap-1 items-center font-bold pt-[4rem]'>
+                <div className='justify-center text-[white] text-[1.1rem] lg:text-[1.5rem] uppercase  flex gap-1 items-center font-bold pt-[4rem]'>
                   <span>your account manager is</span>
                   <TfiUser />
                 </div>
                 {
                   trader.map((item, i) => (
-                    <div className='w-[75%] mx-auto flex gap-[3rem] mt-[3rem]' key={i}>
-                      <div className='w-[50%]'>
+                    <div className='lg:w-3/4 w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] mt-[3rem] ' key={i}>
+                      <div className='col-span-1'>
                         <div className='text-[1.5rem] text-black font-[800] pl-[1rem] capitalize
                     '>
                           {item.name}
@@ -196,7 +192,7 @@ const ContactPage = () => {
                     '>
                           - professional cryptocurrency trader -
                         </div>
-                        <div className='text-[white] text-[0.85rem] pt-[2rem]'>
+                        <div className='text-[white] text-[0.85rem] mt-[1rem]'>
                           {item.detail}
                         </div>
                         <div className='flex flex-col gap-4 mt-[2rem]'>
@@ -220,7 +216,7 @@ const ContactPage = () => {
                           </div>
                         </div>
                       </div>
-                      <div className='w-[50%]'>
+                      <div className='col-span-1'>
                         <img src={item.img} className='w-full h-[20rem] object-cover'></img>
                       </div>
                     </div>

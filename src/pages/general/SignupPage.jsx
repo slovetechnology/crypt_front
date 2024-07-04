@@ -223,7 +223,7 @@ const SignupPage = () => {
 
   return (
     <Pagelayout>
-      <div className='py-[5rem] bg-[whitesmoke] '>
+      <div className='py-16 bg-[whitesmoke] '>
         <div className="w-[85%] bg-[white] mx-auto py-[1.2rem] rounded-xl relative shb">
           <div className='w-[97%] mx-auto flex'>
             <div className='w-[60%] relative'>

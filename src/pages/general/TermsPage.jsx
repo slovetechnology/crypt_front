@@ -7,11 +7,11 @@ const TermsPage = () => {
     return (
         <Pagelayout>
             <div className='bg-[whitesmoke]'>
-                <div className='w-[85%] mx-auto py-[5rem]'>
+                <div className='lg:w-5/6 mx-auto py-16'>
                     <div className='w-full h-fit bg-[white] mx-auto rounded-xl relative shb py-[2.5rem] overflow-hidden'>
-                        <div className='w-[85%] mx-auto'>
+                        <div className='w-[90%] mx-auto'>
                             <div className='flex flex-col gap-1 '>
-                                <span className='border-b w-full text-[2.5rem] uppercase font-bold'>terms and conditions</span>
+                                <span className='border-b w-full text-[1.8rem] lg:text-[2.5rem] uppercase font-bold'>terms & conditions</span>
                                 <span className='text-[0.9rem] text-[#757575]'>last updated: 28th of February 2024</span>
                             </div>
                             <div className='pt-[2rem]'>
@@ -20,7 +20,7 @@ const TermsPage = () => {
                                 </div>
                                 <div>The use of the website is subject to the following terms:</div>
                                 <div className='flex flex-col gap-4 mt-[2rem]'>
-                                    <div className='text-[1.5rem] uppercase font-bold'>1. definitions</div>
+                                    <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>1. definitions</div>
                                     <div className='w-[85%] mx-auto text-[#494949]'>
                                         <div className='flex flex-col gap-4'>
                                             <div className='flex gap-1 w-full'>
@@ -99,7 +99,7 @@ const TermsPage = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-4 mt-[2rem]'>
-                                    <div className='text-[1.5rem] uppercase font-bold'>2. risk warning</div>
+                                    <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>2. risk warning</div>
                                     <div className='w-[85%] mx-auto text-[#494949]'>
                                         <div className='flex flex-col gap-4'>
                                             <div className='flex gap-1 w-full'>
@@ -138,7 +138,7 @@ const TermsPage = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-4 mt-[2rem]'>
-                                    <div className='text-[1.5rem] uppercase font-bold'>3. services</div>
+                                    <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>3. services</div>
                                     <div className='w-[85%] mx-auto text-[#494949]'>
                                         <div className='flex flex-col gap-4'>
                                             <div className='flex gap-1 w-full'>
@@ -169,7 +169,7 @@ const TermsPage = () => {
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-4 mt-[2rem]'>
-                                    <div className='text-[1.5rem] uppercase font-bold'>4. Eligibility</div>
+                                    <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>4. Eligibility</div>
                                     <div className='text-[#494949]'> By registering an Account, you expressly represent and warrant that you:</div>
                                     <div className='w-[85%] mx-auto text-[#494949]'>
                                         <div className='flex flex-col gap-4'>
