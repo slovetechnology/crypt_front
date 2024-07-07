@@ -226,7 +226,7 @@ const SignupPage = () => {
       <div className='py-16 bg-[whitesmoke] '>
         <div className="md:w-[85%] bg-white mx-auto py-4 rounded-xl relative shb">
           <div className='absolute top-4 left-4'>
-            <img src={logo} className='w-[auto] h-[7rem]'></img>
+            <img src={logo} className='w-[auto] h-[5rem]'></img>
           </div>
           <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
             <div className='col-span-1'>
@@ -237,7 +237,7 @@ const SignupPage = () => {
                       {loading && <Loading />}
                       {screen === 1 && <div className='w-11/12 md:w-[85%] mx-auto '>
                         <div className='text-center text-[1.7rem] capitalize font-[550]'>create an account</div>
-                        <div className='text-sm mt-[0.1rem] text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
+                        <div className='text-[0.8rem] mt-[0.1rem] text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
                         <form onSubmit={submitForm}>
                           <div className='flex flex-col gap-[0.7rem] mt-[1rem]'>
                             <div className='relative mx-auto'>
@@ -331,7 +331,7 @@ const SignupPage = () => {
                             </div>
                             <div className='flex flex-col gap-[0.5rem] items-center'>
                               <button className='outline-none bg-[#E96E28] py-[0.5rem] w-full md:px-[8rem] h-fit md:w-fit rounded-md capitalize text-sm text-[white] cursor-pointer font-[550]' type='submit'>create account</button>
-                              <div className='text-[#6b6a6a] text-[0.8rem] font-[550]'>Already have an account?
+                              <div className='text-[#6b6a6a] text-sm font-[550]'>Already have an account?
                                 <Link to='/login' onClick={MoveToTop} className='cursor-pointer text-[#E96E28] font-[550]' > Login</Link>
                               </div>
                             </div>
