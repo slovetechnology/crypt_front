@@ -230,14 +230,14 @@ const SignupPage = () => {
           </div>
           <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
             <div className='col-span-1'>
-              <div className='bgs rounded-xl flex items-center'>
+              <div className='bgs rounded-xl flex items-center lg:h-[100vh] h-fit py-8'>
                 <div className='w-11/12 mx-auto'>
                   <div className={`w-full h-fit lg:w-[39vw] lg:absolute bg-white ${screen === 1 ? 'top-[2.85rem]' : 'top-16'}  lg:right-16 rounded-[20px] py-8 lg:shadow-sign-sha`}>
                     <div className='relative w-full h-full'>
                       {loading && <Loading />}
                       {screen === 1 && <div className='w-11/12 md:w-[85%] mx-auto '>
                         <div className='text-center text-[1.7rem] capitalize font-[550]'>create an account</div>
-                        <div className='text-[0.8rem] mt-[0.1rem] text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
+                        <div className='text-sm mt-[0.1rem] text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
                         <form onSubmit={submitForm}>
                           <div className='flex flex-col gap-[0.7rem] mt-[1rem]'>
                             <div className='relative mx-auto'>
