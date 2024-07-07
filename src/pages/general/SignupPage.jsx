@@ -230,7 +230,7 @@ const SignupPage = () => {
           </div>
           <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
             <div className='col-span-1'>
-              <div className='bgs rounded-xl flex items-center lg:h-[100vh] h-fit py-8'>
+              <div className='bgs rounded-xl flex items-center lg:h-[100vh] h-fit py-12'>
                 <div className='w-11/12 mx-auto'>
                   <div className={`w-full h-fit lg:w-[39vw] lg:absolute bg-white ${screen === 1 ? 'top-[2.85rem]' : 'top-16'}  lg:right-16 rounded-[20px] py-8 lg:shadow-sign-sha`}>
                     <div className='relative w-full h-full'>
