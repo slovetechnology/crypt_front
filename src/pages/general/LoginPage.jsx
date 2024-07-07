@@ -78,7 +78,7 @@ const LoginPage = () => {
                 {forgotPass === true && <ForgottenPassword closePass={() => setForgotPass(false)} />}
                 <div className="md:w-[85%] bg-white mx-auto py-4 rounded-xl relative shb">
                     <div className='absolute top-4 left-4 lg:block '>
-                        <img src={logo} className='w-[auto] h-[5rem]'></img>
+                        <img src={logo} className='w-[auto] h-20'></img>
                     </div>
                     <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
                         <div className='col-span-1'>

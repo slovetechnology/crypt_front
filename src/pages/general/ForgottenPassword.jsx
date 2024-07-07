@@ -51,7 +51,7 @@ const ForgottenPassword = ({ closePass }) => {
 
         setTimeout(() => {
             setEmailError(false)
-          }, 2000)
+        }, 2000)
 
         if (!email) return setEmailError('email address is required')
         setLoading(true)
@@ -77,7 +77,7 @@ const ForgottenPassword = ({ closePass }) => {
 
         setTimeout(() => {
             setCodeError(false)
-          }, 2000)
+        }, 2000)
 
         if (!code) return setCodeError('verification code is required')
         setLoading(true)
@@ -105,7 +105,7 @@ const ForgottenPassword = ({ closePass }) => {
         setTimeout(() => {
             setPassError(false)
             setConfirmError(false)
-          }, 2000)
+        }, 2000)
 
         if (!passwords.new_password) return setPassError('password is required')
         if (!passwords.confirm_password) return setConfirmError('confirm Password is required')
@@ -135,9 +135,9 @@ const ForgottenPassword = ({ closePass }) => {
 
 
     return (
-        <div className='fixed bg-black/40 w-full h-[100%]  left-0 top-0 flex items-center justify-center z-50 px-4'>
+        <div className='fixed bg-black/40 w-full h-[100%]  left-0 top-0 flex items-center justify-center px-4 z-50'>
             <div className={`bg-[white]  py-[1rem] w-fit h-fit rounded-xl  shld overflow-auto relative`} ref={passwordField}>
-            {loading && <Loading/>}
+                {loading && <Loading />}
                 {screen === 1 && <>
                     <div className='w-[85%] mx-auto'>
                         <form onSubmit={FindEmail}>
@@ -156,7 +156,7 @@ const ForgottenPassword = ({ closePass }) => {
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{emailError}</div>
                                 </div>
                                 <div className='flex items-center justify-center mt-[0.5rem]'>
-                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] px-[6rem] h-fit w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >find account</button>
+                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[6rem] h-fit md:w-fit w-full rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >find account</button>
                                 </div>
                             </div>
                         </form>
@@ -180,7 +180,7 @@ const ForgottenPassword = ({ closePass }) => {
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{codeError}</div>
                                 </div>
                                 <div className='flex items-center justify-center mt-[0.5rem]'>
-                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] px-[7.5rem] h-fit w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >verify email</button>
+                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[7.5rem] h-fit md:w-fit w-full rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >verify email</button>
                                 </div>
                             </div>
                         </form>
@@ -200,32 +200,33 @@ const ForgottenPassword = ({ closePass }) => {
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-[0.75rem] capitalize font-[600]'>enter new password</div>
                                     <input className='outline-none w-full  border-b border-[black] text-[0.9rem] focus:outline-none  ipt' type={eye === true ? 'text' : 'password'} placeholder='Characters more than five' name='new_password' value={passwords.new_password} onChange={passwordHandler}></input>
-                                    <EyeIcon className='absolute top-[2.2rem] right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye(!eye)} />
+                                    <EyeIcon className='absolute bottom-0 right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye(!eye)} />
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{passError}</div>
                                 </div>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-[0.75rem] capitalize font-[600]'>confirm password</div>
                                     <input className='outline-none w-full  border-b border-[black] text-[0.9rem] focus:outline-none ipt' type={eye2 === true ? 'text' : 'password'} placeholder='Re-type password' name='confirm_password' value={passwords.confirm_password} onChange={passwordHandler}></input>
-                                    <EyeIcon2 className='absolute top-[2.2rem] right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye2(!eye2)} />
+                                    <EyeIcon2 className='absolute bottom-0 right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{confirmError}</div>
                                 </div>
                                 <div className='flex items-center justify-center mt-[0.5rem]'>
-                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] px-[6rem] h-fit w-fit rounded-md capitalize text-[0.8rem] text-[white] cursor-pointer font-[550]'>change password</button>
+                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[6rem] h-fit ,md:w-fit w-full rounded-md capitalize text-[0.8rem] text-[white] cursor-pointer font-[550]'>change password</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </>}
                 {screen === 4 && <>
-                    <div className='px-[8rem]'>
-                        <div className='flex justify-center flex-col gap-2 items-center'>
+                    <div className='w-[85%] mx-auto'>
+                        <div className='flex flex-col gap-2 justify-center items-center'>
                             <div className='w-[3rem] h-[3rem] border-2 border-[green] rounded-[50%] flex items-center justify-center'>
                                 <RiVerifiedBadgeLine className='text-[1.5rem] text-[green]' />
                             </div>
                             <div className='text-[0.9rem] font-[800] uppercase text-center'>password changed!</div>
-                            <div className='flex gap-2 cursor-pointer' onClick={closePass}>
-                                <div className='font-[600] capitalize text-[0.8rem]'>back to login</div>
-                                <FaArrowRight className='hover:bg-[green] hover:rounded-full hover:p-[0.2rem]' />
+                            <div className='text-center text-[0.8rem] font-[600]'>Password change successful, you can now login with new password created</div>
+                            <div className='flex gap-1 cursor-pointer mt-4 items-center hover:text-[green]' onClick={closePass}>
+                                <div className='font-[600] capitalize text-sm'>back to login</div>
+                                <FaArrowRight/>
                             </div>
                         </div>
                     </div>

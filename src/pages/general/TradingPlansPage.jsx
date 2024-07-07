@@ -15,8 +15,8 @@ const TradingPlansPage = () => {
             </div>
             <div className='text-[1.1rem] text-center'>- Below are the different trading plans on the AI Algorithm Trading System -</div>
           </div>
-          <div className='flex flex-wrap gap-8 mt-[5rem] text-[#30465c]'>
-            <div className='w-[22rem] h-[28rem] bg-[whitesmoke] rounded-md'>
+          <div className='flex flex-wrap gap-12 mt-[5rem] text-[#30465c] justify-center'>
+            <div className='w-[23rem] h-[28rem] bg-[whitesmoke] rounded-md'>
               <div className='flex flex-col items-center p-[2.5rem]'>
                 <div className='capitalize'>starter plan</div>
                 <div className='flex gap-1 my-[3rem] items-center'>
@@ -35,7 +35,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[22rem] h-[28rem] bg-[#30465c] rounded-md text-white shabox'>
+            <div className='w-[23rem] h-[28rem] bg-[#30465c] rounded-md text-white shabox'>
               <div className='mt-[1rem] '>
                 <div className='w-[4.4rem] h-[1.7185rem] flex items-center justify-center bg-white rotate-[320deg]  text-[0.75rem] uppercase plan text-[#30465c]'>popular</div>
               </div>
@@ -57,7 +57,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[22rem] h-[28rem] bg-[whitesmoke] rounded-md text-[#30465c]'>
+            <div className='w-[23rem] h-[28rem] bg-[whitesmoke] rounded-md text-[#30465c]'>
               <div className='flex flex-col items-center p-[2.5rem]'>
                 <div className='capitalize '>business plan</div>
                 <div className='flex gap-1 my-[3rem] items-center'>
@@ -76,7 +76,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[22rem] h-[28rem] bg-[whitesmoke] rounded-md text-[#30465c]'>
+            <div className='w-[23rem] h-[28rem] bg-[whitesmoke] rounded-md text-[#30465c]'>
               <div className='flex flex-col items-center p-[2.5rem]'>
                 <div className='capitalize '>pro plan</div>
                 <div className='flex gap-1 my-[3rem] items-center'>
@@ -95,7 +95,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[22rem] h-[28rem] bg-[whitesmoke] rounded-md text-[#30465c]'>
+            <div className='w-[23rem] h-[28rem] bg-[whitesmoke] rounded-md text-[#30465c]'>
               <div className='flex flex-col items-center p-[2.5rem]'>
                 <div className='capitalize '>diamond plan</div>
                 <div className='flex gap-1 my-[3rem] items-center'>
@@ -114,7 +114,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[22rem] h-[28rem] bg-[#30465c] rounded-md shabox text-white'>
+            <div className='w-[23rem] h-[28rem] bg-[#30465c] rounded-md shabox text-white'>
               <div className='mt-[1rem] '>
                 <div className='w-[4.4rem] h-[1.7185rem] flex items-center justify-center bg-white rotate-[320deg]  text-[0.75rem] uppercase plan text-[#30465c]'>one trial</div>
               </div>

@@ -1,8 +1,8 @@
-import React, { useRef, useState, useMemo, useEffect } from 'react'
+import React, { useRef, useState} from 'react'
 import Pagelayout from '../../PageComponents/Pagelayout'
 import logo from '../../assets/images/logobrand.png'
 import { Link, useNavigate } from 'react-router-dom';
-import { FaCheck, FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import {FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { SlCamera, SlUser } from 'react-icons/sl'
@@ -230,9 +230,9 @@ const SignupPage = () => {
           </div>
           <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
             <div className='col-span-1'>
-              <div className='bgs rounded-xl flex items-center lg:h-[100vh] h-fit py-12'>
+              <div className='bgs rounded-xl flex items-center lg:h-[100vh] h-fit py-16'>
                 <div className='w-11/12 mx-auto'>
-                  <div className={`w-full h-fit lg:w-[39vw] lg:absolute bg-white ${screen === 1 ? 'top-[2.85rem]' : 'top-16'}  lg:right-16 rounded-[20px] py-8 lg:shadow-sign-sha`}>
+                  <div className={`w-full h-fit lg:w-[39vw] lg:absolute bg-white ${screen === 1 ? 'top-[2.85rem]' : 'top-[3.7rem]'}  lg:right-16 rounded-[20px] py-8 lg:shadow-sign-sha`}>
                     <div className='relative w-full h-full'>
                       {loading && <Loading />}
                       {screen === 1 && <div className='w-11/12 md:w-[85%] mx-auto '>
@@ -259,10 +259,9 @@ const SignupPage = () => {
                             <div className='relative '>
                               <div className='absolute bottom-[1rem] right-[8rem] text-[0.8rem] text-[red]'>{imageError}</div>
                             </div>
-                            <div className='flex flex-col gap-[0.3rem] relative'>
+                            <div className='flex flex-col gap-[0.3rem]'>
                               <div className='text-sm capitalize font-[550] '>full name:</div>
                               <input className={`outline-none w-full  border-b  ${nameError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-sm ipt`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
-                              <FaCheck className='absolute bottom-1 right-0 text-[0.7rem] text-[#E96E28]' />
                               <div></div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 w-full md:gap-8 gap-[0.7rem]'>
@@ -352,7 +351,7 @@ const SignupPage = () => {
                             </div>
                             <div className='text-[0.85rem] text-right mt-[0.5rem]'>Didn't get code? <span className='text-[#E96E28] cursor-pointer' onClick={ResendsCode}>Resend code</span></div>
                             <div className='flex items-center justify-center mt-[3rem]'>
-                              <button className='outline-none bg-[#E96E28] py-[0.5rem] px-[3rem] h-fit w-fit rounded-md capitalize text-sm text-[white] cursor-pointer font-[550]'>verify</button>
+                              <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[3rem] h-fit w-full md:w-fit rounded-md capitalize text-sm text-[white] cursor-pointer font-[550]'>verify</button>
                             </div>
                           </form>
                         </div>
