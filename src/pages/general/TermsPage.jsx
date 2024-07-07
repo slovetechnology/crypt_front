@@ -16,7 +16,7 @@ const TermsPage = () => {
                             </div>
                             <div className='pt-[2rem]'>
                                 <div>
-                                    Welcome to our website. By browising and using this website, you signify your agreement to comply with and be bound with the following terms and conditions and <Link to='/privacy' onClick={MoveToTop} className='text-[#E96E28] underline'>Privacy Policy</Link> of use which governs Ai Algo Trade relationship with you as related to this website. Please do not use this website if you disagree with any part of these terms and conditions.
+                                    Welcome to our website. By browising and using this website, you signify your agreement to comply with and be bound with the following terms and conditions and <Link to='/privacy' onClick={MoveToTop} className='text-orange underline'>Privacy Policy</Link> of use which governs Ai Algo Trade relationship with you as related to this website. Please do not use this website if you disagree with any part of these terms and conditions.
                                 </div>
                                 <div>The use of the website is subject to the following terms:</div>
                                 <div className='flex flex-col gap-4 mt-[2rem]'>

@@ -143,10 +143,10 @@ const Header = () => {
                     </div>
                     <div className='lg:flex gap-4 hidden'>
                         <Link to='/login' onClick={MoveToTop}>
-                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] border-2 text-[0.9rem] text-[white] font-medium rounded-lg border-[#E96E28] hover:bg-[#E96E28] hover:text-[white] flex items-center justify-center'>Sign In</button>
+                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] border-2 text-[0.9rem] text-[white] font-medium rounded-lg border-orange hover:bg-orange hover:text-[white] flex items-center justify-center'>Sign In</button>
                         </Link>
                         <Link to='/signup' onClick={MoveToTop}>
-                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] text-[0.9rem] text-[white] rounded-lg bg-[#E96E28] hover:bg-[#1E2833] border-2 border-[#E96E28] hover:border-[#E96E28] font-medium flex items-center justify-center' >Sign Up</button>
+                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] text-[0.9rem] text-[white] rounded-lg bg-orange hover:bg-[#1E2833] border-2 border-orange hover:border-orange font-medium flex items-center justify-center' >Sign Up</button>
                         </Link>
                     </div>
                     <div className='relative lg:hidden'>
@@ -219,10 +219,10 @@ const Header = () => {
                     </div>
                     <div className='flex gap-8 justify-center py-8'>
                         <Link to='/login' onClick={MoveToTop}>
-                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] border-2 text-[0.9rem] text-[white] font-medium rounded-lg border-[#E96E28] hover:bg-[#E96E28] hover:text-[white] flex items-center justify-center'>Sign In</button>
+                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] border-2 text-[0.9rem] text-[white] font-medium rounded-lg border-orange hover:bg-orange hover:text-[white] flex items-center justify-center'>Sign In</button>
                         </Link>
                         <Link to='/signup' onClick={MoveToTop}>
-                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] text-[0.9rem] text-[white] rounded-lg bg-[#E96E28] hover:bg-[#1E2833] border-2 border-[#E96E28] hover:border-[#E96E28] font-medium flex items-center justify-center' >Sign Up</button>
+                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] text-[0.9rem] text-[white] rounded-lg bg-orange hover:bg-[#1E2833] border-2 border-orange hover:border-orange font-medium flex items-center justify-center' >Sign Up</button>
                         </Link>
                     </div>
                 </div>}

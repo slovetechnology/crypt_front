@@ -104,7 +104,7 @@ const ContactPage = () => {
                     <div>
                       - send us a message; we are listening
                     </div>
-                    <MdOutlineHearing className='text-[#E96E28]' />
+                    <MdOutlineHearing className='text-orange' />
                     <span>-</span>
                   </div>
                   <form onSubmit={submitForm}>
@@ -112,19 +112,19 @@ const ContactPage = () => {
                       <div className='grid grid-cols-1 lg:grid-cols-2 gap-[2rem]'>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-[0.75rem] uppercase font-bold text-[#636262] '>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 text-[0.8rem] capitalize pl-[0.5rem] p-1 ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 text-[0.8rem] capitalize pl-2 p-1 focus:outline-none ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-[0.75rem] uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 text-[0.8rem] text-[#E96E28] p-1 pl-[0.5rem] ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 text-[0.8rem] text-orange p-1 pl-[0.5rem] focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
                         <div className='text-[0.75rem] uppercase font-bold text-[#636262]'>message</div>
-                        <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] text-[0.9rem] resize-none outline-[#E96E28]  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                        <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] text-[0.9rem] resize-none outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                       </div>
                       <div className='flex justify-center mt-[0.5rem]'>
-                        <button className='outline-none bg-[#E96E28] text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-[2rem] py-[0.25rem] rounded-[3px] capitalize font-bold'>
+                        <button className='outline-none bg-orange text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-[2rem] py-[0.25rem] rounded-[3px] capitalize font-bold'>
                           <div>send</div>
                           <BiMailSend />
                         </button>
@@ -140,13 +140,13 @@ const ContactPage = () => {
                   <div className='grid grid-cols-1 gap-[0.5rem] items-center lg:flex lg:justify-between h-full' >
                     <div className='text-[white] text-[0.9rem] capitalize font-[550] text-center'>follow account manager on:</div>
                     <div className='flex gap-4 justify-center' onClick={() => setShow(2)}>
-                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#E96E28] text-[1.2rem] hover:text-[black]'>
+                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-[1.2rem] hover:text-[black]'>
                         <PiTelegramLogoLight />
                       </div>
-                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
+                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
                         <TfiInstagram />
                       </div>
-                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
+                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
                         <TiSocialFacebook />
                       </div>
                     </div>
@@ -162,12 +162,12 @@ const ContactPage = () => {
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border-b border-[white] bg-[#9e5c36] text-[0.85rem] w-[12rem] pl-[1rem] text-[white]' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
-                      <MdOutlineEdit className=' text-[0.8rem] text-[#E96E28] absolute bottom-0 right-0 h-[1.2rem]' />
+                      <input className='outline-none border-b  border-white bg-transparent text-[0.85rem] w-48 pl-4 text-white focus:outline-none' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
+                      <MdOutlineEdit className=' text-[0.8rem] text-orange absolute bottom-0 right-0 h-[1.2rem]' />
                       <div className='w-[0.3rem] h-[0.3rem] rounded-full bg-white absolute bottom-[-0.1rem] left-0'></div>
                       <div className='text-[0.85rem] absolute bottom-[-1.5rem] left-0 font-bold text-[#361e1e]'>{codeError}</div>
                     </div>
-                    <button className='outline-none w-fit h-fit py-[0.4rem] px-[1rem] text-[0.85rem] text-[white]  bg-[#E96E28] rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>
+                    <button className='outline-none w-fit h-fit py-[0.4rem] px-[1rem] text-[0.85rem] text-[white]  bg-orange rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>
                       <span>search</span>
                       <LuSearchCheck className='text-[0.8rem]' />
                     </button>
@@ -199,17 +199,17 @@ const ContactPage = () => {
                           <div className='text-[black] font-bold capitalize '>socials:</div>
                           <div className='flex gap-4 '>
                             <a href={item.tgram_link}>
-                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#E96E28] text-[1.2rem] hover:text-[black]'>
+                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-[1.2rem] hover:text-[black]'>
                                 <PiTelegramLogoLight />
                               </div>
                             </a>
                             <a href={item.ig_link}>
-                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
+                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
                                 <TfiInstagram />
                               </div>
                             </a>
                             <a href={item.fb_link}>
-                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#E96E28] text-[1.1rem] hover:text-[black]'>
+                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
                                 <TiSocialFacebook />
                               </div>
                             </a>

@@ -24,7 +24,7 @@ const HomePage = () => {
     <Pagelayout>
       <div className='bg-[#1E2833] pb-16'>
         <div className='bgi'>
-          <div className='w-11/12 mx-auto pt-20 relative grid grid-cols-3 lg:grid-cols-4'>
+          <div className='w-11/12 mx-auto pt-20  grid grid-cols-3 lg:grid-cols-4'>
             <div className='col-span-1'>
               <div className='relative w-fit'>
                 <div className='capitalize text-[#E96E28] text-[0.7rem] font-[550] tracking-widest '> tech & crypto</div>
@@ -37,15 +37,13 @@ const HomePage = () => {
                 </button>
               </Link>
             </div>
-            <div className='lg:col-span-3 col-span-2 relative'>
-              <div className='absolute top-0 left-0'>
-                <div className='w-fit h-fit border rotate-90  uppercase text-[0.85rem] mt-[10rem] py-[0.25rem] px-[0.4rem] text-[white] font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap '>
-                  <div> crypto trade made easy</div>
-                  <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[1.7rem] left-[-0.2rem]'></div>
-                  <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[-0.2rem] left-[-0.21rem]'></div>
-                  <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[1.7rem] right-[-0.21rem]'></div>
-                  <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[-0.2rem] right-[-0.21rem]'></div>
-                </div>
+            <div className='lg:col-span-3 col-span-2 '>
+              <div className='w-fit h-fit border rotate-90  uppercase text-[0.85rem] py-1 px-[0.4rem] text-[white] font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap mt-40'>
+                <div> crypto trade made easy</div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[1.7rem] left-[-0.2rem]'></div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[-0.2rem] left-[-0.21rem]'></div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[1.7rem] right-[-0.21rem]'></div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[-0.2rem] right-[-0.21rem]'></div>
               </div>
             </div>
           </div>
@@ -60,7 +58,7 @@ const HomePage = () => {
             </div>
             <div className='flex items-center gap-4 flex-col'>
               <div className='text-[white] text-[2rem] capitalize text-center font-bold'>what is the al algo trade?</div>
-              <div className='text-[#bbb9b9] text-[0.95rem] text-center lg:w-[60%] pt-[1rem] tracking-[0.05rem]'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam nesciunt ut voluptatum! Qui quae inventore non totam laudantium, error provident aliquid, repudiandae, reiciendis praesentium excepturi libero nobis nostrum a eligendi.</div>
+              <div className='text-semi-white text-[0.95rem] text-center lg:w-[60%] tracking-[0.05rem]'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam nesciunt ut voluptatum! Qui quae inventore non totam laudantium, error provident aliquid, repudiandae, reiciendis praesentium excepturi libero nobis nostrum a eligendi.</div>
             </div>
             <div className='lg:w-3/5 w-11/12 mx-auto'>
               <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 mt-16'>
@@ -85,7 +83,7 @@ const HomePage = () => {
             <div className='flex flex-col'>
               <div className=' flex flex-col gap-2 items-center justify-center text-white'>
                 <span className='font-bold capitalize lg:text-[2.5rem] text-3xl '>have any questions?</span>
-                <div className='text-center lg:w-[50%] mt-[1rem] text-[#bbb9b9]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem obcaecati, architecto numquam libero perspiciatis veniam!</div>
+                <div className='text-center lg:w-[50%] mt-[1rem] text-semi-white'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem obcaecati, architecto numquam libero perspiciatis veniam!</div>
               </div>
               <div className='flex flex-col gap-[1rem] mt-[3rem]'>
                 {questions.map((item, i) => (

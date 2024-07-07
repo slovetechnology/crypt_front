@@ -54,7 +54,7 @@ const LegalSecurityPage = () => {
                 <div className='text-[1.2rem] font-bold capitalize text-[#504f4f]'>disclosures</div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-4 '>
                   <Link to='/terms' onClick={MoveToTop}>
-                    <div className='w-full h-fit bg-[white] rounded-lg border hover:shadow-lg p-[1.2rem] text-black hover:text-[#E96E28] cursor-pointer'>
+                    <div className='w-full h-fit bg-[white] rounded-lg border hover:shadow-lg p-[1.2rem] text-black hover:text-orange cursor-pointer'>
                       <div className='flex flex-col gap-8'>
                         <GrNotes className='text-[4.5rem] text-[#1E2833]' />
                         <div className='text-[0.95rem] font-bold capitalize'>terms of use</div>
@@ -62,7 +62,7 @@ const LegalSecurityPage = () => {
                     </div>
                   </Link>
                   <Link to='/privacy' onClick={MoveToTop}>
-                    <div className='w-full h-fit bg-[white] rounded-lg border hover:shadow-xl p-[1.2rem] text-black hover:text-[#E96E28] cursor-pointer'>
+                    <div className='w-full h-fit bg-[white] rounded-lg border hover:shadow-xl p-[1.2rem] text-black hover:text-orange cursor-pointer'>
                       <div className='flex flex-col gap-8'>
                         <GrNotes className='text-[4.5rem] text-[#1E2833]' />
                         <div className='text-[0.95rem] font-bold capitalize'>privay policy</div>
