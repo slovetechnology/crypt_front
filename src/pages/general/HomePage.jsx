@@ -12,9 +12,9 @@ import { useState } from 'react';
 const HomePage = () => {
   const [faq, setFaq] = useState('')
 
-  const handleQuestions = id => {
-    if (id !== faq) {
-      setFaq(id)
+  const handleQuestions = i => {
+    if (i !== faq) {
+      setFaq(i)
     } else {
       setFaq('')
     }
@@ -87,13 +87,19 @@ const HomePage = () => {
               </div>
               <div className='flex flex-col gap-[1rem] mt-[3rem]'>
                 {questions.map((item, i) => (
-                  <div className={`w-full mx-auto h-fit bg-[white] rounded-md p-4 flex flex-col gap-4 overflow-hidden border border-[grey] trans`} key={i}>
+                  <div className={`w-full mx-auto h-fit bg-white rounded-md p-2 md:p-4 flex flex-col gap-4 overflow-hidden border border-[grey] shadow-sm trans`} key={i}>
                     <div
                       onClick={() => handleQuestions(i)}
-                      className='flex justify-between w-full items-center h-fit cursor-pointer text-[1.2rem] font-[550] dropclck'>
+                      className='flex justify-between w-full h-fit cursor-pointer text-lg font-medium dropclck'>
                       <span>{item.title}</span>
-                      {faq !== i ? <div className='w-fit h-fit p-1 rounded-md bg-[#e2e2e2] text-[0.8rem]'><FiPlus /></div> :
-                        <div className='w-fit h-fit p-1 rounded-md bg-[#e2e2e2] text-[0.8rem]'><FiMinus /></div>}
+                      <div className='w-fit h-fit p-1 rounded-md bg-[#e2e2e2] text-[0.8rem]'>
+                        {faq !== i ?
+                          <FiPlus />
+                          :
+                          <FiMinus/>
+                        }
+                        
+                      </div>
                     </div>
                     <div className={`text-[0.95rem] ${faq === i ? 'block' : 'hidden'} `}>{item.content}</div>
                   </div>

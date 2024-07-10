@@ -146,7 +146,7 @@ const ForgottenPassword = ({ closePass }) => {
                                     <IoLockClosedOutline className='text-[1.5rem]' />
                                 </div>
                                 <div className='text-[0.9rem] font-[800]'>Trouble logging in?</div>
-                                <div className='text-center text-[0.8rem] font-[600]'>Enter your account's email address to find your account and change password</div>
+                                <div className='text-center text-[0.8rem] font-[600]'>Enter your email address to find your account and reset password</div>
                             </div>
                             <div className='flex flex-col gap-5 mt-[2rem]'>
                                 <div className='flex flex-col gap-2 relative'>
@@ -170,7 +170,7 @@ const ForgottenPassword = ({ closePass }) => {
                                     <MdVerified className='text-[1.7rem]' />
                                 </div>
                                 <div className='text-[0.9rem] font-[800]'>Verify your email address</div>
-                                <div className='text-center text-[0.8rem] font-[600]'>A verification code was sent to your email, copy and paste the code below</div>
+                                <div className='text-center text-[0.8rem] font-[600]'>A verification code was sent to your email address, copy and paste the code below</div>
                             </div>
                             <div className='flex flex-col gap-5 mt-[2rem]'>
                                 <div className='flex flex-col gap-2 relative'>
@@ -222,8 +222,8 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='w-[3rem] h-[3rem] border-2 border-[green] rounded-[50%] flex items-center justify-center'>
                                 <RiVerifiedBadgeLine className='text-[1.5rem] text-[green]' />
                             </div>
-                            <div className='text-[0.9rem] font-[800] uppercase text-center'>password changed!</div>
-                            <div className='text-center text-[0.8rem] font-[600]'>Password change successful, you can now login with new password created</div>
+                            <div className='text-[0.9rem] font-[800] uppercase text-center'>password Reset!</div>
+                            <div className='text-center text-[0.8rem] font-[600]'>Password reset successful, you can now login with new password created</div>
                             <div className='flex gap-1 cursor-pointer mt-4 items-center hover:text-[green]' onClick={closePass}>
                                 <div className='font-[600] capitalize text-sm'>back to login</div>
                                 <FaArrowRight/>

@@ -13,7 +13,7 @@ const Footer = () => {
       <div className='lg:w-4/5 w-11/12 mx-auto '>
         <div className='grid gap-5 grid-cols-1 lg:grid-cols-5'>
           <div className='flex flex-col gap-[0.5rem] lg:col-span-3'>
-            <Link to='/' className='flex items-center'>
+            <Link to='/' onClick={MoveToTop} className='flex items-center'>
               <img src={logo} className='w-[5rem] h-[auto] ml-[-1rem]'></img>
               <div className='capitalize text-[white] font-bold text-[1.4rem]'>the force</div>
             </Link>

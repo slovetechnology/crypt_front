@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Apis, PostApi, UserPutApi, imageurl } from '../../../services/API'
 import { PROFILE } from '../../../store'
 import { useAtom } from 'jotai'
@@ -18,9 +18,9 @@ import LoadingAdmin from '../../../PageComponents/LoadingAdmin';
 import membership from '../../../assets/images/membership.png'
 
 
-const Profile = ({ setToggle }) => {
+const Profile = ({ setToggle, slideShow }) => {
     const [user, setUser] = useAtom(PROFILE)
-    
+
     const [nameEdit, setNameEdit] = useState(false)
     const [userEdit, setUserEdit] = useState(false)
     const [emailEdit, setEmailEdit] = useState(false)
@@ -40,7 +40,7 @@ const Profile = ({ setToggle }) => {
     const imgref = useRef()
     const navigate = useNavigate()
 
-    
+
 
     const [profile, setProfile] = useState({
         img: `${imageurl}/profiles/${user.image}`,
@@ -172,10 +172,23 @@ const Profile = ({ setToggle }) => {
         }
     }
 
-    document.documentElement.style.overflow = loading === true ? 'hidden' : 'auto'
+    const MoveToBottom = () => {
+        document.documentElement.scrollTo({
+            top: document.documentElement.scrollHeight
+        })
+    }
+
+    useEffect(() => {
+        if (deleteScreen !== 0) {
+            MoveToBottom()
+        }
+    }, [MoveToBottom])
+
+
+    document.documentElement.style.overflow = loading ||slideShow === true ? 'hidden' : 'auto'
 
     return (
-        <div className='relative py-[2.5rem] h-fit '>
+        <div className='relative pt-10 pb-28 lg:pb-10 h-fit'>
             {loading && <LoadingAdmin />}
             <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] mb-[1.5rem] '>update profile</div>
             <div>
@@ -194,7 +207,7 @@ const Profile = ({ setToggle }) => {
                     <div className='text-[0.75rem] text-center text-[red]'>{imageError}</div>
                 </div>
 
-                
+
 
                 <div className=' justify-center  mt-[1rem]  text-[#e0dfdf] flex gap-2 items-center'>
                     <div className='capitalize font-bold text-[1.6rem]'>{user.full_name}</div>
@@ -318,9 +331,9 @@ const Profile = ({ setToggle }) => {
                     </div>
                 </form>
                 <div className='relative mx-auto mt-[2rem]'>
-                    {deleteScreen === 0 && <div className='justify-center text-[0.85rem] text-[#7665D5] cursor-pointer  flex items-center gap-1' onClick={() => setDeleteScreen(1)}>
+                    {deleteScreen === 0 && <div className='justify-center text-[0.85rem] text-[#7665D5] cursor-pointer flex items-center gap-1' onClick={() => { setDeleteScreen(1); MoveToBottom() }}>
                         <span>Delete my account</span>
-                        <MdOutlineDeleteForever className='text-[0.7rem]' />
+                        <MdOutlineDeleteForever className='text-xs' />
                     </div>}
                     {deleteScreen !== 0 && <div className=' w-fit h-fit bg-[#0E0B1C] rounded-[8px] p-[2rem] mx-auto relative  shlz '>
                         {deleteloading && <LoadingAdmin />}

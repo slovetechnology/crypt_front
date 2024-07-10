@@ -83,7 +83,7 @@ const Header = () => {
                                         <PiWindowsLogoThin className='text-[1.1rem] mt-[0.1rem] text-[#1E2833]' />
                                         <div className=' text-[0.9rem] font-medium text-[#1E2833] capitalize cursor-pointer' style={reverseDrop} onClick={() => setToggleDrop(true)}>overview</div>
                                         <div className=' text-[0.9rem] font-medium text-[#1E2833] capitalize cursor-pointer' style={styleDrop}>overview</div>
-                                        <TfiAngleDown className={`mt-[0.55rem] text-[0.5rem] text-[#1E2833] ${toggleDrop === true ? ' rotate-180' : 'rotate-0'} trans`} />
+                                        <TfiAngleDown className={`mt-[0.55rem] text-[0.5rem] text-[#1E2833] ${toggleDrop ? ' rotate-180' : 'rotate-0'} trans`} />
                                     </div>
                                 </div>
                                 <div className=' bg-white p-[2rem] w-[40rem] h-fit absolute top-[4.2rem] left-[-10rem] shd' style={styleDrop} ref={closer}>
@@ -118,7 +118,7 @@ const Header = () => {
                                 <div className='flex gap-1  hover:text-blue-500'>
                                     <div className=' text-[0.9rem] font-medium text-white capitalize cursor-pointer' style={reverseDroptwo} onClick={() => setToggleDroptwo(true)}>company</div>
                                     <div className=' text-[0.9rem] font-medium text-white capitalize cursor-pointer' style={styleDroptwo}>company</div>
-                                    <TfiAngleDown className={`mt-[0.55rem] text-[0.5rem] text-[white]  ${toggleDroptwo === true ? ' rotate-180' : 'rotate-0'} trans`} />
+                                    <TfiAngleDown className={`mt-[0.55rem] text-[0.5rem] text-[white]  ${toggleDroptwo ? ' rotate-180' : 'rotate-0'} trans`} />
                                 </div>
                                 <div className='flex flex-col gap-5 bg-white py-[2rem] pl-[2.5rem] pr-3 w-[14rem] h-fit absolute top-[3.7rem] left-[-2rem] shd' ref={closertwo} style={styleDroptwo}>
                                     <Link to='/' onClick={MoveToTop} className='flex gap-2 hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>

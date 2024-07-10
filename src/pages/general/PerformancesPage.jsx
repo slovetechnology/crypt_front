@@ -12,7 +12,7 @@ const PerformancesPage = () => {
               <span className='z-20 ml-[-2.4rem] font-bold uppercase text-[1.4rem] lg:text-[2.5rem]'>past performances</span>
             </div>
           </div>
-          <div className='overflow-x-auto scrollsdown'>
+          <div className='overflow-x-auto scrollsdown shadow-sign-sha rounded-md'>
             <table className='table table-auto w-full'>
               <thead >
                 <tr className='bg-[#30465c] text-[0.8rem] font-bold text-[white]'>
@@ -107,9 +107,9 @@ const PerformancesPage = () => {
                 </td>
               </tr>
             </table>
-            <div className='mt-[1rem] italic text-center'>
-              - table only shows the most recent performances on the AI algorithm trading system -
-            </div>
+          </div>
+          <div className='mt-[1rem] italic text-center'>
+            - table only shows the most recent performances on the AI algorithm trading system -
           </div>
         </div>
       </div>

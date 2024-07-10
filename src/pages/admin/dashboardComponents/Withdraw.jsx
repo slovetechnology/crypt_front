@@ -170,7 +170,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
 
 
     return (
-        <div className={`pt-[2.5rem] h-screen z-10`}>
+        <div className={`py-10 h-screen`}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>{withdraw}</div>
                 {screen === 1 ? <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center mt-[1rem] cursor-pointer' onClick={() => { setScreen(2); setWithdraw('withdawal history') }}>
@@ -183,7 +183,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <BiMoneyWithdraw />
                     </div>}
             </div>
-            {screen === 1 && <div className='w-[80%] mx-auto mt-[2.5rem]  relative flex items-center justify-center bgdeposit'>
+            {screen === 1 && <div className='w-[80%] mx-auto mt-10 relative flex items-center justify-center bgdeposit'>
                 {loading && <LoadingAdmin />}
                 <div className='flex  flex-col  text-[#e0dfdf]  items-center h-fit w-fit bg-[#0E0B1C] shlz p-[3rem] rounded-xl'>
                     <div className='flex gap-3 '>
@@ -251,7 +251,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>
-                <div className='mt-[2rem]'>
+                <div className='mt-8'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-[white] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>

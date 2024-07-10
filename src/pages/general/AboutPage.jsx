@@ -22,7 +22,6 @@ import bulb from '../../assets/images/bulb.png'
 import assist from '../../assets/images/assist.png'
 import { MoveToTop } from '../../utils/utils';
 
-
 const AboutPage = () => {
   const [userCount, setUserCount] = useState('0')
   const [investCount, setInvestCount] = useState('0')
@@ -33,7 +32,7 @@ const AboutPage = () => {
   let countIndexTwo = 0
   let countIndexThree = 0
 
-  const countFunction = () => {
+  const CountFunction = () => {
     if (userCount < 1) {
       let countOne = setInterval(() => {
         if (countIndexOne === 1200) {
@@ -189,39 +188,39 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-          <div className='mt-28 w-full h-fit bg-[#192633] py-16 px-4 rounded-md relative overflow-hidden' onMouseOver={countFunction}>
-            <div className='bda flex items-center justify-center rotate-90 w-[8rem] h-[8rem] border-2 bottom-[1rem] rounded-[50%] left-[-5rem] absolute'>
-              <div className='bdb w-[5rem] h-[5rem] border-2 rounded-[50%]'></div>
-            </div>
-            <div className='bda flex items-center justify-center rotate-90 w-[5rem] h-[5rem] border-2  rounded-[50%] absolute top-[-3rem] right-[-1rem]' >
-              <div className='bdb w-[3rem] h-[3rem] border-2 rounded-[50%]'></div>
-            </div>
-            <div className='text-[2rem] lg:text-[3rem] text-[white] font-[550] capitalize text-center'>the numbers</div>
-            <div className='text-center text-semi-white text-[0.85rem] capitalize pt-2 pb-10'>- below are the numbers that makes us the standout trading system -</div>
-            <div className='flex items-center flex-wrap gap-8 md:gap-20 justify-center'>
-              <div className='w-[8.2rem] h-[8.2rem] rounded-full border border-[#f0b28e] flex flex-col items-center pt-[1rem] relative'>
-                <img src={heart} className='h-[2rem] w-auto'></img>
-                <div className='text-[1.8rem] font-[800] text-[white]'>{userCount}<span className='font-[500]'>+</span></div>
-                <div className='capitalize text-[0.6rem] font-bold text-[#c0bebe] '>satisfield users</div>
-                <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute top-[-0.25rem] left-[4rem]'></div>
-                <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute bottom-[-0.25rem] left-[4rem]'></div>
+            <div className='mt-28 w-full h-fit bg-[#192633] py-16 px-4 rounded-md relative overflow-hidden' onMouseOver={CountFunction}>
+              <div className='bda flex items-center justify-center rotate-90 w-[8rem] h-[8rem] border-2 bottom-[1rem] rounded-[50%] left-[-5rem] absolute' >
+                <div className='bdb w-[5rem] h-[5rem] border-2 rounded-[50%]'></div>
               </div>
-              <div className='w-[8.2rem] h-[8.2rem] rounded-full border border-[#f0b28e] flex flex-col items-center pt-[1rem] relative'>
-                <img src={cash} className='h-[2rem] w-auto'></img>
-                <div className='text-[1.8rem] font-[800] text-[white]'>{investCount}M<span className='font-[500]'>+</span></div>
-                <div className='capitalize text-[0.6rem] font-bold text-[#c0bebe] '>total investment</div>
-                <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute top-[-0.25rem] left-[4rem]'></div>
-                <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute bottom-[-0.25rem] left-[4rem]'></div>
+              <div className='bda flex items-center justify-center rotate-90 w-[5rem] h-[5rem] border-2  rounded-[50%] absolute top-[-3rem] right-[-1rem]' >
+                <div className='bdb w-[3rem] h-[3rem] border-2 rounded-[50%]'></div>
               </div>
-              <div className='w-[8.2rem] h-[8.2rem] rounded-full border border-[#f0b28e] flex flex-col items-center pt-[1rem] relative'>
-                <img src={efficient} className='h-auto w-[1.5rem]'></img>
-                <div className='text-[1.8rem] font-[800] text-[white]'>{tradeCount}<span className='font-[500] text-[1rem]'>%</span></div>
-                <div className='capitalize text-[0.6rem] font-bold text-[#c0bebe] '>trade efficiency</div>
-                <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute top-[-0.25rem] left-[4rem]'></div>
-                <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute bottom-[-0.25rem] left-[4rem]'></div>
+              <div className='text-[2rem] lg:text-[3rem] text-[white] font-[550] capitalize text-center'>the numbers</div>
+              <div className='text-center text-semi-white text-[0.85rem] capitalize pt-2 pb-10'>- below are the numbers that makes us the standout trading system -</div>
+              <div className='flex items-center flex-wrap gap-8 md:gap-20 justify-center'>
+                <div className='w-[8.2rem] h-[8.2rem] rounded-full border border-[#f0b28e] flex flex-col items-center pt-[1rem] relative'>
+                  <img src={heart} className='h-[2rem] w-auto'></img>
+                  <div className='text-[1.8rem] font-[800] text-[white]'>{userCount}<span className='font-[500]'>+</span></div>
+                  <div className='capitalize text-[0.6rem] font-bold text-[#c0bebe] '>satisfield users</div>
+                  <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute top-[-0.25rem] left-[4rem]'></div>
+                  <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute bottom-[-0.25rem] left-[4rem]'></div>
+                </div>
+                <div className='w-[8.2rem] h-[8.2rem] rounded-full border border-[#f0b28e] flex flex-col items-center pt-[1rem] relative'>
+                  <img src={cash} className='h-[2rem] w-auto'></img>
+                  <div className='text-[1.8rem] font-[800] text-[white]'>{investCount}M<span className='font-[500]'>+</span></div>
+                  <div className='capitalize text-[0.6rem] font-bold text-[#c0bebe] '>total investment</div>
+                  <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute top-[-0.25rem] left-[4rem]'></div>
+                  <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute bottom-[-0.25rem] left-[4rem]'></div>
+                </div>
+                <div className='w-[8.2rem] h-[8.2rem] rounded-full border border-[#f0b28e] flex flex-col items-center pt-[1rem] relative'>
+                  <img src={efficient} className='h-auto w-[1.5rem]'></img>
+                  <div className='text-[1.8rem] font-[800] text-[white]'>{tradeCount}<span className='font-[500] text-[1rem]'>%</span></div>
+                  <div className='capitalize text-[0.6rem] font-bold text-[#c0bebe] '>trade efficiency</div>
+                  <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute top-[-0.25rem] left-[4rem]'></div>
+                  <div className='w-[0.5rem] h-[0.5rem] bg-[#f0b28e] rounded-full absolute bottom-[-0.25rem] left-[4rem]'></div>
+                </div>
               </div>
             </div>
-          </div>
           <div className={`w-11/12 lg:w-[70%] mx-auto mt-28 overflow-hidden h-fit trans`}>
             <div className='text-[2rem] lg:text-[3rem] text-[white] font-[550] capitalize text-center'>customer reviews</div>
             <div className='text-center text-semi-white text-[0.85rem] capitalize pt-2 pb-10 md:pb-12'>- below are some of our customers reviews as a snippet of what you can expect -</div>
@@ -307,7 +306,7 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>}
-            {more &&<div className='flex justify-center mt-[2rem]'>
+            {more && <div className='flex justify-center mt-[2rem]'>
               <button className='w-fit h-fit px-6 py-1 bg-orange outline-none rounded-[3px] text-[0.85rem] capitalize text-[white] flex items-center justify-center hover:bg-[#642626]' onClick={() => setMore(!more)}>
                 <span>less</span>
                 <MdExpandLess className='text-[1rem]' />

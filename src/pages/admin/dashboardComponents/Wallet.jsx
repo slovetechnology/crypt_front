@@ -21,9 +21,9 @@ const Home = ({ setToggle, setPurchaseState }) => {
 
 
     return (
-        <div className='py-[2.5rem] h-fit z-10 '>
+        <div className='pt-10 pb-24 lg:pb-10 h-fit'>
             <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>wallet</div>
-            <div className='flex flex-wrap gap-4 mt-[2rem] items-center justify-center'>
+            <div className='flex flex-wrap gap-4 mt-8 items-center justify-center'>
                 <div className='w-[15.5rem] h-[10rem] rounded-[10px] flex flex-col text-[2rem] py-[0.5rem]  px-[1rem] text-[#e0dfdf] gap-2 bg-[#6859bb]  overflow-hidden'>
                     <div className='capitalize text-[0.9rem] font-[600] flex justify-between items-center'>
                         <span>deposits</span>
@@ -119,7 +119,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
             <div className='mt-[3rem] flex flex-col gap-1'>
                 <div className='text-[#e0dfdf]  text-[0.75rem] capitalize'>Try our test run package</div>
                 <div className='w-fit h-fit py-[0.25rem] bg-[#130e27]'>
-                    <div className='w-full h-[3.5rem] flex gap-[5rem]  pl-[3rem] pr-[0.5rem] text-[0.55rem] items-center text-[white] uppercase relative bg-[#25203d]'>
+                    <div className='w-full h-fit flex gap-10 md:gap-20  pl-10 pr-[0.5rem] py-1 text-[0.55rem] items-center text-[white] uppercase relative bg-[#25203d]'>
                         <div className='flex flex-col gap-1 items-center'>
                             <div>price</div>
                             <div className='flex items-center gap-1'>

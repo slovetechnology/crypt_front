@@ -241,12 +241,12 @@ const SignupPage = () => {
                         <form onSubmit={submitForm}>
                           <div className='flex flex-col gap-[0.7rem] mt-[1rem]'>
                             <div className='relative mx-auto'>
-                              {profile.img && <div className='absolute top-6 left-[-0.5rem] cursor-pointer z-10  text-[0.8rem] text-[#E96E28]' onClick={CancelUpload}><MdOutlineCancel /></div>}
+                              {profile.img && <div className='absolute top-6 -left-2 cursor-pointer z-10  text-[0.8rem] text-orange' onClick={CancelUpload}><MdOutlineCancel /></div>}
                               <label className='cursor-pointer'>
                                 {profile.img ?
                                   <div className='relative'>
-                                    <img src={profile.img} alt="" className="w-[3.9rem] object-cover h-[3.9rem] rounded-full" />
-                                    <SlCamera className='absolute top-6 right-[-0.4rem] text-[0.85rem] text-[#E96E28]' />
+                                    <img src={profile.img} alt="" className="w-[3.8rem] object-cover h-[3.8rem] rounded-full" />
+                                    <SlCamera className='absolute top-6 right-[-0.4rem] text-[0.85rem] text-orange' />
                                   </div>
                                   :
                                   <div className="w-fit mx-auto text-3xl bg-slate-200 p-4 rounded-full relative"> <SlUser />
@@ -257,7 +257,7 @@ const SignupPage = () => {
                               </label>
                             </div>
                             <div className='relative '>
-                              <div className='absolute bottom-[1rem] right-[8rem] text-[0.8rem] text-[red]'>{imageError}</div>
+                              <div className='absolute bottom-4 right-32 text-[0.8rem] text-[red]'>{imageError}</div>
                             </div>
                             <div className='flex flex-col gap-[0.3rem]'>
                               <div className='text-sm capitalize font-[550] '>full name:</div>
@@ -314,24 +314,24 @@ const SignupPage = () => {
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550]'>password:</div>
                                 <input className={`outline-none w-full border-b focus:outline-none  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  text-sm pr-4 ipt`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
-                                <EyeIcon className='absolute bottom-0 right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye(!eye)} />
+                                <EyeIcon className='absolute bottom-0 right-0 text-[0.8rem] text-orange cursor-pointer' onClick={() => setEye(!eye)} />
                                 <div className='absolute bottom-[-1rem] left-0 text-[0.75rem] text-[red]'>{passMsg}</div>
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>confirm password:</div>
                                 <input className={`outline-none w-full border-b focus:outline-none  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} text-sm pr-4 ipt`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
-                                <EyeIcon2 className='absolute bottom-0 right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye2(!eye2)} />
+                                <EyeIcon2 className='absolute bottom-0 right-0 text-[0.8rem] text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
                                 <div className='absolute bottom-[-1rem] left-0 text-[0.75rem] text-[red]'>{conMsg}</div>
                               </div>
                             </div>
                             <div className='flex gap-1 mt-4'>
                               <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
-                              <div className='text-xs capitalize'>by signing up, i agree with <Link to='/terms' className='text-[#E96E28] font-[550]' onClick={MoveToTop}>terms and conditions</Link></div>
+                              <div className='text-xs capitalize'>by signing up, i agree with <Link to='/terms' className='text-orange font-[550]' onClick={MoveToTop}>terms and conditions</Link></div>
                             </div>
                             <div className='flex flex-col gap-[0.5rem] items-center'>
-                              <button className='outline-none bg-[#E96E28] py-[0.5rem] w-full md:px-[8rem] h-fit md:w-fit rounded-md capitalize text-sm text-[white] cursor-pointer font-[550]' type='submit'>create account</button>
+                              <button className='outline-none bg-orange py-[0.5rem] w-full md:px-[8rem] h-fit md:w-fit rounded-md capitalize text-sm text-[white] cursor-pointer font-[550]' type='submit'>create account</button>
                               <div className='text-[#6b6a6a] text-sm font-[550]'>Already have an account?
-                                <Link to='/login' onClick={MoveToTop} className='cursor-pointer text-[#E96E28] font-[550]' > Login</Link>
+                                <Link to='/login' onClick={MoveToTop} className='cursor-pointer text-orange font-[550]' > Login</Link>
                               </div>
                             </div>
                           </div>
@@ -339,19 +339,19 @@ const SignupPage = () => {
                       </div>}
                       {screen === 2 &&
                         <div className='w-11/12 md:w-[85%] mx-auto py-[3.5rem]'>
-                          <div className='flex items-center justify-center text-[3rem] text-[#E96E28]'>
+                          <div className='flex items-center justify-center text-[3rem] text-orange'>
                             <MdVerified />
                           </div>
                           <div className='text-center text-[1.5rem] capitalize font-[550] mt-[1rem]'>Verify Your Email</div>
-                          <div className='text-center mt-[0.5rem]'>A six digits code was sent to your email address <span className='text-[#E96E28]'>{form.email?.slice(0, 3)}*******{form.email?.slice(-10)}</span>, copy and paste code below to verify your email.</div>
+                          <div className='text-center mt-[0.5rem]'>A six digits code was sent to your email address <span className='text-orange'>{form.email?.slice(0, 3)}*******{form.email?.slice(-10)}</span>, copy and paste code below to verify your email.</div>
                           <form onSubmit={ValidateEmail}>
                             <div className='flex flex-col gap-1 mt-[3rem]'>
                               <div className='capitalize text-[0.85rem]'>enter six digits code</div>
                               <input className={`outline-none w-full h-[2.5rem] border  ${verifyError === true ? 'border-[red]' : 'border-[grey]'} text-sm pl-2 ipt`} placeholder='Enter code here' name='code' value={verifyform.code} onChange={formValidate}></input>
                             </div>
-                            <div className='text-[0.85rem] text-right mt-[0.5rem]'>Didn't get code? <span className='text-[#E96E28] cursor-pointer' onClick={ResendsCode}>Resend code</span></div>
+                            <div className='text-[0.85rem] text-right mt-[0.5rem]'>Didn't get code? <span className='text-orange cursor-pointer' onClick={ResendsCode}>Resend code</span></div>
                             <div className='flex items-center justify-center mt-[3rem]'>
-                              <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[3rem] h-fit w-full md:w-fit rounded-md capitalize text-sm text-[white] cursor-pointer font-[550]'>verify</button>
+                              <button className='outline-none bg-orange py-[0.5rem] md:px-[3rem] h-fit w-full md:w-fit rounded-md capitalize text-sm text-[white] cursor-pointer font-[550]'>verify</button>
                             </div>
                           </form>
                         </div>

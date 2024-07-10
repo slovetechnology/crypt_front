@@ -7,7 +7,7 @@ import { Alert } from '../../../utils/utils';
 import { PROFILE } from '../../../store';
 import { useAtom } from 'jotai';
 
-const VerifyAcount = ({ setToggle }) => {
+const VerifyAcount = ({ setToggle, slideShow }) => {
     const [user, setUser] = useAtom(PROFILE)
 
     const [email, setEmail] = useState('')
@@ -72,10 +72,10 @@ const VerifyAcount = ({ setToggle }) => {
         }
     }
 
-    document.documentElement.style.overflow = loading === true ? 'hidden' : 'auto'
+    document.documentElement.style.overflow = loading || slideShow === true ? 'hidden' : 'auto'
 
     return (
-        <div className='pt-[2rem] z-10 h-screen'>
+        <div className='pt-10 h-screen'>
             <div className='w-[95%] mx-auto'>
                 {loading && <LoadingAdmin />}
                 <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => setToggle('update profile')}>

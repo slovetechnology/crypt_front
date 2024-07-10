@@ -241,7 +241,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
 
 
     return (
-        <div className={`pt-[2.5rem] ${screen === 2 ? ' h-screen' : 'h-fit'}  z-10`}>
+        <div className={`pt-10 pb-20 lg:pb-0 ${screen === 2 ? ' h-screen' : 'h-fit'} `}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>{deposit}</div>
                 {screen === 1 &&
