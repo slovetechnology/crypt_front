@@ -197,7 +197,7 @@ const Dashboard = () => {
     document.documentElement.style.overflow = slideShow === true ? 'hidden ' : 'auto'
 
     return (
-        <div className='w-full flex'>
+        <div className='flex'>
             <div className={`bg-[#27137eee] lg:bg-[#0E0B1C] w-full xl:w-[20%] lg:w-[25%] lg:block lg:relative ${slideShow ? 'block absolute top-0 h-full left-0 z-50' : 'hidden'} `}>
                 <div className={`xl:w-[20%] lg:w-[25%] lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:bg-[#0E0B1C]`}>
                     <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-6 right-4' onClick={() => setSlideShow(!slideShow)}>
@@ -365,7 +365,7 @@ const Dashboard = () => {
                         </>
                     }
                 </div>
-                <div className='bg-[#131024] w-full h-fit fixed bottom-0 left-0 z-30 lg:hidden py-3 px-4 grid grid-cols-5'>
+                <div className='bg-[#131024] w-full h-16 fixed bottom-0 left-0 z-30 lg:hidden px-4 grid grid-cols-5 items-center'>
                     <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'wallet' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                         <IoWalletOutline className='md:text-2xl text-xl ' />
                         <div className='capitalize md:text-xs text-[0.7rem] font-medium'>wallet</div>
