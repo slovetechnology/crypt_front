@@ -108,7 +108,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className='mt-[5rem]'>
+          <div className='mt-16'>
             <coingecko-coin-heatmap-widget height="400" locale="en" top="20"></coingecko-coin-heatmap-widget>
           </div>
         </div>

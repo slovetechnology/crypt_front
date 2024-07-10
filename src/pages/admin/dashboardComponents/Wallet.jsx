@@ -32,7 +32,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     <div className='flex flex-col items-center font-bold'>
                         <div className='flex items-center'>
                             <BiDollar />
-                            <div>{wallet.total_deposit}</div>
+                            <div>20,000</div>
                         </div>
                         <img src={deposit3d} className='h-[4rem] w-auto'></img>
                     </div>
@@ -96,7 +96,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     <div className='flex flex-col gap-1 items-center'>
                         {investments.length > 0 ?
                             <div className='flex gap-[0.2rem] items-center'>
-                                <div className='text-[1.2rem] italic text-[#eeee6c] lowercase '>{investments.length > 1 ? 'active investments' : 'active investment'}</div>
+                                <div className='text-lg italic text-[#eeee6c] lowercase '>{investments.length > 1 ? 'active investments' : 'active investment'}</div>
                             </div>
 
                             :

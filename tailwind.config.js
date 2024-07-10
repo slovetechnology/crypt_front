@@ -10,10 +10,11 @@ export default {
         "orange": "#E96E28",
         "semi-white": "#e0dfdf",
         "ground": "#94A3B8",
-        "light": "#7665D5"
+        "light": "#7665D5",
+        "admin": "#0E0B1C"
       },
       boxShadow: {
-        "sign-sha" : "0px 1px 10px rgb(223, 222, 222)",
+        "sign-sha": "0px 1px 10px rgb(223, 222, 222)",
         "logout-sha": "0px 3px 10px #090611",
         "logout-sha2": "0px 3px 10px #1a0d53"
       }

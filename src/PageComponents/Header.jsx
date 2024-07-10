@@ -68,7 +68,7 @@ const Header = () => {
         <>
             <div className={`fixed top-0 left-0 w-full bg-[#1E2833] z-30 h-fit border-b border-[grey]`}>
                 <div className={`flex items-center justify-between ${dropDown && 'border-b border-[grey]'} px-6 lg:px-8 py-2`}>
-                    <div className='flex gap-[5rem]'>
+                    <div className='flex gap-20'>
                         <div>
                             <Link to='/' className='flex items-center'>
                                 <img src={logo} className=' w-[4rem] h-[auto]'></img>
@@ -77,7 +77,7 @@ const Header = () => {
                         </div>
                         <div className='lg:flex gap-5 items-center hidden'>
                             <div className='relative '>
-                                <div className=' w-fit h-fit py-[0.5rem] px-[1rem] bg-[white] rounded-[6px]' >
+                                <div className=' w-fit h-fit py-[0.5rem] px-4 bg-[white] rounded-[6px]' >
                                     <div className='flex gap-1'
                                     >
                                         <PiWindowsLogoThin className='text-[1.1rem] mt-[0.1rem] text-[#1E2833]' />
