@@ -14,6 +14,7 @@ import { FiX } from 'react-icons/fi';
 import investbg from '../../../assets/images/investbg.png'
 import ClaimButtons from './ClaimButtons';
 import nothnyet from '../../../assets/images/nothn.png'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
 
 
@@ -65,7 +66,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
     const [pagelengthstart, setPagelengthstart] = useState(1)
     const [pagelengthend, setPagelengthend] = useState(investment.length / end)
 
-    let MoveNotisPage = () => {
+    let MovePage = () => {
 
         if (end < investment.length) {
             let altstart = start
@@ -83,7 +84,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
         }
     }
 
-    let BackNotisPage = () => {
+    let BackPage = () => {
 
         if (end > 6) {
             let altstart = start
@@ -103,7 +104,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
 
 
     return (
-        <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
+        <div className={`pt-10 pb-48 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>{investtitle}</div>
                 {screen === 1 && <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
@@ -226,7 +227,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                     ))}
                 </div>
                     :
-                    <div className='pt-[5rem]'>
+                    <div className='pt-20'>
                         <div className='w-[28rem] h-[fit] rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-[1rem] px-[2rem]  text-[#e0dfdf] gap-4 border border-[grey] bg-[#130e27] mx-auto'>
                             <div className='text-[1.2rem]  italic'>No new investment made</div>
                             <img src={investbg} className='w-[20rem] h-auto'></img>
@@ -239,12 +240,12 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                 }
             </div>}
             {screen === 2 &&
-                <div className='w-[95%] mx-auto my-[2rem]'>
+                <div className='w-[95%] mx-auto my-8'>
                     <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
                         <IoMdArrowBack />
                         <span>back</span>
                     </div>
-                    <div className='relative w-fit mx-auto mt-[2rem]'>
+                    <div className='relative w-fit mx-auto mt-8'>
                         <input className='border border-[white] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
@@ -290,13 +291,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             <img src={nothnyet} className='h-[1rem] w-auto'></img>
                         </div>}
                     </div>
-                    <div className='flex flex-col gap-1 text-[0.75rem] py-4'>
-                        {Math.ceil(pagelengthend) > 1 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
-                        <div className='flex items-center justify-end  gap-2 text-white '>
-                            {pagelengthstart > 1 && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={BackNotisPage}>prev</button>}
-                            {end < investment.length && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={MoveNotisPage}>next</button>}
-                        </div>
-                    </div>
+                    {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-[#7665D5] '>
+                        {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                        {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                        {end < investment.length && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+                    </div>}
                 </div>
             }
         </div>

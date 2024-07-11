@@ -4,12 +4,12 @@ import robotabt from '../../assets/images/robotabt.png'
 import { SiPytest } from "react-icons/si";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import us from '../../assets/images/us.jpg'
+import us from '../../assets/images/us.jfif'
 import australia from '../../assets/images/austrialia.jpg'
 import spanish from '../../assets/images/spanish.jfif'
 import uk from '../../assets/images/uk.webp'
 import blackUs from '../../assets/images/us-black.webp'
-import india from '../../assets/images/india.avif'
+import india from '../../assets/images/india.jfif'
 import { MdJoinRight, MdExpandLess, MdExpandMore } from "react-icons/md";
 import { BsFillChatQuoteFill } from "react-icons/bs";
 import heart from '../../assets/images/heart.png'

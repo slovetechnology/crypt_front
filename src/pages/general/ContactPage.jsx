@@ -152,17 +152,17 @@ const ContactPage = () => {
                     </div>
                   </div>
                 }
-                {show !== 1 && <div className='text-[2rem] text-[white] cursor-pointer absolute top-0 left-0' onClick={() => setShow(1)}>
+                {show !== 1 && <div className='text-2xl text-white cursor-pointer absolute top-0 left-0' onClick={() => setShow(1)}>
                   <MdCancel />
                 </div>}
-                {show !== 1 &&<div className='border-t w-full absolute top-8 left-0 border-[#a0a0a0]'></div>}
+                {show !== 1 &&<div className='border-t w-full absolute top-6 left-0 border-[#a0a0a0]'></div>}
                 {show !== 1 && <div className='flex flex-col gap-2 relative items-center'>
-                  <div className=' text-[0.85rem] text-[white] capitalize text-center w-full mt-8 font-medium'>
+                  <div className=' text-[0.85rem] text-white capitalize text-center w-full mt-6 font-medium'>
                     Enter trader's code to reveal account manager
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border-b border-white bg-transparent text-[0.85rem] w-48 pl-4 text-white focus:outline-none' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
+                      <input className='outline-none border-b border-white bg-transparent md:text-[0.85rem] text-base w-48 pl-4 text-white focus:outline-none' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
                       <MdOutlineEdit className=' text-[0.8rem] text-orange absolute bottom-0 right-0 h-[1.2rem]' />
                       <div className='w-[0.3rem] h-[0.3rem] rounded-full bg-white absolute bottom-[-0.1rem] left-0'></div>
                       <div className='text-[0.85rem] absolute bottom-[-1.5rem] left-0 font-bold text-[#361e1e]'>{codeError}</div>

@@ -58,7 +58,7 @@ const Feedback = () => {
         <div className='h-screen py-10 relative '>
             <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>send feedback</div>
             {loading && <LoadingAdmin />}
-            <div className='w-[75%] mx-auto pt-[5rem] flex flex-col gap-[3rem]'>
+            <div className='w-[75%] mx-auto flex flex-col gap-12 mt-16'>
                 <div>
                     <div className='flex items-center justify-center'>
                     <div className='text-[2rem] capitalize font-bold text-[#a09f9f] '>get in touch</div>

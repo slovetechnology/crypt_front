@@ -7,6 +7,7 @@ import { useAtom } from 'jotai'
 import moment from 'moment';
 import DeleteModal from './DeleteModal'
 import { Apis, PostApi } from '../../../services/API'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 
 
 
@@ -37,7 +38,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
       setEnd(6)
     }
     else {
-      const showSearch = allusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase())  || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
+      const showSearch = allusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
       setAllUsers(showSearch)
       setPagelengthend(showSearch.length / 6)
       setWrite(true)
@@ -139,9 +140,6 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
           </div>
         </div>
 
-
-
-
         <div className='relative overflow-x-auto shadow-xl rounded-lg mt-[1rem] scrollsdown'>
           <table className='w-full'>
             <thead >
@@ -168,13 +166,11 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
             </tbody>
           </table>
         </div>
-        <div className='flex flex-col gap-1 text-[0.75rem] py-4'>
-          {Math.ceil(pagelengthend) > 1 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
-          <div className='flex items-center justify-end  gap-2 text-white '>
-            {pagelengthstart > 1 && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#71628f] hover:bg-[#462c7c] capitalize' onClick={BackPage}>prev</button>}
-            {end < allusers.length && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#71628f] hover:bg-[#462c7c] capitalize' onClick={MovePage}>next</button>}
-          </div>
-        </div>
+        {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-[#462c7c] '>
+          {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#462c7c] hover:bg-[#462c7c] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+          {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+          {end < allusers.length && <div className='py-1 px-2 rounded-md border border-[#462c7c] hover:bg-[#462c7c] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+        </div>}
       </div>
     </div>
   )

@@ -187,7 +187,7 @@ const AdminHome = () => {
       <div className={`w-[80%]  h-[110vh] bg-[white]`}>
         <div className='w-[94%] mx-auto'>
           <div className='flex flex-col gap-[1rem]'>
-            <div className='w-full h-[3rem] rounded-md bg-[#36225e] mt-4  px-[1rem] text-white text-[0.85rem] flex items-center justify-between'>
+            <div className='w-full h-fit  rounded-md bg-[#36225e] mt-4 px-4 py-1 text-white text-[0.85rem] flex items-center justify-between'>
               <div className='flex items-center gap-1 capitalize'>
                 <div>hello,</div>
                 <div>admin!</div>

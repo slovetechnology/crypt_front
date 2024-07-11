@@ -87,7 +87,7 @@ const HomePage = () => {
               </div>
               <div className='flex flex-col gap-[1rem] mt-[3rem]'>
                 {questions.map((item, i) => (
-                  <div className={`w-full mx-auto h-fit bg-white rounded-md p-2 md:p-4 flex flex-col gap-4 overflow-hidden border border-[grey] shadow-sm trans`} key={i}>
+                  <div className={`w-full mx-auto h-fit bg-white rounded-md px-3 py-2 md:p-4 flex flex-col gap-4 overflow-hidden border border-[grey] shadow-sm trans`} key={i}>
                     <div
                       onClick={() => handleQuestions(i)}
                       className='flex justify-between w-full h-fit cursor-pointer text-lg font-medium dropclck'>

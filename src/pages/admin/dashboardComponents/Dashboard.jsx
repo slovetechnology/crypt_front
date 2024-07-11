@@ -47,7 +47,7 @@ const Dashboard = () => {
     const [purchaseState, setPurchaseState] = useState(false)
     const [loading, setLoading] = useState(true)
     const [altnotis, setAltNotis] = useState([])
-    const [pagelengthend, setPagelengthend] = useState(notifications.length / 3)
+    const [pagelengthend, setPagelengthend] = useState(notifications.length / 4)
     const [slideShow, setSlideShow] = useState(false)
     const navigate = useNavigate()
 
@@ -65,7 +65,7 @@ const Dashboard = () => {
             if (response.status === 200) {
                 setNotifications(response.msg)
                 setAltNotis(response.msg)
-                setPagelengthend(response.msg.length / 3)
+                setPagelengthend(response.msg.length / 4)
             }
 
         } catch (error) {
@@ -208,7 +208,7 @@ const Dashboard = () => {
                     <div className='flex flex-col gap-8 mt-10 pl-12 '>
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
-                            <div className={`flex gap-3 lg:hover:text-white hover:text-admbg-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'wallet' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                            <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'wallet' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                 <IoWalletOutline className='text-[1.3rem] ' />
                                 <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>wallet</div>
                             </div>
@@ -216,15 +216,15 @@ const Dashboard = () => {
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>account</div>
                             <div className='flex flex-col gap-[2rem]'>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admbg-admin  items-center cursor-pointer w-fit lg:w-full ${toggle === 'my investment' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('my investment'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin  items-center cursor-pointer w-fit lg:w-full ${toggle === 'my investment' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('my investment'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <GrMoney className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>my investment</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admbg-admin items-center cursor-pointer w-fit lg:w-full relative ${toggle === 'deposit' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full relative ${toggle === 'deposit' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <GiPayMoney className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>deposit</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admbg-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'withdrawal' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'withdrawal' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <BiMoneyWithdraw className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>withdrawal</div>
                                 </div>
@@ -233,20 +233,20 @@ const Dashboard = () => {
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-[2rem]'>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admbg-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('update profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('update profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <RiAccountPinCircleLine className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>update profile</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admbg-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'send feedback' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('send feedback'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'send feedback' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('send feedback'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <LuSend className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>send feedback</div>
                                 </div>
                                 <div className='relative'>
-                                    <div className='flex gap-3 lg:hover:text-white hover:text-admbg-admin items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
+                                    <div className='flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
                                         <BiLogOutCircle className='text-[1.3rem] ' />
                                         <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                                     </div>
-                                    {logout && <div className='absolute top-0 md:-top-5  -left-4 lg:right-4  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-[#e0dfdf] font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
+                                    {logout && <div className='absolute -top-5 -left-4 lg:right-0  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-[#e0dfdf] font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
                                         <div className=' text-[0.8rem] mb-[1rem] text-center'>Logout of your account?</div>
                                         <div className='flex gap-[1rem] items-center'>
                                             <button className='outline-none py-[0.25rem] px-[1rem] w-fit h-fit border lg:border-[#1c1733] border-white rounded-lg capitalize text-[0.75rem] flex items-center gap-1 lg:hover:bg-[#1c1733] hover:bg-white lg:text-light text-white hover:text-[#27137e] lg:hover:text-white' onClick={() => setLogOut(!logout)}>
@@ -373,7 +373,7 @@ const Dashboard = () => {
                             <GrMoney className='md:text-2xl text-xl ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>investment</div>
                         </div>
-                        <div className={`bg-white h-16 w-full -mt-8 flex items-center justify-center rounded-full cursor-pointer ${toggle === 'home' ? 'text-light' : 'text-black'} `} onClick={() => {  MoveToTop(); setSlideShow(!slideShow)}}>
+                        <div className={`bg-white h-16 w-full -mt-8 flex items-center justify-center rounded-full cursor-pointer ${toggle === 'home' ? 'text-light' : 'text-black'} `} onClick={() => { setSlideShow(!slideShow) }}>
                             <HiBars4 className={`md:text-3xl text-2xl ${slideShow ? ' rotate-180' : 'rotate-0'} trans`} />
                         </div>
                         <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'deposit' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>

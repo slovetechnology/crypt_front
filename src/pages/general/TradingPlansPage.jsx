@@ -15,7 +15,7 @@ const TradingPlansPage = () => {
             </div>
             <div className='text-[1.1rem] text-center'>- Below are the different trading plans on the AI Algorithm Trading System -</div>
           </div>
-          <div className='flex flex-wrap gap-12 mt-[5rem] text-[#30465c] justify-center'>
+          <div className='flex flex-wrap gap-12 mt-20 text-[#30465c] justify-center'>
             <div className='w-[23rem] h-[28rem] bg-[whitesmoke] rounded-md'>
               <div className='flex flex-col items-center p-[2.5rem]'>
                 <div className='capitalize'>starter plan</div>

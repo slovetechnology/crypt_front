@@ -9,7 +9,7 @@ import LoadingAdmin from '../../../PageComponents/LoadingAdmin';
 import { Apis, PostApi } from '../../../services/API';
 import { Alert, MoveToTopDivs } from '../../../utils/utils';
 import moment from 'moment';
-import { FaAngleDown, FaAngleUp, FaCheck, FaRegCopyright, FaRegRectangleXmark } from 'react-icons/fa6';
+import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp, FaCheck, FaRegCopyright, FaRegRectangleXmark } from 'react-icons/fa6';
 import { FiX } from "react-icons/fi";
 import { supportedCoins, tradingPlans } from '../../../services/Miscellaneous';
 import nothnyet from '../../../assets/images/nothn.png'
@@ -452,13 +452,11 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             <img src={nothnyet} className='h-[1rem] w-auto'></img>
                         </div>}
                     </div>
-                    <div className='flex flex-col gap-1 text-[0.75rem] py-4'>
-                        {Math.ceil(pagelengthend) > 1 && <div className='flex justify-end font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
-                        <div className='flex items-center justify-end  gap-2 text-white '>
-                            {pagelengthstart > 1 && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={BackPage}>prev</button>}
-                            {end < userDeposits.length && <button className='w-fit h-fit py-[0.25rem] px-[1rem] rounded-[10rem] bg-[#7665D5] hover:bg-[#4e438d] capitalize' onClick={MovePage}>next</button>}
-                        </div>
-                    </div>
+                    {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-[#7665D5] '>
+                        {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                        {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                        {end < userDeposits.length && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+                    </div>}
                 </div>
             </div>}
         </div>
