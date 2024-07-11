@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { IoLockClosedOutline, IoLockOpenOutline } from "react-icons/io5";
-import { FaArrowRight, FaCheck } from "react-icons/fa6";
+import { FaArrowRight } from "react-icons/fa6";
 import { RiVerifiedBadgeLine } from "react-icons/ri";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
@@ -136,13 +136,13 @@ const ForgottenPassword = ({ closePass }) => {
 
     return (
         <div className='fixed bg-black/40 w-full h-[100%]  left-0 top-0 flex items-center justify-center px-4 z-50'>
-            <div className={`bg-[white]  py-[1rem] w-fit h-fit rounded-xl  shld overflow-auto relative`} ref={passwordField}>
+            <div className={`bg-white  py-4 w-fit h-fit rounded-xl  shld overflow-auto relative`} ref={passwordField}>
                 {loading && <Loading />}
                 {screen === 1 && <>
-                    <div className='w-[85%] mx-auto'>
+                    <div className='md:w-[85%] w-11/12 mx-auto'>
                         <form onSubmit={FindEmail}>
                             <div className='flex justify-center flex-col gap-2 items-center'>
-                                <div className='w-[3rem] h-[3rem] border-2 border-[black] rounded-[50%] flex items-center justify-center'>
+                                <div className='w-[3rem] h-[3rem] border-2 border-black rounded-[50%] flex items-center justify-center'>
                                     <IoLockClosedOutline className='text-[1.5rem]' />
                                 </div>
                                 <div className='text-[0.9rem] font-[800]'>Trouble logging in?</div>
@@ -151,22 +151,21 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-[2rem]'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-[0.75rem] capitalize font-[600]'>enter email address</div>
-                                    <input className='outline-none w-full border-b border-[black] md:text-[0.9rem] text-base ipt focus:outline-none' type='email' placeholder='E.g: john14@gmail.com' value={email} onChange={e => setEmail(e.target.value)}></input>
-                                    <FaCheck className='absolute top-[2.25rem] right-0 text-[0.7rem] text-[#E96E28]' />
+                                    <input className='outline-none w-full border-b border-black md:text-[0.9rem] text-base ipt focus:outline-none' type='email' placeholder='E.g: john14@gmail.com' value={email} onChange={e => setEmail(e.target.value)}></input>
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{emailError}</div>
                                 </div>
-                                <div className='flex items-center justify-center mt-[0.5rem]'>
-                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[6rem] h-fit md:w-fit w-full rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >find account</button>
+                                <div className='flex items-center justify-center mt-2'>
+                                    <button className='outline-none bg-orange py-2 md:px-[6rem] h-fit md:w-fit w-full rounded-md capitalize text-[0.9rem] text-white cursor-pointer font-[550]' >find account</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </>}
                 {screen === 2 && <>
-                    <div className='w-[85%] mx-auto'>
+                    <div className='md:w-[85%] w-11/12 mx-auto'>
                         <form onSubmit={VerifyEmail}>
                             <div className='flex justify-center flex-col gap-2 items-center'>
-                                <div className='w-[3rem] h-[3rem] border-2 border-[black] rounded-[50%] flex items-center justify-center'>
+                                <div className='w-[3rem] h-[3rem] border-2 border-black rounded-[50%] flex items-center justify-center'>
                                     <MdVerified className='text-[1.7rem]' />
                                 </div>
                                 <div className='text-[0.9rem] font-[800]'>Verify your email address</div>
@@ -175,22 +174,21 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-[2rem]'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-[0.75rem] capitalize font-[600]'>enter verification code:</div>
-                                    <input className='outline-none w-full  border-b border-[black] md:text-[0.9rem] text-base focus:outline-none ipt' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
-                                    <FaCheck className='absolute top-[2.25rem] right-0 text-[0.7rem] text-[#E96E28]' />
+                                    <input className='outline-none w-full  border-b border-black md:text-[0.9rem] text-base focus:outline-none ipt' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{codeError}</div>
                                 </div>
-                                <div className='flex items-center justify-center mt-[0.5rem]'>
-                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[7.5rem] h-fit md:w-fit w-full rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >verify email</button>
+                                <div className='flex items-center justify-center mt-2'>
+                                    <button className='outline-none bg-orange py-2 md:px-[7.5rem] h-fit md:w-fit w-full rounded-md capitalize text-[0.9rem] text-white cursor-pointer font-[550]' >verify email</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </>}
                 {screen === 3 && <>
-                    <div className='w-[85%] mx-auto'>
+                    <div className='md:w-[85%] w-11/12 mx-auto'>
                         <form onSubmit={ChangePassword}>
                             <div className='flex justify-center flex-col gap-2 items-center'>
-                                <div className='w-[3rem] h-[3rem] border-2 border-[black] rounded-[50%] flex items-center justify-center'>
+                                <div className='w-[3rem] h-[3rem] border-2 border-black rounded-[50%] flex items-center justify-center'>
                                     <IoLockOpenOutline className='text-[1.5rem]' />
                                 </div>
                                 <div className='text-[0.9rem] font-[800] capitalize'>password re-set</div>
@@ -199,25 +197,25 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-[2rem]'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-[0.75rem] capitalize font-[600]'>enter new password</div>
-                                    <input className='outline-none w-full  border-b border-[black] md:text-[0.9rem] text-base focus:outline-none  ipt' type={eye === true ? 'text' : 'password'} placeholder='Characters more than five' name='new_password' value={passwords.new_password} onChange={passwordHandler}></input>
-                                    <EyeIcon className='absolute bottom-0 right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye(!eye)} />
+                                    <input className='outline-none w-full  border-b border-black md:text-[0.9rem] text-base focus:outline-none  ipt' type={eye === true ? 'text' : 'password'} placeholder='Characters more than five' name='new_password' value={passwords.new_password} onChange={passwordHandler}></input>
+                                    <EyeIcon className='absolute bottom-0 right-0 text-[0.8rem] text-orange cursor-pointer' onClick={() => setEye(!eye)} />
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{passError}</div>
                                 </div>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-[0.75rem] capitalize font-[600]'>confirm password</div>
-                                    <input className='outline-none w-full  border-b border-[black] md:text-[0.9rem] text-base focus:outline-none ipt' type={eye2 === true ? 'text' : 'password'} placeholder='Re-type password' name='confirm_password' value={passwords.confirm_password} onChange={passwordHandler}></input>
-                                    <EyeIcon2 className='absolute bottom-0 right-0 text-[0.8rem] text-[#E96E28] cursor-pointer' onClick={() => setEye2(!eye2)} />
+                                    <input className='outline-none w-full  border-b border-black md:text-[0.9rem] text-base focus:outline-none ipt' type={eye2 === true ? 'text' : 'password'} placeholder='Re-type password' name='confirm_password' value={passwords.confirm_password} onChange={passwordHandler}></input>
+                                    <EyeIcon2 className='absolute bottom-0 right-0 text-[0.8rem] text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{confirmError}</div>
                                 </div>
-                                <div className='flex items-center justify-center mt-[0.5rem]'>
-                                    <button className='outline-none bg-[#E96E28] py-[0.5rem] md:px-[6rem] h-fit ,md:w-fit w-full rounded-md capitalize text-[0.8rem] text-[white] cursor-pointer font-[550]'>change password</button>
+                                <div className='flex items-center justify-center mt-2'>
+                                    <button className='outline-none bg-orange py-2 md:px-[6rem] h-fit ,md:w-fit w-full rounded-md capitalize text-[0.8rem] text-white cursor-pointer font-[550]'>change password</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </>}
                 {screen === 4 && <>
-                    <div className='w-[85%] mx-auto'>
+                    <div className='md:w-[85%] w-11/12 mx-auto'>
                         <div className='flex flex-col gap-2 justify-center items-center'>
                             <div className='w-[3rem] h-[3rem] border-2 border-[green] rounded-[50%] flex items-center justify-center'>
                                 <RiVerifiedBadgeLine className='text-[1.5rem] text-[green]' />
