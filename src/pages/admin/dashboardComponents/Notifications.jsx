@@ -14,6 +14,9 @@ import moment from 'moment';
 import { IoMdArrowBack } from "react-icons/io";
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
+import nothnyet from '../../../assets/images/nothn.png'
+
+
 
 const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotifications, setToggle, setUrlState, pagelengthend, setPagelengthend }) => {
     const [user, setUser] = useAtom(PROFILE)
@@ -286,9 +289,8 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                         ))}
                     </div>
                         :
-                        <div className='flex gap-1 items-center mx-auto text-[black] font-bold capitalize text-[0.9rem] mt-8 border md:w-fit w-full p-2 justify-center'>
-                            <span>no notifications</span>
-                            <IoMdNotificationsOff className='text-[#7665D5] text-[1.1rem]' />
+                        <div className='mt-32 md:mt-20 flex justify-center'>
+                            <img src={nothnyet} className='md:h-20 h-64 w-auto'></img>
                         </div>
                     }
                 </div>
