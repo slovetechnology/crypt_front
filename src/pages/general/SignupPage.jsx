@@ -292,7 +292,7 @@ const SignupPage = () => {
                                 </div>
                                 {countryshow && <div className='h-44 w-full bg-[#ebeaea] absolute top-[3.4rem] left-0 z-10  py-2 rounded-sm overflow-y-auto scroll'>
                                   <div className='px-4'>
-                                    <input className='ipt border border-[grey] bg-transparent text-black pl-[0.5rem] w-full outline-none md:text-[0.85rem] text-base h-[1.5rem] rounded-sm ' type='text' placeholder='search' onKeyUp={FilterCountry}></input>
+                                    <input className='ipt border border-[grey] bg-transparent text-black pl-[0.5rem] w-full outline-none md:text-[0.85rem] text-base md:h-[1.5rem] h-[1.7rem] rounded-sm ' type='text' placeholder='search' onKeyUp={FilterCountry}></input>
                                     {countries.map((item, i) => (
                                       <div className='flex flex-col mt-2' key={i}>
                                         <div className='flex gap-2 items-center cursor-pointer hover:bg-[white]' onClick={() => { UserCountry(item); setCountryShow(false) }}>

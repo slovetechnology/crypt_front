@@ -111,17 +111,17 @@ const ContactPage = () => {
                     <div className='flex flex-col gap-4 mt-[3rem]'>
                       <div className='grid grid-cols-1 lg:grid-cols-2 gap-[2rem]'>
                         <div className='flex flex-col gap-2 w-full'>
-                          <div className='text-[0.75rem] uppercase font-bold text-[#636262] '>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 text-[0.8rem] capitalize pl-2 p-1 focus:outline-none ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <div className='text-xs uppercase font-bold text-[#636262] '>full name</div>
+                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 md:text-[0.8rem] text-base capitalize pl-2 p-1 focus:outline-none ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
-                          <div className='text-[0.75rem] uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 text-[0.8rem] text-orange p-1 pl-[0.5rem] focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <div className='text-xs uppercase font-bold text-[#636262] '>email address</div>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 md:text-[0.8rem] text-base text-orange p-1 pl-[0.5rem] focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
-                        <div className='text-[0.75rem] uppercase font-bold text-[#636262]'>message</div>
-                        <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] text-[0.9rem] resize-none outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                        <div className='text-xs uppercase font-bold text-[#636262]'>message</div>
+                        <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] md:text-[0.9rem] text-base resize-none outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                       </div>
                       <div className='flex justify-center mt-[0.5rem]'>
                         <button className='outline-none bg-orange text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-[2rem] py-[0.25rem] rounded-[3px] capitalize font-bold'>
@@ -188,7 +188,7 @@ const ContactPage = () => {
                     '>
                           {item.name}
                         </div>
-                        <div className='text-[0.75rem] text-[black]  
+                        <div className='text-xs text-[black]  
                     '>
                           - professional cryptocurrency trader -
                         </div>
