@@ -241,18 +241,18 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
 
 
     return (
-        <div className={`pt-10 pb-20 lg:pb-0 ${screen === 2 ? ' h-screen' : 'h-fit'} `}>
+        <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 ? ' h-screen' : 'h-fit'} `}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>{deposit}</div>
+                <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{deposit}</div>
                 {screen === 1 &&
-                    <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center mt-[1rem] cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
                         <span>deposit history</span>
                         <RiHistoryFill />
                     </div>
                 }
                 {screen === 2 &&
-                    <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center mt-[1rem] cursor-pointer' onClick={() => { setScreen(1); setDeposit('deposit') }}>
-                        <span>make new deposit</span>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setDeposit('deposit') }}>
+                        <span>new deposit</span>
                         <RiMoneyDollarCircleFill />
                     </div>
                 }
@@ -404,14 +404,14 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     </div>}
                 </div>
             </div>}
-            {screen === 2 && <div className='w-[95%] mx-auto my-[2rem] '>
-                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => { setScreen(1); setDeposit('deposit') }}>
+            {screen === 2 && <div className='my-8 '>
+                <div className='flex gap-1 items-center capitalize md:text-[0.85rem] text-xs cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => { setScreen(1); setDeposit('deposit') }}>
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>
-                <div className='mt-[2rem]'>
+                <div className='mt-4'>
                     <div className='relative w-fit mx-auto'>
-                        <input className='border border-[white] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
+                        <input className='border border-[white] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
@@ -421,7 +421,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             }
                         </div>
                     </div>
-                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem] scrollsdown'>
+                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
                         <table className='w-full'>
                             <thead >
                                 <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-[white]'>

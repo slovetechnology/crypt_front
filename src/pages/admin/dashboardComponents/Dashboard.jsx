@@ -7,7 +7,6 @@ import { FaAngleRight } from "react-icons/fa6";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { LuSend, LuArrowDownUp } from "react-icons/lu";
 import { RiAccountPinCircleLine } from "react-icons/ri";
-import { HiBars4 } from "react-icons/hi2";
 import { MdVerified } from "react-icons/md";
 import { LuX } from "react-icons/lu";
 import { BiLogOutCircle } from "react-icons/bi";
@@ -19,9 +18,11 @@ import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Profile from './Profile';
 import Cookies from 'js-cookie';
-import { CookieName, MoveToTop } from '../../../utils/utils';
+import { CookieName} from '../../../utils/utils';
 import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
+import { HiOutlineDotsVertical } from "react-icons/hi";
+import { MdPayment } from "react-icons/md";
 import Investment from './Investment';
 import Deposit from './Deposit';
 import Withdraw from './Withdraw';
@@ -221,7 +222,7 @@ const Dashboard = () => {
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>my investment</div>
                                 </div>
                                 <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full relative ${toggle === 'deposit' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
-                                    <GiPayMoney className='text-[1.3rem] ' />
+                                    <MdPayment className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>deposit</div>
                                 </div>
                                 <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'withdrawal' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
@@ -363,26 +364,27 @@ const Dashboard = () => {
                         </>
                     }
                 </div>
-                <div className='bg-[#131024] w-full h-16 fixed bottom-0 left-0 z-30 lg:hidden'>
-                    <div className='px-4 grid grid-cols-5 items-center h-full w-full'>
+                <div className='bg-[#131024] w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
+                    <div className='grid grid-cols-5 items-center h-full w-full'>
                         <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'wallet' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
-                            <IoWalletOutline className='md:text-2xl text-xl ' />
+                            <IoWalletOutline className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>wallet</div>
                         </div>
                         <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'my investment' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('my investment'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
-                            <GrMoney className='md:text-2xl text-xl ' />
+                            <GrMoney className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>investment</div>
                         </div>
-                        <div className={`bg-white h-16 w-full -mt-8 flex items-center justify-center rounded-full cursor-pointer ${toggle === 'home' ? 'text-light' : 'text-black'} `} onClick={() => { setSlideShow(!slideShow) }}>
-                            <HiBars4 className={`md:text-3xl text-2xl ${slideShow ? ' rotate-180' : 'rotate-0'} trans`} />
-                        </div>
                         <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'deposit' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
-                            <GiPayMoney className='md:text-2xl text-xl ' />
+                            <MdPayment className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>deposit</div>
                         </div>
                         <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'withdrawal' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
-                            <BiMoneyWithdraw className='md:text-2xl text-xl ' />
+                            <BiMoneyWithdraw className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>withdrawal</div>
+                        </div>
+                        <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer text-white `} onClick={() => { setSlideShow(!slideShow) }}>
+                            <HiOutlineDotsVertical className={`md:text-xl text-lg`} />
+                            <div className='capitalize md:text-xs text-[0.7rem] font-medium'>more</div>
                         </div>
                     </div>
                 </div>

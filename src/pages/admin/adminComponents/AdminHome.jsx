@@ -163,7 +163,7 @@ const AdminHome = () => {
                     <BiLogOutCircle className='text-[1.3rem] ' />
                     <div className='capitalize text-[0.85rem] font-bold'>logout</div>
                   </div>
-                  {logout && <div className='absolute top-[0rem] right-4 bg-[#36225e] w-fit  h-fit z-10 rounded-[10px] text-white   p-[1rem] shlztwo'>
+                  {logout && <div className='absolute top-0 right-4 bg-[#36225e] w-fit  h-fit z-10 rounded-[10px] text-white   p-4 shlztwo'>
                     <div className=' text-[0.8rem] mb-[1rem] text-center'>Logout of your account?</div>
                     <div className='flex gap-[1rem] items-center'>
                       <button className='outline-none py-[0.25rem] px-[1rem] w-fit h-fit border border-[white] rounded-lg capitalize text-[0.75rem] flex items-center gap-1 hover:bg-[white] hover:text-[#36225e] ' onClick={() => setLogOut(!logout)}>

@@ -33,6 +33,8 @@ const AboutPage = () => {
   let countIndexTwo = 0
   let countIndexThree = 0
 
+  const CountDiv = document.querySelector('.CountDiv')
+
   const CountFunction = () => {
     if (userCount < 1) {
       let countOne = setInterval(() => {
@@ -87,8 +89,8 @@ const AboutPage = () => {
               </div>
             </div>
             <div className='col-span-1 order-first lg:order-last'>
-              <div className='relative h-fit w-fit rounded-[20px] flex items-center justify-center bg-[#192633] overflow-hidden'>
-                <img src={robotabt} className='h-[50vh] object-cover '></img>
+              <div className='relative h-fit w-full rounded-[20px] flex items-center justify-center bg-[#192633] overflow-hidden'>
+                <img src={robotabt} className='h-[50vh] object-cover w-full '></img>
                 <div className='bda flex items-center justify-center rotate-90 w-32 h-32 border-2 bottom-4 rounded-full left-[-5rem] absolute'>
                   <div className='bdb w-20 h-20 border-2 rounded-full'></div>
                 </div>
@@ -111,7 +113,7 @@ const AboutPage = () => {
                 </div>
               </div>
               <div className='lg:col-span-2'>
-                <div className='text-[0.95rem] text-orange mt-[-3rem]'>About the System</div>
+                <div className='text-[0.95rem] text-orange -mt-12'>About the System</div>
                 <div className='text-white font-[600] capitalize text-[1.4rem] lg:text-[1.8rem] mt-[1.3rem]'>transparent, full-control & consistent market advantage</div>
                 <div className='text-ground text-[0.9rem] pt-4'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores necessitatibus voluptas qui alias quo eligendi reiciendis numquam, harum distinctio culpa illo praesentium similique veritatis dolorum pariatur dolor dignissimos molestias.</div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-8'>

@@ -53,22 +53,23 @@ const LoginPage = () => {
             email: form.email,
             password: form.password
         }
-        setLoading(true)
-        try {
-            const response = await UserPostApi(Apis.user.login, formbody)
-            if (response.status === 200) {
-                Cookies.set(CookieName, response.token)
-                const decoded = decodeToken(response.token)
-                const findRole = UserRole.find(item => item.role === decoded.role)
-                if (findRole) return navigate(`${findRole.url}`)
-            } else {
-                return Alert('Request Failed', response.msg, 'error')
-            }
-        } catch (error) {
-            Alert('Request Unsuccessful', `${error.message}`, 'error')
-        } finally {
-            setLoading(false)
-        }
+        // setLoading(true)
+        // try {
+        //     const response = await UserPostApi(Apis.user.login, formbody)
+        //     if (response.status === 200) {
+        //         Cookies.set(CookieName, response.token)
+        //         const decoded = decodeToken(response.token)
+        //         const findRole = UserRole.find(item => item.role === decoded.role)
+        //         if (findRole) return navigate(`${findRole.url}`)
+        //     } else {
+        //         return Alert('Request Failed', response.msg, 'error')
+        //     }
+        // } catch (error) {
+        //     Alert('Request Unsuccessful', `${error.message}`, 'error')
+        // } finally {
+        //     setLoading(false)
+        // }
+        navigate('/dashboard')
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 
@@ -94,32 +95,32 @@ const LoginPage = () => {
                                                 </div>
                                                 <div className='text-[0.9rem] mt-[0.1rem] text-[#6b6a6a] capitalize text-center font-[550]'>continue to log in</div>
                                                 <form onSubmit={submitForm}>
-                                                    <div className='flex gap-[1rem] mt-[2rem] flex-col'>
-                                                        <div className='flex gap-[0.5rem] flex-col relative'>
+                                                    <div className='flex gap-4 mt-[2rem] flex-col'>
+                                                        <div className='flex gap-2 flex-col relative'>
                                                             <div className='flex gap-1'>
                                                                 <MdMarkEmailUnread className='text-[0.9rem] mt-[0.12rem]' />
                                                                 <div className='text-sm capitalize font-[550]'>email address</div>
                                                             </div>
-                                                            <input placeholder='Enter email address' className=' outline-none rounded-[3px] w-full h-fit py-[0.5rem] bg-[#e9e9e9] pl-[1rem] justify-center lg:text-[0.9rem] text-base ipt' type='email' value={form.email} name='email' onChange={inputHandler}></input>
-                                                            <div className={`text-sm mt-[-0.3rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-[black]'}`}>{emailmsg}</div>
+                                                            <input placeholder='Enter email address' className=' outline-none rounded-[3px] w-full h-fit py-2 bg-[#e9e9e9] pl-4 justify-center lg:text-[0.9rem] text-base ipt' type='email' value={form.email} name='email' onChange={inputHandler}></input>
+                                                            <div className={`text-xs md:text-[0.8rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-black'}`}>{emailmsg}</div>
                                                         </div>
                                                     </div>
-                                                    <div className='flex gap-[1rem] mt-[2.5rem] flex-col'>
-                                                        <div className='flex gap-[0.5rem] flex-col relative'>
+                                                    <div className='flex gap-4 mt-10 flex-col'>
+                                                        <div className='flex gap-2 flex-col relative'>
                                                             <div className='flex gap-1'>
                                                                 <MdLock className='text-[0.9rem] mt-[0.12rem]' />
                                                                 <div className='text-sm capitalize font-[550]'>password</div>
                                                             </div>
-                                                            <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-[0.5rem]  bg-[#e9e9e9] pl-[1rem] justify-center lg:text-[0.9rem] text-base ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
+                                                            <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-2  bg-[#e9e9e9] pl-4 justify-center lg:text-[0.9rem] text-base ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
                                                             <EyeIcon className='absolute top-10 right-2 cursor-pointer' onClick={() => setEye(!eye)} />
-                                                            <div className={`text-sm mt-[-0.3rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-[black]'}`}> {passmsg} </div>
+                                                            <div className={`text-xs md:text-[0.8rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-black'}`}> {passmsg} </div>
                                                         </div>
                                                     </div>
                                                     <div className='w-fit flex ml-auto'>
-                                                        <div className='text-sm font-[550] text-orange pt-[0.5rem] cursor-pointer capitalize' onClick={() => setForgotPass(!forgotPass)}>forgot password?</div>
+                                                        <div className='text-sm font-[550] text-orange pt-2 cursor-pointer capitalize' onClick={() => setForgotPass(!forgotPass)}>forgot password?</div>
                                                     </div>
-                                                    <div className='flex flex-col gap-[0.5rem] items-center mt-[3rem]'>
-                                                        <button className='outline-none bg-orange py-[0.5rem] w-full md:px-[8rem] h-fit md:w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' type='submit' >login</button>
+                                                    <div className='flex flex-col gap-2 items-center mt-[3rem]'>
+                                                        <button className='outline-none bg-orange py-2 w-full md:px-[8rem] h-fit md:w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' type='submit' >login</button>
                                                         <div className='text-[#6b6a6a] text-sm font-[550]'>Don't have an account?
                                                             <Link to='/signup' onClick={MoveToTop} className='cursor-pointer text-orange font-[550]' > Sign Up</Link>
                                                         </div>

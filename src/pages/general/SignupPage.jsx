@@ -306,7 +306,7 @@ const SignupPage = () => {
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>trader's code:</div>
-                                <input className={`outline-none w-full   border-b focus:outline-none  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt`} placeholder='Seven characters long' type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full   border-b focus:outline-none  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt`} placeholder={`Enter an AI Algo trader's code`} code type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
                                 <div className='absolute bottom-[-1rem] left-0 text-xs text-[red]'>{codeMsg}</div>
                               </div>
                             </div>

@@ -104,30 +104,30 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
 
 
     return (
-        <div className={`pt-10 pb-48 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
+        <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>{investtitle}</div>
-                {screen === 1 && <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
+                <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{investtitle}</div>
+                {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
                     <span>investment history</span>
-                    <RiHistoryFill className='text-[1.1rem]' />
+                    <RiHistoryFill className='md:text-[1.1rem] text-[0.9rem]' />
                 </div>}
-                {screen === 2 && <div className='flex gap-1 capitalize font-bold text-[0.9rem] text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
+                {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
                     <span>investments</span>
-                    <IoListOutline className='text-[1.1rem]' />
+                    <IoListOutline className='md:text-[1.1rem] text-[0.9rem]' />
                 </div>}
             </div>
 
             {screen === 1 && <div>
                 {investmentUnclaim.length > 0 ? <div>
                     {investmentUnclaim.map((item, i) => (
-                        <div className='flex flex-col gap-[1rem] my-[3rem] ' key={i}>
+                        <div className='flex flex-col gap-4 my-12 ' key={i}>
                             <div className='flex gap-2 items-center'>
                                 <div className='text-[grey] text-[0.8rem]'>{moment(item.createdAt).format('DD-MM-yyyy')}</div>
                                 <div className='text-[grey] text-[0.8rem]'>{moment(item.createdAt).format('h:mm')}</div>
                             </div>
                             <div className='flex flex-wrap gap-4 items-center justify-center'>
-                                <div className='w-[11rem] h-[fit] rounded-[10px] flex flex-col text-[1.2rem] py-[0.5rem]  px-[0.5rem] text-[#e0dfdf] gap-2 bg-[#6859bb]'>
-                                    <div className='capitalize text-[0.9rem] font-[600]'>amount</div>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2 px-2 text-[#e0dfdf] gap-2 bg-[#6859bb]'>
+                                    <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>amount</div>
                                     <div className='flex justify-between items-center font-bold'>
                                         <div>
                                             <div className='flex items-center'>
@@ -142,16 +142,16 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
-                                        <img src={deposit3d} className='h-[2.5rem] w-[auto]'></img>
+                                        <img src={deposit3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
                                     </div>
                                 </div>
-                                <div className='w-[11rem] h-[fit] rounded-[10px] flex flex-col text-[1.2rem] py-[0.5rem]  px-[0.5rem] text-[#e0dfdf] gap-2 border border-[grey] bg-[#130e27]'>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-[#e0dfdf] gap-2 border border-[grey] bg-[#130e27]'>
                                     <div className='flex justify-between'>
-                                        <div className='capitalize text-[0.9rem] font-[600]'>profit/ROI</div>
+                                        <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>profit/ROI</div>
                                         {item.investment_status === 'confirmed' && <div>
-                                            {item.profit_status === 'running' ? <div className='italic text-[0.8rem] text-[#6f6ff5]'>running</div>
+                                            {item.profit_status === 'running' ? <div className='italic md:text-[0.8rem] text-xs text-[#6f6ff5]'>running</div>
                                                 :
-                                                <div className='italic text-[0.8rem] text-[#adad40] font-bold'>completed</div>
+                                                <div className='italic md:text-[0.8rem] text-xs text-[#adad40] font-bold'>completed</div>
                                             }
                                         </div>
                                         }
@@ -171,16 +171,16 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
 
                                             </div>
                                         </div>
-                                        <img src={profit3d} className='h-[2.5rem] w-[auto]'></img>
+                                        <img src={profit3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
                                     </div>
                                 </div>
-                                <div className='w-[11rem] h-[fit] rounded-[10px] flex flex-col text-[1.2rem] py-[0.5rem]  px-[0.5rem] text-[#e0dfdf] gap-2 border border-[grey] bg-[#130e27]'>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-[#e0dfdf] gap-2 border border-[grey] bg-[#130e27]'>
                                     <div className='flex justify-between'>
-                                        <div className='capitalize text-[0.9rem] font-[600]'>bonus</div>
+                                        <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>bonus</div>
                                         {item.investment_status === 'confirmed' && <div>
-                                            {item.profit_status === 'running' ? <div className='italic text-[0.8rem] text-[#6f6ff5]'>running</div>
+                                            {item.profit_status === 'running' ? <div className='italic md:text-[0.8rem] text-xs text-[#6f6ff5]'>running</div>
                                                 :
-                                                <div className='italic text-[0.8rem] text-[#adad40]'>completed</div>
+                                                <div className='italic md:text-[0.8rem] text-xs text-[#adad40]'>completed</div>
                                             }
                                         </div>}
                                     </div>
@@ -198,10 +198,10 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
-                                        <img src={bonus3d} className='h-[2.5rem] w-[auto]'></img>
+                                        <img src={bonus3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
                                     </div>
                                 </div>
-                                <div className='w-[11rem] h-[fit] rounded-[10px] flex flex-col text-[0.9rem] py-[0.5rem]  px-[0.5rem] text-[#e0dfdf] gap-2 font-bold bg-[#6859bb]'>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[0.9rem] text-sm py-2  px-2 text-[#e0dfdf] gap-2 font-bold bg-[#6859bb]'>
                                     <div className='font-[600] capitalize'>investment plan</div>
                                     <div className='flex justify-between items-center'>
                                         <div>
@@ -216,7 +216,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
-                                        <img src={trading3d} className='h-[2.5rem] w-[auto]'></img>
+                                        <img src={trading3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
                                     </div>
                                 </div>
                             </div>
@@ -227,11 +227,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                     ))}
                 </div>
                     :
-                    <div className='pt-20'>
-                        <div className='w-[28rem] h-[fit] rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-[1rem] px-[2rem]  text-[#e0dfdf] gap-4 border border-[grey] bg-[#130e27] mx-auto'>
+                    <div className='pt-16'>
+                        <div className='w-fit h-fit rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-[#e0dfdf] gap-4 border border-[grey] bg-[#130e27] mx-auto'>
                             <div className='text-[1.2rem]  italic'>No new investment made</div>
                             <img src={investbg} className='w-[20rem] h-auto'></img>
-                            <button className='outline-none w-fit h-fit py-[0.4rem] px-[1.5rem] text-[0.85rem] text-white font-[550] bg-[#A16534] rounded-[10rem] flex items-center gap-3 mt-[1rem]' onClick={() => setToggle('deposit')}>
+                            <button className='outline-none w-fit h-fit py-2 px-6 text-[0.85rem] text-white font-medium bg-[#A16534] rounded-[10rem] flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
                                 <span>Make new</span>
                                 <div className='makenew'></div>
                             </button>
@@ -240,26 +240,26 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                 }
             </div>}
             {screen === 2 &&
-                <div className='w-[95%] mx-auto my-8'>
-                    <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
+                <div className='my-8'>
+                    <div className='flex gap-1 items-center capitalize md:text-[0.85rem] text-xs cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
                         <IoMdArrowBack />
                         <span>back</span>
                     </div>
-                    <div className='relative w-fit mx-auto mt-8'>
-                        <input className='border border-[white] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
-                        <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
+                    <div className='relative w-fit mx-auto mt-4'>
+                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
+                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] right-12 text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }
                         </div>
                     </div>
-                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem] scrollsdown'>
+                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
                         <table className='w-full'>
                             <thead >
-                                <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-[white]'>
+                                <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-white'>
                                     <td className='text-center  capitalize p-2 truncate'>date</td>
                                     <td className='text-center  capitalize p-2 truncate'>time</td>
                                     <td className='text-center  capitalize p-2 truncate'>amount</td>
@@ -286,9 +286,9 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             </tbody>
                             }
                         </table>
-                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] px-[1rem] py-[0.5rem] text-[0.8rem] italic'>
+                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] px-4 py-2 text-[0.8rem] italic'>
                             <div>no investment made yet...</div>
-                            <img src={nothnyet} className='h-[1rem] w-auto'></img>
+                            <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>
                     {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-[#7665D5] '>

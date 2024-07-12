@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../../store'
 import { useAtom } from 'jotai'
-import { IoMdNotificationsOff, IoMdSettings, IoMdSearch, IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { IoMdSettings, IoMdSearch, IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { HiCheckCircle } from "react-icons/hi2";
 import { TbNotification } from "react-icons/tb";
 import { PiNotification } from "react-icons/pi"
@@ -280,7 +280,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                                     <MdError className='text-[#c94747]' />}
                                             </div>
                                         </div>
-                                        <div className='font-[600]'>{item.content}</div>
+                                        <div className='font-[600] md:font-[650]'>{item.content}</div>
                                         <div className=' text-[0.7rem] text-[#3d3d3d] font-bold mt-[0.5rem]'>{moment(item.createdAt).fromNow()}</div>
                                     </div>
                                     <FaXmark className='text-[#5f5f5f] text-[0.85rem] cursor-pointer hover:bg-[grey] hover:text-[#272727] absolute top-0 right-0 rounded-full' onMouseOver={() => singleDeleteNotification(item)} onClick={DeleteNotification} />

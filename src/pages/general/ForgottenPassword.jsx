@@ -174,7 +174,7 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-[2rem]'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-[0.75rem] capitalize font-[600]'>enter verification code:</div>
-                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base focus:outline-none ipt' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
+                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base focus:outline-none ipt' type='text' placeholder='Six digits code' value={code} onChange={e => setCode(e.target.value)}></input>
                                     <div className='text-[0.75rem] mt-[-0.5rem] text-[red] absolute bottom-[-1rem] left-0'>{codeError}</div>
                                 </div>
                                 <div className='flex items-center justify-center mt-2'>
