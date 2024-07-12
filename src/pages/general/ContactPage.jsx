@@ -108,23 +108,23 @@ const ContactPage = () => {
                     <span>-</span>
                   </div>
                   <form onSubmit={submitForm}>
-                    <div className='flex flex-col gap-4 mt-[3rem]'>
-                      <div className='grid grid-cols-1 lg:grid-cols-2 gap-[2rem]'>
+                    <div className='flex flex-col gap-4 mt-12'>
+                      <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-xs uppercase font-bold text-[#636262] '>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 md:text-[0.8rem] text-base capitalize pl-2 p-1 focus:outline-none ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 lg:text-[0.8rem] text-base capitalize pl-2 p-1 focus:outline-none ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-xs uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 md:text-[0.8rem] text-base text-orange p-1 pl-[0.5rem] focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base text-orange p-1 pl-2 focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
                         <div className='text-xs uppercase font-bold text-[#636262]'>message</div>
-                        <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] md:text-[0.9rem] text-base resize-none outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                        <textarea placeholder='Type A Message' className={` p-2 h-[9rem] lg:text-[0.9rem] text-base resize-none outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                       </div>
-                      <div className='flex justify-center mt-[0.5rem]'>
-                        <button className='outline-none bg-orange text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-[2rem] py-[0.25rem] rounded-[3px] capitalize font-bold'>
+                      <div className='flex justify-center mt-2'>
+                        <button className='outline-none bg-orange text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-8 py-1 rounded-[3px] capitalize font-bold'>
                           <div>send</div>
                           <BiMailSend />
                         </button>
@@ -137,7 +137,7 @@ const ContactPage = () => {
             <div className={`w-full h-fit ${show !== 1 ? 'py-8' : 'py-4'}  bg-[#9e5c36] overflow-hidden trans relative`}>
               <div className='w-11/12 mx-auto '>
                 {show === 1 &&
-                  <div className='grid grid-cols-1 gap-[0.5rem] items-center lg:flex lg:justify-between h-full' >
+                  <div className='grid grid-cols-1 gap-2 items-center lg:flex lg:justify-between h-full' >
                     <div className='text-[white] text-[0.9rem] capitalize font-[550] text-center'>follow account manager on:</div>
                     <div className='flex gap-4 justify-center' onClick={() => setShow(2)}>
                       <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-[1.2rem] hover:text-[black]'>
@@ -162,7 +162,7 @@ const ContactPage = () => {
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border-b border-white bg-transparent md:text-[0.85rem] text-base w-48 pl-4 text-white focus:outline-none' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
+                      <input className='outline-none border-b border-white bg-transparent lg:text-[0.85rem] text-base w-48 pl-4 text-white focus:outline-none' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
                       <MdOutlineEdit className=' text-[0.8rem] text-orange absolute bottom-0 right-0 h-[1.2rem]' />
                       <div className='w-[0.3rem] h-[0.3rem] rounded-full bg-white absolute bottom-[-0.1rem] left-0'></div>
                       <div className='text-[0.85rem] absolute bottom-[-1.5rem] left-0 font-bold text-[#361e1e]'>{codeError}</div>

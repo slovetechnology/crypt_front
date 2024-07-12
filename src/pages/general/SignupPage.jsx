@@ -261,18 +261,18 @@ const SignupPage = () => {
                             </div>
                             <div className='flex flex-col gap-[0.3rem]'>
                               <div className='text-sm capitalize font-[550] '>full name:</div>
-                              <input className={`outline-none w-full  border-b  ${nameError === true ? 'border-[red]' : 'border-[#4d4c4c]'} md:text-sm text-base ipt`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
+                              <input className={`outline-none w-full  border-b  ${nameError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
                               <div></div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 w-full md:gap-8 gap-[0.7rem]'>
                               <div className='flex flex-col gap-[0.3rem] relative '>
                                 <div className='text-sm capitalize font-[550] '>username:</div>
-                                <input className={`outline-none w-full  border-b focus:outline-none  ${userError === true ? 'border-[red]' : 'border-[#4d4c4c]'} md:text-sm text-base ipt`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
+                                <input className={`outline-none w-full  border-b focus:outline-none  ${userError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
                                 <div></div>
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative '>
                                 <div className='text-sm capitalize font-[550] '>e-mail address:</div>
-                                <input className={`outline-none w-full   border-b focus:outline-none   ${emailError === true ? 'border-[red]' : 'border-[#4d4c4c]'} md:text-sm text-base focus:outline-none ipt`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full   border-b focus:outline-none   ${emailError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base focus:outline-none ipt`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
                               </div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-[0.7rem] w-full'>
@@ -306,20 +306,20 @@ const SignupPage = () => {
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>trader's code:</div>
-                                <input className={`outline-none w-full   border-b focus:outline-none  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} md:text-sm text-base  ipt`} placeholder='Seven characters long' type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full   border-b focus:outline-none  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt`} placeholder='Seven characters long' type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
                                 <div className='absolute bottom-[-1rem] left-0 text-xs text-[red]'>{codeMsg}</div>
                               </div>
                             </div>
                             <div className='grid grid-cols-2 gap-8 w-full'>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550]'>password:</div>
-                                <input className={`outline-none w-full border-b focus:outline-none  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  md:text-sm text-base pr-4 ipt`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full border-b focus:outline-none  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  lg:text-sm text-base pr-4 ipt`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
                                 <EyeIcon className='absolute bottom-0 right-0 text-[0.8rem] text-orange cursor-pointer' onClick={() => setEye(!eye)} />
                                 <div className='absolute bottom-[-1rem] left-0 text-xs text-[red]'>{passMsg}</div>
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>confirm password:</div>
-                                <input className={`outline-none w-full border-b focus:outline-none  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} md:text-sm text-base pr-4 ipt`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full border-b focus:outline-none  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base pr-4 ipt`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
                                 <EyeIcon2 className='absolute bottom-0 right-0 text-[0.8rem] text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
                                 <div className='absolute bottom-[-1rem] left-0 text-xs text-[red]'>{conMsg}</div>
                               </div>

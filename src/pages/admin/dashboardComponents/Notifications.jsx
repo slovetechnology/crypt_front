@@ -264,7 +264,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                             </div>
                         </div>
                     </div>
-                    {notis.length > 1 ? <div className='mt-5 md:mt-0'>
+                    {altnotis.length > 1 ? <div className='mt-5 md:mt-0'>
                         {altnotis.slice(start, end).map((item, i) => (
                             <div key={i} className='flex flex-col items-center md:pt-2 pt-3 md:text-xs'>
                                 <div className={` p-2 rounded-md ${item.read === 'true' ? '' : 'bg-[#c0b9e4]'} relative shantf  w-full h-fit cursor-pointer overflow-hidden`} onMouseOver={() => singleUpdateNotification(item)} >
