@@ -189,7 +189,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                     <div className='flex gap-3 '>
                         <div className='relative flex flex-col gap-2'>
                             <div className='text-[0.9rem] capitalize text-center'>enter an amount</div>
-                            <input className={`outline-none border  bg-[#0C091A] text-[0.85rem] w-[15rem] h-[2rem] rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                            <input className={`outline-none border  bg-[#0C091A] lg:text-[0.85rem] w-[15rem] h-[2rem] rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                             <div className='absolute top-[2.25rem] left-2 text-[0.85rem]'>$</div>
                         </div>
                         <div className={`w-full h-[fit] rounded-[5px] flex flex-col text-[1rem] py-[0.5rem]  px-[1rem] text-[#e0dfdf] gap-1 bg-[#312b57] ${limitError ? 'border border-[red]' : ''}`}>
@@ -200,7 +200,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
 
                             <div className='flex items-center justify-center'>
                                 <BiDollar className='text-[1rem]' />
-                                <div>{userwallet.balance.toLocaleString()}</div>
+                                <div>{userwallet.balance}</div>
                             </div>
 
                         </div>
@@ -228,7 +228,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                     </div>
                     {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-[2rem]'>
                         <div className='text-[0.9rem]  text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                        <input className={`outline-none border bg-[#0C091A] text-[0.85rem] w-[24rem] h-[2rem] rounded-[5px] pl-[1rem]  ${walletError ? 'border-[red]' : 'border-[#7665D5]'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
+                        <input className={`outline-none border bg-[#0C091A] lg:text-[0.85rem] w-[24rem] h-[2rem] rounded-[5px] pl-[1rem]  ${walletError ? 'border-[red]' : 'border-[#7665D5]'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
                     </div>}
                     <div className='flex flex-col gap-2 items-center relative mt-[2.5rem]'>
                         <div className='flex gap-2'>
@@ -253,7 +253,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                 </div>
                 <div className='mt-4'>
                     <div className='relative w-fit mx-auto'>
-                        <input className='border border-[white] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
+                        <input className='border border-[white] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
@@ -280,7 +280,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                     <tr className='text-[0.8rem]  text-[#e0dfdf] bg-[#272727] even:bg-[#313131]' key={i}>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
+                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount}</span></td>
                                         <td className='p-4  text-center truncate'>{item.crypto}</td>
                                         <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
                                         <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}   ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>

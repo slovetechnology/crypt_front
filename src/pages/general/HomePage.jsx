@@ -61,16 +61,16 @@ const HomePage = () => {
               <div className='text-semi-white text-[0.95rem] text-center lg:w-[60%] tracking-[0.05rem]'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam nesciunt ut voluptatum! Qui quae inventore non totam laudantium, error provident aliquid, repudiandae, reiciendis praesentium excepturi libero nobis nostrum a eligendi.</div>
             </div>
             <div className='lg:w-3/5 w-11/12 mx-auto'>
-              <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 mt-16'>
+              <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 mt-16 '>
                 <div className='flex gap-4'>
-                  <img src={rocket} className='w-auto h-[3rem]'></img>
+                  <img src={rocket} className='w-auto h-[3rem] z-20'></img>
                   <div className='flex flex-col gap-2'>
                     <div className='font-[550] text-[1.1rem] text-[white]'> Lorem, ipsum.</div>
                     <div className='text-[0.75rem] text-[white]  tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>
                   </div>
                 </div>
                 <div className='flex gap-4'>
-                  <img src={light} className='w-auto h-[3rem]'></img>
+                  <img src={light} className='w-auto h-[3rem] z-20'></img>
                   <div className='flex flex-col gap-2'>
                     <div className='font-[550] text-[1.1rem] text-[white]'>Lorem, ipsum.</div>
                     <div className='text-[white] text-[0.75rem] tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>

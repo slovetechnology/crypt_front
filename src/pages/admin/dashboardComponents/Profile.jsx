@@ -255,7 +255,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {nameEdit && <div className='flex gap-4 items-center'>
-                                <input className='outline-none border border-[#7665D5] bg-[#0C091A] text-[0.85rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' name='full_name' value={form.full_name} onChange={formHandler} type='text' ></input>
+                                <input className='outline-none border border-[#7665D5] bg-[#0C091A] lg:text-[0.85rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' name='full_name' value={form.full_name} onChange={formHandler} type='text' ></input>
                                 <div className='text-[1.2rem] text-[#7665D5] cursor-pointer' onClick={() => setNameEdit(!nameEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -270,7 +270,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {userEdit && <div className='flex gap-4 items-center'>
-                                <input className='outline-none border border-[#7665D5] bg-[#0C091A] text-[0.85rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' name='username' value={form.username} onChange={formHandler} type='text'></input>
+                                <input className='outline-none border border-[#7665D5] bg-[#0C091A] lg:text-[0.85rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' name='username' value={form.username} onChange={formHandler} type='text'></input>
                                 <div className='text-[1.2rem] text-[#7665D5] cursor-pointer' onClick={() => { setUserEdit(!userEdit) }}>
                                     <MdOutlineCancel />
                                 </div>
@@ -285,7 +285,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {emailEdit && <div className='flex gap-4 items-center'>
-                                <input className='outline-none border border-[#7665D5] bg-[#0C091A] text-[0.85rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' name='email' value={form.email} onChange={formHandler} type='email'></input>
+                                <input className='outline-none border border-[#7665D5] bg-[#0C091A] lg:text-[0.85rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' name='email' value={form.email} onChange={formHandler} type='email'></input>
                                 <div className='text-[1.2rem] text-[#7665D5] cursor-pointer' onClick={() => setEmailEdit(!emailEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -302,7 +302,7 @@ const Profile = ({ setToggle, slideShow }) => {
                             {passEdit && <div className='flex gap-4 items-center'>
                                 <div className='flex flex-col gap-[1.5rem]'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-[#7665D5] bg-[#0C091A] text-[0.8rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' placeholder='Enter your old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-[#7665D5] bg-[#0C091A] lg:text-[0.8rem] w-[15rem] h-[2rem] rounded-[3px] pl-[1rem]' placeholder='Enter your old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon className='absolute top-[0.6rem] right-2 text-[0.8rem] text-[#7665D5] cursor-pointer' onClick={() => setEye(!eye)} />
                                     </div>
                                     <div className='relative'>
@@ -363,7 +363,7 @@ const Profile = ({ setToggle, slideShow }) => {
                             </div>
                             <div className='flex flex-col gap-[1.7rem] items-center justify-center mt-[1.5rem]'>
                                 <div className='relative'>
-                                    <input className='outline-none border border-[#2f2950] bg-[#0C091A] text-[0.8rem] w-[13rem] h-[1.9rem] rounded-[5px] pl-[1rem] text-[white] ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                    <input className='outline-none border border-[#2f2950] bg-[#0C091A] lg:text-[0.8rem] w-[13rem] h-[1.9rem] rounded-[5px] pl-[1rem] text-[white] ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                     <EyeIcon className='absolute top-[0.5rem] right-2 text-[0.8rem] text-[#7665D5] cursor-pointer' onClick={() => setEye(!eye)} />
                                     <div className='absolute bottom-[-1.2rem] left-2 text-[0.75rem]  text-[#ce5151]'>{deleteError}</div>
                                 </div>

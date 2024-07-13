@@ -76,7 +76,7 @@ const Feedback = () => {
                     <div className='flex flex-col gap-4 '>
                         <div className='flex flex-col gap-2'>
                             <div className='text-[0.75rem] uppercase font-bold text-[#a09f9f]'>message</div>
-                            <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] text-[#e0dfdf] text-[0.9rem]   outline-none bg-[#0C091A] rounded-[3px]  ${messageError === true ? ' border border-[red]' : 'border border-[#7665D5] resize-none'} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                            <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] text-[#e0dfdf] lg:text-[0.9rem]   outline-none bg-[#0C091A] rounded-[3px]  ${messageError === true ? ' border border-[red]' : 'border border-[#7665D5] resize-none'} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                         </div>
                         <div className='flex justify-end'>
                             <button className='outline-none bg-[#7665D5] text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-[2rem] py-[0.25rem] rounded-[3px] capitalize font-bold'>

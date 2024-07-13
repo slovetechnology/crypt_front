@@ -126,8 +126,8 @@ const Home = ({ setToggle, setPurchaseState }) => {
                             <div className='text-[green] text-[0.85rem] font-bold'>60%</div>
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <button className='outline-none px-4 py-[0.22rem] bg-[#130e27] w-fit h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => { setToggle('deposit'); setPurchaseState(true) }}>purchase</button>
-                            <button className='outline-none px-[1.1rem] py-[0.22rem] bg-[#130e27] w-fit h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => setToggle('deposit')}>upgrade</button>
+                            <button className='outline-none px-4 py-1 bg-[#130e27] w-fit h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => { setToggle('deposit'); setPurchaseState(true) }}>purchase</button>
+                            <button className='outline-none px-[1.15rem] py-1 bg-[#130e27] w-fit h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => setToggle('deposit')}>upgrade</button>
                         </div>
                     </div>
                 </div>

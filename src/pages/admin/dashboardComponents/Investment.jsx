@@ -109,11 +109,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                 <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{investtitle}</div>
                 {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
                     <span>investment history</span>
-                    <RiHistoryFill className='md:text-[1.1rem] text-[0.9rem]' />
+                    <RiHistoryFill />
                 </div>}
                 {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
                     <span>investments</span>
-                    <IoListOutline className='md:text-[1.1rem] text-[0.9rem]' />
+                    <IoListOutline />
                 </div>}
             </div>
 
@@ -229,8 +229,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                     :
                     <div className='pt-16'>
                         <div className='w-fit h-fit rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-[#e0dfdf] gap-4 border border-[grey] bg-[#130e27] mx-auto'>
-                            <div className='text-[1.2rem]  italic'>No new investment made</div>
-                            <img src={investbg} className='w-[20rem] h-auto'></img>
+                            <div className='md:text-[1.2rem] text-lg italic'>No new investment made</div>
+                            <img src={investbg} className='md:w-80 w-52 h-auto'></img>
                             <button className='outline-none w-fit h-fit py-2 px-6 text-[0.85rem] text-white font-medium bg-[#A16534] rounded-[10rem] flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
                                 <span>Make new</span>
                                 <div className='makenew'></div>
@@ -246,7 +246,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                         <span>back</span>
                     </div>
                     <div className='relative w-fit mx-auto mt-4'>
-                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
+                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&

@@ -271,7 +271,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     {depositScreen === 1 && <div className='px-[3rem] py-[1rem] flex  flex-col text-[#e0dfdf]  items-center'>
                         <div className='relative flex flex-col gap-2'>
                             <div className='text-[0.9rem] capitalize text-center'>enter an amount</div>
-                            <input className={`outline-none border  bg-[#0C091A] text-[0.85rem] w-[15rem] h-[2rem] rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)} onKeyUp={handleAmount}></input>
+                            <input className={`outline-none border  bg-[#0C091A] lg:text-[0.85rem] w-[15rem] h-[2rem] rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)} onKeyUp={handleAmount}></input>
                             <div className='absolute top-[2.25rem] left-2 text-[0.85rem]'>$</div>
                         </div>
                         <div className='flex gap-2 items-center mt-[2rem]'>
@@ -388,7 +388,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <div className={`text-[0.8rem]  ${limitError ? 'text-[red] font-bold' : 'text-black font-[550]'} `}>${buybal.price_start} - ${buybal.price_limit}</div>
                             </div>
                             <div className='relative flex gap-2 items-center'>
-                                <input className={`outline-none border text-[0.85rem] w-[10rem] h-[2rem] rounded-[5px] pl-[1.2rem] bg-transparent ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
+                                <input className={`outline-none border lg:text-[0.85rem] w-[10rem] h-[2rem] rounded-[5px] pl-[1.2rem] bg-transparent ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
                                 <div className={`h-fit w-fit px-[1rem] py-[0.5rem] ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.9rem] rounded-[0.25rem]`}>
                                     <div className='text-[0.7rem] italic'>wallet balance:</div>
                                     <div> ${userwallet.balance}</div>
@@ -411,7 +411,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 </div>
                 <div className='mt-4'>
                     <div className='relative w-fit mx-auto'>
-                        <input className='border border-[white] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
+                        <input className='border border-[white] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&

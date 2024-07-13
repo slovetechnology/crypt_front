@@ -199,14 +199,14 @@ const Dashboard = () => {
         <div className='flex'>
             <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:block lg:relative overflow-hidden ${slideShow ? 'block fixed top-0 left-0 h-full z-50' : 'hidden'} `}>
                 <div className={`xl:w-[20%] lg:w-[25%] lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:bg-admin`}>
-                    <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-6 right-4' onClick={() => setSlideShow(!slideShow)}>
+                    <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
                         <LuX />
                     </div>
-                    <div className='flex justify-center mt-14 items-center'>
-                        <img src={logo} className='w-[3rem] h-auto'></img>
+                    <div className='flex justify-center lg:mt-14 mt-12 items-center'>
+                        <img src={logo} className='w-12 h-auto'></img>
                         <div className=' capitalize font-bold text-sha2 lg:text-[1.3rem] text-[1.5rem]'>AialgoVault</div>
                     </div>
-                    <div className='flex flex-col gap-8 mt-10 pl-12 '>
+                    <div className='flex flex-col gap-8 lg:mt-10 mt-8 pl-12'>
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
                             <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'wallet' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
