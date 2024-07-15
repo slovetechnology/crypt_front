@@ -177,9 +177,9 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setEnd(6)
         }
         else {
+            setWrite(true)
             const showSearch = userDeposits.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.crypto.includes(search.toLowerCase()) || item.deposit_status.includes(search.toLowerCase()))
             setUserDeposits(showSearch)
-            setWrite(true)
             setPagelengthend(showSearch.length / 6)
             setPagelengthstart(1)
             setStart(0)
@@ -246,7 +246,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{deposit}</div>
                 {screen === 1 &&
                     <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
-                        <span>deposit history</span>
+                        <span>history</span>
                         <RiHistoryFill />
                     </div>
                 }

@@ -41,9 +41,9 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
             setEnd(6)
 
         } else {
+            setWrite(true)
             const showSearch = investment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
             setInvestment(showSearch)
-            setWrite(true)
             setPagelengthend(showSearch.length / 6)
             setPagelengthstart(1)
             setStart(0)
@@ -108,7 +108,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{investtitle}</div>
                 {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
-                    <span>investment history</span>
+                    <span>history</span>
                     <RiHistoryFill />
                 </div>}
                 {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
