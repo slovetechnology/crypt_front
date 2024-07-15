@@ -251,7 +251,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>
-                <div className='mt-4'>
+                <div className='mt-8 md:mt-4 lg:mt-8'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none px-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
