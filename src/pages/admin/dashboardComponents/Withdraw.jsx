@@ -257,7 +257,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#414040] rounded-[50%] w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] right-12  text-xs cursor-pointer bg-[#414040] rounded-full w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }

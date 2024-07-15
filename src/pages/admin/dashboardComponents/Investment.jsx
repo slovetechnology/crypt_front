@@ -231,7 +231,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                         <div className='w-fit h-fit rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-semi-white gap-4 border border-[grey] bg-[#130e27] mx-auto'>
                             <div className='md:text-[1.2rem] text-base italic'>No new investment made</div>
                             <img src={investbg} className='md:w-80 w-52 h-auto'></img>
-                            <button className='outline-none w-fit h-fit py-2 px-6 text-[0.85rem] text-white font-medium bg-[#A16534] rounded-[10rem] flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
+                            <button className='outline-none w-fit h-fit py-2 px-6 text-[0.85rem] text-white font-medium bg-[#A16534] rounded-full flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
                                 <span>Make new</span>
                                 <div className='makenew'></div>
                             </button>
@@ -250,7 +250,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#414040] rounded-[50%] w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-[#414040] rounded-full w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }

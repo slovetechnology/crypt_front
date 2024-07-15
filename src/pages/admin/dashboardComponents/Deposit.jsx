@@ -262,10 +262,10 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     {loading && <LoadingAdmin />}
                     <div className='flex justify-between w-full py-3 px-3'>
                         <div className=''>
-                            <button className={`w-fit h-fit py-[0.5rem] px-[1.5rem] text-[0.75rem] bg-[#16122c] rounded-[10rem]  ${depositScreen === 1 ? 'bg-[#31276e] text-white' : 'bg-[#16122c] text-[#9b9a9a]'}`} onClick={() => setDepositScreen(1)}>Deposit from a wallet, exchange</button>
+                            <button className={`w-fit h-fit py-[0.5rem] px-[1.5rem] text-xs bg-[#16122c] rounded-[10rem]  ${depositScreen === 1 ? 'bg-[#31276e] text-white' : 'bg-[#16122c] text-[#9b9a9a]'}`} onClick={() => setDepositScreen(1)}>Deposit from a wallet, exchange</button>
                         </div>
                         <div className=''>
-                            <button className={`w-fit h-fit py-[0.5rem] px-[1.5rem] text-[0.75rem] bg-[#16122c] rounded-[10rem] ${depositScreen === 2 ? 'bg-[#31276e] text-white' : 'bg-[#16122c] text-[#9b9a9a]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
+                            <button className={`w-fit h-fit py-[0.5rem] px-[1.5rem] text-xs bg-[#16122c] rounded-[10rem] ${depositScreen === 2 ? 'bg-[#31276e] text-white' : 'bg-[#16122c] text-[#9b9a9a]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
                         </div>
                     </div>
                     {depositScreen === 1 && <div className='px-[3rem] py-[1rem] flex  flex-col text-semi-white  items-center'>
@@ -356,7 +356,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                                                 </div>
                                                             </div>
                                                             <div className='w-[95%]'>
-                                                                <div className='text-[0.75rem] text-[#353434] font-bold'>
+                                                                <div className='text-xs text-[#353434] font-bold'>
                                                                     60% profit return on investment + additional bonus up to ${item.bonus}
                                                                 </div>
                                                             </div>
@@ -396,7 +396,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <div className='absolute top-[1.2rem] left-2 text-[0.85rem]'>$</div>
                             </div>
                             <div className='mb-[1rem] w-fit h-fit relative'>
-                                <button className='w-fit h-fit py-[0.5rem] px-[2rem] rounded-[5px] bg-[#252525] text-white capitalize font-[550] text-[0.75rem] flex items-center justify-center' onClick={BuyPlanWithBalance}>
+                                <button className='w-fit h-fit py-[0.5rem] px-[2rem] rounded-[5px] bg-[#252525] text-white capitalize font-[550] text-xs flex items-center justify-center' onClick={BuyPlanWithBalance}>
                                     confirm purchase
                                 </button>
                             </div>
@@ -412,10 +412,10 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 <div className='mt-4'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-[white] bg-transparent md:w-80 w-60 h-10 outline-none px-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
-                        <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
+                        <div className='text-[1.2rem] text-[white] absolute -top-2 -right-2 w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] md:right-12 right-11 text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-[#414040] rounded-full w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }
