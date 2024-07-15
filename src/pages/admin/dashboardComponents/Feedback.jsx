@@ -56,30 +56,31 @@ const Feedback = () => {
 
     return (
         <div className='h-screen py-10 relative '>
-            <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>send feedback</div>
+            <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white '>send feedback</div>
             {loading && <LoadingAdmin />}
-            <div className='w-[75%] mx-auto flex flex-col gap-12 mt-16'>
+            <div className='md:w-[75%] w-11/12 mx-auto flex flex-col gap-12 mt-16'>
                 <div>
                     <div className='flex items-center justify-center'>
-                    <div className='text-[2rem] capitalize font-bold text-[#a09f9f] '>get in touch</div>
-                    <img src={contact} className='h-[5rem] w-auto'></img>
+                    <div className='md:text-[2rem] text-xl capitalize font-bold text-[#a09f9f] '>get in touch</div>
+                    <img src={contact} className='md:h-16 h-8 w-auto'></img>
                     </div>
-                    <div className='text-[0.85rem] capitalize font-bold text-[#a09f9f] flex items-center justify-center gap-1 pt-[0.5rem]'>
+                    <div className='md:text-[0.85rem] text-xs capitalize font-bold text-[#a09f9f] flex items-center justify-center gap-1 pt-[0.5rem]'>
+                        <span>-</span>
                         <div>
-                            - send us a message; we are listening
+                            send us a message; we are listening
                         </div>
-                        <MdOutlineHearing className='text-[#7665D5]' />
+                        <MdOutlineHearing className='text-light' />
                         <span>-</span>
                     </div>
                 </div>
                 <form onSubmit={submitForm}>
-                    <div className='flex flex-col gap-4 '>
+                    <div className='flex flex-col gap-4'>
                         <div className='flex flex-col gap-2'>
-                            <div className='text-[0.75rem] uppercase font-bold text-[#a09f9f]'>message</div>
-                            <textarea placeholder='Type A Message' className={` p-[0.5rem] h-[9rem] text-[#e0dfdf] lg:text-[0.9rem]   outline-none bg-[#0C091A] rounded-[3px]  ${messageError === true ? ' border border-[red]' : 'border border-[#7665D5] resize-none'} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                            <div className='text-xs uppercase font-bold text-[#a09f9f]'>message</div>
+                            <textarea placeholder='Type A Message' className={` p-[0.5rem] h-36 text-semi-white lg:text-[0.9rem]  outline-none bg-[#0C091A] rounded-[3px]  ${messageError === true ? ' border border-[red]' : 'border border-light resize-none'} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                         </div>
                         <div className='flex justify-end'>
-                            <button className='outline-none bg-[#7665D5] text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-[2rem] py-[0.25rem] rounded-[3px] capitalize font-bold'>
+                            <button className='outline-none bg-light text-xs md:text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit md:px-8 px-6 md:py-2 py-1 rounded-[3px] capitalize font-bold'>
                                 <div>send</div>
                                 <BiMailSend />
                             </button>

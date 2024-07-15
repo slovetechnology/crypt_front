@@ -101,8 +101,9 @@ const ContactPage = () => {
                 <div className='lg:w-10/12 w-11/12 mx-auto'>
                   <div className='text-[2rem] capitalize text-center font-bold text-[#636262] '>get in touch</div>
                   <div className='text-[0.85rem] capitalize font-bold text-[#636262] flex items-center justify-center gap-1'>
+                    <span>-</span>
                     <div>
-                      - send us a message; we are listening
+                      send us a message; we are listening
                     </div>
                     <MdOutlineHearing className='text-orange' />
                     <span>-</span>
@@ -155,7 +156,7 @@ const ContactPage = () => {
                 {show !== 1 && <div className='text-2xl text-white cursor-pointer absolute top-0 left-0' onClick={() => setShow(1)}>
                   <MdCancel />
                 </div>}
-                {show !== 1 &&<div className='border-t w-full absolute top-6 left-0 border-[#a0a0a0]'></div>}
+                {show !== 1 && <div className='border-t w-full absolute top-6 left-0 border-[#a0a0a0]'></div>}
                 {show !== 1 && <div className='flex flex-col gap-2 relative items-center'>
                   <div className=' text-[0.85rem] text-white capitalize text-center w-full mt-6 font-medium'>
                     Enter trader's code to reveal account manager

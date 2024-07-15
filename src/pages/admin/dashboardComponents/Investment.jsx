@@ -106,7 +106,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
     return (
         <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{investtitle}</div>
+                <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white '>{investtitle}</div>
                 {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
                     <span>investment history</span>
                     <RiHistoryFill />
@@ -126,7 +126,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                 <div className='text-[grey] text-[0.8rem]'>{moment(item.createdAt).format('h:mm')}</div>
                             </div>
                             <div className='flex flex-wrap gap-4 items-center justify-center'>
-                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2 px-2 text-[#e0dfdf] gap-2 bg-[#6859bb]'>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2 px-2 text-semi-white gap-2 bg-[#6859bb]'>
                                     <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>amount</div>
                                     <div className='flex justify-between items-center font-bold'>
                                         <div>
@@ -145,7 +145,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                         <img src={deposit3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
                                     </div>
                                 </div>
-                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-[#e0dfdf] gap-2 border border-[grey] bg-[#130e27]'>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
                                     <div className='flex justify-between'>
                                         <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>profit/ROI</div>
                                         {item.investment_status === 'confirmed' && <div>
@@ -174,7 +174,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                         <img src={profit3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
                                     </div>
                                 </div>
-                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-[#e0dfdf] gap-2 border border-[grey] bg-[#130e27]'>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
                                     <div className='flex justify-between'>
                                         <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>bonus</div>
                                         {item.investment_status === 'confirmed' && <div>
@@ -201,7 +201,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                         <img src={bonus3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
                                     </div>
                                 </div>
-                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[0.9rem] text-sm py-2  px-2 text-[#e0dfdf] gap-2 font-bold bg-[#6859bb]'>
+                                <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[0.9rem] text-sm py-2  px-2 text-semi-white gap-2 font-bold bg-[#6859bb]'>
                                     <div className='font-[600] capitalize'>investment plan</div>
                                     <div className='flex justify-between items-center'>
                                         <div>
@@ -228,7 +228,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                 </div>
                     :
                     <div className='pt-16'>
-                        <div className='w-fit h-fit rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-[#e0dfdf] gap-4 border border-[grey] bg-[#130e27] mx-auto'>
+                        <div className='w-fit h-fit rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-semi-white gap-4 border border-[grey] bg-[#130e27] mx-auto'>
                             <div className='md:text-[1.2rem] text-base italic'>No new investment made</div>
                             <img src={investbg} className='md:w-80 w-52 h-auto'></img>
                             <button className='outline-none w-fit h-fit py-2 px-6 text-[0.85rem] text-white font-medium bg-[#A16534] rounded-[10rem] flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
@@ -272,7 +272,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             </thead>
                             {fromAtom.length > 0 && <tbody>
                                 {investment.slice(start, end).map((item, i) => (
-                                    <tr className='text-[0.8rem]  text-[#e0dfdf] bg-[#272727] even:bg-[#313131]' key={i}>
+                                    <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
                                         <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
@@ -280,7 +280,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                         <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.profit.toLocaleString()}</span></td>
                                         <td className={`p-4  text-center truncate italic ${item.profit_status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.profit_status}</td>
                                         <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.bonus.toLocaleString()}</span></td>
-                                        <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-[#e0dfdf]'}`}>{item.claim} </td>
+                                        <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-semi-white'}`}>{item.claim} </td>
                                     </tr>
                                 ))}
                             </tbody>

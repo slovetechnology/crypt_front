@@ -369,7 +369,7 @@ body {
 
 
 .shlz {
-  box-shadow: 0px 3px 10px #090611;
+  box-shadow: 0px 5px 10px #090611;
 }
 
 
@@ -444,11 +444,6 @@ body {
 
 .adsha {
   box-shadow: 0px 1px 6px rgb(168, 168, 168);
-}
-
-.text-sha2 {
-  color: #211a42;
-  text-shadow: -1px 1px 3px black;
 }
 
 .notisha {

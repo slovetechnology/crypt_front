@@ -243,7 +243,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     return (
         <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 ? ' h-screen' : 'h-fit'} `}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{deposit}</div>
+                <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white '>{deposit}</div>
                 {screen === 1 &&
                     <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
                         <span>deposit history</span>
@@ -268,16 +268,16 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             <button className={`w-fit h-fit py-[0.5rem] px-[1.5rem] text-[0.75rem] bg-[#16122c] rounded-[10rem] ${depositScreen === 2 ? 'bg-[#31276e] text-white' : 'bg-[#16122c] text-[#9b9a9a]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
                         </div>
                     </div>
-                    {depositScreen === 1 && <div className='px-[3rem] py-[1rem] flex  flex-col text-[#e0dfdf]  items-center'>
+                    {depositScreen === 1 && <div className='px-[3rem] py-[1rem] flex  flex-col text-semi-white  items-center'>
                         <div className='relative flex flex-col gap-2'>
                             <div className='text-[0.9rem] capitalize text-center'>enter an amount</div>
                             <input className={`outline-none border  bg-[#0C091A] lg:text-[0.85rem] w-[15rem] h-[2rem] rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)} onKeyUp={handleAmount}></input>
                             <div className='absolute top-[2.25rem] left-2 text-[0.85rem]'>$</div>
                         </div>
                         <div className='flex gap-2 items-center mt-[2rem]'>
-                            <div className='text-[#e0dfdf] text-[0.9rem] capitalize'>trading plan:</div>
+                            <div className='text-semi-white text-[0.9rem] capitalize'>trading plan:</div>
                             {amount > 0 ?
-                                <div className={`capitalize text-[0.85rem] ${amount < 20 ? 'text-[#ce4242]' : 'text-[#e0dfdf]'}  font-bold `}>{plan}</div>
+                                <div className={`capitalize text-[0.85rem] ${amount < 20 ? 'text-[#ce4242]' : 'text-semi-white'}  font-bold `}>{plan}</div>
                                 :
                                 <div className='italic text-[0.85rem] text-[#7665D5]'>enter an amount to show the trading plan it falls under</div>
                             }
@@ -304,11 +304,11 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             </div>
                         </div>
 
-                        <div className='flex flex-col gap-4 items-center text-[#e0dfdf] mt-[2.5rem]' >
+                        <div className='flex flex-col gap-4 items-center text-semi-white mt-[2.5rem]' >
                             <div className='text-[0.8rem]'>{network}</div>
                             <div className='flex gap-2 items-center relative'>
                                 <div className='text-[0.9rem] text-[grey]'>{address}</div>
-                                {selectValue !== '' && <button className='outline-none w-fit h-fit py-[0.4rem] px-[0.5rem] text-[1.2rem] text-[#e0dfdf] hover:bg-[#5d4faa]  bg-[#7665D5] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={() => copyFunction()}>
+                                {selectValue !== '' && <button className='outline-none w-fit h-fit py-[0.4rem] px-[0.5rem] text-[1.2rem] text-semi-white hover:bg-[#5d4faa]  bg-[#7665D5] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={() => copyFunction()}>
                                     {!copy && <MdContentCopy className='text-[0.8rem]' />}
                                     {copy && <FaCheck className='text-[0.8rem]' />}
                                 </button>}
@@ -320,7 +320,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <div className='text-[#7665D5] text-[0.8rem]'>I confirm to have made this deposit</div>
                             </div>
                             <div className='relative'>
-                                <button className='outline-none w-fit h-fit py-[0.5rem] px-[2rem] text-[1rem] text-[#e0dfdf]  bg-[#7665D5] hover:bg-[#5d4faa] rounded-[5px] capitalize flex items-center gap-1 font-[550]' onClick={createDeposit}>
+                                <button className='outline-none w-fit h-fit py-[0.5rem] px-[2rem] text-[1rem] text-semi-white  bg-[#7665D5] hover:bg-[#5d4faa] rounded-[5px] capitalize flex items-center gap-1 font-[550]' onClick={createDeposit}>
                                     <span>confirm my deposit</span>
                                     <IoCheckbox className='text-[0.8rem]' />
                                 </button>
@@ -329,7 +329,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     </div>}
                     {depositScreen === 2 &&
                         <div className='w-[90%] mx-auto'>
-                            <div className='text-[2rem] text-center text-[#e0dfdf] capitalize mt-[1rem]'>trading plans</div>
+                            <div className='text-[2rem] text-center text-semi-white capitalize mt-[1rem]'>trading plans</div>
                             <div className='flex flex-col gap-4 mt-[1rem] items-center'>
                                 <div className='flex flex-wrap gap-4 '>
                                     {tradingPlans.map((item, i) => (
@@ -435,7 +435,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             </thead>
                             {fromAtom.length > 0 && <tbody>
                                 {userDeposits.slice(start, end).map((item, i) => (
-                                    <tr className='text-[0.8rem] text-[#e0dfdf] bg-[#272727] even:bg-[#313131]' key={i}>
+                                    <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                         <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                         <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
                                         <td className='p-4  flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>

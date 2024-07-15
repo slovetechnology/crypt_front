@@ -22,9 +22,9 @@ const Home = ({ setToggle, setPurchaseState }) => {
 
     return (
         <div className='pt-10 pb-24 lg:pb-10 h-fit'>
-            <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>wallet</div>
+            <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white '>wallet</div>
             <div className='flex flex-wrap gap-4 mt-8 items-center justify-center'>
-                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-[#e0dfdf] bg-[#6859bb]  overflow-hidden'>
+                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white bg-[#6859bb]  overflow-hidden'>
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                         <span>deposits</span>
                         <span className='text-[0.7rem] md:text-[0.75rem] italic lowercase'>external</span>
@@ -37,7 +37,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                         <img src={deposit3d} className='md:h-[4rem] h-[3rem] w-auto'></img>
                     </div>
                 </div>
-                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-[#e0dfdf] border border-[grey] bg-[#130e27] overflow-hidden'>
+                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                         <span>total profits</span>
                         <span className='text-[0.7rem] md:text-[0.75rem] italic lowercase'>claimed</span>
@@ -57,7 +57,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                         }
                     </div>
                 </div>
-                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-[#e0dfdf] border border-[grey] bg-[#130e27] overflow-hidden'>
+                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                         <span>total bonuses</span>
                         <span className='text-[0.7rem] md:text-[0.75rem] italic lowercase'>claimed</span>
@@ -77,7 +77,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                         }
                     </div>
                 </div>
-                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-[#e0dfdf] border border-[grey] bg-[#130e27] overflow-hidden' >
+                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden' >
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600]'>withdrawals</div>
                     <div className='flex flex-col items-center font-bold mt-4 gap-4'>
                         <div className='flex items-center' >
@@ -87,7 +87,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                         <img src={withdraw3d} className='md:h-[3.5rem] h-[2.5rem] w-auto'></img>
                     </div>
                 </div>
-                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-[#e0dfdf] capitalize bg-[#6859bb] overflow-hidden'>
+                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white capitalize bg-[#6859bb] overflow-hidden'>
                     <div className=' text-xs md:text-[0.9rem] font-[600]'>trading activity</div>
                     <div className='flex flex-col items-center mt-4'>
                         {investments.length > 0 ?
@@ -99,7 +99,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                         <img src={tradingPic} className='md:h-[4.5rem] h-[3.5rem] w-auto'></img>
                     </div>
                 </div>
-                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-[#e0dfdf] border border-[grey] bg-[#130e27]'>
+                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27]'>
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600]'>current balance</div>
                     <div className='flex flex-col items-center font-bold mt-4 gap-4'>
                         <div className='flex items-center'>
@@ -111,7 +111,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                 </div>
             </div>
             <div className='mt-[3rem] flex flex-col gap-1'>
-                <div className='text-[#e0dfdf]  text-[0.7rem] md:text-[0.75rem] capitalize'>Try our test run package</div>
+                <div className='text-semi-white  text-[0.7rem] md:text-[0.75rem] capitalize'>Try our test run package</div>
                 <div className='w-fit h-fit py-[0.25rem] bg-[#130e27]'>
                     <div className='w-full h-fit flex gap-10 md:gap-20  pl-10 pr-[0.5rem] py-1 text-[0.55rem] items-center text-[white] uppercase relative bg-[#25203d]'>
                         <div className='flex flex-col gap-1 items-center'>

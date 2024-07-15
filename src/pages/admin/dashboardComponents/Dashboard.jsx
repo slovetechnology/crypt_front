@@ -210,7 +210,7 @@ const Dashboard = () => {
                     </div>
                     <div className='flex justify-center lg:mt-14 mt-12 items-center'>
                         <img src={logo} className='w-12 h-auto'></img>
-                        <div className=' capitalize font-bold text-sha2 lg:text-[1.3rem] text-[1.5rem]'>AialgoVault</div>
+                        <div className='capitalize font-bold lg:text-[1.3rem] text-[1.5rem] lg:text-[#211a42] text-[#3c2797] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
                     </div>
                     <div className='flex flex-col gap-8 lg:mt-10 mt-8 pl-12'>
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
@@ -240,9 +240,9 @@ const Dashboard = () => {
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-[2rem]'>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('update profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <RiAccountPinCircleLine className='text-[1.3rem] ' />
-                                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>update profile</div>
+                                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>profile</div>
                                 </div>
                                 <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'send feedback' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('send feedback'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <LuSend className='text-[1.3rem] ' />
@@ -277,7 +277,7 @@ const Dashboard = () => {
                     <div className='flex flex-col gap-4'>
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-[#584f81] text-[0.85rem] flex items-center justify-between mt-4'>
                             <div className='flex gap-2 items-center'>
-                                <div className='lg:hidden cursor-pointer' onClick={() => { setToggle('update profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className='xl:hidden cursor-pointer' onClick={() => { setToggle('profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <img src={`${imageurl}/profiles/${user.image}`} className='w-10 h-10 object-cover rounded-full border border-light'></img>
                                 </div>
                                 <div className='capitalize font-bold'>
@@ -329,7 +329,7 @@ const Dashboard = () => {
                                     setToggle={setToggle}
                                     setPurchaseState={setPurchaseState}
                                 />}
-                                {toggle === 'update profile' && <Profile
+                                {toggle === 'profile' && <Profile
                                     setToggle={setToggle}
                                     slideShow={slideShow}
                                 />}
@@ -388,7 +388,7 @@ const Dashboard = () => {
                             <BiMoneyWithdraw className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>withdrawal</div>
                         </div>
-                        <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer text-white ${toggleArray.includes(toggle) && 'text-[red]'} `} onClick={() => { setSlideShow(!slideShow) }}>
+                        <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(toggle) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow); console.log(toggleArray) }}>
                             <HiOutlineDotsVertical className={`md:text-xl text-lg`} />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>more</div>
                         </div>
@@ -406,7 +406,7 @@ const Dashboard = () => {
 
                         </div>
                         <div className='text-[grey] text-[0.8rem] font-[550] lowercase mt-[-0.5rem] '>{user.email}</div>
-                        <div onClick={() => setToggle('update profile')} className=' cursor-pointer text-[0.85rem] text-light border-light mt-[0.5rem]'>edit profile</div>
+                        <div onClick={() => setToggle('profile')} className=' cursor-pointer text-[0.85rem] text-light border-light mt-[0.5rem]'>edit profile</div>
                     </div>
                     <div className='flex flex-col text-[0.75rem] gap-4 capitalize font-bold text-[grey]'>
                         <div className='text-[#e0dfdf] text-[0.85rem]'>account</div>

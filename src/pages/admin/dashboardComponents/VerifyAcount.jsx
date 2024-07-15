@@ -61,7 +61,7 @@ const VerifyAcount = ({ setToggle, slideShow }) => {
             if (response.status === 200) {
                 Alert('Request Successful', 'Email verified successfully', 'success')
                 setUser(response.msg)
-                setToggle('update profile')
+                setToggle('profile')
             } else {
                 setCodeError(`${response.msg}`)
             }
@@ -72,13 +72,13 @@ const VerifyAcount = ({ setToggle, slideShow }) => {
         }
     }
 
-    document.documentElement.style.overflow = loading || slideShow === true ? 'hidden' : 'auto'
+    document.documentElement.style.overflow = loading ? 'hidden' : 'auto'
 
     return (
         <div className='pt-10 h-screen'>
             <div className='w-[95%] mx-auto'>
                 {loading && <LoadingAdmin />}
-                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => setToggle('update profile')}>
+                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => setToggle('profile')}>
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>

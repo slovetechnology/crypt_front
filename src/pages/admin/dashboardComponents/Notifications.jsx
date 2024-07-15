@@ -256,9 +256,9 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 </div>
                                 {searchNoti && <div className='md:w-40 w-48 md:h-6 h-7 absolute md:top-6 top-7 right-0'>
                                     <div className='w-full h-full relative'>
-                                        <input className='outline-none pl-2 shantf2 rounded-[5px]  w-full h-full bg-white' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                                        <input className='outline-none pl-2 shantf2 rounded-[5px]  w-full h-full bg-white ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
-                                            <div className='absolute top-[0.35rem] right-2 text-[0.5rem] cursor-pointer bg-[#585858] rounded-[50%] w-[0.75rem] h-[0.75rem] flex items-center text-white justify-center' onClick={CancelWrite}>
+                                            <div className='absolute top-[0.35rem] right-2 text-[0.5rem] cursor-pointer bg-[#585858] rounded-[50%] w-3 h-3 flex items-center text-white justify-center' onClick={CancelWrite}>
                                                 <FiX />
                                             </div>
                                         }
@@ -280,7 +280,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                                     <MdError className='text-[#c94747]' />}
                                             </div>
                                         </div>
-                                        <div className='font-[600] md:font-[650]'>{item.content}</div>
+                                        <div className='font-[600] md:font-bold'>{item.content}</div>
                                         <div className=' text-[0.7rem] text-[#3d3d3d] font-bold mt-[0.5rem]'>{moment(item.createdAt).fromNow()}</div>
                                     </div>
                                     <FaXmark className='text-[#5f5f5f] text-[0.85rem] cursor-pointer hover:bg-[grey] hover:text-[#272727] absolute top-0 right-0 rounded-full' onMouseOver={() => singleDeleteNotification(item)} onClick={DeleteNotification} />
