@@ -32,7 +32,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     <div className='flex flex-col items-center font-bold gap-4 mt-4'>
                         <div className='flex items-center'>
                             <BiDollar />
-                            <div>{wallet.total_deposit}</div>
+                            <div>{wallet.total_deposit.toLocaleString()}</div>
                         </div>
                         <img src={deposit3d} className='md:h-16 h-12 w-auto'></img>
                     </div>
@@ -45,7 +45,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     <div className='flex justify-between font-bold mt-4'>
                         <div className='flex items-center'>
                             <BiDollar />
-                            <div>{wallet.total_profit}</div>
+                            <div>{wallet.total_profit.toLocaleString()}</div>
                         </div>
                         <img src={profit3d} className='md:h-12 h-[2rem] w-[auto]'></img>
                     </div>
@@ -65,7 +65,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     <div className='flex justify-between font-bold mt-4'>
                         <div className='flex items-center'>
                             <BiDollar />
-                            <div>{wallet.total_bonus}</div>
+                            <div>{wallet.total_bonus.toLocaleString()}</div>
                         </div>
                         <img src={bonus3d} className='md:h-12 h-[2rem] w-[auto]'></img>
                     </div>
@@ -82,7 +82,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     <div className='flex flex-col items-center font-bold mt-4 gap-4'>
                         <div className='flex items-center' >
                             <BiDollar />
-                            <div>{wallet.total_withdrawal}</div>
+                            <div>{wallet.total_withdrawal.toLocaleString()}</div>
                         </div>
                         <img src={withdraw3d} className='md:h-[3.5rem] h-[2.5rem] w-auto'></img>
                     </div>
@@ -104,7 +104,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     <div className='flex flex-col items-center font-bold mt-4 gap-4'>
                         <div className='flex items-center'>
                             <BiDollar />
-                            <div>{wallet.balance}</div>
+                            <div>{wallet.balance.toLocaleString()}</div>
                         </div>
                         <img src={wallet3d} className='md:h-[3.3rem] h-[2.3rem] w-auto'></img>
                     </div>

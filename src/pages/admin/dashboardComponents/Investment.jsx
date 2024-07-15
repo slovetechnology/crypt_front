@@ -246,11 +246,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                         <span>back</span>
                     </div>
                     <div className='relative w-fit mx-auto mt-4'>
-                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
+                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none px-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] right-12 text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#414040] rounded-[50%] w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }

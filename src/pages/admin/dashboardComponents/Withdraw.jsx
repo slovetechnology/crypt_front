@@ -205,8 +205,8 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
 
                         </div>
                     </div>
-                    <div className='h-fit w-fit rounded-[0.2rem] bg-[grey] mt-[2.5rem] p-1'>
-                        <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-[0.5rem] py-[0.25rem]  bg-[white] shlz rounded-[0.2rem] text-black  ${selectError && 'border border-[red]'} trans`}>
+                    <div className='h-fit w-fit rounded-[0.2rem] bg-[grey] mt-10 p-1'>
+                        <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-[0.5rem] py-[0.25rem]  bg-white shlz rounded-[0.2rem] text-black  ${selectError && 'border border-[red]'} trans`}>
                             <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
                                 <div className='flex justify-between items-center capitalize text-[0.8rem]  font-bold'>
                                     <span >choose cryptocurrency</span>
@@ -230,7 +230,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <div className='text-[0.9rem]  text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
                         <input className={`outline-none border bg-[#0C091A] lg:text-[0.85rem] w-[24rem] h-8 rounded-[5px] pl-[1rem]  ${walletError ? 'border-[red]' : 'border-[#7665D5]'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
                     </div>}
-                    <div className='flex flex-col gap-2 items-center relative mt-[2.5rem]'>
+                    <div className='flex flex-col gap-2 items-center relative mt-10'>
                         <div className='flex gap-2'>
                             <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
                             <div className='text-[#7665D5] text-[0.8rem]'>I confirm to have provide my correct wallet address</div>
@@ -253,11 +253,11 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                 </div>
                 <div className='mt-4'>
                     <div className='relative w-fit mx-auto'>
-                        <input className='border border-[white] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-                        <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
+                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none px-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
+                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] right-12 text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#414040] rounded-[50%] w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }
@@ -266,7 +266,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                     <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem] scrollsdown'>
                         <table className='w-full'>
                             <thead>
-                                <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-[white]'>
+                                <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-white'>
                                     <td className='text-center truncate  capitalize p-2'>date</td>
                                     <td className='text-center truncate  capitalize p-2'>time</td>
                                     <td className='text-center truncate  capitalize p-2'>amount</td>
