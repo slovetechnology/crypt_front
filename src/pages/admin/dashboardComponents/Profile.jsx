@@ -190,7 +190,7 @@ const Profile = ({ setToggle, slideShow }) => {
     return (
         <div className='relative pt-10 pb-28 lg:pb-10 h-fit'>
             {loading && <LoadingAdmin />}
-            <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] mb-[1.5rem] '>update profile</div>
+            <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] mb-6 '>update profile</div>
             <div>
                 <div className='flex items-center justify-center gap-2 flex-col'>
                     <div className='w-[12.5rem] h-[12.5rem] rounded-full bg-[#afa7df] flex items-center justify-center relative'>

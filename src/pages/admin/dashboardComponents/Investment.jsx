@@ -107,11 +107,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
         <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{investtitle}</div>
-                {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
+                {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
                     <span>investment history</span>
                     <RiHistoryFill />
                 </div>}
-                {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
+                {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
                     <span>investments</span>
                     <IoListOutline />
                 </div>}
@@ -229,7 +229,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                     :
                     <div className='pt-16'>
                         <div className='w-fit h-fit rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-[#e0dfdf] gap-4 border border-[grey] bg-[#130e27] mx-auto'>
-                            <div className='md:text-[1.2rem] text-lg italic'>No new investment made</div>
+                            <div className='md:text-[1.2rem] text-base italic'>No new investment made</div>
                             <img src={investbg} className='md:w-80 w-52 h-auto'></img>
                             <button className='outline-none w-fit h-fit py-2 px-6 text-[0.85rem] text-white font-medium bg-[#A16534] rounded-[10rem] flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
                                 <span>Make new</span>

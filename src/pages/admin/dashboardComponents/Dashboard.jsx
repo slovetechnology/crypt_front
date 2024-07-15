@@ -30,6 +30,12 @@ import Feedback from './Feedback';
 import VerifyAcount from './VerifyAcount';
 import Notifications from './Notifications';
 
+const toggleArray = [
+    "wallet",
+    "my investment",
+    "deposit",
+    "withdrawal"
+]
 
 
 const Dashboard = () => {
@@ -297,7 +303,7 @@ const Dashboard = () => {
                                     />
                                 </div>}
                         </div>
-                        <div className='flex gap-2 capitalize items-center text-[grey] text-[0.85rem] font-bold'>
+                        <div className='flex gap-2 capitalize items-center text-[grey] md:text-[0.85rem] text-xs font-bold'>
                             <div>dashboard</div>
                             <FaAngleRight className='text-[0.6rem]' />
                             <div>{toggle}</div>
@@ -382,7 +388,7 @@ const Dashboard = () => {
                             <BiMoneyWithdraw className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>withdrawal</div>
                         </div>
-                        <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer text-white `} onClick={() => { setSlideShow(!slideShow) }}>
+                        <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer text-white ${toggleArray.includes(toggle) && 'text-[red]'} `} onClick={() => { setSlideShow(!slideShow) }}>
                             <HiOutlineDotsVertical className={`md:text-xl text-lg`} />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>more</div>
                         </div>

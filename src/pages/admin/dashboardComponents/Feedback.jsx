@@ -56,7 +56,7 @@ const Feedback = () => {
 
     return (
         <div className='h-screen py-10 relative '>
-            <div className='uppercase font-bold text-[1.5rem] text-[#e0dfdf] '>send feedback</div>
+            <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>send feedback</div>
             {loading && <LoadingAdmin />}
             <div className='w-[75%] mx-auto flex flex-col gap-12 mt-16'>
                 <div>

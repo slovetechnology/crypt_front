@@ -173,23 +173,23 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
         <div className={`py-10 h-screen`}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{withdraw}</div>
-                {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdraw('withdawal history') }}>
+                {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdraw('withdawal history') }}>
                     <span>withdrawal history</span>
                     <RiHistoryFill />
                 </div>
                     :
-                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdraw('withdawal') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdraw('withdawal') }}>
                         <span>withdraw</span>
                         <BiMoneyWithdraw />
                     </div>}
             </div>
             {screen === 1 && <div className='w-[80%] mx-auto mt-10 relative flex items-center justify-center bgdeposit'>
                 {loading && <LoadingAdmin />}
-                <div className='flex  flex-col  text-[#e0dfdf]  items-center h-fit w-fit bg-[#0E0B1C] shlz p-[3rem] rounded-xl'>
+                <div className='flex  flex-col  text-[#e0dfdf]  items-center h-fit w-fit bg-[#0E0B1C] shlz p-12 rounded-xl'>
                     <div className='flex gap-3 '>
                         <div className='relative flex flex-col gap-2'>
                             <div className='text-[0.9rem] capitalize text-center'>enter an amount</div>
-                            <input className={`outline-none border  bg-[#0C091A] lg:text-[0.85rem] w-[15rem] h-[2rem] rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                            <input className={`outline-none border  bg-[#0C091A] lg:text-[0.85rem] w-60 h-8 rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                             <div className='absolute top-[2.25rem] left-2 text-[0.85rem]'>$</div>
                         </div>
                         <div className={`w-full h-[fit] rounded-[5px] flex flex-col text-[1rem] py-[0.5rem]  px-[1rem] text-[#e0dfdf] gap-1 bg-[#312b57] ${limitError ? 'border border-[red]' : ''}`}>
@@ -226,16 +226,16 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             </div>}
                         </div>
                     </div>
-                    {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-[2rem]'>
+                    {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                         <div className='text-[0.9rem]  text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                        <input className={`outline-none border bg-[#0C091A] lg:text-[0.85rem] w-[24rem] h-[2rem] rounded-[5px] pl-[1rem]  ${walletError ? 'border-[red]' : 'border-[#7665D5]'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
+                        <input className={`outline-none border bg-[#0C091A] lg:text-[0.85rem] w-[24rem] h-8 rounded-[5px] pl-[1rem]  ${walletError ? 'border-[red]' : 'border-[#7665D5]'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
                     </div>}
                     <div className='flex flex-col gap-2 items-center relative mt-[2.5rem]'>
                         <div className='flex gap-2'>
                             <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
                             <div className='text-[#7665D5] text-[0.8rem]'>I confirm to have provide my correct wallet address</div>
                         </div>
-                        <button className='outline-none w-fit h-fit py-[0.5rem] px-[2rem] text-[1rem] text-[#e0dfdf]  bg-[#7665D5] hover:bg-[#5d4faa] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
+                        <button className='outline-none w-fit h-fit py-[0.5rem] px-8 text-[1rem] text-[#e0dfdf]  bg-[#7665D5] hover:bg-[#5d4faa] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
                             <span>make withdrawal</span>
                             <IoCheckbox className='text-[0.8rem]' />
                         </button>
@@ -257,7 +257,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] right-12 text-[0.75rem] cursor-pointer bg-[#414040] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }

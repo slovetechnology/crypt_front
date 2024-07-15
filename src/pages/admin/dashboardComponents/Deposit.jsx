@@ -245,13 +245,13 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-[1.5rem] text-[#e0dfdf] '>{deposit}</div>
                 {screen === 1 &&
-                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
                         <span>deposit history</span>
                         <RiHistoryFill />
                     </div>
                 }
                 {screen === 2 &&
-                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-sm text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setDeposit('deposit') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setDeposit('deposit') }}>
                         <span>new deposit</span>
                         <RiMoneyDollarCircleFill />
                     </div>
