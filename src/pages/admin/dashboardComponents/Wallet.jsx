@@ -34,7 +34,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                             <BiDollar />
                             <div>{wallet.total_deposit}</div>
                         </div>
-                        <img src={deposit3d} className='md:h-[4rem] h-[3rem] w-auto'></img>
+                        <img src={deposit3d} className='md:h-16 h-12 w-auto'></img>
                     </div>
                 </div>
                 <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
@@ -47,7 +47,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                             <BiDollar />
                             <div>{wallet.total_profit}</div>
                         </div>
-                        <img src={profit3d} className='md:h-[3rem] h-[2rem] w-[auto]'></img>
+                        <img src={profit3d} className='md:h-12 h-[2rem] w-[auto]'></img>
                     </div>
                     <div className='flex flex-col items-center text-xs capitalize font-medium gap-1 mt-4'>
                         <div>up</div>
@@ -67,7 +67,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                             <BiDollar />
                             <div>{wallet.total_bonus}</div>
                         </div>
-                        <img src={bonus3d} className='md:h-[3rem] h-[2rem] w-[auto]'></img>
+                        <img src={bonus3d} className='md:h-12 h-[2rem] w-[auto]'></img>
                     </div>
                     <div className='flex flex-col items-center text-xs capitalize font-medium gap-1 mt-4'>
                         <div>up</div>
@@ -110,7 +110,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                     </div>
                 </div>
             </div>
-            <div className='mt-[3rem] flex flex-col gap-1'>
+            <div className='mt-12 flex flex-col gap-1'>
                 <div className='text-semi-white  text-[0.7rem] md:text-[0.75rem] capitalize'>Try our test run package</div>
                 <div className='w-fit h-fit py-[0.25rem] bg-[#130e27]'>
                     <div className='w-full h-fit flex gap-10 md:gap-20  pl-10 pr-[0.5rem] py-1 text-[0.55rem] items-center text-[white] uppercase relative bg-[#25203d]'>

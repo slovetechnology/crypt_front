@@ -188,7 +188,7 @@ const Profile = ({ setToggle, slideShow }) => {
     document.documentElement.style.overflow = loading ? 'hidden' : 'auto'
 
     return (
-        <div className='relative pt-10 pb-28 lg:pb-10 h-fit'>
+        <div className='relative pt-10 lg:pb-10 pb-24 h-fit'>
             {loading && <LoadingAdmin />}
             <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white mb-6 '>profile</div>
             <div>
@@ -253,7 +253,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {nameEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.85rem] md:w-60 w-full h-fit rounded-[3px] p-2' name='full_name' value={form.full_name} onChange={formHandler} type='text' ></input>
+                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='full_name' value={form.full_name} onChange={formHandler} type='text' ></input>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => setNameEdit(!nameEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -268,7 +268,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {userEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.85rem] md:w-60 w-full h-fit rounded-[3px] p-2' name='username' value={form.username} onChange={formHandler} type='text'></input>
+                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='username' value={form.username} onChange={formHandler} type='text'></input>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => { setUserEdit(!userEdit) }}>
                                     <MdOutlineCancel />
                                 </div>
@@ -283,7 +283,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {emailEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.85rem] md:w-60 w-full h-fit rounded-[3px] p-2' name='email' value={form.email} onChange={formHandler} type='email'></input>
+                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='email' value={form.email} onChange={formHandler} type='email'></input>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => setEmailEdit(!emailEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -291,7 +291,7 @@ const Profile = ({ setToggle, slideShow }) => {
                         </div>
                         <div className='flex justify-between items-center'>
                             <div className=' capitalize'>password:</div>
-                            {!passEdit && <div className='flex gap-4'>
+                            {!passEdit && <div className='flex gap-4 items-center'>
                                 <span>*********</span>
                                 <div className='md:text-[1.1rem] text-sm text-light cursor-pointer' onClick={() => setPassEdit(!passEdit)}>
                                     <FaRegEdit />
@@ -300,12 +300,12 @@ const Profile = ({ setToggle, slideShow }) => {
                             {passEdit && <div className='flex md:gap-4 gap-2 items-center'>
                                 <div className='flex flex-col gap-6'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] md:w-60 w-full h-fit rounded-[3px] p-2 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                        <EyeIcon className='absolute top-[0.6rem] right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
+                                        <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <EyeIcon className='absolute top-3 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
                                     </div>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-[#0C091A] text-[0.8rem] md:w-60 w-full h-fit rounded-[3px] p-2 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
-                                        <EyeIcon2 className='absolute top-[0.6rem] right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
+                                        <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
+                                        <EyeIcon2 className='absolute top-3 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     </div>
                                 </div>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => setPassEdit(!passEdit)}>
@@ -328,7 +328,7 @@ const Profile = ({ setToggle, slideShow }) => {
 
                     </div>
                 </form>
-                <div className='relative mx-auto mt-8'>
+                <div className='relative mx-auto mt-12'>
                     {deleteScreen === 0 && <div className='justify-center md:text-[0.85rem] text-xs text-light cursor-pointer flex items-center gap-1' onClick={() => { setDeleteScreen(1); MoveToBottom() }}>
                         <span>Delete my account</span>
                         <MdOutlineDeleteForever />
@@ -360,8 +360,8 @@ const Profile = ({ setToggle, slideShow }) => {
                             </div>
                             <div className='flex flex-col gap-[1.7rem] items-center justify-center mt-[1.5rem]'>
                                 <div className='relative'>
-                                    <input className='outline-none border border-[#2f2950] bg-[#0C091A] lg:text-[0.8rem] w-52 h-8 rounded-[5px] pl-4 text-white ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                    <EyeIcon className='absolute top-2 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
+                                    <input className='outline-none border border-[#2f2950] bg-[#0C091A] lg:text-[0.8rem] text-base w-52 h-fit rounded-[5px] px-2 py-1 text-white ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                    <EyeIcon className='absolute top-2.5 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
                                     <div className='absolute bottom-[-1.2rem] left-2 text-xs text-[#a83333]'>{deleteError}</div>
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center'>

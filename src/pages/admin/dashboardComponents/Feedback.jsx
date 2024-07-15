@@ -55,7 +55,7 @@ const Feedback = () => {
     document.documentElement.style.overflow = loading === true ? 'hidden' : 'auto'
 
     return (
-        <div className='h-screen py-10 relative '>
+        <div className='h-screen py-10 relative'>
             <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white '>send feedback</div>
             {loading && <LoadingAdmin />}
             <div className='md:w-[75%] w-11/12 mx-auto flex flex-col gap-12 mt-16'>
