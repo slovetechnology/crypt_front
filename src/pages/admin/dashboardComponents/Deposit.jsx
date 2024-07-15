@@ -243,7 +243,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     return (
         <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 ? ' h-screen' : 'h-fit'} `}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white '>{deposit}</div>
+                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{deposit}</div>
                 {screen === 1 &&
                     <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
                         <span>deposit history</span>

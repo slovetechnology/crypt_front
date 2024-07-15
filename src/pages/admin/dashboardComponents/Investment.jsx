@@ -106,7 +106,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
     return (
         <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white '>{investtitle}</div>
+                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{investtitle}</div>
                 {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
                     <span>investment history</span>
                     <RiHistoryFill />

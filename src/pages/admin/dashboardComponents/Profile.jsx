@@ -190,7 +190,7 @@ const Profile = ({ setToggle, slideShow }) => {
     return (
         <div className='relative pt-10 lg:pb-10 pb-24 h-fit'>
             {loading && <LoadingAdmin />}
-            <div className='uppercase font-bold md:text-[1.5rem] text-lg text-semi-white mb-6 '>profile</div>
+            <div className='uppercase font-bold md:text-2xl text-lg text-semi-white mb-6 '>profile</div>
             <div>
                 <div className='flex items-center justify-center gap-2 flex-col'>
                     <div className='md:w-[12.5rem] md:h-[12.5rem] h-[8.5rem] w-[8.5rem] rounded-full bg-[#afa7df] flex items-center justify-center relative'>
@@ -337,7 +337,7 @@ const Profile = ({ setToggle, slideShow }) => {
                         {deleteloading && <LoadingAdmin />}
                         {deleteScreen === 1 && <div>
                             <div className='text-center md:text-[1.1rem] text-sm text-semi-white'>Are you sure you want to delete your account?</div>
-                            <div className='flex justify-center gap-0.5 mt-1.5 md:text-xs text-[0.65rem] text-[#a1a0a0]'>
+                            <div className='flex justify-center md:gap-1 mt-1.5 md:text-xs text-[0.65rem] text-[#a1a0a0]'>
                                 <IoWarningOutline className='text-[red] mt-0.5' />
                                 <span className='text-center'> Warning! This action is permanent, cannot be reversed and all your assets will be lost</span>
                             </div>
