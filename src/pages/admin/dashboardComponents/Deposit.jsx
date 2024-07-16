@@ -314,7 +314,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             </button>}
                         </div>
                         <div className='flex flex-col gap-2 items-center md:mt-10 mt-5'>
-                            <div className='flex gap-2 '>
+                            <div className='flex gap-2 items-center'>
                                 <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red] ' : ''}`}></input>
                                 <div className='text-admin-btn text-[0.8rem]'>I confirm to have made this deposit</div>
                             </div>
@@ -437,7 +437,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             </tbody>
                             }
                         </table>
-                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] px-4 py-2 text-[0.8rem] italic'>
+                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
                             <div>no deposits made yet...</div>
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}

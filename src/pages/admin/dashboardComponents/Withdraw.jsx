@@ -232,7 +232,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-4  ${walletError ? 'border-[red]' : 'border-light'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
                         </div>}
                         <div className='flex flex-col gap-2 items-center relative mt-10'>
-                            <div className='flex gap-2'>
+                            <div className='flex gap-2 items-center'>
                                 <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
                                 <div className='text-admin-btn text-[0.8rem]'>I confirm to provide my correct wallet address</div>
                             </div>
@@ -240,7 +240,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                 <span>make withdrawal</span>
                                 <IoCheckbox />
                             </button>
-                            <div className='absolute bottom-[-2rem] left-0 text-[0.8rem] font-bold text-[#b64040] cursor-pointer flex gap-1 items-center' onClick={() => setToggle('verify account')}>
+                            <div className='absolute -bottom-8 left-0 text-[0.8rem] font-bold text-[#b64040] cursor-pointer flex gap-1 items-center' onClick={() => setToggle('verify account')}>
                                 <span>{withdrawError}</span>
                                 {withdrawError !== '' && <MdSentimentVeryDissatisfied />}
                             </div>
@@ -265,7 +265,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             }
                         </div>
                     </div>
-                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem] scrollsdown'>
+                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
                         <table className='w-full'>
                             <thead>
                                 <tr className='bg-light text-[0.8rem] font-bold text-white'>
@@ -291,9 +291,9 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             </tbody>
                             }
                         </table>
-                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] px-[1rem] py-[0.5rem] text-[0.8rem] italic'>
+                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
                             <div>no withdrawals made yet...</div>
-                            <img src={nothnyet} className='h-[1rem] w-auto'></img>
+                            <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>
                     {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-light '>

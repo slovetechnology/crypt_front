@@ -253,7 +253,7 @@ const Dashboard = () => {
                                         <BiLogOutCircle className='text-[1.3rem] ' />
                                         <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                                     </div>
-                                    {logout && <div className='absolute -top-5 -left-4 lg:right-0  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-[#e0dfdf] font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
+                                    {logout && <div className='absolute -top-5 -left-4 lg:right-0  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-semi-white font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
                                         <div className=' text-[0.8rem] mb-[1rem] text-center'>Logout of your account?</div>
                                         <div className='flex gap-4 items-center'>
                                             <button className='outline-none py-1 px-4 w-fit h-fit border lg:border-[#1c1733] border-white rounded-lg capitalize text-xs flex items-center gap-1 lg:hover:bg-[#1c1733] hover:bg-white lg:text-light text-white hover:text-[#27137e] lg:hover:text-white' onClick={() => setLogOut(!logout)}>
@@ -396,20 +396,19 @@ const Dashboard = () => {
                 </div>
             </div>
             <div className='w-[18%] h-screen overflow-hidden bg-admin fixed top-0 right-0 hidden xl:block'>
-                <div className='w-[80%] mx-auto flex flex-col gap-[3rem] justify-center mt-[5rem]'>
-                    <div className=' text-[#e0dfdf] text-[1.1rem] text-center font-bold capitalize'>trader profile</div>
+                <div className='w-[80%] mx-auto flex flex-col gap-12 justify-center mt-20'>
+                    <div className=' text-semi-white text-[1.1rem] text-center font-bold capitalize'>trader profile</div>
                     <div className='flex gap-4 flex-col items-center font-bold capitalize'>
                         <img src={`${imageurl}/profiles/${user.image}`} className='w-[4rem] h-[4rem] object-cover rounded-full border-2 border-light'></img>
                         <div className='flex gap-1'>
-                            <div className='text-[#e0dfdf] '>{user.username}</div>
+                            <div className='text-semi-white '>{user.username}</div>
                             {user.email_verified === 'true' && <MdVerified className='text-[0.7rem] text-light border-light' />}
-
                         </div>
-                        <div className='text-[grey] text-[0.8rem] font-[550] lowercase mt-[-0.5rem] '>{user.email}</div>
-                        <div onClick={() => setToggle('profile')} className=' cursor-pointer text-[0.85rem] text-light border-light mt-[0.5rem]'>edit profile</div>
+                        <div className='text-[grey] text-[0.8rem] font-medium lowercase -mt-2 '>{user.email}</div>
+                        <div onClick={() => setToggle('profile')} className=' cursor-pointer text-[0.85rem] text-light border-light mt-2'>edit profile</div>
                     </div>
                     <div className='flex flex-col text-xs gap-4 capitalize font-bold text-[grey]'>
-                        <div className='text-[#e0dfdf] text-[0.85rem]'>account</div>
+                        <div className='text-semi-white text-[0.85rem]'>account</div>
                         <div className='flex justify-between'>
                             <div>joined</div>
                             <div>{moment(user.createdAt).format('DD/MM/yyyy')}</div>
@@ -419,7 +418,7 @@ const Dashboard = () => {
                             <div>${wallet.balance}</div>
                         </div>
                     </div>
-                    <div className='w-full h-14 rounded-[3px] bg-[#e0dfdf] mt-[2rem] capitalize font-bold flex items-center justify-center gap-2 cursor-pointer' onClick={() => setToggle('my investment')}>
+                    <div className='w-full h-14 rounded-[3px] bg-semi-white mt-8 capitalize font-bold flex items-center justify-center gap-2 cursor-pointer' onClick={() => setToggle('my investment')}>
                         <LuArrowDownUp />
                         <div>trade now</div>
                     </div>

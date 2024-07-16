@@ -286,7 +286,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             </tbody>
                             }
                         </table>
-                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] px-4 py-2 text-[0.8rem] italic'>
+                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
                             <div>no investment made yet...</div>
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
