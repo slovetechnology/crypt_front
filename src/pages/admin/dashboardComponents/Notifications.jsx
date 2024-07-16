@@ -239,7 +239,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                 <div className='text-black flex flex-col relative '>
                     <div className='mb-2 text-xl cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><IoMdArrowBack /></div>
                     <div className='flex justify-between items-center'>
-                        <div className='capitalize md:text-[1rem] text-xl font-[800]'>notifications</div>
+                        <div className='capitalize md:text-base text-xl font-[800]'>notifications</div>
                         <div className='flex gap-2 items-center'>
                             <div className='relative'>
                                 <div className='rounded-full md:w-[1.2rem] md:h-[1.2rem] w-6 h-6 flex items-center justify-center bg-[#b4b3b3] cursor-pointer md:text-[0.85rem] text-lg' onClick={() => { setMark(!mark); setSearchNoti(false) }}>
@@ -271,16 +271,14 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                         {altnotis.slice(start, end).map((item, i) => (
                             <div key={i} className='flex flex-col items-center md:pt-2 pt-3 md:text-xs'>
                                 <div className={` p-2 rounded-md ${item.read === 'true' ? '' : 'bg-[#c0b9e4]'} relative shantf  w-full h-fit cursor-pointer overflow-hidden`} onMouseOver={() => singleUpdateNotification(item)} >
-                                    <div onClick={() => { setToggle(item.URL); setUrlState(item.URL_state); MarkSingleRead(); setShowNotis(false) }} className='flex flex-col gap-1'>
-                                        <div className='flex items-center'>
-                                            <div className='flex gap-[0.2rem] items-center'>
-                                                <div className='capitalize font-[800] border-b text-[0.8rem] border-[grey] w-fit'>{item.title}</div>
-                                                {item.status !== 'failed' ? <HiCheckCircle className='text-[#7665D5] ' />
-                                                    :
-                                                    <MdError className='text-[#c94747]' />}
-                                            </div>
+                                    <div onClick={() => { setToggle(item.URL); setUrlState(item.URL_state); MarkSingleRead(); setShowNotis(false) }} className='flex flex-col gap-2'>
+                                        <div className='flex gap-[0.2rem] items-center'>
+                                            <div className='capitalize font-[800] border-b text-[0.8rem] border-[grey] w-fit'>{item.title}</div>
+                                            {item.status !== 'failed' ? <HiCheckCircle className='text-[#7665D5] ' />
+                                                :
+                                                <MdError className='text-[#c94747]' />}
                                         </div>
-                                        <div className='font-[600] md:font-bold'>{item.content}</div>
+                                        <div className='font-[600]'>{item.content}</div>
                                         <div className=' text-[0.7rem] text-[#3d3d3d] font-bold mt-[0.5rem]'>{moment(item.createdAt).fromNow()}</div>
                                     </div>
                                     <FaXmark className='text-[#5f5f5f] text-[0.85rem] cursor-pointer hover:bg-[grey] hover:text-[#272727] absolute top-0 right-0 rounded-full' onMouseOver={() => singleDeleteNotification(item)} onClick={DeleteNotification} />

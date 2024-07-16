@@ -262,10 +262,10 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     {loading && <LoadingAdmin />}
                     <div className='flex justify-between w-full py-3'>
                         <div>
-                            <button className={`w-fit h-fit py-2 md:px-6 px-3 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full  ${depositScreen === 1 ? 'bg-admin-btn text-semi-white' : 'bg-[#bbbaba] text-[grey]'}`} onClick={() => setDepositScreen(1)}>Deposit from an exchange</button>
+                            <button className={`w-fit h-fit py-2 md:px-6 px-3 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full  ${depositScreen === 1 ? 'bg-admin-btn text-semi-white' : 'bg-[#cac9c9] text-[grey]'}`} onClick={() => setDepositScreen(1)}>Deposit from an exchange</button>
                         </div>
                         <div>
-                            <button className={`w-fit h-fit py-2 md:px-6 px-2 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full ${depositScreen === 2 ? 'bg-admin-btn text-semi-white' : 'bg-[#bbbaba] text-[grey]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
+                            <button className={`w-fit h-fit py-2 md:px-6 px-2 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full ${depositScreen === 2 ? 'bg-admin-btn text-semi-white' : 'bg-[#cac9c9] text-[grey]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
                         </div>
                     </div>
                     {depositScreen === 1 && <div className='py-4 flex  flex-col text-black font-medium items-center'>
@@ -372,8 +372,8 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             {loadingtwo && <Loading />}
                             <FaRegRectangleXmark className='absolute top-0 right-[0.2rem] cursor-pointer' onClick={() => { setModal(false); setAmount() }} />
                             <div className='flex items-center gap-2'>
-                                <div className='text-[0.9rem] capitalize font-bold'>{buybal.title}</div>
-                                <div className={`text-[0.8rem]  ${limitError ? 'text-[red] font-bold' : 'text-black font-[550]'} `}>${buybal.price_start} - ${buybal.price_limit}</div>
+                                <div className='text-[0.85rem] uppercase font-bold'>{buybal.title}</div>
+                                <div className={`text-xs font-[550] bg-white py-1 px-2 rounded-full adsha ${limitError ? 'text-[red]' : 'text-black'} `}>${buybal.price_start} - ${buybal.price_limit}</div>
                             </div>
                             <div className='relative flex gap-2 items-center'>
                                 <div className='relative'>
