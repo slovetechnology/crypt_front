@@ -50,7 +50,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
         if (!amount) return setAmountError(true)
         if (amount < 20) return setAmountError(true)
         if (amount > userwallet.balance) return setLimitError(true)
-        if (selectValue === '') return setSelectError(true)
+        if (Object.values(selectValue).length === 0) return setSelectError(true)
         if (!wallet) return setWalletError(true)
         if (!check) return setCheckError(true)
         if (user.email_verified === 'false') return setWithdrawError('Verify your account to complete withdrawal')
@@ -229,12 +229,12 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         </div>
                         {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                             <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-4  ${walletError ? 'border-[red]' : 'border-light'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
+                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2  ${walletError ? 'border-[red]' : 'border-light'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
                         </div>}
                         <div className='flex flex-col gap-2 items-center relative mt-10'>
                             <div className='flex gap-2 items-center'>
                                 <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
-                                <div className='text-admin-btn text-[0.8rem]'>I confirm to provide my correct wallet address</div>
+                                <div className='text-admin-btn text-[0.8rem]'>I confirm; I provide my correct wallet address</div>
                             </div>
                             <button className='outline-none w-fit h-fit py-[0.5rem] px-8 md:text-base text-sm text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
                                 <span>make withdrawal</span>

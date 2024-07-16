@@ -215,7 +215,7 @@ const Dashboard = () => {
                     <div className='flex flex-col gap-8 lg:mt-10 mt-8 pl-12'>
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
-                            <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'wallet' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                            <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'wallet' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                 <IoWalletOutline className='text-[1.3rem] ' />
                                 <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>wallet</div>
                             </div>
@@ -223,15 +223,15 @@ const Dashboard = () => {
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>account</div>
                             <div className='flex flex-col gap-[2rem]'>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin  items-center cursor-pointer w-fit lg:w-full ${toggle === 'my investment' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('my investment'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green]  items-center cursor-pointer w-fit lg:w-full ${toggle === 'my investment' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('my investment'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <GrMoney className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>my investment</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full relative ${toggle === 'deposit' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full relative ${toggle === 'deposit' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <MdPayment className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>deposit</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'withdrawal' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'withdrawal' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <BiMoneyWithdraw className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>withdrawal</div>
                                 </div>
@@ -240,16 +240,16 @@ const Dashboard = () => {
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-[2rem]'>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <RiAccountPinCircleLine className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>profile</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full ${toggle === 'send feedback' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('send feedback'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'send feedback' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('send feedback'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
                                     <LuSend className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>send feedback</div>
                                 </div>
                                 <div className='relative'>
-                                    <div className='flex gap-3 lg:hover:text-white hover:text-admin items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
+                                    <div className='flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
                                         <BiLogOutCircle className='text-[1.3rem] ' />
                                         <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                                     </div>
@@ -399,7 +399,7 @@ const Dashboard = () => {
                 <div className='w-[80%] mx-auto flex flex-col gap-12 justify-center mt-20'>
                     <div className=' text-semi-white text-[1.1rem] text-center font-bold capitalize'>trader profile</div>
                     <div className='flex gap-4 flex-col items-center font-bold capitalize'>
-                        <img src={`${imageurl}/profiles/${user.image}`} className='w-[4rem] h-[4rem] object-cover rounded-full border-2 border-light'></img>
+                        <img src={`${imageurl}/profiles/${user.image}`} className='w-16 h-16 object-cover rounded-full border-2 border-light'></img>
                         <div className='flex gap-1'>
                             <div className='text-semi-white '>{user.username}</div>
                             {user.email_verified === 'true' && <MdVerified className='text-[0.7rem] text-light border-light' />}

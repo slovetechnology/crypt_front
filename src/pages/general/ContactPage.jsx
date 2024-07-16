@@ -117,12 +117,12 @@ const ContactPage = () => {
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-xs uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base text-orange p-1 pl-2 focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base  p-1 pl-2 focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
                         <div className='text-xs uppercase font-bold text-[#636262]'>message</div>
-                        <textarea placeholder='Type A Message' className={` p-2 h-[9rem] lg:text-[0.9rem] text-base resize-none outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                        <textarea placeholder='Type A Message' className={` p-2 h-36 lg:text-[0.9rem] text-base resize-none outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                       </div>
                       <div className='flex justify-center mt-2'>
                         <button className='outline-none bg-orange text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-8 py-1 rounded-[3px] capitalize font-bold'>
