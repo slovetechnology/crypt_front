@@ -262,10 +262,10 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     {loading && <LoadingAdmin />}
                     <div className='flex justify-between w-full py-3'>
                         <div>
-                            <button className={`w-fit h-fit py-2 md:px-6 px-3 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full  ${depositScreen === 1 ? 'bg-admin-btn text-semi-white' : 'bg-[#cac9c9] text-[grey]'}`} onClick={() => setDepositScreen(1)}>Deposit from an exchange</button>
+                            <button className={`w-fit h-fit py-2 md:px-6 px-3 md:text-xs text-[0.7rem] bg-[#16122c] rounded-full  ${depositScreen === 1 ? 'bg-admin-btn text-semi-white' : 'bg-[#cac9c9] text-[grey]'}`} onClick={() => setDepositScreen(1)}>Deposit from an exchange</button>
                         </div>
                         <div>
-                            <button className={`w-fit h-fit py-2 md:px-6 px-2 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full ${depositScreen === 2 ? 'bg-admin-btn text-semi-white' : 'bg-[#cac9c9] text-[grey]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
+                            <button className={`w-fit h-fit py-2 md:px-6 px-2 md:text-xs text-[0.7rem] bg-[#16122c] rounded-full ${depositScreen === 2 ? 'bg-admin-btn text-semi-white' : 'bg-[#cac9c9] text-[grey]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
                         </div>
                     </div>
                     {depositScreen === 1 && <div className='py-4 flex  flex-col text-black font-medium items-center'>
@@ -308,7 +308,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         <div className='text-[0.85rem] text-center text-black md:mt-10 mt-8'>{network}</div>
                         <div className='flex md:flex-row flex-col gap-2 items-center mt-4'>
                             <div className='md:text-[0.9rem] text-[0.7rem] text-light text-ellipsis'>{address}</div>
-                            {selectValue !== '' && <button className='outline-none w-fit h-fit py-1.5 px-2 text-[0.8rem] text-semi-white bg-admin-btn rounded-[5px] capitalize flex items-center justify-center' onClick={() => copyFunction()}>
+                            {selectValue !== '' && <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-admin-btn rounded-[5px] capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                 {!copy && <MdContentCopy />}
                                 {copy && <FaCheck />}
                             </button>}
@@ -316,7 +316,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         <div className='flex flex-col gap-2 items-center md:mt-10 mt-5'>
                             <div className='flex gap-2 '>
                                 <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red] ' : ''}`}></input>
-                                <div className='text-admin-btn md:text-[0.8rem] text-xs'>I confirm to have made this deposit</div>
+                                <div className='text-admin-btn text-[0.8rem]'>I confirm to have made this deposit</div>
                             </div>
                             <div className='relative'>
                                 <button className='outline-none w-fit h-fit py-2 px-8 text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-[550] md:text-base text-sm' onClick={createDeposit}>

@@ -8,8 +8,8 @@ import moment from 'moment';
 import { LuUserCircle } from "react-icons/lu";
 import { SlLockOpen } from "react-icons/sl";
 import { FaRegRectangleXmark } from "react-icons/fa6";
-import { IoCheckbox, IoWarningOutline } from "react-icons/io5";
-import { TiWarningOutline } from "react-icons/ti"
+import { IoCheckbox } from "react-icons/io5";
+import { PiWarningCircleBold } from "react-icons/pi";
 import { FaRegEdit } from "react-icons/fa";
 import { Alert, CookieName } from '../../../utils/utils';
 import { IoMdEyeOff } from 'react-icons/io';
@@ -339,10 +339,10 @@ const Profile = ({ setToggle, slideShow }) => {
                         {deleteScreen === 1 && <div>
                             <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Are you sure you want to delete your account?</div>
                             <div className='flex justify-center items-center gap-0.5 mt-1.5 text-xs text-admin-btn'>
-                                <TiWarningOutline className='text-[red]' />
-                                <span className='text-center'>Action is permanent and all your assets will be lost!</span>
+                                <span className='text-center'>Action is permanent and all your assets will be lost</span>
+                                <PiWarningCircleBold className='text-[red]' />
                             </div>
-                            <div className='flex md:gap-16 gap-6 items-center justify-center mt-8 '>
+                            <div className='flex md:gap-16 gap-6 items-center justify-center mt-8'>
                                 <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
                                     <span>cancel action</span>
                                     <FaRegRectangleXmark />

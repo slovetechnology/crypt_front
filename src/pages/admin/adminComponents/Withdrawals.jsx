@@ -99,7 +99,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
             {modal && <WithdrawalsModal closeView={() => setModal(false)} singleWithdrawal={singleWithdrawal} refetchAllWithdrawals={refetchAllWithdrawals} setStart={setStart} setEnd={setEnd} setPagelengthstart={setPagelengthstart} setPagelengthend={setPagelengthend} setSearch={setSearch} setWrite={setWrite} setAllWithdrawals={setAllWithdrawals} />}
 
             <div className='uppercase font-bold text-[1.5rem] text-[black] pt-[2.5rem]'>withdrawals</div>
-            <div className='mt-[2rem]'>
+            <div className='mt-8'>
                 <div className='relative w-fit mx-auto'>
                     <input className='border border-[grey] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                     <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>

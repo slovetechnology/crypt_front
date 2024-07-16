@@ -234,7 +234,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <div className='flex flex-col gap-2 items-center relative mt-10'>
                             <div className='flex gap-2'>
                                 <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
-                                <div className='text-admin-btn md:text-[0.8rem] text-xs'>I confirm to have provide my correct wallet address</div>
+                                <div className='text-admin-btn text-[0.8rem]'>I confirm to provide my correct wallet address</div>
                             </div>
                             <button className='outline-none w-fit h-fit py-[0.5rem] px-8 md:text-base text-sm text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
                                 <span>make withdrawal</span>
