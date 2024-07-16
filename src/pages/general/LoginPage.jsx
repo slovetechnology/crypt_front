@@ -69,7 +69,7 @@ const LoginPage = () => {
         // } finally {
         //     setLoading(false)
         // }
-        navigate('dashboard')
+        navigate('/dashboard')
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 
