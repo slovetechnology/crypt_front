@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import logo from '../../../assets/images/logobrand.png'
 import { GrMoney } from "react-icons/gr";
 import { IoWalletOutline } from "react-icons/io5";
-import { GiPayMoney } from "react-icons/gi";
 import { FaAngleRight } from "react-icons/fa6";
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { LuSend, LuArrowDownUp } from "react-icons/lu";
@@ -29,6 +28,7 @@ import Withdraw from './Withdraw';
 import Feedback from './Feedback';
 import VerifyAcount from './VerifyAcount';
 import Notifications from './Notifications';
+
 
 const toggleArray = [
     "wallet",

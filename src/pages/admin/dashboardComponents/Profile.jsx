@@ -9,6 +9,7 @@ import { LuUserCircle } from "react-icons/lu";
 import { SlLockOpen } from "react-icons/sl";
 import { FaRegRectangleXmark } from "react-icons/fa6";
 import { IoCheckbox, IoWarningOutline } from "react-icons/io5";
+import { TiWarningOutline } from "react-icons/ti"
 import { FaRegEdit } from "react-icons/fa";
 import { Alert, CookieName } from '../../../utils/utils';
 import { IoMdEyeOff } from 'react-icons/io';
@@ -211,14 +212,14 @@ const Profile = ({ setToggle, slideShow }) => {
                     <div className='capitalize font-bold md:text-[1.5rem] text-lg'>{user.full_name}</div>
                     <img className='md:w-4 w-2 h-auto' src={user.country_flag}></img>
                 </div>
-                <div className='text-light md:text-[0.8rem] text-xs text-center capitalize font-bold'>account trader</div>
+                <div className='text-light md:text-[0.8rem] text-xs text-center capitalize font-bold mt-2'>account trader</div>
                 <div className='mt-8 '>
-                    <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-[#0E0B1C] rounded-[8px] capitalize shlz md:px-8 px-6 py-4 mx-auto'>
+                    <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-semi-white rounded-xl capitalize shlz md:px-8 px-6 py-4 mx-auto'>
                         <div className='flex items-center gap-5'>
                             <div className='flex flex-col gap-2'>
-                                <div className='md:text-[1.4rem] text-lg text-semi-white '>Status</div>
+                                <div className='md:text-[1.4rem] text-lg text-black '>Status</div>
                                 {user.email_verified === 'true' && <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
-                                    <span className='text-[grey]'>verified</span>
+                                    <span className='text-[#646464]'>verified</span>
                                     <MdVerified className='text-light ' />
                                 </div>}
                                 {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs' onClick={() => setToggle('verify account')}>
@@ -226,16 +227,16 @@ const Profile = ({ setToggle, slideShow }) => {
                                     <MdSentimentVeryDissatisfied className='text-[#e46b6b]' />
                                 </div>}
                             </div>
-                            <div className='border-r-2 h-[3rem]'></div>
+                            <div className='border-r-2 h-12 border-[#bebebe]'></div>
                             <div className='flex flex-col gap-2'>
-                                <div className='md:text-[1.4rem] text-lg text-semi-white '>joined</div>
+                                <div className='md:text-[1.4rem] text-lg text-black '>joined</div>
                                 <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
-                                    <span className='text-[grey]'>{moment(user.createdAt).format('DD-MM-yyyy')}</span>
+                                    <span className='text-[#646464]'>{moment(user.createdAt).format('DD-MM-yyyy')}</span>
                                     <MdOutlineDateRange className='text-light' />
                                 </div>
                             </div>
                         </div>
-                        <img src={membership} className='h-[auto] md:w-14 w-10'></img>
+                        <img src={membership} className='h-auto md:w-14 w-10'></img>
                     </div>
                 </div>
                 <div className='md:text-[1.2rem] text-base text-semi-white capitalize mt-12 flex items-center gap-1'>
@@ -253,7 +254,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {nameEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='full_name' value={form.full_name} onChange={formHandler} type='text' ></input>
+                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='full_name' value={form.full_name} onChange={formHandler} type='text' ></input>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => setNameEdit(!nameEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -268,7 +269,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {userEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='username' value={form.username} onChange={formHandler} type='text'></input>
+                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='username' value={form.username} onChange={formHandler} type='text'></input>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => { setUserEdit(!userEdit) }}>
                                     <MdOutlineCancel />
                                 </div>
@@ -283,7 +284,7 @@ const Profile = ({ setToggle, slideShow }) => {
                                 </div>
                             </div>}
                             {emailEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='email' value={form.email} onChange={formHandler} type='email'></input>
+                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1' name='email' value={form.email} onChange={formHandler} type='email'></input>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => setEmailEdit(!emailEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -300,11 +301,11 @@ const Profile = ({ setToggle, slideShow }) => {
                             {passEdit && <div className='flex md:gap-4 gap-2 items-center'>
                                 <div className='flex flex-col gap-6'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon className='absolute top-3 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
                                     </div>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-[#0C091A] lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon2 className='absolute top-3 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     </div>
                                 </div>
@@ -333,40 +334,40 @@ const Profile = ({ setToggle, slideShow }) => {
                         <span>Delete my account</span>
                         <MdOutlineDeleteForever />
                     </div>}
-                    {deleteScreen !== 0 && <div className=' w-fit h-fit bg-[#0E0B1C] rounded-[8px] md:p-8 p-4 mx-auto relative  shlz '>
+                    {deleteScreen !== 0 && <div className=' w-fit h-fit bg-semi-white rounded-xl md:p-8 p-4 mx-auto relative shlz '>
                         {deleteloading && <LoadingAdmin />}
                         {deleteScreen === 1 && <div>
-                            <div className='text-center md:text-[1.1rem] text-sm text-semi-white'>Are you sure you want to delete your account?</div>
-                            <div className='flex justify-center items-center gap-0.5 mt-1.5 md:text-xs text-[0.65rem] text-[#a1a0a0]'>
-                                <IoWarningOutline className='text-[red]' />
-                                <span className='text-center'>This action is permanent and all your assets will be lost!</span>
-                                <IoWarningOutline className='text-[red]' />
+                            <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Are you sure you want to delete your account?</div>
+                            <div className='flex justify-center items-center gap-0.5 mt-1.5 md:text-xs text-[0.65rem] text-admin-btn'>
+                                <TiWarningOutline className='text-[red]' />
+                                <span className='text-center'>Action is permanent and all your assets will be lost!</span>
+                                <TiWarningOutline className='text-[red]' />
                             </div>
-                            <div className='flex md:gap-8 gap-6 items-center justify-center mt-8 '>
-                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#2f2950] rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
-                                    <span>cancel</span>
+                            <div className='flex md:gap-16 gap-6 items-center justify-center mt-8 '>
+                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
+                                    <span>cancel action</span>
                                     <FaRegRectangleXmark />
                                 </button>
                                 <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#642424] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={() => setDeleteScreen(2)}>
-                                    <span>proceed</span>
+                                    <span>proceed action</span>
                                     <IoCheckbox />
                                 </button>
                             </div>
                         </div>}
                         {deleteScreen === 2 && <div>
-                            <div className='text-center md:text-[1.1rem] text-sm text-semi-white'>Last step to permanently delete your account!</div>
+                            <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Last step to permanently delete your account!</div>
                             <div className='flex gap-1 items-center justify-center mt-1.5 md:text-xs text-[0.65rem] text-[red]'>
-                                <span className='text-[#a1a0a0]'>Enter your password below to finalize action</span>
+                                <span className='text-admin-btn'>Enter your password below to finalize action</span>
                                 <SlLockOpen />
                             </div>
-                            <div className='flex flex-col gap-[1.7rem] items-center justify-center mt-[1.5rem]'>
+                            <div className='flex flex-col gap-[1.7rem] items-center justify-center mt-6'>
                                 <div className='relative'>
-                                    <input className='outline-none border border-[#2f2950] bg-[#0C091A] lg:text-[0.8rem] text-base w-52 h-fit rounded-[5px] px-2 py-1 text-white ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                    <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base w-52 h-fit rounded-[5px] px-2 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                     <EyeIcon className='absolute top-2.5 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
-                                    <div className='absolute bottom-[-1.2rem] left-2 text-xs text-[#a83333]'>{deleteError}</div>
+                                    <div className='absolute bottom-[-1.2rem] left-2 text-xs text-[#e62f2f]'>{deleteError}</div>
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center'>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#2f2950] rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
                                         <span>cancel deletion</span>
                                         <FaRegRectangleXmark />
                                     </button>

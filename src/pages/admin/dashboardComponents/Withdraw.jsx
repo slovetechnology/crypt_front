@@ -173,88 +173,90 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
         <div className={`py-10 h-screen`}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{withdraw}</div>
-                {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdraw('withdawal history') }}>
+                {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdraw('withdawal history') }}>
                     <span>history</span>
                     <RiHistoryFill />
                 </div>
                     :
-                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdraw('withdawal') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdraw('withdawal') }}>
                         <span>withdraw</span>
                         <BiMoneyWithdraw />
                     </div>}
             </div>
             {screen === 1 && <div className='w-[80%] mx-auto mt-10 relative flex items-center justify-center bgdeposit'>
                 {loading && <LoadingAdmin />}
-                <div className='flex  flex-col  text-semi-white  items-center h-fit w-fit bg-[#0E0B1C] shlz p-12 rounded-xl'>
-                    <div className='flex gap-3 '>
-                        <div className='relative flex flex-col gap-2'>
-                            <div className='text-[0.9rem] capitalize text-center'>enter an amount</div>
-                            <input className={`outline-none border  bg-[#0C091A] lg:text-[0.85rem] w-60 h-8 rounded-[5px] pl-[1.3rem] ${amountError ? 'border-[red]' : 'border-[#7665D5]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
-                            <div className='absolute top-[2.25rem] left-2 text-[0.85rem]'>$</div>
-                        </div>
-                        <div className={`w-full h-[fit] rounded-[5px] flex flex-col text-[1rem] py-[0.5rem]  px-[1rem] text-semi-white gap-1 bg-[#312b57] ${limitError ? 'border border-[red]' : ''}`}>
-                            <div className='flex justify-between items-center gap-1'>
-                                <div className=' text-[0.85rem] font-[600]'>withdrawable</div>
-                                <img src={wthwallet} className='h-[1.5rem] w-auto'></img>
-                            </div>
-
-                            <div className='flex items-center justify-center'>
-                                <BiDollar className='text-[1rem]' />
-                                <div>{userwallet.balance}</div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div className='h-fit w-fit rounded-[0.2rem] bg-[grey] mt-10 p-1'>
-                        <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-[0.5rem] py-[0.25rem]  bg-white shlz rounded-[0.2rem] text-black  ${selectError && 'border border-[red]'} trans`}>
-                            <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
-                                <div className='flex justify-between items-center capitalize text-[0.8rem]  font-bold'>
-                                    <span >choose cryptocurrency</span>
-                                    {!selectState && <FaAngleDown className='text-[0.7rem]' />}
-                                    {selectState && <FaAngleUp className='text-[0.7rem]' />}
+                <div className='text-black font-medium h-fit w-[30rem] bg-semi-white shlz rounded-xl overflow-hidden'>
+                    <div className='flex flex-col items-center md:p-12 p-4'>
+                        <div className='flex gap-3 items-center'>
+                            <div className='flex flex-col gap-2'>
+                                <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
+                                <div className='relative'>
+                                    <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full px-5 h-8 rounded-[5px] ${amountError ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                    <div className='absolute md:top-1.5 top-[0.43rem] left-2 text-[0.85rem]'>$</div>
                                 </div>
                             </div>
-                            {selectState && <div>
-                                {supportedCoins.map((item, i) => (
-                                    <div className='flex flex-col mt-1' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                            <img src={item.img} className='h-auto w-[1rem]'></img>
-                                            <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
-                                        </div>
+                            <div className={`w-fit h-fit rounded-[5px] flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-admin-btn ${limitError ? 'border border-[red]' : ''}`}>
+                                <div className='flex  justify-center items-center gap-1'>
+                                    <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
+                                    <img src={wthwallet} className='md:h-6 h-3 w-auto'></img>
+                                </div>
+                                <div className='flex items-center justify-center'>
+                                    <BiDollar className='md:text-base text-sm' />
+                                    <div>{userwallet.balance}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='h-fit w-fit rounded-[0.2rem] bg-white mt-10 p-1'>
+                            <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-2 py-1  bg-white shantf rounded-[0.2rem] text-black  ${selectError && 'border border-[red]'} trans`}>
+                                <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
+                                    <div className='flex justify-between items-center capitalize text-[0.8rem]  font-bold'>
+                                        <span >choose cryptocurrency</span>
+                                        {!selectState && <FaAngleDown className='text-[0.7rem]' />}
+                                        {selectState && <FaAngleUp className='text-[0.7rem]' />}
                                     </div>
-                                ))}
-                            </div>}
+                                </div>
+                                {selectState && <div>
+                                    {supportedCoins.map((item, i) => (
+                                        <div className='flex flex-col mt-1' key={i}>
+                                            <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item) }}>
+                                                <img src={item.img} className='h-auto w-[1rem]'></img>
+                                                <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>}
+                            </div>
                         </div>
-                    </div>
-                    {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
-                        <div className='text-[0.9rem]  text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                        <input className={`outline-none border bg-[#0C091A] lg:text-[0.85rem] w-[24rem] h-8 rounded-[5px] pl-[1rem]  ${walletError ? 'border-[red]' : 'border-[#7665D5]'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
-                    </div>}
-                    <div className='flex flex-col gap-2 items-center relative mt-10'>
-                        <div className='flex gap-2'>
-                            <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
-                            <div className='text-[#7665D5] text-[0.8rem]'>I confirm to have provide my correct wallet address</div>
-                        </div>
-                        <button className='outline-none w-fit h-fit py-[0.5rem] px-8 text-[1rem] text-semi-white  bg-[#7665D5] hover:bg-[#5d4faa] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
-                            <span>make withdrawal</span>
-                            <IoCheckbox className='text-[0.8rem]' />
-                        </button>
-                        <div className='absolute bottom-[-2rem] left-0 text-[0.8rem] font-bold text-[#b64040] cursor-pointer flex gap-1 items-center' onClick={() => setToggle('verify account')}>
-                            <span>{withdrawError}</span>
-                            {withdrawError !== '' && <MdSentimentVeryDissatisfied />}
+                        {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
+                            <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
+                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-4  ${walletError ? 'border-[red]' : 'border-light'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
+                        </div>}
+                        <div className='flex flex-col gap-2 items-center relative mt-10'>
+                            <div className='flex gap-2'>
+                                <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
+                                <div className='text-admin-btn md:text-[0.8rem] text-xs'>I confirm to have provide my correct wallet address</div>
+                            </div>
+                            <button className='outline-none w-fit h-fit py-[0.5rem] px-8 md:text-base text-sm text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
+                                <span>make withdrawal</span>
+                                <IoCheckbox />
+                            </button>
+                            <div className='absolute bottom-[-2rem] left-0 text-[0.8rem] font-bold text-[#b64040] cursor-pointer flex gap-1 items-center' onClick={() => setToggle('verify account')}>
+                                <span>{withdrawError}</span>
+                                {withdrawError !== '' && <MdSentimentVeryDissatisfied />}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>}
             {screen === 2 && <div className='my-8'>
-                <div className='flex gap-1 items-center capitalize md:text-[0.85rem] text-xs cursor-pointer text-[#7665D5] w-fit hover:text-[grey]' onClick={() => { setScreen(1); setWithdraw('withdraw') }}>
+                <div className='flex gap-1 items-center capitalize md:text-[0.85rem] text-xs cursor-pointer text-light w-fit hover:text-[grey]' onClick={() => { setScreen(1); setWithdraw('withdraw') }}>
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>
                 <div className='mt-8 md:mt-4 lg:mt-8'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none px-4 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
+                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
                             <IoIosSearch />
                             {write &&
                                 <div className='absolute top-[1.2rem] md:right-12 right-11  text-xs cursor-pointer bg-[#414040] rounded-full w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
@@ -266,7 +268,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                     <div className='relative overflow-x-auto shadow-md rounded-lg mt-[1rem] scrollsdown'>
                         <table className='w-full'>
                             <thead>
-                                <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-white'>
+                                <tr className='bg-light text-[0.8rem] font-bold text-white'>
                                     <td className='text-center truncate  capitalize p-2'>date</td>
                                     <td className='text-center truncate  capitalize p-2'>time</td>
                                     <td className='text-center truncate  capitalize p-2'>amount</td>
@@ -294,10 +296,10 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             <img src={nothnyet} className='h-[1rem] w-auto'></img>
                         </div>}
                     </div>
-                    {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-[#7665D5] '>
-                        {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                    {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-light '>
+                        {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
                         {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
-                        {end < allwithdrawals.length && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+                        {end < allwithdrawals.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
                     </div>}
                 </div>
             </div>}

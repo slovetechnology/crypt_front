@@ -11,7 +11,8 @@ export default {
         "semi-white": "#e0dfdf",
         "ground": "#94A3B8",
         "light": "#7665D5",
-        "admin": "#0E0B1C"
+        "admin": "#0E0B1C",
+        "admin-btn": "#312b57"
       },
       boxShadow: {
         "sign-sha": "0px 1px 10px rgb(223, 222, 222)",
