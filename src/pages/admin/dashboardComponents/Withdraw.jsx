@@ -192,7 +192,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                 <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                                 <div className='relative'>
                                     <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full px-5 h-8 rounded-[5px] ${amountError ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
-                                    <div className='absolute md:top-1.5 top-[0.43rem] left-2 text-[0.85rem]'>$</div>
+                                    <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                 </div>
                             </div>
                             <div className={`w-fit h-fit rounded-[5px] flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-admin-btn ${limitError ? 'border border-[red]' : ''}`}>

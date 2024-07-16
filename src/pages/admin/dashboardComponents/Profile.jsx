@@ -338,10 +338,9 @@ const Profile = ({ setToggle, slideShow }) => {
                         {deleteloading && <LoadingAdmin />}
                         {deleteScreen === 1 && <div>
                             <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Are you sure you want to delete your account?</div>
-                            <div className='flex justify-center items-center gap-0.5 mt-1.5 md:text-xs text-[0.65rem] text-admin-btn'>
+                            <div className='flex justify-center items-center gap-0.5 mt-1.5 text-xs text-admin-btn'>
                                 <TiWarningOutline className='text-[red]' />
                                 <span className='text-center'>Action is permanent and all your assets will be lost!</span>
-                                <TiWarningOutline className='text-[red]' />
                             </div>
                             <div className='flex md:gap-16 gap-6 items-center justify-center mt-8 '>
                                 <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
@@ -356,7 +355,7 @@ const Profile = ({ setToggle, slideShow }) => {
                         </div>}
                         {deleteScreen === 2 && <div>
                             <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Last step to permanently delete your account!</div>
-                            <div className='flex gap-1 items-center justify-center mt-1.5 md:text-xs text-[0.65rem] text-[red]'>
+                            <div className='flex gap-1 items-center justify-center mt-1.5 text-xs text-[red]'>
                                 <span className='text-admin-btn'>Enter your password below to finalize action</span>
                                 <SlLockOpen />
                             </div>

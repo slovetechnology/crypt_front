@@ -257,12 +257,12 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     </div>
                 }
             </div>
-            {screen === 1 && <div className='w-[80%] mx-auto my-10 flex items-center justify-center bgdeposit'>
-                <div className={`h-[32rem] w-[36rem] bg-semi-white shlz rounded-xl  scroll relative thediv overflow-x-hidden ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
+            {screen === 1 && <div className='w-[80%] mx-auto my-10 relative flex items-center justify-center bgdeposit'>
+                <div className={`h-[32rem] w-[36rem] bg-semi-white md:px-3 px-2 rounded-xl shlz scroll thediv overflow-x-hidden ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
                     {loading && <LoadingAdmin />}
-                    <div className='flex justify-between w-full py-3 md:px-3 px-2'>
+                    <div className='flex justify-between w-full py-3'>
                         <div>
-                            <button className={`w-fit h-fit py-2 md:px-6 px-2 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full  ${depositScreen === 1 ? 'bg-admin-btn text-semi-white' : 'bg-[#bbbaba] text-[grey]'}`} onClick={() => setDepositScreen(1)}>Deposit from an exchange</button>
+                            <button className={`w-fit h-fit py-2 md:px-6 px-3 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full  ${depositScreen === 1 ? 'bg-admin-btn text-semi-white' : 'bg-[#bbbaba] text-[grey]'}`} onClick={() => setDepositScreen(1)}>Deposit from an exchange</button>
                         </div>
                         <div>
                             <button className={`w-fit h-fit py-2 md:px-6 px-2 md:text-xs text-[0.65rem] bg-[#16122c] rounded-full ${depositScreen === 2 ? 'bg-admin-btn text-semi-white' : 'bg-[#bbbaba] text-[grey]'} `} onClick={() => { setDepositScreen(2); setAmount() }}>Buy plan with balance</button>
@@ -273,7 +273,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                             <div className='relative'>
                                 <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-5 ${amountError ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)} onKeyUp={handleAmount}></input>
-                                <div className='absolute md:top-1.5 top-[0.43rem] left-2 text-[0.85rem]'>$</div>
+                                <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                             </div>
                         </div>
                         <div className='flex md:flex-row flex-col md:gap-2 gap-1 items-center mt-8'>
@@ -281,11 +281,11 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             {amount > 0 ?
                                 <span className={`capitalize text-[0.85rem] ${amount < 20 ? 'text-[#ce4242]' : 'text-black'} font-bold `}>{plan}</span>
                                 :
-                                <span className='italic md:text-[0.85rem] text-xs text-admin-btn text-center'>enter an amount to show the trading plan it falls under</span>
+                                <span className='italic text-[0.85rem] text-admin-btn text-center'>enter an amount to show the plan it falls under</span>
                             }
                         </div>
                         <div className='h-fit w-fit rounded-[0.2rem] bg-white md:mt-10 mt-8 p-1'>
-                            <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-2 py-[0.25rem]  bg-white shantf rounded-[0.2rem]   text-black ${selectError && 'border border-[red]'} trans`}>
+                            <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-2 py-1  bg-white shantf rounded-[0.2rem]   text-black ${selectError && 'border border-[red]'} trans`}>
                                 <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
                                     <div className='flex justify-between items-center capitalize text-[0.8rem]  font-bold'>
                                         <span >choose cryptocurrency</span>
@@ -308,7 +308,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         <div className='text-[0.85rem] text-center text-black md:mt-10 mt-8'>{network}</div>
                         <div className='flex md:flex-row flex-col gap-2 items-center mt-4'>
                             <div className='md:text-[0.9rem] text-[0.7rem] text-light text-ellipsis'>{address}</div>
-                            {selectValue !== '' && <button className='outline-none w-fit h-fit py-1.5 px-2 md:text-[0.8rem] text-[0.7rem] text-semi-white bg-admin-btn rounded-[5px] capitalize flex items-center justify-center' onClick={() => copyFunction()}>
+                            {selectValue !== '' && <button className='outline-none w-fit h-fit py-1.5 px-2 text-[0.8rem] text-semi-white bg-admin-btn rounded-[5px] capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                 {!copy && <MdContentCopy />}
                                 {copy && <FaCheck />}
                             </button>}
@@ -333,7 +333,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <div className='flex flex-wrap gap-4 justify-center'>
                                     {tradingPlans.map((item, i) => (
                                         <div key={i}>
-                                            <div className='md:w-60 w-36 h-fit rounded-lg flex flex-col text-white shantf bg-white'>
+                                            <div className='md:w-60 w-[9.3rem] h-fit rounded-lg flex flex-col text-white shantf bg-white'>
                                                 <div className='plan_bg w-full md:h-20 h-16 rounded-t-lg'>
                                                     <div className='uppercase font-[800]  text-center md:text-[1.1rem] text-sm pt-4'>{item.title}</div>
                                                 </div>
@@ -347,11 +347,11 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className='text-xs text-[#353434] font-bold text-center w-11/12'>
+                                                    <div className='md:text-xs text-[0.65rem] text-[#353434] font-[550] text-center w-11/12'>
                                                         60% profit return on investment plus bonus up to ${item.bonus}
                                                     </div>
                                                     <div className='mb-4 mt-2'>
-                                                        <button className='w-fit h-fit md:py-2 py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.55rem]' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
+                                                        <button className='w-fit h-fit md:py-2 py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
                                                             buy now
                                                         </button>
                                                     </div>
@@ -360,7 +360,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                         </div>
                                     ))}
                                 </div>
-                                <div className='bg-white w-60 h-[1.3rem] rounded-t-md flex gap-1 items-center justify-center font-bold text-xs '>
+                                <div className='bg-white w-fit h-fit py-1 px-4 rounded-t-md flex gap-1 items-center justify-center font-bold text-xs '>
                                     <FaRegCopyright />
                                     <div>2024, Al Algo, All rights reserved.</div>
                                 </div>
@@ -377,8 +377,8 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             </div>
                             <div className='relative flex gap-2 items-center'>
                                 <div className='relative'>
-                                    <input className={`outline-none border lg:text-[0.85rem] md:w-40 w-36 h-8 rounded-[5px] px-5 bg-transparent ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
-                                    <div className='absolute md:top-1.5 top-[0.43rem] left-2 text-[0.85rem]'>$</div>
+                                    <input className={`outline-none border lg:text-[0.85rem] md:w-40 w-36 h-8 rounded-[5px] px-5 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
+                                    <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                 </div>
                                 <div className={`h-fit w-fit text-nowrap py-2 px-4 ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.9rem] rounded-[0.25rem]`}>
                                     <div className='text-xs italic'>wallet balance:</div>
