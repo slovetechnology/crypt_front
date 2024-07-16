@@ -337,9 +337,10 @@ const Profile = ({ setToggle, slideShow }) => {
                         {deleteloading && <LoadingAdmin />}
                         {deleteScreen === 1 && <div>
                             <div className='text-center md:text-[1.1rem] text-sm text-semi-white'>Are you sure you want to delete your account?</div>
-                            <div className='flex justify-center md:gap-1 mt-1.5 md:text-xs text-[0.65rem] text-[#a1a0a0]'>
-                                <IoWarningOutline className='text-[red] mt-0.5' />
-                                <span className='text-center'> Warning! This action is permanent, cannot be reversed and all your assets will be lost</span>
+                            <div className='flex justify-center items-center gap-0.5 mt-1.5 md:text-xs text-[0.65rem] text-[#a1a0a0]'>
+                                <IoWarningOutline className='text-[red]' />
+                                <span className='text-center'>This action is permanent and all your assets will be lost!</span>
+                                <IoWarningOutline className='text-[red]' />
                             </div>
                             <div className='flex md:gap-8 gap-6 items-center justify-center mt-8 '>
                                 <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#2f2950] rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
