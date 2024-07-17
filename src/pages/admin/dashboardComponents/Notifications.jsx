@@ -71,10 +71,10 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             setEnd(4)
         }
         else {
+            setWrite(true)
             const showSearch = altnotis.filter(item => item.title.includes(search.toLowerCase()))
             setAltNotis(showSearch)
             setPagelengthend(showSearch.length / 4)
-            setWrite(true)
             setPagelengthstart(1)
             setStart(0)
             setEnd(4)
@@ -197,7 +197,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light `}>
                 <IoNotificationsOutline />
             </div>
-            {user.notify === 'true' && <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
+            <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
                 <div className='w-full h-full flex items-center justify-center' onClick={() => setShowNotis(true)} style={reverseShow}>
                     {unreadNotis.length > 0 ?
                         <span>{unreadNotis.length}</span>
@@ -213,14 +213,14 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                         /></span>
                     }
                 </div>
-            </div>}
+            </div>
 
             <div className='md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full bg-white z-50 py-3 px-2' style={styleShow} ref={closer}>
                 <div className='text-black flex flex-col relative mt-2'>
                     <div className='flex justify-between items-center'>
-                        <div className='flex gap-1 items-center'>
-                            <div className='text-xl cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
-                            <div className='capitalize md:text-base text-xl font-[800]'>notifications</div>
+                        <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>
+                            <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
+                            <div>notifications</div>
                         </div>
                         <div className='flex gap-2 items-center'>
                             <div className='relative'>
@@ -238,9 +238,9 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 </div>
                                 {searchNoti && <div className='md:w-40 w-48 md:h-6 h-7 absolute md:top-6 top-7 right-0'>
                                     <div className='w-full h-full relative'>
-                                        <input className='outline-none pl-2 shantf2 rounded-[5px] w-full h-full bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                                        <input className='outline-none px-2 shantf2 rounded-[5px] w-full h-full bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
-                                            <div className='absolute top-[0.35rem] right-2 text-[0.5rem] cursor-pointer bg-[#585858] rounded-[50%] w-3 h-3 flex items-center text-white justify-center' onClick={CancelWrite}>
+                                            <div className='absolute top-1.5 right-2 text-[0.6rem] cursor-pointer bg-[#585858] rounded-full w-fit h-fit p-0.5 text-white' onClick={CancelWrite}>
                                                 <FiX />
                                             </div>
                                         }

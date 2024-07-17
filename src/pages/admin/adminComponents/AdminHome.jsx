@@ -245,7 +245,7 @@ const AdminHome = () => {
                 <RiDeleteBin3Line className='md:text-xl text-lg' />
                 <div className='capitalize md:text-xs text-[0.7rem] font-medium'>delete users</div>
               </div>
-              <div className={`flex flex-col gap-1 items-center cursor-pointer text-semi-white`} onClick={logoutAccount}>
+              <div className={`flex flex-col gap-1 items-center cursor-pointer text-semi-white hover:text-[green]`} onClick={logoutAccount}>
                 <GrDocumentUpdate className='md:text-xl text-lg' />
                 <div className='capitalize md:text-xs text-[0.7rem] font-medium'>logout</div>
               </div>

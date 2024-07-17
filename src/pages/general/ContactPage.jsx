@@ -12,6 +12,7 @@ import Loading from '../../PageComponents/Loading';
 import { LuSearchCheck } from "react-icons/lu";
 import { TfiUser } from "react-icons/tfi";
 import { AItraders } from '../../services/Miscellaneous';
+import { FiX } from 'react-icons/fi';
 
 
 
@@ -25,6 +26,7 @@ const ContactPage = () => {
   const [code, setCode] = useState('')
   const [codeError, setCodeError] = useState('')
   const [trader, setTrader] = useState([])
+  const [write, setWrite] = useState(false)
 
   const [form, setForm] = useState({
     username: '',
@@ -163,9 +165,15 @@ const ContactPage = () => {
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border-b border-white bg-transparent lg:text-[0.85rem] text-base w-48 pl-4 text-white focus:outline-none' type='text' value={code} onChange={e => setCode(e.target.value)}></input>
-                      <MdOutlineEdit className=' text-[0.8rem] text-orange absolute bottom-0 right-0 h-[1.2rem]' />
-                      <div className='w-[0.3rem] h-[0.3rem] rounded-full bg-white absolute bottom-[-0.1rem] left-0'></div>
+                      <input className='outline-none border-b border-white bg-transparent lg:text-[0.85rem] text-base w-48 px-4 text-white focus:outline-none' type='text' value={code} onChange={e => {setCode(e.target.value); setWrite(true)}}></input>
+                      <div className='w-1 h-1 rounded-full bg-white absolute bottom-[-0.1rem] left-0'></div>
+                      {write ?
+                        <div className='absolute bottom-1 right-0 text-xs cursor-pointer bg-[#ffffff6e] text-[#444343] rounded-full w-fit h-fit p-0.5' onClick={() => {setCode(''); setWrite(false)}}>
+                          <FiX />
+                        </div>
+                        :
+                        <MdOutlineEdit className=' text-[0.8rem] text-orange absolute bottom-0.5 right-0' />
+                      }
                       <div className='text-[0.85rem] absolute bottom-[-1.5rem] left-0 font-bold text-[#361e1e]'>{codeError}</div>
                     </div>
                     <button className='outline-none w-fit h-fit py-[0.4rem] px-[1rem] text-[0.85rem] text-[white]  bg-orange rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>

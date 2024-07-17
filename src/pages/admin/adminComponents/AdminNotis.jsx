@@ -109,10 +109,10 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
             setEnd(4)
         }
         else {
+            setWrite(true)
             const showSearch = altnotis.filter(item => item.title.includes(search.toLowerCase()))
             setAltNotis(showSearch)
             setPageend(showSearch.length / 4)
-            setWrite(true)
             setPagestart(1)
             setStart(0)
             setEnd(4)
@@ -153,20 +153,20 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
             </div>
 
             <div className='md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-[silver] bg-white z-50 py-3 px-2 text-black' style={styleShow} ref={closer}>
-                <div className='flex justify-between items-center'>
-                    <div className='flex gap-1 items-center mt-2'>
-                        <div className='text-xl cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
-                        <div className='capitalize md:text-base text-xl font-[800]'>notifications</div>
+                <div className='flex justify-between items-center mt-2'>
+                    <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>
+                        <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
+                        <div>notifications</div>
                     </div>
                     <div className='relative z-20'>
                         <div className='rounded-full w-fit h-fit p-1 md:bg-[#8d8c8c] bg-[#b4b3b3] cursor-pointer md:text-white text-black md:text-[0.85rem] text-lg' onClick={() => setSearchNoti(!searchNoti)}>
                             <IoMdSearch/>
                         </div>
-                        {searchNoti && <div className='md:w-40 w-48 md:h-6 h-7 absolute md:top-6 top-7 right-0'>
-                            <div className='w-full h-full relative'>
-                                <input className='outline-none pl-2 shantf2 rounded-[5px] w-full h-full bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                        {searchNoti && <div className='md:w-40 w-48 md:h-6 h-7 absolute md:top-6 top-7 right-0 '>
+                            <div className='w-full h-full relative '>
+                                <input className='outline-none px-2 w-full h-full shantf2 rounded-[5px] bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                 {write &&
-                                    <div className='absolute top-[0.35rem] right-2 text-[0.5rem] cursor-pointer bg-[#585858] rounded-full w-3 h-3 flex items-center text-white  justify-center' onClick={CancelWrite}>
+                                    <div className='absolute top-1.5 right-2 text-[0.6rem] cursor-pointer bg-[#585858] rounded-full w-fit h-fit p-0.5 text-white' onClick={CancelWrite}>
                                         <FiX />
                                     </div>
                                 }

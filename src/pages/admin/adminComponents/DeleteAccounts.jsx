@@ -38,10 +38,10 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
       setEnd(6)
     }
     else {
+      setWrite(true)
       const showSearch = allusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
       setAllUsers(showSearch)
       setPagelengthend(showSearch.length / 6)
-      setWrite(true)
       setPagelengthstart(1)
       setStart(0)
       setEnd(6)
@@ -126,14 +126,14 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
     <div className='h-screen'>
       {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setPagelengthstart={setPagelengthstart} setPagelengthend={setPagelengthend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} />}
 
-      <div className='uppercase font-bold md:text-2xl text-lg text-[black] pt-10'>delete accounts</div>
+      <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>delete accounts</div>
       <div className='mt-8 md:mt-6 lg:mt-8'>
         <div className='relative w-fit mx-auto'>
           <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none px-4 md:text-[0.9rem] text-base rounded-full text-black ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-          <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2' >
+          <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10  rounded-full flex items-center justify-center bg-[#462c7c] shantf2' >
             <IoIosSearch />
             {write &&
-              <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-[#979797] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+              <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-[#979797] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                 <FiX />
               </div>
             }
@@ -143,7 +143,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
         <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
           <table className='w-full'>
             <thead >
-              <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-[white]'>
+              <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-white'>
                 <td className='text-center truncate  capitalize p-2'>joined</td>
                 <td className='text-center truncate  capitalize p-2'>full name</td>
                 <td className='text-center truncate  capitalize p-2'>username</td>
@@ -152,9 +152,9 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
               </tr>
             </thead>
-            {fromAtom.length > 0 &&<tbody>
+            {fromAtom.length > 0 && <tbody>
               {allusers.slice(start, end).map((item, i) => (
-                <tr className='text-[0.8rem] font-[550]  text-black bg-[white] even:bg-[#e2e0e0] ' key={i}>
+                <tr className='text-[0.8rem] font-[550]  text-black bg-white even:bg-[#e2e0e0] ' key={i}>
                   <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                   <td className='p-4  text-center truncate'>{item.full_name}</td>
                   <td className='p-4  text-center truncate'>{item.username}</td>

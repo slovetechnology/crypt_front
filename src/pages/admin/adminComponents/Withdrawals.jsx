@@ -31,10 +31,10 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
             setEnd(6)
         }
         else {
+            setWrite(true)
             const showSearch = allWithdrawals.filter(item => item.wthuser.username.includes(search.toLowerCase()) || item.wthuser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
             setPagelengthend(showSearch.length / 6)
-            setWrite(true)
             setPagelengthstart(1)
             setStart(0)
             setEnd(6)
@@ -102,10 +102,10 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
             <div className='mt-8 md:mt-6 lg:mt-8'>
                 <div className='relative w-fit mx-auto'>
                     <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none px-4 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-                    <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
+                    <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
                         <IoIosSearch />
                         {write &&
-                            <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#979797] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+                            <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-[#979797] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                                 <FiX />
                             </div>
                         }

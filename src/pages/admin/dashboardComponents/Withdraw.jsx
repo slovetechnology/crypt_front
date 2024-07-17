@@ -25,7 +25,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
     const [checkError, setCheckError] = useState(false)
     const [amount, setAmount] = useState('')
     const [amountError, setAmountError] = useState(false)
-    const [wallet, setWallet] = useState('')
+    const [walletAddress, setWalletAddress] = useState('')
     const [walletError, setWalletError] = useState(false)
     const [selectState, setSelectState] = useState(false)
     const [selectValue, setSelectValue] = useState({})
@@ -51,13 +51,13 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
         if (amount < 20) return setAmountError(true)
         if (amount > userwallet.balance) return setLimitError(true)
         if (Object.values(selectValue).length === 0) return setSelectError(true)
-        if (!wallet) return setWalletError(true)
+        if (!walletAddress) return setWalletError(true)
         if (!check) return setCheckError(true)
         if (user.email_verified === 'false') return setWithdrawError('Verify your account to complete withdrawal')
 
         const formbody = {
             amount: parseFloat(amount),
-            wallet_address: wallet,
+            wallet_address: walletAddress,
             crypto: selectValue.coin,
             network: selectValue.network,
             wthuser: user.username
@@ -70,7 +70,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                 setAllWithdrawals(response.msg)
                 Alert('Request Successful', `Withdrawal successfully made`, 'success')
                 setAmount('')
-                setWallet('')
+                setWalletAddress('')
                 setCheck(!check)
                 setSelectValue('')
                 setWithdrawError('')
@@ -202,7 +202,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                 </div>
                                 <div className='flex items-center justify-center'>
                                     <BiDollar className='md:text-base text-sm' />
-                                    <div>{userwallet.balance.toLocaleString()}</div>
+                                    {Object.values(userwallet).length !== 0 && <div>{userwallet.balance.toLocaleString()}</div>}
                                 </div>
                             </div>
                         </div>
@@ -229,7 +229,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         </div>
                         {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                             <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2  ${walletError ? 'border-[red]' : 'border-light'}`} value={wallet} onChange={e => setWallet(e.target.value)} type='text'></input>
+                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2  ${walletError ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
                         </div>}
                         <div className='flex flex-col gap-2 items-center relative mt-10'>
                             <div className='flex gap-2 items-center'>
@@ -259,7 +259,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
                             <IoIosSearch />
                             {write &&
-                                <div className='absolute top-[1.2rem] md:right-12 right-11  text-xs cursor-pointer bg-[#414040] rounded-full w-4 h-4 flex items-center justify-center' onClick={CancelWrite}>
+                                <div className='absolute top-[1.2rem] md:right-12 right-11  text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                                     <FiX />
                                 </div>
                             }
