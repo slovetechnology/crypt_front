@@ -236,9 +236,9 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 <div className='rounded-full w-fit h-fit p-1 bg-[#b4b3b3] cursor-pointer text-black md:text-[0.85rem] text-lg' onClick={() => { setSearchNoti(!searchNoti); setMark(false) }}>
                                     <IoMdSearch />
                                 </div>
-                                {searchNoti && <div className='md:w-40 w-48 md:h-6 h-7 absolute md:top-6 top-7 right-0'>
-                                    <div className='w-full h-full relative'>
-                                        <input className='outline-none px-2 shantf2 rounded-[5px] w-full h-full bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                                {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
+                                    <div className='relative shantf2 rounded-md'>
+                                        <input className='outline-none px-2  rounded-md md:w-40 w-48 md:h-6 h-7 bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
                                             <div className='absolute top-1.5 right-2 text-[0.6rem] cursor-pointer bg-[#585858] rounded-full w-fit h-fit p-0.5 text-white' onClick={CancelWrite}>
                                                 <FiX />

@@ -162,9 +162,9 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                         <div className='rounded-full w-fit h-fit p-1 md:bg-[#8d8c8c] bg-[#b4b3b3] cursor-pointer md:text-white text-black md:text-[0.85rem] text-lg' onClick={() => setSearchNoti(!searchNoti)}>
                             <IoMdSearch/>
                         </div>
-                        {searchNoti && <div className='md:w-40 w-48 md:h-6 h-7 absolute md:top-6 top-7 right-0 '>
-                            <div className='w-full h-full relative '>
-                                <input className='outline-none px-2 w-full h-full shantf2 rounded-[5px] bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                        {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
+                            <div className='relative shantf2 rounded-md'>
+                                <input className='outline-none px-2 md:w-40 w-48 md:h-6 h-7 rounded-md bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                 {write &&
                                     <div className='absolute top-1.5 right-2 text-[0.6rem] cursor-pointer bg-[#585858] rounded-full w-fit h-fit p-0.5 text-white' onClick={CancelWrite}>
                                         <FiX />
