@@ -238,9 +238,9 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 </div>
                                 {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
                                     <div className='relative'>
-                                        <input className='outline-none px-2 md:w-36 w-48 md:h-7 h-7 bg-[#f7f6f6] border border-zinc-500 rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                                        <input className='outline-none px-2 md:w-36 w-48 md:h-6 h-7 bg-white shantf2 rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
-                                            <div className='absolute top-1.5 right-1 text-sm cursor-pointer text-black' onClick={CancelWrite}>
+                                            <div className='absolute top-1.5 right-1.5 text-sm cursor-pointer text-black' onClick={CancelWrite}>
                                                 <FiX />
                                             </div>
                                         }

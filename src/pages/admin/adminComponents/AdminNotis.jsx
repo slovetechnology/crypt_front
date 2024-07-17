@@ -166,7 +166,7 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                             <div className='relative'>
                                 <input className='outline-none px-2 md:w-36 w-48 md:h-6 h-7 shantf2 rounded-md bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                 {write &&
-                                    <div className='absolute top-1.5 right-1 text-sm cursor-pointer text-black' onClick={CancelWrite}>
+                                    <div className='absolute top-1.5 right-1.5 text-sm cursor-pointer text-black' onClick={CancelWrite}>
                                         <FiX />
                                     </div>
                                 }
