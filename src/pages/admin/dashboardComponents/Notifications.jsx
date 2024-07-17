@@ -11,7 +11,6 @@ import { MdError } from 'react-icons/md';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { Apis, PostApi, UserPutApi } from '../../../services/API';
 import moment from 'moment';
-import { IoMdArrowBack } from "react-icons/io";
 import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 import nothnyet from '../../../assets/images/nothn.png'
@@ -19,12 +18,11 @@ import nothnyet from '../../../assets/images/nothn.png'
 
 
 const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotifications, setToggle, setUrlState, pagelengthend, setPagelengthend }) => {
-    const [user, setUser] = useAtom(PROFILE)
+    const [user] = useAtom(PROFILE)
     const [notis] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
 
     const [mark, setMark] = useState(false)
-    const [notify, setNotify] = useState(false)
     const [showNotis, setShowNotis] = useState(false)
     const [searchNoti, setSearchNoti] = useState(false)
     const [dlsingleNoti, setDlSingleNoti] = useState({})
@@ -61,24 +59,6 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             }
         }, []
     )
-
-    const Notification = async () => {
-        setNotify(!notify)
-        setShowNotis(false)
-
-        const formbody = {
-            user_id: user.id,
-            notify: notify
-        }
-        try {
-            const response = await UserPutApi(Apis.user.notification, formbody)
-            if (response.status === 200) {
-                setUser(response.msg)
-            }
-        } catch (error) {
-            Alert('Request Failed', `${error.message}`, 'error')
-        }
-    }
 
 
     const handleSearch = () => {
@@ -214,22 +194,22 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
 
     return (
         <div className='relative'>
-            <div className={`flex items-center justify-center border w-[2.3rem] h-[2.3rem] rounded-full text-[1.2rem]  cursor-pointer ${user.notify === 'true' ? 'text-[green] border-[green]' : 'text-[#afa7df] border-[#afa7df]'} `} onClick={Notification}>
+            <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light `}>
                 <IoNotificationsOutline />
             </div>
-            {user.notify === 'true' && <div className='rounded-full w-[1.25rem] h-[1.2rem] absolute top-[-0.5rem] right-[-0.3rem] cursor-pointer text-white text-[0.6rem] font-bold bg-[green] flex items-center justify-center shlz'  >
-                <div className=' rounded-full flex justify-center items-center w-full h-full' onClick={() => setShowNotis(true)} style={reverseShow}>
+            {user.notify === 'true' && <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
+                <div className='w-full h-full flex items-center justify-center' onClick={() => setShowNotis(true)} style={reverseShow}>
                     {unreadNotis.length > 0 ?
                         <span>{unreadNotis.length}</span>
                         :
-                        <span className='text-[0.65rem]'><TbNotification /></span>
+                        <span ><TbNotification /></span>
                     }
                 </div>
-                <div className=' rounded-full flex justify-center items-center w-full h-full' style={styler}>
+                <div className='w-full h-full flex items-center justify-center' style={styler}>
                     {unreadNotis.length > 0 ?
                         <span>{unreadNotis.length}</span>
                         :
-                        <span className='text-[0.65rem]'><PiNotification
+                        <span><PiNotification
                         /></span>
                     }
                 </div>
@@ -244,7 +224,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                         </div>
                         <div className='flex gap-2 items-center'>
                             <div className='relative'>
-                                <div className='rounded-full md:w-[1.2rem] md:h-[1.2rem] w-6 h-6 flex items-center justify-center bg-[#b4b3b3] cursor-pointer md:text-[0.85rem] text-lg' onClick={() => { setMark(!mark); setSearchNoti(false) }}>
+                                <div className='rounded-full w-fit h-fit p-1 bg-[#b4b3b3] cursor-pointer md:text-[0.85rem] text-lg' onClick={() => { setMark(!mark); setSearchNoti(false) }}>
                                     <IoMdSettings />
                                 </div>
                                 {mark && <div className='md:w-36 w-40 h-fit py-1 px-2 flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-7 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
@@ -253,12 +233,12 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 </div>}
                             </div>
                             <div className='relative z-20'>
-                                <div className='rounded-full md:w-[1.2rem] md:h-[1.2rem] w-6 h-6 flex items-center justify-center bg-[#b4b3b3] cursor-pointer text-black md:text-[0.85rem] text-lg' onClick={() => { setSearchNoti(!searchNoti); setMark(false) }}>
+                                <div className='rounded-full w-fit h-fit p-1 bg-[#b4b3b3] cursor-pointer text-black md:text-[0.85rem] text-lg' onClick={() => { setSearchNoti(!searchNoti); setMark(false) }}>
                                     <IoMdSearch />
                                 </div>
                                 {searchNoti && <div className='md:w-40 w-48 md:h-6 h-7 absolute md:top-6 top-7 right-0'>
                                     <div className='w-full h-full relative'>
-                                        <input className='outline-none pl-2 shantf2 rounded-[5px]  w-full h-full bg-white ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                                        <input className='outline-none pl-2 shantf2 rounded-[5px] w-full h-full bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
                                             <div className='absolute top-[0.35rem] right-2 text-[0.5rem] cursor-pointer bg-[#585858] rounded-[50%] w-3 h-3 flex items-center text-white justify-center' onClick={CancelWrite}>
                                                 <FiX />
@@ -290,7 +270,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                     </div>
                         :
                         <div className='mt-32 md:mt-20 flex justify-center'>
-                            <img src={nothnyet} className='md:h-20 h-64 w-auto'></img>
+                            <img src={nothnyet} className='md:h-20 h-48 w-auto'></img>
                         </div>
                     }
                 </div>
