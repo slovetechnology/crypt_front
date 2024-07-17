@@ -104,7 +104,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
           <div className='text-[1.2rem] text-[white] absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
             <IoIosSearch />
             {write &&
-              <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#979797] rounded-[50%] w-fit h-fit p-0.5' onClick={CancelWrite}>
+              <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#979797] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                 <FiX />
               </div>
             }

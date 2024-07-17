@@ -216,7 +216,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             </div>
 
             <div className='md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full bg-white z-50 py-3 px-2' style={styleShow} ref={closer}>
-                <div className='text-black flex flex-col relative mt-2'>
+                <div className='text-black flex flex-col relative mt-2 md:mt-0'>
                     <div className='flex justify-between items-center'>
                         <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>
                             <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
@@ -227,7 +227,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 <div className='rounded-full w-fit h-fit p-1 bg-[#b4b3b3] cursor-pointer md:text-[0.85rem] text-lg' onClick={() => { setMark(!mark); setSearchNoti(false) }}>
                                     <IoMdSettings />
                                 </div>
-                                {mark && <div className='md:w-36 w-40 h-fit py-1 px-2 flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-7 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
+                                {mark && <div className='md:w-36 w-40 h-fit py-1 px-2 flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-8 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
                                     <span>Mark all as read?</span>
                                     <IoMdCheckmarkCircleOutline className='text-[0.9rem]' />
                                 </div>}
@@ -237,10 +237,10 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                     <IoMdSearch />
                                 </div>
                                 {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
-                                    <div className='relative shantf2 rounded-md'>
-                                        <input className='outline-none px-2  rounded-md md:w-40 w-48 md:h-6 h-7 bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                                    <div className='relative'>
+                                        <input className='outline-none px-2 md:w-36 w-48 md:h-7 h-7 bg-[#f7f6f6] border border-zinc-500 rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
-                                            <div className='absolute top-1.5 right-2 text-[0.6rem] cursor-pointer bg-[#585858] rounded-full w-fit h-fit p-0.5 text-white' onClick={CancelWrite}>
+                                            <div className='absolute top-1.5 right-1 text-sm cursor-pointer text-black' onClick={CancelWrite}>
                                                 <FiX />
                                             </div>
                                         }

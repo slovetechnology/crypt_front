@@ -153,7 +153,7 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
             </div>
 
             <div className='md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-[silver] bg-white z-50 py-3 px-2 text-black' style={styleShow} ref={closer}>
-                <div className='flex justify-between items-center mt-2'>
+                <div className='flex justify-between items-center mt-2 md:mt-0'>
                     <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>
                         <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
                         <div>notifications</div>
@@ -163,10 +163,10 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                             <IoMdSearch/>
                         </div>
                         {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
-                            <div className='relative shantf2 rounded-md'>
-                                <input className='outline-none px-2 md:w-40 w-48 md:h-6 h-7 rounded-md bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                            <div className='relative'>
+                                <input className='outline-none px-2 md:w-36 w-48 md:h-6 h-7 shantf2 rounded-md bg-white md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                 {write &&
-                                    <div className='absolute top-1.5 right-2 text-[0.6rem] cursor-pointer bg-[#585858] rounded-full w-fit h-fit p-0.5 text-white' onClick={CancelWrite}>
+                                    <div className='absolute top-1.5 right-1 text-sm cursor-pointer text-black' onClick={CancelWrite}>
                                         <FiX />
                                     </div>
                                 }

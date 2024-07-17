@@ -86,7 +86,7 @@ const Header = () => {
                                         <TfiAngleDown className={`mt-[0.55rem] text-[0.5rem] text-[#1E2833] ${toggleDrop ? ' rotate-180' : 'rotate-0'} trans`} />
                                     </div>
                                 </div>
-                                <div className=' bg-white p-[2rem] w-[40rem] h-fit absolute top-[4.2rem] left-[-10rem] shd' style={styleDrop} ref={closer}>
+                                <div className=' bg-white p-8 w-[40rem] h-fit absolute top-[4.2rem] left-[-10rem] shd' style={styleDrop} ref={closer}>
                                     <div className='grid grid-cols-2 gap-5 w-full'>
                                         <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] lnk' onClick={MoveToTop}>
                                             <div className=' flex flex-col gap-2'>
@@ -143,10 +143,10 @@ const Header = () => {
                     </div>
                     <div className='lg:flex gap-4 hidden'>
                         <Link to='/login' onClick={MoveToTop}>
-                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] border-2 text-[0.9rem] text-[white] font-medium rounded-lg border-orange hover:bg-orange hover:text-[white] flex items-center justify-center'>Sign In</button>
+                            <button className=' outline-0 w-fit h-fit py-1 px-6 border-2 text-[0.9rem] text-[white] font-medium rounded-lg border-orange hover:bg-orange hover:text-[white] flex items-center justify-center'>Sign In</button>
                         </Link>
                         <Link to='/signup' onClick={MoveToTop}>
-                            <button className=' outline-0 w-fit h-fit py-[0.25rem] px-[1.4rem] text-[0.9rem] text-[white] rounded-lg bg-orange hover:bg-[#1E2833] border-2 border-orange hover:border-orange font-medium flex items-center justify-center' >Sign Up</button>
+                            <button className=' outline-0 w-fit h-fit py-1 px-6 text-[0.9rem] text-[white] rounded-lg bg-orange hover:bg-[#1E2833] border-2 border-orange hover:border-orange font-medium flex items-center justify-center' >Sign Up</button>
                         </Link>
                     </div>
                     <div className='relative lg:hidden'>
