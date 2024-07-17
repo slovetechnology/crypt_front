@@ -214,24 +214,24 @@ const Profile = ({ setToggle, slideShow }) => {
                 </div>
                 <div className='text-light md:text-[0.8rem] text-xs text-center capitalize font-bold mt-2'>account trader</div>
                 <div className='mt-8 '>
-                    <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-semi-white rounded-xl capitalize shlz md:px-8 px-6 py-4 mx-auto'>
+                    <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-semi-white rounded-xl capitalize shlz md:px-8 px-4 py-4 mx-auto'>
                         <div className='flex items-center gap-5'>
                             <div className='flex flex-col gap-2'>
                                 <div className='md:text-[1.4rem] text-lg text-black '>Status</div>
                                 {user.email_verified === 'true' && <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
-                                    <span className='text-[#646464]'>verified</span>
+                                    <span className='text-zinc-700'>verified</span>
                                     <MdVerified className='text-light ' />
                                 </div>}
-                                {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs' onClick={() => setToggle('verify account')}>
-                                    <span className='text-[#e46b6b]'>unverified</span>
-                                    <MdSentimentVeryDissatisfied className='text-[#e46b6b]' />
+                                {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]' onClick={() => setToggle('verify account')}>
+                                    <span>unverified</span>
+                                    <MdSentimentVeryDissatisfied />
                                 </div>}
                             </div>
                             <div className='border-r-2 h-12 border-[#bebebe]'></div>
                             <div className='flex flex-col gap-2'>
                                 <div className='md:text-[1.4rem] text-lg text-black '>joined</div>
                                 <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
-                                    <span className='text-[#646464]'>{moment(user.createdAt).format('DD-MM-yyyy')}</span>
+                                    <span className='text-zinc-700'>{moment(user.createdAt).format('DD-MM-yyyy')}</span>
                                     <MdOutlineDateRange className='text-light' />
                                 </div>
                             </div>

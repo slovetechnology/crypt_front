@@ -151,7 +151,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                         {item.investment_status === 'confirmed' && <div>
                                             {item.profit_status === 'running' ? <div className='italic md:text-[0.8rem] text-xs text-[#6f6ff5]'>running</div>
                                                 :
-                                                <div className='italic md:text-[0.8rem] text-xs text-[#adad40] font-bold'>completed</div>
+                                                <div className='italic md:text-[0.8rem] text-xs text-[#adad40] '>completed</div>
                                             }
                                         </div>
                                         }

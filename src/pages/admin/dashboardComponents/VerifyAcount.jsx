@@ -14,7 +14,7 @@ const VerifyAcount = ({ setToggle, slideShow }) => {
     const [emailError, setEmailError] = useState('')
     const [code, setCode] = useState('')
     const [codeError, setCodeError] = useState('')
-    const [verifyScreen, setVerifyScreen] = useState(1)
+    const [verifyScreen, setVerifyScreen] = useState(2)
     const [loading, setLoading] = useState(false)
 
     const FindEmail = async (e) => {
@@ -76,38 +76,42 @@ const VerifyAcount = ({ setToggle, slideShow }) => {
 
     return (
         <div className='pt-10 h-screen'>
-            <div className='w-[95%] mx-auto'>
+            <div className='md:w-[95%] mx-auto'>
                 {loading && <LoadingAdmin />}
-                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-[#7665D5] hover:text-[grey] w-fit' onClick={() => setToggle('profile')}>
+                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => setToggle('profile')}>
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>
-                <div className='mt-[7rem]'>
+                <div className='mt-28'>
                     <div className='flex items-center  justify-center gap-1'>
-                        <div className='text-[2rem] text-[#e0dfdf] capitalize  font-bold'>verify your account</div>
-                        <MdVerified className='text-[#7665D5] text-[3rem]' />
+                        <div className='md:text-[2rem] text-xl text-semi-white capitalize  font-bold'>verify your account</div>
+                        <MdVerified className='text-light md:text-[3rem] text-3xl' />
                     </div>
                     {verifyScreen === 1 && <form onSubmit={FindEmail}>
-                        <div className='flex flex-col gap-[2.5rem] mt-[3rem] items-center justify-center'>
-                            <div className='flex flex-col gap-2 relative'>
-                                <div className='text-[0.85rem] capitalize text-[#e0dfdf]'> email address</div>
-                                <input className='outline-none rounded-[3px] w-[20rem] h-[2.4rem] bg-[#0E0B1C] pl-4 border border-[#7665D5] lg:text-[0.9rem] text-[#e0dfdf] ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
-                                <div className='text-xs  text-[#b84141] absolute bottom-[-1.4rem] left-0'>{emailError}</div>
+                        <div className='flex flex-col gap-10 mt-12 items-center justify-center'>
+                            <div className='flex flex-col gap-2'>
+                                <div className='text-[0.85rem] capitalize text-semi-white'> email address</div>
+                                <div className='relative'>
+                                    <input className='outline-none rounded-[3px] w-60 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
+                                    <div className='text-xs  text-[#a83333] absolute bottom-[-1.4rem] left-0'>{emailError}</div>
+                                </div>
                             </div>
-                            <div className='flex items-center  mt-[0.5rem]'>
-                                <button className='outline-none bg-[#7665D5] py-[0.5rem] px-[2rem] h-fit w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >find email</button>
+                            <div className='flex items-center  mt-2'>
+                                <button className='outline-none bg-light py-2 px-8 rounded-md capitalize text-xs md:text-[0.9rem] text-white cursor-pointer font-[550]' >find email</button>
                             </div>
                         </div>
                     </form>}
                     {verifyScreen === 2 && <form onSubmit={ValidateEmail}>
-                        <div className='flex flex-col gap-[2.5rem] mt-[3rem] items-center justify-center'>
-                            <div className='flex flex-col gap-4 relative items-center'>
-                                <div className='text-[0.85rem]  text-[#e0dfdf]'> A six digits verification code was sent to <span className='text-[#7665D5]'>{email?.slice(0, 3)}*****{email?.slice(-10)}</span>, copy and enter below</div>
-                                <input className='outline-none rounded-[3px] w-[20rem] h-[2.4rem] bg-[#0E0B1C] pl-4 border border-[#7665D5] lg:text-[0.9rem] text-[#e0dfdf] ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
-                                <div className='text-xs  text-[#b84141] absolute bottom-[-1.4rem] left-[5rem]'>{codeError}</div>
+                        <div className='flex flex-col gap-10 mt-12 items-center justify-center'>
+                            <div className='flex flex-col gap-4 items-center'>
+                                <div className='text-[0.85rem]  text-semi-white text-center'> A six digits verification code was sent to <span className='text-[#7665D5]'>{email?.slice(0, 3)}*****{email?.slice(-10)}</span>, copy and enter below</div>
+                                <div className='relative'>
+                                    <input className='outline-none rounded-[3px] w-60 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
+                                    <div className='text-xs  text-[#a83333] absolute bottom-[-1.4rem] left-0'>{codeError}</div>
+                                </div>
                             </div>
-                            <div className='flex items-center  mt-[0.5rem]'>
-                                <button className='outline-none bg-[#7665D5] py-[0.5rem] px-[2rem] h-fit w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' >verify email</button>
+                            <div className='flex items-center  mt-2'>
+                                <button className='outline-none bg-light py-2 px-8 h-fit w-fit rounded-md capitalize md:text-[0.9rem] text-xs text-white cursor-pointer font-[550]' >verify email</button>
                             </div>
                         </div>
                     </form>}
