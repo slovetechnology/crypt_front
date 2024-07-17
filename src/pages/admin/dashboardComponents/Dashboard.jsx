@@ -51,7 +51,6 @@ const Dashboard = () => {
     const [wallet, setWallet] = useAtom(WALLET)
     const [, setUps] = useAtom(UPS)
     const [urlState, setUrlState] = useState(false)
-    const [purchaseState, setPurchaseState] = useState(false)
     const [loading, setLoading] = useState(true)
     const [altnotis, setAltNotis] = useState([])
     const [pagelengthend, setPagelengthend] = useState(notifications.length / 4)
@@ -215,7 +214,7 @@ const Dashboard = () => {
                     <div className='flex flex-col gap-8 lg:mt-10 mt-8 pl-12'>
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
-                            <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'wallet' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                            <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'wallet' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('wallet'); setUrlState(false);  setSlideShow(false) }}>
                                 <IoWalletOutline className='text-[1.3rem] ' />
                                 <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>wallet</div>
                             </div>
@@ -223,15 +222,15 @@ const Dashboard = () => {
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>account</div>
                             <div className='flex flex-col gap-[2rem]'>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green]  items-center cursor-pointer w-fit lg:w-full ${toggle === 'my investment' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('my investment'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green]  items-center cursor-pointer w-fit lg:w-full ${toggle === 'my investment' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('my investment'); setUrlState(false);  setSlideShow(false) }}>
                                     <GrMoney className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>my investment</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full relative ${toggle === 'deposit' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full relative ${toggle === 'deposit' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('deposit'); setUrlState(false);  setSlideShow(false) }}>
                                     <MdPayment className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>deposit</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'withdrawal' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'withdrawal' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('withdrawal'); setUrlState(false);  setSlideShow(false) }}>
                                     <BiMoneyWithdraw className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>withdrawal</div>
                                 </div>
@@ -240,11 +239,11 @@ const Dashboard = () => {
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-[2rem]'>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'update profile' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('profile'); setUrlState(false);  setSlideShow(false) }}>
                                     <RiAccountPinCircleLine className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>profile</div>
                                 </div>
-                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'send feedback' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('send feedback'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === 'send feedback' ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} onClick={() => { setToggle('send feedback'); setUrlState(false);  setSlideShow(false) }}>
                                     <LuSend className='text-[1.3rem] ' />
                                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>send feedback</div>
                                 </div>
@@ -277,7 +276,7 @@ const Dashboard = () => {
                     <div className='flex flex-col gap-4'>
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-[#584f81] text-[0.85rem] flex items-center justify-between mt-4'>
                             <div className='flex gap-2 items-center'>
-                                <div className='xl:hidden cursor-pointer' onClick={() => { setToggle('profile'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                                <div className='xl:hidden cursor-pointer' onClick={() => { setToggle('profile'); setUrlState(false);  setSlideShow(false) }}>
                                     <img src={`${imageurl}/profiles/${user.image}`} className='w-10 h-10 object-cover rounded-full border border-light'></img>
                                 </div>
                                 <div className='capitalize font-bold'>
@@ -320,18 +319,16 @@ const Dashboard = () => {
                                 <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
                                 <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
                             </div>
-                            <div className='mt-12 h-[4rem] w-[25rem] bg-slate-300 animate-pulse rounded-sm'></div>
+                            <div className='mt-12 h-16 w-[25rem] bg-slate-300 animate-pulse rounded-sm'></div>
                         </div>
                         :
                         <>
                             <div>
                                 {toggle === 'wallet' && <Wallet
                                     setToggle={setToggle}
-                                    setPurchaseState={setPurchaseState}
                                 />}
                                 {toggle === 'profile' && <Profile
                                     setToggle={setToggle}
-                                    slideShow={slideShow}
                                 />}
                                 {toggle === 'my investment' && <Investment
                                     setToggle={setToggle}
@@ -351,7 +348,6 @@ const Dashboard = () => {
                                     refetchUnreadNotis={() => FetchUnreadNotis()}
                                     refetchWallet={() => FetchWallet()}
                                     urlState={urlState}
-                                    purchaseState={purchaseState}
                                 />}
                                 {toggle === 'withdrawal' && <Withdraw
                                     setToggle={setToggle}
@@ -364,7 +360,6 @@ const Dashboard = () => {
                                 {toggle === 'send feedback' && <Feedback />}
                                 {toggle === 'verify account' && <VerifyAcount
                                     setToggle={setToggle}
-                                    slideShow={slideShow}
                                 />}
                             </div>
                         </>
@@ -372,19 +367,19 @@ const Dashboard = () => {
                 </div>
                 <div className='bg-[#131024] w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
                     <div className='grid grid-cols-5 items-center h-full w-full'>
-                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'wallet' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('wallet'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'wallet' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('wallet'); setUrlState(false);  setSlideShow(false) }}>
                             <IoWalletOutline className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>wallet</div>
                         </div>
-                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'my investment' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('my investment'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'my investment' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('my investment'); setUrlState(false);  setSlideShow(false) }}>
                             <GrMoney className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>investment</div>
                         </div>
-                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'deposit' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('deposit'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'deposit' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('deposit'); setUrlState(false);  setSlideShow(false) }}>
                             <MdPayment className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>deposit</div>
                         </div>
-                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'withdrawal' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('withdrawal'); setUrlState(false); setPurchaseState(false); setSlideShow(false) }}>
+                        <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'withdrawal' ? 'text-light' : ' text-semi-white'}`} onClick={() => { setToggle('withdrawal'); setUrlState(false);  setSlideShow(false) }}>
                             <BiMoneyWithdraw className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>withdrawal</div>
                         </div>

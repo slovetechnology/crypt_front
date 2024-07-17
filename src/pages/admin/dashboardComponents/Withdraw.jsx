@@ -195,7 +195,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                     <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                 </div>
                             </div>
-                            <div className={`w-fit h-fit rounded-[5px] flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-admin-btn ${limitError ? 'border border-[red]' : ''}`}>
+                            <div className={`w-fit h-fit rounded-[5px] flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-[#252525] ${limitError ? 'border border-[red]' : ''}`}>
                                 <div className='flex  justify-center items-center gap-1'>
                                     <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
                                     <img src={wthwallet} className='md:h-6 h-3 w-auto'></img>
@@ -209,7 +209,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         <div className='h-fit w-fit rounded-[0.2rem] bg-white mt-10 p-1'>
                             <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-2 py-1  bg-white shantf rounded-[0.2rem] text-black  ${selectError && 'border border-[red]'} trans`}>
                                 <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
-                                    <div className='flex justify-between items-center capitalize text-[0.8rem]  font-bold'>
+                                    <div className='flex justify-between items-center capitalize text-[0.8rem]  font-[550]'>
                                         <span >choose cryptocurrency</span>
                                         {!selectState && <FaAngleDown className='text-[0.7rem]' />}
                                         {selectState && <FaAngleUp className='text-[0.7rem]' />}
@@ -236,7 +236,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                 <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
                                 <div className='text-admin-btn text-[0.8rem]'>I confirm; I provide my correct wallet address</div>
                             </div>
-                            <button className='outline-none w-fit h-fit py-[0.5rem] px-8 md:text-base text-sm text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
+                            <button className='outline-none w-fit h-fit py-2 px-8 md:text-base text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
                                 <span>make withdrawal</span>
                                 <IoCheckbox />
                             </button>

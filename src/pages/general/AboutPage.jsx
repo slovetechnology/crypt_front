@@ -73,7 +73,7 @@ const AboutPage = () => {
             <div className='col-span-1'>
               <div className='text-[0.8rem] text-orange '>Who doesn't like easy?</div>
               <div className='text-3xl lg:text-[2.5rem] capitalize lg:w-[75%] lg:leading-[3.3rem] font-[800] text-white'>privately own crypto trading set-up</div>
-              <div className='lg:w-[75%] pt-6 text-ground'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit accusamus, tenetur magni minus earum nihil neque, repellendus ullam aliquam alias pariatur aspernatur quam reiciendis debitis quibusdam similique molestias.</div>
+              <div className='lg:w-[75%] pt-6 text-ground md:text-base text-[0.9rem]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit accusamus, tenetur magni minus earum nihil neque, repellendus ullam aliquam alias pariatur aspernatur quam reiciendis debitis quibusdam similique molestias.</div>
               <div className='flex gap-4 mt-[1.5rem]'>
                 <Link to='/signup' onClick={MoveToTop}>
                   <button className={`outline-0 w-fit h-fit py-2 px-4 text-sm text-white rounded-md bg-orange border-2 border-orange capitalize  flex gap-1 items-center font-[550] hover:translate-y-[-1px] trans`}>

@@ -10,7 +10,7 @@ import bonus3d from '../../../assets/images/bonus3d.png'
 import tradingPic from '../../../assets/images/tradingpic.png'
 
 
-const Home = ({ setToggle, setPurchaseState }) => {
+const Home = ({ setToggle }) => {
 
     const [wallet] = useAtom(WALLET)
     const [investments] = useAtom(INVESTMENTUNCLAIM)
@@ -126,7 +126,7 @@ const Home = ({ setToggle, setPurchaseState }) => {
                             <div className='text-[green] text-[0.85rem] font-bold'>60%</div>
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <button className='outline-none px-4 md:py-1 py-1.5 bg-[#130e27] w-fit h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => { setToggle('deposit'); setPurchaseState(true) }}>purchase</button>
+                            <button className='outline-none px-4 md:py-1 py-1.5 bg-[#130e27] w-fit h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => { setToggle('deposit') }}>purchase</button>
                             <button className='outline-none px-[1.125rem] md:py-1 py-1.5 bg-[#130e27] w-fit h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => setToggle('deposit')}>upgrade</button>
                         </div>
                     </div>
