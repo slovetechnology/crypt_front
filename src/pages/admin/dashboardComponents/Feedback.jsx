@@ -8,10 +8,27 @@ import { Apis, UserPostApi } from '../../../services/API'
 import { Alert } from '../../../utils/utils'
 import contact from '../../../assets/images/contactus.png'
 
+// import australia from '../../../assets/images/austrialia.jpg'
+// import spanish from '../../../assets/images/spanish.jfif'
+// import bg from '../../../assets/images/l-man.jpg'
+// import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
+
 const Feedback = () => {
-    const [user, setUser] = useAtom(PROFILE)
+    const [user] = useAtom(PROFILE)
     const [messageError, setMessageError] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    // let index = 0
+    // const MoveImages = () => {
+    //     let ImageDiv = document.querySelector('.imageDiv')
+    //     if (index < 200) {
+    //         index+= 100
+    //     } else {
+    //         index=0
+    //     }
+    //     ImageDiv.style.transform = `translateX(-${index}%)`
+    //     ImageDiv.style.transition = 'all 0.6s ease-in-out'
+    // }
 
 
     const [form, setForm] = useState({
@@ -41,7 +58,8 @@ const Feedback = () => {
             if (response.status === 200) {
                 Alert('Request Succcessful', response.msg, 'success')
                 setForm({
-                    message: ''                })
+                    message: ''
+                })
             } else {
                 return Alert('Request Failed', response.msg, 'error')
             }
@@ -52,17 +70,19 @@ const Feedback = () => {
         }
     }
 
+
+
     document.documentElement.style.overflow = loading === true ? 'hidden' : 'auto'
 
     return (
-        <div className='h-screen py-10 relative'>
+        <div className='h-fit py-10 relative'>
             <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>send feedback</div>
             {loading && <LoadingAdmin />}
             <div className='md:w-[75%] w-11/12 mx-auto flex flex-col gap-12 mt-16'>
                 <div>
                     <div className='flex items-center justify-center'>
-                    <div className='md:text-[2rem] text-2xl capitalize font-bold text-[#a09f9f] '>get in touch</div>
-                    <img src={contact} className='md:h-16 h-10 w-auto'></img>
+                        <div className='md:text-[2rem] text-2xl capitalize font-bold text-[#a09f9f] '>get in touch</div>
+                        <img src={contact} className='md:h-16 h-10 w-auto'></img>
                     </div>
                     <div className='md:text-[0.85rem] text-xs capitalize font-bold text-[#a09f9f] flex items-center justify-center gap-1 pt-2'>
                         <span>-</span>
@@ -87,6 +107,18 @@ const Feedback = () => {
                         </div>
                     </div>
                 </form>
+                {/* <div className='flex flex-col gap-4'>
+                    <div className='w-3/4 h-[40vh] mx-auto border-2 border-orange rounded-md'>
+                        <div className='w-full h-full overflow-hidden'>
+                            <div className='flex imageDiv'>
+                                <img src={spanish} className='w-[100%] h-full'></img>
+                                <img src={australia} className='w-[100%] h-full'></img>
+                                <img src={bg} className='w-[100%] h-full object-cover'></img>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='w-fit ml-auto py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer text-semi-white' onClick={MoveImages}><FaAngleRight /></div>
+                </div> */}
             </div>
         </div>
     )

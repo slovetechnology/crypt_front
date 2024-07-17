@@ -35,8 +35,7 @@ body {
 }
 
 .scrollsdown::-webkit-scrollbar {
-  height: 4px;
-  background-color: grey;
+  height: 0px;
 }
 
 /*loading component css */

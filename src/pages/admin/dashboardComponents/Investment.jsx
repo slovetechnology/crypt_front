@@ -104,9 +104,9 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
 
 
     return (
-        <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'h-screen'} z-10 `}>
+        <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 2 ? 'h-fit' : 'lg:h-screen h-fit'} z-10 `}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{investtitle}</div>
+                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white'>{investtitle}</div>
                 {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
                     <span>history</span>
                     <RiHistoryFill />
@@ -291,7 +291,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>
-                    {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-[#7665D5] '>
+                    {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#7665D5] '>
                         {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
                         {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
                         {end < investment.length && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}

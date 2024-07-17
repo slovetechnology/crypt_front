@@ -95,14 +95,14 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
     document.documentElement.style.overflow = modal === true ? 'hidden' : 'auto'
 
     return (
-        <div className=''>
+        <div className='h-screen'>
             {modal && <WithdrawalsModal closeView={() => setModal(false)} singleWithdrawal={singleWithdrawal} refetchAllWithdrawals={refetchAllWithdrawals} setStart={setStart} setEnd={setEnd} setPagelengthstart={setPagelengthstart} setPagelengthend={setPagelengthend} setSearch={setSearch} setWrite={setWrite} setAllWithdrawals={setAllWithdrawals} />}
 
-            <div className='uppercase font-bold text-[1.5rem] text-[black] pt-[2.5rem]'>withdrawals</div>
-            <div className='mt-8'>
+            <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>withdrawals</div>
+            <div className='mt-8 md:mt-6 lg:mt-8'>
                 <div className='relative w-fit mx-auto'>
-                    <input className='border border-[grey] bg-transparent w-[20rem] h-[2.5rem] outline-none pl-4 text-[0.9rem] rounded-[12rem] text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-                    <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
+                    <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 text-[0.9rem] rounded-[12rem] text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
+                    <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
                         <IoIosSearch />
                         {write &&
                             <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#979797] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
@@ -114,7 +114,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                 <div className='relative overflow-x-auto shadow-xl rounded-lg mt-[1rem] scrollsdown'>
                     <table className='w-full '>
                         <thead >
-                            <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-[white]'>
+                            <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-white'>
                                 <td className='text-center truncate  capitalize p-2 '>date</td>
                                 <td className='text-center truncate  capitalize p-2 '>username</td>
                                 <td className='text-center truncate  capitalize p-2 '>email</td>
@@ -125,7 +125,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                         </thead>
                         <tbody className=''>
                             {allWithdrawals.slice(start, end).map((item, i) => (
-                                <tr className='text-[0.8rem]  text-[black] font-[550] bg-[white] even:bg-[#e2e0e0]' key={i}>
+                                <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-[#e2e0e0]' key={i}>
                                     <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                     <td className='p-4  text-center truncate'>{item.wthuser.username}</td>
                                     <td className='p-4  text-center truncate'>{item.wthuser.email}</td>
@@ -137,7 +137,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                         </tbody>
                     </table>
                 </div>
-                {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-[#462c7c] '>
+                {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#462c7c] '>
                     {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#462c7c] hover:bg-[#462c7c] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
                     {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
                     {end < allWithdrawals.length && <div className='py-1 px-2 rounded-md border border-[#462c7c] hover:bg-[#462c7c] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}

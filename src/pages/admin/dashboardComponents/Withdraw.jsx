@@ -296,7 +296,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>
-                    {fromAtom.length > 0 && <div className='flex gap-2 items-center md:text-xs mt-4 justify-end text-light '>
+                    {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
                         {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
                         {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
                         {end < allwithdrawals.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}

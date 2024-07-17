@@ -286,7 +286,7 @@ const Dashboard = () => {
                             {loading ?
                                 <div className='relative animate-pulse'>
                                     <div className='rounded-full bg-slate-300 w-[2.2rem] h-[2.2rem]'></div>
-                                    <div className='rounded-full w-[1.25rem] h-[1.2rem] absolute top-[-0.5rem] right-[-0.3rem] bg-slate-300 border'></div>
+                                    <div className='rounded-full w-[1.25rem] h-[1.2rem] absolute -top-2 right-[-0.3rem] bg-slate-300 border'></div>
                                 </div>
                                 :
                                 <div>

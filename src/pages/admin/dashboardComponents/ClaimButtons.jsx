@@ -11,7 +11,7 @@ const ClaimButtons = ({ item, refetchWallet, refetchNotifications, refetchInvest
     const [loading, setLoading] = useState(false)
 
     const ClaimingInvestment = async () => {
-        
+
         setTimeout(() => {
             refetchInvestmentsUnclaim()
             setClaim(false)
@@ -55,8 +55,8 @@ const ClaimButtons = ({ item, refetchWallet, refetchNotifications, refetchInvest
 
 
     return (
-        <div className='relative w-fit h-fit'>
-            <button className='outline-none w-fit h-fit py-2 px-6 text-xs font-[550] text-semi-white  bg-[#241a49]  hover:bg-[#17112e] rounded-full flex items-center gap-1' onClick={ClaimingInvestment} onMouseOver={() => setSingleInvest(item)} onMouseOut={() => setSingleInvest({})}>
+        <div className='relative md:w-fit md:h-fit mx-auto md:mx-0'>
+            <button className='outline-none py-2 px-6 text-xs font-medium text-semi-white bg-[#241a49]  hover:bg-[#17112e] rounded-full flex items-center gap-1' onClick={ClaimingInvestment} onMouseOver={() => setSingleInvest(item)} onMouseOut={() => setSingleInvest({})}>
                 <span>{claim ? 'Claimed!' : 'Claim to wallet'}</span>
                 {!claim ?
                     <div>
@@ -68,7 +68,7 @@ const ClaimButtons = ({ item, refetchWallet, refetchNotifications, refetchInvest
                     </div>
                 }
             </button>
-            <div className='absolute bottom-[-1.5rem] left-0 text-[#a83333] text-xs flex items-center gap-1'><div>{claimError}</div>
+            <div className='absolute -bottom-6 left-0 text-[#a83333] text-xs flex items-center gap-1'><div>{claimError}</div>
                 {claimError !== '' && <MdError />}
             </div>
             {loading && <div className="w-full h-full absolute left-0 top-0 flex items-center justify-center bg-[#0c091aa4] z-20">
