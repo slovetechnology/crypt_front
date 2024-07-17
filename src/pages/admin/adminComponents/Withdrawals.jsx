@@ -123,7 +123,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
                             </tr>
                         </thead>
-                        <tbody className=''>
+                        {fromAtom.length > 0 &&<tbody className=''>
                             {allWithdrawals.slice(start, end).map((item, i) => (
                                 <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-[#e2e0e0]' key={i}>
                                     <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -134,7 +134,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                                     <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleWithdrawalFunction(item) }}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
                                 </tr>
                             ))}
-                        </tbody>
+                        </tbody>}
                     </table>
                 </div>
                 {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#462c7c] '>

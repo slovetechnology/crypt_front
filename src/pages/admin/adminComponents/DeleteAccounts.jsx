@@ -133,14 +133,14 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
           <div className='text-[1.2rem] text-[white] absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2' >
             <IoIosSearch />
             {write &&
-              <div className='absolute top-[1.2rem] right-[3rem] text-[0.75rem] cursor-pointer bg-[#979797] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
+              <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-[#979797] rounded-[50%] w-[1rem] h-[1rem] flex items-center justify-center' onClick={CancelWrite}>
                 <FiX />
               </div>
             }
           </div>
         </div>
 
-        <div className='relative overflow-x-auto shadow-xl rounded-lg mt-[1rem] scrollsdown'>
+        <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
           <table className='w-full'>
             <thead >
               <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-[white]'>
@@ -152,18 +152,18 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
               </tr>
             </thead>
-            <tbody>
+            {fromAtom.length > 0 &&<tbody>
               {allusers.slice(start, end).map((item, i) => (
                 <tr className='text-[0.8rem] font-[550]  text-black bg-[white] even:bg-[#e2e0e0] ' key={i}>
                   <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                   <td className='p-4  text-center truncate'>{item.full_name}</td>
                   <td className='p-4  text-center truncate'>{item.username}</td>
                   <td className='p-4  text-center truncate'>{item.email}</td>
-                  <td className='p-4  text-center truncate'><img src={item.country_flag} className='w-[1rem] h-auto mx-auto'></img></td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserTotalInvestment}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
+                  <td className='p-4  text-center truncate'><img src={item.country_flag} className='w-4 h-auto mx-auto'></img></td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserTotalInvestment}> <BsThreeDots className="mx-auto text-base" /></td>
                 </tr>
               ))}
-            </tbody>
+            </tbody>}
           </table>
         </div>
         {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#462c7c] '>

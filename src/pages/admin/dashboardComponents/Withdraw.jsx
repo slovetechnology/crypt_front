@@ -202,7 +202,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                 </div>
                                 <div className='flex items-center justify-center'>
                                     <BiDollar className='md:text-base text-sm' />
-                                    <div>{userwallet.balance}</div>
+                                    <div>{userwallet.balance.toLocaleString()}</div>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +282,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                     <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount}</span></td>
+                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
                                         <td className='p-4  text-center truncate'>{item.crypto}</td>
                                         <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
                                         <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}   ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
