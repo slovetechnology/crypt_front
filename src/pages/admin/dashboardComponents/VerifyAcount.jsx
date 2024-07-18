@@ -7,7 +7,7 @@ import { Alert } from '../../../utils/utils';
 import { PROFILE } from '../../../store';
 import { useAtom } from 'jotai';
 
-const VerifyAcount = ({ setToggle, slideShow }) => {
+const VerifyAcount = ({ setToggle, setToggleExtra }) => {
     const [user, setUser] = useAtom(PROFILE)
 
     const [email, setEmail] = useState('')
@@ -78,7 +78,7 @@ const VerifyAcount = ({ setToggle, slideShow }) => {
         <div className='pt-10 h-screen'>
             <div className='md:w-[95%] mx-auto'>
                 {loading && <LoadingAdmin />}
-                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => setToggle('profile')}>
+                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => {setToggle('profile'); setToggleExtra('')}}>
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>

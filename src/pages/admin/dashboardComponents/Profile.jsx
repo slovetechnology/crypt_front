@@ -19,7 +19,7 @@ import LoadingAdmin from '../../../PageComponents/LoadingAdmin';
 import membership from '../../../assets/images/membership.png'
 
 
-const Profile = ({ setToggle, slideShow }) => {
+const Profile = ({ setToggleExtra}) => {
     const [user, setUser] = useAtom(PROFILE)
 
     const [nameEdit, setNameEdit] = useState(false)
@@ -217,12 +217,12 @@ const Profile = ({ setToggle, slideShow }) => {
                     <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-semi-white rounded-xl capitalize shlz md:px-8 px-4 py-4 mx-auto'>
                         <div className='flex items-center gap-5'>
                             <div className='flex flex-col gap-2'>
-                                <div className='md:text-[1.4rem] text-lg text-black '>Status</div>
+                                <div className='md:text-[1.4rem] text-lg text-black cursor-pointer' onClick={() => setToggleExtra('verify account')}>Status</div>
                                 {user.email_verified === 'true' && <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
                                     <span className='text-zinc-700'>verified</span>
                                     <MdVerified className='text-light ' />
                                 </div>}
-                                {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]' onClick={() => setToggle('verify account')}>
+                                {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]' onClick={() => setToggleExtra('verify account')}>
                                     <span>unverified</span>
                                     <MdSentimentVeryDissatisfied />
                                 </div>}
