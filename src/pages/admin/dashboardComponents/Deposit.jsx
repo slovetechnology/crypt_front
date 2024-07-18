@@ -316,7 +316,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                         <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                     </div>
                                     <div className={`h-fit w-fit text-nowrap py-2 md:px-4 px-2 ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-[0.25rem]`}>
-                                        <div className='text-xs italic'>wallet balance:</div>
+                                        <div className='text-xs italic text-center'>wallet balance:</div>
                                         {Object.values(userwallet).length !== 0 &&<div> ${userwallet.balance.toLocaleString()}</div>}
                                     </div>
                                 </div>
