@@ -246,7 +246,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
 
 
     return (
-        <div className={`pt-10 pb-20 lg:pb-10 ${screen === 2 ? 'h-screen' : 'h-fit'} `}>
+        <div className={`pt-10 pb-24 lg:pb-10 ${screen === 2 ? 'h-screen' : 'h-fit'} `}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{deposit}</div>
                 {screen === 1 &&
@@ -315,9 +315,9 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                         <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-5 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
                                         <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                     </div>
-                                    <div className={`h-fit w-fit text-nowrap py-2 px-4 ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.9rem] rounded-[0.25rem]`}>
+                                    <div className={`h-fit w-fit text-nowrap py-2 md:px-4 px-2 ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-[0.25rem]`}>
                                         <div className='text-xs italic'>wallet balance:</div>
-                                        <div> ${userwallet.balance}</div>
+                                        {Object.values(userwallet).length !== 0 &&<div> ${userwallet.balance.toLocaleString()}</div>}
                                     </div>
                                 </div>
                                 <div className='flex flex-col gap-2 text-xs text-admin-btn'>

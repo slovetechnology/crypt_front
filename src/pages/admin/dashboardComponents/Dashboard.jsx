@@ -285,8 +285,8 @@ const Dashboard = () => {
                             </div>
                             {loading ?
                                 <div className='relative animate-pulse'>
-                                    <div className='rounded-full bg-slate-300 w-[2.2rem] h-[2.2rem]'></div>
-                                    <div className='rounded-full w-[1.25rem] h-[1.2rem] absolute -top-2 right-[-0.3rem] bg-slate-300 border'></div>
+                                    <div className='rounded-full bg-slate-300 w-9 h-9'></div>
+                                    <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 bg-slate-300 border'></div>
                                 </div>
                                 :
                                 <div>
@@ -309,17 +309,17 @@ const Dashboard = () => {
                         </div>
                     </div>
                     {loading ?
-                        <div className='py-10 h-fit z-10'>
-                            <div className='font-bold text-[1.5rem] text-[grey] '>please wait...</div>
-                            <div className='flex flex-wrap gap-4 mt-[2rem] items-center justify-center animate-pulse'>
-                                <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
-                                <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
-                                <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
-                                <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
-                                <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
-                                <div className='w-[15.5rem] h-[10rem] rounded-[10px] bg-slate-300 '></div>
+                        <div className='pt-10 lg:pb-10 pb-20 h-fit z-10'>
+                            <div className='font-bold md:text-2xl text-lg text-[grey] '>please wait...</div>
+                            <div className='flex flex-wrap gap-4 mt-8 items-center justify-center animate-pulse'>
+                                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] bg-slate-300 '></div>
+                                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] bg-slate-300 '></div>
+                                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] bg-slate-300 '></div>
+                                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] bg-slate-300 '></div>
+                                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] bg-slate-300 '></div>
+                                <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] bg-slate-300 '></div>
                             </div>
-                            <div className='mt-12 h-16 w-[25rem] bg-slate-300 animate-pulse rounded-sm'></div>
+                            <div className='mt-12 h-16 md:w-96 w-3/4 bg-slate-300 animate-pulse rounded-sm'></div>
                         </div>
                         :
                         <>

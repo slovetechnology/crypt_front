@@ -166,7 +166,7 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                             <div className='relative text-black'>
                                 <input className='outline-none pl-2 pr-5 md:w-36 w-48 md:h-7 h-8 bg-[#e9e8e8] border border-zinc-500 rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                 {write &&
-                                    <div className='absolute md:top-1.5 top-2 right-1.5 text-sm cursor-pointer' onClick={CancelWrite}>
+                                    <div className='absolute md:top-1.5 top-2 right-1.5 text-sm cursor-pointer text-[#462c7c]' onClick={CancelWrite}>
                                         <FiX />
                                     </div>
                                 }
@@ -199,7 +199,7 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                 }
                 {notifications.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end'>
                     {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-500 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
-                    {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
+                    {Math.ceil(pageend) > 1 && <div className='font-bold md:text-zinc-600 text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
                     {end < altnotis.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-500 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
                 </div>}
             </div>

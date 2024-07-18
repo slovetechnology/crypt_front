@@ -132,10 +132,10 @@ const AdminHome = () => {
 
   return (
     <div className='w-full flex relative'>
-      <div className={`xl:w-[20%] lg:w-[25%] hidden bg-[#36225e] lg:block lg:relative overflow-hidden`}>
+      <div className={`xl:w-[20%] lg:w-[25%] hidden bg-[#36225e] lg:block relative overflow-hidden`}>
         <div className={`xl:w-[20%] lg:w-[25%] fixed top-0 left-0 h-screen`}>
-          <div className='flex justify-center mt-[3.5rem] items-center'>
-            <img src={logo} className='w-[3rem] h-auto'></img>
+          <div className='flex justify-center mt-14 items-center'>
+            <img src={logo} className='w-12 h-auto'></img>
             <div className=' capitalize font-[550] text-sha text-[1.3rem]'>AialgoControls</div>
           </div>
           <div className='flex flex-col gap-8  mt-10 pl-12 text-[#bbb9b9] '>
@@ -192,8 +192,8 @@ const AdminHome = () => {
               </div>
               {loading ?
                 <div className='relative animate-pulse'>
-                  <div className='rounded-full bg-slate-300 w-[2.2rem] h-[2.2rem]'></div>
-                  <div className='rounded-full w-[1.25rem] h-[1.2rem] absolute -top-2 right-[-0.3rem] bg-slate-300 border'></div>
+                  <div className='rounded-full bg-slate-300 w-9 h-9'></div>
+                  <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 bg-slate-300 border'></div>
                 </div>
                 :
                 <div>
@@ -207,10 +207,10 @@ const AdminHome = () => {
             </div>
           </div>
           {loading &&
-            <div className='flex flex-col gap-10'>
-              <div className='font-bold text-2xl text-[#c0bfbf] pt-10'>please wait...</div>
-              <div className=" animate-pulse h-40 pt-2">
-                <div className="w-80 mb-1 h-[2rem] bg-slate-300 mx-auto"></div>
+            <div className='flex flex-col gap-10 pt-10 h-screen'>
+              <div className='font-bold md:text-2xl text-lg text-[#c0bfbf]'>please wait...</div>
+              <div className=" animate-pulse h-40">
+                <div className="w-1/2 mb-1 h-8 bg-slate-300 mx-auto"></div>
                 <div className="w-full mb-1 h-8 bg-slate-300"></div>
                 <div className="w-full h-60 mb-3 bg-slate-300"></div>
               </div>
