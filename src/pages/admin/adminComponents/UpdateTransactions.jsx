@@ -100,11 +100,11 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
       <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>update transactions</div>
       <div className='mt-8 md:mt-6 lg:mt-8'>
         <div className='relative w-fit mx-auto'>
-          <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none px-4 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
+          <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
           <div className='text-[1.2rem] text-[white] absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
             <IoIosSearch />
             {write &&
-              <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#979797] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
+              <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-zinc-400 rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                 <FiX />
               </div>
             }

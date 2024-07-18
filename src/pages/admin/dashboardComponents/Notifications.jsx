@@ -237,10 +237,10 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                     <IoMdSearch />
                                 </div>
                                 {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
-                                    <div className='relative'>
-                                        <input className='outline-none px-2 md:w-36 w-48 md:h-6 h-7 bg-white shantf2 rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
+                                    <div className='relative text-black'>
+                                        <input className='outline-none pl-2 pr-5 md:w-36 w-48 md:h-7 h-8 bg-[#e9e8e8] border border-zinc-500  rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
-                                            <div className='absolute top-1.5 right-1.5 text-sm cursor-pointer text-black' onClick={CancelWrite}>
+                                            <div className='absolute top-1.5 right-1.5 text-sm cursor-pointer' onClick={CancelWrite}>
                                                 <FiX />
                                             </div>
                                         }
