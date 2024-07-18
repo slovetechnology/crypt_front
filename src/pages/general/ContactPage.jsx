@@ -76,6 +76,14 @@ const ContactPage = () => {
     }
   }
 
+  const Writefunction = () => {
+    if(code){
+      setWrite(true)
+    }else{
+      setWrite(false)
+    }
+  }
+
   const tradersCodeSearch = () => {
     setTimeout(() => {
       setCodeError('')
@@ -86,6 +94,7 @@ const ContactPage = () => {
     setTrader(codeSearch)
     setShow(3)
     setCode('')
+    setWrite(false)
   }
 
 
@@ -98,7 +107,7 @@ const ContactPage = () => {
               <div className='col-span-1 lg:h-full h-[20vh] w-full'>
                 <img src={contactimg} className='lg:h-[70vh] h-[20vh] w-full object-cover'></img>
               </div>
-              <div className='col-span-1 lg:h-full h-fit bg-[#faf9f9] py-[1.5rem] overflow-hidden relative'>
+              <div className='col-span-1 lg:h-full h-fit bg-[#faf9f9] py-6 overflow-hidden relative'>
                 {loading && <Loading />}
                 <div className='lg:w-10/12 w-11/12 mx-auto'>
                   <div className='text-[2rem] capitalize text-center font-bold text-[#636262] '>get in touch</div>
@@ -165,7 +174,7 @@ const ContactPage = () => {
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border rounded-md border-[#a0a0a0] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 pl-2 pr-8 text-white' type='text' value={code} onChange={e => {setCode(e.target.value); setWrite(true)}}></input>
+                      <input className='outline-none border rounded-md border-[#a0a0a0] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 pl-2 pr-8 text-white' type='text' value={code} onChange={e => setCode(e.target.value)} onKeyUp={Writefunction}></input>
                       {write &&
                         <div className='absolute top-2 right-2 text-xs cursor-pointer bg-[#ffffff6e] text-[#444343] rounded-full w-fit h-fit p-0.5' onClick={() => {setCode(''); setWrite(false)}}>
                           <FiX />

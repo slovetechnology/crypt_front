@@ -21,7 +21,7 @@ const PrivacyPage = () => {
 
                                 </div>
                                 <div>We adhere to the standards outlined in this Privacy Policy, ensuring we collect and process personal information lawfully, fairly, transparently, and with legitimate, legal reasons for doing so.</div>
-                                <div className='flex flex-col gap-2 pt-[1rem] text-[#494949]'>
+                                <div className='flex flex-col gap-2 pt-4 text-[#494949]'>
                                     <div className='font-bold'>The purpose of this Privacy Policy is to inform you of:</div>
                                     <div className='flex flex-col gap-2'>
                                         <div>1. Interpretation and Definitions</div>
@@ -37,7 +37,7 @@ const PrivacyPage = () => {
                                 <div className='text-[#494949]'> <span className='font-bold capitalize'>definitions</span> for the purposes of this Privacy Policy:</div>
                                 <div className='w-[85%] mx-auto text-[#494949]'>
                                     <div className='flex flex-col gap-4'>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -45,7 +45,7 @@ const PrivacyPage = () => {
                                                 <div><span className='font-bold capitalize'>account:</span> means an account registered by the User on the Platform. </div>
                                             </div>
                                         </div>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -53,7 +53,7 @@ const PrivacyPage = () => {
                                                 <div><span className='font-bold capitalize'>personal information (personal data):</span> any information which identifies you personally or which may help us to identify you (e.g. your name, e-mail address, residence, trades etc.).</div>
                                             </div>
                                         </div>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -61,7 +61,7 @@ const PrivacyPage = () => {
                                                 <div><span className='font-bold capitalize'>Data Subject:</span>  an identified or identifiable person (User/you/customer).</div>
                                             </div>
                                         </div>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -69,7 +69,7 @@ const PrivacyPage = () => {
                                                 <div><span className='font-bold capitalize'>data controller:</span> for the purposes of applicable laws, controller means the natural or legal person, public authority, agency, or other body which, alone or jointly with others, determines the purposes and means of the processing of personal data.</div>
                                             </div>
                                         </div>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -77,7 +77,7 @@ const PrivacyPage = () => {
                                                 <div><span className='font-bold capitalize'>data processor:</span> a company which processes personal data on behalf and upon instructions of the Data Controller.</div>
                                             </div>
                                         </div>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -85,7 +85,7 @@ const PrivacyPage = () => {
                                                 <div><span className='font-bold capitalize'>our site:</span> website with the following domains such as AI ALGO TRADE - our Platform used for providing our services to you and any other domains that is used for the purposes of informing our Users on our promotional, marketing campaigns and special offers.</div>
                                             </div>
                                         </div>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -93,7 +93,7 @@ const PrivacyPage = () => {
                                                 <div><span className='font-bold capitalize'>personal data processing:</span> any operation or set of operations performed on personal data (e.g., collection, storage, use, disclosure erasure).</div>
                                             </div>
                                         </div>
-                                        <div className='flex gap-1 w-full'>
+                                        <div className='flex gap-2 w-full'>
                                             <div className='w-[2%]'>
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
@@ -124,7 +124,7 @@ const PrivacyPage = () => {
                                     <div>
                                         <span className='text-black font-bold'>3.1.</span> We may collect your Personal Information if you open an account or perform any transactions. This is defined as collection for the purpose of provision of service(s) to you in accordance with our Terms of Use. Please note, if you refuse to share your Personal Information for this purpose, we will not be able to provide our services to you.
                                     </div>
-                                    <div className='flex gap-1 flex-col'>
+                                    <div className='flex gap-2 flex-col'>
                                         <span className='text-black font-bold'>3.2. The types of Personal Information which we collect may include:
                                         </span>
                                         <span>
@@ -149,7 +149,7 @@ const PrivacyPage = () => {
                                     <div className='flex flex-col gap-4'>
                                         <span className='text-black font-bold'>3.4 We may use your Personal Information for the following purposes:</span>
                                         <div className='w-[80%] mx-auto flex flex-col gap-4'>
-                                            <div className='flex gap-1 w-full'>
+                                            <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
@@ -157,7 +157,7 @@ const PrivacyPage = () => {
                                                     <div><span className='font-bold capitalize'>To provide and maintain our services,</span> including to allow you to open and operate an Account and monitor the usage of services. </div>
                                                 </div>
                                             </div>
-                                            <div className='flex gap-1 w-full'>
+                                            <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
@@ -165,7 +165,7 @@ const PrivacyPage = () => {
                                                     <div><span className='font-bold capitalize'>To manage your Account: </span> to manage your registration as a user of the service(s). The Personal Data you provide can give you access to different functionalities of the Service that are available to you as a registered user, i.e., to enable you to complete transactions on the Platform. </div>
                                                 </div>
                                             </div>
-                                            <div className='flex gap-1 w-full'>
+                                            <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
@@ -173,7 +173,7 @@ const PrivacyPage = () => {
                                                     <div><span className='font-bold capitalize'>For the performance of a contract:  </span> the development, compliance and undertaking of the purchase contract for the products, items, or services you have purchased or of any other contract with us. </div>
                                                 </div>
                                             </div>
-                                            <div className='flex gap-1 w-full'>
+                                            <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
@@ -181,7 +181,7 @@ const PrivacyPage = () => {
                                                     <div><span className='font-bold capitalize'>To contact you:  </span> we may contact you by email, telephone, SMS, or other equivalent forms of electronic communication, such as push notifications. We may use these methods to provide you with updates, informative communications, including security updates when necessary or reasonable for their implementation, and to reply to your queries. </div>
                                                 </div>
                                             </div>
-                                            <div className='flex gap-1 w-full'>
+                                            <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
@@ -189,7 +189,7 @@ const PrivacyPage = () => {
                                                     <div><span className='font-bold capitalize'>To manage your requests:  </span> to attend and manage your requests to us. </div>
                                                 </div>
                                             </div>
-                                            <div className='flex gap-1 w-full'>
+                                            <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
@@ -197,7 +197,7 @@ const PrivacyPage = () => {
                                                     <div><span className='font-bold capitalize'>To ensure security of your Account  </span> (for instance, if you make a request on forgotten password). </div>
                                                 </div>
                                             </div>
-                                            <div className='flex gap-1 w-full'>
+                                            <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>

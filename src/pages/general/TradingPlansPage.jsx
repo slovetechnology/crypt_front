@@ -13,7 +13,7 @@ const TradingPlansPage = () => {
             <div className='md:text-[1.1rem] text-center'>- Below are the different trading plans on the AI Algorithm Trading System -</div>
           </div>
           <div className='flex flex-wrap gap-12 mt-20 text-[#30465c] justify-center'>
-            <div className='w-[23rem] h-fit bg-[whitesmoke] rounded-md'>
+            <div className='w-[23rem] h-fit bg-transparent rounded-md'>
               <div className='flex flex-col items-center p-10'>
                 <div className='capitalize'>starter plan</div>
                 <div className='flex gap-1 my-12 items-center'>
@@ -54,7 +54,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[23rem] h-fit bg-[whitesmoke] rounded-md text-[#30465c]'>
+            <div className='w-[23rem] h-fit bg-transparent rounded-md text-[#30465c]'>
               <div className='flex flex-col items-center p-10'>
                 <div className='capitalize '>business plan</div>
                 <div className='flex gap-1 my-12 items-center'>
@@ -73,7 +73,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[23rem] h-fit bg-[whitesmoke] rounded-md text-[#30465c]'>
+            <div className='w-[23rem] h-fit bg-transparent rounded-md text-[#30465c]'>
               <div className='flex flex-col items-center p-10'>
                 <div className='capitalize '>pro plan</div>
                 <div className='flex gap-1 my-12 items-center'>
@@ -92,7 +92,7 @@ const TradingPlansPage = () => {
                 </div>
               </div>
             </div>
-            <div className='w-[23rem] h-fit bg-[whitesmoke] rounded-md text-[#30465c]'>
+            <div className='w-[23rem] h-fit bg-transparent rounded-md text-[#30465c]'>
               <div className='flex flex-col items-center p-10'>
                 <div className='capitalize '>diamond plan</div>
                 <div className='flex gap-1 my-12 items-center'>

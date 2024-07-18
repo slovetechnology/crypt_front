@@ -198,7 +198,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-light ${limitError ? 'border border-[red]' : ''}`}>
                                 <div className='flex  justify-center items-center gap-1'>
                                     <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
-                                    <img src={wthwallet} className='md:h-6 h-3 w-auto'></img>
+                                    <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
                                 </div>
                                 <div className='flex items-center justify-center'>
                                     <BiDollar className='md:text-base text-sm' />
