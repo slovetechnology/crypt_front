@@ -240,7 +240,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                     <div className='relative text-black'>
                                         <input className='outline-none pl-2 pr-5 md:w-36 w-48 md:h-7 h-8 bg-[#e9e8e8] border border-zinc-500  rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
                                         {write &&
-                                            <div className='absolute top-1.5 right-1.5 text-sm cursor-pointer' onClick={CancelWrite}>
+                                            <div className='absolute md:top-1.5 top-2 right-1.5 text-sm cursor-pointer' onClick={CancelWrite}>
                                                 <FiX />
                                             </div>
                                         }
