@@ -40,21 +40,21 @@ const HomePage = () => {
             <div className='lg:col-span-3 col-span-2 '>
               <div className='w-fit h-fit border rotate-90  uppercase text-[0.85rem] py-1 px-[0.4rem] text-white font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap mt-40'>
                 <div> crypto trade made easy</div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[1.7rem] left-[-0.2rem]'></div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[-0.2rem] left-[-0.21rem]'></div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[1.7rem] right-[-0.21rem]'></div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[-0.2rem] right-[-0.21rem]'></div>
+                <div className='h-1 w-1 bg-white rounded-full absolute top-[1.7rem] left-[-0.2rem]'></div>
+                <div className='h-1 w-1 bg-white rounded-full absolute top-[-0.2rem] left-[-0.21rem]'></div>
+                <div className='h-1 w-1 bg-white rounded-full absolute top-[1.7rem] right-[-0.21rem]'></div>
+                <div className='h-1 w-1 bg-white rounded-full absolute top-[-0.2rem] right-[-0.21rem]'></div>
               </div>
             </div>
           </div>
         </div>
-        <div className='w-[95%] mx-auto'>
+        <div className='md:w-[95%] w-11/12 mx-auto'>
           <div className='w-full h-fit py-8 px-4 bg-[#1B2530] z-10 -mt-8 border rounded-xl border-dashed overflow-hidden relative'>
-            <div className='bda flex items-center justify-center rotate-90 w-40 h-40 border-2 bottom-4 rounded-[50%] -left-20 absolute'>
-              <div className='bdb w-28 h-28 border-2 rounded-[50%]'></div>
+            <div className='bda flex items-center justify-center rotate-90 w-40 h-40 border-2 bottom-4 rounded-full -left-20 absolute'>
+              <div className='bdb w-28 h-28 border-2 rounded-full'></div>
             </div>
             <div className='bda flex items-center justify-center rotate-90 w-20 h-20 border-2  rounded-full absolute -top-12 -right-4' >
-              <div className='bdb w-[3rem] h-[3rem] border-2 rounded-[50%]'></div>
+              <div className='bdb w-12 h-12 border-2 rounded-full'></div>
             </div>
             <div className='flex items-center gap-4 flex-col'>
               <div className='text-white text-[2rem] capitalize text-center font-bold'>what is the al algo trade?</div>
@@ -79,7 +79,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className='mt-20 w-[95%] lg:w-3/4 mx-auto'>
+          <div className='mt-20 w-11/12 lg:w-3/4 mx-auto'>
             <div className='flex flex-col'>
               <div className=' flex flex-col gap-2 items-center justify-center text-white'>
                 <span className='font-bold capitalize lg:text-[2.5rem] text-3xl '>have any questions?</span>

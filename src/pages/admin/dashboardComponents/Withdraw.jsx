@@ -218,7 +218,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                 {selectState && <div>
                                     {supportedCoins.map((item, i) => (
                                         <div className='flex flex-col mt-1' key={i}>
-                                            <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item) }}>
+                                            <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
                                                 <img src={item.img} className='h-auto w-[1rem]'></img>
                                                 <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
                                             </div>

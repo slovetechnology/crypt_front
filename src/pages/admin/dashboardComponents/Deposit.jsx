@@ -361,7 +361,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                         {selectState && <div>
                                             {supportedCoins.map((item, i) => (
                                                 <div className='flex flex-col mt-1' key={i}>
-                                                    <div className='flex gap-2 items-center cursor-pointer hover:bg-[#a1a0a0]' onClick={() => { setSelectState(false); setSelectValue(item.coin); setNetwork(item.textnw); setAddress(item.address) }}>
+                                                    <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item.coin); setNetwork(item.textnw); setAddress(item.address) }}>
                                                         <img src={item.img} className='h-auto w-4'></img>
                                                         <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
                                                     </div>

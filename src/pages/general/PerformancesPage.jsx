@@ -14,100 +14,102 @@ const PerformancesPage = () => {
           <div className='overflow-x-auto scrollsdown shadow-sign-sha rounded-md'>
             <table className='table table-auto w-full'>
               <thead >
-                <tr className='bg-[#30465c] text-[0.8rem] font-bold text-[white]'>
+                <tr className='bg-[#30465c] text-[0.8rem] font-bold text-white'>
                   <td className='text-center  capitalize p-2 border-r truncate'>month-year</td>
                   <td className='text-center  capitalize p-2 border-r truncate'>amount invested</td>
                   <td className='text-center  capitalize p-2 border-r truncate'>profits generated</td>
                   <td className='text-center  capitalize p-2 border-r truncate'>withdrawals made</td>
                 </tr>
               </thead>
-              <tr className=' border-b text-black '>
-                <td className='p-4 border-x text-center truncate'>
-                  Oct-23
-                </td>
-                <td className='p-4 border-x text-center truncate'>
-                  $411,522
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $262,150
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $647,007
-                </td>
-              </tr>
-              <tr className=' border-b text-black '>
-                <td className='p-4 border-x text-center truncate'>
-                  Nov-23
-                </td>
-                <td className='p-4 border-x text-center truncate'>
-                  $357,659
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $220,800
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $527,332
-                </td>
-              </tr>
-              <tr className='text-[1rem] border-b text-black '>
-                <td className='p-4 border-x text-center truncate'>
-                  Dec-23
-                </td>
-                <td className='p-4 border-x text-center truncate'>
-                  $501,480
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $313,650
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $975,546
-                </td>
-              </tr>
-              <tr className=' border-b text-black '>
-                <td className='p-4 border-x text-center truncate'>
-                  Jan-24
-                </td>
-                <td className='p-4 border-x text-center truncate'>
-                  $278,133
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $171,400
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $443,988
-                </td>
-              </tr>
-              <tr className=' border-b text-black '>
-                <td className='p-4 border-x text-center truncate'>
-                  Feb-24
-                </td>
-                <td className='p-4 border-x text-center truncate'>
-                  $335,744
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $206,900
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $488,250
-                </td>
-              </tr>
-              <tr className=' border-b text-black '>
-                <td className='p-4 border-x text-center truncate'>
-                  Mar-24
-                </td>
-                <td className='p-4 border-x text-center truncate'>
-                  $467,605
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $291,150
-                </td>
-                <td className='p-4 border-r text-center truncate'>
-                  $710,780
-                </td>
-              </tr>
+              <tbody className='bg-white text-[#30465c]'>
+                <tr className=' border-b'>
+                  <td className='p-4 border-x text-center truncate'>
+                    Oct-23
+                  </td>
+                  <td className='p-4 border-x text-center truncate'>
+                    $411,522
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $262,150
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $647,007
+                  </td>
+                </tr>
+                <tr className=' border-b'>
+                  <td className='p-4 border-x text-center truncate'>
+                    Nov-23
+                  </td>
+                  <td className='p-4 border-x text-center truncate'>
+                    $357,659
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $220,800
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $527,332
+                  </td>
+                </tr>
+                <tr className='border-b'>
+                  <td className='p-4 border-x text-center truncate'>
+                    Dec-23
+                  </td>
+                  <td className='p-4 border-x text-center truncate'>
+                    $501,480
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $313,650
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $975,546
+                  </td>
+                </tr>
+                <tr className=' border-b'>
+                  <td className='p-4 border-x text-center truncate'>
+                    Jan-24
+                  </td>
+                  <td className='p-4 border-x text-center truncate'>
+                    $278,133
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $171,400
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $443,988
+                  </td>
+                </tr>
+                <tr className=' border-b'>
+                  <td className='p-4 border-x text-center truncate'>
+                    Feb-24
+                  </td>
+                  <td className='p-4 border-x text-center truncate'>
+                    $335,744
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $206,900
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $488,250
+                  </td>
+                </tr>
+                <tr className=' border-b'>
+                  <td className='p-4 border-x text-center truncate'>
+                    Mar-24
+                  </td>
+                  <td className='p-4 border-x text-center truncate'>
+                    $467,605
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $291,150
+                  </td>
+                  <td className='p-4 border-r text-center truncate'>
+                    $710,780
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
-          <div className='mt-[1rem] italic text-center'>
+          <div className='mt-4 italic text-center text-[#30465c]'>
             - table only shows the most recent performances on the AI algorithm trading system -
           </div>
         </div>
