@@ -315,11 +315,11 @@ const Profile = ({ setToggle, slideShow }) => {
                             </div>}
                         </div>
                         {nameEdit || userEdit || emailEdit || passEdit || imageChange ? <div className='flex md:gap-8 gap-4 items-center justify-center md:mt-8 mt-4'>
-                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.85rem] text-xs text-semi-white  bg-light hover:bg-[#5d4faa] rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={cancelChanges}>
+                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.85rem] text-xs text-semi-white  bg-light hover:bg-[#5d4faa] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={cancelChanges}>
                                 <span>cancel changes</span>
                                 <FaRegRectangleXmark />
                             </button>
-                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.85rem] text-semi-white  bg-light hover:bg-[#5d4faa] rounded-[5px] capitalize flex items-center gap-1 font-bold'>
+                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.85rem] text-semi-white  bg-light hover:bg-[#5d4faa] rounded-md capitalize flex items-center gap-1 font-bold'>
                                 <span>commit changes</span>
                                 <IoCheckbox />
                             </button>
@@ -343,11 +343,11 @@ const Profile = ({ setToggle, slideShow }) => {
                                 <PiWarningCircleBold className='text-[red]' />
                             </div>
                             <div className='flex md:gap-16 gap-6 items-center justify-center mt-8'>
-                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
+                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
                                     <span>cancel action</span>
                                     <FaRegRectangleXmark />
                                 </button>
-                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#642424] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={() => setDeleteScreen(2)}>
+                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={() => setDeleteScreen(2)}>
                                     <span>proceed action</span>
                                     <IoCheckbox />
                                 </button>
@@ -361,16 +361,16 @@ const Profile = ({ setToggle, slideShow }) => {
                             </div>
                             <div className='flex flex-col gap-[1.7rem] items-center justify-center mt-6'>
                                 <div className='relative'>
-                                    <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base w-52 h-fit rounded-[5px] px-2 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                    <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base w-52 h-fit rounded-md px-2 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                     <EyeIcon className='absolute top-2.5 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
                                     <div className='absolute bottom-[-1.2rem] left-2 text-xs text-[#e62f2f]'>{deleteError}</div>
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center'>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-[5px] capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
                                         <span>cancel deletion</span>
                                         <FaRegRectangleXmark />
                                     </button>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#642424] rounded-[5px] capitalize flex items-center gap-1 font-bold' onClick={DeleteAccount}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={DeleteAccount}>
                                         <span>delete account</span>
                                         <MdOutlineDeleteForever />
                                     </button>

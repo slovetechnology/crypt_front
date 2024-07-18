@@ -71,21 +71,21 @@ export const supportedCoins = [
     {
         coin: 'bitcoin',
         img: bitcoin,
-        textnw: 'Bitcoin deposit address for Bitcoin network, copy below',
+        textnw: 'Your Bitcoin deposit address for Bitcoin network, copy below',
         address: '14y635WCNGk2LbwWGDfZgYEWHSZhiEjXm',
         network: 'bitcoin network'
     },
     {
         coin: 'USDT',
         img: usdt,
-        textnw: 'USDT deposit address for Tron network, copy below',
+        textnw: 'Your USDT deposit address for Tron network, copy below',
         address: 'TRcyNJLKUPW4wVpxpUgmTJckN7bz4DWSvV',
         network: 'tron network'
     },
     {
         coin: 'ethereum',
         img: ethereum,
-        textnw: 'Ethereum deposit address for ERC20 network, copy below',
+        textnw: 'Your Ethereum deposit address for ERC20 network, copy below',
         address: '0x72dab9d1e0376858579921c7id3ffb6d9db2183',
         network: 'ERC20 network'
     }
@@ -94,14 +94,14 @@ export const supportedCoins = [
     {
         coin: 'solana',
         img: solana,
-        textnw: 'Solana deposit address for Solana network, copy below',
+        textnw: 'Your Solana deposit address for Solana network, copy below',
         address: 'CZXopsQvqwS8YZquCQLTh7jZ4PCfZ5FEVBTH',
         network: 'solana network'
     },
     {
         coin: 'XRP',
         img: xrp,
-        textnw: 'XRP deposit address for Ripple network, copy below',
+        textnw: 'Your XRP deposit address for Ripple network, copy below',
         address: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV',
         network: 'ripple network'
     },

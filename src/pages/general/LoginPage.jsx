@@ -97,8 +97,8 @@ const LoginPage = () => {
                                                 <form onSubmit={submitForm}>
                                                     <div className='flex gap-4 mt-[2rem] flex-col'>
                                                         <div className='flex gap-2 flex-col relative'>
-                                                            <div className='flex gap-1'>
-                                                                <MdMarkEmailUnread className='text-[0.9rem] mt-[0.12rem]' />
+                                                            <div className='flex gap-1 items-center'>
+                                                                <MdMarkEmailUnread className='text-[0.9rem]' />
                                                                 <div className='text-sm capitalize font-[550]'>email address</div>
                                                             </div>
                                                             <input placeholder='Enter email address' className=' outline-none rounded-[3px] w-full h-fit py-2 bg-[#e9e9e9] pl-4 justify-center lg:text-[0.9rem] text-base ipt' type='email' value={form.email} name='email' onChange={inputHandler}></input>
@@ -107,8 +107,8 @@ const LoginPage = () => {
                                                     </div>
                                                     <div className='flex gap-4 mt-10 flex-col'>
                                                         <div className='flex gap-2 flex-col relative'>
-                                                            <div className='flex gap-1'>
-                                                                <MdLock className='text-[0.9rem] mt-[0.12rem]' />
+                                                            <div className='flex gap-1 items-center'>
+                                                                <MdLock className='text-[0.9rem]' />
                                                                 <div className='text-sm capitalize font-[550]'>password</div>
                                                             </div>
                                                             <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-2  bg-[#e9e9e9] pl-4 justify-center lg:text-[0.9rem] text-base ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
@@ -119,8 +119,8 @@ const LoginPage = () => {
                                                     <div className='w-fit flex ml-auto'>
                                                         <div className='text-sm font-[550] text-orange pt-2 cursor-pointer capitalize' onClick={() => setForgotPass(!forgotPass)}>forgot password?</div>
                                                     </div>
-                                                    <div className='flex flex-col gap-2 items-center mt-[3rem]'>
-                                                        <button className='outline-none bg-orange py-2 w-full md:px-[8rem] h-fit md:w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' type='submit' >login</button>
+                                                    <div className='flex flex-col gap-2 items-center mt-12'>
+                                                        <button className='outline-none bg-orange py-2 w-full md:px-32 h-fit md:w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' type='submit' >login</button>
                                                         <div className='text-[#6b6a6a] text-sm font-[550]'>Don't have an account?
                                                             <Link to='/signup' onClick={MoveToTop} className='cursor-pointer text-orange font-[550]' > Sign Up</Link>
                                                         </div>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { IoCheckbox } from 'react-icons/io5';
 import { MdContentCopy } from "react-icons/md";
 import { RiHistoryFill, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { IoIosSearch, IoMdArrowBack } from "react-icons/io";
@@ -45,6 +44,64 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     const [balCheck, setBalCheck] = useState(false)
     const [extCheck, setExtCheck] = useState(false)
 
+
+
+    const BuyPlanWithBalance = async () => {
+        setTimeout(() => {
+            setLimitError(false)
+            setBalanceError(false)
+            setAmountError(false)
+            setCheckError(false)
+        }, 1000)
+
+        if (!amount) return setAmountError(true)
+        if (amount < buybal.price_start) return setLimitError(true)
+        if (amount > buybal.price_limit) return setLimitError(true)
+        if (amount > userwallet.balance) return setBalanceError(true)
+        if (!balCheck) return setCheckError(true)
+
+        setLoading(true)
+
+        const formbody = {
+            amount: parseFloat(amount),
+            trading_plan: buybal.title,
+            crypto: 'usdt',
+            from: 'wallet balance',
+            deposituser: user.username
+        }
+
+        if (balCheck) {
+            try {
+                const response = await PostApi(Apis.deposit.create_deposit, formbody)
+                if (response.status === 200) {
+                    Alert('Request Successful', `Investment successful`, 'success')
+                    setModal(false)
+                    setAmount('')
+                    refetchDeposits()
+                    refetchInvestments()
+                    refetchInvestmentsUnclaim()
+                    refetchNotifications()
+                    refetchUnreadNotis()
+                    refetchWallet()
+                    setToggle('my investment')
+                } else {
+                    Alert('Request Failed', `${response.msg}`, 'error')
+                }
+            } catch (error) {
+                Alert('Request Failed', `${error.message}`, 'error')
+            } finally {
+                setLoadingTwo(false)
+            }
+        }
+    }
+
+    const copyFunction = () => {
+        setTimeout(() => {
+            setCopy(false)
+        }, 2000)
+        navigator.clipboard.writeText(address)
+        setCopy(true)
+    }
 
     const ProceedButton = async () => {
         setTimeout(() => {
@@ -115,62 +172,6 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
 
     }
 
-    const BuyPlanWithBalance = async () => {
-        setTimeout(() => {
-            setLimitError(false)
-            setBalanceError(false)
-            setAmountError(false)
-            setCheckError(false)
-        }, 1000)
-
-        if (!amount) return setAmountError(true)
-        if (amount < buybal.price_start) return setLimitError(true)
-        if (amount > buybal.price_limit) return setLimitError(true)
-        if (amount > userwallet.balance) return setBalanceError(true)
-        if (!balCheck) return setCheckError(true)
-
-        setLoading(true)
-
-        const formbody = {
-            amount: parseFloat(amount),
-            trading_plan: buybal.title,
-            crypto: 'usdt',
-            from: 'wallet balance',
-            deposituser: user.username
-        }
-
-        if (balCheck) {
-            try {
-                const response = await PostApi(Apis.deposit.create_deposit, formbody)
-                if (response.status === 200) {
-                    Alert('Request Successful', `Investment successful`, 'success')
-                    setModal(false)
-                    setAmount('')
-                    refetchDeposits()
-                    refetchInvestments()
-                    refetchInvestmentsUnclaim()
-                    refetchNotifications()
-                    refetchUnreadNotis()
-                    refetchWallet()
-                    setToggle('my investment')
-                } else {
-                    Alert('Request Failed', `${response.msg}`, 'error')
-                }
-            } catch (error) {
-                Alert('Request Failed', `${error.message}`, 'error')
-            } finally {
-                setLoadingTwo(false)
-            }
-        }
-    }
-
-    const copyFunction = () => {
-        setTimeout(() => {
-            setCopy(false)
-        }, 2000)
-        navigator.clipboard.writeText(address)
-        setCopy(true)
-    }
 
     const HandleSearch = () => {
 
@@ -267,7 +268,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 <div className={`h-[30rem] w-[32rem] bg-semi-white md:px-3 px-2 rounded-xl relative shlz scroll thediv overflow-x-hidden ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
                     <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-fit h-fit py-1 px-6 rounded-b-md mx-auto flex items-center justify-center gap-2'>
                         <span>trading plans</span>
-                        <TbListDetails className='text-[#5AB1FF]'/>
+                        <TbListDetails className='text-[#5BB4FD]' />
                     </div>
                     <div className='w-full flex flex-col gap-8 mt-6 items-center'>
                         <div className='flex flex-wrap md:gap-4 gap-2 justify-center'>
@@ -301,7 +302,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             ))}
                         </div>
                         <div className='bg-white w-fit h-fit py-1 px-4 rounded-t-md flex gap-1 items-center justify-center font-bold text-xs '>
-                            <FaRegCopyright className='text-[#5AB1FF]'/>
+                            <FaRegCopyright className='text-[#5BB4FD]' />
                             <div>2024, Al Algo, All rights reserved.</div>
                         </div>
                     </div>
@@ -316,15 +317,15 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 </div>
                                 <div className='relative flex gap-2 items-center mx-auto'>
                                     <div className='relative'>
-                                        <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-5 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
+                                        <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-md px-5 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
                                         <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                     </div>
-                                    <div className={`h-fit w-fit text-nowrap py-2 md:px-4 px-2 ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-[0.25rem]`}>
+                                    <div className={`h-fit w-fit text-nowrap py-2 md:px-4 px-2 ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-md`}>
                                         <div className='text-xs italic text-center'>wallet balance:</div>
-                                        {Object.values(userwallet).length !== 0 &&<div> ${userwallet.balance.toLocaleString()}</div>}
+                                        {Object.values(userwallet).length !== 0 && <div> ${userwallet.balance.toLocaleString()}</div>}
                                     </div>
                                 </div>
-                                <div className='flex flex-col gap-2 text-xs text-admin-btn'>
+                                <div className='flex flex-col gap-2 text-xs text-[#252525]'>
                                     <div className='flex gap-1 items-center'>
                                         <input type='checkbox' value={balCheck} checked={balCheck} onChange={event => { setBalCheck(event.target.checked); setExtCheck(false) }} className={`${checkError === true ? 'outline outline-1 outline-[red] ' : ''}`}></input>
                                         <div>buy plan with balance</div>
@@ -372,7 +373,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <div className='text-[0.8rem] text-center'>{network}</div>
                                 <div className='flex gap-2 items-center'>
                                     <div className='text-xs text-[#5BB4FD]'>{address}</div>
-                                    {selectValue !== '' && <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-[5px] capitalize flex items-center justify-center' onClick={() => copyFunction()}>
+                                    {selectValue !== '' && <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                         {!copy && <MdContentCopy />}
                                         {copy && <FaCheck />}
                                     </button>}
@@ -380,7 +381,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <div className='flex flex-col gap-2 items-center'>
                                     <div className='flex gap-2 items-center'>
                                         <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red] ' : ''}`}></input>
-                                        <div className='text-admin-btn text-[0.8rem]'>I confirm to have made this deposit</div>
+                                        <div className='text-[#252525] text-[0.8rem]'>I confirm to have made this deposit</div>
                                     </div>
                                     <div className='relative'>
                                         <button className='py-2 px-10 rounded-md bg-[#252525] text-white capitalize font-medium text-xs' onClick={CreateDeposit}>
@@ -400,7 +401,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 </div>
                 <div className='mt-8 md:mt-4 lg:mt-8'>
                     <div className='relative w-fit mx-auto'>
-                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
+                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
                             <IoIosSearch />
                             {write &&

@@ -134,10 +134,10 @@ const AboutPage = () => {
                     <div className='text-[0.8rem] text-ground pl-14'>Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
                   </div>
                 </div>
-                <div className='flex gap-2 mt-7'>
+                <div className='flex gap-2 mt-6 items-center'>
                   <div className='text-white text-[0.9rem]'>Would love to own your set-up?</div>
                   <Link to='/signup' onClick={MoveToTop}>
-                    <button className='outline-0 w-fit h-fit py-1 px-4 text-[0.8rem] text-white rounded-full bg-orange capitalize mt-[-0.1rem] flex gap-1 items-center font-[550] hover:bg-[#642626] truncate'>
+                    <button className='outline-0 w-fit h-fit py-1 px-4 text-[0.8rem] text-white rounded-full bg-orange capitalize  flex gap-1 items-center font-[550] hover:bg-[#642626] truncate'>
                       <MdJoinRight /><span>join us</span>
                     </button>
                   </Link>

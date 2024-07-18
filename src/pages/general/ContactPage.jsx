@@ -4,7 +4,7 @@ import contactimg from '../../assets/images/contactimg2.webp'
 import { PiTelegramLogoLight } from "react-icons/pi";
 import { TfiInstagram } from "react-icons/tfi";
 import { TiSocialFacebook } from "react-icons/ti";
-import { MdOutlineHearing, MdCancel, MdOutlineEdit } from "react-icons/md";
+import { MdOutlineHearing, MdCancel } from "react-icons/md";
 import { BiMailSend } from "react-icons/bi";
 import { Alert } from '../../utils/utils';
 import { Apis, UserPostApi } from '../../services/API';
@@ -165,20 +165,17 @@ const ContactPage = () => {
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border-b border-white bg-transparent lg:text-[0.85rem] text-base w-48 px-4 text-white focus:outline-none' type='text' value={code} onChange={e => {setCode(e.target.value); setWrite(true)}}></input>
-                      <div className='w-1 h-1 rounded-full bg-white absolute bottom-[-0.1rem] left-0'></div>
-                      {write ?
-                        <div className='absolute bottom-1 right-0 text-xs cursor-pointer bg-[#ffffff6e] text-[#444343] rounded-full w-fit h-fit p-0.5' onClick={() => {setCode(''); setWrite(false)}}>
+                      <input className='outline-none border rounded-md border-[#a0a0a0] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 pl-2 pr-8 text-white' type='text' value={code} onChange={e => {setCode(e.target.value); setWrite(true)}}></input>
+                      {write &&
+                        <div className='absolute top-2 right-2 text-xs cursor-pointer bg-[#ffffff6e] text-[#444343] rounded-full w-fit h-fit p-0.5' onClick={() => {setCode(''); setWrite(false)}}>
                           <FiX />
                         </div>
-                        :
-                        <MdOutlineEdit className=' text-[0.8rem] text-orange absolute bottom-0.5 right-0' />
                       }
-                      <div className='text-[0.85rem] absolute bottom-[-1.5rem] left-0 font-bold text-[#361e1e]'>{codeError}</div>
+                      <div className='text-xs absolute -bottom-5 left-0 font-bold text-[#572c2c]'>{codeError}</div>
                     </div>
-                    <button className='outline-none w-fit h-fit py-[0.4rem] px-[1rem] text-[0.85rem] text-[white]  bg-orange rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>
+                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-[white]  bg-orange rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>
                       <span>search</span>
-                      <LuSearchCheck className='text-[0.8rem]' />
+                      <LuSearchCheck />
                     </button>
                   </div>
                 </div>}

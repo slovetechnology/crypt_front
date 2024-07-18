@@ -27,23 +27,23 @@ const HomePage = () => {
           <div className='w-11/12 mx-auto pt-20  grid grid-cols-3 lg:grid-cols-4'>
             <div className='col-span-1'>
               <div className='relative w-fit'>
-                <div className='capitalize text-[#E96E28] text-[0.7rem] font-[550] tracking-widest '> tech & crypto</div>
-                <MdOutlineDiversity2 className='text-[white] absolute top-0 -right-8  text-[1.1rem]' />
+                <div className='capitalize text-orange text-[0.7rem] font-[550] tracking-widest '> tech & crypto</div>
+                <MdOutlineDiversity2 className='text-white absolute top-0 -right-8  text-[1.1rem]' />
               </div>
-              <div className='capitalize text-[white] font-bold text-[2rem] lg:text-[3rem] leading-[4rem] lg:leading-[5rem] '>artificial intelligence algorithm  crypto trade</div>
+              <div className='capitalize text-white font-bold text-[2rem] md:text-[3rem] leading-[4rem] md:leading-[5rem] '>artificial intelligence algorithm  crypto trade</div>
               <Link to='/signup'>
-                <button className='outline-0 w-fit h-fit py-1 px-6 text-[0.9rem] text-[white] rounded-full bg-[#E96E28] capitalize mt-6 flex gap-1 items-center font-[550] hover:bg-[#642626]'>
+                <button className='outline-0 w-fit h-fit py-1 px-6 text-[0.9rem] text-white rounded-full bg-orange capitalize mt-5 flex gap-1 items-center font-[550] hover:bg-[#642626]'>
                   <MdJoinRight /><span>join</span>
                 </button>
               </Link>
             </div>
             <div className='lg:col-span-3 col-span-2 '>
-              <div className='w-fit h-fit border rotate-90  uppercase text-[0.85rem] py-1 px-[0.4rem] text-[white] font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap mt-40'>
+              <div className='w-fit h-fit border rotate-90  uppercase text-[0.85rem] py-1 px-[0.4rem] text-white font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap mt-40'>
                 <div> crypto trade made easy</div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[1.7rem] left-[-0.2rem]'></div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[-0.2rem] left-[-0.21rem]'></div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[1.7rem] right-[-0.21rem]'></div>
-                <div className='h-[0.25rem] w-[0.25rem] bg-[white] rounded-[50%] absolute top-[-0.2rem] right-[-0.21rem]'></div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[1.7rem] left-[-0.2rem]'></div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[-0.2rem] left-[-0.21rem]'></div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[1.7rem] right-[-0.21rem]'></div>
+                <div className='h-[0.25rem] w-[0.25rem] bg-white rounded-[50%] absolute top-[-0.2rem] right-[-0.21rem]'></div>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ const HomePage = () => {
               <div className='bdb w-[3rem] h-[3rem] border-2 rounded-[50%]'></div>
             </div>
             <div className='flex items-center gap-4 flex-col'>
-              <div className='text-[white] text-[2rem] capitalize text-center font-bold'>what is the al algo trade?</div>
+              <div className='text-white text-[2rem] capitalize text-center font-bold'>what is the al algo trade?</div>
               <div className='text-semi-white text-[0.95rem] text-center lg:w-[60%] tracking-[0.05rem]'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam nesciunt ut voluptatum! Qui quae inventore non totam laudantium, error provident aliquid, repudiandae, reiciendis praesentium excepturi libero nobis nostrum a eligendi.</div>
             </div>
             <div className='lg:w-3/5 w-11/12 mx-auto'>
@@ -65,15 +65,15 @@ const HomePage = () => {
                 <div className='flex gap-4'>
                   <img src={rocket} className='w-auto h-12 z-20'></img>
                   <div className='flex flex-col gap-2'>
-                    <div className='font-[550] text-[1.1rem] text-[white]'> Lorem, ipsum.</div>
-                    <div className='text-xs text-[white]  tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>
+                    <div className='font-[550] text-[1.1rem] text-white'> Lorem, ipsum.</div>
+                    <div className='text-xs text-white  tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>
                   </div>
                 </div>
                 <div className='flex gap-4'>
                   <img src={light} className='w-auto h-12 z-20'></img>
                   <div className='flex flex-col gap-2'>
-                    <div className='font-[550] text-[1.1rem] text-[white]'>Lorem, ipsum.</div>
-                    <div className='text-[white] text-xs tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>
+                    <div className='font-[550] text-[1.1rem] text-white'>Lorem, ipsum.</div>
+                    <div className='text-white text-xs tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>
                   </div>
                 </div>
               </div>

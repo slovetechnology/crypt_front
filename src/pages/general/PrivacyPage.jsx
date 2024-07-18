@@ -8,13 +8,13 @@ const PrivacyPage = () => {
         <Pagelayout>
             <div className='bg-[whitesmoke]'>
                 <div className='lg:w-5/6 mx-auto py-16'>
-                    <div className='w-full h-fit bg-[white] mx-auto rounded-xl relative shb py-[3rem] overflow-hidden'>
+                    <div className='w-full h-fit bg-white mx-auto rounded-xl relative shb py-12 overflow-hidden'>
                         <div className='w-[90%] mx-auto'>
                             <div className='flex flex-col gap-1 '>
                                 <span className='border-b w-full text-[1.8rem] lg:text-[2.5rem] uppercase font-bold'>privacy policy</span>
                                 <span className='text-[0.9rem] text-[#757575]'>last updated: 28th of February 2024</span>
                             </div>
-                            <div className='flex flex-col gap-[0.5rem] pt-[2rem]'>
+                            <div className='flex flex-col gap-2 pt-8'>
                                 <div className='text-[1.5rem] lg:text-[1.7rem] capitalize font-bold'>general</div>
                                 <div>
                                     The privacy policy applies to all users of the AI ALGO TRADE Site. By agreeing to this Privacy Policy and the <Link to='/terms' onClick={MoveToTop} className='text-orange underline'>Terms of Use</Link> you are entering into an electronic agreement between you and a specific AI ALGO TRADE entity. This Privacy Policy (together with our Terms of Use) describes our policies and procedures on the collection, use, and disclosure of personal information we collect when you use CEX.IO’s website, any and all services, products, and content, and tells you about your privacy rights and how the law protects you.
@@ -32,72 +32,72 @@ const PrivacyPage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex flex-col gap-4 mt-[2rem]'>
-                                <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>1. Definitions</div>
+                            <div className='flex flex-col gap-4 mt-8'>
+                                <div className='text-[1.3rem] lg:text-2xl uppercase font-bold'>1. Definitions</div>
                                 <div className='text-[#494949]'> <span className='font-bold capitalize'>definitions</span> for the purposes of this Privacy Policy:</div>
                                 <div className='w-[85%] mx-auto text-[#494949]'>
                                     <div className='flex flex-col gap-4'>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>account:</span> means an account registered by the User on the Platform. </div>
                                             </div>
                                         </div>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>personal information (personal data):</span> any information which identifies you personally or which may help us to identify you (e.g. your name, e-mail address, residence, trades etc.).</div>
                                             </div>
                                         </div>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>Data Subject:</span>  an identified or identifiable person (User/you/customer).</div>
                                             </div>
                                         </div>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>data controller:</span> for the purposes of applicable laws, controller means the natural or legal person, public authority, agency, or other body which, alone or jointly with others, determines the purposes and means of the processing of personal data.</div>
                                             </div>
                                         </div>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>data processor:</span> a company which processes personal data on behalf and upon instructions of the Data Controller.</div>
                                             </div>
                                         </div>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>our site:</span> website with the following domains such as AI ALGO TRADE - our Platform used for providing our services to you and any other domains that is used for the purposes of informing our Users on our promotional, marketing campaigns and special offers.</div>
                                             </div>
                                         </div>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>personal data processing:</span> any operation or set of operations performed on personal data (e.g., collection, storage, use, disclosure erasure).</div>
                                             </div>
                                         </div>
                                         <div className='flex gap-1 w-full'>
-                                            <div className='w-[3%]'>
-                                                <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                            <div className='w-[2%]'>
+                                                <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
-                                            <div className='w-[97%]'>
+                                            <div className='w-[98%]'>
                                                 <div><span className='font-bold capitalize'>devices</span> means any device that can access the AI ALGO TRADE Site such as a computer, a mobile phone or tablet.</div>
                                             </div>
                                         </div>
@@ -150,58 +150,58 @@ const PrivacyPage = () => {
                                         <span className='text-black font-bold'>3.4 We may use your Personal Information for the following purposes:</span>
                                         <div className='w-[80%] mx-auto flex flex-col gap-4'>
                                             <div className='flex gap-1 w-full'>
-                                                <div className='w-[3%]'>
-                                                    <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                                <div className='w-[2%]'>
+                                                    <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
-                                                <div className='w-[97%]'>
+                                                <div className='w-[98%]'>
                                                     <div><span className='font-bold capitalize'>To provide and maintain our services,</span> including to allow you to open and operate an Account and monitor the usage of services. </div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-1 w-full'>
-                                                <div className='w-[3%]'>
-                                                    <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                                <div className='w-[2%]'>
+                                                    <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
-                                                <div className='w-[97%]'>
+                                                <div className='w-[98%]'>
                                                     <div><span className='font-bold capitalize'>To manage your Account: </span> to manage your registration as a user of the service(s). The Personal Data you provide can give you access to different functionalities of the Service that are available to you as a registered user, i.e., to enable you to complete transactions on the Platform. </div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-1 w-full'>
-                                                <div className='w-[3%]'>
-                                                    <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                                <div className='w-[2%]'>
+                                                    <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
-                                                <div className='w-[97%]'>
+                                                <div className='w-[98%]'>
                                                     <div><span className='font-bold capitalize'>For the performance of a contract:  </span> the development, compliance and undertaking of the purchase contract for the products, items, or services you have purchased or of any other contract with us. </div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-1 w-full'>
-                                                <div className='w-[3%]'>
-                                                    <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                                <div className='w-[2%]'>
+                                                    <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
-                                                <div className='w-[97%]'>
+                                                <div className='w-[98%]'>
                                                     <div><span className='font-bold capitalize'>To contact you:  </span> we may contact you by email, telephone, SMS, or other equivalent forms of electronic communication, such as push notifications. We may use these methods to provide you with updates, informative communications, including security updates when necessary or reasonable for their implementation, and to reply to your queries. </div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-1 w-full'>
-                                                <div className='w-[3%]'>
-                                                    <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                                <div className='w-[2%]'>
+                                                    <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
-                                                <div className='w-[97%]'>
+                                                <div className='w-[98%]'>
                                                     <div><span className='font-bold capitalize'>To manage your requests:  </span> to attend and manage your requests to us. </div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-1 w-full'>
-                                                <div className='w-[3%]'>
-                                                    <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                                <div className='w-[2%]'>
+                                                    <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
-                                                <div className='w-[97%]'>
+                                                <div className='w-[98%]'>
                                                     <div><span className='font-bold capitalize'>To ensure security of your Account  </span> (for instance, if you make a request on forgotten password). </div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-1 w-full'>
-                                                <div className='w-[3%]'>
-                                                    <div className='w-[0.35rem] h-[0.35rem] rounded-[50%] bg-[#504f4f] mt-[0.42rem]'></div>
+                                                <div className='w-[2%]'>
+                                                    <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
-                                                <div className='w-[97%]'>
+                                                <div className='w-[98%]'>
                                                     <div><span className='font-bold capitalize'>For market research  </span>e.g., surveying Users' needs and opinions on issues, such as performance. Unless consented, your data for this purpose would be anonymised.</div>
                                                 </div>
                                             </div>

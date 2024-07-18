@@ -191,11 +191,11 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             <div className='flex flex-col gap-2'>
                                 <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                                 <div className='relative'>
-                                    <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full px-5 h-8 rounded-[5px] ${amountError ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                    <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full px-5 h-8 rounded-md ${amountError ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                 </div>
                             </div>
-                            <div className={`w-fit h-fit rounded-[5px] flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-[#252525] ${limitError ? 'border border-[red]' : ''}`}>
+                            <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-light ${limitError ? 'border border-[red]' : ''}`}>
                                 <div className='flex  justify-center items-center gap-1'>
                                     <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
                                     <img src={wthwallet} className='md:h-6 h-3 w-auto'></img>
@@ -229,12 +229,12 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                         </div>
                         {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                             <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2  ${walletError ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
+                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-md px-2  ${walletError ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
                         </div>}
                         <div className='flex flex-col gap-2 items-center relative mt-10'>
                             <div className='flex gap-2 items-center'>
                                 <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
-                                <div className='text-admin-btn text-[0.8rem]'>I confirm; I provide my correct wallet address</div>
+                                <div className='text-[#252525] text-[0.8rem]'>I confirm; I provided my correct wallet address</div>
                             </div>
                             <button className='outline-none w-fit h-fit py-2 px-8 md:text-base text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
                                 <span>make withdrawal</span>
@@ -255,7 +255,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                 </div>
                 <div className='mt-8 md:mt-4 lg:mt-8'>
                     <div className='relative w-fit mx-auto'>
-                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-[12rem] text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
+                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
                             <IoIosSearch />
                             {write &&

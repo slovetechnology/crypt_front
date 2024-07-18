@@ -229,7 +229,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 </div>
                                 {mark && <div className='md:w-36 w-40 h-fit py-1 px-2 flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-8 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
                                     <span>Mark all as read?</span>
-                                    <IoMdCheckmarkCircleOutline className='text-[0.9rem]' />
+                                    <IoMdCheckmarkCircleOutline className='text-light'/>
                                 </div>}
                             </div>
                             <div className='relative z-20'>

@@ -9,37 +9,37 @@ import { MoveToTop } from '../utils/utils';
 
 const Footer = () => {
   return (
-    <div className='bg-[#1E2833] pb-[1rem] z-10 border-t border-[#171a1d] pt-[2.5rem]'>
+    <div className='bg-[#1E2833] pb-4 z-10 border-t border-[#171a1d] pt-10'>
       <div className='lg:w-4/5 w-11/12 mx-auto '>
         <div className='grid gap-5 grid-cols-1 lg:grid-cols-5'>
-          <div className='flex flex-col gap-[0.5rem] lg:col-span-3'>
+          <div className='flex flex-col gap-2 lg:col-span-3'>
             <Link to='/' onClick={MoveToTop} className='flex items-center'>
-              <img src={logo} className='w-[5rem] h-[auto] ml-[-1rem]'></img>
-              <div className='capitalize text-[white] font-bold text-[1.4rem]'>the force</div>
+              <img src={logo} className='w-20 h-[auto] -ml-4'></img>
+              <div className='capitalize text-white font-bold text-2xl'>the force</div>
             </Link>
             <div className='text-ground md:w-[80%] lg:w-[60%]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod omnis voluptate similique facere! Neque, cupiditate minus ea nulla fugit.</div>
-            <div className='flex gap-4 items-center mt-[1rem]'>
+            <div className='flex gap-4 items-center mt-4'>
               <Link to='/contact' onClick={MoveToTop}>
-                <div className='h-[1.9rem] w-[1.9rem] border-2 border-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[white] text-[1.2rem] hover:text-[rgb(233,110,40)]'>
+                <div className='h-[1.9rem] w-[1.9rem] border-2 border-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-white text-[1.2rem] hover:text-[rgb(233,110,40)]'>
                   <PiTelegramLogoLight />
                 </div>
               </Link>
               <Link to='/contact' onClick={MoveToTop}>
-                <div className='h-[1.9rem] w-[1.9rem] border-2 border-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[white] text-[1.1rem] hover:text-orange'>
+                <div className='h-[1.9rem] w-[1.9rem] border-2 border-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-white text-[1.1rem] hover:text-orange'>
                   <TfiInstagram />
                 </div>
               </Link>
               <Link to='/contact' onClick={MoveToTop}>
-                <div className='h-[1.9rem] w-[1.9rem] border-2 border-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[white] text-[1.1rem] hover:text-orange'>
+                <div className='h-[1.9rem] w-[1.9rem] border-2 border-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-white text-[1.1rem] hover:text-orange'>
                   <SiFacebook />
                 </div>
               </Link>
             </div>
           </div>
-          <div className='text-ground capitalize lg:col-span-2 mt-[1rem]'>
-            <div className='font-medium text-[1.5rem] '>quick links</div>
-            <div className="border-b border-[#29415c] pt-[0.5rem] w-[60%]"></div>
-            <div className='flex flex-col gap-4  mt-[1rem]'>
+          <div className='text-ground capitalize lg:col-span-2 mt-4'>
+            <div className='font-medium text-2xl '>quick links</div>
+            <div className="border-b border-[#29415c] pt-2 w-[60%]"></div>
+            <div className='flex flex-col gap-4 mt-4'>
               <Link to='/' onClick={MoveToTop} className='hover:text-orange w-fit'>home</Link>
               <Link to='/about' onClick={MoveToTop} className='hover:text-orange w-fit'>about us</Link>
               <Link to='/contact' onClick={MoveToTop} className='hover:text-orange w-fit'>contact us</Link>
@@ -49,9 +49,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='flex gap-[0.3rem] w-full h-[3.3rem] bg-[#172029] items-center  text-ground mt-[3rem] pl-[1rem]'>
-          <FaRegCopyright className='text-[0.8rem]' />
-          <div className=' text-[0.8rem]'>2024, Al Algo, All rights reserved.</div>
+        <div className='flex gap-1.5 w-full h-14 bg-[#172029] items-center text-ground mt-12 px-4 text-[0.85rem]'>
+          <FaRegCopyright />
+          <div>2024, Al Algo, All rights reserved.</div>
         </div>
       </div>
     </div>
