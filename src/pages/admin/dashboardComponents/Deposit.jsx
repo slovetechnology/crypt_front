@@ -301,7 +301,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             ))}
                         </div>
                         <div className='bg-white w-fit h-fit py-1 px-4 rounded-t-md flex gap-1 items-center justify-center font-bold text-xs '>
-                            <FaRegCopyright />
+                            <FaRegCopyright className='text-[#5AB1FF]'/>
                             <div>2024, Al Algo, All rights reserved.</div>
                         </div>
                     </div>
