@@ -231,7 +231,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                         <div className='w-fit h-fit rounded-[10px] flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-semi-white gap-4 border border-[grey] bg-[#130e27] mx-auto'>
                             <div className='md:text-[1.2rem] text-base italic'>No new investment made</div>
                             <img src={investbg} className='md:w-80 w-52 h-auto'></img>
-                            <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs text-white font-medium bg-[#A16534] rounded-full flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
+                            <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs text-white font-medium bg-light rounded-full flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
                                 <span>Make new</span>
                                 <div className='makenew'></div>
                             </button>

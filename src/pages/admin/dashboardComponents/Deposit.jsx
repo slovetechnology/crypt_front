@@ -12,6 +12,7 @@ import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp, FaCheck, FaRegCopyri
 import { FiX } from "react-icons/fi";
 import { supportedCoins, tradingPlans } from '../../../services/Miscellaneous';
 import nothnyet from '../../../assets/images/nothn.png'
+import { TbListDetails } from "react-icons/tb";
 import Loading from '../../../PageComponents/Loading';
 
 
@@ -264,7 +265,10 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             </div>
             {screen === 1 && <div className='w-[80%] mx-auto my-10 relative flex items-center justify-center bgdeposit'>
                 <div className={`h-[30rem] w-[32rem] bg-semi-white md:px-3 px-2 rounded-xl relative shlz scroll thediv overflow-x-hidden ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
-                    <div className='md:text-2xl text-xl text-black font-bold uppercase mt-4 text-center'>trading plans</div>
+                    <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-fit h-fit py-1 px-6 rounded-b-md mx-auto flex items-center justify-center gap-2'>
+                        <span>trading plans</span>
+                        <TbListDetails className='text-[#5AB1FF]'/>
+                    </div>
                     <div className='w-full flex flex-col gap-8 mt-6 items-center'>
                         <div className='flex flex-wrap md:gap-4 gap-2 justify-center'>
                             {tradingPlans.map((item, i) => (

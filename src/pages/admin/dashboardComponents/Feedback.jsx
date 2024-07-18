@@ -100,7 +100,7 @@ const Feedback = () => {
                             <textarea placeholder='Type A Message' className={` p-2 h-36 text-semi-white lg:text-[0.9rem]  outline-none bg-[#0C091A] rounded-md resize-none border  ${messageError === true ? 'border-[#972424]' : 'border-light'} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                         </div>
                         <div className='flex justify-end'>
-                            <button className='outline-none bg-light text-[0.8rem] md:text-[0.9rem] text-white flex gap-1 items-center justify-center w-fit h-fit md:px-8 px-6 md:py-2 py-1.5 rounded-[3px] capitalize font-bold'>
+                            <button className='outline-none bg-light text-xs md:text-[0.9rem] text-white flex gap-1 items-center justify-center w-fit h-fit md:px-8 px-6 md:py-2 py-1.5 rounded-[3px] capitalize font-bold'>
                                 <div>send</div>
                                 <BiMailSend />
                             </button>
