@@ -46,7 +46,7 @@ const Dashboard = () => {
     const [, setDeposits] = useAtom(DEPOSITS)
     const [, setInvestment] = useAtom(INVESTMENTS)
     const [, setInvestUnclaim] = useAtom(INVESTMENTUNCLAIM)
-    const [notifications, setNotifications] = useAtom(NOTIFICATIONS)
+    const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
     const [, setWithdrawals] = useAtom(WITHDRAWALS)
     const [wallet, setWallet] = useAtom(WALLET)

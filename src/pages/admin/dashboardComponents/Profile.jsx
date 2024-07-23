@@ -361,8 +361,8 @@ const Profile = ({ setToggleExtra}) => {
                             </div>
                             <div className='flex flex-col gap-[1.7rem] items-center justify-center mt-6'>
                                 <div className='relative'>
-                                    <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base w-52 h-fit rounded-md px-2 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                    <EyeIcon className='absolute top-2.5 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
+                                    <input className='outline-none border border-light bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-md px-2 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                    <EyeIcon className='absolute top-2 right-2 cursor-pointer text-light' onClick={() => setEye(!eye)} />
                                     <div className='absolute bottom-[-1.2rem] left-2 text-xs text-[#e62f2f]'>{deleteError}</div>
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center'>
