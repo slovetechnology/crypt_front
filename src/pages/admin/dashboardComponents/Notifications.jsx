@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../../store'
+import { NOTIFICATIONS, UNREADNOTIS } from '../../../store'
 import { useAtom } from 'jotai'
-import { IoMdSettings, IoMdSearch, IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { IoMdSettings, IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { HiCheckCircle } from "react-icons/hi2";
 import { TbNotification } from "react-icons/tb";
 import { PiNotification } from "react-icons/pi"
 import { FaXmark } from "react-icons/fa6";
-import { FiX } from 'react-icons/fi';
 import { MdError } from 'react-icons/md';
 import { IoNotificationsOutline } from 'react-icons/io5';
 import { Apis, PostApi, UserPutApi } from '../../../services/API';
@@ -17,21 +16,18 @@ import nothnyet from '../../../assets/images/nothn.png'
 
 
 
-const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotifications, setToggle, setUrlState, pagelengthend, setPagelengthend }) => {
-    const [user] = useAtom(PROFILE)
-    const [notis] = useAtom(NOTIFICATIONS)
+const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, setUrlState}) => {
+    const [notis, setNotis] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
 
     const [mark, setMark] = useState(false)
     const [showNotis, setShowNotis] = useState(false)
-    const [searchNoti, setSearchNoti] = useState(false)
     const [dlsingleNoti, setDlSingleNoti] = useState({})
     const [upSingleNoti, SetUpSingleNoti] = useState({})
-    const [search, setSearch] = useState('')
-    const [write, setWrite] = useState(false)
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(4)
-    const [pagelengthstart, setPagelengthstart] = useState(1)
+    const [pagestart, setpagestart] = useState(1)
+    const [pageend, setpageend] = useState(notis.length / 4)
 
 
     const styleShow = {
@@ -61,35 +57,6 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
     )
 
 
-    const handleSearch = () => {
-        if (!search) {
-            setAltNotis(notis)
-            setPagelengthend(notis.length / 4)
-            setWrite(false)
-            setPagelengthstart(1)
-            setStart(0)
-            setEnd(4)
-        }
-        else {
-            setWrite(true)
-            const showSearch = altnotis.filter(item => item.title.includes(search.toLowerCase()))
-            setAltNotis(showSearch)
-            setPagelengthend(showSearch.length / 4)
-            setPagelengthstart(1)
-            setStart(0)
-            setEnd(4)
-        }
-    }
-
-    const CancelWrite = () => {
-        setSearch('')
-        setAltNotis(notis)
-        setPagelengthend(notis.length / 4)
-        setWrite(false)
-        setPagelengthstart(1)
-        setStart(0)
-        setEnd(4)
-    }
 
     const singleDeleteNotification = (item) => {
         setDlSingleNoti(item)
@@ -104,13 +71,11 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()
-                setSearch('')
-                setWrite(false)
-                setPagelengthend(response.msg.length / 4)
-                if (pagelengthstart > Math.ceil(response.msg.length / 4)) {
+                setpageend(response.msg.length / 4)
+                if (pagestart > Math.ceil(response.msg.length / 4)) {
                     let altstart = start
                     let altend = end
-                    let altlengthstart = pagelengthstart
+                    let altlengthstart = pagestart
 
                     altend -= 4
                     setEnd(altend)
@@ -119,7 +84,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                     setStart(altstart)
 
                     altlengthstart -= 1
-                    setPagelengthstart(altlengthstart)
+                    setpagestart(altlengthstart)
                 }
             }
         } catch (error) {
@@ -149,6 +114,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
         try {
             const response = await UserPutApi(Apis.notification.update_all)
             if (response.status === 200) {
+                setNotis(response.msg)
                 refetchNotifications()
                 setUnreadNotis(0)
             }
@@ -158,10 +124,10 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
 
     let MoveNotisPage = () => {
 
-        if (end < altnotis.length) {
+        if (end < notis.length) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend += 4
             setEnd(altend)
@@ -170,7 +136,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             setStart(altstart)
 
             altlengthstart += 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -179,7 +145,7 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
         if (end > 4) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend -= 4
             setEnd(altend)
@@ -188,30 +154,35 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
             setStart(altstart)
 
             altlengthstart -= 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
     return (
         <div className='relative'>
-            <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light `}>
-                <IoNotificationsOutline />
-            </div>
-            <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
-                <div className='w-full h-full flex items-center justify-center' onClick={() => setShowNotis(true)} style={reverseShow}>
-                    {unreadNotis.length > 0 ?
-                        <span>{unreadNotis.length}</span>
-                        :
-                        <span ><TbNotification /></span>
-                    }
+            <div>
+                <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer' onClick={() => setShowNotis(true)} style={reverseShow}>
+                    <IoNotificationsOutline />
                 </div>
-                <div className='w-full h-full flex items-center justify-center' style={styler}>
-                    {unreadNotis.length > 0 ?
-                        <span>{unreadNotis.length}</span>
-                        :
-                        <span><PiNotification
-                        /></span>
-                    }
+                <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer' style={styler}>
+                    <IoNotificationsOutline />
+                </div>
+                <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
+                    <div className='w-full h-full flex items-center justify-center' onClick={() => setShowNotis(true)} style={reverseShow}>
+                        {unreadNotis.length > 0 ?
+                            <span>{unreadNotis.length}</span>
+                            :
+                            <span ><TbNotification /></span>
+                        }
+                    </div>
+                    <div className='w-full h-full flex items-center justify-center' style={styler}>
+                        {unreadNotis.length > 0 ?
+                            <span>{unreadNotis.length}</span>
+                            :
+                            <span><PiNotification
+                            /></span>
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -229,28 +200,13 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                                 </div>
                                 {mark && <div className='md:w-36 w-40 h-fit py-1 px-2 flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-8 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
                                     <span>Mark all as read</span>
-                                    <IoMdCheckmarkCircleOutline className='text-light'/>
-                                </div>}
-                            </div>
-                            <div className='relative z-20'>
-                                <div className='rounded-full w-fit h-fit p-1 bg-[#b4b3b3] cursor-pointer text-black md:text-[0.85rem] text-lg' onClick={() => { setSearchNoti(!searchNoti); setMark(false) }}>
-                                    <IoMdSearch />
-                                </div>
-                                {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
-                                    <div className='relative text-black'>
-                                        <input className='outline-none pl-2 pr-5 md:w-36 w-48 md:h-7 h-8 bg-[#e9e8e8] border border-zinc-500  rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
-                                        {write &&
-                                            <div className='absolute md:top-1.5 top-2 right-1.5 text-sm cursor-pointer text-light' onClick={CancelWrite}>
-                                                <FiX />
-                                            </div>
-                                        }
-                                    </div>
+                                    <IoMdCheckmarkCircleOutline className='text-light' />
                                 </div>}
                             </div>
                         </div>
                     </div>
-                    {altnotis.length > 1 ? <div className='mt-2 md:mt-0'>
-                        {altnotis.slice(start, end).map((item, i) => (
+                    {notis.length > 0 ? <div className='mt-2 md:mt-0'>
+                        {notis.slice(start, end).map((item, i) => (
                             <div key={i} className='flex flex-col items-center md:pt-2 pt-3 md:text-xs text-[0.8rem]'>
                                 <div className={` p-2 rounded-md ${item.read === 'true' ? '' : 'bg-[#c0b9e4]'} relative shantf  w-full h-fit cursor-pointer overflow-hidden`} onMouseOver={() => singleUpdateNotification(item)} >
                                     <div onClick={() => { setToggle(item.URL); setUrlState(item.URL_state); MarkSingleRead(); setShowNotis(false) }} className='flex flex-col gap-2'>
@@ -275,9 +231,9 @@ const Notifications = ({ altnotis, setAltNotis, refetchUnreadNotis, refetchNotif
                     }
                 </div>
                 {notis.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end'>
-                    {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-gray-300 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
-                    {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
-                    {end < altnotis.length && <div className='py-1 px-2 rounded-md border border-gray-300 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
+                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-gray-300 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
+                    {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
+                    {end < notis.length && <div className='py-1 px-2 rounded-md border border-gray-300 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
                 </div>}
             </div>
         </div>

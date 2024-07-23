@@ -199,7 +199,7 @@ const Profile = ({ setToggleExtra}) => {
                             <img className='w-full h-full rounded-full object-cover' src={profile.img}></img>
                         </div>
                         <label>
-                            <div className='absolute bottom-5 right-1 bg-white md:w-[2.2rem] md:h-[2.2rem] w-7 h-7 md:text-[1.2rem] text-base flex items-center justify-center rounded-full cursor-pointer shlz'>
+                            <div className='absolute bottom-5 right-1 bg-white md:w-[2.2rem] md:h-[2.2rem] w-[1.9rem] h-[1.9rem] md:text-[1.2rem] text-base flex items-center justify-center rounded-full cursor-pointer shlz'>
                                 <MdOutlineEdit />
                             </div>
                             <input ref={imgref} type="file" onChange={handleProfileUpload} hidden></input>
@@ -209,8 +209,8 @@ const Profile = ({ setToggleExtra}) => {
                 </div>
 
                 <div className=' justify-center  mt-4  text-semi-white flex gap-2 items-center'>
-                    <div className='capitalize font-bold md:text-[1.5rem] text-lg'>{user.full_name}</div>
-                    <img className='md:w-4 w-2 h-auto' src={user.country_flag}></img>
+                    <div className='capitalize font-bold md:text-2xl text-lg'>{user.full_name}</div>
+                    <img className='md:h-4 h-2 w-auto' src={user.country_flag}></img>
                 </div>
                 <div className='text-light md:text-[0.8rem] text-xs text-center capitalize font-bold mt-2'>account trader</div>
                 <div className='mt-8 '>

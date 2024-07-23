@@ -7,6 +7,7 @@ import { BsThreeDots } from 'react-icons/bs';
 import { useAtom } from 'jotai';
 import { ADMINALLWITHDRAWALS } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
+import nothnyet from '../../../assets/images/nothn.png'
 
 const Withdrawals = ({ refetchAllWithdrawals }) => {
     const [fromAtom] = useAtom(ADMINALLWITHDRAWALS)
@@ -123,7 +124,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
                             </tr>
                         </thead>
-                        {fromAtom.length > 0 &&<tbody className=''>
+                        {fromAtom.length > 0 && <tbody className=''>
                             {allWithdrawals.slice(start, end).map((item, i) => (
                                 <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-[#e2e0e0]' key={i}>
                                     <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -136,6 +137,10 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                             ))}
                         </tbody>}
                     </table>
+                    {allWithdrawals.length === 0 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
+                        <div>no withdrawals found...</div>
+                        <img src={nothnyet} className='h-4 w-auto'></img>
+                    </div>}
                 </div>
                 {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#462c7c] '>
                     {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#462c7c] hover:bg-[#462c7c] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

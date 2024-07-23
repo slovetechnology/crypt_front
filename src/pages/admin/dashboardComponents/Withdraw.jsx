@@ -16,7 +16,7 @@ import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp } from 'react-icons/f
 import { supportedCoins } from '../../../services/Miscellaneous'
 import nothnyet from '../../../assets/images/nothn.png'
 
-const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetchUnreadNotis, refetchWallet, urlState }) => {
+const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, refetchUnreadNotis, refetchWallet, urlState }) => {
     const [user] = useAtom(PROFILE)
     const [fromAtom] = useAtom(WITHDRAWALS)
     const [userwallet] = useAtom(WALLET)
@@ -50,6 +50,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
         if (!amount) return setAmountError(true)
         if (amount < 20) return setAmountError(true)
         if (amount > userwallet.balance) return setLimitError(true)
+        if (Object.values(userwallet).length === 0) return setLimitError(true)
         if (Object.values(selectValue).length === 0) return setSelectError(true)
         if (!walletAddress) return setWalletError(true)
         if (!check) return setCheckError(true)
@@ -219,7 +220,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                     {supportedCoins.map((item, i) => (
                                         <div className='flex flex-col mt-1' key={i}>
                                             <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                                <img src={item.img} className='h-auto w-[1rem]'></img>
+                                                <img src={item.img} className='h-auto w-4'></img>
                                                 <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
                                             </div>
                                         </div>
@@ -240,7 +241,7 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                                 <span>make withdrawal</span>
                                 <IoCheckbox />
                             </button>
-                            <div className='absolute -bottom-8 left-0 text-[0.8rem] font-bold text-[#b64040] cursor-pointer flex gap-1 items-center' onClick={() => setToggle('verify account')}>
+                            <div className='absolute -bottom-8 left-0 text-[0.8rem] font-bold text-[red] cursor-pointer flex gap-1 items-center' onClick={() => setToggleExtra('verify account')}>
                                 <span>{withdrawError}</span>
                                 {withdrawError !== '' && <MdSentimentVeryDissatisfied />}
                             </div>
@@ -291,8 +292,8 @@ const Withdraw = ({ setToggle, refetchWithdrawals, refetchNotifications, refetch
                             </tbody>
                             }
                         </table>
-                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
-                            <div>no withdrawals made yet...</div>
+                        {allwithdrawals.length === 0 &&  <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
+                            <div>no withdrawals found...</div>
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>

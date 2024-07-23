@@ -28,7 +28,6 @@ const AdminHome = () => {
   const [, setAllWithdrawals] = useAtom(ADMINALLWITHDRAWALS)
 
   const [loading, setLoading] = useState(true)
-  const [altnotis, setAltNotis] = useState([])
   const [altdeposits, setAltDeposits] = useState([])
 
   const logoutAccount = () => {
@@ -41,7 +40,6 @@ const AdminHome = () => {
       const response = await UserGetApi(Apis.notification.admin_notifications)
       if (response.status === 200) {
         setNotifications(response.msg)
-        setAltNotis(response.msg)
       }
 
     } catch (error) {
@@ -197,7 +195,7 @@ const AdminHome = () => {
                 </div>
                 :
                 <div>
-                  <AdminNotis altnotis={altnotis} setAltNotis={setAltNotis} />
+                  <AdminNotis />
                 </div>}
             </div>
             <div className='flex gap-2 capitalize items-center text-[#292929] font-bold md:text-[0.85rem] text-xs '>

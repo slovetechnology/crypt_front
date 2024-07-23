@@ -8,6 +8,7 @@ import moment from 'moment';
 import DeleteModal from './DeleteModal'
 import { Apis, PostApi } from '../../../services/API'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
+import nothnyet from '../../../assets/images/nothn.png'
 
 
 
@@ -165,6 +166,10 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
               ))}
             </tbody>}
           </table>
+          {allusers.length === 0 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
+            <div>no users found...</div>
+            <img src={nothnyet} className='h-4 w-auto'></img>
+          </div>}
         </div>
         {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#462c7c] '>
           {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#462c7c] hover:bg-[#462c7c] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

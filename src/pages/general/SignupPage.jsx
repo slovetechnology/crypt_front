@@ -39,7 +39,7 @@ const SignupPage = () => {
   const [countries, setCountries] = useState(countryApi)
   const [countryshow, setCountryShow] = useState(false)
   const [usercountry, setUserCountry] = useState({
-    country: 'choose country',
+    name: 'choose country',
     flag: null
   })
   const [screen, setScreen] = useState(1)
@@ -141,7 +141,7 @@ const SignupPage = () => {
     formbody.append('full_name', form.full_name)
     formbody.append('username', form.username)
     formbody.append('email', form.email)
-    formbody.append('country', usercountry.country)
+    formbody.append('country', usercountry.name)
     formbody.append('tradersCode', form.tradersCode)
     formbody.append('password', form.password)
     formbody.append('confirm_password', form.confirm_password)
@@ -202,18 +202,13 @@ const SignupPage = () => {
     }
   }
 
-  const UserCountry = (item) => {
-    setUserCountry(item)
-  }
-
   const FilterCountry = (event) => {
     let search = (event.target.value)
-    console.log(search)
     if (!search) {
       setCountries(countryApi)
     }
     else {
-      const showSearch = countries.filter(item => item.country.toLowerCase().includes(search.toLowerCase()))
+      const showSearch = countries.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
       setCountries(showSearch)
     }
   }
@@ -279,25 +274,27 @@ const SignupPage = () => {
                               <div className='relative'>
                                 <div className='flex flex-col gap-[0.1rem]'>
                                   <div className='text-sm capitalize font-[550]'>country:</div>
-                                  <div className='flex gap-1'>
-                                    {usercountry.flag !== null && <img className='w-[1.5rem] h-auto' src={usercountry.flag}></img>}
-                                    <div className={`px-[0.5rem] py-[0.25rem] h-fit w-full bg-[#ebeaea] cursor-pointer ${countryError ? 'border border-[red]' : ''}`} onClick={() => setCountryShow(!countryshow)}>
+                                  <div className='flex gap-1 items-center'>
+                                    {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
+                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${countryError ? 'border border-[red]' : ''}`} onClick={() => setCountryShow(!countryshow)}>
                                       <div className='flex justify-between items-center text-[0.8rem]'>
-                                        <span >{usercountry.country}</span>
-                                        {!countryshow && <FaAngleDown className='hover:bg-white rounded-full text-[0.7rem]' />}
-                                        {countryshow && <FaAngleUp className='hover:bg-white rounded-full text-[0.7rem] ' />}
+                                        <span >{usercountry.name}</span>
+                                        <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>
+                                          <FaAngleUp/>
+                                          <FaAngleDown className='-mt-1'/>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-                                {countryshow && <div className='h-44 w-full bg-[#ebeaea] absolute top-[3.4rem] left-0 z-10  py-2 rounded-sm overflow-y-auto scroll'>
+                                {countryshow && <div className='h-44 w-full bg-white sha absolute top-[3.4rem] left-0 z-10 py-2 rounded-sm overflow-y-auto scroll'>
                                   <div className='px-4'>
-                                    <input className='ipt border border-[grey] bg-transparent text-black pl-[0.5rem] w-full outline-none md:text-[0.85rem] text-base md:h-[1.5rem] h-[1.7rem] rounded-sm ' type='text' placeholder='search' onKeyUp={FilterCountry}></input>
+                                    <input className='ipt border border-semi-white bg-transparent text-black px-2 w-full outline-none md:text-[0.85rem] text-base md:h-6 h-[1.7rem] rounded-sm mb-1' type='text' placeholder='search' onKeyUp={FilterCountry}></input>
                                     {countries.map((item, i) => (
                                       <div className='flex flex-col mt-2' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-white' onClick={() => { UserCountry(item); setCountryShow(false) }}>
-                                          <img src={item.flag} className='w-[0.75rem] h-[0.75rem] object-cover'></img>
-                                          <div className='text-[0.85rem] font-bold'>{item.country}</div>
+                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setUserCountry(item); setCountryShow(false) }}>
+                                          <img src={item.flag} className='w-4 h-auto object-cover'></img>
+                                          <div className='text-[0.85rem] font-bold'>{item.name}</div>
                                         </div>
                                       </div>
                                     ))}

@@ -11,7 +11,7 @@ const PerformancesPage = () => {
               <span className='z-20 font-bold uppercase text-[1.4rem] lg:text-[2.5rem]'>past performances</span>
             </div>
           </div>
-          <div className='overflow-x-auto scrollsdown shadow-sign-sha rounded-md'>
+          <div className='overflow-x-auto scrollsdown shadow-md rounded-lg'>
             <table className='table table-auto w-full'>
               <thead >
                 <tr className='bg-[#30465c] text-[0.8rem] font-bold text-white'>

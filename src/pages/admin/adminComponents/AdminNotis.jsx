@@ -5,26 +5,21 @@ import { PiNotification } from 'react-icons/pi'
 import { HiCheckCircle } from 'react-icons/hi2'
 import { useAtom } from 'jotai'
 import moment from 'moment'
-import { FiX } from 'react-icons/fi'
 import { Apis, UserPutApi } from '../../../services/API'
-import { IoMdArrowBack, IoMdSearch } from 'react-icons/io'
 import { NOTIFICATIONS, UNREADNOTIS } from '../../../store'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import nothnyet from '../../../assets/images/nothn.png'
 
 
-const AdminNotis = ({ altnotis, setAltNotis }) => {
+const AdminNotis = () => {
     const [notifications] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
 
     const [showNotis, setShowNotis] = useState(false)
-    const [searchNoti, setSearchNoti] = useState(false)
-    const [search, setSearch] = useState('')
-    const [write, setWrite] = useState(false)
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(4)
     const [pagestart, setPagestart] = useState(1)
-    const [pageend, setPageend] = useState(altnotis.length / end)
+    const [pageend, setPageend] = useState(notifications.length / end)
 
     const styleShow = {
         display: showNotis === true ? "block" : "none"
@@ -99,56 +94,31 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
         }
     }
 
-    const handleSearch = () => {
-        if (!search) {
-            setAltNotis(notifications)
-            setPageend(notifications.length / 4)
-            setWrite(false)
-            setPagestart(1)
-            setStart(0)
-            setEnd(4)
-        }
-        else {
-            setWrite(true)
-            const showSearch = altnotis.filter(item => item.title.includes(search.toLowerCase()))
-            setAltNotis(showSearch)
-            setPageend(showSearch.length / 4)
-            setPagestart(1)
-            setStart(0)
-            setEnd(4)
-        }
-    }
-
-    const CancelWrite = () => {
-        setSearch('')
-        setAltNotis(notifications)
-        setPageend(notifications.length / 4)
-        setWrite(false)
-        setPagestart(1)
-        setStart(0)
-        setEnd(4)
-    }
-
     return (
         <div className='relative'>
-            <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white  border-white `}>
-                <IoNotificationsOutline />
-            </div>
-            <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-[#462c7c] text-[0.65rem] font-extrabold bg-white notisha' onClick={MarkAllRead}>
-                <div className='w-full h-full flex items-center justify-center' onClick={() => { setShowNotis(true) }} style={reverseShow}>
-                    {unreadNotis.length > 0 ?
-                        <span>{unreadNotis.length}</span>
-                        :
-                        <span ><TbNotification /></span>
-                    }
+            <div>
+                <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white  border-white cursor-pointer' onClick={() => { setShowNotis(true) }} style={reverseShow}>
+                    <IoNotificationsOutline />
                 </div>
-                <div className='w-full h-full flex items-center justify-center' style={styler}>
-                    {unreadNotis.length > 0 ?
-                        <span>{unreadNotis.length}</span>
-                        :
-                        <span><PiNotification
-                        /></span>
-                    }
+                <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white  border-white cursor-pointer' style={styler}>
+                    <IoNotificationsOutline />
+                </div>
+                <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-[#462c7c] text-[0.65rem] font-extrabold bg-white notisha' onClick={MarkAllRead}>
+                    <div className='w-full h-full flex items-center justify-center' onClick={() => { setShowNotis(true) }} style={reverseShow}>
+                        {unreadNotis.length > 0 ?
+                            <span>{unreadNotis.length}</span>
+                            :
+                            <span ><TbNotification /></span>
+                        }
+                    </div>
+                    <div className='w-full h-full flex items-center justify-center' style={styler}>
+                        {unreadNotis.length > 0 ?
+                            <span>{unreadNotis.length}</span>
+                            :
+                            <span><PiNotification
+                            /></span>
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -158,27 +128,12 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                         <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
                         <div>notifications</div>
                     </div>
-                    <div className='relative z-20'>
-                        <div className='rounded-full w-fit h-fit p-1 md:bg-[#8d8c8c] bg-[#b4b3b3] cursor-pointer text-black md:text-[0.85rem] text-lg' onClick={() => setSearchNoti(!searchNoti)}>
-                            <IoMdSearch/>
-                        </div>
-                        {searchNoti && <div className='absolute md:top-6 top-8 right-0'>
-                            <div className='relative text-black'>
-                                <input className='outline-none pl-2 pr-5 md:w-36 w-48 md:h-7 h-8 bg-[#e9e8e8] border border-zinc-500 rounded-md md:text-sm text-base ipt' type='text' value={search} onChange={e => setSearch(e.target.value)} placeholder='search by title' onKeyUp={handleSearch}></input>
-                                {write &&
-                                    <div className='absolute md:top-1.5 top-2 right-1.5 text-sm cursor-pointer text-[#462c7c]' onClick={CancelWrite}>
-                                        <FiX />
-                                    </div>
-                                }
-                            </div>
-                        </div>}
-                    </div>
                 </div>
-                {altnotis.length > 0 ? <div className='mt-2 md:mt-0'>
-                    {altnotis.slice(start, end).map((item, i) => (
+                {notifications.length > 0 ? <div className='mt-2 md:mt-0'>
+                    {notifications.slice(start, end).map((item, i) => (
                         <div key={i} className='flex flex-col items-center md:pt-2 pt-3 md:text-xs text-[0.8rem] text-black'>
                             <div className='p-2 rounded-md bg-white relative shantf w-full h-fit '>
-                                <div className='flex flex-col gap-1'>
+                                <div className='flex flex-col gap-2'>
                                     <div className='flex items-center'>
                                         <div className='flex gap-[0.2rem] items-center'>
                                             <div className='capitalize font-[800] border-b  border-[grey] w-fit'>{item.title}</div>
@@ -186,7 +141,7 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                                         </div>
                                     </div>
                                     <div className='font-[600]'>{item.content}</div>
-                                    <div className=' text-[0.7rem] text-[#3d3d3d] font-bold mt-[0.5rem]'>{moment(item.createdAt).fromNow()}</div>
+                                    <div className=' text-[0.7rem] text-[#3d3d3d] font-bold mt-2'>{moment(item.createdAt).fromNow()}</div>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +155,7 @@ const AdminNotis = ({ altnotis, setAltNotis }) => {
                 {notifications.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end'>
                     {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-500 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold md:text-zinc-600 text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-                    {end < altnotis.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-500 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
+                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-500 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
                 </div>}
             </div>
         </div>

@@ -68,7 +68,7 @@ const ClaimButtons = ({ item, refetchWallet, refetchNotifications, refetchInvest
                     </div>
                 }
             </button>
-            <div className='absolute -bottom-6 left-0 text-[#a83333] text-xs flex items-center gap-1'><div>{claimError}</div>
+            <div className='absolute -bottom-6 left-0 text-[#c42e2e] text-xs flex items-center gap-1'><div>{claimError}</div>
                 {claimError !== '' && <MdError />}
             </div>
             {loading && <div className="w-full h-full absolute left-0 top-0 flex items-center justify-center bg-[#0c091aa4] z-20">

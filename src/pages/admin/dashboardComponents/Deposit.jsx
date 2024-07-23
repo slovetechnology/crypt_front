@@ -7,11 +7,12 @@ import { DEPOSITS, PROFILE, WALLET } from '../../../store';
 import { Apis, PostApi } from '../../../services/API';
 import { Alert, MoveToTopDivs } from '../../../utils/utils';
 import moment from 'moment';
-import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp, FaCheck, FaRegCopyright, FaRegRectangleXmark } from 'react-icons/fa6';
+import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp, FaCheck, FaRegCopyright } from 'react-icons/fa6';
 import { FiX } from "react-icons/fi";
 import { supportedCoins, tradingPlans } from '../../../services/Miscellaneous';
 import nothnyet from '../../../assets/images/nothn.png'
 import { TbListDetails } from "react-icons/tb";
+import { LuX } from "react-icons/lu";
 import Loading from '../../../PageComponents/Loading';
 
 
@@ -27,7 +28,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     const [checkError, setCheckError] = useState(false)
     const [amountError, setAmountError] = useState(false)
     const [selectState, setSelectState] = useState(false)
-    const [selectValue, setSelectValue] = useState('')
+    const [selectValue, setSelectValue] = useState({})
     const [selectError, setSelectError] = useState(false)
     const [network, setNetwork] = useState('')
     const [address, setAddress] = useState('')
@@ -58,6 +59,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         if (amount < buybal.price_start) return setLimitError(true)
         if (amount > buybal.price_limit) return setLimitError(true)
         if (amount > userwallet.balance) return setBalanceError(true)
+        if (Object.values(userwallet).length === 0) return setBalanceError(true)
         if (!balCheck) return setCheckError(true)
 
         setLoading(true)
@@ -90,7 +92,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             } catch (error) {
                 Alert('Request Failed', `${error.message}`, 'error')
             } finally {
-                setLoadingTwo(false)
+                setLoading(false)
             }
         }
     }
@@ -112,7 +114,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         if (!amount) return setAmountError(true)
         if (amount < buybal.price_start) return setLimitError(true)
         if (amount > buybal.price_limit) return setLimitError(true)
-        setSelectValue('')
+        setSelectValue({})
         setAddress('')
         setNetwork('')
         setDepositScreen(2)
@@ -125,13 +127,13 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setSelectError(false)
         }, 1000)
 
-        if (selectValue === '') return setSelectError(true)
+        if (Object.values(selectValue).length === 0) return setSelectError(true)
         if (!check) return setCheckError(true)
 
         const formbody = {
             amount: parseFloat(amount),
             trading_plan: buybal.title,
-            crypto: selectValue,
+            crypto: selectValue.coin,
             from: 'external source',
             deposituser: user.username
         }
@@ -147,7 +149,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 setScreen(2)
                 setAmount('')
                 setCheck(!check)
-                setSelectValue('')
+                setSelectValue({})
                 setNetwork('')
                 setAddress('')
                 setDeposit('deposit history')
@@ -248,7 +250,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
 
 
     return (
-        <div className={`pt-10 pb-24 lg:pb-10 ${screen === 2 ? 'h-screen' : 'h-fit'} `}>
+        <div className={`pt-10 pb-24 lg:pb-10 ${screen === 2 ? 'h-screen' : 'h-fit'}`}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{deposit}</div>
                 {screen === 1 &&
@@ -265,7 +267,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 }
             </div>
             {screen === 1 && <div className='w-[80%] mx-auto my-10 relative flex items-center justify-center bgdeposit'>
-                <div className={`h-[30rem] w-[32rem] bg-semi-white md:px-3 px-2 rounded-xl relative shlz scroll thediv overflow-x-hidden ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
+                <div className={`h-[32rem] w-[32rem] bg-semi-white md:px-3 px-2 rounded-xl relative shlz scroll thediv overflow-x-hidden ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
                     <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-fit h-fit py-1 px-6 rounded-b-md mx-auto flex items-center justify-center gap-2'>
                         <span>trading plans</span>
                         <TbListDetails className='text-[#5BB4FD]' />
@@ -288,7 +290,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className='text-xs text-[#353434] font-[550] text-center w-11/12'>
+                                            <div className='text-xs text-[#353434] font-[600] text-center w-11/12'>
                                                 60% profit return on investment plus bonus up to ${item.bonus}
                                             </div>
                                             <div className='mb-4 mt-2'>
@@ -306,16 +308,16 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             <div>2024, Al Algo, All rights reserved.</div>
                         </div>
                     </div>
-                    {modal && <div className='w-full h-full absolute top-0 left-0  flex items-center justify-center bg-[#0c091aa4] z-20'>
+                    {modal && <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center bg-[#0c091aa4] z-20'>
                         <div className='w-96 h-fit bg-white rounded-lg px-4 py-4 flex flex-col gap-4 relative'>
                             {loading && <Loading />}
-                            <FaRegRectangleXmark className='absolute top-0 right-[0.2rem] cursor-pointer' onClick={() => { setModal(false); setAmount(''); setDepositScreen(1); setBalCheck(false); setExtCheck(false) }} />
+                            <LuX className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => { setModal(false); setAmount(''); setDepositScreen(1); setBalCheck(false); setExtCheck(false) }} />
                             {depositScreen === 1 && <>
                                 <div className='flex items-center gap-2 justify-center'>
                                     <div className='text-[0.85rem] uppercase font-bold'>{buybal.title}</div>
                                     <div className={`text-xs font-[550] bg-white py-1 px-2 rounded-full adsha ${limitError ? 'text-[red]' : 'text-black'} `}>${buybal.price_start} - ${buybal.price_limit}</div>
                                 </div>
-                                <div className='relative flex gap-2 items-center mx-auto'>
+                                <div className='relative flex gap-3 items-center mx-auto'>
                                     <div className='relative'>
                                         <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-md px-5 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='enter amount'></input>
                                         <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
@@ -344,7 +346,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 </div>
                             </>}
                             {depositScreen === 2 && <div className='flex flex-col gap-4 items-center'>
-                                <div className='flex gap-1.5 items-center pb-1 border-b'>
+                                <div className='flex gap-1.5 items-center pb-1 border-b' onClick={() => console.log(buybal)}>
                                     <span className='text-xs italic'>for</span>
                                     <span className='text-sm capitalize font-medium'>{buybal.title}</span>
                                     <span className='text-sm capitalize font-medium'>${amount}</span>
@@ -361,7 +363,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                         {selectState && <div>
                                             {supportedCoins.map((item, i) => (
                                                 <div className='flex flex-col mt-1' key={i}>
-                                                    <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item.coin); setNetwork(item.textnw); setAddress(item.address) }}>
+                                                    <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item); setNetwork(item.textnw); setAddress(item.address) }}>
                                                         <img src={item.img} className='h-auto w-4'></img>
                                                         <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
                                                     </div>
@@ -371,13 +373,19 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                     </div>
                                 </div>
                                 <div className='text-[0.8rem] text-center'>{network}</div>
-                                <div className='flex gap-2 items-center'>
+                                {Object.values(selectValue).length !== 0 && <div className='flex gap-2 items-center'>
                                     <div className='text-xs text-[#5BB4FD]'>{address}</div>
-                                    {selectValue !== '' && <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
+                                    <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                         {!copy && <MdContentCopy />}
                                         {copy && <FaCheck />}
-                                    </button>}
-                                </div>
+                                    </button>
+                                </div>}
+                                {Object.values(selectValue).length !== 0 && <div>
+                                    <div className='text-[0.8rem] text-center'>or scan qr code:</div>
+                                    <div className='flex items-center justify-center'>
+                                        <img src={selectValue.qr} className='h-32 w-auto'></img>
+                                    </div>
+                                </div>}
                                 <div className='flex flex-col gap-2 items-center'>
                                     <div className='flex gap-2 items-center'>
                                         <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red] ' : ''}`}></input>
@@ -437,8 +445,8 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                             </tbody>
                             }
                         </table>
-                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
-                            <div>no deposits made yet...</div>
+                        {userDeposits.length === 0 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
+                            <div>no deposits found...</div>
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>

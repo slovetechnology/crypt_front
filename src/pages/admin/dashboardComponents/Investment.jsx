@@ -142,7 +142,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
-                                        <img src={deposit3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
+                                        <img src={deposit3d} className='md:h-10 h-8 w-auto'></img>
                                     </div>
                                 </div>
                                 <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
@@ -171,7 +171,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
 
                                             </div>
                                         </div>
-                                        <img src={profit3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
+                                        <img src={profit3d} className='md:h-10 h-8 w-auto'></img>
                                     </div>
                                 </div>
                                 <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
@@ -198,7 +198,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
-                                        <img src={bonus3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
+                                        <img src={bonus3d} className='md:h-10 h-8 w-auto'></img>
                                     </div>
                                 </div>
                                 <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[0.9rem] text-sm py-2  px-2 text-semi-white gap-2 font-bold bg-[#6859bb]'>
@@ -216,7 +216,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                                 {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
                                             </div>
                                         </div>
-                                        <img src={trading3d} className='md:h-[2.5rem] h-[2rem] w-[auto]'></img>
+                                        <img src={trading3d} className='md:h-10 h-8 w-auto'></img>
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +247,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                     </div>
                     <div className='relative w-fit mx-auto mt-8 md:mt-4 lg:mt-8'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
-                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-[2.5rem] rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
+                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-10 rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
                             <IoIosSearch />
                             {write &&
                                 <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
@@ -286,8 +286,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             </tbody>
                             }
                         </table>
-                        {fromAtom.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
-                            <div>no investment made yet...</div>
+                        {investment.length === 0 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
+                            <div>no investment found...</div>
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>

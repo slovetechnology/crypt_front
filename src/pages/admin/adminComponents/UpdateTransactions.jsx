@@ -7,6 +7,8 @@ import UpdateModal from './UpdateModal';
 import { useAtom } from 'jotai';
 import { ADMINALLDEPOSITS } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
+import nothnyet from '../../../assets/images/nothn.png'
+
 
 const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits }) => {
   const [fromAtom] = useAtom(ADMINALLDEPOSITS)
@@ -101,7 +103,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
       <div className='mt-8 md:mt-6 lg:mt-8'>
         <div className='relative w-fit mx-auto'>
           <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-          <div className='text-[1.2rem] text-[white] absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
+          <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-[#462c7c] shantf2'>
             <IoIosSearch />
             {write &&
               <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-zinc-400 rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
@@ -113,7 +115,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
         <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
           <table className='w-full '>
             <thead >
-              <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-[white]'>
+              <tr className='bg-[#462c7c] text-[0.8rem] font-bold text-white'>
                 <td className='text-center truncate  capitalize p-2 '>date</td>
                 <td className='text-center truncate  capitalize p-2 '>username</td>
                 <td className='text-center truncate  capitalize p-2 '>email</td>
@@ -125,9 +127,9 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-[1rem]" /></td>
               </tr>
             </thead>
-            {fromAtom.length > 0 &&<tbody>
+            {fromAtom.length > 0 && <tbody>
               {altdeposits.slice(start, end).map((item, i) => (
-                <tr className='text-[0.8rem]  text-black font-[550] bg-[white] even:bg-[#e2e0e0]' key={i}>
+                <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-[#e2e0e0]' key={i}>
                   <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                   <td className='p-4  text-center truncate'>{item.deposituser.username}</td>
                   <td className='p-4  text-center truncate'>{item.deposituser.email}</td>
@@ -141,6 +143,10 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
               ))}
             </tbody>}
           </table>
+          {altdeposits.length === 0 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
+            <div>no transactions found...</div>
+            <img src={nothnyet} className='h-4 w-auto'></img>
+          </div>}
         </div>
         {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#462c7c] '>
           {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#462c7c] hover:bg-[#462c7c] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

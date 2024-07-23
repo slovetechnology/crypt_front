@@ -5,6 +5,11 @@ import ethereum from '../assets/images/ethereum.png'
 import usdt from '../assets/images/usdt.png'
 import xrp from '../assets/images/xrp.png'
 import solana from '../assets/images/solana.png'
+import btcqrcode from '../assets/images/btcqrcode.png'
+import ethqrcode from '../assets/images/ethqrcode.png'
+import usdtqrcode from '../assets/images/usdtqrcode.png'
+import xrpqrcode from '../assets/images/xrpqrcode.png'
+import solqrcode from '../assets/images/solqrcode.png'
 
 export const AItraders = [
     {
@@ -71,41 +76,44 @@ export const supportedCoins = [
     {
         coin: 'bitcoin',
         img: bitcoin,
-        textnw: 'Your Bitcoin deposit address for Bitcoin network, copy below',
+        textnw: 'Your Bitcoin deposit address for Bitcoin network, copy below:',
         address: '14y635WCNGk2LbwWGDfZgYEWHSZhiEjXm',
-        network: 'bitcoin network'
+        network: 'bitcoin network',
+        qr: btcqrcode
     },
     {
         coin: 'USDT',
         img: usdt,
-        textnw: 'Your USDT deposit address for Tron network, copy below',
+        textnw: 'Your USDT deposit address for Tron network, copy below:',
         address: 'TRcyNJLKUPW4wVpxpUgmTJckN7bz4DWSvV',
-        network: 'tron network'
+        network: 'tron network',
+        qr: usdtqrcode
     },
     {
         coin: 'ethereum',
         img: ethereum,
-        textnw: 'Your Ethereum deposit address for ERC20 network, copy below',
+        textnw: 'Your Ethereum deposit address for ERC20 network, copy below:',
         address: '0x72dab9d1e0376858579921c7id3ffb6d9db2183',
-        network: 'ERC20 network'
+        network: 'ERC20 network',
+        qr: ethqrcode
     }
     ,
-   
     {
         coin: 'solana',
         img: solana,
-        textnw: 'Your Solana deposit address for Solana network, copy below',
+        textnw: 'Your Solana deposit address for Solana network, copy below:',
         address: 'CZXopsQvqwS8YZquCQLTh7jZ4PCfZ5FEVBTH',
-        network: 'solana network'
+        network: 'solana network',
+        qr: solqrcode
     },
     {
         coin: 'XRP',
         img: xrp,
-        textnw: 'Your XRP deposit address for Ripple network, copy below',
+        textnw: 'Your XRP deposit address for Ripple network, copy below:',
         address: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV',
-        network: 'ripple network'
+        network: 'ripple network',
+        qr: xrpqrcode
     },
-
 ]
 
 export const questions = [

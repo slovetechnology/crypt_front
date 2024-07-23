@@ -7,14 +7,14 @@ import { Alert } from '../../../utils/utils';
 import { PROFILE } from '../../../store';
 import { useAtom } from 'jotai';
 
-const VerifyAcount = ({ setToggle, setToggleExtra }) => {
+const VerifyAcount = ({ setToggleExtra }) => {
     const [user, setUser] = useAtom(PROFILE)
 
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState('')
     const [code, setCode] = useState('')
     const [codeError, setCodeError] = useState('')
-    const [verifyScreen, setVerifyScreen] = useState(2)
+    const [verifyScreen, setVerifyScreen] = useState(1)
     const [loading, setLoading] = useState(false)
 
     const FindEmail = async (e) => {
@@ -78,7 +78,7 @@ const VerifyAcount = ({ setToggle, setToggleExtra }) => {
         <div className='pt-10 h-screen'>
             <div className='md:w-[95%] mx-auto'>
                 {loading && <LoadingAdmin />}
-                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => {setToggle('profile'); setToggleExtra('')}}>
+                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => {setToggleExtra('')}}>
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>
@@ -93,7 +93,7 @@ const VerifyAcount = ({ setToggle, setToggleExtra }) => {
                                 <div className='text-[0.85rem] capitalize text-semi-white'> email address</div>
                                 <div className='relative'>
                                     <input className='outline-none rounded-[3px] w-60 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
-                                    <div className='text-xs  text-[#a83333] absolute bottom-[-1.4rem] left-0'>{emailError}</div>
+                                    <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{emailError}</div>
                                 </div>
                             </div>
                             <div className='flex items-center  mt-2'>
@@ -107,7 +107,7 @@ const VerifyAcount = ({ setToggle, setToggleExtra }) => {
                                 <div className='text-[0.85rem]  text-semi-white text-center'> A six digits verification code was sent to <span className='text-[#7665D5]'>{email?.slice(0, 3)}*****{email?.slice(-10)}</span>, copy and enter below</div>
                                 <div className='relative'>
                                     <input className='outline-none rounded-[3px] w-60 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
-                                    <div className='text-xs  text-[#a83333] absolute bottom-[-1.4rem] left-0'>{codeError}</div>
+                                    <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{codeError}</div>
                                 </div>
                             </div>
                             <div className='flex items-center  mt-2'>
