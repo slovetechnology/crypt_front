@@ -61,7 +61,7 @@ const VerifyAcount = ({ setToggleExtra }) => {
             if (response.status === 200) {
                 Alert('Request Successful', 'Email verified successfully', 'success')
                 setUser(response.msg)
-                setToggle('profile')
+                setToggleExtra('')
             } else {
                 setCodeError(`${response.msg}`)
             }
