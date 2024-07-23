@@ -304,21 +304,21 @@ const SignupPage = () => {
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>trader's code:</div>
                                 <input className={`outline-none w-full   border-b  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt`} placeholder={`Enter an AI Algo trader's code`} code type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
-                                <div className='absolute bottom-[-1rem] left-0 text-xs text-[red]'>{codeMsg}</div>
+                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{codeMsg}</div>
                               </div>
                             </div>
                             <div className='grid grid-cols-2 gap-8 w-full'>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550]'>password:</div>
-                                <input className={`outline-none w-full border-b  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  lg:text-sm text-base pr-4 ipt`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full border-b  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  lg:text-sm text-base pr-6 ipt`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
                                 <EyeIcon className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye(!eye)} />
-                                <div className='absolute bottom-[-1rem] left-0 text-xs text-[red]'>{passMsg}</div>
+                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{passMsg}</div>
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>confirm password:</div>
-                                <input className={`outline-none w-full border-b  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base pr-4 ipt`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full border-b  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base pr-6 ipt`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
                                 <EyeIcon2 className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
-                                <div className='absolute bottom-[-1rem] left-0 text-xs text-[red]'>{conMsg}</div>
+                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{conMsg}</div>
                               </div>
                             </div>
                             <div className='flex gap-1 mt-4'>

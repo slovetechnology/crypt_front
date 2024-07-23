@@ -101,7 +101,7 @@ const LoginPage = () => {
                                                                 <MdMarkEmailUnread className='text-[0.9rem]' />
                                                                 <div className='text-sm capitalize font-[550]'>email address</div>
                                                             </div>
-                                                            <input placeholder='Enter email address' className=' outline-none rounded-[3px] w-full h-fit py-2 bg-[#e9e9e9] pl-4 justify-center lg:text-[0.9rem] text-base ipt' type='email' value={form.email} name='email' onChange={inputHandler}></input>
+                                                            <input placeholder='Enter email address' className=' outline-none rounded-[3px] w-full h-fit py-2 bg-[#e9e9e9] px-4 justify-center lg:text-[0.9rem] text-base ipt' type='email' value={form.email} name='email' onChange={inputHandler}></input>
                                                             <div className={`text-xs md:text-[0.8rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-black'}`}>{emailmsg}</div>
                                                         </div>
                                                     </div>
@@ -111,7 +111,7 @@ const LoginPage = () => {
                                                                 <MdLock className='text-[0.9rem]' />
                                                                 <div className='text-sm capitalize font-[550]'>password</div>
                                                             </div>
-                                                            <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-2  bg-[#e9e9e9] pl-4 justify-center lg:text-[0.9rem] text-base ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
+                                                            <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-2  bg-[#e9e9e9] pl-4 pr-8 justify-center lg:text-[0.9rem] text-base ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
                                                             <EyeIcon className='absolute top-10 right-2 cursor-pointer' onClick={() => setEye(!eye)} />
                                                             <div className={`text-xs md:text-[0.8rem] absolute bottom-[-1.2rem] left-0 ${error === true ? 'text-[red]' : 'text-black'}`}> {passmsg} </div>
                                                         </div>
