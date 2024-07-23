@@ -228,7 +228,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                 </div>
                     :
                     <div className='pt-16'>
-                        <div className='w-fit h-fit rounded-xl flex flex-col items-center justify-center text-[1.2rem] py-4 px-8 md:px-16  text-semi-white gap-4 border border-dashed border-[grey] bg-[#130e27] mx-auto'>
+                        <div className='w-fit h-fit rounded-xl flex flex-col items-center justify-center py-4 px-8 md:px-16  text-semi-white gap-4 border border-dashed border-[grey] bg-[#130e27] mx-auto'>
                             <div className='md:text-[1.2rem] text-base italic'>No new investment made</div>
                             <img src={investbg} className='md:w-80 w-52 h-auto'></img>
                             <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs text-white font-medium bg-light rounded-full flex items-center gap-3 mt-4' onClick={() => setToggle('deposit')}>
@@ -286,7 +286,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             </tbody>
                             }
                         </table>
-                        {investment.length === 0 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
+                        {investment.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
                             <div>no investment found...</div>
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}

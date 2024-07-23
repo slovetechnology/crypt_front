@@ -199,7 +199,7 @@ const Profile = ({ setToggleExtra}) => {
                             <img className='w-full h-full rounded-full object-cover' src={profile.img}></img>
                         </div>
                         <label>
-                            <div className='absolute bottom-5 right-1 bg-white md:w-[2.2rem] md:h-[2.2rem] w-[1.9rem] h-[1.9rem] md:text-[1.2rem] text-base flex items-center justify-center rounded-full cursor-pointer shlz'>
+                            <div className='absolute bottom-5 right-1 bg-white md:w-[2.2rem] md:h-[2.2rem] w-8 h-8 md:text-[1.2rem] text-base flex items-center justify-center rounded-full cursor-pointer shlz'>
                                 <MdOutlineEdit />
                             </div>
                             <input ref={imgref} type="file" onChange={handleProfileUpload} hidden></input>

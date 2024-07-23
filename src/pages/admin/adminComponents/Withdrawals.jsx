@@ -137,7 +137,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                             ))}
                         </tbody>}
                     </table>
-                    {allWithdrawals.length === 0 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
+                    {allWithdrawals.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
                         <div>no withdrawals found...</div>
                         <img src={nothnyet} className='h-4 w-auto'></img>
                     </div>}
