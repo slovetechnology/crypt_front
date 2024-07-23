@@ -12,7 +12,7 @@ import { FiX } from "react-icons/fi";
 import { supportedCoins, tradingPlans } from '../../../services/Miscellaneous';
 import nothnyet from '../../../assets/images/nothn.png'
 import { TbListDetails } from "react-icons/tb";
-import { LuX } from "react-icons/lu";
+import { FaXmark } from "react-icons/fa6";
 import Loading from '../../../PageComponents/Loading';
 
 
@@ -311,7 +311,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     {modal && <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center bg-[#0c091aa4] z-20'>
                         <div className='w-96 h-fit bg-white rounded-lg px-4 py-4 flex flex-col gap-4 relative'>
                             {loading && <Loading />}
-                            <LuX className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => { setModal(false); setAmount(''); setDepositScreen(1); setBalCheck(false); setExtCheck(false) }} />
+                            <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => { setModal(false); setAmount(''); setDepositScreen(1); setBalCheck(false); setExtCheck(false) }} />
                             {depositScreen === 1 && <>
                                 <div className='flex items-center gap-2 justify-center'>
                                     <div className='text-[0.85rem] uppercase font-bold'>{buybal.title}</div>
