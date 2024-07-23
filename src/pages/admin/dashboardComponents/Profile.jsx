@@ -302,11 +302,11 @@ const Profile = ({ setToggleExtra}) => {
                                 <div className='flex flex-col gap-6'>
                                     <div className='relative'>
                                         <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                        <EyeIcon className='absolute top-3 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye(!eye)} />
+                                        <EyeIcon className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye(!eye)} />
                                     </div>
                                     <div className='relative'>
                                         <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-full h-fit rounded-[3px] px-2 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
-                                        <EyeIcon2 className='absolute top-3 right-2 text-[0.8rem] text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
+                                        <EyeIcon2 className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     </div>
                                 </div>
                                 <div className='md:text-[1.2rem] text-base text-light cursor-pointer' onClick={() => setPassEdit(!passEdit)}>
