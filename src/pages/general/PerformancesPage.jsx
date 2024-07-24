@@ -109,7 +109,7 @@ const PerformancesPage = () => {
               </tbody>
             </table>
           </div>
-          <div className='mt-4 italic text-center text-[#30465c]'>
+          <div className='mt-4 italic text-center'>
             - table only shows the most recent performances on the AI algorithm trading system -
           </div>
         </div>

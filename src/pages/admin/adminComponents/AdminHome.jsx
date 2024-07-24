@@ -130,11 +130,11 @@ const AdminHome = () => {
 
   return (
     <div className='w-full flex relative'>
-      <div className={`xl:w-[20%] lg:w-[25%] hidden bg-[#36225e] lg:block relative overflow-hidden`}>
+      <div className={`xl:w-[20%] lg:w-[25%] hidden bg-admin-auth lg:block relative overflow-hidden`}>
         <div className={`xl:w-[20%] lg:w-[25%] fixed top-0 left-0 h-screen`}>
           <div className='flex justify-center mt-14 items-center'>
             <img src={logo} className='w-12 h-auto'></img>
-            <div className=' capitalize font-[550] text-sha text-[1.3rem]'>AialgoControls</div>
+            <div className=' capitalize font-[550] text-sha text-2xl'>AialgoControls</div>
           </div>
           <div className='flex flex-col gap-8  mt-10 pl-12 text-[#bbb9b9] '>
             <div className='flex gap-4 flex-col'>
@@ -160,14 +160,14 @@ const AdminHome = () => {
                     <BiLogOutCircle className='text-[1.3rem] ' />
                     <div className='capitalize text-[0.85rem] font-bold'>logout</div>
                   </div>
-                  {logout && <div className='absolute top-0 right-4 bg-[#36225e] w-fit  h-fit z-10 rounded-[10px] text-white   p-4 shlztwo'>
-                    <div className=' text-[0.8rem] mb-[1rem] text-center'>Logout of your account?</div>
+                  {logout && <div className='absolute top-0 right-4 bg-admin-auth w-fit  h-fit z-10 rounded-[10px] text-white   p-4 shlztwo'>
+                    <div className=' text-[0.8rem] mb-4 text-center'>Logout of your account?</div>
                     <div className='flex gap-[1rem] items-center'>
-                      <button className='outline-none py-[0.25rem] px-[1rem] w-fit h-fit border border-white rounded-lg capitalize text-[0.75rem] flex items-center gap-1 hover:bg-white hover:text-[#36225e] ' onClick={() => setLogOut(!logout)}>
+                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white hover:text-admin-auth bg-admin-auth ' onClick={() => setLogOut(!logout)}>
                         <span>cancel</span>
                         <TiCancel className='text-[0.8rem]' />
                       </button>
-                      <button className='outline-none py-[0.25rem] px-[1rem] w-fit h-fit border border-white  rounded-lg capitalize text-[0.75rem] flex items-center gap-1 hover:bg-white hover:text-[#36225e]' onClick={logoutAccount}>
+                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white  rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white hover:text-admin-auth bg-admin-auth' onClick={logoutAccount}>
                         <span>logout</span>
                         <IoMdLogOut className='text-[0.7rem]' />
                       </button>
@@ -183,7 +183,7 @@ const AdminHome = () => {
       <div className={`xl:w-[80%] lg:w-[75%] w-full bg-white`}>
         <div className='md:w-[94%] w-11/12 mx-auto'>
           <div className='flex flex-col gap-4'>
-            <div className='w-full h-fit  rounded-md bg-[#36225e] mt-4 px-4 py-2 text-white text-[0.85rem] flex items-center justify-between'>
+            <div className='w-full h-fit  rounded-md bg-admin-auth mt-4 px-4 py-2 text-white text-[0.85rem] flex items-center justify-between'>
               <div className='flex items-center gap-1 capitalize'>
                 <div>hello,</div>
                 <div>admin!</div>
@@ -229,7 +229,7 @@ const AdminHome = () => {
               refetchAllWithdrawals={() => FetchAllWithdrawals()}
             />}
           </div>}
-          <div className='bg-[#36225e] w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
+          <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-4 items-center h-full w-full'>
               <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'update transactions' ? 'text-[green]' : ' text-semi-white'}`} onClick={() => { setToggle('update transactions') }}>
                 <GrDocumentUpdate className='md:text-xl text-lg' />

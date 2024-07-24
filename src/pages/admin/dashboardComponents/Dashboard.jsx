@@ -206,7 +206,7 @@ const Dashboard = () => {
                     </div>
                     <div className='flex justify-center lg:mt-14 mt-12 items-center'>
                         <img src={logo} className='w-12 h-auto'></img>
-                        <div className='capitalize font-bold lg:text-[1.3rem] text-2xl lg:text-[#211a42] text-[#3c2797] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
+                        <div className='capitalize font-bold text-2xl lg:text-[#211a42] text-[#3c2797] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
                     </div>
                     <div className='flex flex-col gap-8 lg:mt-10 mt-8 pl-12'>
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>

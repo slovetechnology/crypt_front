@@ -121,54 +121,54 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
 
     return (
         <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20'>
-            <div className={`bg-white rounded-lg w-[50vw] h-[90vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
+            <div className={`bg-white rounded-lg lg:w-1/2 md:w-3/4 w-11/12 lg:h-[90vh] h-[80vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {loading && <Loading />}
                     {beforeshow && <div className='beforeshow'></div>}
-                    {!beforeshow && <div className='w-[90%] mx-auto py-[2rem] flex flex-col gap-[2rem]'>
-                        <div className='flex flex-col gap-[1rem] border p-1'>
-                            <div className='text-[0.9rem] uppercase font-bold border px-1 '>user details:</div>
-                            <div className='flex items-center justify-center w-[5.8rem] h-[5.8rem] rounded-full bg-[#c9b8eb] mx-auto'>
-                                <img src={`${imageurl}/profiles/${singleDeposit.deposituser.image}`} className='w-[5.5rem] h-[5.5rem] rounded-full object-cover'></img>
+                    {!beforeshow && <div className='md:w-[90%] w-11/12 mx-auto md:py-8 py-4 flex flex-col gap-8 md:text-[0.9rem] text-[0.8rem]'>
+                        <div className='flex flex-col gap-4 border p-1'>
+                            <div className=' uppercase font-bold border px-1 '>user details:</div>
+                            <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20 rounded-full bg-[#c9b8eb] mx-auto'>
+                                <img src={`${imageurl}/profiles/${singleDeposit.deposituser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
                             </div>
-                            <div className='w-[80%] mx-auto flex flex-col gap-2'>
+                            <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>username:</div>
-                                    <div className='text-[0.95rem]'>{singleDeposit.deposituser.username}</div>
+                                    <div className='italic '>username:</div>
+                                    <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.username}</div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>email:</div>
-                                    <div className='text-[0.95rem]'>{singleDeposit.deposituser.email}</div>
+                                    <div className='italic '>email:</div>
+                                    <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.email}</div>
                                 </div>
                             </div>
                         </div>
-                        <div className='flex flex-col gap-[1rem] border p-1'>
-                            <div className='text-[0.9rem] uppercase font-bold border px-1 '>deposit details:</div>
-                            <div className='w-[80%] mx-auto flex flex-col gap-4'>
+                        <div className='flex flex-col gap-4 border p-1'>
+                            <div className=' uppercase font-bold border px-1 '>deposit details:</div>
+                            <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>amount:</div>
-                                    <div className='text-[0.95rem]'><span className='text-[0.85rem]'>$</span>{singleDeposit.amount.toLocaleString()}</div>
+                                    <div className='italic '>amount:</div>
+                                    <div className='md:text-[0.95rem] text-sm'><span className='text-[0.85rem]'>$</span>{singleDeposit.amount.toLocaleString()}</div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>plan:</div>
-                                    <div className='text-[0.95rem] capitalize'>{singleDeposit.trading_plan}</div>
+                                    <div className='italic '>plan:</div>
+                                    <div className='md:text-[0.95rem] text-sm capitalize'>{singleDeposit.trading_plan}</div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>crypto:</div>
-                                    <div className='text-[0.95rem]'>{singleDeposit.crypto}</div>
+                                    <div className='italic '>crypto:</div>
+                                    <div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>date/time:</div>
-                                    <div className='text-[0.95rem]'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>
+                                    <div className='italic '>date/time:</div>
+                                    <div className='md:text-[0.95rem] text-sm'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>from:</div>
-                                    <div className='text-[0.95rem]'>{singleDeposit.from}</div>
+                                    <div className='italic '>from:</div>
+                                    <div className='md:text-[0.95rem] text-sm'>{singleDeposit.from}</div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>add profit:</div>
+                                    <div className='italic '>add profit:</div>
                                     <div className='flex gap-2 items-center'>
-                                        <input className='border border-[grey] w-[10rem] h-[1.6rem] outline-none pl-1 text-[0.8rem] rounded-sm' name='profit' value={form.profit} onChange={inputHandler}></input>
+                                        <input className='border border-[#c9b8eb] md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm' name='profit' value={form.profit} onChange={inputHandler}></input>
                                         <div className='text-[0.8rem] py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
                                             <div>so far:</div>
                                             <div className='flex items-center font-bold'>
@@ -179,9 +179,9 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                     </div>
                                 </div>
                                 <div className='flex justify-between items-center'>
-                                    <div className='italic text-[0.9rem]'>add bonus:</div>
+                                    <div className='italic '>add bonus:</div>
                                     <div className='flex gap-2 items-center'>
-                                        <input className='border border-[grey] w-[10rem] h-[1.6rem] outline-none pl-1 text-[0.8rem] rounded-sm' name='bonus' value={form.bonus} onChange={inputHandler}></input>
+                                        <input className='border border-[#c9b8eb] md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm' name='bonus' value={form.bonus} onChange={inputHandler}></input>
                                         <div className='text-[0.8rem] py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
                                             <div>so far:</div>
                                             <div className='flex items-center font-bold'>
@@ -191,18 +191,17 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                         </div>
                                     </div>
                                 </div>
-                                <div className='flex flex-col gap-[1.5rem] my-[1.5rem]'>
+                                <div className='flex flex-col gap-6 my-6'>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic text-[0.9rem]'>deposit status:</div>
+                                        <div className='italic '>deposit status:</div>
                                         <div className='flex flex-col'>
-                                            <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha cursor-pointer' onClick={() => { setdepositShow(!depositShow); MoveToBottom() }} >
+                                            <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setdepositShow(!depositShow); MoveToBottom() }} >
                                                 <div className='flex justify-between items-center text-[0.8rem]'>
                                                     <span >{depositStatus}</span>
-                                                    {!depositShow && <FaAngleDown className='hover:bg-[#e6e5e5] rounded-full ' />}
-                                                    {depositShow && <FaAngleUp className='hover:bg-[#e6e5e5] rounded-full ' />}
+                                                    <FaAngleDown  className={`${depositShow ? 'rotate-180' : 'rotate-0'} trans`}/>
                                                 </div>
                                             </div>
-                                            {depositShow && <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha'>
+                                            {depositShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
                                                 {depositStatuses.map((item, i) => (
                                                     <div className='flex flex-col mt-2' key={i}>
                                                         <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setDepositStatus(item.status); setdepositShow(false); setUpdate(true) }}>
@@ -214,16 +213,15 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                         </div>
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic text-[0.9rem]'>profit status:</div>
+                                        <div className='italic '>profit status:</div>
                                         <div className='flex flex-col'>
-                                            <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha cursor-pointer' onClick={() => { setprofitShow(!profitShow); MoveToBottom() }} >
+                                            <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setprofitShow(!profitShow); MoveToBottom() }} >
                                                 <div className='flex justify-between items-center text-[0.8rem]'>
                                                     <span >{profitStatus}</span>
-                                                    {!profitShow && <FaAngleDown className='hover:bg-[#e6e5e5] rounded-full ' />}
-                                                    {profitShow && <FaAngleUp className='hover:bg-[#e6e5e5] rounded-full ' />}
+                                                    <FaAngleDown  className={`${profitShow ? 'rotate-180' : 'rotate-0'} trans`}/>
                                                 </div>
                                             </div>
-                                            {profitShow && <div className='px-[0.5rem] py-[0.25rem] h-fit w-[12rem] bg-[white] adsha'>
+                                            {profitShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
                                                 {profitStatuses.map((item, i) => (
                                                     <div className='flex flex-col mt-2' key={i}>
                                                         <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setProfitStatus(item.status); setprofitShow(false); setUpdate(true) }}>
@@ -237,8 +235,8 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                 </div>
                             </div>
                         </div>
-                        {update && <div className='flex items-center justify-center mt-[-1rem]'>
-                            <button className='w-fit h-fit py-[0.5rem] px-[1.5rem] text-[0.85rem] capitalize bg-[#462c7c] rounded-lg text-white font-[550] ' onClick={AdminUpdateDeposit}>update details</button>
+                        {update && <div className='flex items-center justify-center -mt-4'>
+                            <button className='w-fit h-fit py-2 px-6 text-[0.85rem] capitalize bg-[#462c7c] rounded-lg text-white font-medium ' onClick={AdminUpdateDeposit}>update details</button>
                         </div>}
                     </div>}
                 </div>

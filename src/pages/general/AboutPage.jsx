@@ -89,21 +89,21 @@ const AboutPage = () => {
             <div className='col-span-1 order-first lg:order-last'>
               <div className='relative h-fit w-full rounded-[20px] flex items-center justify-center bg-[#192633] overflow-hidden'>
                 <img src={robotabt} className='h-[50vh] object-cover w-full '></img>
-                <div className='bda flex items-center justify-center rotate-90 w-32 h-32 border-2 bottom-4 rounded-full left-[-5rem] absolute'>
+                <div className='bda flex items-center justify-center rotate-90 w-32 h-32 border-2 bottom-4 rounded-full -left-20 absolute'>
                   <div className='bdb w-20 h-20 border-2 rounded-full'></div>
                 </div>
-                <div className='bda flex items-center justify-center rotate-90 w-[5rem] h-[5rem] border-2  rounded-full absolute -top-12 -right-4' >
+                <div className='bda flex items-center justify-center rotate-90 w-20 h-20 border-2  rounded-full absolute -top-12 -right-4' >
                   <div className='bdb w-12 h-12 border-2 rounded-full'></div>
                 </div>
               </div>
             </div>
           </div>
           <div className='lg:w-4/5 mx-auto md:mt-48 mt-40'>
-            <div className='grid grid-cols-1 lg:grid-cols-3 gap-16'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 lg:gap-16 gap-20'>
               <div className='lg:col-span-1 relative'>
                 <div className=' rounded-[15px] bgg'></div>
                 <div className='w-[9rem] h-[9.5rem]  bg-[#192633]  rounded-[15px] absolute top-[-4.5rem] left-0 flex justify-center flex-col items-center gap-3 pt-2 shll lg:-ml-16 -ml-2'>
-                  <div className='rounded-full w-[6rem] h-[6rem] flex flex-col gap-1 items-center justify-center bdd'>
+                  <div className='rounded-full w-24 h-24 flex flex-col gap-1 items-center justify-center bdd'>
                     <img src={crown} className='h-4 w-auto'></img>
                     <div className='font-[800] text-[1.3rem] text-white'>75<span className='text-[0.6rem]'>%</span></div>
                   </div>
@@ -111,8 +111,8 @@ const AboutPage = () => {
                 </div>
               </div>
               <div className='lg:col-span-2'>
-                <div className='text-[0.95rem] text-orange -mt-12'>About the System</div>
-                <div className='text-white font-[600] capitalize text-[1.4rem] lg:text-[1.8rem] mt-[1.3rem]'>transparent, full-control & consistent market advantage</div>
+                <div className='text-[0.95rem] text-orange -mt-10'>About the System</div>
+                <div className='text-white font-[600] capitalize text-[1.4rem] lg:text-[1.8rem] mt-4'>transparent, full-control & consistent market advantage</div>
                 <div className='text-ground text-[0.9rem] pt-4'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores necessitatibus voluptas qui alias quo eligendi reiciendis numquam, harum distinctio culpa illo praesentium similique veritatis dolorum pariatur dolor dignissimos molestias.</div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-8'>
                   <div className='flex flex-col'>

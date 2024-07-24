@@ -363,7 +363,7 @@ const Profile = ({ setToggleExtra}) => {
                                 <div className='relative'>
                                     <input className='outline-none border border-light bg-transparent lg:text-[0.85rem] text-base w-48 h-8 rounded-md pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                     <EyeIcon className='absolute top-2 right-2 cursor-pointer text-light' onClick={() => setEye(!eye)} />
-                                    <div className='absolute bottom-[-1.2rem] left-2 text-xs text-[#e62f2f]'>{deleteError}</div>
+                                    <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center'>
                                     <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>

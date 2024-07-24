@@ -42,6 +42,7 @@ const SignupPage = () => {
     name: 'choose country',
     flag: null
   })
+  const [search, setSearch] = useState('')
   const [screen, setScreen] = useState(1)
   const imgref = useRef()
 
@@ -202,8 +203,7 @@ const SignupPage = () => {
     }
   }
 
-  const FilterCountry = (event) => {
-    let search = (event.target.value)
+  const FilterCountry = () => {
     if (!search) {
       setCountries(countryApi)
     }
@@ -221,7 +221,7 @@ const SignupPage = () => {
       <div className='py-16 bg-[whitesmoke] '>
         <div className="md:w-[85%] bg-white mx-auto py-4 rounded-xl relative shb">
           <div className='absolute top-4 left-4'>
-            <img src={logo} className='w-[auto] h-[5rem]'></img>
+            <img src={logo} className='w-auto h-20'></img>
           </div>
           <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
             <div className='col-span-1'>
@@ -276,7 +276,7 @@ const SignupPage = () => {
                                   <div className='text-sm capitalize font-[550]'>country:</div>
                                   <div className='flex gap-1 items-center'>
                                     {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
-                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${countryError ? 'border border-[red]' : ''}`} onClick={() => setCountryShow(!countryshow)}>
+                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${countryError ? 'border border-[red]' : ''}`} onClick={() => {setCountryShow(!countryshow); setSearch(''); setCountries(countryApi)}}>
                                       <div className='flex justify-between items-center text-[0.8rem]'>
                                         <span >{usercountry.name}</span>
                                         <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>
@@ -289,10 +289,10 @@ const SignupPage = () => {
                                 </div>
                                 {countryshow && <div className='h-44 w-full bg-white sha absolute top-[3.4rem] left-0 z-10 py-2 rounded-sm overflow-y-auto scroll'>
                                   <div className='px-4'>
-                                    <input className='ipt border border-semi-white bg-transparent text-black px-2 py-1 w-full outline-none md:text-[0.85rem] text-base md:h-6 h-7 rounded-sm mb-1' type='text' placeholder='search' onKeyUp={FilterCountry}></input>
+                                    <input className='ipt border border-semi-white bg-transparent text-black px-2 py-1 w-full outline-none md:text-[0.85rem] text-base md:h-6 h-7 rounded-sm mb-1' type='text' placeholder='search' value={search} onChange={(e) => setSearch(e.target.value)} onKeyUp={FilterCountry}></input>
                                     {countries.map((item, i) => (
                                       <div className='flex flex-col mt-2' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setUserCountry(item); setCountryShow(false) }}>
+                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setUserCountry(item); setCountryShow(false)}}>
                                           <img src={item.flag} className='w-4 h-auto object-cover'></img>
                                           <div className='text-[0.85rem] font-bold'>{item.name}</div>
                                         </div>
@@ -325,8 +325,8 @@ const SignupPage = () => {
                               <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
                               <div className='text-xs capitalize'>by signing up, i agree with <Link to='/terms' className='text-orange font-[550]' onClick={MoveToTop}>terms and conditions</Link></div>
                             </div>
-                            <div className='flex flex-col gap-[0.5rem] items-center'>
-                              <button className='outline-none bg-orange py-[0.5rem] w-full md:px-32 h-fit md:w-fit rounded-md capitalize text-sm text-white cursor-pointer font-[550]' type='submit'>create account</button>
+                            <div className='flex flex-col gap-2 items-center'>
+                              <button className='outline-none bg-orange py-2 w-full md:px-32 h-fit md:w-fit rounded-md capitalize text-sm text-white cursor-pointer font-[550]' type='submit'>create account</button>
                               <div className='text-[#6b6a6a] text-sm font-[550]'>Already have an account?
                                 <Link to='/login' onClick={MoveToTop} className='cursor-pointer text-orange font-[550]' > Login</Link>
                               </div>
@@ -335,7 +335,7 @@ const SignupPage = () => {
                         </form>
                       </div>}
                       {screen === 2 &&
-                        <div className='w-11/12 md:w-[85%] mx-auto py-[3.5rem]'>
+                        <div className='w-11/12 md:w-[85%] mx-auto py-14'>
                           <div className='flex items-center justify-center text-[3rem] text-orange'>
                             <MdVerified />
                           </div>

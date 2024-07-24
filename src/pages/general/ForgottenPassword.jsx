@@ -11,7 +11,7 @@ import Loading from '../../PageComponents/Loading';
 
 const ForgottenPassword = ({ closePass }) => {
     const passwordField = useRef()
-    const [screen, setScreen] = useState(4)
+    const [screen, setScreen] = useState(1)
     const [loading, setLoading] = useState(false)
     const [eye, setEye] = useState(false)
     const [eye2, setEye2] = useState(false)
@@ -223,7 +223,7 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='text-[0.9rem] font-extrabold uppercase text-center'>password Reset!</div>
                             <div className='text-center text-[0.8rem] font-[600]'>Password reset successful, you can now login with new password created</div>
                             <div className='flex gap-1 cursor-pointer mt-4 items-center text-sm text-[green] hover:text-orange' onClick={closePass}>
-                                <div className='font-[600] capitalize'>back to login</div>
+                                <div className='font-[600]'>Back to login</div>
                                 <FaArrowRight/>
                             </div>
                         </div>
