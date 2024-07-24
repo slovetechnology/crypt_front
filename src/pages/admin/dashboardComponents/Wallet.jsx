@@ -27,7 +27,7 @@ const Home = ({ setToggle }) => {
                 <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white bg-[#6859bb]  overflow-hidden'>
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                         <span>deposits</span>
-                        <span className='text-[0.7rem] md:text-[0.75rem] italic lowercase'>external</span>
+                        <span className='text-[0.7rem] md:text-xs italic lowercase'>external</span>
                     </div>
                     <div className='flex flex-col items-center font-bold gap-4 mt-4'>
                         <div className='flex items-center'>
@@ -40,7 +40,7 @@ const Home = ({ setToggle }) => {
                 <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                         <span>total profits</span>
-                        <span className='text-[0.7rem] md:text-[0.75rem] italic lowercase'>claimed</span>
+                        <span className='text-[0.7rem] md:text-xs italic lowercase'>claimed</span>
                     </div>
                     <div className='flex justify-between font-bold mt-4'>
                         <div className='flex items-center'>
@@ -60,14 +60,14 @@ const Home = ({ setToggle }) => {
                 <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                         <span>total bonuses</span>
-                        <span className='text-[0.7rem] md:text-[0.75rem] italic lowercase'>claimed</span>
+                        <span className='text-[0.7rem] md:text-xs italic lowercase'>claimed</span>
                     </div>
                     <div className='flex justify-between font-bold mt-4'>
                         <div className='flex items-center'>
                             <BiDollar />
                             {Object.values(wallet).length !== 0 && <div>{wallet.total_bonus.toLocaleString()}</div>}
                         </div>
-                        <img src={bonus3d} className='md:h-12 h-[2rem] w-[auto]'></img>
+                        <img src={bonus3d} className='md:h-12 h-8 w-[auto]'></img>
                     </div>
                     <div className='flex flex-col items-center text-xs capitalize font-medium gap-1 mt-4'>
                         <div>up</div>
@@ -111,9 +111,9 @@ const Home = ({ setToggle }) => {
                 </div>
             </div>
             <div className='mt-12 flex flex-col gap-1'>
-                <div className='text-semi-white  text-[0.7rem] md:text-[0.75rem] capitalize'>Try our test run package</div>
-                <div className='w-fit h-fit py-[0.25rem] bg-[#130e27]'>
-                    <div className='w-full h-fit flex gap-10 md:gap-20  pl-10 pr-[0.5rem] py-1 text-[0.55rem] items-center text-[white] uppercase relative bg-[#25203d]'>
+                <div className='text-semi-white text-sm capitalize'>Try our test run package</div>
+                <div className='w-fit h-fit py-1 bg-[#130e27]'>
+                    <div className='w-full h-fit flex gap-10 md:gap-20  pl-10 pr-2 py-1 text-[0.55rem] items-center text-white uppercase relative bg-[#25203d]'>
                         <div className='flex flex-col gap-1 items-center'>
                             <div>price</div>
                             <div className='flex items-center gap-1'>
