@@ -236,7 +236,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                             </div>
                         </div>
                         {update && <div className='flex items-center justify-center -mt-4'>
-                            <button className='w-fit h-fit py-2 px-6 text-[0.85rem] capitalize bg-[#462c7c] rounded-lg text-white font-medium ' onClick={AdminUpdateDeposit}>update details</button>
+                            <button className='w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium ' onClick={AdminUpdateDeposit}>update details</button>
                         </div>}
                     </div>}
                 </div>
