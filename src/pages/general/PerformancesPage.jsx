@@ -7,8 +7,8 @@ const PerformancesPage = () => {
       <div className="bg-[whitesmoke] py-16 move">
         <div className='w-11/12 mx-auto'>
           <div className='flex justify-center'>
-            <div className='px-8 py-4 bg-white rounded-t w-fit h-fit flex items-center justify-center sha'>
-              <span className='z-20 font-bold uppercase text-[1.4rem] lg:text-[2.5rem]'>past performances</span>
+            <div className='md:px-8 px-6 py-4 bg-white rounded-t w-fit h-fit flex gap-2 items-center justify-center text-[1.5rem] lg:text-[2.5rem] sha'>
+              <span className='z-20 font-bold uppercase'>past performances</span>
             </div>
           </div>
           <div className='overflow-x-auto scrollsdown shadow-md rounded-lg'>
