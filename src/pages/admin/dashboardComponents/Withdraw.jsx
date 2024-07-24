@@ -250,59 +250,53 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                 </div>
             </div>}
             {screen === 2 && <div className='my-8'>
-                <div className='flex gap-1 items-center capitalize md:text-[0.85rem] text-xs cursor-pointer text-light w-fit hover:text-[grey]' onClick={() => { setScreen(1); setWithdraw('withdraw') }}>
-                    <IoMdArrowBack />
-                    <span>back</span>
+                <div className='relative w-fit mx-auto'>
+                    <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
+                    <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
+                        <IoIosSearch />
+                        {write &&
+                            <div className='absolute top-[1.2rem] md:right-12 right-11  text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
+                                <FiX />
+                            </div>
+                        }
+                    </div>
                 </div>
-                <div className='mt-8 md:mt-4 lg:mt-8'>
-                    <div className='relative w-fit mx-auto'>
-                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
-                            <IoIosSearch />
-                            {write &&
-                                <div className='absolute top-[1.2rem] md:right-12 right-11  text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
-                                    <FiX />
-                                </div>
-                            }
-                        </div>
-                    </div>
-                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
-                        <table className='w-full'>
-                            <thead>
-                                <tr className='bg-light text-[0.8rem] font-bold text-white'>
-                                    <td className='text-center truncate  capitalize p-2'>date</td>
-                                    <td className='text-center truncate  capitalize p-2'>time</td>
-                                    <td className='text-center truncate  capitalize p-2'>amount</td>
-                                    <td className='text-center truncate  capitalize p-2'>crypto</td>
-                                    <td className='text-center truncate  capitalize p-2'>wallet address</td>
-                                    <td className='text-center truncate  capitalize p-2'>status </td>
+                <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
+                    <table className='w-full'>
+                        <thead>
+                            <tr className='bg-light text-[0.8rem] font-bold text-white'>
+                                <td className='text-center truncate  capitalize p-2'>date</td>
+                                <td className='text-center truncate  capitalize p-2'>time</td>
+                                <td className='text-center truncate  capitalize p-2'>amount</td>
+                                <td className='text-center truncate  capitalize p-2'>crypto</td>
+                                <td className='text-center truncate  capitalize p-2'>wallet address</td>
+                                <td className='text-center truncate  capitalize p-2'>status </td>
+                            </tr>
+                        </thead>
+                        {fromAtom.length > 0 && <tbody>
+                            {allwithdrawals.slice(start, end).map((item, i) => (
+                                <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                    <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
+                                    <td className='p-4  text-center truncate'>{item.crypto}</td>
+                                    <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
+                                    <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}   ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
                                 </tr>
-                            </thead>
-                            {fromAtom.length > 0 && <tbody>
-                                {allwithdrawals.slice(start, end).map((item, i) => (
-                                    <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
-                                        <td className='p-4  text-center truncate'>{item.crypto}</td>
-                                        <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
-                                        <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}   ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                            }
-                        </table>
-                        {allwithdrawals.length < 1 &&  <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
-                            <div>no withdrawals found...</div>
-                            <img src={nothnyet} className='h-4 w-auto'></img>
-                        </div>}
-                    </div>
-                    {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
-                        {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
-                        {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
-                        {end < allwithdrawals.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+                            ))}
+                        </tbody>
+                        }
+                    </table>
+                    {allwithdrawals.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
+                        <div>no withdrawals found...</div>
+                        <img src={nothnyet} className='h-4 w-auto'></img>
                     </div>}
                 </div>
+                {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
+                    {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                    {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                    {end < allwithdrawals.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+                </div>}
             </div>}
         </div>
     )

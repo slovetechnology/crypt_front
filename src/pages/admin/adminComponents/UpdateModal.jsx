@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Apis, UserPutApi, imageurl } from '../../../services/API'
 import moment from 'moment';
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
+import { FaAngleDown } from 'react-icons/fa6';
 import Loading from '../../../PageComponents/Loading';
 import { Alert } from '../../../utils/utils';
 
@@ -125,7 +125,8 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {loading && <Loading />}
                     {beforeshow && <div className='beforeshow'></div>}
-                    {!beforeshow && <div className='md:w-[90%] w-11/12 mx-auto md:py-8 py-4 flex flex-col gap-8 md:text-[0.9rem] text-[0.8rem]'>
+                    {!beforeshow && 
+                    <div className='md:w-[90%] w-11/12 mx-auto md:py-8 py-4 flex flex-col gap-8 md:text-[0.9rem] text-[0.8rem]'>
                         <div className='flex flex-col gap-4 border p-1'>
                             <div className=' uppercase font-bold border px-1 '>user details:</div>
                             <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20 rounded-full bg-[#c9b8eb] mx-auto'>

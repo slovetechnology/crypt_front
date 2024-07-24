@@ -1,12 +1,12 @@
-import React, { useRef, useState} from 'react'
+import React, { useRef, useState } from 'react'
 import Pagelayout from '../../PageComponents/Pagelayout'
 import logo from '../../assets/images/logobrand.png'
 import { Link, useNavigate } from 'react-router-dom';
-import {FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { SlCamera, SlUser } from 'react-icons/sl'
-import { MdOutlineCancel, MdVerified } from "react-icons/md";
+import { MdVerified } from "react-icons/md";
 import Loading from '../../PageComponents/Loading'
 import { Alert, CookieName, MoveToTop, UserRole } from '../../utils/utils'
 import { Apis, UserPostApi } from '../../services/API'
@@ -32,7 +32,7 @@ const SignupPage = () => {
   const [checkError, setCheckError] = useState(false)
   const [verifyError, setVerifyError] = useState(false)
   const [imageError, setImageError] = useState('')
-  const [codeMsg, setCodeMsg] = useState('')
+  const [tcodeMsg, setTCodeMsg] = useState('')
   const [passMsg, setPassMsg] = useState('')
   const [conMsg, setConMsg] = useState('')
   const [loading, setLoading] = useState(false)
@@ -44,6 +44,7 @@ const SignupPage = () => {
   })
   const [search, setSearch] = useState('')
   const [screen, setScreen] = useState(1)
+  const [verifycode, setVerifyCode] = useState('')
   const imgref = useRef()
 
   const [profile, setProfile] = useState({
@@ -65,16 +66,6 @@ const SignupPage = () => {
     })
   }
 
-  const [verifyform, setVerifyForm] = useState({
-    code: '',
-  })
-  const formValidate = e => {
-    setVerifyForm({
-      ...verifyform,
-      [e.target.name]: e.target.value
-    })
-  }
-
   const handleProfileUpload = (event) => {
     setTimeout(() => {
       setImageError('')
@@ -93,13 +84,6 @@ const SignupPage = () => {
       image: file
     })
   }
-  const CancelUpload = () => {
-    imgref.current.value = null
-    setProfile({
-      img: null,
-      image: null
-    })
-  }
   const submitForm = async (event) => {
     event.preventDefault()
     setTimeout(() => {
@@ -113,7 +97,7 @@ const SignupPage = () => {
       setCheckError(false)
       setPassMsg('')
       setConMsg('')
-      setCodeMsg('')
+      setTCodeMsg('')
     }, 2000)
     if (!form.full_name) return setNameError(true)
     if (!form.username) return setUserError(true)
@@ -121,7 +105,7 @@ const SignupPage = () => {
     if (usercountry.country === 'choose country') return setCountryError(true)
     if (!form.tradersCode) return setCodeError(true)
     if (form.tradersCode.length < 6) {
-      setCodeMsg(`code is seven or more characters long`)
+      setTCodeMsg(`code is seven or more characters long`)
       return setCodeError(true);
     }
     if (!form.password) return setPassError(true)
@@ -166,11 +150,11 @@ const SignupPage = () => {
 
     setTimeout(() => {
       setVerifyError(false)
-    }, 2000)
+    }, 1000)
 
-    if (!verifyform.code) return setVerifyError(true)
+    if (!verifycode) return setVerifyError(true)
     const formbody = {
-      code: verifyform.code,
+      code: verifycode,
       email: form.email
     }
     setLoading(true)
@@ -234,25 +218,22 @@ const SignupPage = () => {
                         <div className='text-center text-[1.7rem] capitalize font-[550]'>create an account</div>
                         <div className='text-[0.8rem] mt-[0.1rem] text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
                         <form onSubmit={submitForm}>
-                          <div className='flex flex-col gap-[0.7rem] mt-[1rem]'>
+                          <div className='flex flex-col gap-[0.7rem] mt-4'>
                             <div className='relative mx-auto'>
-                              {profile.img && <div className='absolute top-6 -left-2 cursor-pointer z-10  text-[0.8rem] text-orange' onClick={CancelUpload}><MdOutlineCancel /></div>}
                               <label className='cursor-pointer'>
                                 {profile.img ?
                                   <div className='relative'>
                                     <img src={profile.img} alt="" className="w-[3.8rem] object-cover h-[3.8rem] rounded-full" />
-                                    <SlCamera className='absolute top-6 right-[-0.4rem] text-[0.85rem] text-orange' />
+                                    <SlCamera className='absolute top-6 -right-1.5 text-base text-orange' />
                                   </div>
                                   :
                                   <div className="w-fit mx-auto text-3xl bg-slate-200 p-4 rounded-full relative"> <SlUser />
-                                    <SlCamera className='absolute top-6 right-[-0.4rem] text-[0.85rem]' />
+                                    <SlCamera className='absolute top-6 -right-1.5 text-base' />
                                   </div>
                                 }
                                 <input ref={imgref} type="file" onChange={handleProfileUpload} hidden />
                               </label>
-                            </div>
-                            <div className='relative '>
-                              <div className='absolute bottom-4 right-32 text-[0.8rem] text-[red]'>{imageError}</div>
+                              <div className='absolute bottom-0 -right-10 text-xs text-[red]'>{imageError}</div>
                             </div>
                             <div className='flex flex-col gap-[0.3rem]'>
                               <div className='text-sm capitalize font-[550] '>full name:</div>
@@ -276,12 +257,12 @@ const SignupPage = () => {
                                   <div className='text-sm capitalize font-[550]'>country:</div>
                                   <div className='flex gap-1 items-center'>
                                     {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
-                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${countryError ? 'border border-[red]' : ''}`} onClick={() => {setCountryShow(!countryshow); setSearch(''); setCountries(countryApi)}}>
+                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${countryError ? 'border border-[red]' : ''}`} onClick={() => { setCountryShow(!countryshow); setSearch(''); setCountries(countryApi) }}>
                                       <div className='flex justify-between items-center text-[0.8rem]'>
                                         <span >{usercountry.name}</span>
                                         <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>
-                                          <FaAngleUp/>
-                                          <FaAngleDown className='-mt-1'/>
+                                          <FaAngleUp />
+                                          <FaAngleDown className='-mt-1' />
                                         </div>
                                       </div>
                                     </div>
@@ -292,7 +273,7 @@ const SignupPage = () => {
                                     <input className='ipt border border-semi-white bg-transparent text-black px-2 py-1 w-full outline-none md:text-[0.85rem] text-base md:h-6 h-7 rounded-sm mb-1' type='text' placeholder='search' value={search} onChange={(e) => setSearch(e.target.value)} onKeyUp={FilterCountry}></input>
                                     {countries.map((item, i) => (
                                       <div className='flex flex-col mt-2' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setUserCountry(item); setCountryShow(false)}}>
+                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setUserCountry(item); setCountryShow(false) }}>
                                           <img src={item.flag} className='w-4 h-auto object-cover'></img>
                                           <div className='text-[0.85rem] font-bold'>{item.name}</div>
                                         </div>
@@ -304,7 +285,7 @@ const SignupPage = () => {
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>trader's code:</div>
                                 <input className={`outline-none w-full   border-b  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt`} placeholder={`Enter an AI Algo trader's code`} code type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
-                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{codeMsg}</div>
+                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{tcodeMsg}</div>
                               </div>
                             </div>
                             <div className='grid grid-cols-2 gap-8 w-full'>
@@ -344,7 +325,7 @@ const SignupPage = () => {
                           <form onSubmit={ValidateEmail}>
                             <div className='flex flex-col gap-1 mt-12'>
                               <div className='capitalize text-[0.85rem]'>enter six digits code</div>
-                              <input className={`outline-none w-full h-10 border  ${verifyError === true ? 'border-[red]' : 'border-[grey]'} text-sm px-2 ipt`} placeholder='Enter code here' name='code' value={verifyform.code} onChange={formValidate}></input>
+                              <input className={`outline-none w-full h-10 border  ${verifyError === true ? 'border-[red]' : 'border-[grey]'} text-sm px-2 ipt`} placeholder='Enter code here' value={verifycode} onChange={(e) => setVerifyCode(e.target.value)}></input>
                             </div>
                             <div className='text-[0.85rem] text-right mt-2'>Didn't get code? <span className='text-orange cursor-pointer' onClick={ResendsCode}>Resend code</span></div>
                             <div className='flex items-center justify-center mt-12'>

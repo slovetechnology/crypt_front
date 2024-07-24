@@ -79,7 +79,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <div className='mt-20 w-11/12 lg:w-3/4 mx-auto'>
+          <div className='mt-20 w-full md:w-5/6 lg:w-3/4 mx-auto'>
             <div className='flex flex-col'>
               <div className=' flex flex-col gap-4 items-center justify-center text-white'>
                 <span className='font-bold capitalize md:text-[2.5rem] text-3xl'>have any questions?</span>

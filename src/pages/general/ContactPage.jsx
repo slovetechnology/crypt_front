@@ -24,7 +24,7 @@ const ContactPage = () => {
   const [messageError, setMessageError] = useState(false)
   const [loading, setLoading] = useState(false)
   const [code, setCode] = useState('')
-  const [codeError, setCodeError] = useState('')
+  const [codeError, setCodeError] = useState(false)
   const [trader, setTrader] = useState([])
   const [write, setWrite] = useState(false)
 
@@ -86,11 +86,11 @@ const ContactPage = () => {
 
   const tradersCodeSearch = () => {
     setTimeout(() => {
-      setCodeError('')
+      setCodeError(false)
     }, 2000)
-    if (!code) return setCodeError(`enter a trader's code`)
+    if (!code) return setCodeError(true)
     const codeSearch = AItraders.filter(item => item.traderCode === code.toLowerCase())
-    if (!codeSearch.length > 0) return setCodeError(`invalid trader's code`)
+    if (!codeSearch.length > 0) return setCodeError(true)
     setTrader(codeSearch)
     setShow(3)
     setCode('')
@@ -174,13 +174,12 @@ const ContactPage = () => {
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className='outline-none border rounded-md border-[#a0a0a0] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 pl-2 pr-8 text-white' type='text' value={code} onChange={e => setCode(e.target.value)} onKeyUp={Writefunction}></input>
+                      <input className={`outline-none border rounded-md bg-transparent lg:text-[0.85rem] text-base w-52 h-8 pl-2 pr-8 text-white  ${!codeError ? 'border-[#a0a0a0]' : 'border-[#7c1e1e]'}`} type='text' value={code} onChange={e => setCode(e.target.value)} onKeyUp={Writefunction}></input>
                       {write &&
                         <div className='absolute top-2 right-2 text-xs cursor-pointer bg-[#ffffff6e] text-[#444343] rounded-full w-fit h-fit p-0.5' onClick={() => {setCode(''); setWrite(false)}}>
                           <FiX />
                         </div>
                       }
-                      <div className='text-xs absolute -bottom-5 left-0 font-bold text-[#572c2c]'>{codeError}</div>
                     </div>
                     <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-[white]  bg-orange rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>
                       <span>search</span>

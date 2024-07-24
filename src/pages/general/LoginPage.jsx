@@ -64,7 +64,6 @@ const LoginPage = () => {
         //     setLoading(false)
         // }
         navigate('/dashboard')
-
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 
@@ -74,7 +73,7 @@ const LoginPage = () => {
                 {forgotPass === true && <ForgottenPassword closePass={() => setForgotPass(false)} />}
                 <div className="md:w-[85%] bg-white mx-auto py-4 rounded-xl relative shb">
                     <div className='absolute top-4 left-4 lg:block '>
-                        <img src={logo} className='w-[auto] h-20'></img>
+                        <img src={logo} className='w-auto h-20'></img>
                     </div>
                     <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
                         <div className='col-span-1'>
@@ -97,7 +96,7 @@ const LoginPage = () => {
                                                                 <div className='text-sm capitalize font-[550]'>email address</div>
                                                             </div>
                                                             <input placeholder='Enter email address' className=' outline-none rounded-[3px] w-full h-fit py-2 bg-[#e9e9e9] px-4 justify-center lg:text-[0.9rem] text-base ipt' type='email' value={form.email} name='email' onChange={inputHandler}></input>
-                                                            <div className={`text-xs md:text-[0.8rem] absolute bottom-[-1.2rem] left-0 text-[red]`}>{emailmsg}</div>
+                                                            <div className={`text-xs md:text-[0.8rem] absolute -bottom-5 left-0 text-[red]`}>{emailmsg}</div>
                                                         </div>
                                                     </div>
                                                     <div className='flex gap-4 mt-10 flex-col'>
@@ -108,7 +107,7 @@ const LoginPage = () => {
                                                             </div>
                                                             <input placeholder='Enter password' className=' outline-none rounded-[3px] w-full h-fit py-2  bg-[#e9e9e9] pl-4 pr-8 justify-center lg:text-[0.9rem] text-base ipt ' type={eye === true ? 'text' : 'password'} value={form.password} name='password' onChange={inputHandler}></input>
                                                             <EyeIcon className='absolute top-10 right-2 cursor-pointer' onClick={() => setEye(!eye)} />
-                                                            <div className={`text-xs md:text-[0.8rem] absolute bottom-[-1.2rem] left-0 text-[red]`}> {passmsg} </div>
+                                                            <div className={`text-xs md:text-[0.8rem] absolute -bottom-5 left-0 text-[red]`}> {passmsg} </div>
                                                         </div>
                                                     </div>
                                                     <div className='w-fit flex ml-auto'>

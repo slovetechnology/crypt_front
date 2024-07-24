@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Loading from '../../../PageComponents/Loading'
 import { Apis, UserPutApi, imageurl } from '../../../services/API'
 import moment from 'moment'
-import { FaAngleDown, FaAngleUp, FaCheck } from 'react-icons/fa6'
+import { FaAngleDown, FaCheck } from 'react-icons/fa6'
 import { Alert } from '../../../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
 
@@ -176,7 +176,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPa
                                 </div>
                             </div>
                             {update && <div className='flex items-center justify-center -mt-4'>
-                                <button className='w-fit h-fit py-[0.5rem] px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium' onClick={AdminUpdateWithdrawal}>update details</button>
+                                <button className='w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium' onClick={AdminUpdateWithdrawal}>update details</button>
                             </div>}
                         </div>
                     }

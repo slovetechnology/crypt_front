@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 import { MdError } from 'react-icons/md'
-import { RxTokens } from 'react-icons/rx'
 import { Apis, PostApi } from '../../../services/API'
+import { SlWallet } from "react-icons/sl";
+import { IoWalletOutline } from 'react-icons/io5';
 
 const ClaimButtons = ({ item, refetchWallet, refetchNotifications, refetchInvestments, refetchUps, refetchUnreadNotis, refetchInvestmentsUnclaim, setInvestment }) => {
     const [claim, setClaim] = useState(false)
@@ -23,7 +24,7 @@ const ClaimButtons = ({ item, refetchWallet, refetchNotifications, refetchInvest
                 setClaimError('')
             }, 1000)
             setLoading(true)
-            return setClaimError(`profits still running`)
+            return setClaimError(`profit still running`)
         }
 
         if (singleInvest.claim !== 'true') {
@@ -55,16 +56,16 @@ const ClaimButtons = ({ item, refetchWallet, refetchNotifications, refetchInvest
 
 
     return (
-        <div className='relative md:w-fit md:h-fit mx-auto md:mx-0'>
+        <div className='relative w-fit'>
             <button className='outline-none py-2 px-6 text-xs font-medium text-semi-white bg-[#241a49]  hover:bg-[#17112e] rounded-full flex items-center gap-1' onClick={ClaimingInvestment} onMouseOver={() => setSingleInvest(item)} onMouseOut={() => setSingleInvest({})}>
-                <span>{claim ? 'Claimed!' : 'Claim to wallet'}</span>
+                <span>{claim ? 'Claimed' : 'Claim to wallet'}</span>
                 {!claim ?
                     <div>
-                        <RxTokens />
+                        <IoWalletOutline className='text-sm'/>
                     </div>
                     :
                     <div>
-                        <IoMdCheckmarkCircleOutline className='text-[#52e652]' />
+                        <IoMdCheckmarkCircleOutline className='text-[#52e652] text-sm' />
                     </div>
                 }
             </button>
