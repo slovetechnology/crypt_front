@@ -6,8 +6,8 @@ const PerformancesPage = () => {
     <Pagelayout>
       <div className="bg-[whitesmoke] py-16 move">
         <div className='w-11/12 mx-auto'>
-          <div className='flex flex-col gap-3 items-center justify-center'>
-            <div className='z-20 font-bold capitalize text-[2.5rem] lg:text-[3rem] text-center'>past performances</div>
+          <div className='flex flex-col gap-4 items-center justify-center'>
+            <div className='z-20 font-bold capitalize text-4xl lg:text-5xl text-center'>past performances</div>
             <div className='md:text-[1.1rem] text-center'>- Table only shows the most recent performances on the AI algorithm trading system -</div>
           </div>
           <div className='overflow-x-auto scrollsdown shadow-md rounded-lg mt-10'>

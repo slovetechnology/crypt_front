@@ -8,8 +8,8 @@ const TradingPlansPage = () => {
     <Pagelayout>
       <div className="bg-[whitesmoke] py-16">
         <div className='w-11/12 mx-auto'>
-          <div className='flex flex-col gap-3 items-center justify-center'>
-            <div className='z-20 font-bold capitalize text-[2.5rem] lg:text-[3rem]'>trading plans</div>
+          <div className='flex flex-col gap-4 items-center justify-center'>
+            <div className='z-20 font-bold capitalize text-4xl lg:text-5xl text-center'>trading plans</div>
             <div className='md:text-[1.1rem] text-center'>- Below are the different trading plans on the AI Algorithm Trading System -</div>
           </div>
           <div className='flex flex-wrap gap-12 mt-20 text-[#30465c] justify-center'>
