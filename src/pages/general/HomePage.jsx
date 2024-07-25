@@ -38,7 +38,7 @@ const HomePage = () => {
               </Link>
             </div>
             <div className='lg:col-span-3 col-span-2 '>
-              <div className='w-fit h-fit border rotate-90  uppercase md:text-[0.85rem] text-[0.65rem] py-1 px-2 text-white font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap mt-40'>
+              <div className='w-fit h-fit border rotate-90 uppercase text-[0.85rem]  py-1 px-2 text-white font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap mt-40'>
                 <div> crypto trade made easy</div>
                 <div className='h-1 w-1 bg-white rounded-full absolute top-7 -left-[0.2rem]'></div>
                 <div className='h-1 w-1 bg-white rounded-full absolute -top-1 -left-1'></div>
