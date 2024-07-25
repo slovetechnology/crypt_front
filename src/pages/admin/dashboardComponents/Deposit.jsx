@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { MdContentCopy } from "react-icons/md";
 import { RiHistoryFill, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { IoIosSearch, IoMdArrowBack } from "react-icons/io";
@@ -44,8 +44,19 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     const [loading, setLoading] = useState(false)
     const [balCheck, setBalCheck] = useState(false)
     const [extCheck, setExtCheck] = useState(false)
+    const depositbox = useRef()
 
-
+    useEffect(() => {
+        if (depositbox) {
+            window.addEventListener('click', (event) => {
+                if (depositbox.current !== null) {
+                    if (!depositbox.current.contains(event.target)) {
+                        setModal(false)
+                    }
+                }
+            }, true)
+        }
+    }, [])
 
     const BuyPlanWithBalance = async () => {
         setTimeout(() => {
@@ -309,7 +320,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         </div>
                     </div>
                     {modal && <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center bg-[#0c091aa4] z-20'>
-                        <div className='w-96 h-fit bg-white rounded-lg px-4 py-4 flex flex-col gap-4 relative'>
+                        <div className='w-96 h-fit bg-white rounded-lg px-4 py-4 flex flex-col gap-4 relative' ref={depositbox}>
                             {loading && <Loading />}
                             <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => { setModal(false); setAmount(''); setDepositScreen(1); setBalCheck(false); setExtCheck(false) }} />
                             {depositScreen === 1 && <>
@@ -402,7 +413,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     </div>}
                 </div>
             </div>}
-            {screen === 2 && <div className='my-8'>
+            {screen === 2 && <div className='mt-12'>
                 <div className='relative w-fit mx-auto'>
                     <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                     <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>

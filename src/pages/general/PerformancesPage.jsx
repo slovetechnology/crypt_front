@@ -6,12 +6,11 @@ const PerformancesPage = () => {
     <Pagelayout>
       <div className="bg-[whitesmoke] py-16 move">
         <div className='w-11/12 mx-auto'>
-          <div className='flex justify-center'>
-            <div className='md:px-8 px-6 py-4 bg-white rounded-t w-fit h-fit flex gap-2 items-center justify-center text-[1.5rem] lg:text-[2.5rem] sha'>
-              <span className='z-20 font-bold uppercase'>past performances</span>
-            </div>
+          <div className='flex flex-col gap-3 items-center justify-center'>
+            <div className='z-20 font-bold capitalize text-[2.5rem] lg:text-[3rem]'>past performances</div>
+            <div className='md:text-[1.1rem] text-center'>- table only shows the most recent performances on the AI algorithm trading system -</div>
           </div>
-          <div className='overflow-x-auto scrollsdown shadow-md rounded-lg'>
+          <div className='overflow-x-auto scrollsdown shadow-md rounded-lg mt-10'>
             <table className='table table-auto w-full'>
               <thead >
                 <tr className='bg-[#30465c] text-[0.8rem] font-bold text-white'>
@@ -108,9 +107,6 @@ const PerformancesPage = () => {
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div className='mt-4 italic text-center'>
-            - table only shows the most recent performances on the AI algorithm trading system -
           </div>
         </div>
       </div>

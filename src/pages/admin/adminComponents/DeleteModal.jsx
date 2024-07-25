@@ -9,6 +9,7 @@ import { IoEye } from 'react-icons/io5';
 import { IoMdEyeOff } from 'react-icons/io';
 import { SlLockOpen } from 'react-icons/sl';
 import { PiWarningCircleBold } from 'react-icons/pi';
+import { LuX } from 'react-icons/lu';
 
 const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, setEnd, setPagelengthstart, setPagelengthend, setSearch, setWrite, refetchAllUsers, refetchAllDeposits }) => {
     const toggler = useRef()
@@ -93,6 +94,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
         <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
             <div className={`bg-white rounded-lg lg:w-1/2 md:w-3/4 w-11/12 lg:h-[90vh] h-[80vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
+                    <div className='text-3xl absolute top-0 right-2 cursor-pointer' onClick={closeView}><LuX /></div>
                     {beforeshow && <div className='beforeshow'></div>}
                     {!beforeshow &&
                         <div className='md:w-[90%] w-11/12 mx-auto md:py-8 py-4 flex flex-col gap-8 md:text-[0.9rem] text-[0.8rem]'>

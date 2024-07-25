@@ -240,7 +240,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                 }
             </div>}
             {screen === 2 &&
-                <div className='my-8'>
+                <div className='mt-12'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-10 rounded-full flex items-center justify-center bg-[#7665D5] shlz'>

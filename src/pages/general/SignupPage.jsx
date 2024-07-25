@@ -73,11 +73,11 @@ const SignupPage = () => {
     const file = event.target.files[0]
     if (file.size >= 1000000) {
       imgref.current.value = null
-      return setImageError('File size too large', 'image uploads must not exceed 1MB file size', 'info')
+      return setImageError('File size too large')
     }
     if (!file.type.startsWith('image/')) {
       imgref.current.value = null
-      return setImageError('File Error', 'image uploaded must be a valid image format (jpg, jpeg, png, svg)', 'info')
+      return setImageError('File Error')
     }
     setProfile({
       img: URL.createObjectURL(file),

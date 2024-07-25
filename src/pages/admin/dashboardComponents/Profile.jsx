@@ -19,14 +19,12 @@ import LoadingAdmin from '../../../PageComponents/LoadingAdmin';
 import membership from '../../../assets/images/membership.png'
 
 
-const Profile = ({ setToggleExtra}) => {
+const Profile = ({ setToggleExtra }) => {
     const [user, setUser] = useAtom(PROFILE)
-
     const [nameEdit, setNameEdit] = useState(false)
     const [userEdit, setUserEdit] = useState(false)
     const [emailEdit, setEmailEdit] = useState(false)
     const [passEdit, setPassEdit] = useState(false)
-    const [imageChange, setImageChange] = useState(false)
     const [imageError, setImageError] = useState('')
     const [loading, setLoading] = useState(false)
     const [commit, setCommit] = useState(false)
@@ -65,23 +63,22 @@ const Profile = ({ setToggleExtra}) => {
 
     const handleProfileUpload = (event) => {
         setTimeout(() => {
-            setImageError(false)
+            setImageError('')
         }, 2000)
         const file = event.target.files[0]
         if (file.size >= 1000000) {
             imgref.current.value = null
-            return setImageError('File size too large', 'image uploads must not exceed 1MB file size', 'info')
+            return setImageError('File size too large')
         }
         if (!file.type.startsWith('image/')) {
             imgref.current.value = null
-            return setImageError('File Error', 'image uploaded must be a valid image format (jpg, jpeg, png, svg)', 'info')
+            return setImageError('File Error')
         }
-        setImageChange(true)
+        setCommit(true)
         setProfile({
             img: URL.createObjectURL(file),
             image: file
         })
-        setCommit(true)
     }
 
     const cancelChanges = () => {
@@ -89,7 +86,6 @@ const Profile = ({ setToggleExtra}) => {
         setNameEdit(false)
         setPassEdit(false)
         setUserEdit(false)
-        setImageChange(false)
         setCommit(false)
         imgref.current.value = null
         setProfile({
@@ -109,9 +105,6 @@ const Profile = ({ setToggleExtra}) => {
 
     const submitForm = async (event) => {
         event.preventDefault()
-        setTimeout(() => {
-            setPassError(false)
-        }, 2000)
 
         const formbody = new FormData()
         formbody.append('image', profile.image)
@@ -121,6 +114,7 @@ const Profile = ({ setToggleExtra}) => {
         formbody.append('email', form.email)
         formbody.append('old_password', form.old_password)
         formbody.append('new_password', form.new_password)
+
         if (commit) {
             setLoading(true)
             try {
@@ -131,7 +125,6 @@ const Profile = ({ setToggleExtra}) => {
                     setNameEdit(false)
                     setPassEdit(false)
                     setUserEdit(false)
-                    setImageChange(false)
                     setCommit(false)
                     setUser(response.msg)
 
@@ -204,8 +197,8 @@ const Profile = ({ setToggleExtra}) => {
                             </div>
                             <input ref={imgref} type="file" onChange={handleProfileUpload} hidden></input>
                         </label>
+                        <div className='absolute -bottom-2 right-0 text-xs text-[#c42e2e]'>{imageError}</div>
                     </div>
-                    <div className='text-xs text-center text-[red]'>{imageError}</div>
                 </div>
 
                 <div className=' justify-center  mt-4  text-semi-white flex gap-2 items-center'>
@@ -314,18 +307,20 @@ const Profile = ({ setToggleExtra}) => {
                                 </div>
                             </div>}
                         </div>
-                        {nameEdit || userEdit || emailEdit || passEdit || imageChange ? <div className='flex md:gap-8 gap-4 items-center justify-center md:mt-8 mt-4'>
-                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.85rem] text-xs text-semi-white  bg-light hover:bg-[#5d4faa] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={cancelChanges}>
-                                <span>cancel changes</span>
-                                <FaRegRectangleXmark />
-                            </button>
-                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.85rem] text-semi-white  bg-light hover:bg-[#5d4faa] rounded-md capitalize flex items-center gap-1 font-bold'>
-                                <span>commit changes</span>
-                                <IoCheckbox />
-                            </button>
-                        </div>
+                        {commit || nameEdit || passEdit || emailEdit || userEdit ?
+                            <div className='flex md:gap-8 gap-4 items-center justify-center md:mt-8 mt-4'>
+                                <button className='outline-none w-fit h-fit py-2.5 px-4 md:text-[0.85rem] text-xs text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-medium' type='button' onClick={cancelChanges}>
+                                    <span>cancel changes</span>
+                                    <FaRegRectangleXmark />
+                                </button>
+                                <button className='outline-none w-fit h-fit py-2.5 px-4 md:text-[0.85rem] text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-medium'>
+                                    <span>commit changes</span>
+                                    <IoCheckbox />
+                                </button>
+                            </div>
                             :
-                            <div></div>}
+                            <div></div>
+                        }
 
                     </div>
                 </form>

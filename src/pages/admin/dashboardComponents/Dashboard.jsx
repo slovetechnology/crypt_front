@@ -378,7 +378,7 @@ const Dashboard = () => {
                             <BiMoneyWithdraw className='md:text-xl text-lg ' />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>withdrawal</div>
                         </div>
-                        <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(toggle) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow); console.log(toggleArray) }}>
+                        <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(toggle) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow)}}>
                             <HiOutlineDotsVertical className={`md:text-xl text-lg`} />
                             <div className='capitalize md:text-xs text-[0.7rem] font-medium'>more</div>
                         </div>
