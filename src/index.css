@@ -22,9 +22,9 @@ body {
   font-family: "Nunito Sans", "Nunito";
 }
 
-input [type="text"] {
+input [type="text"], [type="email"], [type="password"] {
   -webkit-appearance: none;
-  border-radius: 0;
+  -webkit-border-radius: 0px;
 }
 
 .scroll::-webkit-scrollbar {
