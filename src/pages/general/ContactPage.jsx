@@ -87,7 +87,7 @@ const ContactPage = () => {
   const tradersCodeSearch = () => {
     setTimeout(() => {
       setCodeError(false)
-    }, 2000)
+    }, 1000)
     if (!code) return setCodeError(true)
     const codeSearch = AItraders.filter(item => item.traderCode === code.toLowerCase())
     if (!codeSearch.length > 0) return setCodeError(true)
