@@ -23,7 +23,8 @@ body {
 }
 
 input [type="text"] {
--webkit-appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 .scroll::-webkit-scrollbar {
