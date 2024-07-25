@@ -7,7 +7,7 @@ const PerformancesPage = () => {
       <div className="bg-[whitesmoke] py-16 move">
         <div className='w-11/12 mx-auto'>
           <div className='flex flex-col gap-3 items-center justify-center'>
-            <div className='z-20 font-bold capitalize text-[2.5rem] lg:text-[3rem]'>past performances</div>
+            <div className='z-20 font-bold capitalize text-[2.5rem] lg:text-[3rem] text-center'>past performances</div>
             <div className='md:text-[1.1rem] text-center'>- Table only shows the most recent performances on the AI algorithm trading system -</div>
           </div>
           <div className='overflow-x-auto scrollsdown shadow-md rounded-lg mt-10'>
@@ -20,7 +20,7 @@ const PerformancesPage = () => {
                   <td className='text-center  capitalize p-2 border-r truncate'>withdrawals made</td>
                 </tr>
               </thead>
-              <tbody className='bg-white text-[#30465c]'>
+              <tbody className='bg-white text-black'>
                 <tr className=' border-b'>
                   <td className='p-4 border-x text-center truncate'>
                     Oct-23
