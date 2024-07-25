@@ -151,7 +151,7 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-8'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>enter email address</div>
-                                    <input className='outline-none w-full border-b border-black lg:text-[0.9rem] text-base ipt focus:outline-none' type='email' placeholder='E.g: john14@gmail.com' value={email} onChange={e => setEmail(e.target.value)}></input>
+                                    <input className='outline-none w-full border-b border-black lg:text-[0.9rem] text-base ipt input-off' type='email' placeholder='E.g: john14@gmail.com' value={email} onChange={e => setEmail(e.target.value)}></input>
                                     <div className='text-xs text-[red] absolute -bottom-4 left-0'>{emailError}</div>
                                 </div>
                                 <div className='flex items-center justify-center mt-2'>
@@ -174,7 +174,7 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-8'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>enter verification code:</div>
-                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base focus:outline-none ipt' type='text' placeholder='Six digits code' value={code} onChange={e => setCode(e.target.value)}></input>
+                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off ipt' type='text' placeholder='Six digits code' value={code} onChange={e => setCode(e.target.value)}></input>
                                     <div className='text-xs text-[red] absolute -bottom-4 left-0'>{codeError}</div>
                                 </div>
                                 <div className='flex items-center justify-center mt-2'>
@@ -197,13 +197,13 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-8'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>enter new password</div>
-                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base focus:outline-none  ipt' type={eye === true ? 'text' : 'password'} placeholder='Characters more than five' name='new_password' value={passwords.new_password} onChange={passwordHandler}></input>
+                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off  ipt' type={eye === true ? 'text' : 'password'} placeholder='Characters more than five' name='new_password' value={passwords.new_password} onChange={passwordHandler}></input>
                                     <EyeIcon className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye(!eye)} />
                                     <div className='text-xs text-[red] absolute -bottom-4 left-0'>{passError}</div>
                                 </div>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>confirm password</div>
-                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base focus:outline-none ipt' type={eye2 === true ? 'text' : 'password'} placeholder='Re-type password' name='confirm_password' value={passwords.confirm_password} onChange={passwordHandler}></input>
+                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off ipt' type={eye2 === true ? 'text' : 'password'} placeholder='Re-type password' name='confirm_password' value={passwords.confirm_password} onChange={passwordHandler}></input>
                                     <EyeIcon2 className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     <div className='text-xs text-[red] absolute -bottom-4 left-0'>{confirmError}</div>
                                 </div>

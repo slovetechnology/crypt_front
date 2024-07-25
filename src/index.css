@@ -22,7 +22,7 @@ body {
   font-family: "Nunito Sans", "Nunito";
 }
 
-input [type="text"], [type="email"], [type="password"] {
+.input-off{
   -webkit-appearance: none;
   -webkit-border-radius: 0px;
 }
