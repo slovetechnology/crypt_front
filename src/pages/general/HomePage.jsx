@@ -24,7 +24,7 @@ const HomePage = () => {
     <Pagelayout>
       <div className='bg-[#1E2833] pb-16'>
         <div className='bgi'>
-          <div className='w-11/12 mx-auto pt-20  grid lg:grid-cols-3 grid-cols-2 gap-32 lg:gap-44'>
+          <div className='w-11/12 mx-auto pt-20  grid grid-cols-3 lg:grid-cols-4'>
             <div className='col-span-1'>
               <div className='relative w-fit'>
                 <div className='capitalize text-orange text-[0.7rem] font-[550] tracking-widest '> tech & crypto</div>
@@ -37,13 +37,13 @@ const HomePage = () => {
                 </button>
               </Link>
             </div>
-            <div className='lg:col-span-2  col-span-1 -mt-4'>
-              <div className='w-8 h-[23.5rem] border uppercase text-[0.85rem] py-1 px-[0.4rem] text-white font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap flex items-center justify-center'>
-                <div className='rotate-90 '> crypto trade made easy</div>
-                <div className='h-1 w-1 bg-white rounded-full absolute top-[-0.2rem] left-[-0.2rem]'></div>
-                <div className='h-1 w-1 bg-white rounded-full absolute top-[-0.2rem] right-[-0.21rem]'></div>
-                <div className='h-1 w-1 bg-white rounded-full absolute -bottom-[0.2rem] left-[-0.2rem]'></div>
-                <div className='h-1 w-1 bg-white rounded-full absolute -bottom-[0.2rem] right-[-0.21rem]'></div>
+            <div className='lg:col-span-3 col-span-2 '>
+              <div className='w-fit h-fit border rotate-90  uppercase md:text-[0.85rem] text-[0.75rem] py-1 px-2 text-white font-[550] tracking-[0.5rem] relative text-ellipsis text-nowrap mt-40'>
+                <div> crypto trade made easy</div>
+                <div className='h-1 w-1 bg-white rounded-full absolute top-7 -left-[0.2rem]'></div>
+                <div className='h-1 w-1 bg-white rounded-full absolute -top-1 -left-1'></div>
+                <div className='h-1 w-1 bg-white rounded-full absolute top-7 -right-1'></div>
+                <div className='h-1 w-1 bg-white rounded-full absolute -top-1 -right-1'></div>
               </div>
             </div>
           </div>
@@ -82,7 +82,7 @@ const HomePage = () => {
           <div className='mt-20 w-full md:w-5/6 lg:w-3/4 mx-auto'>
             <div className='flex flex-col'>
               <div className=' flex flex-col gap-4 items-center justify-center text-white'>
-                <span className='font-bold capitalize md:text-[2.5rem] text-3xl text-center'>have any questions?</span>
+                <span className='font-bold capitalize md:text-[2.5rem] text-3xl'>have any questions?</span>
                 <div className='text-center lg:w-[50%] text-semi-white tracking-[0.05rem] text-[0.95rem]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem obcaecati, architecto numquam libero perspiciatis veniam!</div>
               </div>
               <div className='flex flex-col gap-4 mt-12'>
@@ -94,9 +94,9 @@ const HomePage = () => {
                         {faq !== i ?
                           <FiPlus />
                           :
-                          <FiMinus />
+                          <FiMinus/>
                         }
-
+                        
                       </div>
                     </div>
                     <div className={`md:text-[0.95rem] text-sm ${faq === i ? 'block' : 'hidden'} `}>{item.content}</div>
