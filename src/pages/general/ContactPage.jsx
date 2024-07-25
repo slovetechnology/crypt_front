@@ -3,7 +3,7 @@ import Pagelayout from '../../PageComponents/Pagelayout'
 import contactimg from '../../assets/images/contactimg2.webp'
 import { PiTelegramLogoLight } from "react-icons/pi";
 import { TfiInstagram } from "react-icons/tfi";
-import { TiSocialFacebook } from "react-icons/ti";
+import { GrFacebookOption } from "react-icons/gr";
 import { MdOutlineHearing, MdCancel } from "react-icons/md";
 import { BiMailSend } from "react-icons/bi";
 import { Alert } from '../../utils/utils';
@@ -124,11 +124,11 @@ const ContactPage = () => {
                       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-xs uppercase font-bold text-[#636262] '>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 lg:text-[0.8rem] text-base capitalize pl-2 p-1 focus:outline-none ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 lg:text-[0.8rem] text-base capitalize pl-2 p-1 ${usernameError === true ? 'border-[red]' : ''} ipt`} name='username' value={form.username} onChange={inputHandler}></input>
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-xs uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base  p-1 pl-2 focus:outline-none ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base  p-1 pl-2 ${emailError === true ? 'border-[red]' : ''} ipt`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
@@ -136,7 +136,7 @@ const ContactPage = () => {
                         <textarea placeholder='Type A Message' className={` p-2 h-36 lg:text-[0.9rem] text-base resize-none outline-none focus:outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                       </div>
                       <div className='flex justify-center mt-2'>
-                        <button className='outline-none bg-orange text-[0.9rem] text-[white] flex gap-1 items-center justify-center w-fit h-fit px-8 py-1 rounded-[3px] capitalize font-bold'>
+                        <button className='outline-none bg-orange text-[0.9rem] text-white flex gap-1 items-center justify-center w-fit h-fit px-8 py-1 rounded-[3px] capitalize font-bold'>
                           <div>send</div>
                           <BiMailSend />
                         </button>
@@ -150,16 +150,16 @@ const ContactPage = () => {
               <div className='w-11/12 mx-auto '>
                 {show === 1 &&
                   <div className='grid grid-cols-1 gap-2 items-center lg:flex lg:justify-between h-full' >
-                    <div className='text-[white] text-[0.9rem] capitalize font-[550] text-center'>follow account manager on:</div>
+                    <div className='text-white text-[0.9rem] capitalize font-[550] text-center'>follow account manager on:</div>
                     <div className='flex gap-4 justify-center' onClick={() => setShow(2)}>
-                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-[1.2rem] hover:text-[black]'>
+                      <div className='h-8 w-8 border-2 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-lg hover:text-black'>
                         <PiTelegramLogoLight />
                       </div>
-                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
+                      <div className='h-8 w-8 border-2 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-lg hover:text-black'>
                         <TfiInstagram />
                       </div>
-                      <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
-                        <TiSocialFacebook />
+                      <div className='h-8 w-8 border-2 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.rem] hover:text-black'>
+                        <GrFacebookOption />
                       </div>
                     </div>
                   </div>
@@ -181,7 +181,7 @@ const ContactPage = () => {
                         </div>
                       }
                     </div>
-                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-[white]  bg-orange rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>
+                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-white  bg-orange rounded-md capitalize flex items-center gap-1 font-bold ' onClick={tradersCodeSearch}>
                       <span>search</span>
                       <LuSearchCheck />
                     </button>
@@ -190,41 +190,41 @@ const ContactPage = () => {
               </div>
               {show === 3 && <div className='mt-8 relative'>
                 <div className='border-b w-full absolute top-0 left-0 border-[#a0a0a0]'></div>
-                <div className='justify-center text-[white] text-[1.1rem] lg:text-[1.5rem] uppercase  flex gap-1 items-center font-bold pt-[4rem]'>
+                <div className='justify-center text-white text-lg lg:text-2xl uppercase  flex gap-1 items-center font-bold pt-[4rem]'>
                   <span>your account manager is</span>
                   <TfiUser />
                 </div>
                 {
                   trader.map((item, i) => (
-                    <div className='lg:w-3/4 w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] mt-[3rem] ' key={i}>
+                    <div className='lg:w-3/4 w-11/12 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-[3rem] mt-12 ' key={i}>
                       <div className='col-span-1'>
                         <div className='text-[1.5rem] text-black font-[800] pl-[1rem] capitalize
                     '>
                           {item.name}
                         </div>
-                        <div className='text-xs text-[black]  
+                        <div className='text-xs text-black  
                     '>
                           - professional cryptocurrency trader -
                         </div>
-                        <div className='text-[white] text-[0.85rem] mt-[1rem]'>
+                        <div className='text-white text-[0.85rem] mt-[1rem]'>
                           {item.detail}
                         </div>
                         <div className='flex flex-col gap-4 mt-[2rem]'>
-                          <div className='text-[black] font-bold capitalize '>socials:</div>
+                          <div className='text-black font-bold capitalize '>socials:</div>
                           <div className='flex gap-4 '>
                             <a href={item.tgram_link}>
-                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white] rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-[1.2rem] hover:text-[black]'>
+                              <div className='h-8 w-8 border-2 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-lg hover:text-black'>
                                 <PiTelegramLogoLight />
                               </div>
                             </a>
                             <a href={item.ig_link}>
-                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
+                              <div className='h-8 w-8 border-2 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-lg hover:text-black'>
                                 <TfiInstagram />
                               </div>
                             </a>
                             <a href={item.fb_link}>
-                              <div className='h-[1.9rem] w-[1.9rem] border-2 bg-[white]  rounded-[50%] flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.1rem] hover:text-[black]'>
-                                <TiSocialFacebook />
+                              <div className='h-8 w-8 border-2 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-lg hover:text-black'>
+                                <GrFacebookOption />
                               </div>
                             </a>
                           </div>

@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { FaRegCopyright } from "react-icons/fa6";
 import { PiTelegramLogoLight } from "react-icons/pi";
 import { TfiInstagram } from "react-icons/tfi";
-import { SiFacebook } from "react-icons/si";
 import { MoveToTop } from '../utils/utils';
+import { GrFacebookOption } from 'react-icons/gr';
 
 const Footer = () => {
   return (
@@ -14,24 +14,24 @@ const Footer = () => {
         <div className='grid gap-5 grid-cols-1 lg:grid-cols-5'>
           <div className='flex flex-col gap-2 lg:col-span-3'>
             <Link to='/' onClick={MoveToTop} className='flex items-center'>
-              <img src={logo} className='w-20 h-[auto] -ml-4'></img>
+              <img src={logo} className='w-20 h-auto -ml-4'></img>
               <div className='capitalize text-white font-bold text-2xl'>the force</div>
             </Link>
             <div className='text-ground md:w-[80%] lg:w-[60%]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod omnis voluptate similique facere! Neque, cupiditate minus ea nulla fugit.</div>
             <div className='flex gap-4 items-center mt-4'>
               <Link to='/contact' onClick={MoveToTop}>
-                <div className='h-[1.9rem] w-[1.9rem] border-2 border-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-white text-[1.2rem] hover:text-[rgb(233,110,40)]'>
+                <div className='h-8 w-8 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#1E2833] text-lg hover:text-[rgb(233,110,40)]'>
                   <PiTelegramLogoLight />
                 </div>
               </Link>
               <Link to='/contact' onClick={MoveToTop}>
-                <div className='h-[1.9rem] w-[1.9rem] border-2 border-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-white text-[1.1rem] hover:text-orange'>
+                <div className='h-8 w-8 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#1E2833] text-lg hover:text-orange'>
                   <TfiInstagram />
                 </div>
               </Link>
               <Link to='/contact' onClick={MoveToTop}>
-                <div className='h-[1.9rem] w-[1.9rem] border-2 border-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-white text-[1.1rem] hover:text-orange'>
-                  <SiFacebook />
+                <div className='h-8 w-8 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#1E2833] text-lg hover:text-orange'>
+                  <GrFacebookOption />
                 </div>
               </Link>
             </div>
