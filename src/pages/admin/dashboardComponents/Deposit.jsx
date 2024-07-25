@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { MdContentCopy } from "react-icons/md";
 import { RiHistoryFill, RiMoneyDollarCircleFill } from "react-icons/ri";
-import { IoIosSearch, IoMdArrowBack } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 import { useAtom } from 'jotai';
 import { DEPOSITS, PROFILE, WALLET } from '../../../store';
 import { Apis, PostApi } from '../../../services/API';
@@ -16,7 +16,7 @@ import { FaXmark } from "react-icons/fa6";
 import Loading from '../../../PageComponents/Loading';
 
 
-const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifications, refetchUnreadNotis, urlState, refetchWallet, refetchInvestmentsUnclaim, purchaseState }) => {
+const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifications, refetchUnreadNotis, urlState, refetchWallet, refetchInvestmentsUnclaim }) => {
     const [fromAtom] = useAtom(DEPOSITS)
     const [userDeposits, setUserDeposits] = useState(fromAtom)
     const [userwallet] = useAtom(WALLET)
@@ -34,7 +34,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     const [address, setAddress] = useState('')
     const [screen, setScreen] = useState(urlState ? 2 : 1)
     const [depositScreen, setDepositScreen] = useState(1)
-    const [deposit, setDeposit] = useState('deposit')
+    const [depositTitle, setDepositTitle] = useState(urlState ? 'deposit history' : 'deposit')
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
     const [buybal, setBuyBal] = useState({})
@@ -163,7 +163,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 setSelectValue({})
                 setNetwork('')
                 setAddress('')
-                setDeposit('deposit history')
+                setDepositTitle('deposit history')
                 refetchDeposits()
                 refetchInvestments()
                 refetchInvestmentsUnclaim()
@@ -263,15 +263,15 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     return (
         <div className={`pt-10 pb-24 lg:pb-10 ${screen === 2 ? 'h-screen' : 'h-fit'}`}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{deposit}</div>
+                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{depositTitle}</div>
                 {screen === 1 &&
-                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDeposit('deposit history') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setDepositTitle('deposit history') }}>
                         <span>history</span>
                         <RiHistoryFill />
                     </div>
                 }
                 {screen === 2 &&
-                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setDeposit('deposit') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setDepositTitle('deposit') }}>
                         <span>new deposit</span>
                         <RiMoneyDollarCircleFill />
                     </div>

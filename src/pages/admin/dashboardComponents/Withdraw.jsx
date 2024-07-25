@@ -30,7 +30,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
     const [selectState, setSelectState] = useState(false)
     const [selectValue, setSelectValue] = useState({})
     const [selectError, setSelectError] = useState(false)
-    const [withdraw, setWithdraw] = useState('withdraw')
+    const [withdrawTitle, setWithdrawTitle] = useState(urlState ? 'withdraw history': 'withdraw')
     const [withdrawError, setWithdrawError] = useState('')
     const [limitError, setLimitError] = useState(false)
     const [screen, setScreen] = useState(urlState ? 2 : 1)
@@ -75,7 +75,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                 setCheck(!check)
                 setSelectValue('')
                 setWithdrawError('')
-                setWithdraw('withdrawal history')
+                setWithdrawTitle('withdrawal history')
                 refetchWithdrawals()
                 refetchNotifications()
                 refetchUnreadNotis()
@@ -173,13 +173,13 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
     return (
         <div className={`pt-10 h-screen`}>
             <div className='flex justify-between items-center'>
-                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{withdraw}</div>
-                {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdraw('withdawal history') }}>
+                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{withdrawTitle}</div>
+                {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdrawTitle('withdawal history') }}>
                     <span>history</span>
                     <RiHistoryFill />
                 </div>
                     :
-                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdraw('withdawal') }}>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdrawTitle('withdawal') }}>
                         <span>withdraw</span>
                         <BiMoneyWithdraw />
                     </div>}

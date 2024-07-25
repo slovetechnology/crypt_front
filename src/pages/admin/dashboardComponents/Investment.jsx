@@ -8,7 +8,7 @@ import deposit3d from '../../../assets/images/deposit3d.png'
 import profit3d from '../../../assets/images/profit3d.png'
 import bonus3d from '../../../assets/images/bonus3d.png'
 import trading3d from '../../../assets/images/trading3d.png'
-import { IoIosSearch, IoMdArrowBack } from "react-icons/io";
+import { IoIosSearch } from "react-icons/io";
 import moment from 'moment';
 import { FiX } from 'react-icons/fi';
 import investbg from '../../../assets/images/investbg.png'
