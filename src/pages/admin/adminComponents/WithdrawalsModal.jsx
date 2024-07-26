@@ -7,7 +7,7 @@ import { Alert } from '../../../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
 import { LuX } from 'react-icons/lu'
 
-const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPagelengthstart, setPagelengthend, setSearch, setWrite, refetchAllWithdrawals, setAllWithdrawals }) => {
+const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllWithdrawals, setAllWithdrawals }) => {
     const [loading, setLoading] = useState(false)
     const [statusShow, setStatusShow] = useState(false)
     const [status, setStatus] = useState(singleWithdrawal.status)
@@ -85,8 +85,8 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setPa
                     refetchAllWithdrawals()
                     setWrite(false)
                     setSearch('')
-                    setPagelengthend(response.msg.length / 6)
-                    setPagelengthstart(1)
+                    setpageend(response.msg.length / 6)
+                    setpagestart(1)
                     setStart(0)
                     setEnd(6)
                 } else {

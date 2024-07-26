@@ -28,6 +28,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
     const [investtitle, setInvestTitle] = useState('my investment')
+    const [start, setStart] = useState(0)
+    const [end, setEnd] = useState(6)
+    const [pagestart, setpagestart] = useState(1)
+    const [pageend, setpageend] = useState(investment.length / end)
+
 
 
 
@@ -35,8 +40,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
         if (!search) {
             setWrite(false)
             setInvestment(fromAtom)
-            setPagelengthend(fromAtom.length / 6)
-            setPagelengthstart(1)
+            setpageend(fromAtom.length / 6)
+            setpagestart(1)
             setStart(0)
             setEnd(6)
 
@@ -44,8 +49,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
             setWrite(true)
             const showSearch = investment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
             setInvestment(showSearch)
-            setPagelengthend(showSearch.length / 6)
-            setPagelengthstart(1)
+            setpageend(showSearch.length / 6)
+            setpagestart(1)
             setStart(0)
             setEnd(6)
         }
@@ -55,23 +60,18 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
         setSearch('')
         setWrite(false)
         setInvestment(fromAtom)
-        setPagelengthend(fromAtom.length / 6)
-        setPagelengthstart(1)
+        setpageend(fromAtom.length / 6)
+        setpagestart(1)
         setStart(0)
         setEnd(6)
     }
-
-    const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(6)
-    const [pagelengthstart, setPagelengthstart] = useState(1)
-    const [pagelengthend, setPagelengthend] = useState(investment.length / end)
 
     let MovePage = () => {
 
         if (end < investment.length) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend += 6
             setEnd(altend)
@@ -80,7 +80,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
             setStart(altstart)
 
             altlengthstart += 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -89,7 +89,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
         if (end > 6) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend -= 6
             setEnd(altend)
@@ -98,7 +98,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
             setStart(altstart)
 
             altlengthstart -= 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -266,7 +266,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <td className='text-center  capitalize p-2 truncate'>claimed</td>
                                 </tr>
                             </thead>
-                            {fromAtom.length > 0 && <tbody>
+                            {investment.length > 0 && <tbody>
                                 {investment.slice(start, end).map((item, i) => (
                                     <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -287,9 +287,9 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>
-                    {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#7665D5] '>
-                        {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
-                        {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                    {investment.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#7665D5] '>
+                        {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                        {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
                         {end < investment.length && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
                     </div>}
                 </div>

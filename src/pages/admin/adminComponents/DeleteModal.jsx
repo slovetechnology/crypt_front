@@ -11,7 +11,7 @@ import { SlLockOpen } from 'react-icons/sl';
 import { PiWarningCircleBold } from 'react-icons/pi';
 import { LuX } from 'react-icons/lu';
 
-const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, setEnd, setPagelengthstart, setPagelengthend, setSearch, setWrite, refetchAllUsers, refetchAllDeposits }) => {
+const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllUsers, refetchAllDeposits }) => {
     const toggler = useRef()
     const [deleted, setDeleted] = useState(1)
     const [loading, setLoading] = useState(false)
@@ -72,8 +72,8 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                 refetchAllDeposits()
                 setWrite(false)
                 setSearch('')
-                setPagelengthend(response.msg.length / 6)
-                setPagelengthstart(1)
+                setpageend(response.msg.length / 6)
+                setpagestart(1)
                 setStart(0)
                 setEnd(6)
                 setDeleted(1)

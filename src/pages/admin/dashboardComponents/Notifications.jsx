@@ -114,7 +114,6 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, se
         try {
             const response = await UserPutApi(Apis.notification.update_all)
             if (response.status === 200) {
-                setNotis(response.msg)
                 refetchNotifications()
                 setUnreadNotis(0)
             }

@@ -30,13 +30,18 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
     const [selectState, setSelectState] = useState(false)
     const [selectValue, setSelectValue] = useState({})
     const [selectError, setSelectError] = useState(false)
-    const [withdrawTitle, setWithdrawTitle] = useState(urlState ? 'withdraw history': 'withdraw')
+    const [withdrawTitle, setWithdrawTitle] = useState(urlState ? 'withdraw history' : 'withdraw')
     const [withdrawError, setWithdrawError] = useState('')
     const [limitError, setLimitError] = useState(false)
     const [screen, setScreen] = useState(urlState ? 2 : 1)
     const [loading, setLoading] = useState(false)
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
+    const [start, setStart] = useState(0)
+    const [end, setEnd] = useState(6)
+    const [pagestart, setpagestart] = useState(1)
+    const [pageend, setpageend] = useState(allwithdrawals.length / end)
+
 
 
     const makeWithdrawal = async () => {
@@ -48,6 +53,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
             setLimitError(false)
         }, 1000)
         if (!amount) return setAmountError(true)
+        if (isNaN(amount)) return setAmountError(true)
         if (amount < 20) return setAmountError(true)
         if (amount > userwallet.balance) return setLimitError(true)
         if (Object.values(userwallet).length === 0) return setLimitError(true)
@@ -81,8 +87,8 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                 refetchUnreadNotis()
                 refetchWallet()
                 setScreen(2)
-                setPagelengthend(response.msg.length / 6)
-                setPagelengthstart(1)
+                setpageend(response.msg.length / 6)
+                setpagestart(1)
                 setStart(0)
                 setEnd(6)
             } else {
@@ -101,8 +107,8 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
         if (!search) {
             setWrite(false)
             setAllWithdrawals(fromAtom)
-            setPagelengthend(fromAtom.length / 6)
-            setPagelengthstart(1)
+            setpageend(fromAtom.length / 6)
+            setpagestart(1)
             setStart(0)
             setEnd(6)
         }
@@ -110,8 +116,8 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
             setWrite(true)
             const showSearch = allwithdrawals.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
-            setPagelengthend(showSearch.length / 6)
-            setPagelengthstart(1)
+            setpageend(showSearch.length / 6)
+            setpagestart(1)
             setStart(0)
             setEnd(6)
         }
@@ -121,24 +127,18 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
         setSearch('')
         setWrite(false)
         setAllWithdrawals(fromAtom)
-        setPagelengthend(fromAtom.length / 6)
-        setPagelengthstart(1)
+        setpageend(fromAtom.length / 6)
+        setpagestart(1)
         setStart(0)
         setEnd(6)
     }
-
-    //
-    const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(6)
-    const [pagelengthstart, setPagelengthstart] = useState(1)
-    const [pagelengthend, setPagelengthend] = useState(allwithdrawals.length / end)
 
     let MovePage = () => {
 
         if (end < allwithdrawals.length) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend += 6
             setEnd(altend)
@@ -147,7 +147,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
             setStart(altstart)
 
             altlengthstart += 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -156,7 +156,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
         if (end > 6) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend -= 6
             setEnd(altend)
@@ -165,7 +165,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
             setStart(altstart)
 
             altlengthstart -= 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -273,7 +273,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                                 <td className='text-center truncate  capitalize p-2'>status </td>
                             </tr>
                         </thead>
-                        {fromAtom.length > 0 && <tbody>
+                        {allwithdrawals.length > 0 && <tbody>
                             {allwithdrawals.slice(start, end).map((item, i) => (
                                 <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                     <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -292,9 +292,9 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                         <img src={nothnyet} className='h-4 w-auto'></img>
                     </div>}
                 </div>
-                {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
-                    {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
-                    {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                {allwithdrawals.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
+                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                    {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
                     {end < allwithdrawals.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
                 </div>}
             </div>}

@@ -44,6 +44,10 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     const [loading, setLoading] = useState(false)
     const [balCheck, setBalCheck] = useState(false)
     const [extCheck, setExtCheck] = useState(false)
+    const [start, setStart] = useState(0)
+    const [end, setEnd] = useState(6)
+    const [pagestart, setpagestart] = useState(1)
+    const [pageend, setpageend] = useState(userDeposits.length / end)
     const depositbox = useRef()
 
     useEffect(() => {
@@ -67,6 +71,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         }, 1000)
 
         if (!amount) return setAmountError(true)
+        if (isNaN(amount)) return setAmountError(true)
         if (amount < buybal.price_start) return setLimitError(true)
         if (amount > buybal.price_limit) return setLimitError(true)
         if (amount > userwallet.balance) return setBalanceError(true)
@@ -170,8 +175,8 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 refetchNotifications()
                 refetchWallet()
                 refetchUnreadNotis()
-                setPagelengthend(response.msg.length / 6)
-                setPagelengthstart(1)
+                setpageend(response.msg.length / 6)
+                setpagestart(1)
                 setStart(0)
                 setEnd(6)
             } else {
@@ -191,8 +196,8 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         if (!search) {
             setWrite(false)
             setUserDeposits(fromAtom)
-            setPagelengthend(fromAtom.length / 6)
-            setPagelengthstart(1)
+            setpageend(fromAtom.length / 6)
+            setpagestart(1)
             setStart(0)
             setEnd(6)
         }
@@ -200,8 +205,8 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setWrite(true)
             const showSearch = userDeposits.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.crypto.includes(search.toLowerCase()) || item.deposit_status.includes(search.toLowerCase()))
             setUserDeposits(showSearch)
-            setPagelengthend(showSearch.length / 6)
-            setPagelengthstart(1)
+            setpageend(showSearch.length / 6)
+            setpagestart(1)
             setStart(0)
             setEnd(6)
         }
@@ -211,24 +216,18 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         setSearch('')
         setWrite(false)
         setUserDeposits(fromAtom)
-        setPagelengthend(fromAtom.length / 6)
-        setPagelengthstart(1)
+        setpageend(fromAtom.length / 6)
+        setpagestart(1)
         setStart(0)
         setEnd(6)
     }
-
-    //
-    const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(6)
-    const [pagelengthstart, setPagelengthstart] = useState(1)
-    const [pagelengthend, setPagelengthend] = useState(userDeposits.length / end)
 
     let MovePage = () => {
 
         if (end < userDeposits.length) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend += 6
             setEnd(altend)
@@ -237,7 +236,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setStart(altstart)
 
             altlengthstart += 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -246,7 +245,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         if (end > 6) {
             let altstart = start
             let altend = end
-            let altlengthstart = pagelengthstart
+            let altlengthstart = pagestart
 
             altend -= 6
             setEnd(altend)
@@ -255,7 +254,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
             setStart(altstart)
 
             altlengthstart -= 1
-            setPagelengthstart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -437,7 +436,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                 <td className='text-center truncate  capitalize p-2'>status </td>
                             </tr>
                         </thead>
-                        {fromAtom.length > 0 && <tbody>
+                        {userDeposits.length > 0 && <tbody>
                             {userDeposits.slice(start, end).map((item, i) => (
                                 <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                     <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -456,9 +455,9 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         <img src={nothnyet} className='h-4 w-auto'></img>
                     </div>}
                 </div>
-                {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
-                    {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
-                    {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+                {userDeposits.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
+                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                    {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
                     {end < userDeposits.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
                 </div>}
             </div>

@@ -47,11 +47,18 @@ const Home = ({ setToggle }) => {
                             <BiDollar />
                             {Object.values(wallet).length !== 0 && <div>{wallet.total_profit.toLocaleString()}</div>}
                         </div>
-                        <img src={profit3d} className='md:h-12 h-[2rem] w-[auto]'></img>
+                        <img src={profit3d} className='md:h-12 h-8 w-[auto]'></img>
                     </div>
                     <div className='flex flex-col items-center text-xs capitalize font-medium gap-1 mt-4'>
                         <div>up</div>
-                        {wallet.total_profit !== 0 ? <div className='text-[green]'>+{profitUp.toFixed(2)}%</div>
+                        {Object.values(ups).length !== 0 ?
+                            <div>
+                                {wallet.total_profit !== 0 ?
+                                    <div className='text-[green]'>+{profitUp.toFixed(2)}%</div>
+                                    :
+                                    <div className='text-[green]'>+0.00%</div>
+                                }
+                            </div>
                             :
                             <div className='text-[green]'>+0.00%</div>
                         }
@@ -71,7 +78,14 @@ const Home = ({ setToggle }) => {
                     </div>
                     <div className='flex flex-col items-center text-xs capitalize font-medium gap-1 mt-4'>
                         <div>up</div>
-                        {wallet.total_bonus !== 0 ? <div className='text-[green]'>+{bonusUp.toFixed(2)}%</div>
+                        {Object.values(ups).length !== 0 ?
+                            <div>
+                                {wallet.total_bonus !== 0 ?
+                                    <div className='text-[green]'>+{bonusUp.toFixed(2)}%</div>
+                                    :
+                                    <div className='text-[green]'>+0.00%</div>
+                                }
+                            </div>
                             :
                             <div className='text-[green]'>+0.00%</div>
                         }
@@ -84,7 +98,7 @@ const Home = ({ setToggle }) => {
                             <BiDollar />
                             {Object.values(wallet).length !== 0 && <div>{wallet.total_withdrawal.toLocaleString()}</div>}
                         </div>
-                        <img src={withdraw3d} className='md:h-[3.5rem] h-[2.5rem] w-auto'></img>
+                        <img src={withdraw3d} className='md:h-14 h-10 w-auto'></img>
                     </div>
                 </div>
                 <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white capitalize bg-[#6859bb] overflow-hidden'>

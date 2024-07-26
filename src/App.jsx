@@ -12,10 +12,12 @@ import TermsPage from './pages/general/TermsPage'
 import PrivacyPage from './pages/general/PrivacyPage'
 import Dashboard from './pages/admin/dashboardComponents/Dashboard'
 import AdminHome from './pages/admin/adminComponents/AdminHome'
+import Notfound from './utils/Notfound'
 
 const App = () => {
   return (
     <Routes>
+      <Route path="*" element={<Notfound />} />
       <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<ContactPage/>} />
       <Route path="/about" element={<AboutPage/>} />

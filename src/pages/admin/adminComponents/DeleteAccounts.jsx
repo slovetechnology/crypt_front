@@ -22,6 +22,10 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [usertotal, setUserTotal] = useState()
+  const [start, setStart] = useState(0)
+  const [end, setEnd] = useState(6)
+  const [pagestart, setpagestart] = useState(1)
+  const [pageend, setpageend] = useState(allusers.length / end)
 
 
   const SingleUserFunction = (item) => {
@@ -32,9 +36,9 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
 
     if (!search) {
       setAllUsers(fromAtom)
-      setPagelengthend(fromAtom.length / 6)
+      setpageend(fromAtom.length / 6)
       setWrite(false)
-      setPagelengthstart(1)
+      setpagestart(1)
       setStart(0)
       setEnd(6)
     }
@@ -42,8 +46,8 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
       setWrite(true)
       const showSearch = allusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
       setAllUsers(showSearch)
-      setPagelengthend(showSearch.length / 6)
-      setPagelengthstart(1)
+      setpageend(showSearch.length / 6)
+      setpagestart(1)
       setStart(0)
       setEnd(6)
     }
@@ -52,24 +56,20 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
   const CancelWrite = () => {
     setSearch('')
     setAllUsers(fromAtom)
-    setPagelengthend(fromAtom.length / 6)
+    setpageend(fromAtom.length / 6)
     setWrite(false)
-    setPagelengthstart(1)
+    setpagestart(1)
     setStart(0)
     setEnd(6)
   }
 
-  const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(6)
-  const [pagelengthstart, setPagelengthstart] = useState(1)
-  const [pagelengthend, setPagelengthend] = useState(allusers.length / end)
 
   let MovePage = () => {
 
     if (end < allusers.length) {
       let altstart = start
       let altend = end
-      let altlengthstart = pagelengthstart
+      let altlengthstart = pagestart
 
       altend += 6
       setEnd(altend)
@@ -78,7 +78,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
       setStart(altstart)
 
       altlengthstart += 1
-      setPagelengthstart(altlengthstart)
+      setpagestart(altlengthstart)
     }
   }
 
@@ -87,7 +87,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
     if (end > 6) {
       let altstart = start
       let altend = end
-      let altlengthstart = pagelengthstart
+      let altlengthstart = pagestart
 
       altend -= 6
       setEnd(altend)
@@ -96,7 +96,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
       setStart(altstart)
 
       altlengthstart -= 1
-      setPagelengthstart(altlengthstart)
+      setpagestart(altlengthstart)
     }
   }
 
@@ -125,7 +125,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
 
   return (
     <div className='h-screen'>
-      {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setPagelengthstart={setPagelengthstart} setPagelengthend={setPagelengthend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} />}
+      {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} />}
 
       <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>delete accounts</div>
       <div className='mt-12'>
@@ -172,8 +172,8 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
           </div>}
         </div>
         {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
-          {pagelengthstart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
-          {Math.ceil(pagelengthend) > 1 && <div className='font-bold text-[grey]'>{pagelengthstart} of {Math.ceil(pagelengthend)}</div>}
+          {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+          {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
           {end < allusers.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
         </div>}
       </div>

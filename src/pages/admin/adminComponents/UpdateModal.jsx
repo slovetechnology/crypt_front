@@ -6,7 +6,7 @@ import { LuX } from "react-icons/lu";
 import Loading from '../../../PageComponents/Loading';
 import { Alert } from '../../../utils/utils';
 
-const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEnd, setPagelengthstart, setPagelengthend, setSearch, setWrite, refetchAllDeposits }) => {
+const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllDeposits }) => {
     const toggler = useRef()
     const [depositShow, setdepositShow] = useState(false)
     const [depositStatus, setDepositStatus] = useState(singleDeposit.deposit_status)
@@ -15,6 +15,8 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
     const [loading, setLoading] = useState(false)
     const [update, setUpdate] = useState(false)
     const [beforeshow, setBeforeshow] = useState(true)
+    const [profitError, setProfitError] = useState(false)
+    const [bonusError, setBonusError] = useState(false)
 
     const [form, setForm] = useState({
         profit: "",
@@ -80,6 +82,13 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
     }, 1500)
 
     const AdminUpdateDeposit = async () => {
+        setTimeout(() => {
+            setProfitError(false)
+            setBonusError(false)
+        }, 1000)
+
+        if (isNaN(form.profit)) return setProfitError(true)
+        if (isNaN(form.bonus)) return setBonusError(true)
 
         const formbody = {
             deposit_id: singleDeposit.id,
@@ -104,8 +113,8 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                     refetchAllDeposits()
                     setWrite(false)
                     setSearch('')
-                    setPagelengthend(response.msg.length / 6)
-                    setPagelengthstart(1)
+                    setpageend(response.msg.length / 6)
+                    setpagestart(1)
                     setStart(0)
                     setEnd(6)
                 } else {
@@ -171,8 +180,8 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add profit:</div>
                                         <div className='flex gap-2 items-center'>
-                                            <input className='border border-[#c9b8eb] md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm' name='profit' value={form.profit} onChange={inputHandler}></input>
-                                            <div className='text-[0.8rem] py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
+                                            <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler}></input>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
                                                 <div>so far:</div>
                                                 <div className='flex items-center font-bold'>
                                                     <span className='text-[0.65rem] '>$</span>
@@ -184,8 +193,8 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add bonus:</div>
                                         <div className='flex gap-2 items-center'>
-                                            <input className='border border-[#c9b8eb] md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm' name='bonus' value={form.bonus} onChange={inputHandler}></input>
-                                            <div className='text-[0.8rem] py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
+                                            <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler}></input>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
                                                 <div>so far:</div>
                                                 <div className='flex items-center font-bold'>
                                                     <span className='text-[0.65rem]'>$</span>
