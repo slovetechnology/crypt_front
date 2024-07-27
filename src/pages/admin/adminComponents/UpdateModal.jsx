@@ -6,7 +6,7 @@ import { LuX } from "react-icons/lu";
 import Loading from '../../../PageComponents/Loading';
 import { Alert } from '../../../utils/utils';
 
-const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllDeposits }) => {
+const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllDeposits }) => {
     const toggler = useRef()
     const [depositShow, setdepositShow] = useState(false)
     const [depositStatus, setDepositStatus] = useState(singleDeposit.deposit_status)
@@ -108,7 +108,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
             try {
                 const response = await UserPutApi(Apis.admin.update_deposits, formbody)
                 if (response.status === 200) {
-                    setAltDeposits(response.msg)
+                    setAllDeposits(response.msg)
                     Alert('Request Successful', 'Deposit updated successfully', 'success')
                     refetchAllDeposits()
                     setWrite(false)
@@ -159,7 +159,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        <div className='md:text-[0.95rem] text-sm'><span className='text-[0.85rem]'>$</span>{singleDeposit.amount.toLocaleString()}</div>
+                                        <div className='md:text-[0.95rem] text-sm'>${singleDeposit.amount.toLocaleString()}</div>
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>plan:</div>
@@ -181,12 +181,9 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                         <div className='italic '>add profit:</div>
                                         <div className='flex gap-2 items-center'>
                                             <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler}></input>
-                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                <div className='flex items-center font-bold'>
-                                                    <span className='text-[0.65rem] '>$</span>
-                                                    <span>{singleDeposit.profit.toLocaleString()}</span>
-                                                </div>
+                                                <div>${singleDeposit.profit.toLocaleString()}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -194,12 +191,9 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                         <div className='italic '>add bonus:</div>
                                         <div className='flex gap-2 items-center'>
                                             <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler}></input>
-                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center'>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                <div className='flex items-center font-bold'>
-                                                    <span className='text-[0.65rem]'>$</span>
-                                                    <span>{singleDeposit.bonus.toLocaleString()}</span>
-                                                </div>
+                                                <div>${singleDeposit.bonus.toLocaleString()}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -248,7 +242,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAltDeposits, setStart, setEn
                                 </div>
                             </div>
                             {update && <div className='flex items-center justify-center -mt-4'>
-                                <button className='w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium ' onClick={AdminUpdateDeposit}>update details</button>
+                                <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium ' onClick={AdminUpdateDeposit}>update details</button>
                             </div>}
                         </div>}
                 </div>

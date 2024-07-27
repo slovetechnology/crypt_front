@@ -131,7 +131,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        <div className='md:text-[0.95rem] text-sm'><span className='text-[0.85rem]'>$</span>{singleWithdrawal.amount.toLocaleString()}</div>
+                                        <div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toLocaleString()}</div>
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>crypto:</div>
@@ -178,7 +178,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                 </div>
                             </div>
                             {update && <div className='flex items-center justify-center -mt-4'>
-                                <button className='w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium' onClick={AdminUpdateWithdrawal}>update details</button>
+                                <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium' onClick={AdminUpdateWithdrawal}>update details</button>
                             </div>}
                         </div>
                     }

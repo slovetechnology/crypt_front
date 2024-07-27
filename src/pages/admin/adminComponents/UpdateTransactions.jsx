@@ -12,7 +12,7 @@ import nothnyet from '../../../assets/images/nothn.png'
 
 const UpdateTransactions = ({ refetchAllDeposits}) => {
   const [fromAtom] = useAtom(ADMINALLDEPOSITS)
-  const [alldeposits, setAlldeposits] = useState(fromAtom)
+  const [alldeposits, setAllDeposits] = useState(fromAtom)
   const [singleDeposit, setSingleDeposit] = useState({})
   const [modal, setModal] = useState(false)
   const [write, setWrite] = useState(false)
@@ -30,7 +30,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
   const HandleSearch = () => {
 
     if (!search) {
-      setAlldeposits(fromAtom)
+      setAllDeposits(fromAtom)
       setpageend(fromAtom.length / 6)
       setWrite(false)
       setpagestart(1)
@@ -40,7 +40,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
     else {
       setWrite(true)
       const showSearch = alldeposits.filter(item => item.deposituser.username.includes(search.toLowerCase()) || item.deposituser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.deposit_status.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()))
-      setAlldeposits(showSearch)
+      setAllDeposits(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)
       setStart(0)
@@ -50,7 +50,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
 
   const CancelWrite = () => {
     setSearch('')
-    setAlldeposits(fromAtom)
+    setAllDeposits(fromAtom)
     setpageend(fromAtom.length / 6)
     setWrite(false)
     setpagestart(1)
@@ -98,7 +98,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
 
   return (
     <div className='h-screen'>
-      {modal && <UpdateModal closeView={() => setModal(false)} singleDeposit={singleDeposit} setAlldeposits={setAlldeposits} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllDeposits={refetchAllDeposits} />}
+      {modal && <UpdateModal closeView={() => setModal(false)} singleDeposit={singleDeposit} setAllDeposits={setAllDeposits} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllDeposits={refetchAllDeposits} />}
 
       <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>update transactions</div>
       <div className='mt-12'>
@@ -134,12 +134,12 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
                   <td className='p-4  text-center truncate' onClick={() => { setModal(true); SingleDepositFunction(item) }}>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                   <td className='p-4  text-center truncate'>{item.deposituser.username}</td>
                   <td className='p-4  text-center truncate'>{item.deposituser.email}</td>
-                  <td className='p-4  justify-center flex items-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
+                  <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                   <td className={`p-4  text-center truncate ${item.deposit_status === 'failed' && 'text-[red]'}  ${item.deposit_status === 'confirmed' && 'text-[#459e45]'}`}>{item.deposit_status}</td>
-                  <td className='p-4  justify-center flex items-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.profit.toLocaleString()}</span></td>
+                  <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
                   <td className={`p-4  text-center truncate ${item.profit_status === 'completed' ? 'text-[#459e45]' : 'text-black'}`}>{item.profit_status}</td>
-                  <td className='p-4  justify-center flex items-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.bonus.toLocaleString()}</span></td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleDepositFunction(item) }}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
+                  <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleDepositFunction(item) }}> <BsThreeDots className="mx-auto text-base" /></td>
                 </tr>
               ))}
             </tbody>}

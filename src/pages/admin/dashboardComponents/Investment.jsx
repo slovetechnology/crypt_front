@@ -271,11 +271,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                         <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
+                                        <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                         <td className='p-4  text-center truncate'>{item.trading_plan}</td>
-                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.profit.toLocaleString()}</span></td>
+                                        <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
                                         <td className={`p-4  text-center truncate italic ${item.profit_status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.profit_status}</td>
-                                        <td className='p-4  text-center truncate flex items-center justify-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.bonus.toLocaleString()}</span></td>
+                                        <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
                                         <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-semi-white'}`}>{item.claim} </td>
                                     </tr>
                                 ))}

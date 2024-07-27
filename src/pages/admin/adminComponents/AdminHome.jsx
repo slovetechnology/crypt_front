@@ -247,7 +247,7 @@ const AdminHome = () => {
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-4 items-center h-full w-full'>
               {AllLinks.map((item, i) => (
-                <div key={item} onClick={() => setToggle(item.path)}>
+                <div key={i} onClick={() => setToggle(item.path)}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === item.path ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-xl text-lg' />
                     <div className='capitalize md:text-xs text-[0.7rem] font-medium'>{item.path}</div>

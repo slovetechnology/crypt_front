@@ -130,9 +130,9 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                                     <td className='p-4  text-center truncate' onClick={() => { setModal(true); SingleWithdrawalFunction(item) }}>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                     <td className='p-4  text-center truncate'>{item.wthuser.username}</td>
                                     <td className='p-4  text-center truncate'>{item.wthuser.email}</td>
-                                    <td className='p-4  justify-center flex items-center gap-[0.1rem]'><span className='text-[0.65rem]'>$</span> <span>{item.amount.toLocaleString()}</span></td>
+                                    <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                     <td className={`p-4  text-center truncate ${item.status === 'confirmed' ? 'text-[#459e45]' : 'text-black'}`}>{item.status}</td>
-                                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleWithdrawalFunction(item) }}> <BsThreeDots className="mx-auto text-[1rem]" /></td>
+                                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleWithdrawalFunction(item) }}> <BsThreeDots className="mx-auto text-base" /></td>
                                 </tr>
                             ))}
                         </tbody>}

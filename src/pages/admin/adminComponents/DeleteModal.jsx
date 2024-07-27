@@ -138,7 +138,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                             </div>
                             <div className='mt-4'>
                                 {deleted === 1 && <div className='flex items-center justify-center'>
-                                    <button className='w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium' onClick={() => { setDeleted(2); MoveToBottom() }}>delete user</button>
+                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium' onClick={() => { setDeleted(2); MoveToBottom() }}>delete user</button>
                                 </div>}
                                 {deleted !== 1 && <div className='w-fit h-fit md:p-8 px-2 py-4 rounded-md bg-white adsha mx-auto  text-black relative'>
                                     {loading && <Loading />}
@@ -150,7 +150,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                                 <PiWarningCircleBold className='text-[red]' />
                                             </div>
                                         </div>
-                                        <div className='flex md:flex-row flex-col md:gap-16 gap-4 items-center'>
+                                        <div className='flex md:gap-16 gap-4 items-center'>
                                             <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleted(1)}>
                                                 <span>cancel action</span>
                                                 <FaRegRectangleXmark />
@@ -173,7 +173,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                                 <EyeIcon className='absolute top-2 right-2 text-base text-[red] cursor-pointer' onClick={() => setEye(!eye)} />
                                                 <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{deleteError}</div>
                                             </div>
-                                            <div className='flex md:flex-row flex-col md:gap-16 gap-4 items-center'>
+                                            <div className='flex md:gap-16 gap-2 items-center'>
                                                 <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleted(1)}>
                                                     <span>cancel deletion</span>
                                                     <FaRegRectangleXmark />
