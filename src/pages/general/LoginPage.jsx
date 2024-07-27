@@ -65,7 +65,7 @@ const LoginPage = () => {
         // }
         navigate('/dashboard')
     }
-    document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
+    document.querySelector('body').style.overflow = forgotPass === true ? 'hidden' : 'auto'
 
     return (
         <Pagelayout>

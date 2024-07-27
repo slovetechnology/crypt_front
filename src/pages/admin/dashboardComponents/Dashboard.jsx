@@ -31,7 +31,7 @@ import Notifications from './Notifications';
 
 const AllLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
-    { path: 'my investment', component: Investment, icon: GrMoney },
+    { path: 'investment', component: Investment, icon: GrMoney },
     { path: 'deposit', component: Deposit, icon: MdPayment },
     { path: 'withdraw', component: Withdraw, icon: BiMoneyWithdraw },
     { path: 'profile', component: Profile, icon: RiAccountPinCircleLine },
@@ -40,7 +40,7 @@ const AllLinks = [
 
 const MainLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
-    { path: 'my investment', component: Investment, icon: GrMoney },
+    { path: 'investment', component: Investment, icon: GrMoney },
     { path: 'deposit', component: Deposit, icon: MdPayment },
     { path: 'withdraw', component: Withdraw, icon: BiMoneyWithdraw },
 ]
@@ -57,7 +57,7 @@ const ExtraLinks = [
 
 const toggleArray = [
     "wallet",
-    "my investment",
+    "investment",
     "deposit",
     "withdraw"
 ]
