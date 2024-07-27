@@ -10,8 +10,9 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 
 
-const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits }) => {
+const UpdateTransactions = ({ refetchAllDeposits}) => {
   const [fromAtom] = useAtom(ADMINALLDEPOSITS)
+  const [alldeposits, setAlldeposits] = useState(fromAtom)
   const [singleDeposit, setSingleDeposit] = useState({})
   const [modal, setModal] = useState(false)
   const [write, setWrite] = useState(false)
@@ -19,7 +20,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
-  const [pageend, setpageend] = useState(altdeposits.length / end)
+  const [pageend, setpageend] = useState(alldeposits.length / end)
 
 
   const SingleDepositFunction = (item) => {
@@ -29,7 +30,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
   const HandleSearch = () => {
 
     if (!search) {
-      setAltDeposits(fromAtom)
+      setAlldeposits(fromAtom)
       setpageend(fromAtom.length / 6)
       setWrite(false)
       setpagestart(1)
@@ -38,8 +39,8 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
     }
     else {
       setWrite(true)
-      const showSearch = altdeposits.filter(item => item.deposituser.username.includes(search.toLowerCase()) || item.deposituser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.deposit_status.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()))
-      setAltDeposits(showSearch)
+      const showSearch = alldeposits.filter(item => item.deposituser.username.includes(search.toLowerCase()) || item.deposituser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.deposit_status.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()))
+      setAlldeposits(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)
       setStart(0)
@@ -49,7 +50,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
 
   const CancelWrite = () => {
     setSearch('')
-    setAltDeposits(fromAtom)
+    setAlldeposits(fromAtom)
     setpageend(fromAtom.length / 6)
     setWrite(false)
     setpagestart(1)
@@ -59,7 +60,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
 
   let MovePage = () => {
 
-    if (end < altdeposits.length) {
+    if (end < alldeposits.length) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
@@ -97,7 +98,7 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
 
   return (
     <div className='h-screen'>
-      {modal && <UpdateModal closeView={() => setModal(false)} singleDeposit={singleDeposit} setAltDeposits={setAltDeposits} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllDeposits={refetchAllDeposits} />}
+      {modal && <UpdateModal closeView={() => setModal(false)} singleDeposit={singleDeposit} setAlldeposits={setAlldeposits} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllDeposits={refetchAllDeposits} />}
 
       <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>update transactions</div>
       <div className='mt-12'>
@@ -127,8 +128,8 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
-            {fromAtom.length > 0 && <tbody>
-              {altdeposits.slice(start, end).map((item, i) => (
+            {alldeposits.length > 0 && <tbody>
+              {alldeposits.slice(start, end).map((item, i) => (
                 <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
                   <td className='p-4  text-center truncate' onClick={() => { setModal(true); SingleDepositFunction(item) }}>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                   <td className='p-4  text-center truncate'>{item.deposituser.username}</td>
@@ -143,15 +144,15 @@ const UpdateTransactions = ({ refetchAllDeposits, altdeposits, setAltDeposits })
               ))}
             </tbody>}
           </table>
-          {altdeposits.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
+          {alldeposits.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
             <div>no transactions found...</div>
             <img src={nothnyet} className='h-4 w-auto'></img>
           </div>}
         </div>
-        {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
+        {alldeposits.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
           {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
           {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-          {end < altdeposits.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+          {end < alldeposits.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
         </div>}
       </div>
 

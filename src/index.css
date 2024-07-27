@@ -441,8 +441,7 @@ body {
 }
 
 .text-sha {
-  color: #50318f;
-  text-shadow: -1px 1px 3px #101011;
+  text-shadow: -1px 1px 4px #101011;
 }
 
 .adsha {

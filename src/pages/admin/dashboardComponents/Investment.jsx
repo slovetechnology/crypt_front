@@ -107,11 +107,11 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
         <div className={`pt-10 pb-24 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 1 ? 'h-fit' : 'h-screen'} z-10 `}>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white'>{investtitle}</div>
-                {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
+                {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
                     <span>history</span>
                     <RiHistoryFill />
                 </div>}
-                {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-[#7665D5] items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
+                {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
                     <span>investments</span>
                     <IoListOutline />
                 </div>}
@@ -243,7 +243,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                 <div className='mt-12'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
-                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-10 rounded-full flex items-center justify-center bg-[#7665D5] shlz'>
+                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-10 rounded-full flex items-center justify-center bg-light shlz'>
                             <IoIosSearch />
                             {write &&
                                 <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
@@ -255,7 +255,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                     <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
                         <table className='w-full'>
                             <thead >
-                                <tr className='bg-[#7665D5] text-[0.8rem] font-bold text-white'>
+                                <tr className='bg-light text-[0.8rem] font-bold text-white'>
                                     <td className='text-center  capitalize p-2 truncate'>date</td>
                                     <td className='text-center  capitalize p-2 truncate'>time</td>
                                     <td className='text-center  capitalize p-2 truncate'>amount</td>
@@ -287,10 +287,10 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                             <img src={nothnyet} className='h-4 w-auto'></img>
                         </div>}
                     </div>
-                    {investment.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-[#7665D5] '>
-                        {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                    {investment.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-light '>
+                        {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
                         {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-                        {end < investment.length && <div className='py-1 px-2 rounded-md border border-[#7665D5] hover:bg-[#7665D5] hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+                        {end < investment.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
                     </div>}
                 </div>
             }

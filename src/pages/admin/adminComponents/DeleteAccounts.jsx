@@ -12,7 +12,7 @@ import nothnyet from '../../../assets/images/nothn.png'
 
 
 
-const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
+const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdrawals }) => {
   const [fromAtom] = useAtom(ADMINALLUSERS)
   const [allusers, setAllUsers] = useState(fromAtom)
 
@@ -125,7 +125,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
 
   return (
     <div className='h-screen'>
-      {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} />}
+      {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} refetchAllWithdrawals={refetchAllWithdrawals} />}
 
       <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>delete accounts</div>
       <div className='mt-12'>
@@ -153,7 +153,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
-            {fromAtom.length > 0 && <tbody>
+            {allusers.length > 0 && <tbody>
               {allusers.slice(start, end).map((item, i) => (
                 <tr className='text-[0.8rem] font-[550]  text-black bg-white even:bg-semi-white ' key={i}>
                   <td className='p-4  text-center truncate' onClick={() => { setModal(true); SingleUserFunction(item) }}>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -171,7 +171,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits }) => {
             <img src={nothnyet} className='h-4 w-auto'></img>
           </div>}
         </div>
-        {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
+        {allusers.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
           {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
           {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
           {end < allusers.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}

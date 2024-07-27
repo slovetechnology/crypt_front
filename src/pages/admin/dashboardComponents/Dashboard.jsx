@@ -231,7 +231,7 @@ const Dashboard = () => {
                     </div>
                     <div className='flex justify-center lg:mt-14 mt-12 items-center'>
                         <img src={logo} className='w-12 h-auto'></img>
-                        <div className='capitalize font-bold text-2xl lg:text-[#211a42] text-[#3c2797] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
+                        <div className='capitalize font-bold text-2xl lg:text-[#2b2255] text-[#462eb3] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
                     </div>
                     <div className='flex flex-col gap-10 lg:mt-10 mt-8 pl-12'>
                         <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
@@ -286,7 +286,7 @@ const Dashboard = () => {
                 <div className='md:w-[94%] w-11/12 mx-auto'>
                     <div className='flex flex-col gap-4'>
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-light text-[0.85rem] flex items-center justify-between mt-4'>
-                            <div className='flex gap-2 lg:gap-0 items-center'>
+                            <div className='flex gap-2 xl:gap-0 items-center'>
                                 <div className='xl:hidden cursor-pointer' onClick={() => { setToggle('profile'); setUrlState(false); setSlideShow(false); setToggleExtra('')}}>
                                     <img src={`${imageurl}/profiles/${user.image}`} className='w-10 h-10 object-cover rounded-full border border-light'></img>
                                 </div>
@@ -344,6 +344,7 @@ const Dashboard = () => {
                                         refetchNotifications={() => FetchNotifications()}
                                         refetchUnreadNotis={() => FetchUnreadNotis()}
                                         refetchWallet={() => FetchWallet()}
+                                        refetchUps={FetchUps}
                                         urlState={urlState}
                                     />}
                                 </div>
@@ -398,7 +399,7 @@ const Dashboard = () => {
                             <div>${wallet.balance}</div>
                         </div>
                     </div>
-                    <div className='w-full h-14 rounded-[3px] bg-semi-white mt-8 capitalize font-bold flex items-center justify-center gap-2 cursor-pointer' onClick={() => setToggle('my investment')}>
+                    <div className='w-full h-14 rounded-[3px] bg-semi-white mt-8 capitalize font-bold flex items-center justify-center gap-2 cursor-pointer' onClick={() => setToggle('investment')}>
                         <LuArrowDownUp />
                         <div>trade now</div>
                     </div>

@@ -153,9 +153,9 @@ const AdminNotis = () => {
                     </div>
                 }
                 {notifications.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end'>
-                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-500 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
+                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold md:text-zinc-600 text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-500 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
+                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
                 </div>}
             </div>
         </div>

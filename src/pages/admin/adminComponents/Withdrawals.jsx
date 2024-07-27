@@ -124,7 +124,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
                             </tr>
                         </thead>
-                        {fromAtom.length > 0 && <tbody className=''>
+                        {allWithdrawals.length > 0 && <tbody className=''>
                             {allWithdrawals.slice(start, end).map((item, i) => (
                                 <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
                                     <td className='p-4  text-center truncate' onClick={() => { setModal(true); SingleWithdrawalFunction(item) }}>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
@@ -142,7 +142,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                         <img src={nothnyet} className='h-4 w-auto'></img>
                     </div>}
                 </div>
-                {fromAtom.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
+                {allWithdrawals.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
                     {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
                     {end < allWithdrawals.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}

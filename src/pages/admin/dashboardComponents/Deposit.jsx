@@ -33,7 +33,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
     const [network, setNetwork] = useState('')
     const [address, setAddress] = useState('')
     const [screen, setScreen] = useState(urlState ? 2 : 1)
-    const [depositScreen, setDepositScreen] = useState(1)
+    const [modalScreen, setmodalScreen] = useState(1)
     const [depositTitle, setDepositTitle] = useState(urlState ? 'deposit history' : 'deposit')
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
@@ -101,7 +101,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     refetchNotifications()
                     refetchUnreadNotis()
                     refetchWallet()
-                    setToggle('my investment')
+                    setToggle('investment')
                 } else {
                     Alert('Request Failed', `${response.msg}`, 'error')
                 }
@@ -133,7 +133,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
         setSelectValue({})
         setAddress('')
         setNetwork('')
-        setDepositScreen(2)
+        setmodalScreen(2)
     }
 
     const CreateDeposit = async () => {
@@ -162,9 +162,12 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 setUserDeposits(response.msg)
                 Alert('Request Successful', `Deposit successful`, 'success')
                 setModal(false)
+                setmodalScreen(1)
                 setScreen(2)
                 setAmount('')
-                setCheck(!check)
+                setExtCheck(false)
+                setBalCheck(false)
+                setCheck(false)
                 setSelectValue({})
                 setNetwork('')
                 setAddress('')
@@ -321,8 +324,8 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                     {modal && <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center bg-[#0c091aa4] z-20'>
                         <div className='w-96 h-fit bg-white rounded-lg px-4 py-4 flex flex-col gap-4 relative' ref={depositbox}>
                             {loading && <Loading />}
-                            <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => { setModal(false); setAmount(''); setDepositScreen(1); setBalCheck(false); setExtCheck(false) }} />
-                            {depositScreen === 1 && <>
+                            <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => { setModal(false); setAmount(''); setmodalScreen(1); setBalCheck(false); setExtCheck(false) }} />
+                            {modalScreen === 1 && <>
                                 <div className='flex items-center gap-2 justify-center'>
                                     <div className='text-[0.85rem] uppercase font-bold'>{buybal.title}</div>
                                     <div className={`text-xs font-[550] bg-white py-1 px-2 rounded-full adsha ${limitError ? 'text-[red]' : 'text-black'} `}>${buybal.price_start} - ${buybal.price_limit}</div>
@@ -355,7 +358,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                     }
                                 </div>
                             </>}
-                            {depositScreen === 2 && <div className='flex flex-col gap-4 items-center'>
+                            {modalScreen === 2 && <div className='flex flex-col gap-4 items-center'>
                                 <div className='flex gap-1.5 items-center pb-1 border-b' onClick={() => console.log(buybal)}>
                                     <span className='text-xs italic'>for</span>
                                     <span className='text-sm capitalize font-medium'>{buybal.title}</span>

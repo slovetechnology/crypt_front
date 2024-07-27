@@ -17,10 +17,25 @@ import { FaAngleRight } from 'react-icons/fa6'
 import AdminNotis from './AdminNotis'
 import Withdrawals from './Withdrawals'
 
+const AllLinks = [
+  { path: 'transactions', component: UpdateTransactions, icon: GrDocumentUpdate },
+  { path: 'withdrawals', component: Withdrawals, icon: BiMoneyWithdraw },
+  { path: 'delete users', component: DeleteAccounts, icon: RiDeleteBin3Line },
+]
+
+const MainLinks = [
+  { path: 'transactions', component: UpdateTransactions, icon: GrDocumentUpdate },
+]
+
+const OtherLinks = [
+  { path: 'withdrawals', component: Withdrawals, icon: BiMoneyWithdraw },
+  { path: 'delete users', component: DeleteAccounts, icon: RiDeleteBin3Line },
+]
+
 const AdminHome = () => {
   const navigate = useNavigate()
   const [logout, setLogOut] = useState(false)
-  const [toggle, setToggle] = useState('update transactions')
+  const [toggle, setToggle] = useState('transactions')
   const [, setAllDeposits] = useAtom(ADMINALLDEPOSITS)
   const [, setAllUsers] = useAtom(ADMINALLUSERS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
@@ -28,7 +43,6 @@ const AdminHome = () => {
   const [, setAllWithdrawals] = useAtom(ADMINALLWITHDRAWALS)
 
   const [loading, setLoading] = useState(true)
-  const [altdeposits, setAltDeposits] = useState([])
 
   const logoutAccount = () => {
     Cookies.remove(CookieName)
@@ -110,7 +124,6 @@ const AdminHome = () => {
       const response = await UserGetApi(Apis.admin.all_deposits)
       if (response.status === 200) {
         setAllDeposits(response.msg)
-        setAltDeposits(response.msg)
       }
 
     } catch (error) {
@@ -134,27 +147,31 @@ const AdminHome = () => {
         <div className={`xl:w-[20%] lg:w-[25%] fixed top-0 left-0 h-screen`}>
           <div className='flex justify-center mt-14 items-center'>
             <img src={logo} className='w-12 h-auto'></img>
-            <div className=' capitalize font-[550] text-sha text-2xl'>AialgoControls</div>
+            <div className=' capitalize font-bold text-[#7561a0] text-sha text-2xl'>AialgoControls</div>
           </div>
           <div className='flex flex-col gap-8  mt-10 pl-12 text-[#bbb9b9] '>
             <div className='flex gap-4 flex-col'>
               <div className=' text-[0.65rem] uppercase'>main</div>
-              <div className={`flex gap-3 text-[#d4d3d3] hover:text-white  items-center cursor-pointer ${toggle === 'update transactions' ? 'border-r-[3px] rounded-sm border-white' : ''}`} onClick={() => setToggle('update transactions')}>
-                <GrDocumentUpdate className='text-[1.3rem] ' />
-                <div className='capitalize text-[0.85rem] font-bold'>update transactions</div>
-              </div>
+              {MainLinks.map((item, i) => (
+                <div key={i} onClick={() => setToggle(item.path)}>
+                  <div className={`flex gap-3 text-[#d4d3d3] hover:text-white  items-center cursor-pointer ${toggle === item.path ? 'border-r-[3px] rounded-sm border-white' : ''}`}>
+                    <item.icon className='text-[1.3rem] ' />
+                    <div className='capitalize text-[0.85rem] font-bold'>update {item.path}</div>
+                  </div>
+                </div>
+              ))}
             </div>
             <div className='flex gap-4 flex-col'>
               <div className='text-[0.65rem] uppercase'>others</div>
               <div className='flex flex-col gap-8'>
-                <div className={`flex gap-3 text-[#d4d3d3] hover:text-white items-center cursor-pointer ${toggle === 'withdrawals' ? 'border-r-[3px] rounded-sm border-white' : ''}`} onClick={() => setToggle('withdrawals')}>
-                  <BiMoneyWithdraw className='text-[1.3rem] ' />
-                  <div className='capitalize text-[0.85rem] font-bold'>withdrawals</div>
-                </div>
-                <div className={`flex gap-3 text-[#d4d3d3] hover:text-white items-center cursor-pointer ${toggle === 'delete accounts' ? 'border-r-[3px] rounded-sm border-white' : ''}`} onClick={() => setToggle('delete accounts')}>
-                  <RiDeleteBin3Line className='text-[1.3rem] ' />
-                  <div className='capitalize text-[0.85rem] font-bold'>delete accounts</div>
-                </div>
+                {OtherLinks.map((item, i) => (
+                  <div key={i} onClick={() => setToggle(item.path)}>
+                    <div className={`flex gap-3 text-[#d4d3d3] hover:text-white  items-center cursor-pointer ${toggle === item.path ? 'border-r-[3px] rounded-sm border-white' : ''}`}>
+                      <item.icon className='text-[1.3rem] ' />
+                      <div className='capitalize text-[0.85rem] font-bold'>{item.path}</div>
+                    </div>
+                  </div>
+                ))}
                 <div className='relative'>
                   <div className='flex gap-3 text-[#d4d3d3] hover:text-white items-center cursor-pointer' onClick={() => setLogOut(!logout)}>
                     <BiLogOutCircle className='text-[1.3rem] ' />
@@ -214,35 +231,29 @@ const AdminHome = () => {
               </div>
             </div>
           }
-          {!loading && <div>
-            {toggle === 'update transactions' && <UpdateTransactions
-              altdeposits={altdeposits} setAltDeposits={setAltDeposits}
-              refetchAllDeposits={() => FetchAllDeposits()}
-            />}
-
-            {toggle === 'delete accounts' && <DeleteAccounts
-              refetchAllUsers={() => FetchAllUsers()}
-              refetchAllDeposits={() => FetchAllDeposits()}
-            />}
-
-            {toggle === 'withdrawals' && <Withdrawals
-              refetchAllWithdrawals={() => FetchAllWithdrawals()}
-            />}
-          </div>}
+          {!loading &&
+            <>
+              {AllLinks.map((item, i) => (
+                <div key={i}>
+                  {toggle === item.path && <item.component
+                    refetchAllUsers={() => FetchAllUsers()}
+                    refetchAllDeposits={() => FetchAllDeposits()}
+                    refetchAllWithdrawals={() => FetchAllWithdrawals()}
+                  />}
+                </div>
+              ))}
+            </>
+          }
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-4 items-center h-full w-full'>
-              <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'update transactions' ? 'text-[green]' : ' text-semi-white'}`} onClick={() => { setToggle('update transactions') }}>
-                <GrDocumentUpdate className='md:text-xl text-lg' />
-                <div className='capitalize md:text-xs text-[0.7rem] font-medium'>transactions</div>
-              </div>
-              <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'withdrawals' ? 'text-[green]' : ' text-semi-white'}`} onClick={() => { setToggle('withdrawals') }}>
-                <BiMoneyWithdraw className='md:text-xl text-lg' />
-                <div className='capitalize md:text-xs text-[0.7rem] font-medium'>withdrawals</div>
-              </div>
-              <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === 'delete accounts' ? 'text-[green]' : ' text-semi-white'}`} onClick={() => { setToggle('delete accounts') }}>
-                <RiDeleteBin3Line className='md:text-xl text-lg' />
-                <div className='capitalize md:text-xs text-[0.7rem] font-medium'>delete users</div>
-              </div>
+              {AllLinks.map((item, i) => (
+                <div key={item} onClick={() => setToggle(item.path)}>
+                  <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === item.path ? 'text-[green]' : ' text-semi-white'}`} >
+                    <item.icon className='md:text-xl text-lg' />
+                    <div className='capitalize md:text-xs text-[0.7rem] font-medium'>{item.path}</div>
+                  </div>
+                </div>
+              ))}
               <div className={`flex flex-col gap-1 items-center cursor-pointer text-semi-white hover:text-[green]`} onClick={logoutAccount}>
                 <GrDocumentUpdate className='md:text-xl text-lg' />
                 <div className='capitalize md:text-xs text-[0.7rem] font-medium'>logout</div>
