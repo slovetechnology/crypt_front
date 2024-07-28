@@ -28,6 +28,7 @@ const AboutPage = () => {
   const [investCount, setInvestCount] = useState('0')
   const [tradeCount, setTradeCount] = useState('0')
   const [more, setMore] = useState(false)
+  
 
   let countIndexOne = 0
   let countIndexTwo = 0
@@ -63,6 +64,8 @@ const AboutPage = () => {
       }, 100)
     }
   }
+
+
   return (
     <Pagelayout>
       <div className="bg-[#1E2833] py-16 ">
@@ -145,12 +148,12 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-          <div className='w-11/12 lg:w-[70%] mx-auto md:mt-28 mt-20'>
+          <div className='w-11/12 lg:w-4/5 xl:w-[70%] mx-auto md:mt-28 mt-20'>
             <div className='text-[2rem] lg:text-[3rem] text-white font-[550] capitalize text-center'>our services</div>
             <div className='text-center text-semi-white text-[0.85rem] capitalize pt-2 pb-10 md:pb-20'>- this services are designed to give you an edge in crypto trading -</div>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
               <div className='md:w-full w-fit h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw'>
-                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] text-orange pt-2 justify-center items-center'>
+                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] pt-2 justify-center items-center'>
                   <img src={efficient} className='h-auto w-8'></img>
                 </div>
                 <div className='text-white capitalize font-bold text-center'>artificial intelligence</div>
@@ -163,7 +166,7 @@ const AboutPage = () => {
                 </Link>
               </div>
               <div className='md:w-full w-fit h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw md:-mt-10'>
-                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.1rem] text-orange pt-4 justify-center '>
+                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.1rem] pt-4 justify-center '>
                   <img src={tplan} className='h-[1.8rem] w-auto'></img>
                 </div>
                 <div className='text-white capitalize font-bold text-center'>affordable trading plans</div>
@@ -176,7 +179,7 @@ const AboutPage = () => {
                 </Link>
               </div>
               <div className='md:w-full w-fit h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw'>
-                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] text-orange pt-2 justify-center items-center'>
+                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] pt-2 justify-center items-center'>
                   <img src={assist} className='h-8 w-auto'></img>
                 </div>
                 <div className='text-white capitalize font-bold text-center'>trade assistance</div>

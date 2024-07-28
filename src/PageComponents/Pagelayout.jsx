@@ -5,13 +5,13 @@ import Footer from './Footer'
 const Pagelayout = ({ children }) => {
   return (
     <>
-      <div className='h-[10.9vh]'>
+      <div className='h-[11vh]'>
         <Header />
       </div>
-      <div className=''>
+      <div>
         {children}
       </div>
-      <div className=''>
+      <div>
       <Footer />
       </div>
     </>

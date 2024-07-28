@@ -54,7 +54,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
         }, 1000)
         if (!amount) return setAmountError(true)
         if (isNaN(amount)) return setAmountError(true)
-        if (amount < 20) return setAmountError(true)
+        if (amount < 100) return setAmountError(true)
         if (Object.values(userwallet).length === 0) return setLimitError(true)
         if (amount > userwallet.balance) return setLimitError(true)
         if (Object.values(selectValue).length === 0) return setSelectError(true)

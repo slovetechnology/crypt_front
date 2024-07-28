@@ -156,7 +156,7 @@ const AdminHome = () => {
                 <div key={i} onClick={() => setToggle(item.path)}>
                   <div className={`flex gap-3 text-[#d4d3d3] hover:text-white  items-center cursor-pointer ${toggle === item.path ? 'border-r-[3px] rounded-sm border-white' : ''}`}>
                     <item.icon className='text-[1.3rem] ' />
-                    <div className='capitalize text-[0.85rem] font-bold'>update {item.path}</div>
+                    <div className='capitalize text-[0.85rem] font-bold'>{i === 0 && 'update'} {item.path}</div>
                   </div>
                 </div>
               ))}

@@ -14,7 +14,7 @@ const TradingPlansPage = () => {
           </div>
           <div className='flex flex-wrap gap-12 mt-20 text-[#30465c] justify-center'>
             <div className='w-[23rem] h-fit bg-transparent rounded-md'>
-              <div className='flex flex-col items-center p-10'>
+              <div className='flex flex-col items-center md:p-10 p-8'>
                 <div className='capitalize'>starter plan</div>
                 <div className='flex gap-1 my-12 items-center'>
                   <span className='-mt-8'>from</span>
@@ -36,7 +36,7 @@ const TradingPlansPage = () => {
               <div className='mt-4 '>
                 <div className='w-[4.4rem] h-[1.7185rem] flex items-center justify-center bg-white rotate-[320deg]  text-xs uppercase plan text-[#30465c]'>popular</div>
               </div>
-              <div className='flex flex-col items-center p-10 mt-[-2.8rem]'>
+              <div className='flex flex-col items-center md:p-10 p-8 mt-[-2.8rem]'>
                 <div className='capitalize text'>premier plan</div>
                 <div className='flex gap-1 my-12 items-center'>
                   <span className='-mt-8'>from</span>
@@ -55,7 +55,7 @@ const TradingPlansPage = () => {
               </div>
             </div>
             <div className='w-[23rem] h-fit bg-transparent rounded-md text-[#30465c]'>
-              <div className='flex flex-col items-center p-10'>
+              <div className='flex flex-col items-center md:p-10 p-8'>
                 <div className='capitalize '>business plan</div>
                 <div className='flex gap-1 my-12 items-center'>
                   <span className='-mt-8'>from</span>
@@ -74,7 +74,7 @@ const TradingPlansPage = () => {
               </div>
             </div>
             <div className='w-[23rem] h-fit bg-transparent rounded-md text-[#30465c]'>
-              <div className='flex flex-col items-center p-10'>
+              <div className='flex flex-col items-center md:p-10 p-8'>
                 <div className='capitalize '>pro plan</div>
                 <div className='flex gap-1 my-12 items-center'>
                   <span className='-mt-8'>from</span>
@@ -93,7 +93,7 @@ const TradingPlansPage = () => {
               </div>
             </div>
             <div className='w-[23rem] h-fit bg-transparent rounded-md text-[#30465c]'>
-              <div className='flex flex-col items-center p-10'>
+              <div className='flex flex-col items-center md:p-10 p-8'>
                 <div className='capitalize '>diamond plan</div>
                 <div className='flex gap-1 my-12 items-center'>
                   <span className='-mt-8'>from</span>
@@ -115,7 +115,7 @@ const TradingPlansPage = () => {
               <div className='mt-4 '>
                 <div className='w-[4.4rem] h-[1.7185rem] flex items-center justify-center bg-white rotate-[320deg]  text-xs uppercase plan text-[#30465c]'>one trial</div>
               </div>
-              <div className='flex flex-col items-center p-10 mt-[-2.8rem]'>
+              <div className='flex flex-col items-center md:p-10 p-8 mt-[-2.8rem]'>
                 <div className='capitalize'>test run</div>
                 <div className='flex gap-1 my-12 items-center'>
                   <span className='-mt-8'>from</span>

@@ -8,7 +8,7 @@ import { PROFILE, WALLET } from '../../../store'
 import { Alert } from '../../../utils/utils'
 import { useAtom } from 'jotai'
 
-const DepositModal = ({ setModal, buybal, setToggle, setScreen, setUserDeposits, setDepositTitle, setStart, setEnd, setpagestart, setpageend, refetchDeposits, refetchWallet, refetchInvestments, refetchInvestmentsUnclaim, refetchNotifications, refetchUnreadNotis }) => {
+const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, setUserDeposits, setDepositTitle, setStart, setEnd, setpagestart, setpageend, refetchDeposits, refetchWallet, refetchInvestments, refetchInvestmentsUnclaim, refetchNotifications, refetchUnreadNotis }) => {
     const [userwallet] = useAtom(WALLET)
     const [user] = useAtom(PROFILE)
 
@@ -45,6 +45,10 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, setUserDeposits,
         if (Object.values(userwallet).length === 0) return setBalanceError(true)
         if (amount > userwallet.balance) return setBalanceError(true)
 
+        if (buybal.title === 'test run') {
+            const TestRunTrial = userDeposits.filter(item => item.trading_plan === 'test run')
+            if (TestRunTrial.length > 0) return Alert('Request Failed', `Test Run plan is one trial only`, 'error')
+        }
         setLoading(true)
 
         const formbody = {
@@ -110,6 +114,11 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, setUserDeposits,
 
         if (Object.values(selectValue).length === 0) return setSelectError(true)
         if (!check) return setCheckError(true)
+            
+        if (buybal.title === 'test run') {
+            const TestRunTrial = userDeposits.filter(item => item.trading_plan === 'test run')
+            if (TestRunTrial.length > 0) return Alert('Request Failed', `Test Run plan is one trial only`, 'error')
+        }
 
         const formbody = {
             amount: parseFloat(amount),

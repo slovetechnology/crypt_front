@@ -158,7 +158,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                         </div>
                     </div>
                     {modal &&
-                        <DepositModal setModal={setModal} buybal={buybal} setToggle={setToggle} setScreen={setScreen} setUserDeposits={setUserDeposits} setDepositTitle={setDepositTitle}  setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} refetchDeposits={refetchDeposits} refetchWallet={refetchWallet} refetchInvestments={refetchInvestments} refetchInvestmentsUnclaim={refetchInvestmentsUnclaim} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} />
+                        <DepositModal setModal={setModal} buybal={buybal} setToggle={setToggle} setScreen={setScreen} userDeposits={userDeposits} setUserDeposits={setUserDeposits} setDepositTitle={setDepositTitle}  setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} refetchDeposits={refetchDeposits} refetchWallet={refetchWallet} refetchInvestments={refetchInvestments} refetchInvestmentsUnclaim={refetchInvestmentsUnclaim} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} />
                     }
                 </div>
             </div>}
