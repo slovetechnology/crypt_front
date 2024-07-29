@@ -232,7 +232,7 @@ const AdminHome = () => {
                   <AdminNotis />
                 </div>}
             </div>
-            <div className='flex gap-2 capitalize items-center text-[#292929] font-bold md:text-[0.85rem] text-xs '>
+            <div className='flex gap-1.5 capitalize items-center text-[#292929] font-bold md:text-[0.85rem] text-xs '>
               <div>dashboard</div>
               <FaAngleRight className='text-[0.6rem]' />
               <div>{toggle}</div>
