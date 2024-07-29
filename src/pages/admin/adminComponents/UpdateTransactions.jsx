@@ -116,7 +116,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
         <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
           <table className='w-full '>
             <thead >
-              <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => { setModal(true)}}>
+              <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
                 <td className='text-center truncate  capitalize p-2 '>date</td>
                 <td className='text-center truncate  capitalize p-2 '>username</td>
                 <td className='text-center truncate  capitalize p-2 '>email</td>
@@ -131,7 +131,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
             {alldeposits.length > 0 && <tbody>
               {alldeposits.slice(start, end).map((item, i) => (
                 <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                  <td className='p-4  text-center truncate' onClick={() => { setModal(true); SingleDepositFunction(item) }}>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                  <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                   <td className='p-4  text-center truncate'>{item.deposituser.username}</td>
                   <td className='p-4  text-center truncate'>{item.deposituser.email}</td>
                   <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
