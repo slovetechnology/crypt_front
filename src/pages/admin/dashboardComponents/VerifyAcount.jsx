@@ -92,12 +92,12 @@ const VerifyAcount = ({ setToggleExtra }) => {
                             <div className='flex flex-col gap-2'>
                                 <div className='text-[0.85rem] capitalize text-semi-white'> email address</div>
                                 <div className='relative'>
-                                    <input className='outline-none rounded-[3px] w-72 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
+                                    <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
                                     <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{emailError}</div>
                                 </div>
                             </div>
                             <div className='flex items-center  mt-2'>
-                                <button className='outline-none bg-light py-1.5 px-8 rounded-md capitalize text-xs md:text-sm text-white cursor-pointer font-[550]' >find email</button>
+                                <button className='outline-none bg-light py-2 px-8 rounded-md capitalize text-xs md:text-sm text-white cursor-pointer font-[600]' >find email</button>
                             </div>
                         </div>
                     </form>}
@@ -106,12 +106,12 @@ const VerifyAcount = ({ setToggleExtra }) => {
                             <div className='flex flex-col gap-4 items-center'>
                                 <div className='text-[0.85rem]  text-semi-white text-center'> A six digits verification code was sent to <span className='text-[#7665D5]'>{email?.slice(0, 3)}*****{email?.slice(-10)}</span>, copy and enter below</div>
                                 <div className='relative'>
-                                    <input className='outline-none rounded-[3px] w-60 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
+                                    <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
                                     <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{codeError}</div>
                                 </div>
                             </div>
                             <div className='flex items-center  mt-2'>
-                                <button className='outline-none bg-light py-1.5 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[550]' >verify email</button>
+                                <button className='outline-none bg-light py-2 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[600]' >verify email</button>
                             </div>
                         </div>
                     </form>}
