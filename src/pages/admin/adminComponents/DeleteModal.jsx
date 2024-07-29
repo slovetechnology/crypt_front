@@ -102,28 +102,28 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                             <div className='flex flex-col gap-4 border p-1'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20 rounded-full bg-[#c9b8eb] mx-auto' >
-                                    <img src={`${imageurl}/profiles/${singleUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                    {Object.values(singleUser).length !== 0 &&<img src={`${imageurl}/profiles/${singleUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>full name:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleUser.full_name}</div>
+                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.full_name}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>username:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleUser.username}</div>
+                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.username}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>email:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleUser.email}</div>
+                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.email}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>country:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleUser.country}</div>
+                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.country}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>joined:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{moment(singleUser.createdAt).format('DD-MM-yyyy')}</div>
+                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{moment(singleUser.createdAt).format('DD-MM-yyyy')}</div>}
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>total amount invested:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>${usertotal}</div>
+                                        {usertotal !== '' &&<div className='md:text-[0.95rem] text-sm'>${usertotal}</div>}
                                     </div>
                                 </div>
                             </div>

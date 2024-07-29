@@ -141,16 +141,16 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                             <div className='flex flex-col gap-4 border p-1'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20 rounded-full bg-[#c9b8eb] mx-auto'>
-                                    <img src={`${imageurl}/profiles/${singleDeposit.deposituser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                    {Object.values(singleDeposit).length !== 0 && <img src={`${imageurl}/profiles/${singleDeposit.deposituser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>username:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.username}</div>
+                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.username}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>email:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.email}</div>
+                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.email}</div>}
                                     </div>
                                 </div>
                             </div>
@@ -159,23 +159,23 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>${singleDeposit.amount.toLocaleString()}</div>
+                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleDeposit.amount.toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>plan:</div>
-                                        <div className='md:text-[0.95rem] text-sm capitalize'>{singleDeposit.trading_plan}</div>
+                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm capitalize'>{singleDeposit.trading_plan}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>crypto:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>
+                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>date/time:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>
+                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>from:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleDeposit.from}</div>
+                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleDeposit.from}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add profit:</div>
@@ -183,7 +183,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                             <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler}></input>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                <div>${singleDeposit.profit.toLocaleString()}</div>
+                                                {Object.values(singleDeposit).length !== 0 &&<div>${singleDeposit.profit.toLocaleString()}</div>}
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +193,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                             <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none px-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler}></input>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                <div>${singleDeposit.bonus.toLocaleString()}</div>
+                                                {Object.values(singleDeposit).length !== 0 &&<div>${singleDeposit.bonus.toLocaleString()}</div>}
                                             </div>
                                         </div>
                                     </div>

@@ -113,16 +113,16 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                             <div className='flex flex-col gap-4 border p-1 overflow-hidden'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20  rounded-full bg-[#c9b8eb] mx-auto'>
-                                    <img src={`${imageurl}/profiles/${singleWithdrawal.wthuser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                    {Object.values(singleWithdrawal).length !== 0 &&<img src={`${imageurl}/profiles/${singleWithdrawal.wthuser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>username:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthuser.username}</div>
+                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthuser.username}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>email:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthuser.email}</div>
+                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthuser.email}</div>}
                                     </div>
                                 </div>
                             </div>
@@ -131,20 +131,20 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toLocaleString()}</div>
+                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>crypto:</div>
-                                        <div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.crypto}</div>
+                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.crypto}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>network:</div>
-                                        <div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.network}</div>
+                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.network}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>wallet address:</div>
                                         <div className='flex gap-1 items-center'>
-                                            <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wallet_address?.slice(0, 5)}.....{singleWithdrawal.wallet_address?.slice(-8)}</div>
+                                            {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wallet_address?.slice(0, 5)}.....{singleWithdrawal.wallet_address?.slice(-8)}</div>}
                                             <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-black bg-[#c9b8eb] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                                 {!copy && <MdContentCopy />}
                                                 {copy && <FaCheck />}
@@ -153,7 +153,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>date/time:</div>
-                                        <div className='md:text-[0.95rem] text-sm'>{moment(singleWithdrawal.createdAt).format('DD-MM-yyyy')} / {moment(singleWithdrawal.createdAt).format('h:mm')}</div>
+                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{moment(singleWithdrawal.createdAt).format('DD-MM-yyyy')} / {moment(singleWithdrawal.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center my-6'>
                                         <div className='italic '>status:</div>
