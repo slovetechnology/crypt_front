@@ -376,11 +376,6 @@ body {
 }
 
 
-.shlztwo {
-  box-shadow: 0px 2px 10px #1e1335;
-}
-
-
 .shlct {
   box-shadow: 0px 20px 8px #131a22;
 }
@@ -438,10 +433,6 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: full;
-}
-
-.text-sha {
-  text-shadow: -1px 1px 4px #101011;
 }
 
 .adsha {

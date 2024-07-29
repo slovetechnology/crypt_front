@@ -8,39 +8,53 @@ import logo from '../../../assets/images/logobrand.png'
 import { BiLogOutCircle, BiMoneyWithdraw } from 'react-icons/bi'
 import { TiCancel } from 'react-icons/ti'
 import { IoMdLogOut } from 'react-icons/io'
-import { GrDocumentUpdate } from "react-icons/gr";
-import { RiDeleteBin3Line } from "react-icons/ri";
+import { CiMoneyCheck1 } from "react-icons/ci";
+import { PiUsersThree } from "react-icons/pi";
+import { IoIosSettings } from 'react-icons/io';
 import UpdateTransactions from './UpdateTransactions'
 import DeleteAccounts from './DeleteAccounts'
 import { Apis, UserGetApi } from '../../../services/API'
 import { FaAngleRight } from 'react-icons/fa6'
 import AdminNotis from './AdminNotis'
 import Withdrawals from './Withdrawals'
+import Settings from './Settings'
+import { HiOutlineDotsVertical } from 'react-icons/hi'
+import { LuX } from 'react-icons/lu'
 
 const AllLinks = [
-  { path: 'transactions', component: UpdateTransactions, icon: GrDocumentUpdate },
+  { path: 'deposits', component: UpdateTransactions, icon: CiMoneyCheck1 },
   { path: 'withdrawals', component: Withdrawals, icon: BiMoneyWithdraw },
-  { path: 'delete users', component: DeleteAccounts, icon: RiDeleteBin3Line },
+  { path: 'users', component: DeleteAccounts, icon: PiUsersThree },
+  { path: 'settings', component: Settings, icon: IoIosSettings },
 ]
 
 const MainLinks = [
-  { path: 'transactions', component: UpdateTransactions, icon: GrDocumentUpdate },
+  { path: 'deposits', component: UpdateTransactions, icon: CiMoneyCheck1 },
 ]
 
 const OtherLinks = [
   { path: 'withdrawals', component: Withdrawals, icon: BiMoneyWithdraw },
-  { path: 'delete users', component: DeleteAccounts, icon: RiDeleteBin3Line },
+  { path: 'users', component: DeleteAccounts, icon: PiUsersThree },
+  { path: 'settings', component: Settings, icon: IoIosSettings },
+]
+
+const toggleArray = [
+  "deposits",
+  "withdrawals",
+  "users",
+  "settings"
 ]
 
 const AdminHome = () => {
   const navigate = useNavigate()
   const [logout, setLogOut] = useState(false)
-  const [toggle, setToggle] = useState('transactions')
+  const [toggle, setToggle] = useState('deposits')
   const [, setAllDeposits] = useAtom(ADMINALLDEPOSITS)
   const [, setAllUsers] = useAtom(ADMINALLUSERS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
   const [, setAllWithdrawals] = useAtom(ADMINALLWITHDRAWALS)
+  const [slideShow, setSlideShow] = useState(false)
 
   const [loading, setLoading] = useState(true)
 
@@ -143,20 +157,23 @@ const AdminHome = () => {
 
   return (
     <div className='w-full flex relative'>
-      <div className={`xl:w-[20%] lg:w-[25%] hidden bg-admin-auth lg:block relative overflow-hidden`}>
-        <div className={`xl:w-[20%] lg:w-[25%] fixed top-0 left-0 h-screen`}>
-          <div className='flex justify-center mt-14 items-center'>
-            <img src={logo} className='w-12 h-auto'></img>
-            <div className=' capitalize font-bold text-[#7561a0] text-sha text-2xl'>AialgoControls</div>
+      <div className={`w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:block lg:relative overflow-hidden ${slideShow ? 'block fixed top-0 left-0 h-full z-50' : 'hidden'}`}>
+        <div className={`xl:w-[20%] lg:w-[25%] lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:bg-admin-auth`}>
+          <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
+            <LuX />
           </div>
-          <div className='flex flex-col gap-8  mt-10 pl-12 text-[#bbb9b9] '>
+          <div className='flex justify-center lg:mt-14 mt-12 items-center'>
+            <img src={logo} className='w-12 h-auto'></img>
+            <div className=' capitalize font-bold lg:text-[#7561a0] text-[#462eb3] drop-shadow-txt-sha2 text-2xl'>AialgoControls</div>
+          </div>
+          <div className='flex flex-col gap-8  mt-10 pl-12 lg:text-[#bbb9b9] text-semi-white '>
             <div className='flex gap-4 flex-col'>
               <div className=' text-[0.65rem] uppercase'>main</div>
               {MainLinks.map((item, i) => (
-                <div key={i} onClick={() => setToggle(item.path)}>
-                  <div className={`flex gap-3 text-[#d4d3d3] hover:text-white  items-center cursor-pointer ${toggle === item.path ? 'border-r-[3px] rounded-sm border-white' : ''}`}>
+                <div key={i} onClick={() => {setToggle(item.path); setSlideShow(false)}}>
+                  <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === item.path ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
                     <item.icon className='text-[1.3rem] ' />
-                    <div className='capitalize text-[0.85rem] font-bold'>{i === 0 && 'update'} {item.path}</div>
+                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
                   </div>
                 </div>
               ))}
@@ -165,26 +182,26 @@ const AdminHome = () => {
               <div className='text-[0.65rem] uppercase'>others</div>
               <div className='flex flex-col gap-8'>
                 {OtherLinks.map((item, i) => (
-                  <div key={i} onClick={() => setToggle(item.path)}>
-                    <div className={`flex gap-3 text-[#d4d3d3] hover:text-white  items-center cursor-pointer ${toggle === item.path ? 'border-r-[3px] rounded-sm border-white' : ''}`}>
+                  <div key={i} onClick={() => {setToggle(item.path); setSlideShow(false)}}>
+                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === item.path ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
                       <item.icon className='text-[1.3rem] ' />
-                      <div className='capitalize text-[0.85rem] font-bold'>{item.path}</div>
+                      <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
                     </div>
                   </div>
                 ))}
                 <div className='relative'>
-                  <div className='flex gap-3 text-[#d4d3d3] hover:text-white items-center cursor-pointer' onClick={() => setLogOut(!logout)}>
+                  <div className='flex gap-3 lg:text-[#bbb9b9] text-semi-white lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
                     <BiLogOutCircle className='text-[1.3rem] ' />
-                    <div className='capitalize text-[0.85rem] font-bold'>logout</div>
+                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                   </div>
-                  {logout && <div className='absolute top-0 right-4 bg-admin-auth w-fit  h-fit z-10 rounded-[10px] text-white   p-4 shlztwo'>
+                  {logout && <div className='absolute top-0 lg:right-4 lg:bg-admin-auth bg-[#27137e] w-fit  h-fit z-10 rounded-[10px] text-white p-4 lg:shadow-logout-sha3 shadow-logout-sha2'>
                     <div className=' text-[0.8rem] mb-4 text-center'>Logout of your account?</div>
                     <div className='flex gap-[1rem] items-center'>
-                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white hover:text-admin-auth bg-admin-auth ' onClick={() => setLogOut(!logout)}>
+                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white lg:hover:text-admin-auth hover:text-[#27137e] lg:bg-admin-auth bg-[#27137e] ' onClick={() => setLogOut(!logout)}>
                         <span>cancel</span>
                         <TiCancel className='text-[0.8rem]' />
                       </button>
-                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white  rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white hover:text-admin-auth bg-admin-auth' onClick={logoutAccount}>
+                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white  rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white lg:hover:text-admin-auth hover:text-[#27137e] lg:bg-admin-auth bg-[#27137e]' onClick={logoutAccount}>
                         <span>logout</span>
                         <IoMdLogOut className='text-[0.7rem]' />
                       </button>
@@ -245,18 +262,18 @@ const AdminHome = () => {
             </>
           }
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
-            <div className='grid grid-cols-4 items-center h-full w-full'>
+            <div className='grid grid-cols-5 items-center h-full w-full'>
               {AllLinks.map((item, i) => (
-                <div key={i} onClick={() => setToggle(item.path)}>
+                <div key={i} onClick={() => {setToggle(item.path); setSlideShow(false)}}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === item.path ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-xl text-lg' />
                     <div className='capitalize md:text-xs text-[0.7rem] font-medium'>{item.path}</div>
                   </div>
                 </div>
               ))}
-              <div className={`flex flex-col gap-1 items-center cursor-pointer text-semi-white hover:text-[green]`} onClick={logoutAccount}>
-                <GrDocumentUpdate className='md:text-xl text-lg' />
-                <div className='capitalize md:text-xs text-[0.7rem] font-medium'>logout</div>
+              <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(toggle) ? 'text-[green]' : 'text-semi-white'} `} onClick={() => { setSlideShow(!slideShow); console.log(slideShow) }}>
+                <HiOutlineDotsVertical className='md:text-xl text-lg' />
+                <div className='capitalize md:text-xs text-[0.7rem] font-medium'>more</div>
               </div>
             </div>
           </div>

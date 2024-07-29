@@ -21,7 +21,7 @@ import { CookieName } from '../../../utils/utils';
 import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import { MdPayment } from "react-icons/md";
+import { CiMoneyCheck1 } from "react-icons/ci";
 import Investment from './Investment';
 import Deposit from './Deposit';
 import Withdraw from './Withdraw';
@@ -32,7 +32,7 @@ import Notifications from './Notifications';
 const AllLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
     { path: 'investment', component: Investment, icon: GrMoney },
-    { path: 'deposit', component: Deposit, icon: MdPayment },
+    { path: 'deposit', component: Deposit, icon: CiMoneyCheck1 },
     { path: 'withdraw', component: Withdraw, icon: BiMoneyWithdraw },
     { path: 'profile', component: Profile, icon: RiAccountPinCircleLine },
     { path: 'send feedback', component: Feedback, icon: LuSend },
@@ -41,7 +41,7 @@ const AllLinks = [
 const MainLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
     { path: 'investment', component: Investment, icon: GrMoney },
-    { path: 'deposit', component: Deposit, icon: MdPayment },
+    { path: 'deposit', component: Deposit, icon: CiMoneyCheck1 },
     { path: 'withdraw', component: Withdraw, icon: BiMoneyWithdraw },
 ]
 

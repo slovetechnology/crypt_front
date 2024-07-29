@@ -117,7 +117,7 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                 }
             </div>
             {screen === 1 && <div className='w-[80%] mx-auto my-10 relative flex items-center justify-center bgdeposit'>
-                <div className={`h-[32rem] w-[32rem] bg-semi-white md:px-3 px-2 rounded-xl relative shlz scroll thediv overflow-x-hidden ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
+                <div className={`h-[26rem] md:h-[32rem] w-[32rem] bg-semi-white md:px-3 px-2 rounded-xl relative overflow-x-hidden shlz scroll thediv  ${modal ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
                     <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-fit h-fit py-1 px-6 rounded-b-md mx-auto flex items-center justify-center gap-2'>
                         <span>trading plans</span>
                         <TbListDetails className='text-[#5BB4FD]' />

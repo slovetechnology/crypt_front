@@ -19,11 +19,12 @@ export default {
       boxShadow: {
         "sign-sha": "0px 1px 10px rgb(223, 222, 222)",
         "logout-sha": "0px 3px 10px #090611",
-        "logout-sha2": "0px 3px 10px #1a0d53"
+        "logout-sha2": "0px 3px 10px #1a0d53",
+        "logout-sha3": "0px 2px 10px #1e1335"
       },
       dropShadow: {
         "txt-sha1": "-1px 1px 4px black",
-        "txt-sha2": "-2px 2px 3px #140c33"
+        "txt-sha2": "-2px 2px 3px #140c33",
       }
     },
   },

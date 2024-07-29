@@ -15,7 +15,6 @@ import wthwallet from '../../../assets/images/wthwallet.png'
 import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp } from 'react-icons/fa6'
 import { supportedCoins } from '../../../services/Miscellaneous'
 import nothnyet from '../../../assets/images/nothn.png'
-import { BsCurrencyDollar } from "react-icons/bs";
 
 const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, refetchUnreadNotis, refetchWallet, urlState }) => {
     const [user] = useAtom(PROFILE)
@@ -240,7 +239,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                                 <span>make withdrawal</span>
                                 <IoCheckbox />
                             </button>
-                            <div className='absolute -bottom-8 left-0 text-[0.8rem] font-bold text-[red] cursor-pointer flex gap-1 items-center' onClick={() => setToggleExtra('verify account')}>
+                            <div className='absolute -bottom-8 left-0 text-[0.8rem] font-[600] text-[red] cursor-pointer flex gap-1 items-center' onClick={() => setToggleExtra('verify account')}>
                                 <span>{withdrawError}</span>
                                 {withdrawError !== '' && <MdSentimentVeryDissatisfied />}
                             </div>

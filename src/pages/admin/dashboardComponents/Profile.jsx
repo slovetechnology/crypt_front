@@ -309,12 +309,12 @@ const Profile = ({ setToggleExtra }) => {
                         </div>
                         {commit || nameEdit || passEdit || emailEdit || userEdit ?
                             <div className='flex md:gap-8 gap-4 items-center justify-center md:mt-8 mt-4'>
-                                <button className='outline-none w-fit h-fit py-2.5 px-4 md:text-[0.85rem] text-xs text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-medium' type='button' onClick={cancelChanges}>
-                                    <span>cancel changes</span>
+                                <button className='outline-none w-fit h-fit py-2 px-6 md:text-sm text-xs text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-[550]' type='button' onClick={cancelChanges}>
+                                    <span>cancel</span>
                                     <FaRegRectangleXmark />
                                 </button>
-                                <button className='outline-none w-fit h-fit py-2.5 px-4 md:text-[0.85rem] text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-medium'>
-                                    <span>commit changes</span>
+                                <button className='outline-none w-fit h-fit py-2 px-6 md:text-sm text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-[550]'>
+                                    <span>save</span>
                                     <IoCheckbox />
                                 </button>
                             </div>

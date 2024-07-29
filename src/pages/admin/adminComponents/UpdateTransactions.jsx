@@ -100,7 +100,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
     <div className='h-screen'>
       {modal && <UpdateModal closeView={() => setModal(false)} singleDeposit={singleDeposit} setAllDeposits={setAllDeposits} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllDeposits={refetchAllDeposits} />}
 
-      <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>update transactions</div>
+      <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all deposits</div>
       <div className='mt-12'>
         <div className='relative w-fit mx-auto'>
           <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>

@@ -76,7 +76,7 @@ const VerifyAcount = ({ setToggleExtra }) => {
 
     return (
         <div className='pt-10 h-screen'>
-            <div className='md:w-[95%] mx-auto'>
+            <div className='relative'>
                 {loading && <LoadingAdmin />}
                 <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => {setToggleExtra('')}}>
                     <IoMdArrowBack />
@@ -92,12 +92,12 @@ const VerifyAcount = ({ setToggleExtra }) => {
                             <div className='flex flex-col gap-2'>
                                 <div className='text-[0.85rem] capitalize text-semi-white'> email address</div>
                                 <div className='relative'>
-                                    <input className='outline-none rounded-[3px] w-60 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
+                                    <input className='outline-none rounded-[3px] w-72 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
                                     <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{emailError}</div>
                                 </div>
                             </div>
                             <div className='flex items-center  mt-2'>
-                                <button className='outline-none bg-light py-2 px-8 rounded-md capitalize text-xs md:text-[0.9rem] text-white cursor-pointer font-[550]' >find email</button>
+                                <button className='outline-none bg-light py-1.5 px-8 rounded-md capitalize text-xs md:text-sm text-white cursor-pointer font-[550]' >find email</button>
                             </div>
                         </div>
                     </form>}
@@ -111,7 +111,7 @@ const VerifyAcount = ({ setToggleExtra }) => {
                                 </div>
                             </div>
                             <div className='flex items-center  mt-2'>
-                                <button className='outline-none bg-light py-2 px-8 h-fit w-fit rounded-md capitalize md:text-[0.9rem] text-xs text-white cursor-pointer font-[550]' >verify email</button>
+                                <button className='outline-none bg-light py-1.5 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[550]' >verify email</button>
                             </div>
                         </div>
                     </form>}

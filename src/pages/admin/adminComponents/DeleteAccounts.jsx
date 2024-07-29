@@ -127,7 +127,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
     <div className='h-screen'>
       {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} refetchAllWithdrawals={refetchAllWithdrawals} />}
 
-      <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>delete accounts</div>
+      <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all users</div>
       <div className='mt-12'>
         <div className='relative w-fit mx-auto'>
           <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
