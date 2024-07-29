@@ -84,7 +84,7 @@ const VerifyAcount = ({ setToggleExtra }) => {
                 </div>
                 <div className='mt-28'>
                     <div className='flex items-center  justify-center gap-1'>
-                        <div className='md:text-[2rem] text-xl text-semi-white capitalize  font-bold'>verify your account</div>
+                        <div className='md:text-[2rem] text-[1.4rem] text-semi-white capitalize  font-bold'>verify your account</div>
                         <MdVerified className='text-light md:text-[3rem] text-3xl' />
                     </div>
                     {verifyScreen === 1 && <form onSubmit={FindEmail}>
