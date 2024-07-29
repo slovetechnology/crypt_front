@@ -309,7 +309,7 @@ const Dashboard = () => {
                                     />
                                 </div>}
                         </div>
-                        <div className='flex gap-2 capitalize items-center text-[grey] md:text-[0.85rem] text-xs font-bold'>
+                        <div className='flex gap-1.5 capitalize items-center text-[grey] md:text-[0.85rem] text-xs font-bold'>
                             <span>dashboard</span>
                             {toggle !== '' && <FaAngleRight className='text-[0.6rem]' />}
                             <span>{toggle}</span>

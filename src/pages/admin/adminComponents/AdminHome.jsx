@@ -5,7 +5,8 @@ import Cookies from 'js-cookie'
 import { CookieName } from '../../../utils/utils'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../../assets/images/logobrand.png'
-import { BiLogOutCircle, BiMoneyWithdraw } from 'react-icons/bi'
+import { BiLogOutCircle } from 'react-icons/bi'
+import { CiBank } from "react-icons/ci";
 import { TiCancel } from 'react-icons/ti'
 import { IoMdLogOut } from 'react-icons/io'
 import { CiMoneyCheck1 } from "react-icons/ci";
@@ -23,7 +24,7 @@ import { LuX } from 'react-icons/lu'
 
 const AllLinks = [
   { path: 'deposits', component: UpdateTransactions, icon: CiMoneyCheck1 },
-  { path: 'withdrawals', component: Withdrawals, icon: BiMoneyWithdraw },
+  { path: 'withdrawals', component: Withdrawals, icon: CiBank },
   { path: 'users', component: DeleteAccounts, icon: PiUsersThree },
   { path: 'settings', component: Settings, icon: IoIosSettings },
 ]
@@ -33,7 +34,7 @@ const MainLinks = [
 ]
 
 const OtherLinks = [
-  { path: 'withdrawals', component: Withdrawals, icon: BiMoneyWithdraw },
+  { path: 'withdrawals', component: Withdrawals, icon: CiBank },
   { path: 'users', component: DeleteAccounts, icon: PiUsersThree },
   { path: 'settings', component: Settings, icon: IoIosSettings },
 ]
