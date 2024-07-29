@@ -42,7 +42,9 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
     }
 
     useEffect(() => {
-        MoveToBottom()
+        if (deleted !== 1) {
+            MoveToBottom()
+        }
     }, [MoveToBottom])
 
     setTimeout(() => {
@@ -93,7 +95,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
 
     return (
         <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
-            <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[65vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
+            <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[70vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     <div className='text-3xl absolute top-0 right-2 cursor-pointer' onClick={closeView}><LuX /></div>
                     {beforeshow && <div className='beforeshow'></div>}
@@ -102,28 +104,28 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                             <div className='flex flex-col gap-4 border p-1'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20 rounded-full bg-[#c9b8eb] mx-auto' >
-                                    {Object.values(singleUser).length !== 0 &&<img src={`${imageurl}/profiles/${singleUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
+                                    {Object.values(singleUser).length !== 0 && <img src={`${imageurl}/profiles/${singleUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>full name:</div>
-                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.full_name}</div>}
+                                        {Object.values(singleUser).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleUser.full_name}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>username:</div>
-                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.username}</div>}
+                                        {Object.values(singleUser).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleUser.username}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>email:</div>
-                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.email}</div>}
+                                        {Object.values(singleUser).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleUser.email}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>country:</div>
-                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleUser.country}</div>}
+                                        {Object.values(singleUser).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleUser.country}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>joined:</div>
-                                        {Object.values(singleUser).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{moment(singleUser.createdAt).format('DD-MM-yyyy')}</div>}
+                                        {Object.values(singleUser).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleUser.createdAt).format('DD-MM-yyyy')}</div>}
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +134,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>total amount invested:</div>
-                                        {usertotal !== '' &&<div className='md:text-[0.95rem] text-sm'>${usertotal}</div>}
+                                        {usertotal !== '' && <div className='md:text-[0.95rem] text-sm'>${usertotal}</div>}
                                     </div>
                                 </div>
                             </div>

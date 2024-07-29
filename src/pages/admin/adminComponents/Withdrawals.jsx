@@ -93,8 +93,6 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
         }
     }
 
-    document.documentElement.style.overflow = modal === true ? 'hidden' : 'auto'
-
     return (
         <div className='h-screen'>
             {modal && <WithdrawalsModal closeView={() => setModal(false)} singleWithdrawal={singleWithdrawal} refetchAllWithdrawals={refetchAllWithdrawals} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} setAllWithdrawals={setAllWithdrawals} />}

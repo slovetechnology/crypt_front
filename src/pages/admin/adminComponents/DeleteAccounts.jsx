@@ -120,9 +120,6 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
   }
 
 
-
-  document.documentElement.style.overflow = modal === true ? 'hidden' : 'auto'
-
   return (
     <div className='h-screen'>
       {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} refetchAllWithdrawals={refetchAllWithdrawals} />}

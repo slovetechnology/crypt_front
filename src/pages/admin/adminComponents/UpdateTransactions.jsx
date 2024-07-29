@@ -94,7 +94,6 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
     }
   }
 
-  document.documentElement.style.overflow = modal === true ? 'hidden' : 'auto'
 
   return (
     <div className='h-screen'>
