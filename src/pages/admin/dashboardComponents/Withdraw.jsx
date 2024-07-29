@@ -15,6 +15,7 @@ import wthwallet from '../../../assets/images/wthwallet.png'
 import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp } from 'react-icons/fa6'
 import { supportedCoins } from '../../../services/Miscellaneous'
 import nothnyet from '../../../assets/images/nothn.png'
+import { BsCurrencyDollar } from "react-icons/bs";
 
 const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, refetchUnreadNotis, refetchWallet, urlState }) => {
     const [user] = useAtom(PROFILE)
@@ -200,9 +201,8 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                                     <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
                                     <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
                                 </div>
-                                <div className='flex items-center justify-center'>
-                                    <BiDollar className='md:text-base text-sm' />
-                                    {Object.values(userwallet).length !== 0 && <div>{userwallet.balance.toLocaleString()}</div>}
+                                <div className='flex items-center justify-center md:text-base text-sm'>
+                                    {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toLocaleString()}</div>}
                                 </div>
                             </div>
                         </div>

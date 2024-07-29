@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BiDollar } from 'react-icons/bi'
+import { BsCurrencyDollar } from "react-icons/bs";
 import { RiHistoryFill } from "react-icons/ri";
 import { IoListOutline } from "react-icons/io5";
 import { useAtom } from 'jotai';
@@ -131,8 +131,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <div className='flex justify-between items-center font-bold'>
                                         <div>
                                             <div className='flex items-center'>
-                                                {item.investment_status === 'confirmed' && <BiDollar />}
-                                                {item.investment_status === 'confirmed' && <div>{item.amount.toLocaleString()}</div>}
+                                                {item.investment_status === 'confirmed' && <BsCurrencyDollar className="-mt-0.5" />}
+                                                {item.investment_status === 'confirmed' && <div className='-ml-1'>{item.amount.toLocaleString()}</div>}
                                                 {item.investment_status === 'pending' &&
                                                     <div className='flex gap-2 items-center'>
                                                         <div className='text-[0.8rem] italic'>verifying</div>
@@ -159,8 +159,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <div className='flex justify-between items-center font-bold'>
                                         <div>
                                             <div className='flex items-center'>
-                                                {item.investment_status === 'confirmed' && <BiDollar />}
-                                                {item.investment_status === 'confirmed' && <div>{item.profit.toLocaleString()}</div>}
+                                                {item.investment_status === 'confirmed' && <BsCurrencyDollar className="-mt-0.5" />}
+                                                {item.investment_status === 'confirmed' && <div className='-ml-1'>{item.profit.toLocaleString()}</div>}
                                                 {item.investment_status === 'pending' &&
                                                     <div className='flex gap-2 items-center'>
                                                         <div className='text-[0.8rem] italic'>verifying</div>
@@ -187,8 +187,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <div className='flex justify-between items-center font-bold'>
                                         <div>
                                             <div className='flex items-center'>
-                                                {item.investment_status === 'confirmed' && <BiDollar />}
-                                                {item.investment_status === 'confirmed' && <div>{item.bonus.toLocaleString()}</div>}
+                                                {item.investment_status === 'confirmed' && <BsCurrencyDollar className="-mt-0.5" />}
+                                                {item.investment_status === 'confirmed' && <div className='-ml-1'>{item.bonus.toLocaleString()}</div>}
                                                 {item.investment_status === 'pending' &&
                                                     <div className='flex gap-2 items-center'>
                                                         <div className='text-[0.8rem] italic'>verifying</div>

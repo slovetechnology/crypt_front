@@ -7,6 +7,7 @@ import { FaAngleDown, FaAngleUp, FaCheck, FaXmark } from 'react-icons/fa6'
 import { PROFILE, WALLET } from '../../../store'
 import { Alert } from '../../../utils/utils'
 import { useAtom } from 'jotai'
+import { BsCurrencyDollar } from 'react-icons/bs'
 
 const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, setUserDeposits, setDepositTitle, setStart, setEnd, setpagestart, setpageend, refetchDeposits, refetchWallet, refetchInvestments, refetchInvestmentsUnclaim, refetchNotifications, refetchUnreadNotis }) => {
     const [userwallet] = useAtom(WALLET)
@@ -177,7 +178,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                         </div>
                         <div className={`h-fit w-fit text-nowrap py-2 md:px-4 px-2 ${balanceError ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-md`}>
                             <div className='text-xs italic text-center'>wallet balance:</div>
-                            {Object.values(userwallet).length !== 0 && <div> ${userwallet.balance.toLocaleString()}</div>}
+                            {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toLocaleString()}</div>}
                         </div>
                     </div>
                     <div className='flex flex-col gap-2 text-xs text-[#252525]'>

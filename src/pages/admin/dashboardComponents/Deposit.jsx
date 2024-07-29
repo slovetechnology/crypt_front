@@ -10,6 +10,7 @@ import { FiX } from "react-icons/fi";
 import { tradingPlans } from '../../../services/Miscellaneous';
 import nothnyet from '../../../assets/images/nothn.png'
 import { TbListDetails } from "react-icons/tb";
+import { BsCurrencyDollar } from "react-icons/bs";
 import DepositModal from './DepositModal';
 
 
@@ -131,11 +132,11 @@ const Deposit = ({ setToggle, refetchDeposits, refetchInvestments, refetchNotifi
                                         </div>
                                         <div className='-mt-6 flex flex-col gap-3 items-center justify-center'>
                                             <div className='md:h-[5.1rem] md:w-[5.1rem] w-[4.5rem] h-[4.5rem] rounded-full bg-white flex items-center justify-center'>
-                                                <div className='md:h-[4.3rem] md:w-[4.3rem] w-[3.7rem] h-[3.7rem] rounded-full bg-[#252525] md:text-[0.65rem] text-[0.6rem] flex flex-col gap-1 items-center justify-center'>
-                                                    <div className='italic'>from</div>
-                                                    <div className='flex items-center gap-[0.1rem] font-bold text-[#5BB4FD]'>
-                                                        <div className='mt-[-0.2rem]'>$</div>
-                                                        <div className='md:text-base text-sm'>{item.price_start}</div>
+                                                <div className='md:h-[4.3rem] md:w-[4.3rem] w-[3.7rem] h-[3.7rem] rounded-full bg-[#252525] flex flex-col gap-1 items-center justify-center'>
+                                                    <div className='italic md:text-[0.65rem] text-[0.6rem]'>from</div>
+                                                    <div className='flex items-center font-bold gap-[0.1rem] text-[#5BB4FD] md:text-base text-sm'>
+                                                        <BsCurrencyDollar className='-mt-0.5'/>
+                                                        <div className='md:text-base text-sm -ml-1'>{item.price_start}</div>
                                                     </div>
                                                 </div>
                                             </div>

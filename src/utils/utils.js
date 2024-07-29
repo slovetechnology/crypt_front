@@ -1,11 +1,13 @@
 import Swal from 'sweetalert2'
 
-export const Alert = (title,text, icon) => {
+export const Alert = (title, text, icon) => {
     return Swal.fire({
         title,
         text,
         icon,
-        showConfirmButton: false,
+        showConfirmButton: true,
+        confirmButtonText: 'Continue',
+        confirmButtonColor: "#6459DD",
     })
 }
 
@@ -30,7 +32,7 @@ export const MoveToTop = () => {
 }
 
 export const MoveToTopDivs = () => {
-    const  thediv = document.querySelector('.thediv')
+    const thediv = document.querySelector('.thediv')
     thediv.scrollTo({
         top: 0,
     })

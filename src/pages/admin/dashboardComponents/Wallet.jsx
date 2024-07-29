@@ -1,5 +1,5 @@
 import React from 'react'
-import { BiDollar } from "react-icons/bi";
+import { BsCurrencyDollar } from "react-icons/bs";
 import { useAtom } from 'jotai';
 import { INVESTMENTUNCLAIM, UPS, WALLET } from '../../../store';
 import wallet3d from '../../../assets/images/wallet3d.png'
@@ -31,8 +31,8 @@ const Home = ({ setToggle }) => {
                     </div>
                     <div className='flex flex-col items-center font-bold gap-4 mt-4'>
                         <div className='flex items-center'>
-                            <BiDollar />
-                            {Object.values(wallet).length !== 0 && <div>{wallet.total_deposit.toLocaleString()}</div>}
+                            <BsCurrencyDollar className='-mt-0.5' />
+                            {Object.values(wallet).length !== 0 && <div className='-ml-1'>{wallet.total_deposit.toLocaleString()}</div>}
                         </div>
                         <img src={deposit3d} className='md:h-16 h-12 w-auto'></img>
                     </div>
@@ -44,8 +44,8 @@ const Home = ({ setToggle }) => {
                     </div>
                     <div className='flex justify-between font-bold mt-4'>
                         <div className='flex items-center'>
-                            <BiDollar />
-                            {Object.values(wallet).length !== 0 && <div>{wallet.total_profit.toLocaleString()}</div>}
+                            <BsCurrencyDollar className='-mt-0.5' />
+                            {Object.values(wallet).length !== 0 && <div className='-ml-1'>{wallet.total_profit.toLocaleString()}</div>}
                         </div>
                         <img src={profit3d} className='md:h-12 h-8 w-[auto]'></img>
                     </div>
@@ -71,8 +71,8 @@ const Home = ({ setToggle }) => {
                     </div>
                     <div className='flex justify-between font-bold mt-4'>
                         <div className='flex items-center'>
-                            <BiDollar />
-                            {Object.values(wallet).length !== 0 && <div>{wallet.total_bonus.toLocaleString()}</div>}
+                            <BsCurrencyDollar className='-mt-0.5' />
+                            {Object.values(wallet).length !== 0 && <div className='-ml-1'>{wallet.total_bonus.toLocaleString()}</div>}
                         </div>
                         <img src={bonus3d} className='md:h-12 h-8 w-[auto]'></img>
                     </div>
@@ -95,8 +95,8 @@ const Home = ({ setToggle }) => {
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600]'>withdrawals</div>
                     <div className='flex flex-col items-center font-bold mt-4 gap-4'>
                         <div className='flex items-center' >
-                            <BiDollar />
-                            {Object.values(wallet).length !== 0 && <div>{wallet.total_withdrawal.toLocaleString()}</div>}
+                            <BsCurrencyDollar className='-mt-0.5' />
+                            {Object.values(wallet).length !== 0 && <div className='-ml-1'>{wallet.total_withdrawal.toLocaleString()}</div>}
                         </div>
                         <img src={withdraw3d} className='md:h-14 h-10 w-auto'></img>
                     </div>
@@ -117,8 +117,8 @@ const Home = ({ setToggle }) => {
                     <div className='capitalize text-xs md:text-[0.9rem] font-[600]'>current balance</div>
                     <div className='flex flex-col items-center font-bold mt-4 gap-4'>
                         <div className='flex items-center'>
-                            <BiDollar />
-                            {Object.values(wallet).length !== 0 && <div>{wallet.balance.toLocaleString()}</div>}
+                            <BsCurrencyDollar className='-mt-0.5' />
+                            {Object.values(wallet).length !== 0 && <div className='-ml-1'>{wallet.balance.toLocaleString()}</div>}
                         </div>
                         <img src={wallet3d} className='md:h-[3.3rem] h-[2.3rem] w-auto'></img>
                     </div>
