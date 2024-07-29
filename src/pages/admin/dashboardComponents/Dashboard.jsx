@@ -3,7 +3,7 @@ import logo from '../../../assets/images/logobrand.png'
 import { GrMoney } from "react-icons/gr";
 import { IoWalletOutline } from "react-icons/io5";
 import { FaAngleRight } from "react-icons/fa6";
-import { BiMoneyWithdraw } from "react-icons/bi";
+import { CiBank } from "react-icons/ci";
 import { LuSend, LuArrowDownUp } from "react-icons/lu";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { MdVerified } from "react-icons/md";
@@ -33,7 +33,7 @@ const AllLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
     { path: 'investment', component: Investment, icon: GrMoney },
     { path: 'deposit', component: Deposit, icon: CiMoneyCheck1 },
-    { path: 'withdraw', component: Withdraw, icon: BiMoneyWithdraw },
+    { path: 'withdraw', component: Withdraw, icon: CiBank },
     { path: 'profile', component: Profile, icon: RiAccountPinCircleLine },
     { path: 'send feedback', component: Feedback, icon: LuSend },
 ]
@@ -42,7 +42,7 @@ const MainLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
     { path: 'investment', component: Investment, icon: GrMoney },
     { path: 'deposit', component: Deposit, icon: CiMoneyCheck1 },
-    { path: 'withdraw', component: Withdraw, icon: BiMoneyWithdraw },
+    { path: 'withdraw', component: Withdraw, icon: CiBank },
 ]
 
 const OtherLinks = [
