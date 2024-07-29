@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
@@ -10,7 +10,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 
 
-const UpdateTransactions = ({ refetchAllDeposits}) => {
+const UpdateTransactions = ({ refetchAllDeposits }) => {
   const [fromAtom] = useAtom(ADMINALLDEPOSITS)
   const [alldeposits, setAllDeposits] = useState(fromAtom)
   const [singleDeposit, setSingleDeposit] = useState({})
@@ -26,6 +26,18 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
   const SingleDepositFunction = (item) => {
     setSingleDeposit(item)
   }
+
+  const MoveToBottom = () => {
+    document.documentElement.scrollTo({
+      top: document.documentElement.scrollHeight
+    })
+  }
+
+  useEffect(() => {
+    if (modal) {
+      MoveToBottom()
+    }
+  }, [MoveToBottom])
 
   const HandleSearch = () => {
 
@@ -94,6 +106,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
     }
   }
 
+  document.documentElement.style.overflow = modal ? 'hidden' : 'auto'
 
   return (
     <div className='h-screen'>
@@ -115,7 +128,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
         <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
           <table className='w-full '>
             <thead >
-              <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => { setModal(true)}}>
+              <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => { setModal(true) }}>
                 <td className='text-center truncate  capitalize p-2 '>date</td>
                 <td className='text-center truncate  capitalize p-2 '>username</td>
                 <td className='text-center truncate  capitalize p-2 '>email</td>
@@ -138,7 +151,7 @@ const UpdateTransactions = ({ refetchAllDeposits}) => {
                   <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
                   <td className={`p-4  text-center truncate ${item.profit_status === 'completed' ? 'text-[#459e45]' : 'text-black'}`}>{item.profit_status}</td>
                   <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleDepositFunction(item) }}> <BsThreeDots className="mx-auto text-base" /></td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { SingleDepositFunction(item); setModal(true); MoveToBottom() }}> <BsThreeDots className="mx-auto text-base" /></td>
                 </tr>
               ))}
             </tbody>}

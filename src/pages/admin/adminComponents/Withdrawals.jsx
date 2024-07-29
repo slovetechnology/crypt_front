@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import WithdrawalsModal from './WithdrawalsModal';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
 import { FiX } from 'react-icons/fi';
@@ -25,6 +25,18 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
     const SingleWithdrawalFunction = (item) => {
         setSingleWithdrawal(item)
     }
+
+    const MoveToBottom = () => {
+        document.documentElement.scrollTo({
+            top: document.documentElement.scrollHeight
+        })
+    }
+
+    useEffect(() => {
+        if (modal) {
+            MoveToBottom()
+        }
+    }, [MoveToBottom])
 
     const HandleSearch = () => {
 
@@ -113,7 +125,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                 <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
                     <table className='w-full '>
                         <thead >
-                            <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => { setModal(true)}}>
+                            <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => { setModal(true) }}>
                                 <td className='text-center truncate  capitalize p-2 '>date</td>
                                 <td className='text-center truncate  capitalize p-2 '>username</td>
                                 <td className='text-center truncate  capitalize p-2 '>email</td>
@@ -130,7 +142,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                                     <td className='p-4  text-center truncate'>{item.wthuser.email}</td>
                                     <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                     <td className={`p-4  text-center truncate ${item.status === 'confirmed' ? 'text-[#459e45]' : 'text-black'}`}>{item.status}</td>
-                                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { setModal(true); SingleWithdrawalFunction(item) }}> <BsThreeDots className="mx-auto text-base" /></td>
+                                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => {SingleWithdrawalFunction(item); setModal(true); MoveToBottom() }}> <BsThreeDots className="mx-auto text-base" /></td>
                                 </tr>
                             ))}
                         </tbody>}

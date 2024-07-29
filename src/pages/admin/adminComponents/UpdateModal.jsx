@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Apis, UserPutApi, imageurl } from '../../../services/API'
 import moment from 'moment';
 import { FaAngleDown } from 'react-icons/fa6';
-import { LuX } from "react-icons/lu";
 import Loading from '../../../PageComponents/Loading';
 import { Alert } from '../../../utils/utils';
 
@@ -134,7 +133,6 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
             <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[70vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {loading && <Loading />}
-                    <div className='text-3xl absolute top-0 right-2 cursor-pointer' onClick={closeView}><LuX /></div>
                     {beforeshow && <div className='beforeshow'></div>}
                     {!beforeshow &&
                         <div className='md:w-[90%] w-11/12 mx-auto md:py-8 py-4 flex flex-col gap-8 md:text-[0.9rem] text-[0.8rem]'>
