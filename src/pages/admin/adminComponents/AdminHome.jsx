@@ -5,13 +5,13 @@ import Cookies from 'js-cookie'
 import { CookieName } from '../../../utils/utils'
 import { useNavigate } from 'react-router-dom'
 import logo from '../../../assets/images/logobrand.png'
-import { BiLogOutCircle } from 'react-icons/bi'
-import { CiBank } from "react-icons/ci";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { RiBankLine } from "react-icons/ri";
 import { TiCancel } from 'react-icons/ti'
 import { IoMdLogOut } from 'react-icons/io'
-import { CiMoneyCheck1 } from "react-icons/ci";
-import { PiUsersThree } from "react-icons/pi";
-import { IoIosSettings } from 'react-icons/io';
+import { HiOutlineCreditCard } from "react-icons/hi2";
+import { TbUsers } from "react-icons/tb";
+import { IoSettingsOutline } from "react-icons/io5";
 import UpdateTransactions from './UpdateTransactions'
 import DeleteAccounts from './DeleteAccounts'
 import { Apis, UserGetApi } from '../../../services/API'
@@ -23,20 +23,20 @@ import { HiOutlineDotsVertical } from 'react-icons/hi'
 import { LuX } from 'react-icons/lu'
 
 const AllLinks = [
-  { path: 'deposits', component: UpdateTransactions, icon: CiMoneyCheck1 },
-  { path: 'withdrawals', component: Withdrawals, icon: CiBank },
-  { path: 'users', component: DeleteAccounts, icon: PiUsersThree },
-  { path: 'settings', component: Settings, icon: IoIosSettings },
+  { path: 'deposits', component: UpdateTransactions, icon: HiOutlineCreditCard },
+  { path: 'withdrawals', component: Withdrawals, icon: RiBankLine },
+  { path: 'users', component: DeleteAccounts, icon: TbUsers },
+  { path: 'settings', component: Settings, icon: IoSettingsOutline },
 ]
 
 const MainLinks = [
-  { path: 'deposits', component: UpdateTransactions, icon: CiMoneyCheck1 },
+  { path: 'deposits', component: UpdateTransactions, icon: HiOutlineCreditCard },
 ]
 
 const OtherLinks = [
-  { path: 'withdrawals', component: Withdrawals, icon: CiBank },
-  { path: 'users', component: DeleteAccounts, icon: PiUsersThree },
-  { path: 'settings', component: Settings, icon: IoIosSettings },
+  { path: 'withdrawals', component: Withdrawals, icon: RiBankLine },
+  { path: 'users', component: DeleteAccounts, icon: TbUsers },
+  { path: 'settings', component: Settings, icon: IoSettingsOutline },
 ]
 
 const toggleArray = [
@@ -192,7 +192,7 @@ const AdminHome = () => {
                 ))}
                 <div className='relative'>
                   <div className='flex gap-3 lg:text-[#bbb9b9] text-semi-white lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
-                    <BiLogOutCircle className='text-[1.3rem] ' />
+                    <RiLogoutCircleLine className='text-[1.3rem] ' />
                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                   </div>
                   {logout && <div className='absolute top-0 -left-4 lg:right-4 lg:bg-admin-auth bg-[#27137e] w-fit  h-fit z-10 rounded-[10px] text-white p-4 lg:shadow-logout-sha3 shadow-logout-sha2'>

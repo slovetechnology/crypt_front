@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import logo from '../../../assets/images/logobrand.png'
-import { GrMoney } from "react-icons/gr";
+import { HiOutlineCollection } from "react-icons/hi";
 import { IoWalletOutline } from "react-icons/io5";
 import { FaAngleRight } from "react-icons/fa6";
-import { CiBank } from "react-icons/ci";
+import { RiBankLine } from "react-icons/ri";
 import { LuSend, LuArrowDownUp } from "react-icons/lu";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { MdVerified } from "react-icons/md";
 import { LuX } from "react-icons/lu";
-import { BiLogOutCircle } from "react-icons/bi";
+import { RiLogoutCircleLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import Wallet from './Wallet'
 import moment from 'moment'
@@ -21,7 +21,7 @@ import { CookieName } from '../../../utils/utils';
 import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-import { CiMoneyCheck1 } from "react-icons/ci";
+import { HiOutlineCreditCard } from "react-icons/hi2";
 import Investment from './Investment';
 import Deposit from './Deposit';
 import Withdraw from './Withdraw';
@@ -31,18 +31,18 @@ import Notifications from './Notifications';
 
 const AllLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
-    { path: 'investment', component: Investment, icon: GrMoney },
-    { path: 'deposit', component: Deposit, icon: CiMoneyCheck1 },
-    { path: 'withdraw', component: Withdraw, icon: CiBank },
+    { path: 'investment', component: Investment, icon: HiOutlineCollection },
+    { path: 'deposit', component: Deposit, icon: HiOutlineCreditCard },
+    { path: 'withdraw', component: Withdraw, icon: RiBankLine },
     { path: 'profile', component: Profile, icon: RiAccountPinCircleLine },
     { path: 'send feedback', component: Feedback, icon: LuSend },
 ]
 
 const MainLinks = [
     { path: 'wallet', component: Wallet, icon: IoWalletOutline },
-    { path: 'investment', component: Investment, icon: GrMoney },
-    { path: 'deposit', component: Deposit, icon: CiMoneyCheck1 },
-    { path: 'withdraw', component: Withdraw, icon: CiBank },
+    { path: 'investment', component: Investment, icon: HiOutlineCollection },
+    { path: 'deposit', component: Deposit, icon: HiOutlineCreditCard },
+    { path: 'withdraw', component: Withdraw, icon: RiBankLine },
 ]
 
 const OtherLinks = [
@@ -260,7 +260,7 @@ const Dashboard = () => {
                                 ))}
                                 <div className='relative'>
                                     <div className='flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
-                                        <BiLogOutCircle className='text-[1.3rem] ' />
+                                        <RiLogoutCircleLine className='text-[1.3rem] ' />
                                         <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                                     </div>
                                     {logout && <div className='absolute -top-5 -left-4 lg:right-0  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-semi-white font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
