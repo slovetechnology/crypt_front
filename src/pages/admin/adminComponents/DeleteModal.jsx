@@ -93,7 +93,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
 
     return (
         <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
-            <div className={`bg-white rounded-lg lg:w-1/2 md:w-3/4 w-11/12 lg:h-[90vh] h-[80vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
+            <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[65vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     <div className='text-3xl absolute top-0 right-2 cursor-pointer' onClick={closeView}><LuX /></div>
                     {beforeshow && <div className='beforeshow'></div>}
