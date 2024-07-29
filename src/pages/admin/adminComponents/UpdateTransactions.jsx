@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
@@ -27,17 +27,6 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
     setSingleDeposit(item)
   }
 
-  const MoveToBottom = () => {
-    document.documentElement.scrollTo({
-      top: document.documentElement.scrollHeight
-    })
-  }
-
-  useEffect(() => {
-    if (modal) {
-      MoveToBottom()
-    }
-  }, [MoveToBottom])
 
   const HandleSearch = () => {
 
@@ -106,7 +95,6 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
     }
   }
 
-  document.documentElement.style.overflow = modal ? 'hidden' : 'auto'
 
   return (
     <div className='h-screen'>

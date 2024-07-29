@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import WithdrawalsModal from './WithdrawalsModal';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
 import { FiX } from 'react-icons/fi';
@@ -25,18 +25,6 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
     const SingleWithdrawalFunction = (item) => {
         setSingleWithdrawal(item)
     }
-
-    const MoveToBottom = () => {
-        document.documentElement.scrollTo({
-            top: document.documentElement.scrollHeight
-        })
-    }
-
-    useEffect(() => {
-        if (modal) {
-            MoveToBottom()
-        }
-    }, [MoveToBottom])
 
     const HandleSearch = () => {
 
@@ -104,6 +92,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
             setpagestart(altlengthstart)
         }
     }
+
 
     return (
         <div className='h-screen'>

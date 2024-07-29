@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { IoIosSearch, IoIosSettings } from 'react-icons/io'
 import { FiX } from 'react-icons/fi'
@@ -47,18 +47,6 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
       //
     }
   }
-
-  const MoveToBottom = () => {
-    document.documentElement.scrollTo({
-      top: document.documentElement.scrollHeight
-    })
-  }
-
-  useEffect(() => {
-    if (modal) {
-      MoveToBottom()
-    }
-  }, [MoveToBottom])
 
   const HandleSearch = () => {
 
@@ -127,7 +115,6 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
       setpagestart(altlengthstart)
     }
   }
-
 
 
   return (
