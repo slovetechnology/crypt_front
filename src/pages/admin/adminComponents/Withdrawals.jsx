@@ -142,7 +142,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                         <img src={nothnyet} className='h-4 w-auto'></img>
                     </div>}
                 </div>
-                {allWithdrawals.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end text-admin-page '>
+                {allWithdrawals.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
                     {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
                     {end < allWithdrawals.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}

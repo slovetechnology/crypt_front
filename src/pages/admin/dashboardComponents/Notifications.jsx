@@ -229,7 +229,7 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, se
                         </div>
                     }
                 </div>
-                {notis.length > 0 && <div className='flex gap-2 items-center text-xs mt-4 justify-end'>
+                {notis.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end'>
                     {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
                     {end < notis.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
