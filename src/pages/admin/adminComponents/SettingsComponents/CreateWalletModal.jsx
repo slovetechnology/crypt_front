@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FiUploadCloud } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
+import { MdOutlineEdit } from 'react-icons/md';
 import { RiErrorWarningLine } from "react-icons/ri";
 
 const CreateWalletModal = ({ closeView }) => {
@@ -46,7 +47,7 @@ const CreateWalletModal = ({ closeView }) => {
     const handleUpload = (event) => {
         setTimeout(() => {
             setError('')
-        }, 2000)
+        }, 1500)
         const file = event.target.files[0]
         if (file.size >= 1000000) {
             coinimgref.current.value = null
@@ -65,7 +66,7 @@ const CreateWalletModal = ({ closeView }) => {
     const handleUpload2 = (event) => {
         setTimeout(() => {
             setError('')
-        }, 2000)
+        }, 1500)
         const file = event.target.files[0]
         if (file.size >= 1000000) {
             qrimgref.current.value = null
@@ -84,7 +85,7 @@ const CreateWalletModal = ({ closeView }) => {
     const CreateWallet = () => {
         setTimeout(() => {
             setError('')
-        }, 2000)
+        }, 1500)
 
         if (!form.coin) return setError('field(s) cannot be empty')
         if (!form.network) return setError('field(s) cannot be empty')
@@ -108,21 +109,26 @@ const CreateWalletModal = ({ closeView }) => {
                         <div className='flex flex-col gap-4 mt-4 relative'>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>coin name:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1' value={form.coin} name='coin' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.coin} name='coin' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>network:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1' value={form.network} name='network' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>address:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1' value={form.address} name='address' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>coin image:</div>
                                 <label className='cursor-pointer'>
                                     {coinImg.img ?
-                                        <img src={coinImg.img} className='h-10 w-auto'></img>
+                                        <div className='flex items-center gap-1'>
+                                            <img src={coinImg.img} className='h-10 w-auto'></img>
+                                            <div className='text-sm bg-white rounded-lg p-1 sha'>
+                                                <MdOutlineEdit />
+                                            </div>
+                                        </div>
                                         :
                                         <div className='border rounded-lg flex flex-col gap-2 items-center justify-center p-2'>
                                             <div className='bg-gray-100 rounded-full p-2'><FiUploadCloud /></div>
@@ -136,7 +142,12 @@ const CreateWalletModal = ({ closeView }) => {
                                 <div className='italic'>qr code image:</div>
                                 <label className='cursor-pointer'>
                                     {qrImg.img ?
-                                        <img src={qrImg.img} className='h-20 w-auto'></img>
+                                        <div className='flex items-center gap-1'>
+                                            <img src={qrImg.img} className='h-20 w-auto'></img>
+                                            <div className='text-sm bg-white rounded-lg p-1 sha'>
+                                                <MdOutlineEdit />
+                                            </div>
+                                        </div>
                                         :
                                         <div className='border rounded-lg flex flex-col gap-2 items-center justify-center p-2'>
                                             <div className='bg-gray-100 rounded-full p-2'><FiUploadCloud /></div>
@@ -146,7 +157,7 @@ const CreateWalletModal = ({ closeView }) => {
                                     <input ref={qrimgref} type="file" onChange={handleUpload2} hidden />
                                 </label>
                             </div>
-                            {error !== '' && <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1'>
+                            {error !== '' && <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
                                 <RiErrorWarningLine className='md:text-base text-sm' />
                                 <span>{error}</span>
                             </div>}

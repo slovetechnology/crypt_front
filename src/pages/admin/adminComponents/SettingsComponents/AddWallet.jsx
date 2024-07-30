@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../../assets/images/nothn.png'
 import { IoIosSettings } from 'react-icons/io';
-import { IoWalletOutline } from "react-icons/io5";
+import { IoIosAddCircleOutline } from "react-icons/io";
 import { BsThreeDots } from 'react-icons/bs';
 import { supportedCoins } from '../../../../services/Miscellaneous';
-import AddWalletModal from './AddWalletModal';
 import CreateWalletModal from './CreateWalletModal';
+import UpdateWalletModal from './UpdateWalletModal';
 
 const AddWallet = () => {
   const [modal, setModal] = useState(false)
@@ -63,12 +63,12 @@ const AddWallet = () => {
 
   return (
     <div className='mt-4'>
-      {modal && <AddWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} />}
+      {modal && <UpdateWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} />}
       {modal2 && <CreateWalletModal closeView={() => setModal2(false)} />}
 
       <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center ml-auto mb-2' onClick={() => setModal2(true)}>
         <span>create new wallet</span>
-        <IoWalletOutline />
+        <IoIosAddCircleOutline className='text-base' />
       </button>
       <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
         <table className='w-full '>

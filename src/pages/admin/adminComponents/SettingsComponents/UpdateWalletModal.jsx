@@ -2,9 +2,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { MdOutlineEdit } from "react-icons/md";
 import { IoWalletOutline } from "react-icons/io5";
 import { RiErrorWarningLine } from "react-icons/ri";
+import { PiWarningCircleBold } from "react-icons/pi";
 
-const AddWalletModal = ({ closeView, singleWallet }) => {
+const UpdateWalletModal = ({ closeView, singleWallet }) => {
   const [error, setError] = useState('')
+  const [deleted, setDeleted] = useState(false)
   const toggler = useRef()
   const coinimgref = useRef()
   const qrimgref = useRef()
@@ -46,7 +48,7 @@ const AddWalletModal = ({ closeView, singleWallet }) => {
   const handleUpload = (event) => {
     setTimeout(() => {
       setError('')
-    }, 2000)
+    }, 1500)
     const file = event.target.files[0]
     if (file.size >= 1000000) {
       coinimgref.current.value = null
@@ -65,7 +67,7 @@ const AddWalletModal = ({ closeView, singleWallet }) => {
   const handleUpload2 = (event) => {
     setTimeout(() => {
       setError('')
-    }, 2000)
+    }, 1500)
     const file = event.target.files[0]
     if (file.size >= 1000000) {
       qrimgref.current.value = null
@@ -83,13 +85,15 @@ const AddWalletModal = ({ closeView, singleWallet }) => {
 
   const UpdateWallet = () => {
     setTimeout(() => {
-        setError('')
-    }, 2000)
+      setError('')
+    }, 1500)
+
+    setDeleted(false)
 
     if (!form.coin) return setError('field(s) cannot be empty')
     if (!form.network) return setError('field(s) cannot be empty')
     if (!form.address) return setError('field(s) cannot be empty')
-}
+  }
 
 
 
@@ -100,21 +104,21 @@ const AddWalletModal = ({ closeView, singleWallet }) => {
         <div className={`w-full h-full relative`}>
           <div className='flex flex-col md:w-[90%] w-11/12 mx-auto py-4 md:text-[0.9rem] text-[0.8rem]'>
             <div className='text-xl uppercase flex gap-1 items-center justify-center font-bold border-b'>
-              <span>wallet</span>
+              <span>update wallet</span>
               <IoWalletOutline />
             </div>
             <div className='flex flex-col gap-4 mt-4 relative'>
               <div className='flex justify-between items-center'>
                 <div className='italic'>coin name:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1' value={form.coin} name='coin' onChange={inputHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.coin} name='coin' onChange={inputHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>network:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1' value={form.network} name='network' onChange={inputHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>address:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1' value={form.address} name='address' onChange={inputHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>coin image:</div>
@@ -140,14 +144,24 @@ const AddWalletModal = ({ closeView, singleWallet }) => {
                   <input ref={qrimgref} type="file" onChange={handleUpload2} hidden />
                 </label>
               </div>
-              {error !== '' && <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1'>
+              {error !== '' && <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
                 <RiErrorWarningLine className='md:text-base text-sm' />
                 <span>{error}</span>
               </div>}
             </div>
-            <div className='flex gap-4 items-center justify-between mt-8'>
+            <div className='flex gap-4 items-center justify-between mt-8 relative'>
               <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={UpdateWallet}>update</button>
-              <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium'>delete</button>
+              <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => setDeleted(true)}>delete</button>
+              {deleted && <div className='bg-white adsha w-fit h-fit flex flex-col gap-4 items-center justify-center absolute bottom-0 right-0 p-3 rounded-md text-xs'>
+                <div className='md:text-[0.85rem] text-xs flex items-center gap-1 justify-center text-center font-medium'>
+                  <span> Are you sure you want to Delete Wallet</span>
+                  <PiWarningCircleBold className='text-[red] md:text-base text-sm'/>
+                </div>
+                <div className='flex items-center gap-6'>
+                  <button className='w-fit h-fit py-2 px-4 capitalize bg-zinc-500 text-white rounded-md font-medium' onClick={() => setDeleted(false)}>no</button>
+                  <button className='w-fit h-fit py-2 px-4 capitalize bg-zinc-500 text-white rounded-md font-medium'>yes</button>
+                </div>
+              </div>}
             </div>
           </div>
         </div>
@@ -156,4 +170,4 @@ const AddWalletModal = ({ closeView, singleWallet }) => {
   )
 }
 
-export default AddWalletModal
+export default UpdateWalletModal
