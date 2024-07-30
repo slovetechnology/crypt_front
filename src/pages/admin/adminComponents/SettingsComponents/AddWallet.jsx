@@ -66,7 +66,7 @@ const AddWallet = () => {
       {modal && <AddWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} />}
       {modal2 && <CreateWalletModal closeView={() => setModal2(false)} />}
 
-      <button className='w-fit h-fit py-2 px-4 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center ml-auto mb-2' onClick={() => setModal2(true)}>
+      <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center ml-auto mb-2' onClick={() => setModal2(true)}>
         <span>create new wallet</span>
         <IoWalletOutline />
       </button>
