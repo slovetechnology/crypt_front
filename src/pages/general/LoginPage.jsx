@@ -47,7 +47,7 @@ const LoginPage = () => {
             email: form.email,
             password: form.password
         }
-        // setLoading(true)
+        setLoading(true)
         // try {
         //     const response = await UserPostApi(Apis.user.login, formbody)
         //     if (response.status === 200) {
@@ -63,7 +63,7 @@ const LoginPage = () => {
         // } finally {
         //     setLoading(false)
         // }
-        navigate('/dashboard')
+        navigate('/admin-controls')
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 

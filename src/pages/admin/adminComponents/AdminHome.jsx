@@ -18,7 +18,7 @@ import { Apis, UserGetApi } from '../../../services/API'
 import { FaAngleRight } from 'react-icons/fa6'
 import AdminNotis from './AdminNotis'
 import Withdrawals from './Withdrawals'
-import Settings from './Settings'
+import Settings from './SettingsComponents/Settings'
 import { HiOutlineDotsVertical } from 'react-icons/hi'
 import { LuX } from 'react-icons/lu'
 

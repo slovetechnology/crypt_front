@@ -7,7 +7,6 @@ import { FaAngleDown, FaAngleUp, FaCheck, FaXmark } from 'react-icons/fa6'
 import { PROFILE, WALLET } from '../../../store'
 import { Alert } from '../../../utils/utils'
 import { useAtom } from 'jotai'
-import { BsCurrencyDollar } from 'react-icons/bs'
 
 const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, setUserDeposits, setDepositTitle, setStart, setEnd, setpagestart, setpageend, refetchDeposits, refetchWallet, refetchInvestments, refetchInvestmentsUnclaim, refetchNotifications, refetchUnreadNotis }) => {
     const [userwallet] = useAtom(WALLET)
@@ -21,8 +20,6 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
     const [selectState, setSelectState] = useState(false)
     const [selectValue, setSelectValue] = useState({})
     const [selectError, setSelectError] = useState(false)
-    const [network, setNetwork] = useState('')
-    const [address, setAddress] = useState('')
     const [modalScreen, setmodalScreen] = useState(1)
     const [balanceError, setBalanceError] = useState(false)
     const [limitError, setLimitError] = useState(false)
@@ -101,7 +98,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
         setTimeout(() => {
             setCopy(false)
         }, 2000)
-        navigator.clipboard.writeText(address)
+        navigator.clipboard.writeText(selectValue.address)
         setCopy(true)
     }
 
@@ -115,7 +112,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
 
         if (Object.values(selectValue).length === 0) return setSelectError(true)
         if (!check) return setCheckError(true)
-            
+
         if (buybal.title === 'test run') {
             const TestRunTrial = userDeposits.filter(item => item.trading_plan === 'test run')
             if (TestRunTrial.length > 0) return Alert('Request Failed', `Test Run plan is one trial only`, 'error')
@@ -217,7 +214,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                             {selectState && <div>
                                 {supportedCoins.map((item, i) => (
                                     <div className='flex flex-col mt-1' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item); setNetwork(item.textnw); setAddress(item.address) }}>
+                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
                                             <img src={item.img} className='h-auto w-4'></img>
                                             <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
                                         </div>
@@ -226,9 +223,9 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                             </div>}
                         </div>
                     </div>
-                    <div className='text-[0.8rem] text-center'>{network}</div>
+                    {Object.values(selectValue).length !== 0 && <div className='text-[0.8rem] text-center'>Your <span className='capitalize'>{selectValue.coin}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>, copy below:</div>}
                     {Object.values(selectValue).length !== 0 && <div className='flex gap-2 items-center'>
-                        <div className='text-xs text-[#5BB4FD]'>{address}</div>
+                        <div className='text-xs text-[#5BB4FD]'>{selectValue.address}</div>
                         <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                             {!copy && <MdContentCopy />}
                             {copy && <FaCheck />}

@@ -24,6 +24,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
 
     const SingleWithdrawalFunction = (item) => {
         setSingleWithdrawal(item)
+        setModal(true)
     }
 
     const HandleSearch = () => {
@@ -131,7 +132,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                                     <td className='p-4  text-center truncate'>{item.wthuser.email}</td>
                                     <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                     <td className={`p-4  text-center truncate ${item.status === 'confirmed' ? 'text-[#459e45]' : 'text-black'}`}>{item.status}</td>
-                                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => {SingleWithdrawalFunction(item); setModal(true); MoveToBottom() }}> <BsThreeDots className="mx-auto text-base" /></td>
+                                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWithdrawalFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                                 </tr>
                             ))}
                         </tbody>}

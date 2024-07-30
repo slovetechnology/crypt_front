@@ -138,7 +138,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                             </div>
                             <div className='mt-4'>
                                 {deleted === 1 && <div className='flex items-center justify-center'>
-                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-lg text-white font-medium' onClick={() => { setDeleted(2); MoveToBottom() }}>delete user</button>
+                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setDeleted(2); MoveToBottom() }}>delete user</button>
                                 </div>}
                                 {deleted !== 1 && <div className='w-fit h-fit md:p-8 px-2 py-4 rounded-md bg-white adsha mx-auto  text-black relative'>
                                     {loading && <Loading />}

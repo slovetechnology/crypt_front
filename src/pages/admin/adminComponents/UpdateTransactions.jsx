@@ -25,6 +25,7 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
 
   const SingleDepositFunction = (item) => {
     setSingleDeposit(item)
+    setModal(true)
   }
 
 
@@ -139,7 +140,7 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
                   <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
                   <td className={`p-4  text-center truncate ${item.profit_status === 'completed' ? 'text-[#459e45]' : 'text-black'}`}>{item.profit_status}</td>
                   <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => { SingleDepositFunction(item); setModal(true); MoveToBottom() }}> <BsThreeDots className="mx-auto text-base" /></td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleDepositFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                 </tr>
               ))}
             </tbody>}
