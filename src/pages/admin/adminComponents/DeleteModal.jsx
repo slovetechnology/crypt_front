@@ -132,7 +132,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>total amount invested:</div>
-                                        {usertotal !== '' && <div className='md:text-[0.95rem] text-sm'>${usertotal}</div>}
+                                        {usertotal !== '' && <div className='md:text-[0.95rem] text-sm'>${usertotal.toLocaleString()}</div>}
                                     </div>
                                 </div>
                             </div>

@@ -139,6 +139,7 @@ const AdminHome = () => {
       const response = await UserGetApi(Apis.admin.get_admin_wallets)
       if (response.status === 200) {
         setAdminWallets(response.msg)
+        console.log(response.msg)
       }
 
     } catch (error) {

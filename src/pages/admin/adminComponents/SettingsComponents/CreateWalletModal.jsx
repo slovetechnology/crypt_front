@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FiUploadCloud } from "react-icons/fi";
-import { IoWalletOutline } from "react-icons/io5";
 import { MdOutlineEdit } from 'react-icons/md';
 import { RiErrorWarningLine } from "react-icons/ri";
 import Loading from '../../../../PageComponents/Loading';
@@ -11,10 +10,10 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const toggler = useRef()
-    const coinimgref = useRef()
+    const cryptoimgref = useRef()
     const qrimgref = useRef()
 
-    const [coinImg, setCoinImg] = useState({
+    const [cryptoImg, setCryptoImg] = useState({
         img: null,
         image: null
     })
@@ -24,7 +23,7 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
     })
 
     const [form, setForm] = useState({
-        coin: '',
+        crypto: '',
         address: '',
         network: '',
     })
@@ -54,14 +53,14 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
         }, 1500)
         const file = event.target.files[0]
         if (file.size >= 1000000) {
-            coinimgref.current.value = null
+            cryptoimgref.current.value = null
             return setError('File size too large')
         }
         if (!file.type.startsWith('image/')) {
-            coinimgref.current.value = null
+            cryptoimgref.current.value = null
             return setError('File Error')
         }
-        setCoinImg({
+        setCryptoImg({
             img: URL.createObjectURL(file),
             image: file
         })
@@ -91,13 +90,13 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
             setError('')
         }, 1500)
 
-        if (!form.coin || !form.network || !form.address) return setError('field(s) cannot be empty')
-        if (coinImg.img === null || qrImg.img === null) return setError('upload all images')
+        if (!form.crypto || !form.network || !form.address) return setError('field(s) cannot be empty')
+        if (cryptoImg.img === null || qrImg.img === null) return setError('upload all images')
 
         const formbody = new FormData()
-        formbody.append('coin_img', coinImg.image)
+        formbody.append('crypto_img', cryptoImg.image)
         formbody.append('qrcode_img', qrImg.image)
-        formbody.append('coin', form.coin)
+        formbody.append('crypto', form.crypto)
         formbody.append('network', form.network)
         formbody.append('address', form.address)
 
@@ -107,10 +106,10 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
             if (response.status === 200) {
                 Alert('Request Successful', 'Wallet created successfully', 'success')
                 setAdminWallets(response.msg)
-                setpageend(response.msg.length / 3)
+                setpageend(response.msg.length / 5)
                 setpagestart(1)
                 setStart(0)
-                setEnd(3)
+                setEnd(5)
                 closeView()
             } else {
                 Alert('Request Failed', response.msg, 'error')
@@ -131,14 +130,11 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
                 <div className={`w-full h-full relative`}>
                     {loading && <Loading />}
                     <div className='flex flex-col md:w-[90%] w-11/12 mx-auto py-4 md:text-[0.9rem] text-[0.8rem]'>
-                        <div className='text-xl uppercase flex gap-1 items-center justify-center font-bold border-b'>
-                            <span>create wallet</span>
-                            <IoWalletOutline />
-                        </div>
+                        <div className='text-xl uppercase text-center font-bold border-b'>create wallet</div>
                         <div className='flex flex-col gap-4 mt-4 relative'>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>coin name:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.coin} name='coin' onChange={inputHandler}></input>
+                                <div className='italic'>crypto name:</div>
+                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>network:</div>
@@ -149,11 +145,11 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
                                 <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>coin image:</div>
+                                <div className='italic'>crypto image:</div>
                                 <label className='cursor-pointer'>
-                                    {coinImg.img ?
+                                    {cryptoImg.img ?
                                         <div className='flex items-center gap-1'>
-                                            <img src={coinImg.img} className='h-10 w-auto'></img>
+                                            <img src={cryptoImg.img} className='h-10 w-auto'></img>
                                             <div className='text-sm bg-white rounded-lg p-1 sha'>
                                                 <MdOutlineEdit />
                                             </div>
@@ -164,7 +160,7 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
                                             <span className='text-xs'>click to add image</span>
                                         </div>
                                     }
-                                    <input ref={coinimgref} type="file" onChange={handleUpload} hidden />
+                                    <input ref={cryptoimgref} type="file" onChange={handleUpload} hidden />
                                 </label>
                             </div>
                             <div className='flex justify-between items-center'>

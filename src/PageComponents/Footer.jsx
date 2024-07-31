@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../assets/images/logobrand.png'
 import { Link } from 'react-router-dom';
-import { FaRegCopyright } from "react-icons/fa6";
+import { LuCopyright } from "react-icons/lu";
 import { PiTelegramLogoLight } from "react-icons/pi";
 import { TfiInstagram } from "react-icons/tfi";
 import { MoveToTop } from '../utils/utils';
@@ -49,8 +49,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='flex gap-1.5 w-full h-14 bg-[#172029] items-center text-ground mt-12 px-4 text-[0.85rem]'>
-          <FaRegCopyright />
+        <div className='flex gap-1 w-full h-14 bg-[#172029] items-center text-ground mt-12 px-4 text-[0.85rem]'>
+          <LuCopyright />
           <div>2024, Al Algo, All rights reserved.</div>
         </div>
       </div>

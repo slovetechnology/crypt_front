@@ -17,7 +17,7 @@ const AddWallet = () => {
   const [modal2, setModal2] = useState(false)
   const [singleWallet, setSingleWallet] = useState({})
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(3)
+  const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(adminWallets.length / end)
 
@@ -34,10 +34,10 @@ const AddWallet = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 3
+      altend += 5
       setEnd(altend)
 
-      altstart += 3
+      altstart += 5
       setStart(altstart)
 
       altlengthstart += 1
@@ -47,15 +47,15 @@ const AddWallet = () => {
 
   let BackPage = () => {
 
-    if (end > 3) {
+    if (end > 5) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 3
+      altend -= 5
       setEnd(altend)
 
-      altstart -= 3
+      altstart -= 5
       setStart(altstart)
 
       altlengthstart -= 1
@@ -79,7 +79,7 @@ const AddWallet = () => {
           <thead >
             <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => setModal(true)}>
               <td className='text-center truncate  capitalize p-2 '>image</td>
-              <td className='text-center truncate  capitalize p-2 '>coin</td>
+              <td className='text-center truncate  capitalize p-2 '>crypto</td>
               <td className='text-center truncate  capitalize p-2 '>address</td>
               <td className='text-center truncate  capitalize p-2 '>network</td>
               <td className='text-center truncate  capitalize p-2 '>qr code</td>
@@ -89,11 +89,11 @@ const AddWallet = () => {
           {adminWallets.length > 0 && <tbody>
             {adminWallets.slice(start, end).map((item, i) => (
               <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                <td className='p-4  text-center truncate'><img src={`${imageurl}/coins/${item.coin_img}`} className='w-4 h-auto mx-auto'></img></td>
-                <td className='p-4  text-center truncate capitalize'>{item.coin}</td>
+                <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='w-4 h-auto mx-auto'></img></td>
+                <td className='p-4  text-center truncate capitalize'>{item.crypto}</td>
                 <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
                 <td className='p-4  text-center truncate capitalize'>{item.network}</td>
-                <td className='p-4  text-center truncate'><img src={`${imageurl}/coins/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
+                <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
                 <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
               </tr>
             ))}

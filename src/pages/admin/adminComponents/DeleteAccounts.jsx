@@ -16,7 +16,6 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
   const [fromAtom] = useAtom(ADMINALLUSERS)
   const [allusers, setAllUsers] = useState(fromAtom)
 
-
   const [modal, setModal] = useState(false)
   const [singleUser, setSingleUser] = useState({})
   const [write, setWrite] = useState(false)
@@ -28,19 +27,21 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
   const [pageend, setpageend] = useState(allusers.length / end)
 
 
-  const SingleUserFunction = async (item) => {
+  const SingleUserFunction = (item) => {
     setSingleUser(item)
+  }
 
+  const GetUserTotalInvestment = async () => {
     try {
       const formbody = {
         user_id: singleUser.id
       }
+      
+      setModal(true)
 
       const response = await PostApi(Apis.admin.get_user_total_investment, formbody)
       if (response.status === 200) {
         setUserTotal(response.msg)
-        setModal(true)
-        MoveToBottom()
       }
 
     } catch (error) {
@@ -138,7 +139,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
         <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
           <table className='w-full'>
             <thead >
-              <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
+              <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onMouseOver={() => setModal(true)}>
                 <td className='text-center truncate  capitalize p-2'>joined</td>
                 <td className='text-center truncate  capitalize p-2'>full name</td>
                 <td className='text-center truncate  capitalize p-2'>username</td>
@@ -155,7 +156,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
                   <td className='p-4  text-center truncate'>{item.username}</td>
                   <td className='p-4  text-center truncate'>{item.email}</td>
                   <td className='p-4  truncate'><img src={item.country_flag} className='w-4 h-auto mx-auto'></img></td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleUserFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserTotalInvestment}> <BsThreeDots className="mx-auto text-base" /></td>
                 </tr>
               ))}
             </tbody>}

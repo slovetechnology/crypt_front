@@ -65,7 +65,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
         const formbody = {
             amount: parseFloat(amount),
             wallet_address: walletAddress,
-            crypto: selectValue.coin,
+            crypto: selectValue.crypto,
             network: selectValue.network,
             wthuser: user.username
         }
@@ -219,8 +219,8 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                                         {adminWallets.map((item, i) => (
                                             <div className='flex flex-col mt-1' key={i}>
                                                 <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                                    <img src={`${imageurl}/coins/${item.coin_img}`} className='h-auto w-4'></img>
-                                                    <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                                    <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
+                                                    <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
                                                 </div>
                                             </div>
                                         ))}

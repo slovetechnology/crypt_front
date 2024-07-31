@@ -121,7 +121,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
         const formbody = {
             amount: parseFloat(amount),
             trading_plan: buybal.title,
-            crypto: selectValue.coin,
+            crypto: selectValue.crypto,
             from: 'external source',
             deposituser: user.username
         }
@@ -133,7 +133,6 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
             if (response.status === 200) {
                 setUserDeposits(response.msg)
                 Alert('Request Successful', `Deposit successful`, 'success')
-                setModal(false)
                 setDepositTitle('deposit history')
                 refetchDeposits()
                 refetchInvestments()
@@ -146,6 +145,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                 setpagestart(1)
                 setStart(0)
                 setEnd(6)
+                setModal(false)
             } else {
                 Alert('Request Failed', `${response.msg}`, 'error')
             }
@@ -212,12 +212,12 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                                 </div>
                             </div>
                             {selectState && <div>
-                                {adminWallets.length > 0 &&<>
+                                {adminWallets.length > 0 && <>
                                     {adminWallets.map((item, i) => (
                                         <div className='flex flex-col mt-1' key={i}>
                                             <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                                <img src={`${imageurl}/coins/${item.coin_img}`} className='h-auto w-4'></img>
-                                                <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                                <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
+                                                <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
                                             </div>
                                         </div>
                                     ))}
@@ -225,7 +225,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                             </div>}
                         </div>
                     </div>
-                    {Object.values(selectValue).length !== 0 && <div className='text-[0.8rem] text-center'>Your <span className='capitalize'>{selectValue.coin}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>, copy below:</div>}
+                    {Object.values(selectValue).length !== 0 && <div className='text-[0.8rem] text-center'>Your <span className='capitalize'>{selectValue.crypto}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>, copy below:</div>}
                     {Object.values(selectValue).length !== 0 && <div className='flex gap-2 items-center'>
                         <div className='text-xs text-[#5BB4FD]'>{selectValue.address}</div>
                         <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
@@ -235,9 +235,9 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                         </button>
                     </div>}
                     {Object.values(selectValue).length !== 0 && <div>
-                        <div className='text-[0.8rem] text-center'>or scan qr code:</div>
+                        <div className='text-[0.8rem] text-center' onClick={() => console.log(selectValue)}>or scan qr code:</div>
                         <div className='flex items-center justify-center'>
-                            <img src={`${imageurl}/coins/${selectValue.qrcode_img}`} className='h-32 w-auto'></img>
+                            <img src={`${imageurl}/cryptocurrency/${selectValue.qrcode_img}`} className='h-32 w-auto'></img>
                         </div>
                     </div>}
                     <div className='flex flex-col gap-2 items-center'>
