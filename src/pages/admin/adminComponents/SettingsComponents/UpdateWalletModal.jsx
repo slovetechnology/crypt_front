@@ -98,6 +98,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
     setDeleted(false)
 
     if (!form.crypto || !form.network || !form.address) return setError('field(s) cannot be empty')
+    if (cryptoImg.img === null || qrImg.img === null) return setError('upload all images')
 
     const formbody = new FormData()
     formbody.append('wallet_id', singleWallet.id)

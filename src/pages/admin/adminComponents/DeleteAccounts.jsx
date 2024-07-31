@@ -139,7 +139,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
         <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
           <table className='w-full'>
             <thead >
-              <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onMouseOver={() => setModal(true)}>
+              <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
                 <td className='text-center truncate  capitalize p-2'>joined</td>
                 <td className='text-center truncate  capitalize p-2'>full name</td>
                 <td className='text-center truncate  capitalize p-2'>username</td>
