@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-import { Apis, PostApi } from '../../../services/API'
+import { Apis, imageurl, PostApi } from '../../../services/API'
 import { MdContentCopy } from 'react-icons/md'
-import { supportedCoins } from '../../../services/Miscellaneous'
 import Loading from '../../../PageComponents/Loading'
 import { FaAngleDown, FaAngleUp, FaCheck, FaXmark } from 'react-icons/fa6'
-import { PROFILE, WALLET } from '../../../store'
+import { ADMINWALLETS, PROFILE, WALLET } from '../../../store'
 import { Alert } from '../../../utils/utils'
 import { useAtom } from 'jotai'
 
 const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, setUserDeposits, setDepositTitle, setStart, setEnd, setpagestart, setpageend, refetchDeposits, refetchWallet, refetchInvestments, refetchInvestmentsUnclaim, refetchNotifications, refetchUnreadNotis }) => {
     const [userwallet] = useAtom(WALLET)
     const [user] = useAtom(PROFILE)
+    const [adminWallets] = useAtom(ADMINWALLETS)
 
     const [copy, setCopy] = useState(false)
     const [amount, setAmount] = useState('')
@@ -212,14 +212,16 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                                 </div>
                             </div>
                             {selectState && <div>
-                                {supportedCoins.map((item, i) => (
-                                    <div className='flex flex-col mt-1' key={i}>
-                                        <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                            <img src={item.img} className='h-auto w-4'></img>
-                                            <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                {adminWallets.length > 0 &&<>
+                                    {adminWallets.map((item, i) => (
+                                        <div className='flex flex-col mt-1' key={i}>
+                                            <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
+                                                <img src={`${imageurl}/coins/${item.coin_img}`} className='h-auto w-4'></img>
+                                                <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </>}
                             </div>}
                         </div>
                     </div>
@@ -235,7 +237,7 @@ const DepositModal = ({ setModal, buybal, setToggle, setScreen, userDeposits, se
                     {Object.values(selectValue).length !== 0 && <div>
                         <div className='text-[0.8rem] text-center'>or scan qr code:</div>
                         <div className='flex items-center justify-center'>
-                            <img src={selectValue.qr} className='h-32 w-auto'></img>
+                            <img src={`${imageurl}/coins/${selectValue.qrcode_img}`} className='h-32 w-auto'></img>
                         </div>
                     </div>}
                     <div className='flex flex-col gap-2 items-center'>

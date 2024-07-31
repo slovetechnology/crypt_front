@@ -72,44 +72,6 @@ export const tradingPlans = [
     },
 ]
 
-export const supportedCoins = [
-    {
-        coin: 'bitcoin',
-        img: bitcoin,
-        address: '14y635WCNGk2LbwWGDfZgYEWHSZhiEjXm',
-        network: 'bitcoin network',
-        qr: btcqrcode
-    },
-    {
-        coin: 'USDT',
-        img: usdt,
-        address: 'TRcyNJLKUPW4wVpxpUgmTJckN7bz4DWSvV',
-        network: 'tron network',
-        qr: usdtqrcode
-    },
-    {
-        coin: 'ethereum',
-        img: ethereum,
-        address: '0x72dab9d1e0376858579921c7id3ffb6d9db2183',
-        network: 'ERC20 network',
-        qr: ethqrcode
-    }
-    ,
-    {
-        coin: 'solana',
-        img: solana,
-        address: 'CZXopsQvqwS8YZquCQLTh7jZ4PCfZ5FEVBTH',
-        network: 'solana network',
-        qr: solqrcode
-    },
-    {
-        coin: 'XRP',
-        img: xrp,
-        address: 'rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV',
-        network: 'ripple network',
-        qr: xrpqrcode
-    },
-]
 
 export const questions = [
     {

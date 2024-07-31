@@ -63,7 +63,11 @@ const admin_urls = {
     update_deposits: admin + 'update-deposits',
     delete_users: admin + 'delete-users',
     get_user_total_investment: admin + 'get-user-total',
-    update_withdrawals: admin + 'update-withdrawals'
+    update_withdrawals: admin + 'update-withdrawals',
+    get_admin_wallets: admin + 'all-admin-wallets',
+    create_admin_wallet: admin + 'create-admin-wallet',
+    update_admin_wallet: admin + 'update-admin-wallet',
+    delete_admin_wallet: admin + 'delete-admin-wallet'
 }
 
 export const Apis = {

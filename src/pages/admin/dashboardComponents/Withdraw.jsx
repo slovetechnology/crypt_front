@@ -1,25 +1,25 @@
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
-import { BiDollar, BiMoneyWithdraw } from 'react-icons/bi'
-import { IoIosSearch, IoMdArrowBack } from 'react-icons/io'
+import { BiMoneyWithdraw } from 'react-icons/bi'
+import { IoIosSearch } from 'react-icons/io'
 import { IoCheckbox } from 'react-icons/io5'
 import { RiHistoryFill } from 'react-icons/ri'
-import { PROFILE, WALLET, WITHDRAWALS } from '../../../store'
+import { ADMINWALLETS, PROFILE, WALLET, WITHDRAWALS } from '../../../store'
 import { MdSentimentVeryDissatisfied } from 'react-icons/md'
 import moment from 'moment'
 import LoadingAdmin from '../../../PageComponents/LoadingAdmin'
 import { Alert } from '../../../utils/utils'
-import { Apis, PostApi } from '../../../services/API'
+import { Apis, imageurl, PostApi } from '../../../services/API'
 import { FiX } from 'react-icons/fi'
 import wthwallet from '../../../assets/images/wthwallet.png'
 import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp } from 'react-icons/fa6'
-import { supportedCoins } from '../../../services/Miscellaneous'
 import nothnyet from '../../../assets/images/nothn.png'
 
 const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, refetchUnreadNotis, refetchWallet, urlState }) => {
     const [user] = useAtom(PROFILE)
     const [fromAtom] = useAtom(WITHDRAWALS)
     const [userwallet] = useAtom(WALLET)
+    const [adminWallets] = useAtom(ADMINWALLETS)
     const [allwithdrawals, setAllWithdrawals] = useState(fromAtom)
     const [check, setCheck] = useState('')
     const [checkError, setCheckError] = useState(false)
@@ -215,14 +215,16 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                                     </div>
                                 </div>
                                 {selectState && <div>
-                                    {supportedCoins.map((item, i) => (
-                                        <div className='flex flex-col mt-1' key={i}>
-                                            <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                                <img src={item.img} className='h-auto w-4'></img>
-                                                <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                    {adminWallets.length > 0 &&<>
+                                        {adminWallets.map((item, i) => (
+                                            <div className='flex flex-col mt-1' key={i}>
+                                                <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
+                                                    <img src={`${imageurl}/coins/${item.coin_img}`} className='h-auto w-4'></img>
+                                                    <div className='text-[0.85rem] font-bold capitalize'>{item.coin}</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))}
+                                    </>}
                                 </div>}
                             </div>
                         </div>

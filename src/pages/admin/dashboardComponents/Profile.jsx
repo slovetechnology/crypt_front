@@ -127,6 +127,13 @@ const Profile = ({ setToggleExtra }) => {
                     setUserEdit(false)
                     setCommit(false)
                     setUser(response.msg)
+                    setForm({
+                        full_name: user.full_name,
+                        email: user.email,
+                        username: user.username,
+                        old_password: '',
+                        new_password: '',
+                    })
 
                 } else {
                     Alert('Request Failed', response.msg, 'error')

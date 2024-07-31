@@ -3,9 +3,13 @@ import { FiUploadCloud } from "react-icons/fi";
 import { IoWalletOutline } from "react-icons/io5";
 import { MdOutlineEdit } from 'react-icons/md';
 import { RiErrorWarningLine } from "react-icons/ri";
+import Loading from '../../../../PageComponents/Loading';
+import { Apis, PostApi } from '../../../../services/API';
+import { Alert } from '../../../../utils/utils';
 
-const CreateWalletModal = ({ closeView }) => {
+const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpagestart, setpageend }) => {
     const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
     const toggler = useRef()
     const coinimgref = useRef()
     const qrimgref = useRef()
@@ -82,16 +86,40 @@ const CreateWalletModal = ({ closeView }) => {
         })
     }
 
-    const CreateWallet = () => {
+    const CreateWallet = async () => {
         setTimeout(() => {
             setError('')
         }, 1500)
 
-        if (!form.coin) return setError('field(s) cannot be empty')
-        if (!form.network) return setError('field(s) cannot be empty')
-        if (!form.address) return setError('field(s) cannot be empty')
-        if (coinImg.img === null) return setError('upload all images')
-        if (qrImg.img === null) return setError('upload all images')
+        if (!form.coin || !form.network || !form.address) return setError('field(s) cannot be empty')
+        if (coinImg.img === null || qrImg.img === null) return setError('upload all images')
+
+        const formbody = new FormData()
+        formbody.append('coin_img', coinImg.image)
+        formbody.append('qrcode_img', qrImg.image)
+        formbody.append('coin', form.coin)
+        formbody.append('network', form.network)
+        formbody.append('address', form.address)
+
+        setLoading(true)
+        try {
+            const response = await PostApi(Apis.admin.create_admin_wallet, formbody)
+            if (response.status === 200) {
+                Alert('Request Successful', 'Wallet created successfully', 'success')
+                setAdminWallets(response.msg)
+                setpageend(response.msg.length / 3)
+                setpagestart(1)
+                setStart(0)
+                setEnd(3)
+                closeView()
+            } else {
+                Alert('Request Failed', response.msg, 'error')
+            }
+        } catch (error) {
+            Alert('Request Failed', `${error.message}`, 'error')
+        } finally {
+            setLoading(false)
+        }
     }
 
 
@@ -101,6 +129,7 @@ const CreateWalletModal = ({ closeView }) => {
         <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
             <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden' ref={toggler}>
                 <div className={`w-full h-full relative`}>
+                    {loading && <Loading />}
                     <div className='flex flex-col md:w-[90%] w-11/12 mx-auto py-4 md:text-[0.9rem] text-[0.8rem]'>
                         <div className='text-xl uppercase flex gap-1 items-center justify-center font-bold border-b'>
                             <span>create wallet</span>

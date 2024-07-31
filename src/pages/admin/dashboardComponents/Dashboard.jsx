@@ -12,7 +12,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import Wallet from './Wallet'
 import moment from 'moment'
-import { DEPOSITS, INVESTMENTS, INVESTMENTUNCLAIM, NOTIFICATIONS, PROFILE, UNREADNOTIS, UPS, WALLET, WITHDRAWALS } from '../../../store';
+import { ADMINWALLETS, DEPOSITS, INVESTMENTS, INVESTMENTUNCLAIM, NOTIFICATIONS, PROFILE, UNREADNOTIS, UPS, WALLET, WITHDRAWALS } from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Profile from './Profile';
@@ -76,6 +76,7 @@ const Dashboard = () => {
     const [, setWithdrawals] = useAtom(WITHDRAWALS)
     const [wallet, setWallet] = useAtom(WALLET)
     const [, setUps] = useAtom(UPS)
+    const [, setAdminWallets] = useAtom(ADMINWALLETS)
     const [urlState, setUrlState] = useState(false)
     const [loading, setLoading] = useState(true)
     const [slideShow, setSlideShow] = useState(false)
@@ -120,24 +121,6 @@ const Dashboard = () => {
     useEffect(() => {
         FetchUnreadNotis()
     }, [FetchUnreadNotis])
-
-    const FetchWallet = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.user.wallet)
-            if (response.status === 200) {
-                setWallet(response.msg)
-            }
-
-        } catch (error) {
-            //
-        } finally {
-            setLoading(false)
-        }
-    }, [])
-
-    useEffect(() => {
-        FetchWallet()
-    }, [FetchWallet])
 
     const FetchDeposits = useCallback(async () => {
         try {
@@ -222,6 +205,41 @@ const Dashboard = () => {
         FetchUps()
     }, [FetchUps])
 
+    const FetchAdminWallets = useCallback(async () => {
+        try {
+            const response = await UserGetApi(Apis.admin.get_admin_wallets)
+            if (response.status === 200) {
+                setAdminWallets(response.msg)
+            }
+
+        } catch (error) {
+            //
+        }
+    }, [])
+
+    useEffect(() => {
+        FetchAdminWallets()
+    }, [FetchAdminWallets])
+
+    const FetchWallet = useCallback(async () => {
+        try {
+            const response = await UserGetApi(Apis.user.wallet)
+            if (response.status === 200) {
+                setWallet(response.msg)
+            }
+
+        } catch (error) {
+            //
+        } finally {
+            setLoading(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        FetchWallet()
+    }, [FetchWallet])
+
+
     return (
         <div className='flex bg-[#0c091a]'>
             <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:block lg:relative overflow-hidden ${slideShow ? 'block fixed top-0 left-0 h-full z-50' : 'hidden'} `}>
@@ -287,7 +305,7 @@ const Dashboard = () => {
                     <div className='flex flex-col gap-4'>
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-light text-[0.85rem] flex items-center justify-between mt-4'>
                             <div className='flex gap-2 xl:gap-0 items-center'>
-                                <div className='xl:hidden cursor-pointer' onClick={() => { setToggle('profile'); setUrlState(false); setSlideShow(false); setToggleExtra('')}}>
+                                <div className='xl:hidden cursor-pointer' onClick={() => { setToggle('profile'); setUrlState(false); setSlideShow(false); setToggleExtra('') }}>
                                     <img src={`${imageurl}/profiles/${user.image}`} className='w-10 h-10 object-cover rounded-full border border-light'></img>
                                 </div>
                                 <div className='capitalize font-medium'>

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { ADMINALLDEPOSITS, ADMINALLUSERS, ADMINALLWITHDRAWALS, NOTIFICATIONS, UNREADNOTIS } from '../../../store'
+import { ADMINALLDEPOSITS, ADMINALLUSERS, ADMINALLWITHDRAWALS, ADMINWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../../../store'
 import { useAtom } from 'jotai'
 import Cookies from 'js-cookie'
 import { CookieName } from '../../../utils/utils'
@@ -55,6 +55,7 @@ const AdminHome = () => {
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
   const [, setAllWithdrawals] = useAtom(ADMINALLWITHDRAWALS)
+  const [, setAdminWallets] = useAtom(ADMINWALLETS)
   const [slideShow, setSlideShow] = useState(false)
 
   const [loading, setLoading] = useState(true)
@@ -133,6 +134,24 @@ const AdminHome = () => {
   }, [FetchAllWithdrawals])
 
 
+  const FetchAdminWallets = useCallback(async () => {
+    try {
+      const response = await UserGetApi(Apis.admin.get_admin_wallets)
+      if (response.status === 200) {
+        setAdminWallets(response.msg)
+      }
+
+    } catch (error) {
+      //
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchAdminWallets()
+  }, [FetchAdminWallets])
+
+
+
   const FetchAllDeposits = useCallback(async () => {
     setLoading(true)
     try {
@@ -171,7 +190,7 @@ const AdminHome = () => {
             <div className='flex gap-4 flex-col'>
               <div className=' text-[0.65rem] uppercase'>main</div>
               {MainLinks.map((item, i) => (
-                <div key={i} onClick={() => {setToggle(item.path); setSlideShow(false)}}>
+                <div key={i} onClick={() => { setToggle(item.path); setSlideShow(false) }}>
                   <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === item.path ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
                     <item.icon className='text-[1.3rem] ' />
                     <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -183,7 +202,7 @@ const AdminHome = () => {
               <div className='text-[0.65rem] uppercase'>others</div>
               <div className='flex flex-col gap-8'>
                 {OtherLinks.map((item, i) => (
-                  <div key={i} onClick={() => {setToggle(item.path); setSlideShow(false)}}>
+                  <div key={i} onClick={() => { setToggle(item.path); setSlideShow(false) }}>
                     <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === item.path ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
                       <item.icon className='text-[1.3rem] ' />
                       <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -265,7 +284,7 @@ const AdminHome = () => {
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-5 items-center h-full w-full'>
               {AllLinks.map((item, i) => (
-                <div key={i} onClick={() => {setToggle(item.path); setSlideShow(false)}}>
+                <div key={i} onClick={() => { setToggle(item.path); setSlideShow(false) }}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === item.path ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-xl text-lg' />
                     <div className='capitalize md:text-xs text-[0.7rem] font-medium'>{item.path}</div>
