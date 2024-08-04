@@ -19,19 +19,6 @@ const Header = () => {
     const [overview, setOverview] = useState(false)
     const [company, setCompany] = useState(false)
 
-    const styleDrop = {
-        display: toggleDrop === true ? "flex" : "none"
-    }
-    const reverseDrop = {
-        display: toggleDrop === true ? "none" : "flex"
-    }
-    const styleDroptwo = {
-        display: toggleDroptwo === true ? 'flex' : "none"
-    }
-    const reverseDroptwo = {
-        display: toggleDroptwo === true ? "none" : "flex"
-    }
-
     const closer = useRef()
     const closertwo = useRef()
 
@@ -81,12 +68,12 @@ const Header = () => {
                                     <div className='flex gap-1 items-center'
                                     >
                                         <PiWindowsLogoThin className='text-[1.1rem]  text-[#1E2833]' />
-                                        <div className=' text-[0.9rem] font-medium text-[#1E2833] capitalize cursor-pointer' style={reverseDrop} onClick={() => setToggleDrop(true)}>overview</div>
-                                        <div className=' text-[0.9rem] font-medium text-[#1E2833] capitalize cursor-pointer' style={styleDrop}>overview</div>
+                                        <div className={`text-[0.9rem] font-medium text-[#1E2833] capitalize cursor-pointer ${toggleDrop ? 'hidden' : 'flex'}`} onClick={() => setToggleDrop(true)}>overview</div>
+                                        <div className={`text-[0.9rem] font-medium text-[#1E2833] capitalize cursor-pointer ${toggleDrop ? 'flex' : 'hidden'}`}>overview</div>
                                         <TfiAngleDown className={`mt-1 text-[0.5rem] text-[#1E2833] ${toggleDrop ? ' rotate-180' : 'rotate-0'} trans`} />
                                     </div>
                                 </div>
-                                <div className=' bg-white p-8 w-[40rem] h-fit absolute top-[4.2rem] -left-40 shd' style={styleDrop} ref={closer}>
+                                <div className={`bg-white p-8 w-[40rem] h-fit absolute top-[4.2rem] -left-40 shd ${toggleDrop ? 'flex' : 'hidden'}`} ref={closer}>
                                     <div className='grid grid-cols-2 gap-5 w-full'>
                                         <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] lnk' onClick={MoveToTop}>
                                             <div className=' flex flex-col gap-2'>
@@ -116,11 +103,11 @@ const Header = () => {
                             <div className='border-r h-6'></div>
                             <div className='relative'>
                                 <div className='flex gap-1 items-center'>
-                                    <div className=' text-[0.9rem] font-medium text-white capitalize cursor-pointer' style={reverseDroptwo} onClick={() => setToggleDroptwo(true)}>company</div>
-                                    <div className=' text-[0.9rem] font-medium text-white capitalize cursor-pointer' style={styleDroptwo}>company</div>
+                                    <div className={`text-[0.9rem] font-medium text-white capitalize cursor-pointer ${toggleDroptwo ? 'hidden' : 'flex'}`} onClick={() => setToggleDroptwo(true)}>company</div>
+                                    <div className={`text-[0.9rem] font-medium text-white capitalize cursor-pointer ${toggleDroptwo ? 'flex' : 'hidden'}`}>company</div>
                                     <TfiAngleDown className={`mt-1 text-[0.5rem] text-white  ${toggleDroptwo ? ' rotate-180' : 'rotate-0'} trans`} />
                                 </div>
-                                <div className='flex flex-col gap-5 bg-white py-8 pl-10 pr-3 w-56 h-fit absolute top-[3.7rem] -left-8 shd' ref={closertwo} style={styleDroptwo}>
+                                <div className={`flex flex-col gap-5 bg-white py-8 pl-10 pr-3 w-56 h-fit absolute top-[3.7rem] -left-8 shd ${toggleDroptwo ? 'flex' : 'hidden'}`} ref={closertwo}>
                                     <Link to='/' onClick={MoveToTop} className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>
                                         <MdMapsHomeWork className='text-[1.2rem] text-[#1E2833]' />
                                         <div className='text-[#1E2833] text-[0.95rem] font-medium'>Home</div>

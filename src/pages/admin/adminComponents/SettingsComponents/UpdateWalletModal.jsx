@@ -35,7 +35,14 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
       ...form,
       [event.target.name]: event.target.value
     })
-    setCommit(true)
+  }
+
+  const CommitHandler = () => {
+    if (form.crypto === singleWallet.crypto && form.network === singleWallet.network && form.address === singleWallet.address) {
+      setCommit(false)
+    } else {
+      setCommit(true)
+    }
   }
 
   useEffect(() => {
@@ -53,7 +60,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
   const handleUpload = (event) => {
     setTimeout(() => {
       setError('')
-    }, 1500)
+    }, 2000)
     const file = event.target.files[0]
     if (file.size >= 1000000) {
       cryptoimgref.current.value = null
@@ -73,7 +80,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
   const handleUpload2 = (event) => {
     setTimeout(() => {
       setError('')
-    }, 1500)
+    }, 2000)
     const file = event.target.files[0]
     if (file.size >= 1000000) {
       qrimgref.current.value = null
@@ -93,12 +100,12 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
   const UpdateWallet = async () => {
     setTimeout(() => {
       setError('')
-    }, 1500)
+    }, 2000)
 
     setDeleted(false)
 
-    if (!form.crypto || !form.network || !form.address) return setError('field(s) cannot be empty')
-    if (cryptoImg.img === null || qrImg.img === null) return setError('upload all images')
+    if (!form.crypto || !form.network || !form.address) return setError('Fill all fields')
+    if (cryptoImg.img === null || qrImg.img === null) return setError('Upload all images')
 
     const formbody = new FormData()
     formbody.append('wallet_id', singleWallet.id)
@@ -108,27 +115,26 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
     formbody.append('network', form.network)
     formbody.append('address', form.address)
 
-    if (commit) {
-      setLoading(true)
-      try {
-        const response = await UserPutApi(Apis.admin.update_admin_wallet, formbody)
-        if (response.status === 200) {
-          Alert('Request Successful', 'Wallet updated successfully', 'success')
-          setAdminWallets(response.msg)
-          setpageend(response.msg.length / 3)
-          setpagestart(1)
-          setStart(0)
-          setEnd(5)
-          closeView()
-        } else {
-          Alert('Request Failed', response.msg, 'error')
-        }
-      } catch (error) {
-        Alert('Request Failed', `${error.message}`, 'error')
-      } finally {
-        setLoading(false)
+    setLoading(true)
+    try {
+      const response = await UserPutApi(Apis.admin.update_admin_wallet, formbody)
+      if (response.status === 200) {
+        Alert('Request Successful', 'Wallet updated successfully', 'success')
+        setAdminWallets(response.msg)
+        setpageend(response.msg.length / 3)
+        setpagestart(1)
+        setStart(0)
+        setEnd(5)
+        closeView()
+      } else {
+        Alert('Request Failed', response.msg, 'error')
       }
+    } catch (error) {
+      Alert('Request Failed', `${error.message}`, 'error')
+    } finally {
+      setLoading(false)
     }
+
   }
 
 
@@ -173,15 +179,15 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
             <div className='flex flex-col gap-4 mt-4 relative'>
               <div className='flex justify-between items-center'>
                 <div className='italic'>crypto name:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler} onKeyUp={CommitHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>network:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler} onKeyUp={CommitHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>address:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler} onKeyUp={CommitHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>crypto image:</div>
@@ -207,14 +213,17 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
                   <input ref={qrimgref} type="file" onChange={handleUpload2} hidden />
                 </label>
               </div>
-              {error !== '' && <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
-                <RiErrorWarningLine className='md:text-base text-sm' />
-                <span>{error}</span>
-              </div>}
+              {error !== '' &&
+                  <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
+                    <RiErrorWarningLine className='md:text-base text-sm' />
+                    <span>{error}</span>
+                    <div className='error-progress absolute -bottom-1 left-0 rounded-sm'></div>
+                  </div>
+              }
             </div>
-            <div className='flex gap-4 items-center justify-between mt-8 relative'>
-              <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={UpdateWallet}>update</button>
-              <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => setDeleted(true)}>delete</button>
+            <div className='flex gap-4 items-center mt-8 relative'>
+              {commit && <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={UpdateWallet}>update</button>}
+              <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium ml-auto' onClick={() => setDeleted(true)}>delete</button>
               {deleted && <div className='bg-white adsha w-fit h-fit flex flex-col gap-4 items-center justify-center absolute bottom-0 right-0 p-3 rounded-md text-xs'>
                 <div className='md:text-[0.85rem] text-xs flex items-center gap-1 justify-center text-center font-medium'>
                   <span> Are you sure you want to Delete Wallet</span>

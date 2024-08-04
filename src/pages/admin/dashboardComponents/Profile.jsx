@@ -39,11 +39,9 @@ const Profile = ({ setToggleExtra }) => {
     const imgref = useRef()
     const navigate = useNavigate()
 
-
-
     const [profile, setProfile] = useState({
         img: `${imageurl}/profiles/${user.image}`,
-        image: ``
+        image: ''
     })
 
     const [form, setForm] = useState({
@@ -53,12 +51,20 @@ const Profile = ({ setToggleExtra }) => {
         old_password: '',
         new_password: '',
     })
+
     const formHandler = (event) => {
         setForm({
             ...form,
             [event.target.name]: event.target.value
         })
-        setCommit(true)
+    }
+
+    const CommitHandler = () => {
+        if (form.full_name === user.full_name && form.username === user.username && form.email === user.email) {
+            setCommit(false)
+        } else {
+            setCommit(true)
+        }
     }
 
     const handleProfileUpload = (event) => {
@@ -101,8 +107,6 @@ const Profile = ({ setToggleExtra }) => {
         })
     }
 
-
-
     const submitForm = async (event) => {
         event.preventDefault()
 
@@ -115,35 +119,34 @@ const Profile = ({ setToggleExtra }) => {
         formbody.append('old_password', form.old_password)
         formbody.append('new_password', form.new_password)
 
-        if (commit) {
-            setLoading(true)
-            try {
-                const response = await UserPutApi(Apis.user.update, formbody)
-                if (response.status === 200) {
-                    Alert('Request Successful', 'Profile updated successfully', 'success')
-                    setEmailEdit(false)
-                    setNameEdit(false)
-                    setPassEdit(false)
-                    setUserEdit(false)
-                    setCommit(false)
-                    setUser(response.msg)
-                    setForm({
-                        full_name: user.full_name,
-                        email: user.email,
-                        username: user.username,
-                        old_password: '',
-                        new_password: '',
-                    })
+        setLoading(true)
+        try {
+            const response = await UserPutApi(Apis.user.update, formbody)
+            if (response.status === 200) {
+                Alert('Request Successful', 'Profile updated successfully', 'success')
+                setEmailEdit(false)
+                setNameEdit(false)
+                setPassEdit(false)
+                setUserEdit(false)
+                setCommit(false)
+                setUser(response.msg)
+                setForm({
+                    full_name: response.msg.full_name,
+                    email: response.msg.email,
+                    username: response.msg.username,
+                    old_password: '',
+                    new_password: '',
+                })
 
-                } else {
-                    Alert('Request Failed', response.msg, 'error')
-                }
-            } catch (error) {
-                Alert('Request Failed', `${error.message}`, 'error')
-            } finally {
-                setLoading(false)
+            } else {
+                Alert('Request Failed', response.msg, 'error')
             }
+        } catch (error) {
+            Alert('Request Failed', `${error.message}`, 'error')
+        } finally {
+            setLoading(false)
         }
+
     }
 
     const DeleteAccount = async () => {
@@ -185,7 +188,6 @@ const Profile = ({ setToggleExtra }) => {
         }
     }, [MoveToBottom])
 
-
     document.documentElement.style.overflow = loading ? 'hidden' : 'auto'
 
     return (
@@ -204,7 +206,7 @@ const Profile = ({ setToggleExtra }) => {
                             </div>
                             <input ref={imgref} type="file" onChange={handleProfileUpload} hidden></input>
                         </label>
-                        <div className='absolute -bottom-2 right-0 text-xs text-[#c42e2e]'>{imageError}</div>
+                        <div className='absolute -bottom-1.5 -right-10 text-xs text-[#c42e2e]'>{imageError}</div>
                     </div>
                 </div>
 
@@ -243,7 +245,7 @@ const Profile = ({ setToggleExtra }) => {
                     <div>acount details</div>
                     <LuUserCircle className='text-light' />
                 </div>
-                <form onSubmit={submitForm}>
+                <form onSubmit={submitForm} >
                     <div className='md:w-[80%] w-11/12 mx-auto md:text-[0.85rem] text-xs mt-8 text-semi-white flex flex-col gap-6'>
                         <div className='flex justify-between items-center  capitalize'>
                             <div>full name:</div>
@@ -254,7 +256,7 @@ const Profile = ({ setToggleExtra }) => {
                                 </div>
                             </div>}
                             {nameEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] px-2 py-1' name='full_name' value={form.full_name} onChange={formHandler} type='text' ></input>
+                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] px-2 py-1' name='full_name' value={form.full_name} onChange={formHandler} onKeyUp={CommitHandler} type='text'></input>
                                 <div className='text-[1.2rem] text-light cursor-pointer' onClick={() => setNameEdit(!nameEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -269,7 +271,7 @@ const Profile = ({ setToggleExtra }) => {
                                 </div>
                             </div>}
                             {userEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] px-2 py-1' name='username' value={form.username} onChange={formHandler} type='text'></input>
+                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] px-2 py-1' name='username' value={form.username} onChange={formHandler} onKeyUp={CommitHandler} type='text'></input>
                                 <div className='text-[1.2rem] text-light cursor-pointer' onClick={() => { setUserEdit(!userEdit) }}>
                                     <MdOutlineCancel />
                                 </div>
@@ -284,7 +286,7 @@ const Profile = ({ setToggleExtra }) => {
                                 </div>
                             </div>}
                             {emailEdit && <div className='flex md:gap-4 gap-2 items-center'>
-                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] px-2 py-1' name='email' value={form.email} onChange={formHandler} type='email'></input>
+                                <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] px-2 py-1' name='email' value={form.email} onChange={formHandler} onKeyUp={CommitHandler} type='email'></input>
                                 <div className='text-[1.2rem] text-light cursor-pointer' onClick={() => setEmailEdit(!emailEdit)}>
                                     <MdOutlineCancel />
                                 </div>
@@ -314,19 +316,17 @@ const Profile = ({ setToggleExtra }) => {
                                 </div>
                             </div>}
                         </div>
-                        {commit || nameEdit || passEdit || emailEdit || userEdit ?
+                        {commit &&
                             <div className='flex md:gap-8 gap-4 items-center justify-center md:mt-8 mt-4'>
                                 <button className='outline-none w-fit h-fit py-2 px-6 md:text-sm text-xs text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-[550]' type='button' onClick={cancelChanges}>
-                                    <span>cancel</span>
+                                    <span>cancel changes</span>
                                     <FaRegRectangleXmark />
                                 </button>
                                 <button className='outline-none w-fit h-fit py-2 px-6 md:text-sm text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-[550]'>
-                                    <span>save</span>
+                                    <span>save changes</span>
                                     <IoCheckbox />
                                 </button>
                             </div>
-                            :
-                            <div></div>
                         }
 
                     </div>
@@ -368,7 +368,7 @@ const Profile = ({ setToggleExtra }) => {
                                     <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center'>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => {setDeleteScreen(0); setDeletePassword('')}}>
                                         <span>cancel deletion</span>
                                         <FaRegRectangleXmark />
                                     </button>

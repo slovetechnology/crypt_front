@@ -50,7 +50,7 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
     const handleUpload = (event) => {
         setTimeout(() => {
             setError('')
-        }, 1500)
+        }, 2000)
         const file = event.target.files[0]
         if (file.size >= 1000000) {
             cryptoimgref.current.value = null
@@ -69,7 +69,7 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
     const handleUpload2 = (event) => {
         setTimeout(() => {
             setError('')
-        }, 1500)
+        }, 2000)
         const file = event.target.files[0]
         if (file.size >= 1000000) {
             qrimgref.current.value = null
@@ -88,10 +88,10 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
     const CreateWallet = async () => {
         setTimeout(() => {
             setError('')
-        }, 1500)
+        }, 2000)
 
-        if (!form.crypto || !form.network || !form.address) return setError('field(s) cannot be empty')
-        if (cryptoImg.img === null || qrImg.img === null) return setError('upload all images')
+        if (!form.crypto || !form.network || !form.address) return setError('Fill all fields')
+        if (cryptoImg.img === null || qrImg.img === null) return setError('Upload all images')
 
         const formbody = new FormData()
         formbody.append('crypto_img', cryptoImg.image)
@@ -182,10 +182,13 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
                                     <input ref={qrimgref} type="file" onChange={handleUpload2} hidden />
                                 </label>
                             </div>
-                            {error !== '' && <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
-                                <RiErrorWarningLine className='md:text-base text-sm' />
-                                <span>{error}</span>
-                            </div>}
+                            {error !== '' &&
+                                <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
+                                    <RiErrorWarningLine className='md:text-base text-sm' />
+                                    <span>{error}</span>
+                                    <div className='error-progress absolute -bottom-1 left-0 rounded-sm'></div>
+                                </div>
+                            }
                         </div>
                         <div className='flex justify-center items-center mt-8'>
                             <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={CreateWallet}>create</button>

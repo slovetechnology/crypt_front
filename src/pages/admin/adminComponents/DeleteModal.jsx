@@ -174,7 +174,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                                 <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{deleteError}</div>
                                             </div>
                                             <div className='flex md:gap-16 gap-4 items-center'>
-                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleted(1)}>
+                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => {setDeleted(1); setDeletePassword('')}}>
                                                     <span>cancel deletion</span>
                                                     <FaRegRectangleXmark />
                                                 </button>

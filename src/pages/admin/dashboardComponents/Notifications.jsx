@@ -16,8 +16,8 @@ import nothnyet from '../../../assets/images/nothn.png'
 
 
 
-const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, setUrlState}) => {
-    const [notis, setNotis] = useAtom(NOTIFICATIONS)
+const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, setUrlState }) => {
+    const [notis] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
 
     const [mark, setMark] = useState(false)
@@ -28,17 +28,6 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, se
     const [end, setEnd] = useState(4)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(notis.length / 4)
-
-
-    const styleShow = {
-        display: showNotis === true ? "block" : "none"
-    }
-    const styler = {
-        display: showNotis === true ? "flex" : "none"
-    }
-    const reverseShow = {
-        display: showNotis === true ? "none" : "flex"
-    }
 
     const closer = useRef()
 
@@ -159,22 +148,22 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, se
 
     return (
         <div className='relative'>
-            <div>
-                <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer' onClick={() => setShowNotis(true)} style={reverseShow}>
+            <>
+                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => setShowNotis(true)}>
                     <IoNotificationsOutline />
                 </div>
-                <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer' style={styler}>
+                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer ${showNotis ? 'flex' : 'hidden'}`}>
                     <IoNotificationsOutline />
                 </div>
                 <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
-                    <div className='w-full h-full flex items-center justify-center' onClick={() => setShowNotis(true)} style={reverseShow}>
+                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => setShowNotis(true)}>
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
                             <span ><TbNotification /></span>
                         }
                     </div>
-                    <div className='w-full h-full flex items-center justify-center' style={styler}>
+                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'flex' : 'hidden'}`}>
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
@@ -183,9 +172,9 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications, setToggle, se
                         }
                     </div>
                 </div>
-            </div>
+            </>
 
-            <div className='md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full bg-white z-50 py-3 px-2' style={styleShow} ref={closer}>
+            <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full bg-white z-50 py-3 px-2 ${showNotis ? 'block' : 'hidden'}`} ref={closer}>
                 <div className='text-black flex flex-col relative mt-2 md:mt-0'>
                     <div className='flex justify-between items-center'>
                         <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>

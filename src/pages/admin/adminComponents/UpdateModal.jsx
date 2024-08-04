@@ -21,12 +21,20 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
         profit: "",
         bonus: ""
     })
+
     const inputHandler = event => {
         setForm({
             ...form,
             [event.target.name]: event.target.value
         })
-        setUpdate(true)
+    }
+
+    const UpdateHandler = () => {
+        if (form.profit === '' && form.bonus === '') {
+            setUpdate(false)
+        } else {
+            setUpdate(true)
+        }
     }
 
     const depositStatuses = [
@@ -144,7 +152,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>username:</div>
-                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.username}</div>}
+                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.username}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>email:</div>
@@ -161,37 +169,37 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>plan:</div>
-                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm capitalize'>{singleDeposit.trading_plan}</div>}
+                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleDeposit.trading_plan}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>crypto:</div>
-                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>}
+                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>date/time:</div>
-                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>}
+                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>from:</div>
-                                        {Object.values(singleDeposit).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleDeposit.from}</div>}
+                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.from}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add profit:</div>
                                         <div className='flex gap-2 items-center'>
-                                            <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler}></input>
+                                            <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                {Object.values(singleDeposit).length !== 0 &&<div>${singleDeposit.profit.toLocaleString()}</div>}
+                                                {Object.values(singleDeposit).length !== 0 && <div>${singleDeposit.profit.toLocaleString()}</div>}
                                             </div>
                                         </div>
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add bonus:</div>
                                         <div className='flex gap-2 items-center'>
-                                            <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler}></input>
+                                            <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                {Object.values(singleDeposit).length !== 0 &&<div>${singleDeposit.bonus.toLocaleString()}</div>}
+                                                {Object.values(singleDeposit).length !== 0 && <div>${singleDeposit.bonus.toLocaleString()}</div>}
                                             </div>
                                         </div>
                                     </div>

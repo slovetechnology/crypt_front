@@ -233,7 +233,7 @@ const SignupPage = () => {
                                 }
                                 <input ref={imgref} type="file" onChange={handleProfileUpload} hidden />
                               </label>
-                              <div className='absolute bottom-0 -right-10 text-xs text-[red]'>{imageError}</div>
+                              <div className='absolute -bottom-4 -right-10 text-xs text-[red]'>{imageError}</div>
                             </div>
                             <div className='flex flex-col gap-[0.3rem]'>
                               <div className='text-sm capitalize font-[550] '>full name:</div>
