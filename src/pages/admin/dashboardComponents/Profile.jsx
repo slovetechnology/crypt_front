@@ -60,7 +60,7 @@ const Profile = ({ setToggleExtra }) => {
     }
 
     const CommitHandler = () => {
-        if (form.full_name === user.full_name && form.username === user.username && form.email === user.email) {
+        if (form.full_name === user.full_name && form.username === user.username && form.email === user.email && form.old_password === '' && form.new_password === '') {
             setCommit(false)
         } else {
             setCommit(true)
@@ -303,11 +303,11 @@ const Profile = ({ setToggleExtra }) => {
                             {passEdit && <div className='flex md:gap-4 gap-2 items-center'>
                                 <div className='flex flex-col gap-6'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye(!eye)} />
                                     </div>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon2 className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     </div>
                                 </div>
