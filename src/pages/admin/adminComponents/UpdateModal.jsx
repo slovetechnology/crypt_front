@@ -30,7 +30,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
     }
 
     const UpdateHandler = () => {
-        if (form.profit === '' && form.bonus === '') {
+        if (form.profit === '' && form.bonus === '' && depositStatus === singleDeposit.deposit_status && profitStatus === singleDeposit.profit_status) {
             setUpdate(false)
         } else {
             setUpdate(true)

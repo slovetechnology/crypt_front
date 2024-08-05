@@ -17,11 +17,11 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
 
   const [cryptoImg, setCryptoImg] = useState({
     img: `${imageurl}/cryptocurrency/${singleWallet.crypto_img}`,
-    image: null
+    image: singleWallet.crypto_img
   })
   const [qrImg, setQrImg] = useState({
     img: `${imageurl}/cryptocurrency/${singleWallet.qrcode_img}`,
-    image: null
+    image: singleWallet.qrcode_img
   })
 
   const [form, setForm] = useState({
@@ -38,7 +38,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
   }
 
   const CommitHandler = () => {
-    if (form.crypto === singleWallet.crypto && form.network === singleWallet.network && form.address === singleWallet.address) {
+    if (form.crypto === singleWallet.crypto && form.network === singleWallet.network && form.address === singleWallet.address && cryptoImg.image === singleWallet.crypto_img && qrImg.image === singleWallet.qrcode_img) {
       setCommit(false)
     } else {
       setCommit(true)

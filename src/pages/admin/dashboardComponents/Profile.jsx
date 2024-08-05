@@ -41,7 +41,7 @@ const Profile = ({ setToggleExtra }) => {
 
     const [profile, setProfile] = useState({
         img: `${imageurl}/profiles/${user.image}`,
-        image: ''
+        image: user.image
     })
 
     const [form, setForm] = useState({
@@ -60,7 +60,7 @@ const Profile = ({ setToggleExtra }) => {
     }
 
     const CommitHandler = () => {
-        if (form.full_name === user.full_name && form.username === user.username && form.email === user.email && form.old_password === '' && form.new_password === '') {
+        if (form.full_name === user.full_name && form.username === user.username && form.email === user.email && form.old_password === '' && form.new_password === '' && profile.image === user.image) {
             setCommit(false)
         } else {
             setCommit(true)
@@ -96,7 +96,7 @@ const Profile = ({ setToggleExtra }) => {
         imgref.current.value = null
         setProfile({
             img: `${imageurl}/profiles/${user.image}`,
-            image: ''
+            image: user.image
         })
         setForm({
             full_name: user.full_name,
