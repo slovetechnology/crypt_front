@@ -11,21 +11,18 @@ import { Apis, UserPostApi } from '../../services/API';
 import Loading from '../../PageComponents/Loading';
 import { LuSearchCheck } from "react-icons/lu";
 import { TfiUser } from "react-icons/tfi";
-import { AItraders } from '../../services/Miscellaneous';
+import { Alltraders } from '../../services/Miscellaneous';
 import { FiX } from 'react-icons/fi';
 
 
 
 const ContactPage = () => {
 
-  const [show, setShow] = useState(1)
-  const [emailError, setEmailError] = useState(false)
-  const [usernameError, setUsernameError] = useState(false)
-  const [messageError, setMessageError] = useState(false)
+  const [screen, setScreen] = useState(1)
+  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const [code, setCode] = useState('')
-  const [codeError, setCodeError] = useState(false)
   const [trader, setTrader] = useState([])
+  const [code, setCode] = useState('')
   const [write, setWrite] = useState(false)
 
   const [form, setForm] = useState({
@@ -33,34 +30,30 @@ const ContactPage = () => {
     email: '',
     message: ''
   })
+
   const inputHandler = event => {
     setForm({
       ...form,
       [event.target.name]: event.target.value
     })
   }
+  
   const submitForm = async event => {
     event.preventDefault()
+
     setTimeout(() => {
-      setUsernameError(false)
-      setEmailError(false)
-      setMessageError(false)
+      setError('')
     }, 1000)
 
-    if (!form.username) {
-      return setUsernameError(true)
-    }
-    if (!form.email) {
-      return setEmailError(true)
+    if (!form.username) return setError('username')
+    if (!form.email) return setError('email')
+    if (!form.message) return setError('message')
 
-    }
-    if (!form.message) {
-      return setMessageError(true)
-    }
     const formbody = {
       email: form.email,
       message: form.message
     }
+
     setLoading(true)
     try {
       const response = await UserPostApi(Apis.user.contact, formbody)
@@ -77,22 +70,23 @@ const ContactPage = () => {
   }
 
   const Writefunction = () => {
-    if(code){
+    if (code) {
       setWrite(true)
-    }else{
+    } else {
       setWrite(false)
     }
   }
 
   const tradersCodeSearch = () => {
     setTimeout(() => {
-      setCodeError(false)
+      setError('')
     }, 1000)
-    if (!code) return setCodeError(true)
-    const codeSearch = AItraders.filter(item => item.traderCode === code.toLowerCase())
-    if (!codeSearch.length > 0) return setCodeError(true)
+
+    if (!code) return setError('code')
+    const codeSearch = Alltraders.filter(item => item.traderCode === code.toLowerCase())
+    if (!codeSearch.length > 0) return setError('code')
     setTrader(codeSearch)
-    setShow(3)
+    setScreen(3)
     setCode('')
     setWrite(false)
   }
@@ -124,16 +118,16 @@ const ContactPage = () => {
                       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-xs uppercase font-bold text-[#636262] '>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 lg:text-[0.8rem] text-base capitalize pl-2 p-1 ${usernameError === true ? 'border-[red]' : ''} ipt input-off`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 lg:text-[0.8rem] text-base capitalize pl-2 p-1 ${error === 'username' ? 'border-[red]' : ''} ipt input-off`} name='username' value={form.username} onChange={inputHandler}></input>
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
                           <div className='text-xs uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base  p-1 pl-2 ${emailError === true ? 'border-[red]' : ''} ipt input-off`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base  p-1 pl-2 ${error === 'email' ? 'border-[red]' : ''} ipt input-off`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
                         <div className='text-xs uppercase font-bold text-[#636262]'>message</div>
-                        <textarea placeholder='Type A Message' className={` p-2 h-36 lg:text-[0.9rem] text-base resize-none outline-none focus:outline-orange  ${messageError === true ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                        <textarea placeholder='Type A Message' className={` p-2 h-36 lg:text-[0.9rem] text-base resize-none outline-none focus:outline-orange  ${error === 'message' ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                       </div>
                       <div className='flex justify-center mt-2'>
                         <button className='outline-none bg-orange text-[0.9rem] text-white flex gap-1 items-center justify-center w-fit h-fit px-8 py-1 rounded-[3px] capitalize font-bold'>
@@ -146,12 +140,12 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-            <div className={`w-full h-fit ${show !== 1 ? 'py-8' : 'py-4'}  bg-[#9e5c36] overflow-hidden trans relative`}>
+            <div className={`w-full h-fit ${screen !== 1 ? 'py-8' : 'py-4'}  bg-[#9e5c36] overflow-hidden trans relative`}>
               <div className='w-11/12 mx-auto '>
-                {show === 1 &&
+                {screen === 1 &&
                   <div className='grid grid-cols-1 gap-2 items-center lg:flex lg:justify-between h-full' >
                     <div className='text-white text-[0.9rem] capitalize font-[550] text-center'>follow account manager on:</div>
-                    <div className='flex gap-4 justify-center' onClick={() => setShow(2)}>
+                    <div className='flex gap-4 justify-center' onClick={() => setScreen(2)}>
                       <div className='h-8 w-8 border-2 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-lg hover:text-black'>
                         <PiTelegramLogoLight />
                       </div>
@@ -164,19 +158,19 @@ const ContactPage = () => {
                     </div>
                   </div>
                 }
-                {show !== 1 && <div className='text-2xl text-white cursor-pointer absolute top-0 left-0' onClick={() => setShow(1)}>
+                {screen !== 1 && <div className='text-2xl text-white cursor-pointer absolute top-0 left-0' onClick={() => setScreen(1)}>
                   <MdCancel />
                 </div>}
-                {show !== 1 && <div className='border-t w-full absolute top-6 left-0 border-[#a0a0a0]'></div>}
-                {show !== 1 && <div className='flex flex-col gap-2 relative items-center'>
+                {screen !== 1 && <div className='border-t w-full absolute top-6 left-0 border-[#a0a0a0]'></div>}
+                {screen !== 1 && <div className='flex flex-col gap-2 relative items-center'>
                   <div className=' text-[0.85rem] text-white capitalize text-center w-full mt-6 font-medium'>
                     Enter trader's code to reveal account manager
                   </div>
                   <div className='flex gap-2 items-center'>
                     <div className='relative'>
-                      <input className={`outline-none border rounded-md bg-transparent lg:text-[0.85rem] text-base w-52 h-8 pl-2 pr-8 text-white  ${!codeError ? 'border-[#a0a0a0]' : 'border-[#7c1e1e]'}`} type='text' value={code} onChange={e => setCode(e.target.value)} onKeyUp={Writefunction}></input>
+                      <input className={`outline-none border rounded-md bg-transparent lg:text-[0.85rem] text-base w-52 h-8 pl-2 pr-8 text-white  ${error === 'code' ? 'border-[#7c1e1e]' : 'border-[#a0a0a0]'}`} type='text' value={code} onChange={e => setCode(e.target.value)} onKeyUp={Writefunction}></input>
                       {write &&
-                        <div className='absolute top-2 right-2 text-xs cursor-pointer bg-[#ffffff6e] text-[#444343] rounded-full w-fit h-fit p-0.5' onClick={() => {setCode(''); setWrite(false)}}>
+                        <div className='absolute top-2 right-2 text-xs cursor-pointer bg-[#ffffff6e] text-[#444343] rounded-full w-fit h-fit p-0.5' onClick={() => { setCode(''); setWrite(false) }}>
                           <FiX />
                         </div>
                       }
@@ -188,7 +182,7 @@ const ContactPage = () => {
                   </div>
                 </div>}
               </div>
-              {show === 3 && <div className='mt-8 relative'>
+              {screen === 3 && <div className='mt-8 relative'>
                 <div className='border-b w-full absolute top-0 left-0 border-[#a0a0a0]'></div>
                 <div className='justify-center text-white text-lg lg:text-2xl uppercase  flex gap-1 items-center font-bold pt-[4rem]'>
                   <span>your account manager is</span>

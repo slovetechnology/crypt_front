@@ -3,36 +3,36 @@ import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
 import { FiX } from 'react-icons/fi'
-import UpdateModal from './UpdateModal';
 import { useAtom } from 'jotai';
-import { ADMINALLDEPOSITS } from '../../../store';
+import { ADMINALLINVESTMENTS } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
+import UpdateInvestmentModal from './UpdateInvestmentModal';
 
 
-const UpdateTransactions = ({ refetchAllDeposits }) => {
-  const [fromAtom] = useAtom(ADMINALLDEPOSITS)
-  const [alldeposits, setAllDeposits] = useState(fromAtom)
-  const [singleDeposit, setSingleDeposit] = useState({})
+const UpdateInvestment = ({ reFetchAllInvestments }) => {
+  const [fromAtom] = useAtom(ADMINALLINVESTMENTS)
+  const [allInvestments, setAllInvestments] = useState(fromAtom)
+  const [singleInvestment, setSingleInvestment] = useState({})
   const [modal, setModal] = useState(false)
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
-  const [pageend, setpageend] = useState(alldeposits.length / end)
+  const [pageend, setpageend] = useState(allInvestments.length / end)
 
 
-  const SingleDepositFunction = (item) => {
-    setSingleDeposit(item)
+  const SingleInvestmentFunction = (item) => {
+    setSingleInvestment(item)
     setModal(true)
   }
 
 
   const HandleSearch = () => {
-
+    const altinvestments = fromAtom
     if (!search) {
-      setAllDeposits(fromAtom)
+      setAllInvestments(fromAtom)
       setpageend(fromAtom.length / 6)
       setWrite(false)
       setpagestart(1)
@@ -41,8 +41,8 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
     }
     else {
       setWrite(true)
-      const showSearch = alldeposits.filter(item => item.deposituser.username.includes(search.toLowerCase()) || item.deposituser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.deposit_status.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()))
-      setAllDeposits(showSearch)
+      const showSearch = altinvestments.filter(item => item.investmentUser.username.includes(search.toLowerCase()) || item.investmentUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
+      setAllInvestments(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)
       setStart(0)
@@ -52,7 +52,7 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
 
   const CancelWrite = () => {
     setSearch('')
-    setAllDeposits(fromAtom)
+    setAllInvestments(fromAtom)
     setpageend(fromAtom.length / 6)
     setWrite(false)
     setpagestart(1)
@@ -62,7 +62,7 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
 
   let MovePage = () => {
 
-    if (end < alldeposits.length) {
+    if (end < allInvestments.length) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
@@ -99,9 +99,9 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
 
   return (
     <div className='h-screen'>
-      {modal && <UpdateModal closeView={() => setModal(false)} singleDeposit={singleDeposit} setAllDeposits={setAllDeposits} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllDeposits={refetchAllDeposits} />}
+      {modal && <UpdateInvestmentModal closeView={() => setModal(false)} singleInvestment={singleInvestment} setAllInvestments={setAllInvestments} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} reFetchAllInvestments={reFetchAllInvestments} />}
 
-      <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all deposits</div>
+      <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all investments</div>
       <div className='mt-12'>
         <div className='relative w-fit mx-auto'>
           <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
@@ -122,38 +122,38 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
                 <td className='text-center truncate  capitalize p-2 '>username</td>
                 <td className='text-center truncate  capitalize p-2 '>email</td>
                 <td className='text-center truncate  capitalize p-2 '>amount</td>
-                <td className='text-center truncate  capitalize p-2 '>deposit status</td>
+                <td className='text-center truncate  capitalize p-2 '>trading plan</td>
                 <td className='text-center truncate  capitalize p-2 '>profit</td>
-                <td className='text-center truncate  capitalize p-2 '>profit status </td>
                 <td className='text-center truncate  capitalize p-2 '>bonus </td>
+                <td className='text-center truncate  capitalize p-2 '>status </td>
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
-            {alldeposits.length > 0 && <tbody>
-              {alldeposits.slice(start, end).map((item, i) => (
+            {allInvestments.length > 0 && <tbody>
+              {allInvestments.slice(start, end).map((item, i) => (
                 <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
                   <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                  <td className='p-4  text-center truncate'>{item.deposituser.username}</td>
-                  <td className='p-4  text-center truncate'>{item.deposituser.email}</td>
+                  <td className='p-4  text-center truncate'>{item.investmentUser.username}</td>
+                  <td className='p-4  text-center truncate'>{item.investmentUser.email}</td>
                   <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                  <td className={`p-4  text-center truncate ${item.deposit_status === 'failed' && 'text-[red]'}  ${item.deposit_status === 'confirmed' && 'text-[#459e45]'}`}>{item.deposit_status}</td>
+                  <td className='p-4  text-center truncate capitalize'>{item.trading_plan}</td>
                   <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
-                  <td className={`p-4  text-center truncate ${item.profit_status === 'completed' ? 'text-[#459e45]' : 'text-black'}`}>{item.profit_status}</td>
                   <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleDepositFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                  <td className={`p-4  text-center truncate ${item.status === 'completed' && 'text-[#459e45]'}`}>{item.status}</td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleInvestmentFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                 </tr>
               ))}
             </tbody>}
           </table>
-          {alldeposits.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
-            <div>no transactions found...</div>
+          {allInvestments.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
+            <div>no investments found...</div>
             <img src={nothnyet} className='h-4 w-auto'></img>
           </div>}
         </div>
-        {alldeposits.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
+        {allInvestments.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
           {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
           {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-          {end < alldeposits.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+          {end < allInvestments.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
         </div>}
       </div>
 
@@ -161,4 +161,4 @@ const UpdateTransactions = ({ refetchAllDeposits }) => {
   )
 }
 
-export default UpdateTransactions
+export default UpdateInvestment

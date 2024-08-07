@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { MdOutlineEdit } from "react-icons/md";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { PiWarningCircleBold } from "react-icons/pi";
-import { Apis, imageurl, PostApi, UserPutApi } from '../../../../services/API';
-import Loading from '../../../../PageComponents/Loading';
-import { Alert } from '../../../../utils/utils';
+import { Apis, imageurl, PostApi, UserPutApi } from '../../../../../services/API';
+import Loading from '../../../../../PageComponents/Loading';
+import { Alert } from '../../../../../utils/utils';
 
 const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart, setEnd, setpagestart, setpageend }) => {
   const [error, setError] = useState('')
@@ -16,18 +16,18 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
   const qrimgref = useRef()
 
   const [cryptoImg, setCryptoImg] = useState({
-    img: `${imageurl}/cryptocurrency/${singleWallet.crypto_img}`,
+    img: `${imageurl}/cryptocurrency/${singleWallet.crypto_img}` || null,
     image: singleWallet.crypto_img
   })
   const [qrImg, setQrImg] = useState({
-    img: `${imageurl}/cryptocurrency/${singleWallet.qrcode_img}`,
+    img: `${imageurl}/cryptocurrency/${singleWallet.qrcode_img}` || null,
     image: singleWallet.qrcode_img
   })
 
   const [form, setForm] = useState({
-    crypto: singleWallet.crypto,
-    address: singleWallet.address,
-    network: singleWallet.network,
+    crypto: singleWallet.crypto || '',
+    address: singleWallet.address || '',
+    network: singleWallet.network || '',
   })
 
   const inputHandler = event => {
@@ -104,7 +104,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
 
     setDeleted(false)
 
-    if (!form.crypto || !form.network || !form.address) return setError('Fill all fields')
+    if (!form.crypto || !form.network || !form.address) return setError('Enter all fields')
     if (cryptoImg.img === null || qrImg.img === null) return setError('Upload all images')
 
     const formbody = new FormData()
@@ -121,13 +121,13 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
       if (response.status === 200) {
         Alert('Request Successful', 'Wallet updated successfully', 'success')
         setAdminWallets(response.msg)
-        setpageend(response.msg.length / 3)
+        setpageend(response.msg.length / 5)
         setpagestart(1)
         setStart(0)
         setEnd(5)
         closeView()
       } else {
-        Alert('Request Failed', response.msg, 'error')
+        setError(response.msg)
       }
     } catch (error) {
       Alert('Request Failed', `${error.message}`, 'error')
@@ -140,10 +140,10 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
 
   const DeleteWallet = async () => {
 
-    const formbody = new FormData()
-    formbody.append('wallet_id', singleWallet.id)
-
-
+    const formbody = {
+      wallet_id: singleWallet.id
+    }
+    
     setLoading(true)
     try {
       const response = await PostApi(Apis.admin.delete_admin_wallet, formbody)
@@ -157,7 +157,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
         setEnd(5)
         closeView()
       } else {
-        Alert('Request Failed', response.msg, 'error')
+        setError(response.msg)
       }
     } catch (error) {
       Alert('Request Failed', `${error.message}`, 'error')
@@ -214,11 +214,11 @@ const UpdateWalletModal = ({ closeView, singleWallet, setAdminWallets, setStart,
                 </label>
               </div>
               {error !== '' &&
-                  <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
-                    <RiErrorWarningLine className='md:text-base text-sm' />
-                    <span>{error}</span>
-                    <div className='error-progress absolute -bottom-1 left-0 rounded-sm'></div>
-                  </div>
+                <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
+                  <RiErrorWarningLine className='md:text-base text-sm' />
+                  <span>{error}</span>
+                  <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
+                </div>
               }
             </div>
             <div className='flex gap-4 items-center mt-8 relative'>

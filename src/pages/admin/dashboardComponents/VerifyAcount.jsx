@@ -8,7 +8,7 @@ import { PROFILE } from '../../../store';
 import { useAtom } from 'jotai';
 
 const VerifyAcount = ({ setToggleExtra }) => {
-    const [user, setUser] = useAtom(PROFILE)
+    const [, setUser] = useAtom(PROFILE)
 
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState('')
@@ -25,11 +25,13 @@ const VerifyAcount = ({ setToggleExtra }) => {
         }, 2000)
 
         if (!email) return setEmailError('email address is required')
+
+        const formbody = {
+            email: email
+        }
+
         setLoading(true)
         try {
-            const formbody = {
-                email: email
-            }
             const response = await UserPostApi(Apis.user.find_email, formbody)
             if (response.status === 200) {
                 setVerifyScreen(2)
@@ -51,10 +53,12 @@ const VerifyAcount = ({ setToggleExtra }) => {
         }, 2000)
 
         if (!code) return setCodeError('enter verification code sent to your email')
+
         const formbody = {
             code: code,
             email: email
         }
+
         setLoading(true)
         try {
             const response = await UserPostApi(Apis.user.validate_email, formbody)
@@ -72,13 +76,11 @@ const VerifyAcount = ({ setToggleExtra }) => {
         }
     }
 
-    document.documentElement.style.overflow = loading ? 'hidden' : 'auto'
-
     return (
         <div className='pt-10 h-screen'>
             <div className='relative'>
                 {loading && <LoadingAdmin />}
-                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => {setToggleExtra('')}}>
+                <div className='flex gap-1 items-center capitalize text-[0.85rem] cursor-pointer text-light hover:text-[grey] w-fit' onClick={() => { setToggleExtra('') }}>
                     <IoMdArrowBack />
                     <span>back</span>
                 </div>

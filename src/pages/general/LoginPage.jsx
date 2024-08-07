@@ -47,7 +47,7 @@ const LoginPage = () => {
             email: form.email,
             password: form.password
         }
-        setLoading(true)
+        // setLoading(true)
         // try {
         //     const response = await UserPostApi(Apis.user.login, formbody)
         //     if (response.status === 200) {

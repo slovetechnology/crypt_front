@@ -17,6 +17,7 @@ import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import LoadingAdmin from '../../../PageComponents/LoadingAdmin';
 import membership from '../../../assets/images/membership.png'
+import avatar from '../../../assets/images/avatar.png'
 
 
 const Profile = ({ setToggleExtra }) => {
@@ -40,7 +41,7 @@ const Profile = ({ setToggleExtra }) => {
     const navigate = useNavigate()
 
     const [profile, setProfile] = useState({
-        img: `${imageurl}/profiles/${user.image}`,
+        img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
         image: user.image
     })
 
@@ -219,15 +220,17 @@ const Profile = ({ setToggleExtra }) => {
                     <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-semi-white rounded-xl capitalize shlz md:px-8 px-4 py-4 mx-auto'>
                         <div className='flex items-center gap-5'>
                             <div className='flex flex-col gap-2'>
-                                <div className='md:text-[1.4rem] text-lg text-black cursor-pointer' onClick={() => setToggleExtra('verify account')}>Status</div>
-                                {user.email_verified === 'true' && <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
-                                    <span className='text-zinc-700'>verified</span>
-                                    <MdVerified className='text-light ' />
-                                </div>}
-                                {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]' onClick={() => setToggleExtra('verify account')}>
-                                    <span>unverified</span>
-                                    <MdSentimentVeryDissatisfied />
-                                </div>}
+                                <div className='md:text-[1.4rem] text-lg text-black' onClick={() => setToggleExtra('verify account')}>Status</div>
+                                <div className='cursor-pointer' onClick={() => setToggleExtra('verify account')}>
+                                    {user.email_verified === 'true' && <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
+                                        <span className='text-zinc-700'>verified</span>
+                                        <MdVerified className='text-light ' />
+                                    </div>}
+                                    {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]'>
+                                        <span>unverified</span>
+                                        <MdSentimentVeryDissatisfied />
+                                    </div>}
+                                </div>
                             </div>
                             <div className='border-r-2 h-12 border-[#bebebe]'></div>
                             <div className='flex flex-col gap-2'>
@@ -368,7 +371,7 @@ const Profile = ({ setToggleExtra }) => {
                                     <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center'>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => {setDeleteScreen(0); setDeletePassword('')}}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setDeleteScreen(0); setDeletePassword('') }}>
                                         <span>cancel deletion</span>
                                         <FaRegRectangleXmark />
                                     </button>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
-import nothnyet from '../../../../assets/images/nothn.png'
+import nothnyet from '../../../../../assets/images/nothn.png'
 import { IoIosSettings } from 'react-icons/io';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { BsThreeDots } from 'react-icons/bs';
 import CreateWalletModal from './CreateWalletModal';
 import UpdateWalletModal from './UpdateWalletModal';
 import { useAtom } from 'jotai';
-import { ADMINWALLETS } from '../../../../store';
-import { imageurl } from '../../../../services/API';
+import { ADMINWALLETS } from '../../../../../store';
+import { imageurl } from '../../../../../services/API';
 
 const AddWallet = () => {
   const [adminWallets, setAdminWallets] = useAtom(ADMINWALLETS)
@@ -100,7 +100,7 @@ const AddWallet = () => {
           </tbody>}
         </table>
         {adminWallets.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
-          <div>no transactions found...</div>
+          <div>no wallets found...</div>
           <img src={nothnyet} className='h-4 w-auto'></img>
         </div>}
       </div>

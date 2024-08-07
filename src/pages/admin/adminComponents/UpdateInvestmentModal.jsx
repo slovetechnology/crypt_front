@@ -4,13 +4,12 @@ import moment from 'moment';
 import { FaAngleDown } from 'react-icons/fa6';
 import Loading from '../../../PageComponents/Loading';
 import { Alert } from '../../../utils/utils';
+import avatar from '../../../assets/images/avatar.png'
 
-const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllDeposits }) => {
+const UpdateInvestmentModal = ({ closeView, singleInvestment, setAllInvestments, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, reFetchAllInvestments }) => {
     const toggler = useRef()
-    const [depositShow, setdepositShow] = useState(false)
-    const [depositStatus, setDepositStatus] = useState(singleDeposit.deposit_status)
-    const [profitShow, setprofitShow] = useState(false)
-    const [profitStatus, setProfitStatus] = useState(singleDeposit.profit_status)
+    const [status, setStatus] = useState(singleInvestment.status)
+    const [statusShow, setStatusShow] = useState(false)
     const [loading, setLoading] = useState(false)
     const [update, setUpdate] = useState(false)
     const [beforeshow, setBeforeshow] = useState(true)
@@ -30,31 +29,16 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
     }
 
     const UpdateHandler = () => {
-        if (form.profit === '' && form.bonus === '' && depositStatus === singleDeposit.deposit_status && profitStatus === singleDeposit.profit_status) {
+        if (form.profit === '' && form.bonus === '' && status === singleInvestment.status) {
             setUpdate(false)
         } else {
             setUpdate(true)
         }
     }
 
-    const depositStatuses = [
-        {
-            status: 'pending'
-        },
-        {
-            status: 'confirmed'
-        },
-        {
-            status: 'failed'
-        }
-    ]
-    const profitStatuses = [
-        {
-            status: 'running'
-        },
-        {
-            status: 'completed'
-        }
+    const statuses = [
+        { status: 'running' },
+        { status: 'completed' }
     ]
 
     useEffect(() => {
@@ -78,7 +62,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
     }
 
     useEffect(() => {
-        if (profitShow || depositShow) {
+        if (statusShow) {
             MoveToBottom()
         }
     }, [MoveToBottom]
@@ -88,7 +72,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
         setBeforeshow(false)
     }, 1500)
 
-    const AdminUpdateDeposit = async () => {
+    const AdminUpdateInvestment = async () => {
         setTimeout(() => {
             setProfitError(false)
             setBonusError(false)
@@ -98,12 +82,11 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
         if (isNaN(form.bonus)) return setBonusError(true)
 
         const formbody = {
-            deposit_id: singleDeposit.id,
-            user: singleDeposit.user,
+            investment_id: singleInvestment.id,
+            user_id: singleInvestment.user,
             profit: parseFloat(form.profit),
             bonus: parseFloat(form.bonus),
-            deposit_status: depositStatus,
-            profit_status: profitStatus,
+            status: status,
         }
 
         if (update) {
@@ -112,12 +95,13 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
             move.scrollTo({
                 top: 0,
             })
+
             try {
-                const response = await UserPutApi(Apis.admin.update_deposits, formbody)
+                const response = await UserPutApi(Apis.admin.update_investments, formbody)
                 if (response.status === 200) {
-                    setAllDeposits(response.msg)
-                    Alert('Request Successful', 'Deposit updated successfully', 'success')
-                    refetchAllDeposits()
+                    setAllInvestments(response.msg)
+                    Alert('Request Successful', 'Investment updated successfully', 'success')
+                    reFetchAllInvestments()
                     setWrite(false)
                     setSearch('')
                     setpageend(response.msg.length / 6)
@@ -147,41 +131,40 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                             <div className='flex flex-col gap-4 border p-1'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20 rounded-full bg-[#c9b8eb] mx-auto'>
-                                    {Object.values(singleDeposit).length !== 0 && <img src={`${imageurl}/profiles/${singleDeposit.deposituser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
+                                    {Object.values(singleInvestment).length !== 0 &&
+                                        <>
+                                            {singleInvestment.investmentUser.image ? <img src={`${imageurl}/profiles/${singleInvestment.investmentUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                                :
+                                                <img src={avatar} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                            }
+                                        </>
+                                    }
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>username:</div>
-                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.username}</div>}
+                                        {Object.values(singleInvestment).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleInvestment.investmentUser.username}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>email:</div>
-                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposituser.email}</div>}
+                                        {Object.values(singleInvestment).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleInvestment.investmentUser.email}</div>}
                                     </div>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 border p-1'>
-                                <div className=' uppercase font-bold border px-1 '>deposit details:</div>
+                                <div className=' uppercase font-bold border px-1 '>investment details:</div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleDeposit.amount.toLocaleString()}</div>}
+                                        {Object.values(singleInvestment).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleInvestment.amount.toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>plan:</div>
-                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleDeposit.trading_plan}</div>}
-                                    </div>
-                                    <div className='flex justify-between items-center'>
-                                        <div className='italic '>crypto:</div>
-                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>}
+                                        {Object.values(singleInvestment).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleInvestment.trading_plan}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>date/time:</div>
-                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>}
-                                    </div>
-                                    <div className='flex justify-between items-center'>
-                                        <div className='italic '>from:</div>
-                                        {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.from}</div>}
+                                        {Object.values(singleInvestment).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleInvestment.createdAt).format('DD-MM-yyyy')} / {moment(singleInvestment.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add profit:</div>
@@ -189,7 +172,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                             <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                {Object.values(singleDeposit).length !== 0 && <div>${singleDeposit.profit.toLocaleString()}</div>}
+                                                {Object.values(singleInvestment).length !== 0 && <div>${singleInvestment.profit.toLocaleString()}</div>}
                                             </div>
                                         </div>
                                     </div>
@@ -199,44 +182,24 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                             <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
                                                 <div>so far:</div>
-                                                {Object.values(singleDeposit).length !== 0 && <div>${singleDeposit.bonus.toLocaleString()}</div>}
+                                                {Object.values(singleInvestment).length !== 0 && <div>${singleInvestment.bonus.toLocaleString()}</div>}
                                             </div>
                                         </div>
                                     </div>
                                     <div className='flex flex-col gap-6 my-6'>
                                         <div className='flex justify-between items-center'>
-                                            <div className='italic '>deposit status:</div>
+                                            <div className='italic '>status:</div>
                                             <div className='flex flex-col'>
-                                                <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setdepositShow(!depositShow); MoveToBottom() }} >
+                                                <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                     <div className='flex justify-between items-center text-[0.8rem]'>
-                                                        <span >{depositStatus}</span>
-                                                        <FaAngleDown className={`${depositShow ? 'rotate-180' : 'rotate-0'} trans`} />
+                                                        <span >{status}</span>
+                                                        <FaAngleDown className={`${statusShow ? 'rotate-180' : 'rotate-0'} trans`} />
                                                     </div>
                                                 </div>
-                                                {depositShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
-                                                    {depositStatuses.map((item, i) => (
+                                                {statusShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
+                                                    {statuses.map((item, i) => (
                                                         <div className='flex flex-col mt-2' key={i}>
-                                                            <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setDepositStatus(item.status); setdepositShow(false); setUpdate(true) }}>
-                                                                <div className={`text-[0.85rem] font-bold ${item.status === 'failed' && 'text-[#c94545]'}`}>{item.status}</div>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                                </div>}
-                                            </div>
-                                        </div>
-                                        <div className='flex justify-between items-center'>
-                                            <div className='italic '>profit status:</div>
-                                            <div className='flex flex-col'>
-                                                <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setprofitShow(!profitShow); MoveToBottom() }} >
-                                                    <div className='flex justify-between items-center text-[0.8rem]'>
-                                                        <span >{profitStatus}</span>
-                                                        <FaAngleDown className={`${profitShow ? 'rotate-180' : 'rotate-0'} trans`} />
-                                                    </div>
-                                                </div>
-                                                {profitShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
-                                                    {profitStatuses.map((item, i) => (
-                                                        <div className='flex flex-col mt-2' key={i}>
-                                                            <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setProfitStatus(item.status); setprofitShow(false); setUpdate(true) }}>
+                                                            <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item.status); setStatusShow(false); setUpdate(true) }}>
                                                                 <div className={`text-[0.85rem] font-bold ${item.status === 'completed' && 'text-[#b19e32]'}`}>{item.status}</div>
                                                             </div>
                                                         </div>
@@ -248,7 +211,7 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
                                 </div>
                             </div>
                             {update && <div className='flex items-center justify-center -mt-4'>
-                                <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium ' onClick={AdminUpdateDeposit}>update details</button>
+                                <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium ' onClick={AdminUpdateInvestment}>update details</button>
                             </div>}
                         </div>}
                 </div>
@@ -257,4 +220,4 @@ const UpdateModal = ({ closeView, singleDeposit, setAllDeposits, setStart, setEn
     )
 }
 
-export default UpdateModal
+export default UpdateInvestmentModal

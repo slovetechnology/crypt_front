@@ -19,7 +19,6 @@ const user_urls  = {
     contact: user + 'contact',
     update: user + 'update-profile',
     delete: user + 'delete-account',
-    notification: user + 'notification',
     wallet: user + 'user-wallet',
     ups: user + 'user-ups',
 }
@@ -52,6 +51,7 @@ const investment = 'api/investment/'
 const investment_urls = {
     user_investment: investment +'user-investment',
     user_unclaim: investment +'user-unclaim-investment',
+    create_investment: investment + 'create-investment',
     claim_investment: investment +'claim-investment'
 }
 
@@ -59,15 +59,21 @@ const admin = 'api/admin/'
 const admin_urls = {
     all_users: admin + 'all-users',
     all_deposits: admin + 'all-deposits',
+    all_investments: admin + 'all-investments',
     all_withdrawals: admin + 'all-withdrawals',
     update_deposits: admin + 'update-deposits',
+    update_investments: admin + 'update-investments',
     delete_users: admin + 'delete-users',
-    get_user_total_investment: admin + 'get-user-total',
+    get_user_figures: admin + 'get-user-total',
     update_withdrawals: admin + 'update-withdrawals',
     get_admin_wallets: admin + 'all-admin-wallets',
     create_admin_wallet: admin + 'create-admin-wallet',
     update_admin_wallet: admin + 'update-admin-wallet',
-    delete_admin_wallet: admin + 'delete-admin-wallet'
+    delete_admin_wallet: admin + 'delete-admin-wallet',
+    get_trading_plans: admin + 'all-trading-plans',
+    create_trading_plan: admin + 'create-trading-plan',
+    update_trading_plan: admin + 'update-trading-plan',
+    delete_trading_plan: admin + 'delete-trading-plan'
 }
 
 export const Apis = {

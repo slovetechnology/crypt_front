@@ -8,6 +8,7 @@ import { useAtom } from 'jotai';
 import { ADMINALLWITHDRAWALS } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
+import avatar from '../../../assets/images/avatar.png'
 
 const Withdrawals = ({ refetchAllWithdrawals }) => {
     const [fromAtom] = useAtom(ADMINALLWITHDRAWALS)
@@ -28,7 +29,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
     }
 
     const HandleSearch = () => {
-
+        const altwithdrawals = fromAtom
         if (!search) {
             setAllWithdrawals(fromAtom)
             setpageend(fromAtom.length / 6)
@@ -39,7 +40,7 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
         }
         else {
             setWrite(true)
-            const showSearch = allWithdrawals.filter(item => item.wthuser.username.includes(search.toLowerCase()) || item.wthuser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
+            const showSearch = altwithdrawals.filter(item => item.wthUser.username.includes(search.toLowerCase()) || item.wthUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
             setpageend(showSearch.length / 6)
             setpagestart(1)
@@ -128,8 +129,8 @@ const Withdrawals = ({ refetchAllWithdrawals }) => {
                             {allWithdrawals.slice(start, end).map((item, i) => (
                                 <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
                                     <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                    <td className='p-4  text-center truncate'>{item.wthuser.username}</td>
-                                    <td className='p-4  text-center truncate'>{item.wthuser.email}</td>
+                                    <td className='p-4  text-center truncate'>{item.wthUser.username}</td>
+                                    <td className='p-4  text-center truncate'>{item.wthUser.email}</td>
                                     <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                     <td className={`p-4  text-center truncate ${item.status === 'confirmed' ? 'text-[#459e45]' : 'text-black'}`}>{item.status}</td>
                                     <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWithdrawalFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>

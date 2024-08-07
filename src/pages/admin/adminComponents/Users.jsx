@@ -5,14 +5,14 @@ import { FiX } from 'react-icons/fi'
 import { ADMINALLUSERS } from '../../../store'
 import { useAtom } from 'jotai'
 import moment from 'moment';
-import DeleteModal from './DeleteModal'
 import { Apis, PostApi } from '../../../services/API'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import nothnyet from '../../../assets/images/nothn.png'
+import UsersModal from './UsersModal'
 
 
 
-const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdrawals }) => {
+const Users = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdrawals }) => {
   const [fromAtom] = useAtom(ADMINALLUSERS)
   const [allusers, setAllUsers] = useState(fromAtom)
 
@@ -20,7 +20,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
   const [singleUser, setSingleUser] = useState({})
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
-  const [usertotal, setUserTotal] = useState('')
+  const [userFigures, setUserFigures] = useState({})
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
@@ -31,17 +31,17 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
     setSingleUser(item)
   }
 
-  const GetUserTotalInvestment = async () => {
+  const GetUserFigures = async () => {
     try {
       const formbody = {
         user_id: singleUser.id
       }
-      
+
       setModal(true)
 
-      const response = await PostApi(Apis.admin.get_user_total_investment, formbody)
+      const response = await PostApi(Apis.admin.get_user_figures, formbody)
       if (response.status === 200) {
-        setUserTotal(response.msg)
+        setUserFigures(response.msg)
       }
 
     } catch (error) {
@@ -50,7 +50,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
   }
 
   const HandleSearch = () => {
-
+    const altusers = fromAtom
     if (!search) {
       setAllUsers(fromAtom)
       setpageend(fromAtom.length / 6)
@@ -61,7 +61,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
     }
     else {
       setWrite(true)
-      const showSearch = allusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
+      const showSearch = altusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
       setAllUsers(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)
@@ -120,7 +120,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
 
   return (
     <div className='h-screen'>
-      {modal && <DeleteModal closeView={() => setModal(false)} singleUser={singleUser} usertotal={usertotal} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} refetchAllWithdrawals={refetchAllWithdrawals} />}
+      {modal && <UsersModal closeView={() => setModal(false)} singleUser={singleUser} userFigures={userFigures} setAllUsers={setAllUsers} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={refetchAllUsers} refetchAllDeposits={refetchAllDeposits} refetchAllWithdrawals={refetchAllWithdrawals} />}
 
       <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all users</div>
       <div className='mt-12'>
@@ -156,7 +156,7 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
                   <td className='p-4  text-center truncate'>{item.username}</td>
                   <td className='p-4  text-center truncate'>{item.email}</td>
                   <td className='p-4  truncate'><img src={item.country_flag} className='w-4 h-auto mx-auto'></img></td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserTotalInvestment}> <BsThreeDots className="mx-auto text-base" /></td>
+                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserFigures}> <BsThreeDots className="mx-auto text-base" /></td>
                 </tr>
               ))}
             </tbody>}
@@ -176,4 +176,4 @@ const DeleteAccounts = ({ refetchAllUsers, refetchAllDeposits, refetchAllWithdra
   )
 }
 
-export default DeleteAccounts
+export default Users

@@ -5,6 +5,7 @@ import moment from 'moment'
 import { FaAngleDown, FaCheck } from 'react-icons/fa6'
 import { Alert } from '../../../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
+import avatar from '../../../assets/images/avatar.png'
 
 const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllWithdrawals, setAllWithdrawals }) => {
     const [loading, setLoading] = useState(false)
@@ -15,13 +16,9 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
     const [copy, setCopy] = useState(false)
     const toggler = useRef()
 
-    const withdrawalStatuses = [
-        {
-            status: 'pending'
-        },
-        {
-            status: 'confirmed'
-        }
+    const Statuses = [
+        {status: 'pending'},
+        {status: 'confirmed'}
     ]
 
     useEffect(() => {
@@ -111,16 +108,23 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                             <div className='flex flex-col gap-4 border p-1 overflow-hidden'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20  rounded-full bg-[#c9b8eb] mx-auto'>
-                                    {Object.values(singleWithdrawal).length !== 0 &&<img src={`${imageurl}/profiles/${singleWithdrawal.wthuser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
+                                    {Object.values(singleWithdrawal).length !== 0 &&
+                                        <>
+                                            {singleWithdrawal.wthUser.image ? <img src={`${imageurl}/profiles/${singleWithdrawal.wthUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                                :
+                                                <img src={avatar} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                            }
+                                        </>
+                                    }
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>username:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthuser.username}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthUser.username}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>email:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthuser.email}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wthUser.email}</div>}
                                     </div>
                                 </div>
                             </div>
@@ -129,20 +133,20 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toLocaleString()}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>crypto:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.crypto}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.crypto}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>network:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.network}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.network}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>wallet address:</div>
                                         <div className='flex gap-1 items-center'>
-                                            {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wallet_address?.slice(0, 5)}.....{singleWithdrawal.wallet_address?.slice(-8)}</div>}
+                                            {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wallet_address?.slice(0, 5)}.....{singleWithdrawal.wallet_address?.slice(-8)}</div>}
                                             <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-black bg-[#c9b8eb] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                                 {!copy && <MdContentCopy />}
                                                 {copy && <FaCheck />}
@@ -151,7 +155,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>date/time:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 &&<div className='md:text-[0.95rem] text-sm'>{moment(singleWithdrawal.createdAt).format('DD-MM-yyyy')} / {moment(singleWithdrawal.createdAt).format('h:mm')}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleWithdrawal.createdAt).format('DD-MM-yyyy')} / {moment(singleWithdrawal.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center my-6'>
                                         <div className='italic '>status:</div>
@@ -163,7 +167,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                                 </div>
                                             </div>
                                             {statusShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
-                                                {withdrawalStatuses.map((item, i) => (
+                                                {Statuses.map((item, i) => (
                                                     <div className='flex flex-col mt-2' key={i}>
                                                         <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item.status); setStatusShow(false); setUpdate(true) }}>
                                                             <div className={`text-[0.85rem] font-bold ${item.status === 'confirmed' && 'text-[#b19e32]'}`}>{item.status}</div>

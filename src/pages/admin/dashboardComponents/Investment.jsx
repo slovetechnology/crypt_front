@@ -17,26 +17,23 @@ import nothnyet from '../../../assets/images/nothn.png'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 
 
-
-
-
 const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refetchUnreadNotis, refetchWallet, refetchUps, refetchInvestmentsUnclaim }) => {
     const [fromAtom] = useAtom(INVESTMENTS)
     const [investment, setInvestment] = useState(fromAtom)
     const [investmentUnclaim] = useAtom(INVESTMENTUNCLAIM)
+
+    const [investtitle, setInvestTitle] = useState('my investment')
     const [screen, setScreen] = useState(1)
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
-    const [investtitle, setInvestTitle] = useState('my investment')
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(investment.length / end)
 
 
-
-
     const HandleSearch = () => {
+        const altinvestment = fromAtom
         if (!search) {
             setWrite(false)
             setInvestment(fromAtom)
@@ -47,7 +44,7 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
 
         } else {
             setWrite(true)
-            const showSearch = investment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.profit_status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
+            const showSearch = altinvestment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
             setInvestment(showSearch)
             setpageend(showSearch.length / 6)
             setpagestart(1)
@@ -129,18 +126,9 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                 <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2 px-2 text-semi-white gap-2 bg-[#6859bb]'>
                                     <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>amount</div>
                                     <div className='flex justify-between items-center font-bold'>
-                                        <div>
-                                            <div className='flex items-center'>
-                                                {item.investment_status === 'confirmed' && <BsCurrencyDollar className="-mt-0.5" />}
-                                                {item.investment_status === 'confirmed' && <div className='-ml-1'>{item.amount.toLocaleString()}</div>}
-                                                {item.investment_status === 'pending' &&
-                                                    <div className='flex gap-2 items-center'>
-                                                        <div className='text-[0.8rem] italic'>verifying</div>
-                                                        <div className='verifyload '></div>
-                                                    </div>
-                                                }
-                                                {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
-                                            </div>
+                                        <div className='flex items-center'>
+                                            <BsCurrencyDollar className="-mt-0.5" />
+                                            <div className='-ml-1'>{item.amount.toLocaleString()}</div>
                                         </div>
                                         <img src={deposit3d} className='md:h-10 h-8 w-auto'></img>
                                     </div>
@@ -148,28 +136,17 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                 <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
                                     <div className='flex justify-between'>
                                         <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>profit/ROI</div>
-                                        {item.investment_status === 'confirmed' && <div>
-                                            {item.profit_status === 'running' ? <div className='italic md:text-[0.8rem] text-xs text-[#6f6ff5]'>running</div>
+                                        <div>
+                                            {item.status === 'running' ? <div className='italic md:text-[0.8rem] text-xs text-[#6f6ff5]'>running</div>
                                                 :
                                                 <div className='italic md:text-[0.8rem] text-xs text-[#adad40] '>completed</div>
                                             }
                                         </div>
-                                        }
                                     </div>
                                     <div className='flex justify-between items-center font-bold'>
-                                        <div>
-                                            <div className='flex items-center'>
-                                                {item.investment_status === 'confirmed' && <BsCurrencyDollar className="-mt-0.5" />}
-                                                {item.investment_status === 'confirmed' && <div className='-ml-1'>{item.profit.toLocaleString()}</div>}
-                                                {item.investment_status === 'pending' &&
-                                                    <div className='flex gap-2 items-center'>
-                                                        <div className='text-[0.8rem] italic'>verifying</div>
-                                                        <div className='verifyload '></div>
-                                                    </div>
-                                                }
-                                                {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
-
-                                            </div>
+                                        <div className='flex items-center'>
+                                            <BsCurrencyDollar className="-mt-0.5" />
+                                            <div className='-ml-1'>{item.profit.toLocaleString()}</div>
                                         </div>
                                         <img src={profit3d} className='md:h-10 h-8 w-auto'></img>
                                     </div>
@@ -177,8 +154,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                 <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
                                     <div className='flex justify-between'>
                                         <div className='capitalize md:text-[0.9rem] text-sm font-[600]'>bonus</div>
-                                        {item.investment_status === 'confirmed' && <div>
-                                            {item.profit_status === 'running' ? <div className='italic md:text-[0.8rem] text-xs text-[#6f6ff5]'>running</div>
+                                        {<div>
+                                            {item.status === 'running' ? <div className='italic md:text-[0.8rem] text-xs text-[#6f6ff5]'>running</div>
                                                 :
                                                 <div className='italic md:text-[0.8rem] text-xs text-[#adad40]'>completed</div>
                                             }
@@ -187,15 +164,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <div className='flex justify-between items-center font-bold'>
                                         <div>
                                             <div className='flex items-center'>
-                                                {item.investment_status === 'confirmed' && <BsCurrencyDollar className="-mt-0.5" />}
-                                                {item.investment_status === 'confirmed' && <div className='-ml-1'>{item.bonus.toLocaleString()}</div>}
-                                                {item.investment_status === 'pending' &&
-                                                    <div className='flex gap-2 items-center'>
-                                                        <div className='text-[0.8rem] italic'>verifying</div>
-                                                        <div className='verifyload '></div>
-                                                    </div>
-                                                }
-                                                {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
+                                                <BsCurrencyDollar className="-mt-0.5" />
+                                                <div className='-ml-1'>{item.bonus.toLocaleString()}</div>
                                             </div>
                                         </div>
                                         <img src={bonus3d} className='md:h-10 h-8 w-auto'></img>
@@ -206,23 +176,14 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <div className='flex justify-between items-center'>
                                         <div>
                                             <div className='flex gap-1 items-center'>
-                                                {item.investment_status === 'confirmed' && <div className='capitalize'>{item.trading_plan}</div>}
-                                                {item.investment_status === 'pending' &&
-                                                    <div className='flex gap-2 items-center'>
-                                                        <div className='text-[0.8rem] italic'>verifying</div>
-                                                        <div className='verifyload '></div>
-                                                    </div>
-                                                }
-                                                {item.investment_status === 'failed' && <div className='text-[0.8rem] italic text-[red]'>failed...</div>}
+                                                <div className='capitalize'>{item.trading_plan}</div>
                                             </div>
                                         </div>
                                         <img src={trading3d} className='md:h-10 h-8 w-auto'></img>
                                     </div>
                                 </div>
                             </div>
-                            {item.investment_status === 'confirmed' &&
-                                <ClaimButtons item={item} refetchWallet={refetchWallet} refetchInvestments={refetchInvestments} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} refetchUps={refetchUps} refetchInvestmentsUnclaim={refetchInvestmentsUnclaim} setInvestment={setInvestment} />
-                            }
+                            <ClaimButtons item={item} refetchWallet={refetchWallet} refetchInvestments={refetchInvestments} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} refetchUps={refetchUps} refetchInvestmentsUnclaim={refetchInvestmentsUnclaim} setInvestment={setInvestment} />
                         </div>
                     ))}
                 </div>
@@ -261,8 +222,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                     <td className='text-center  capitalize p-2 truncate'>amount</td>
                                     <td className='text-center  capitalize p-2 truncate'>trading plan</td>
                                     <td className='text-center  capitalize p-2 truncate'>profit</td>
-                                    <td className='text-center  capitalize p-2 truncate'>profit status</td>
                                     <td className='text-center  capitalize p-2 truncate'>bonus</td>
+                                    <td className='text-center  capitalize p-2 truncate'>status</td>
                                     <td className='text-center  capitalize p-2 truncate'>claimed</td>
                                 </tr>
                             </thead>
@@ -274,8 +235,8 @@ const Investment = ({ setToggle, refetchInvestments, refetchNotifications, refet
                                         <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                         <td className='p-4  text-center truncate'>{item.trading_plan}</td>
                                         <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
-                                        <td className={`p-4  text-center truncate italic ${item.profit_status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.profit_status}</td>
                                         <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
+                                        <td className={`p-4  text-center truncate italic ${item.status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.status}</td>
                                         <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-semi-white'}`}>{item.claim} </td>
                                     </tr>
                                 ))}

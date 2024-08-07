@@ -12,7 +12,8 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import Wallet from './Wallet'
 import moment from 'moment'
-import { ADMINWALLETS, DEPOSITS, INVESTMENTS, INVESTMENTUNCLAIM, NOTIFICATIONS, PROFILE, UNREADNOTIS, UPS, WALLET, WITHDRAWALS } from '../../../store';
+import avatar from '../../../assets/images/avatar.png'
+import { ADMINWALLETS, DEPOSITS, INVESTMENTS, INVESTMENTUNCLAIM, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET, WITHDRAWALS } from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Profile from './Profile';
@@ -77,6 +78,7 @@ const Dashboard = () => {
     const [wallet, setWallet] = useAtom(WALLET)
     const [, setUps] = useAtom(UPS)
     const [, setAdminWallets] = useAtom(ADMINWALLETS)
+    const [, setTradingPlans] = useAtom(TRADINGPLANS)
     const [urlState, setUrlState] = useState(false)
     const [loading, setLoading] = useState(true)
     const [slideShow, setSlideShow] = useState(false)
@@ -159,7 +161,6 @@ const Dashboard = () => {
             const response = await UserGetApi(Apis.investment.user_unclaim)
             if (response.status === 200) {
                 setInvestUnclaim(response.msg)
-
             }
 
         } catch (error) {
@@ -220,6 +221,22 @@ const Dashboard = () => {
     useEffect(() => {
         FetchAdminWallets()
     }, [FetchAdminWallets])
+
+    const FetchTradingPlans = useCallback(async () => {
+        try {
+            const response = await UserGetApi(Apis.admin.get_trading_plans)
+            if (response.status === 200) {
+                setTradingPlans(response.msg)
+            }
+
+        } catch (error) {
+            //
+        }
+    }, [])
+
+    useEffect(() => {
+        FetchTradingPlans()
+    }, [FetchTradingPlans])
 
     const FetchWallet = useCallback(async () => {
         try {
@@ -306,7 +323,10 @@ const Dashboard = () => {
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-light text-[0.85rem] flex items-center justify-between mt-4'>
                             <div className='flex gap-2 xl:gap-0 items-center'>
                                 <div className='xl:hidden cursor-pointer' onClick={() => { setToggle('profile'); setUrlState(false); setSlideShow(false); setToggleExtra('') }}>
-                                    <img src={`${imageurl}/profiles/${user.image}`} className='w-10 h-10 object-cover rounded-full border border-light'></img>
+                                    {user.image ? <img src={`${imageurl}/profiles/${user.image}`} className='w-10 h-10 object-cover rounded-full border border-light'></img>
+                                        :
+                                        <img src={avatar} className='w-10 h-10 object-cover rounded-full border border-light'></img>
+                                    }
                                 </div>
                                 <div className='capitalize font-medium'>
                                     hi, <span> {user.username}</span>
@@ -398,7 +418,10 @@ const Dashboard = () => {
                 <div className='w-[80%] mx-auto flex flex-col gap-12 justify-center mt-20'>
                     <div className=' text-semi-white text-[1.1rem] text-center font-bold capitalize'>trader profile</div>
                     <div className='flex gap-4 flex-col items-center font-bold capitalize'>
-                        <img src={`${imageurl}/profiles/${user.image}`} className='w-16 h-16 object-cover rounded-full border-2 border-light'></img>
+                        {user.image ? <img src={`${imageurl}/profiles/${user.image}`} className='w-16 h-16 object-cover rounded-full border-2 border-light'></img>
+                            :
+                            <img src={avatar} className='w-16 h-16 object-cover rounded-full border-2 border-light'></img>
+                        }
                         <div className='flex gap-1'>
                             <div className='text-semi-white '>{user.username}</div>
                             {user.email_verified === 'true' && <MdVerified className='text-[0.7rem] text-light border-light' />}

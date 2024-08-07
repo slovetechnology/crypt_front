@@ -17,24 +17,15 @@ import { countryApi } from '../../services/CountryAPI'
 
 const SignupPage = () => {
   const navigate = useNavigate()
+  const [screen, setScreen] = useState(1)
   const [eye, setEye] = useState(false)
   const [eye2, setEye2] = useState(false)
   const [check, setCheck] = useState(false)
   const EyeIcon = eye === true ? IoEye : IoMdEyeOff
   const EyeIcon2 = eye2 === true ? IoEye : IoMdEyeOff
-  const [nameError, setNameError] = useState(false)
-  const [userError, setUserError] = useState(false)
-  const [emailError, setEmailError] = useState(false)
-  const [countryError, setCountryError] = useState(false)
-  const [codeError, setCodeError] = useState(false)
-  const [passError, setPassError] = useState(false)
-  const [conError, setConError] = useState(false)
-  const [checkError, setCheckError] = useState(false)
-  const [verifyError, setVerifyError] = useState(false)
-  const [imageError, setImageError] = useState('')
-  const [tcodeMsg, setTCodeMsg] = useState('')
-  const [passMsg, setPassMsg] = useState('')
-  const [conMsg, setConMsg] = useState('')
+  const [error, setError] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
+  const [verifycode, setVerifyCode] = useState('')
   const [loading, setLoading] = useState(false)
   const [countries, setCountries] = useState(countryApi)
   const [countryshow, setCountryShow] = useState(false)
@@ -43,19 +34,18 @@ const SignupPage = () => {
     flag: null
   })
   const [search, setSearch] = useState('')
-  const [screen, setScreen] = useState(1)
-  const [verifycode, setVerifyCode] = useState('')
   const imgref = useRef()
 
   const [profile, setProfile] = useState({
     img: null,
     image: null
   })
+
   const [form, setForm] = useState({
     full_name: '',
     username: '',
     email: '',
-    tradersCode: '',
+    referral_code: '',
     password: '',
     confirm_password: ''
   })
@@ -68,58 +58,51 @@ const SignupPage = () => {
 
   const handleProfileUpload = (event) => {
     setTimeout(() => {
-      setImageError('')
+      setError('')
+      setErrorMsg('')
     }, 2000)
+
     const file = event.target.files[0]
     if (file.size >= 1000000) {
       imgref.current.value = null
-      return setImageError('File size too large')
+      setErrorMsg('File size too large')
+      return setError('image')
     }
     if (!file.type.startsWith('image/')) {
       imgref.current.value = null
-      return setImageError('File Error')
+      setErrorMsg('File Error')
+      return setError('image')
     }
+
     setProfile({
       img: URL.createObjectURL(file),
       image: file
     })
   }
+
   const submitForm = async (event) => {
     event.preventDefault()
     setTimeout(() => {
-      setNameError(false)
-      setUserError(false)
-      setEmailError(false)
-      setCountryError(false)
-      setCodeError(false)
-      setPassError(false)
-      setConError(false)
-      setCheckError(false)
-      setPassMsg('')
-      setConMsg('')
-      setTCodeMsg('')
+      setError('')
+      setErrorMsg('')
     }, 2000)
-    if (!form.full_name) return setNameError(true)
-    if (!form.username) return setUserError(true)
-    if (!form.email) return setEmailError(true)
-    if (usercountry.country === 'choose country') return setCountryError(true)
-    if (!form.tradersCode) return setCodeError(true)
-    if (form.tradersCode.length < 6) {
-      setTCodeMsg(`code is seven or more characters long`)
-      return setCodeError(true);
-    }
-    if (!form.password) return setPassError(true)
+
+    if (!form.full_name) return setError('name')
+    if (!form.username) return setError('user')
+    if (!form.email) return setError('email')
+    if (usercountry.name === 'choose country') return setError('country')
+    if (!form.password) return setError('password')
     if (form.password.length < 6) {
-      setPassMsg('length too short')
-      return setPassError(true)
+      setErrorMsg('length too short')
+      return setError('password')
     }
-    if (!form.confirm_password) return setConError(true)
+    if (!form.confirm_password) return setError('confirm_p')
     if (form.confirm_password !== form.password) {
-      setConMsg('passwords mismatch')
-      setPassError(true)
-      return setConError(true)
+      setErrorMsg('passwords mismatch')
+      return setError('confirm_p')
     }
-    if (!check) return setCheckError(true)
+    if (!check) return setError('check')
+
     const formbody = new FormData()
     formbody.append('image', profile.image)
     formbody.append('country_flag', usercountry.flag)
@@ -127,7 +110,7 @@ const SignupPage = () => {
     formbody.append('username', form.username)
     formbody.append('email', form.email)
     formbody.append('country', usercountry.name)
-    formbody.append('tradersCode', form.tradersCode)
+    formbody.append('referral_code', form.referral_code)
     formbody.append('password', form.password)
     formbody.append('confirm_password', form.confirm_password)
     setLoading(true)
@@ -149,14 +132,17 @@ const SignupPage = () => {
     e.preventDefault()
 
     setTimeout(() => {
-      setVerifyError(false)
+      setError('')
+      setErrorMsg('')
     }, 1000)
 
-    if (!verifycode) return setVerifyError(true)
+    if (!verifycode) return setError('verify')
+
     const formbody = {
       code: verifycode,
       email: form.email
     }
+
     setLoading(true)
     try {
       const response = await UserPostApi(Apis.user.validate_email, formbody)
@@ -166,7 +152,8 @@ const SignupPage = () => {
         const findRole = UserRole.find(item => item.role === decoded.role)
         if (findRole) return navigate(`${findRole.url}`)
       } else {
-        return Alert('Request Failed', response.msg, 'error')
+        setError('verify')
+        return setErrorMsg(response.msg)
       }
     } catch (error) {
       Alert('Request Failed', `${error.message}`, 'error')
@@ -188,12 +175,13 @@ const SignupPage = () => {
   }
 
   const FilterCountry = () => {
+    const altCountries = countryApi
     if (!search) {
       setCountries(countryApi)
     }
     else {
-      const showSearch = countries.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
-      setCountries(showSearch)
+      let searchResult = altCountries.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+      setCountries(searchResult)
     }
   }
 
@@ -233,22 +221,22 @@ const SignupPage = () => {
                                 }
                                 <input ref={imgref} type="file" onChange={handleProfileUpload} hidden />
                               </label>
-                              <div className='absolute -bottom-4 -right-10 text-xs text-[red]'>{imageError}</div>
+                              {error === 'image' && <div className='absolute -bottom-4 -right-10 text-xs text-[red]'>{errorMsg}</div>}
                             </div>
                             <div className='flex flex-col gap-[0.3rem]'>
                               <div className='text-sm capitalize font-[550] '>full name:</div>
-                              <input className={`outline-none w-full  border-b  ${nameError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt input-off`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
+                              <input className={`outline-none w-full  border-b  ${error === 'name' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt input-off`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
                               <div></div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 w-full md:gap-8 gap-[0.7rem]'>
                               <div className='flex flex-col gap-[0.3rem] relative '>
                                 <div className='text-sm capitalize font-[550] '>username:</div>
-                                <input className={`outline-none w-full  border-b  ${userError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
+                                <input className={`outline-none w-full  border-b  ${error === 'user' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
                                 <div></div>
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative '>
                                 <div className='text-sm capitalize font-[550] '>e-mail address:</div>
-                                <input className={`outline-none w-full   border-b   ${emailError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full   border-b   ${error === 'email' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
                               </div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-[0.7rem] w-full'>
@@ -257,7 +245,7 @@ const SignupPage = () => {
                                   <div className='text-sm capitalize font-[550]'>country:</div>
                                   <div className='flex gap-1 items-center'>
                                     {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
-                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${countryError ? 'border border-[red]' : ''}`} onClick={() => { setCountryShow(!countryshow); setSearch(''); setCountries(countryApi) }}>
+                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${error === 'country' ? 'border border-[red]' : ''}`} onClick={() => { setCountryShow(!countryshow); setSearch(''); setCountries(countryApi) }}>
                                       <div className='flex justify-between items-center text-[0.8rem]'>
                                         <span >{usercountry.name}</span>
                                         <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>
@@ -268,9 +256,11 @@ const SignupPage = () => {
                                     </div>
                                   </div>
                                 </div>
-                                {countryshow && <div className='h-44 w-full bg-white sha absolute top-[3.4rem] left-0 z-10 py-2 rounded-sm overflow-y-auto scroll'>
+                                {countryshow && <div className='h-fit w-full bg-white sha absolute top-[3.4rem] left-0 z-10 py-2 rounded-sm '>
                                   <div className='px-4'>
                                     <input className='ipt border border-semi-white bg-transparent text-black px-2 py-1 w-full outline-none md:text-[0.85rem] text-base md:h-6 h-7 rounded-sm mb-1' type='text' placeholder='search' value={search} onChange={(e) => setSearch(e.target.value)} onKeyUp={FilterCountry}></input>
+                                  </div>
+                                  <div className='overflow-y-auto scroll h-[8.5rem] px-4'>
                                     {countries.map((item, i) => (
                                       <div className='flex flex-col mt-2' key={i}>
                                         <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setUserCountry(item); setCountryShow(false) }}>
@@ -280,30 +270,30 @@ const SignupPage = () => {
                                       </div>
                                     ))}
                                   </div>
-                                </div>}
+                                </div>
+                                }
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
-                                <div className='text-sm capitalize font-[550] '>trader's code:</div>
-                                <input className={`outline-none w-full   border-b  ${codeError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt input-off`} placeholder={`Enter an AI Algo trader's code`} code type='text' name='tradersCode' value={form.tradersCode} onChange={inputHandler}></input>
-                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{tcodeMsg}</div>
+                                <div className='text-sm capitalize font-[550] '>referral code:</div>
+                                <input className='outline-none w-full   border-b border-[#4d4c4c] lg:text-sm text-base  ipt input-off' placeholder='Optional' code type='text' name='referral_code' value={form.referral_code} onChange={inputHandler}></input>
                               </div>
                             </div>
                             <div className='grid grid-cols-2 gap-8 w-full'>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550]'>password:</div>
-                                <input className={`outline-none w-full border-b  ${passError === true ? 'border-[red]' : 'border-[#4d4c4c]'}  lg:text-sm text-base pr-6 ipt input-off`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full border-b  ${error === 'password' ? 'border-[red]' : 'border-[#4d4c4c]'}  lg:text-sm text-base pr-6 ipt input-off`} placeholder='Create a password' type={eye === true ? 'text' : 'password'} name='password' value={form.password} onChange={inputHandler}></input>
                                 <EyeIcon className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye(!eye)} />
-                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{passMsg}</div>
+                                {error === 'password' && <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{errorMsg}</div>}
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
                                 <div className='text-sm capitalize font-[550] '>confirm password:</div>
-                                <input className={`outline-none w-full border-b  ${conError === true ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base pr-6 ipt input-off`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
+                                <input className={`outline-none w-full border-b  ${error === 'confirm_p' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base pr-6 ipt input-off`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
                                 <EyeIcon2 className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
-                                <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{conMsg}</div>
+                                {error === 'confirm_p' && <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{errorMsg}</div>}
                               </div>
                             </div>
                             <div className='flex gap-1 mt-4'>
-                              <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
+                              <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' ? 'outline outline-1 outline-[red]' : ''}`}></input>
                               <div className='text-xs capitalize'>by signing up, i agree with <Link to='/terms' className='text-orange font-[550]' onClick={MoveToTop}>terms and conditions</Link></div>
                             </div>
                             <div className='flex flex-col gap-2 items-center'>
@@ -323,9 +313,10 @@ const SignupPage = () => {
                           <div className='text-center text-2xl capitalize font-[550] mt-4'>Verify Your Email</div>
                           <div className='text-center mt-[0.5rem]'>A six digits code was sent to your email address <span className='text-orange'>{form.email?.slice(0, 3)}*******{form.email?.slice(-10)}</span>, copy and paste code below to verify your email.</div>
                           <form onSubmit={ValidateEmail}>
-                            <div className='flex flex-col gap-1 mt-12'>
+                            <div className='flex flex-col gap-1 mt-12 relative'>
                               <div className='capitalize text-[0.85rem]'>enter six digits code</div>
-                              <input className={`outline-none w-full h-10 border  ${verifyError === true ? 'border-[red]' : 'border-[grey]'} text-sm px-2 ipt`} placeholder='Enter code here' value={verifycode} onChange={(e) => setVerifyCode(e.target.value)}></input>
+                              <input className={`outline-none w-full h-10 border  ${error === 'verify' ? 'border-[red]' : 'border-[grey]'} text-sm px-2 ipt`} placeholder='Enter code here' value={verifycode} onChange={(e) => setVerifyCode(e.target.value)}></input>
+                              {error === 'verify' && <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{errorMsg}</div>}
                             </div>
                             <div className='text-[0.85rem] text-right mt-2'>Didn't get code? <span className='text-orange cursor-pointer' onClick={ResendsCode}>Resend code</span></div>
                             <div className='flex items-center justify-center mt-12'>

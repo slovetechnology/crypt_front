@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { ADMINALLDEPOSITS, ADMINALLUSERS, ADMINALLWITHDRAWALS, ADMINWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../../../store'
+import React, { useCallback, useEffect, useState } from 'react'
+import { ADMINALLDEPOSITS, ADMINALLINVESTMENTS, ADMINALLUSERS, ADMINALLWITHDRAWALS, ADMINWALLETS, NOTIFICATIONS, TRADINGPLANS, UNREADNOTIS } from '../../../store'
 import { useAtom } from 'jotai'
 import Cookies from 'js-cookie'
 import { CookieName } from '../../../utils/utils'
@@ -10,40 +10,52 @@ import { RiBankLine } from "react-icons/ri";
 import { TiCancel } from 'react-icons/ti'
 import { IoMdLogOut } from 'react-icons/io'
 import { HiOutlineCreditCard } from "react-icons/hi2";
+import { HiOutlineCollection } from "react-icons/hi";
 import { TbUsers } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
-import UpdateTransactions from './UpdateTransactions'
-import DeleteAccounts from './DeleteAccounts'
-import { Apis, UserGetApi } from '../../../services/API'
-import { FaAngleRight } from 'react-icons/fa6'
+import UpdateInvestment from './UpdateInvestment'
+import Users from './Users'
 import AdminNotis from './AdminNotis'
 import Withdrawals from './Withdrawals'
 import Settings from './SettingsComponents/Settings'
+import { Apis, UserGetApi } from '../../../services/API'
+import { FaAngleRight } from 'react-icons/fa6'
 import { HiOutlineDotsVertical } from 'react-icons/hi'
 import { LuX } from 'react-icons/lu'
+import UpdateDeposits from './UpdateDeposits'
+
 
 const AllLinks = [
-  { path: 'deposits', component: UpdateTransactions, icon: HiOutlineCreditCard },
+  { path: 'deposits', component: UpdateDeposits, icon: HiOutlineCreditCard },
+  { path: 'investments', component: UpdateInvestment, icon: HiOutlineCollection },
   { path: 'withdrawals', component: Withdrawals, icon: RiBankLine },
-  { path: 'users', component: DeleteAccounts, icon: TbUsers },
+  { path: 'users', component: Users, icon: TbUsers },
   { path: 'settings', component: Settings, icon: IoSettingsOutline },
 ]
 
 const MainLinks = [
-  { path: 'deposits', component: UpdateTransactions, icon: HiOutlineCreditCard },
+  { path: 'deposits', component: UpdateDeposits, icon: HiOutlineCreditCard },
+  { path: 'investments', component: UpdateInvestment, icon: HiOutlineCollection },
 ]
 
 const OtherLinks = [
   { path: 'withdrawals', component: Withdrawals, icon: RiBankLine },
-  { path: 'users', component: DeleteAccounts, icon: TbUsers },
+  { path: 'users', component: Users, icon: TbUsers },
   { path: 'settings', component: Settings, icon: IoSettingsOutline },
+]
+
+const DisplayLinks = [
+  { path: 'deposits', component: UpdateDeposits, icon: HiOutlineCreditCard },
+  { path: 'investments', component: UpdateInvestment, icon: HiOutlineCollection },
+  { path: 'users', component: Users, icon: TbUsers },
+  { path: 'withdrawals', component: Withdrawals, icon: RiBankLine },
 ]
 
 const toggleArray = [
   "deposits",
+  "investments",
   "withdrawals",
   "users",
-  "settings"
 ]
 
 const AdminHome = () => {
@@ -51,11 +63,13 @@ const AdminHome = () => {
   const [logout, setLogOut] = useState(false)
   const [toggle, setToggle] = useState('deposits')
   const [, setAllDeposits] = useAtom(ADMINALLDEPOSITS)
+  const [, setAllInvestments] = useAtom(ADMINALLINVESTMENTS)
   const [, setAllUsers] = useAtom(ADMINALLUSERS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
   const [, setAllWithdrawals] = useAtom(ADMINALLWITHDRAWALS)
   const [, setAdminWallets] = useAtom(ADMINWALLETS)
+  const [, setTradingPlans] = useAtom(TRADINGPLANS)
   const [slideShow, setSlideShow] = useState(false)
 
   const [loading, setLoading] = useState(true)
@@ -98,8 +112,6 @@ const AdminHome = () => {
     FetchUnreadNotis()
   }, [FetchUnreadNotis])
 
-
-
   const FetchAllUsers = useCallback(async () => {
     try {
       const response = await UserGetApi(Apis.admin.all_users)
@@ -117,6 +129,23 @@ const AdminHome = () => {
   }, [FetchAllUsers])
 
 
+  const FetchAllInvestments = useCallback(async () => {
+    try {
+      const response = await UserGetApi(Apis.admin.all_investments)
+      if (response.status === 200) {
+        setAllInvestments(response.msg)
+      }
+
+    } catch (error) {
+      //
+    } finally {
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchAllInvestments()
+  }, [FetchAllInvestments])
+
   const FetchAllWithdrawals = useCallback(async () => {
     try {
       const response = await UserGetApi(Apis.admin.all_withdrawals)
@@ -132,7 +161,6 @@ const AdminHome = () => {
   useEffect(() => {
     FetchAllWithdrawals()
   }, [FetchAllWithdrawals])
-
 
   const FetchAdminWallets = useCallback(async () => {
     try {
@@ -150,11 +178,25 @@ const AdminHome = () => {
     FetchAdminWallets()
   }, [FetchAdminWallets])
 
+  const FetchTradingPlans = useCallback(async () => {
+    try {
+      const response = await UserGetApi(Apis.admin.get_trading_plans)
+      if (response.status === 200) {
+        setTradingPlans(response.msg)
+      }
 
+    } catch (error) {
+      //
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchTradingPlans()
+  }, [FetchTradingPlans])
 
   const FetchAllDeposits = useCallback(async () => {
-    setLoading(true)
     try {
+      setLoading(true)
       const response = await UserGetApi(Apis.admin.all_deposits)
       if (response.status === 200) {
         setAllDeposits(response.msg)
@@ -174,7 +216,6 @@ const AdminHome = () => {
 
 
 
-
   return (
     <div className='w-full flex relative'>
       <div className={`w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:block lg:relative overflow-hidden ${slideShow ? 'block fixed top-0 left-0 h-full z-50' : 'hidden'}`}>
@@ -189,14 +230,16 @@ const AdminHome = () => {
           <div className='flex flex-col gap-8  mt-10 pl-12 lg:text-[#bbb9b9] text-semi-white '>
             <div className='flex gap-4 flex-col'>
               <div className=' text-[0.65rem] uppercase'>main</div>
-              {MainLinks.map((item, i) => (
-                <div key={i} onClick={() => { setToggle(item.path); setSlideShow(false) }}>
-                  <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === item.path ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
-                    <item.icon className='text-[1.3rem] ' />
-                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
+              <div className='flex flex-col gap-8'>
+                {MainLinks.map((item, i) => (
+                  <div key={i} onClick={() => { setToggle(item.path); setSlideShow(false) }}>
+                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${toggle === item.path ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
+                      <item.icon className='text-[1.3rem] ' />
+                      <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             <div className='flex gap-4 flex-col'>
               <div className='text-[0.65rem] uppercase'>others</div>
@@ -274,7 +317,8 @@ const AdminHome = () => {
                 <div key={i}>
                   {toggle === item.path && <item.component
                     refetchAllUsers={() => FetchAllUsers()}
-                    refetchAllDeposits={() => FetchAllDeposits()}
+                    refetchAllDeposits={FetchAllDeposits}
+                    reFetchAllInvestments={() => FetchAllInvestments()}
                     refetchAllWithdrawals={() => FetchAllWithdrawals()}
                   />}
                 </div>
@@ -283,7 +327,7 @@ const AdminHome = () => {
           }
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-5 items-center h-full w-full'>
-              {AllLinks.map((item, i) => (
+              {DisplayLinks.map((item, i) => (
                 <div key={i} onClick={() => { setToggle(item.path); setSlideShow(false) }}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${toggle === item.path ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-xl text-lg' />
@@ -291,7 +335,7 @@ const AdminHome = () => {
                   </div>
                 </div>
               ))}
-              <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(toggle) ? 'text-[green]' : 'text-semi-white'} `} onClick={() => { setSlideShow(!slideShow); console.log(slideShow) }}>
+              <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(toggle) ? 'text-[green]' : 'text-semi-white'} `} onClick={() => setSlideShow(!slideShow)}>
                 <HiOutlineDotsVertical className='md:text-xl text-lg' />
                 <div className='capitalize md:text-xs text-[0.7rem] font-medium'>more</div>
               </div>

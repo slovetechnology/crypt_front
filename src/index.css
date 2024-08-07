@@ -38,6 +38,10 @@ body {
   border-radius: 3px;
 }
 
+.scrollDiv::-webkit-scrollbar {
+  width: 0px;
+}
+
 .scrollsdown::-webkit-scrollbar {
   height: 0px;
 }
@@ -390,15 +394,6 @@ body {
 
 .shantf2 {
   box-shadow: 0px 3px 5px rgb(77, 76, 76)
-}
-
-
-
-.bgdeposit {
-  background-image: url('./assets/images/depositwallpaper.png');
-  width: 100%;
-  height: auto;
-  background-repeat: no-repeat;
 }
 
 .shabox {

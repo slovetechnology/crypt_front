@@ -21,46 +21,39 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
     const [userwallet] = useAtom(WALLET)
     const [adminWallets] = useAtom(ADMINWALLETS)
     const [allwithdrawals, setAllWithdrawals] = useState(fromAtom)
-    const [check, setCheck] = useState('')
-    const [checkError, setCheckError] = useState(false)
+
+    const [withdrawTitle, setWithdrawTitle] = useState(urlState ? 'withdraw history' : 'withdraw')
+    const [screen, setScreen] = useState(urlState ? 2 : 1)
     const [amount, setAmount] = useState('')
-    const [amountError, setAmountError] = useState(false)
-    const [walletAddress, setWalletAddress] = useState('')
-    const [walletError, setWalletError] = useState(false)
     const [selectState, setSelectState] = useState(false)
     const [selectValue, setSelectValue] = useState({})
-    const [selectError, setSelectError] = useState(false)
-    const [withdrawTitle, setWithdrawTitle] = useState(urlState ? 'withdraw history' : 'withdraw')
-    const [withdrawError, setWithdrawError] = useState('')
-    const [limitError, setLimitError] = useState(false)
-    const [screen, setScreen] = useState(urlState ? 2 : 1)
-    const [loading, setLoading] = useState(false)
+    const [walletAddress, setWalletAddress] = useState('')
+    const [check, setCheck] = useState('')
+    const [error, setError] = useState('')
+    const [errorMsg, setErrorMsg] = useState('')
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(allwithdrawals.length / end)
-
+    const [loading, setLoading] = useState(false)
 
 
     const makeWithdrawal = async () => {
         setTimeout(() => {
-            setAmountError(false)
-            setCheckError(false)
-            setWalletError(false)
-            setSelectError(false)
-            setLimitError(false)
+            setError('')
         }, 1000)
-        if (!amount) return setAmountError(true)
-        if (isNaN(amount)) return setAmountError(true)
-        if (amount < 100) return setAmountError(true)
-        if (Object.values(userwallet).length === 0) return setLimitError(true)
-        if (amount > userwallet.balance) return setLimitError(true)
-        if (Object.values(selectValue).length === 0) return setSelectError(true)
-        if (!walletAddress) return setWalletError(true)
-        if (!check) return setCheckError(true)
-        if (user.email_verified === 'false') return setWithdrawError('Verify your account to complete withdrawal')
+
+        if (!amount) return setError('amount')
+        if (isNaN(amount)) return setError('amount')
+        if (amount < 100) return setError('amount')
+        if (Object.values(userwallet).length === 0) return setError('limit')
+        if (amount > userwallet.balance) return setError('limit')
+        if (Object.values(selectValue).length === 0) return setError('select')
+        if (!walletAddress) return setError('wallet')
+        if (!check) return setError('check')
+        if (user.email_verified === 'false') return setErrorMsg('Complete account verification to continue')
 
         const formbody = {
             amount: parseFloat(amount),
@@ -102,7 +95,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
     }
 
     const HandleSearch = () => {
-
+        const altwithdrawals = fromAtom
         if (!search) {
             setWrite(false)
             setAllWithdrawals(fromAtom)
@@ -113,7 +106,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
         }
         else {
             setWrite(true)
-            const showSearch = allwithdrawals.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
+            const showSearch = altwithdrawals.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
             setpageend(showSearch.length / 6)
             setpagestart(1)
@@ -170,7 +163,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
 
 
     return (
-        <div className={`pt-10 h-screen`}>
+        <div className='pt-10 h-screen'>
             <div className='flex justify-between items-center'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{withdrawTitle}</div>
                 {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdrawTitle('withdawal history') }}>
@@ -183,19 +176,19 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                         <BiMoneyWithdraw />
                     </div>}
             </div>
-            {screen === 1 && <div className='w-[80%] mx-auto mt-10 relative flex items-center justify-center bgdeposit'>
+            {screen === 1 && <div className='md:w-5/6 mx-auto mt-10 relative flex items-center justify-center'>
                 {loading && <LoadingAdmin />}
                 <div className='text-black font-medium h-fit w-[30rem] bg-semi-white shlz rounded-xl overflow-hidden'>
-                    <div className='flex flex-col items-center md:p-12 p-4'>
+                    <div className='flex flex-col items-center md:py-12 px-4 py-4'>
                         <div className='flex gap-3 items-center'>
                             <div className='flex flex-col gap-2'>
                                 <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                                 <div className='relative'>
-                                    <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full px-5 h-8 rounded-md ${amountError ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                    <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full px-5 h-8 rounded-md ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                 </div>
                             </div>
-                            <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-light ${limitError ? 'border border-[red]' : ''}`}>
+                            <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
                                 <div className='flex  justify-center items-center gap-1'>
                                     <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
                                     <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
@@ -206,7 +199,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                             </div>
                         </div>
                         <div className='h-fit w-fit rounded-[0.2rem] bg-white mt-10 p-1'>
-                            <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scroll' : 'h-[1.6rem]'}  w-[13rem] px-2 py-1  bg-white shantf rounded-[0.2rem] text-black  ${selectError && 'border border-[red]'} trans`}>
+                            <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scrollDiv' : 'h-[1.6rem]'}  w-52 px-2 py-1  bg-white shantf rounded-[0.2rem] text-black  ${error === 'select' && 'border border-[red]'} trans`}>
                                 <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
                                     <div className='flex justify-between items-center capitalize text-[0.8rem]  font-[550]'>
                                         <span >choose cryptocurrency</span>
@@ -215,7 +208,7 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                                     </div>
                                 </div>
                                 {selectState && <div>
-                                    {adminWallets.length > 0 &&<>
+                                    {adminWallets.length > 0 && <>
                                         {adminWallets.map((item, i) => (
                                             <div className='flex flex-col mt-1' key={i}>
                                                 <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
@@ -230,20 +223,20 @@ const Withdraw = ({ setToggleExtra, refetchWithdrawals, refetchNotifications, re
                         </div>
                         {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                             <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-md px-2  ${walletError ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
+                            <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-md px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
                         </div>}
-                        <div className='flex flex-col gap-2 items-center relative mt-10'>
-                            <div className='flex gap-2 items-center'>
-                                <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${checkError === true ? 'outline outline-1 outline-[red]' : ''}`}></input>
-                                <div className='text-[#252525] text-[0.8rem]'>I confirm; I provided my correct wallet address</div>
+                        <div className='flex flex-col gap-1 items-center relative mt-10'>
+                            <div className='flex gap-1.5 items-center'>
+                                <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' ? 'outline outline-1 outline-[red]' : ''}`}></input>
+                                <div className='text-[#252525] text-[0.8rem]'>Confirm you provided your correct wallet address</div>
                             </div>
                             <button className='outline-none w-fit h-fit py-2 px-8 md:text-base text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
                                 <span>make withdrawal</span>
                                 <IoCheckbox />
                             </button>
                             <div className='absolute -bottom-8 left-0 text-[0.8rem] font-[600] text-[red] cursor-pointer flex gap-1 items-center' onClick={() => setToggleExtra('verify account')}>
-                                <span>{withdrawError}</span>
-                                {withdrawError !== '' && <MdSentimentVeryDissatisfied />}
+                                <span>{errorMsg}</span>
+                                {errorMsg !== '' && <MdSentimentVeryDissatisfied />}
                             </div>
                         </div>
                     </div>

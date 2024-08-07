@@ -9,16 +9,17 @@ import { IoEye } from 'react-icons/io5';
 import { IoMdEyeOff } from 'react-icons/io';
 import { SlLockOpen } from 'react-icons/sl';
 import { PiWarningCircleBold } from 'react-icons/pi';
+import avatar from '../../../assets/images/avatar.png'
 
-const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllUsers, refetchAllDeposits, refetchAllWithdrawals }) => {
+const UsersModal = ({ closeView, singleUser, userFigures, setAllUsers, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllUsers, refetchAllDeposits, refetchAllWithdrawals }) => {
     const toggler = useRef()
-    const [deleted, setDeleted] = useState(1)
-    const [loading, setLoading] = useState(false)
-    const [eye, setEye] = useState(false)
-    const EyeIcon = eye === true ? IoEye : IoMdEyeOff
+    const [beforeshow, setBeforeshow] = useState(true)
+    const [deleteScreen, setDeleteScreen] = useState(1)
     const [deletePassword, setDeletePassword] = useState('')
     const [deleteError, setDeleteError] = useState('')
-    const [beforeshow, setBeforeshow] = useState(true)
+    const [eye, setEye] = useState(false)
+    const EyeIcon = eye === true ? IoEye : IoMdEyeOff
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (toggler) {
@@ -41,7 +42,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
     }
 
     useEffect(() => {
-        if (deleted !== 1) {
+        if (deleteScreen !== 1) {
             MoveToBottom()
         }
     }, [MoveToBottom])
@@ -63,12 +64,11 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
         }
 
         setLoading(true)
-
         try {
             const response = await PostApi(Apis.admin.delete_users, formbody)
             if (response.status === 200) {
                 setAllUsers(response.msg)
-                Alert('Request Successful', 'User deleted successfully', 'success')
+                Alert('Request Successful', 'User deleteScreen successfully', 'success')
                 refetchAllUsers()
                 refetchAllDeposits()
                 refetchAllWithdrawals()
@@ -78,7 +78,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                 setpagestart(1)
                 setStart(0)
                 setEnd(6)
-                setDeleted(1)
+                setDeleteScreen(1)
                 closeView()
 
             } else {
@@ -102,7 +102,14 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                             <div className='flex flex-col gap-4 border p-1'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20 rounded-full bg-[#c9b8eb] mx-auto' >
-                                    {Object.values(singleUser).length !== 0 && <img src={`${imageurl}/profiles/${singleUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>}
+                                    {Object.values(singleUser).length !== 0 &&
+                                        <>
+                                            {singleUser.image ? <img src={`${imageurl}/profiles/${singleUser.image}`} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                                :
+                                                <img src={avatar} className='md:w-[5.5rem] md:h-[5.5rem] w-[4.7rem] h-[4.7rem] rounded-full object-cover'></img>
+                                            }
+                                        </>
+                                    }
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                     <div className='flex justify-between items-center'>
@@ -132,17 +139,23 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>total amount invested:</div>
-                                        {usertotal !== '' && <div className='md:text-[0.95rem] text-sm'>${usertotal.toLocaleString()}</div>}
+                                        {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.total_investment.toLocaleString()}</div>}
+                                    </div>
+                                </div>
+                                <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
+                                    <div className='flex justify-between items-center'>
+                                        <div className='italic '>wallet balance:</div>
+                                        {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.wallet_balance.toLocaleString()}</div>}
                                     </div>
                                 </div>
                             </div>
                             <div className='mt-4'>
-                                {deleted === 1 && <div className='flex items-center justify-center'>
-                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setDeleted(2); MoveToBottom() }}>delete user</button>
+                                {deleteScreen === 1 && <div className='flex items-center justify-center'>
+                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setDeleteScreen(2); MoveToBottom() }}>delete user</button>
                                 </div>}
-                                {deleted !== 1 && <div className='w-fit h-fit md:p-8 px-2 py-4 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                {deleteScreen !== 1 && <div className='w-fit h-fit md:p-8 px-2 py-4 rounded-md bg-white adsha mx-auto  text-black relative'>
                                     {loading && <Loading />}
-                                    {deleted === 2 && <div className='flex flex-col gap-8 items-center justify-center'>
+                                    {deleteScreen === 2 && <div className='flex flex-col gap-8 items-center justify-center'>
                                         <div className='flex flex-col gap-2'>
                                             <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Are you sure you want to delete this user?</div>
                                             <div className='flex justify-center items-center gap-0.5  text-xs font-medium'>
@@ -151,17 +164,17 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                             </div>
                                         </div>
                                         <div className='flex md:gap-16 gap-4 items-center'>
-                                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleted(1)}>
+                                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(1)}>
                                                 <span>cancel action</span>
                                                 <FaRegRectangleXmark />
                                             </button>
-                                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#7e3232] rounded-md capitalize flex items-center gap-1 font-bold' onClick={() => setDeleted(3)}>
+                                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#7e3232] rounded-md capitalize flex items-center gap-1 font-bold' onClick={() => setDeleteScreen(3)}>
                                                 <span>proceed action</span>
                                                 <MdOutlineDeleteForever />
                                             </button>
                                         </div>
                                     </div>}
-                                    {deleted === 3 && <div className='flex flex-col gap-2 items-center justify-center'>
+                                    {deleteScreen === 3 && <div className='flex flex-col gap-2 items-center justify-center'>
                                         <div className='md:text-[1.1rem] text-sm font-medium text-center'>Last step to permanently delete {singleUser.username}'s account!</div>
                                         <div className='flex gap-1 items-center justify-center text-xs text-[red]'>
                                             <span className='text-black font-medium text-center'>Admin, enter your password to finalize action</span>
@@ -174,7 +187,7 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
                                                 <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{deleteError}</div>
                                             </div>
                                             <div className='flex md:gap-16 gap-4 items-center'>
-                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => {setDeleted(1); setDeletePassword('')}}>
+                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setDeleteScreen(1); setDeletePassword('') }}>
                                                     <span>cancel deletion</span>
                                                     <FaRegRectangleXmark />
                                                 </button>
@@ -194,4 +207,4 @@ const DeleteModal = ({ closeView, singleUser, usertotal, setAllUsers, setStart, 
     )
 }
 
-export default DeleteModal
+export default UsersModal

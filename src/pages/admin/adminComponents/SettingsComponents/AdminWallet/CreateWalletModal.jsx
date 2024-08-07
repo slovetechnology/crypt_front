@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FiUploadCloud } from "react-icons/fi";
 import { MdOutlineEdit } from 'react-icons/md';
 import { RiErrorWarningLine } from "react-icons/ri";
-import Loading from '../../../../PageComponents/Loading';
-import { Apis, PostApi } from '../../../../services/API';
-import { Alert } from '../../../../utils/utils';
+import Loading from '../../../../../PageComponents/Loading';
+import { Apis, PostApi } from '../../../../../services/API';
+import { Alert } from '../../../../../utils/utils';
 
 const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpagestart, setpageend }) => {
     const [error, setError] = useState('')
@@ -90,7 +90,7 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
             setError('')
         }, 2000)
 
-        if (!form.crypto || !form.network || !form.address) return setError('Fill all fields')
+        if (!form.crypto || !form.network || !form.address) return setError('Enter all fields')
         if (cryptoImg.img === null || qrImg.img === null) return setError('Upload all images')
 
         const formbody = new FormData()
@@ -112,7 +112,7 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
                 setEnd(5)
                 closeView()
             } else {
-                Alert('Request Failed', response.msg, 'error')
+                setError(response.msg)
             }
         } catch (error) {
             Alert('Request Failed', `${error.message}`, 'error')
@@ -125,7 +125,7 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
 
 
     return (
-        <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
+        <div className='w-full h-screen fixed top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
             <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden' ref={toggler}>
                 <div className={`w-full h-full relative`}>
                     {loading && <Loading />}
@@ -183,10 +183,10 @@ const CreateWalletModal = ({ closeView, setAdminWallets, setStart, setEnd, setpa
                                 </label>
                             </div>
                             {error !== '' &&
-                                <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center'>
+                                <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
                                     <RiErrorWarningLine className='md:text-base text-sm' />
                                     <span>{error}</span>
-                                    <div className='error-progress absolute -bottom-1 left-0 rounded-sm'></div>
+                                    <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
                                 </div>
                             }
                         </div>
