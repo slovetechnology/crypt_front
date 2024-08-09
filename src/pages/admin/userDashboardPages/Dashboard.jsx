@@ -281,14 +281,14 @@ const Dashboard = ({ children }) => {
                         {MainLinks.map((item, i) => (
                             <Link key={i} onClick={() => setSlideShow(false)} to={item.url}>
                                 <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-light' : ' text-semi-white'}`} >
-                                    <item.icon className='md:text-xl text-lg ' />
-                                    <div className='capitalize md:text-xs text-[0.7rem] font-medium'>{item.path}</div>
+                                    <item.icon className='md:text-xl text-base ' />
+                                    <div className='capitalize md:text-xs text-[0.6rem] font-medium'>{item.path}</div>
                                 </div>
                             </Link>
                         ))}
                         <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow) }}>
-                            <HiOutlineDotsVertical className={`md:text-xl text-lg`} />
-                            <div className='capitalize md:text-xs text-[0.7rem] font-medium'>more</div>
+                            <HiOutlineDotsVertical className={`md:text-xl text-base`} />
+                            <div className='capitalize md:text-xs text-[0.6rem] font-medium'>more</div>
                         </div>
                     </div>
                 </div>
