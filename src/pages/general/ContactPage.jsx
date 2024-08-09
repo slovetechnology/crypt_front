@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Pagelayout from '../../PageComponents/Pagelayout'
+import Pagelayout from '../../GeneralComponents/Pagelayout'
 import contactimg from '../../assets/images/contactimg2.webp'
 import { PiTelegramLogoLight } from "react-icons/pi";
 import { TfiInstagram } from "react-icons/tfi";
@@ -8,7 +8,7 @@ import { MdOutlineHearing, MdCancel } from "react-icons/md";
 import { BiMailSend } from "react-icons/bi";
 import { Alert } from '../../utils/utils';
 import { Apis, UserPostApi } from '../../services/API';
-import Loading from '../../PageComponents/Loading';
+import Loading from '../../GeneralComponents/Loading'
 import { LuSearchCheck } from "react-icons/lu";
 import { TfiUser } from "react-icons/tfi";
 import { Alltraders } from '../../services/Miscellaneous';

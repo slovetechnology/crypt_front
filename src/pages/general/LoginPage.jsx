@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Pagelayout from '../../PageComponents/Pagelayout'
+import Pagelayout from '../../GeneralComponents/Pagelayout'
 import { FaHandsClapping } from "react-icons/fa6";
 import { MdMarkEmailUnread, MdLock } from "react-icons/md";
 import { IoEye } from "react-icons/io5";
@@ -7,7 +7,7 @@ import { IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logobrand.png'
 import ForgottenPassword from './ForgottenPassword';
-import Loading from '../../PageComponents/Loading'
+import Loading from '../../GeneralComponents/Loading'
 import { Alert, CookieName, MoveToTop, UserRole } from '../../utils/utils'
 import { Apis, UserPostApi } from '../../services/API'
 import Cookies from 'js-cookie'
@@ -63,7 +63,7 @@ const LoginPage = () => {
         // } finally {
         //     setLoading(false)
         // }
-        navigate('/dashboard')
+        navigate('/admin-controls')
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 

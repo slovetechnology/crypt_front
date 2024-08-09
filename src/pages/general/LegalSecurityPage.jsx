@@ -1,5 +1,5 @@
 import React from 'react'
-import Pagelayout from '../../PageComponents/Pagelayout'
+import Pagelayout from '../../GeneralComponents/Pagelayout'
 import { PiCertificate, PiTrademarkRegisteredBold } from 'react-icons/pi';
 import { RiTrademarkLine } from "react-icons/ri"
 import { GrNotes } from "react-icons/gr";

@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import Pagelayout from '../../PageComponents/Pagelayout'
+import Pagelayout from '../../GeneralComponents/Pagelayout'
 import logo from '../../assets/images/logobrand.png'
 import { Link, useNavigate } from 'react-router-dom';
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
@@ -7,7 +7,7 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { SlCamera, SlUser } from 'react-icons/sl'
 import { MdVerified } from "react-icons/md";
-import Loading from '../../PageComponents/Loading'
+import Loading from '../../GeneralComponents/Loading'
 import { Alert, CookieName, MoveToTop, UserRole } from '../../utils/utils'
 import { Apis, UserPostApi } from '../../services/API'
 import Cookies from 'js-cookie'

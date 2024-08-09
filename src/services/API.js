@@ -7,7 +7,7 @@ export const imageurl = import.meta.env.VITE_API_URL
 
 
 const user = 'api/user/'
-const user_urls  = {
+const user_urls = {
     signup: user + 'create-account',
     login: user + 'login-account',
     profile: user + 'profile',
@@ -38,21 +38,22 @@ const notification_urls = {
     delete_notification: notification + 'delete-notification',
     update_all: notification + 'update-all',
     update_admin_all: notification + 'update-admin-all',
-    update_single: notification + 'update-single'
+    update_single: notification + 'update-single',
+    update_admin_single: notification + 'update-admin-single'
 }
 
 const withdrawal = 'api/withdrawal/'
 const withdrawal_urls = {
-    user_withdrawals : withdrawal + 'user-withdrawals',
+    user_withdrawals: withdrawal + 'user-withdrawals',
     make_withdrawal: withdrawal + 'make-withdrawal'
 }
 
 const investment = 'api/investment/'
 const investment_urls = {
-    user_investment: investment +'user-investment',
-    user_unclaim: investment +'user-unclaim-investment',
+    user_investment: investment + 'user-investment',
+    user_unclaim: investment + 'user-unclaim-investment',
     create_investment: investment + 'create-investment',
-    claim_investment: investment +'claim-investment'
+    claim_investment: investment + 'claim-investment'
 }
 
 const admin = 'api/admin/'
@@ -73,7 +74,8 @@ const admin_urls = {
     get_trading_plans: admin + 'all-trading-plans',
     create_trading_plan: admin + 'create-trading-plan',
     update_trading_plan: admin + 'update-trading-plan',
-    delete_trading_plan: admin + 'delete-trading-plan'
+    delete_trading_plan: admin + 'delete-trading-plan',
+    fund_user_account: admin + 'fund-user-account'
 }
 
 export const Apis = {
@@ -87,14 +89,14 @@ export const Apis = {
 
 
 export const UserPostApi = async (endpoint, data) => {
-    const response  = await axios.post(`${URL}/${endpoint}`, data)
+    const response = await axios.post(`${URL}/${endpoint}`, data)
     return response.data
 }
 
 export const UserGetApi = async (endpoint) => {
     const token = Cookies.get(CookieName)
-    const response  = await axios.get(`${URL}/${endpoint}`, {
-        headers:{
+    const response = await axios.get(`${URL}/${endpoint}`, {
+        headers: {
             Authorization: `Bearer ${token}`
         }
     })
@@ -103,7 +105,7 @@ export const UserGetApi = async (endpoint) => {
 
 export const UserPutApi = async (endpoint, data) => {
     const token = Cookies.get(CookieName)
-    const response  = await axios.put(`${URL}/${endpoint}`, data, {
+    const response = await axios.put(`${URL}/${endpoint}`, data, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -113,7 +115,7 @@ export const UserPutApi = async (endpoint, data) => {
 
 export const PostApi = async (endpoint, data) => {
     const token = Cookies.get(CookieName)
-    const response  = await axios.post(`${URL}/${endpoint}`, data, {
+    const response = await axios.post(`${URL}/${endpoint}`, data, {
         headers: {
             Authorization: `Bearer ${token}`
         }

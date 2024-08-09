@@ -1,4 +1,4 @@
-import Pagelayout from '../../PageComponents/Pagelayout'
+import Pagelayout from '../../GeneralComponents/Pagelayout'
 import { MdJoinRight } from "react-icons/md";
 import { MdOutlineDiversity2 } from "react-icons/md";
 import { Link } from 'react-router-dom';

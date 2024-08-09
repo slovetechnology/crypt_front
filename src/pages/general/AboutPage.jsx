@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Pagelayout from '../../PageComponents/Pagelayout'
+import Pagelayout from '../../GeneralComponents/Pagelayout'
 import robotabt from '../../assets/images/robotabt.png'
 import { SiSpeedtest } from "react-icons/si";
 import { FaLongArrowAltRight } from "react-icons/fa";

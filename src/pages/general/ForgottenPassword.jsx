@@ -7,7 +7,7 @@ import { IoMdEyeOff } from "react-icons/io";
 import { MdVerified } from "react-icons/md";
 import { Apis, UserPostApi } from '../../services/API';
 import { Alert } from '../../utils/utils';
-import Loading from '../../PageComponents/Loading';
+import Loading from '../../GeneralComponents/Loading';
 
 const ForgottenPassword = ({ closePass }) => {
     const passwordField = useRef()

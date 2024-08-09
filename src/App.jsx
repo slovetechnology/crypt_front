@@ -1,37 +1,28 @@
 import { Route, Routes } from 'react-router-dom'
-import HomePage from './pages/general/HomePage'
-import ContactPage from './pages/general/ContactPage'
-import AboutPage from './pages/general/AboutPage'
-import LegalSecurityPage from './pages/general/LegalSecurityPage'
-import LoginPage from './pages/general/LoginPage'
-import SignupPage from './pages/general/SignupPage'
-import TradingPlansPage from './pages/general/TradingPlansPage'
-import PerformancesPage from './pages/general/PerformancesPage'
-import AuthRoute from './services/AuthRoute'
-import TermsPage from './pages/general/TermsPage'
-import PrivacyPage from './pages/general/PrivacyPage'
-import Dashboard from './pages/admin/dashboardComponents/Dashboard'
-import AdminHome from './pages/admin/adminComponents/AdminHome'
 import Notfound from './utils/Notfound'
+import { AdminDashboardPagesLinks, GeneralPagesLinks, UserDashboardPagesLinks } from './services/PageLinks'
+import AuthRoute from './services/AuthRoute'
 
 const App = () => {
   return (
     <Routes>
+
       <Route path="*" element={<Notfound />} />
-      <Route path="/" element={<HomePage />} />
-      <Route path="/contact" element={<ContactPage/>} />
-      <Route path="/about" element={<AboutPage/>} />
-      <Route path="/legal" element={<LegalSecurityPage/>} />
-      <Route path='/login' element={<LoginPage/>} />
-      <Route path='/signup' element={<SignupPage/>} />
-      <Route path='/trading' element={<TradingPlansPage/>} />
-      <Route path='/performances' element={<PerformancesPage/>} />
-      <Route path='/terms' element={<TermsPage/>} />
-      <Route path='/privacy' element={<PrivacyPage/>} />
-      <Route path='/dashboard' element={<Dashboard/>} />
-      <Route path='/admin-controls' element={<AuthRoute><AdminHome/></AuthRoute>} />
+
+      {GeneralPagesLinks.map((item, index) => (
+        <Route key={index} path={`${item.path}`} element={<item.component />} />
+      ))}
+
+      {UserDashboardPagesLinks.map((item, index) => (
+        <Route key={index} path={`${item.path}`} element={<item.component />} />
+      ))}
+
+      {AdminDashboardPagesLinks.map((item, index) => (
+        <Route key={index} path={`${item.path}`} element={<item.component />} />
+      ))}
+
     </Routes>
-    
+
   )
 }
 
