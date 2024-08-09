@@ -9,6 +9,7 @@ import profit3d from '../../../assets/images/profit3d.png'
 import bonus3d from '../../../assets/images/bonus3d.png'
 import tradingPic from '../../../assets/images/tradingpic.png'
 import Dashboard from './Dashboard';
+import { Link } from 'react-router-dom';
 
 
 const Wallet = () => {
@@ -140,10 +141,10 @@ const Wallet = () => {
                                 <div>profit</div>
                                 <div className='text-[green] text-[0.85rem] font-bold'>60%</div>
                             </div>
-                            <div className='flex flex-col gap-1'>
-                                <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => { setToggle('deposit') }}>purchase</button>
-                                <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]' onClick={() => setToggle('deposit')}>upgrade</button>
-                            </div>
+                            <Link to='/dashboard/deposit' className='flex flex-col gap-1'>
+                                <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]'>purchase</button>
+                                <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]'>upgrade</button>
+                            </Link>
                         </div>
                     </div>
                 </div>

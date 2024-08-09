@@ -193,7 +193,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
                                         <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                             <div className='flex flex-col gap-2 text-sm capitalize'>
                                                 <div className='text-center'>Enter an amount</div>
-                                                <input className={`outline-none border lg:text-[0.85rem] w-46 h-8 rounded-[5px] px-2 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                                <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[3px] px-2 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                             </div>
                                             <div className='mx-auto'>
                                                 <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-bold' onClick={FundUserAccount}>send fund</button>

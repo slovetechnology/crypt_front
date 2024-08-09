@@ -77,8 +77,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
         <div className='flex flex-col gap-5 items-center'>
           <div className='text-lg font-bold uppercase border-b w-full text-center'>fund wallet</div>
           <div className='relative'>
-            <input className={`outline-none border lg:text-[0.85rem] w-46 h-8 rounded-[5px] px-5 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
-            <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
+            <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
           </div>
           <div className='h-fit w-fit rounded-[0.2rem] bg-[#eeeded] p-1'>
             <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scrollDiv' : 'h-[1.6rem]'}  w-52 px-2 py-1  bg-white shantf rounded-[0.2rem]   text-black ${error === 'select' && 'border border-[red]'} trans`}>
