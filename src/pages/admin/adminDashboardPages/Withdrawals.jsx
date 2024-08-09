@@ -26,20 +26,20 @@ const Withdrawals = () => {
 
     const FetchAllWithdrawals = useCallback(async () => {
         try {
-          const response = await UserGetApi(Apis.admin.all_withdrawals)
-          if (response.status === 200) {
-            setAllWithdrawals(response.msg)
-            setFromAtom(response.msg)
-          }
-    
+            const response = await UserGetApi(Apis.admin.all_withdrawals)
+            if (response.status === 200) {
+                setAllWithdrawals(response.msg)
+                setFromAtom(response.msg)
+            }
+
         } catch (error) {
-          //
+            //
         }
-      }, [])
-    
-      useEffect(() => {
+    }, [])
+
+    useEffect(() => {
         FetchAllWithdrawals()
-      }, [FetchAllWithdrawals])
+    }, [FetchAllWithdrawals])
 
     const SingleWithdrawalFunction = (item) => {
         setSingleWithdrawal(item)
@@ -144,23 +144,33 @@ const Withdrawals = () => {
                                     <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
                                 </tr>
                             </thead>
-                            {allWithdrawals.length > 0 && <tbody className=''>
-                                {allWithdrawals.slice(start, end).map((item, i) => (
-                                    <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                        <td className='p-4  text-center truncate'>{item.wthUser.username}</td>
-                                        <td className='p-4  text-center truncate'>{item.wthUser.email}</td>
-                                        <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                                        <td className={`p-4  text-center truncate ${item.status === 'confirmed' ? 'text-[#459e45]' : 'text-black'}`}>{item.status}</td>
-                                        <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWithdrawalFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                            {allWithdrawals.length > 0 &&
+                                <tbody className=''>
+                                    {allWithdrawals.slice(start, end).map((item, i) => (
+                                        <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
+                                            <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                            <td className='p-4  text-center truncate'>{item.wthUser.username}</td>
+                                            <td className='p-4  text-center truncate'>{item.wthUser.email}</td>
+                                            <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                                            <td className={`p-4  text-center truncate ${item.status === 'confirmed' ? 'text-[#459e45]' : 'text-black'}`}>{item.status}</td>
+                                            <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWithdrawalFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            }
+                            {allWithdrawals.length < 1 &&
+                                <tbody>
+                                    <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                                        <td colSpan="6" className='py-2 italic text-center truncate'>
+                                            <div className='flex gap-1 items-center justify-center'>
+                                                <span>no withdrawals found...</span>
+                                                <img src={nothnyet} className='h-4 w-auto'></img>
+                                            </div>
+                                        </td>
                                     </tr>
-                                ))}
-                            </tbody>}
+                                </tbody>
+                            }
                         </table>
-                        {allWithdrawals.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
-                            <div>no withdrawals found...</div>
-                            <img src={nothnyet} className='h-4 w-auto'></img>
-                        </div>}
                     </div>
                     {allWithdrawals.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
                         {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

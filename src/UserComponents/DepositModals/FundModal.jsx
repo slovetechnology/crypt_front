@@ -103,7 +103,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
             </div>
           </div>
           {Object.values(selectValue).length !== 0 &&
-            <div className='text-[0.8rem] text-center'>Your <span className='capitalize'>{selectValue.crypto}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>:</div>
+            <div className='text-[0.8rem] text-center'><span className='capitalize'>{selectValue.crypto}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>:</div>
           }
           {Object.values(selectValue).length !== 0 &&
             <div className='flex gap-2 items-center'>

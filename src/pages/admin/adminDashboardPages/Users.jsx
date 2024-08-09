@@ -184,23 +184,33 @@ const Users = () => {
                   <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
                 </tr>
               </thead>
-              {allusers.length > 0 && <tbody>
-                {allusers.slice(start, end).map((item, i) => (
-                  <tr className='text-[0.8rem] font-[550]  text-black bg-white even:bg-semi-white ' key={i}>
-                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                    <td className='p-4  text-center truncate'>{item.full_name}</td>
-                    <td className='p-4  text-center truncate'>{item.username}</td>
-                    <td className='p-4  text-center truncate'>{item.email}</td>
-                    <td className='p-4  truncate'><img src={item.country_flag} className='w-4 h-auto mx-auto'></img></td>
-                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserFigures}> <BsThreeDots className="mx-auto text-base" /></td>
+              {allusers.length > 0 &&
+                <tbody>
+                  {allusers.slice(start, end).map((item, i) => (
+                    <tr className='text-[0.8rem] font-[550]  text-black bg-white even:bg-semi-white ' key={i}>
+                      <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                      <td className='p-4  text-center truncate'>{item.full_name}</td>
+                      <td className='p-4  text-center truncate'>{item.username}</td>
+                      <td className='p-4  text-center truncate'>{item.email}</td>
+                      <td className='p-4  truncate'><img src={item.country_flag} className='w-4 h-auto mx-auto'></img></td>
+                      <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserFigures}> <BsThreeDots className="mx-auto text-base" /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              }
+              {allusers.length < 1 &&
+                <tbody>
+                  <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                    <td colSpan="6" className='py-2 italic text-center truncate'>
+                      <div className='flex gap-1 items-center justify-center'>
+                        <span>no users found...</span>
+                        <img src={nothnyet} className='h-4 w-auto'></img>
+                      </div>
+                    </td>
                   </tr>
-                ))}
-              </tbody>}
+                </tbody>
+              }
             </table>
-            {allusers.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
-              <div>no users found...</div>
-              <img src={nothnyet} className='h-4 w-auto'></img>
-            </div>}
           </div>
           {allusers.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
             {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

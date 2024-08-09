@@ -3,11 +3,11 @@ import { Apis, PostApi, UserPutApi, imageurl } from '../../../services/API'
 import { PROFILE } from '../../../store'
 import { useAtom } from 'jotai'
 import { IoEye } from 'react-icons/io5';
-import { MdVerified, MdOutlineDateRange, MdOutlineCancel, MdSentimentVeryDissatisfied, MdOutlineDeleteForever, MdOutlineEdit } from "react-icons/md";
+import { MdVerified, MdOutlineDateRange, MdOutlineCancel, MdSentimentVeryDissatisfied, MdOutlineDeleteForever, MdOutlineEdit, MdContentCopy } from "react-icons/md";
 import moment from 'moment';
 import { LuUserCircle } from "react-icons/lu";
 import { SlLockOpen } from "react-icons/sl";
-import { FaRegRectangleXmark } from "react-icons/fa6";
+import { FaCheck, FaRegRectangleXmark } from "react-icons/fa6";
 import { IoCheckbox } from "react-icons/io5";
 import { PiWarningCircleBold } from "react-icons/pi";
 import { FaRegEdit } from "react-icons/fa";
@@ -38,6 +38,7 @@ const Profile = () => {
     const [eye2, setEye2] = useState(false)
     const EyeIcon = eye === true ? IoEye : IoMdEyeOff
     const EyeIcon2 = eye2 === true ? IoEye : IoMdEyeOff
+    const [copy, setCopy] = useState(false)
     const imgref = useRef()
     const navigate = useNavigate()
 
@@ -107,6 +108,15 @@ const Profile = () => {
             old_password: '',
             new_password: '',
         })
+    }
+
+    const copyFunction = () => {
+        setTimeout(() => {
+            setCopy(false)
+        }, 2000)
+
+        navigator.clipboard.writeText(user.referral_code)
+        setCopy(true)
     }
 
     const submitForm = async (event) => {
@@ -254,6 +264,16 @@ const Profile = () => {
                     </div>
                     <form onSubmit={submitForm} >
                         <div className='md:w-[80%] w-11/12 mx-auto md:text-[0.85rem] text-xs mt-8 text-semi-white flex flex-col gap-6'>
+                            <div className='flex items-center justify-between'>
+                                <div className='capitalize'>referral code:</div>
+                                <div className='flex gap-4 items-center'>
+                                    <span>{user.referral_code}</span>
+                                    <button className='outline-none w-fit h-fit py-1.5 px-2 text-[0.8rem] text-semi-white bg-light rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()} type='button'>
+                                        {!copy && <MdContentCopy />}
+                                        {copy && <FaCheck />}
+                                    </button>
+                                </div>
+                            </div>
                             <div className='flex justify-between items-center  capitalize'>
                                 <div>full name:</div>
                                 {!nameEdit && <div className='flex gap-4'>

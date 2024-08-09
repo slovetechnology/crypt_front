@@ -12,7 +12,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import avatar from '../../../assets/images/avatar.png'
-import { ADMINWALLETS, INVESTMENTUNCLAIM, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET} from '../../../store';
+import { ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET} from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
@@ -48,7 +48,6 @@ const toggleArray = [
 const Dashboard = ({ children }) => {
     const [logout, setLogOut] = useState(false)
     const [user] = useAtom(PROFILE)
-    const [, setInvestUnclaim] = useAtom(INVESTMENTUNCLAIM)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
     const [wallet, setWallet] = useAtom(WALLET)
@@ -102,6 +101,7 @@ const Dashboard = ({ children }) => {
             const response = await UserGetApi(Apis.user.wallet)
             if (response.status === 200) {
                 setWallet(response.msg)
+                console.log(response.msg)
             }
 
         } catch (error) {
@@ -113,22 +113,6 @@ const Dashboard = ({ children }) => {
     useEffect(() => {
         FetchWallet()
     }, [FetchWallet])
-
-    const FetchInvestmentUnclaim = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.investment.user_unclaim)
-            if (response.status === 200) {
-                setInvestUnclaim(response.msg)
-            }
-
-        } catch (error) {
-            //
-        }
-    }, [])
-
-    useEffect(() => {
-        FetchInvestmentUnclaim()
-    }, [FetchInvestmentUnclaim])
 
     const FetchUps = useCallback(async () => {
         try {

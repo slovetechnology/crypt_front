@@ -1,20 +1,20 @@
 import React from 'react'
 import { BsCurrencyDollar } from "react-icons/bs";
+import { VscDebugDisconnect } from "react-icons/vsc";
 import { useAtom } from 'jotai';
-import { INVESTMENTUNCLAIM, UPS, WALLET } from '../../../store';
+import { UPS, WALLET } from '../../../store';
 import wallet3d from '../../../assets/images/wallet3d.png'
 import deposit3d from '../../../assets/images/deposit3d.png'
 import withdraw3d from '../../../assets/images/withdraw3d.png'
 import profit3d from '../../../assets/images/profit3d.png'
 import bonus3d from '../../../assets/images/bonus3d.png'
-import tradingPic from '../../../assets/images/tradingpic.png'
+import referral from '../../../assets/images/referral.png'
 import Dashboard from './Dashboard';
 import { Link } from 'react-router-dom';
 
 
 const Wallet = () => {
     const [wallet] = useAtom(WALLET)
-    const [investmentsUnclaim] = useAtom(INVESTMENTUNCLAIM)
     const [ups] = useAtom(UPS)
 
     let profitUp = ups.new_profit / wallet.total_profit * 100
@@ -104,15 +104,21 @@ const Wallet = () => {
                         </div>
                     </div>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white capitalize bg-[#6859bb] overflow-hidden'>
-                        <div className=' text-xs md:text-[0.9rem] font-[600]'>trading activity</div>
-                        <div className='flex flex-col items-center mt-4'>
-                            {investmentsUnclaim.length > 0 ?
-                                <div className='md:text-lg text-sm italic text-[#eeee6c] lowercase text-center '>{investmentsUnclaim.length > 1 ? 'active investmentsUnclaim' : 'active investment'}</div>
-
-                                :
-                                <div className='md:text-lg text-sm italic text-[#eeee6c] lowercase text-center'>no active investment</div>
-                            }
-                            <img src={tradingPic} className='md:h-[4.5rem] h-[3.5rem] w-auto'></img>
+                        <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
+                            <div>referrals</div>
+                            <Link to="/dashboard/profile">
+                                <button className='bg-[#130e27] text-[0.7rem] md:text-xs rounded-xl py-1 px-4 -mt-1 italic flex gap-1 items-center justify-center'>
+                                    <span>refer</span>
+                                    <VscDebugDisconnect/>
+                                </button>
+                            </Link>
+                        </div>
+                        <div className='flex flex-col items-center font-bold mt-4 gap-4'>
+                            <div className='flex items-center' >
+                                <BsCurrencyDollar className='-mt-0.5' />
+                                {Object.values(wallet).length !== 0 && <div className='-ml-1'>{wallet.referral.toLocaleString()}</div>}
+                            </div>
+                            <img src={referral} className='md:h-14 h-10 w-auto'></img>
                         </div>
                     </div>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27]'>

@@ -193,18 +193,18 @@ const Withdraw = () => {
                             <BiMoneyWithdraw />
                         </div>}
                 </div>
-                {screen === 1 && <div className='md:w-5/6 mx-auto mt-10 relative flex items-center justify-center'>
-                    {loading && <LoadingAdmin />}
-                    <div className='text-black font-medium h-fit w-[30rem] bg-semi-white shlz rounded-xl overflow-hidden'>
-                        <div className='flex flex-col items-center md:py-12 px-4 py-4'>
+                {screen === 1 &&
+                    <div className='mt-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
+                        {loading && <LoadingAdmin />}
+                        <div className='flex flex-col items-center md:py-12 py-8 md:px-16 px-4'>
                             <div className='flex gap-3 items-center'>
                                 <div className='flex flex-col gap-2'>
                                     <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                                     <div className='relative'>
-                                        <input className={`outline-none border  bg-transparent lg:text-[0.85rem] w-full px-2 h-8 rounded-[5px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                        <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-2 h-8 rounded-[5px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     </div>
                                 </div>
-                                <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center px-4 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
+                                <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
                                     <div className='flex  justify-center items-center gap-1'>
                                         <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
                                         <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
@@ -244,7 +244,7 @@ const Withdraw = () => {
                             <div className='flex flex-col gap-1 items-center relative mt-10'>
                                 <div className='flex gap-1.5 items-center'>
                                     <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' ? 'outline outline-1 outline-[red]' : ''}`}></input>
-                                    <div className='text-[#252525] text-[0.8rem]'>Confirm you provided your correct wallet address</div>
+                                    <div className='text-[#252525] text-[0.8rem]'>I provided my correct wallet address</div>
                                 </div>
                                 <button className='outline-none w-fit h-fit py-2 px-8 md:text-base text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
                                     <span>make withdrawal</span>
@@ -259,7 +259,7 @@ const Withdraw = () => {
                             </div>
                         </div>
                     </div>
-                </div>}
+                }
                 {screen === 2 && <div className='mt-12'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
@@ -284,24 +284,33 @@ const Withdraw = () => {
                                     <td className='text-center truncate  capitalize p-2'>status </td>
                                 </tr>
                             </thead>
-                            {withdrawals.length > 0 && <tbody>
-                                {withdrawals.slice(start, end).map((item, i) => (
-                                    <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                        <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                                        <td className='p-4  text-center truncate'>{item.crypto}</td>
-                                        <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
-                                        <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
+                            {withdrawals.length > 0 &&
+                                <tbody>
+                                    {withdrawals.slice(start, end).map((item, i) => (
+                                        <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                            <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                            <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                            <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                                            <td className='p-4  text-center truncate'>{item.crypto}</td>
+                                            <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
+                                            <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            }
+                            {withdrawals.length < 1 &&
+                                <tbody>
+                                    <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                        <td colSpan="6" className='py-2 italic text-center truncate'>
+                                            <div className='flex gap-1 items-center justify-center'>
+                                                <span>no withdrawals found...</span>
+                                                <img src={nothnyet} className='h-4 w-auto'></img>
+                                            </div>
+                                        </td>
                                     </tr>
-                                ))}
-                            </tbody>
+                                </tbody>
                             }
                         </table>
-                        {withdrawals.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
-                            <div>no withdrawals found...</div>
-                            <img src={nothnyet} className='h-4 w-auto'></img>
-                        </div>}
                     </div>
                     {withdrawals.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-light '>
                         {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

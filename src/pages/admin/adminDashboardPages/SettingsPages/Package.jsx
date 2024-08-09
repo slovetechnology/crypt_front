@@ -101,22 +101,32 @@ const Package = () => {
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
-            {tradingPlans.length > 0 && <tbody>
-              {tradingPlans.slice(start, end).map((item, i) => (
-                <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                  <td className='p-4  text-center truncate capitalize'>{item.title}</td>
-                  <td className={`p-4  text-center truncate`}>${item.price_start.toLocaleString()}</td>
-                  <td className='p-4  text-center truncate capitalize'>${item.price_limit.toLocaleString()}</td>
-                  <td className='p-4  text-center truncate capitalize'>${item.plan_bonus.toLocaleString()}</td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SinglePlanFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+            {tradingPlans.length > 0 &&
+              <tbody>
+                {tradingPlans.slice(start, end).map((item, i) => (
+                  <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
+                    <td className='p-4  text-center truncate capitalize'>{item.title}</td>
+                    <td className={`p-4  text-center truncate`}>${item.price_start.toLocaleString()}</td>
+                    <td className='p-4  text-center truncate capitalize'>${item.price_limit.toLocaleString()}</td>
+                    <td className='p-4  text-center truncate capitalize'>${item.plan_bonus.toLocaleString()}</td>
+                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SinglePlanFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                  </tr>
+                ))}
+              </tbody>
+            }
+            {tradingPlans.length < 1 &&
+              <tbody>
+                <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                  <td colSpan="5" className='py-2 italic text-center truncate'>
+                    <div className='flex gap-1 items-center justify-center'>
+                      <span>no trading plans found...</span>
+                      <img src={nothnyet} className='h-4 w-auto'></img>
+                    </div>
+                  </td>
                 </tr>
-              ))}
-            </tbody>}
+              </tbody>
+            }
           </table>
-          {tradingPlans.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
-            <div>no trading plans found...</div>
-            <img src={nothnyet} className='h-4 w-auto'></img>
-          </div>}
         </div>
         {tradingPlans.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
           {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

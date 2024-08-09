@@ -267,26 +267,35 @@ const Investment = () => {
                                         <td className='text-center  capitalize p-2 truncate'>claimed</td>
                                     </tr>
                                 </thead>
-                                {investment.length > 0 && <tbody>
-                                    {investment.slice(start, end).map((item, i) => (
-                                        <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                            <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                            <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                            <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                                            <td className='p-4  text-center truncate'>{item.trading_plan}</td>
-                                            <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
-                                            <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
-                                            <td className={`p-4  text-center truncate italic ${item.status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.status}</td>
-                                            <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-semi-white'}`}>{item.claim} </td>
+                                {investment.length > 0 &&
+                                    <tbody>
+                                        {investment.slice(start, end).map((item, i) => (
+                                            <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                                <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                                <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                                <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                                                <td className='p-4  text-center truncate'>{item.trading_plan}</td>
+                                                <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
+                                                <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
+                                                <td className={`p-4  text-center truncate italic ${item.status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.status}</td>
+                                                <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-semi-white'}`}>{item.claim} </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                }
+                                {investment.length < 1 &&
+                                    <tbody>
+                                        <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                            <td colSpan="8" className='py-2 italic text-center truncate'>
+                                                <div className='flex gap-1 items-center justify-center'>
+                                                    <span>no investments found...</span>
+                                                    <img src={nothnyet} className='h-4 w-auto'></img>
+                                                </div>
+                                            </td>
                                         </tr>
-                                    ))}
-                                </tbody>
+                                    </tbody>
                                 }
                             </table>
-                            {investment.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
-                                <div>no investment found...</div>
-                                <img src={nothnyet} className='h-4 w-auto'></img>
-                            </div>}
                         </div>
                         {investment.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-light '>
                             {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

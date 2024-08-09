@@ -138,66 +138,63 @@ const Deposit = () => {
                         </div>
                     }
                 </div>
-                {screen === 1 && <div className='md:w-5/6 mx-auto my-10 relative'>
-                    <div className='flex items-center justify-center'>
-                        <div className={`h-[32rem] w-[32rem] bg-semi-white md:px-3 px-2 rounded-xl relative overflow-x-hidden shlz scrollDiv thediv  ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
-                            {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} refetchDeposits={FetchDeposits} />}
-
-                            <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-md mx-auto flex flex-col gap-2'>
-                                <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true); MoveToTopDivs() }}>
-                                    <span>fund wallet</span>
-                                    <SiBitcoincash />
-                                </button>
-                                <div className='flex items-center justify-center gap-2 border-t pt-2'>
-                                    <span>buy trading plans</span>
-                                    <TbListDetails className='text-[#5BB4FD]' />
-                                </div>
+                {screen === 1 &&
+                    <div className={`my-10 h-[32rem] w-fit mx-auto bg-semi-white md:px-4 px-2.5 rounded-xl relative overflow-x-hidden shlz scrollDiv thediv  ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
+                        {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} refetchDeposits={FetchDeposits} />}
+                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-md mx-auto flex flex-col gap-2'>
+                            <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true); MoveToTopDivs() }}>
+                                <span>fund wallet</span>
+                                <SiBitcoincash />
+                            </button>
+                            <div className='flex items-center justify-center gap-2 border-t pt-2'>
+                                <span>buy trading plans</span>
+                                <TbListDetails className='text-[#5BB4FD]' />
                             </div>
-                            <div className='w-full flex flex-col gap-8 mt-6 items-center'>
-                                <div className='flex flex-wrap md:gap-4 gap-2 justify-center'>
-                                    {tradingPlans.length > 0 &&
-                                        <>
-                                            {tradingPlans.map((item, i) => (
-                                                <div key={i}>
-                                                    <div className='md:w-56 w-[9.5rem] h-fit rounded-lg flex flex-col text-white shantf bg-white'>
-                                                        <div className='plan_bg w-full md:h-20 h-16 rounded-t-lg'>
-                                                            <div className='uppercase font-[800]  text-center md:text-[1.1rem] text-sm pt-4'>{item.title}</div>
-                                                        </div>
-                                                        <div className='-mt-6 flex flex-col gap-3 items-center justify-center'>
-                                                            <div className='md:h-[5.1rem] md:w-[5.1rem] w-[4.5rem] h-[4.5rem] rounded-full bg-white flex items-center justify-center'>
-                                                                <div className='md:h-[4.3rem] md:w-[4.3rem] w-[3.7rem] h-[3.7rem] rounded-full bg-[#252525] flex flex-col gap-1 items-center justify-center'>
-                                                                    <div className='italic md:text-[0.65rem] text-[0.6rem]'>from</div>
-                                                                    <div className='flex items-center font-bold gap-[0.1rem] text-[#5BB4FD] md:text-base text-sm'>
-                                                                        <BsCurrencyDollar className='-mt-0.5' />
-                                                                        <div className='md:text-base text-sm -ml-1'>{item.price_start}</div>
-                                                                    </div>
+                        </div>
+                        <div className='w-full flex flex-col gap-8 mt-6 items-center'>
+                            <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center'>
+                                {tradingPlans.length > 0 &&
+                                    <>
+                                        {tradingPlans.map((item, i) => (
+                                            <div key={i}>
+                                                <div className='md:w-52 w-36 h-fit rounded-lg flex flex-col text-white shantf bg-white'>
+                                                    <div className='plan_bg w-full md:h-20 h-16 rounded-t-lg'>
+                                                        <div className='uppercase font-[800]  text-center md:text-[1.1rem] text-sm pt-4'>{item.title}</div>
+                                                    </div>
+                                                    <div className='-mt-6 flex flex-col gap-3 items-center justify-center'>
+                                                        <div className='md:h-[5.1rem] md:w-[5.1rem] w-[4.5rem] h-[4.5rem] rounded-full bg-white flex items-center justify-center'>
+                                                            <div className='md:h-[4.3rem] md:w-[4.3rem] w-[3.7rem] h-[3.7rem] rounded-full bg-[#252525] flex flex-col gap-1 items-center justify-center'>
+                                                                <div className='italic md:text-[0.65rem] text-[0.6rem]'>from</div>
+                                                                <div className='flex items-center font-bold gap-[0.1rem] text-[#5BB4FD] md:text-base text-sm'>
+                                                                    <BsCurrencyDollar className='-mt-0.5' />
+                                                                    <div className='md:text-base text-sm -ml-1'>{item.price_start}</div>
                                                                 </div>
                                                             </div>
-                                                            <div className='text-xs text-[#353434] font-[600] text-center w-11/12'>
-                                                                60% profit return on investment plus bonus up to ${item.plan_bonus}
-                                                            </div>
-                                                            <div className='mb-4 mt-2'>
-                                                                <button className='w-fit h-fit md:py-2 py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
-                                                                    buy now
-                                                                </button>
-                                                            </div>
+                                                        </div>
+                                                        <div className='text-xs text-[#353434] font-[600] text-center w-11/12'>
+                                                            60% profit return on investment plus bonus up to ${item.plan_bonus}
+                                                        </div>
+                                                        <div className='mb-4 mt-2'>
+                                                            <button className='w-fit h-fit md:py-2 py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
+                                                                buy now
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            ))}
-                                        </>}
-                                </div>
-                                {tradingPlans.length > 0 && <div className='bg-white w-full h-fit py-1 px-4 rounded-t-md flex gap-1 items-center justify-center font-bold text-xs'>
-                                    <FaRegCopyright className='text-[#5BB4FD]' />
-                                    <div>2024, Al Algo, All rights reserved.</div>
-                                </div>}
+                                            </div>
+                                        ))}
+                                    </>}
                             </div>
-                            {modal &&
-                                <BuyPlanModal setModal={setModal} buybal={buybal} deposits={deposits} />
-                            }
+                            {tradingPlans.length > 0 && <div className='bg-white w-full h-fit py-1 px-4 rounded-t-md flex gap-1 items-center justify-center font-bold text-xs'>
+                                <FaRegCopyright className='text-[#5BB4FD]' />
+                                <div>2024, Al Algo, All rights reserved.</div>
+                            </div>}
                         </div>
+                        {modal &&
+                            <BuyPlanModal setModal={setModal} buybal={buybal} deposits={deposits} />
+                        }
                     </div>
-                </div>}
+                }
                 {screen === 2 && <div className='mt-12'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
@@ -221,22 +218,32 @@ const Deposit = () => {
                                     <td className='text-center truncate  capitalize p-2'>status </td>
                                 </tr>
                             </thead>
-                            {deposits.length > 0 && <tbody>
-                                {deposits.slice(start, end).map((item, i) => (
-                                    <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                        <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
-                                        <td className='p-4 text-center truncate'> {item.crypto}</td>
-                                        <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
+                            {deposits.length > 0 &&
+                                <tbody>
+                                    {deposits.slice(start, end).map((item, i) => (
+                                        <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                            <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                            <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                            <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
+                                            <td className='p-4 text-center truncate'> {item.crypto}</td>
+                                            <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            }
+                            {deposits.length < 1 &&
+                                <tbody>
+                                    <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                        <td colSpan="5" className='py-2 italic text-center truncate'>
+                                            <div className='flex gap-1 items-center justify-center'>
+                                                <span>no deposits found...</span>
+                                                <img src={nothnyet} className='h-4 w-auto'></img>
+                                            </div>
+                                        </td>
                                     </tr>
-                                ))}
-                            </tbody>}
+                                </tbody>
+                            }
                         </table>
-                        {deposits.length < 1 && <div className='flex gap-1 items-center text-white justify-center w-full h-fit bg-[#272727] py-2 text-[0.8rem] italic'>
-                            <div>no deposits found...</div>
-                            <img src={nothnyet} className='h-4 w-auto'></img>
-                        </div>}
                     </div>
                     {deposits.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-light '>
                         {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

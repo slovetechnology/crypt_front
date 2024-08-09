@@ -119,7 +119,7 @@ const UpdateInvestment = () => {
   return (
     <AdminDashboard>
       <div className='h-screen'>
-        {modal && <UpdateInvestmentModal closeView={() => setModal(false)} singleInvestment={singleInvestment} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllInvestments={FetchAllInvestments}/>}
+        {modal && <UpdateInvestmentModal closeView={() => setModal(false)} singleInvestment={singleInvestment} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllInvestments={FetchAllInvestments} />}
 
         <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all investments</div>
         <div className='mt-12'>
@@ -149,26 +149,36 @@ const UpdateInvestment = () => {
                   <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
                 </tr>
               </thead>
-              {allInvestments.length > 0 && <tbody>
-                {allInvestments.slice(start, end).map((item, i) => (
-                  <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                    <td className='p-4  text-center truncate'>{item.investmentUser.username}</td>
-                    <td className='p-4  text-center truncate'>{item.investmentUser.email}</td>
-                    <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                    <td className='p-4  text-center truncate capitalize'>{item.trading_plan}</td>
-                    <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
-                    <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
-                    <td className={`p-4  text-center truncate ${item.status === 'completed' && 'text-[#459e45]'}`}>{item.status}</td>
-                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleInvestmentFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+              {allInvestments.length > 0 &&
+                <tbody>
+                  {allInvestments.slice(start, end).map((item, i) => (
+                    <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
+                      <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                      <td className='p-4  text-center truncate'>{item.investmentUser.username}</td>
+                      <td className='p-4  text-center truncate'>{item.investmentUser.email}</td>
+                      <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                      <td className='p-4  text-center truncate capitalize'>{item.trading_plan}</td>
+                      <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
+                      <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
+                      <td className={`p-4  text-center truncate ${item.status === 'completed' && 'text-[#459e45]'}`}>{item.status}</td>
+                      <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleInvestmentFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              }
+              {allInvestments.length < 1 &&
+                <tbody>
+                  <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                    <td colSpan="9" className='py-2 italic text-center truncate'>
+                      <div className='flex gap-1 items-center justify-center'>
+                        <span>no investments found...</span>
+                        <img src={nothnyet} className='h-4 w-auto'></img>
+                      </div>
+                    </td>
                   </tr>
-                ))}
-              </tbody>}
+                </tbody>
+              }
             </table>
-            {allInvestments.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
-              <div>no investments found...</div>
-              <img src={nothnyet} className='h-4 w-auto'></img>
-            </div>}
           </div>
           {allInvestments.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
             {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}

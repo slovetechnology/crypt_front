@@ -104,23 +104,33 @@ const AddWallet = () => {
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
-            {adminWallets.length > 0 && <tbody>
-              {adminWallets.slice(start, end).map((item, i) => (
-                <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                  <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='w-4 h-auto mx-auto'></img></td>
-                  <td className='p-4  text-center truncate capitalize'>{item.crypto}</td>
-                  <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
-                  <td className='p-4  text-center truncate capitalize'>{item.network}</td>
-                  <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
-                  <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+            {adminWallets.length > 0 &&
+              <tbody>
+                {adminWallets.slice(start, end).map((item, i) => (
+                  <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
+                    <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='w-4 h-auto mx-auto'></img></td>
+                    <td className='p-4  text-center truncate capitalize'>{item.crypto}</td>
+                    <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
+                    <td className='p-4  text-center truncate capitalize'>{item.network}</td>
+                    <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
+                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                  </tr>
+                ))}
+              </tbody>
+            }
+            {adminWallets.length < 1 &&
+              <tbody>
+                <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                  <td colSpan="6" className='py-2 italic text-center truncate'>
+                    <div className='flex gap-1 items-center justify-center'>
+                      <span>no wallets found...</span>
+                      <img src={nothnyet} className='h-4 w-auto'></img>
+                    </div>
+                  </td>
                 </tr>
-              ))}
-            </tbody>}
+              </tbody>
+            }
           </table>
-          {adminWallets.length < 1 && <div className='flex gap-1 items-center text-black justify-center w-full h-fit bg-white py-2 text-sm italic'>
-            <div>no wallets found...</div>
-            <img src={nothnyet} className='h-4 w-auto'></img>
-          </div>}
         </div>
         {adminWallets.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
           {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
