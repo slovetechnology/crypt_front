@@ -186,7 +186,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
                                         <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setFundScreen(2); setDeleteScreen(1); MoveToBottom() }}>fund user account</button>
                                     </div>
                                     :
-                                    <div className='w-fit h-fit md:px-8 px-2 py-6 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                    <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
                                         {loading && <Loading />}
                                         <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setFundScreen(1)} />
                                         <div className='font-[650] border-b text-center uppercase'>Fund {singleUser.username}'s account</div>

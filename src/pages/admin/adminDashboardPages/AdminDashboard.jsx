@@ -23,8 +23,8 @@ import { LuX } from 'react-icons/lu'
 const MainLinks = [
   { path: 'deposits', url: '/admin-controls', icon: HiOutlineCreditCard },
   { path: 'investments', url: '/admin-controls/investments', icon: HiOutlineCollection },
-  { path: 'withdrawals', url: '/admin-controls/withdrawals', icon: RiBankLine },
   { path: 'users', url: '/admin-controls/users', icon: TbUsers },
+  { path: 'withdrawals', url: '/admin-controls/withdrawals', icon: RiBankLine },
 ]
 
 const OtherLinks = [
@@ -167,15 +167,15 @@ const AdminDashboard = ({ children }) => {
               <FaAngleRight className='text-[0.6rem]' />
               {location.pathname === '/admin-controls' && <span>deposits</span>}
               {location.pathname.includes('/admin-controls/settings') ?
-               <span>{location.pathname.slice(16, 24)}</span>
-               :
-               <span>{location.pathname.slice(16)}</span>
+                <span>{location.pathname.slice(16, 24)}</span>
+                :
+                <span>{location.pathname.slice(16)}</span>
               }
             </div>
           </div>
-            <div>
-              {children}
-            </div>
+          <div>
+            {children}
+          </div>
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-5 items-center h-full w-full'>
               {MainLinks.map((item, i) => (
