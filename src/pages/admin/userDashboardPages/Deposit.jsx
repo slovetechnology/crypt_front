@@ -139,7 +139,7 @@ const Deposit = () => {
                     }
                 </div>
                 {screen === 1 &&
-                    <div className={`my-10 h-[32rem] w-fit mx-auto bg-semi-white md:px-4 px-2.5 rounded-xl relative overflow-x-hidden shlz scrollDiv thediv  ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
+                    <div className={`my-10 h-[32rem] w-fit mx-auto bg-semi-white md:px-4 px-3 rounded-xl relative overflow-x-hidden shlz scrollDiv thediv  ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
                         {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} refetchDeposits={FetchDeposits} />}
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-md mx-auto flex flex-col gap-2'>
                             <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true); MoveToTopDivs() }}>

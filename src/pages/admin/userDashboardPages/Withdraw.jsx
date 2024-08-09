@@ -12,7 +12,8 @@ import { Alert } from '../../../utils/utils'
 import { Apis, imageurl, PostApi, UserGetApi } from '../../../services/API'
 import { FiX } from 'react-icons/fi'
 import wthwallet from '../../../assets/images/wthwallet.png'
-import { FaAngleDown, FaAngleLeft, FaAngleRight, FaAngleUp } from 'react-icons/fa6'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
+import { SiBitcoincash } from "react-icons/si";
 import nothnyet from '../../../assets/images/nothn.png'
 import Dashboard from './Dashboard'
 import { Link } from 'react-router-dom'
@@ -217,10 +218,9 @@ const Withdraw = () => {
                             <div className='h-fit w-fit rounded-[0.2rem] bg-white mt-10 p-1'>
                                 <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scrollDiv' : 'h-[1.6rem]'}  w-52 px-2 py-1  bg-white shantf rounded-[0.2rem] text-black  ${error === 'select' && 'border border-[red]'} trans`}>
                                     <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
-                                        <div className='flex justify-between items-center capitalize text-[0.8rem]  font-[550]'>
+                                        <div className='flex gap-1.5 justify-center items-center capitalize text-[0.8rem]  font-semibold'>
                                             <span >choose cryptocurrency</span>
-                                            {!selectState && <FaAngleDown className='text-[0.7rem]' />}
-                                            {selectState && <FaAngleUp className='text-[0.7rem]' />}
+                                            <SiBitcoincash className='text-light'/>
                                         </div>
                                     </div>
                                     {selectState && <div>
