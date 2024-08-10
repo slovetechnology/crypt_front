@@ -32,7 +32,7 @@ const Investment = () => {
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
-    const [pageend, setpageend] = useState(investment.length / end)
+    const [pageend, setpageend] = useState(0)
 
 
     const FetchInvestment = useCallback(async () => {
@@ -41,6 +41,7 @@ const Investment = () => {
             if (response.status === 200) {
                 setInvestment(response.msg)
                 setFromAtom(response.msg)
+                setpageend(response.msg.length / end)
             }
 
         } catch (error) {
@@ -260,7 +261,7 @@ const Investment = () => {
                                         <td className='text-center  capitalize p-2 truncate'>date</td>
                                         <td className='text-center  capitalize p-2 truncate'>time</td>
                                         <td className='text-center  capitalize p-2 truncate'>amount</td>
-                                        <td className='text-center  capitalize p-2 truncate'>trading plan</td>
+                                        <td className='text-center  capitalize p-2 truncate'>plan</td>
                                         <td className='text-center  capitalize p-2 truncate'>profit</td>
                                         <td className='text-center  capitalize p-2 truncate'>bonus</td>
                                         <td className='text-center  capitalize p-2 truncate'>status</td>

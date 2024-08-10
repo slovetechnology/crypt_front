@@ -115,7 +115,7 @@ const Profile = () => {
             setCopy(false)
         }, 2000)
 
-        navigator.clipboard.writeText(user.referral_code)
+        navigator.clipboard.writeText(user.referral_id)
         setCopy(true)
     }
 
@@ -265,9 +265,9 @@ const Profile = () => {
                     <form onSubmit={submitForm} >
                         <div className='md:w-[80%] w-11/12 mx-auto md:text-[0.85rem] text-xs mt-8 text-semi-white flex flex-col gap-6'>
                             <div className='flex items-center justify-between'>
-                                <div className='capitalize'>referral code:</div>
+                                <div className='capitalize'>referral id:</div>
                                 <div className='flex gap-4 items-center'>
-                                    <span>{user.referral_code}</span>
+                                    <span>{user.referral_id}</span>
                                     <button className='outline-none w-fit h-fit py-1.5 px-2 text-[0.8rem] text-semi-white bg-light rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()} type='button'>
                                         {!copy && <MdContentCopy />}
                                         {copy && <FaCheck />}

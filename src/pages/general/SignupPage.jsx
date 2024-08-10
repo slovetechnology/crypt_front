@@ -49,6 +49,7 @@ const SignupPage = () => {
     password: '',
     confirm_password: ''
   })
+  
   const inputHandler = event => {
     setForm({
       ...form,
@@ -85,7 +86,7 @@ const SignupPage = () => {
     setTimeout(() => {
       setError('')
       setErrorMsg('')
-    }, 2000)
+    }, 1500)
 
     if (!form.full_name) return setError('name')
     if (!form.username) return setError('user')
@@ -226,13 +227,11 @@ const SignupPage = () => {
                             <div className='flex flex-col gap-[0.3rem]'>
                               <div className='text-sm capitalize font-[550] '>full name:</div>
                               <input className={`outline-none w-full  border-b  ${error === 'name' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt input-off`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
-                              <div></div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 w-full md:gap-8 gap-[0.7rem]'>
                               <div className='flex flex-col gap-[0.3rem] relative '>
                                 <div className='text-sm capitalize font-[550] '>username:</div>
                                 <input className={`outline-none w-full  border-b  ${error === 'user' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
-                                <div></div>
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative '>
                                 <div className='text-sm capitalize font-[550] '>e-mail address:</div>
@@ -245,7 +244,7 @@ const SignupPage = () => {
                                   <div className='text-sm capitalize font-[550]'>country:</div>
                                   <div className='flex gap-1 items-center'>
                                     {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
-                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer ${error === 'country' ? 'border border-[red]' : ''}`} onClick={() => { setCountryShow(!countryshow); setSearch(''); setCountries(countryApi) }}>
+                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer rounded-sm ${error === 'country' ? 'border border-[red]' : ''}`} onClick={() => { setCountryShow(!countryshow); setSearch(''); setCountries(countryApi) }}>
                                       <div className='flex justify-between items-center text-[0.8rem]'>
                                         <span >{usercountry.name}</span>
                                         <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>

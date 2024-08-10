@@ -20,13 +20,14 @@ const Package = () => {
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
-  const [pageend, setpageend] = useState(tradingPlans.length / end)
+  const [pageend, setpageend] = useState(0)
 
   const FetchTradingPlans = useCallback(async () => {
     try {
       const response = await UserGetApi(Apis.admin.get_trading_plans)
       if (response.status === 200) {
         setTradingPlans(response.msg)
+        setpageend(response.msg.length / end)
       }
 
     } catch (error) {

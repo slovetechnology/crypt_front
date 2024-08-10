@@ -111,7 +111,7 @@ const LoginPage = () => {
                                                         </div>
                                                     </div>
                                                     <div className='w-fit flex ml-auto'>
-                                                        <div className='text-sm font-[550] text-orange pt-2 cursor-pointer capitalize' onClick={() => setForgotPass(!forgotPass)}>forgot password?</div>
+                                                        <div className='text-sm font-[550] text-orange pt-2 cursor-pointer capitalize' onClick={() => setForgotPass(!forgotPass)}>forgot password</div>
                                                     </div>
                                                     <div className='flex flex-col gap-2 items-center mt-12'>
                                                         <button className='outline-none bg-orange py-2 w-full md:px-32 h-fit md:w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' type='submit' >login</button>

@@ -22,7 +22,7 @@ const UpdateDeposits = () => {
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
-  const [pageend, setpageend] = useState(allDeposits.length / end)
+  const [pageend, setpageend] = useState(0)
 
 
   const FetchAllDeposits = useCallback(async () => {
@@ -31,6 +31,7 @@ const UpdateDeposits = () => {
       if (response.status === 200) {
         setAllDeposits(response.msg)
         setFromAtom(response.msg)
+        setpageend(response.msg.length / end)
       }
 
     } catch (error) {

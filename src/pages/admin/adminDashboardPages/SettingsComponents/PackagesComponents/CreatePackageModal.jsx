@@ -109,7 +109,6 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans, setStart, setEnd, 
                                     <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
                                 </div>
                             </div>
-
                             {error !== '' &&
                                 <div className='md:text-sm text-xs absolute -bottom-8 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
                                     <RiErrorWarningLine className='md:text-base text-sm' />

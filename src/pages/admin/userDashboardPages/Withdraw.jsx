@@ -39,7 +39,7 @@ const Withdraw = () => {
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
-    const [pageend, setpageend] = useState(withdrawals.length / end)
+    const [pageend, setpageend] = useState(0)
     const [loading, setLoading] = useState(false)
 
 
@@ -50,6 +50,7 @@ const Withdraw = () => {
             if (response.status === 200) {
                 setWithdrawals(response.msg)
                 setFromAtom(response.msg)
+                setpageend(response.msg.length / end)
             }
 
         } catch (error) {
@@ -220,7 +221,7 @@ const Withdraw = () => {
                                     <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
                                         <div className='flex gap-1.5 justify-center items-center capitalize text-[0.8rem]  font-semibold'>
                                             <span >choose cryptocurrency</span>
-                                            <SiBitcoincash className='text-light'/>
+                                            <SiBitcoincash className='text-light' />
                                         </div>
                                     </div>
                                     {selectState && <div>

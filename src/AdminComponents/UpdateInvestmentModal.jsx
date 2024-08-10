@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Apis, UserPutApi, imageurl } from '../services/API'
 import moment from 'moment';
-import { FaAngleDown } from 'react-icons/fa6';
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
 import Loading from '../GeneralComponents/Loading';
 import { Alert } from '../utils/utils';
 import avatar from '../assets/images/avatar.png'
@@ -36,9 +36,9 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
         }
     }
 
-    const statuses = [
-        { status: 'running' },
-        { status: 'completed' }
+    const Statuses = [
+        "running",
+        "completed"
     ]
 
     useEffect(() => {
@@ -193,14 +193,17 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
                                                     <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                         <div className='flex justify-between items-center text-[0.8rem]'>
                                                             <span >{status}</span>
-                                                            <FaAngleDown className={`${statusShow ? 'rotate-180' : 'rotate-0'} trans`} />
+                                                            <div className={`flex flex-col items-center text-xs trans ${statusShow ? 'rotate-90' : 'rotate-0'} `}>
+                                                                <FaAngleUp />
+                                                                <FaAngleDown className='-mt-1' />
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     {statusShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
-                                                        {statuses.map((item, i) => (
+                                                        {Statuses.map((item, i) => (
                                                             <div className='flex flex-col mt-2' key={i}>
-                                                                <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item.status); setStatusShow(false); setUpdate(true) }}>
-                                                                    <div className={`text-[0.85rem] font-bold ${item.status === 'completed' && 'text-[green]'}`}>{item.status}</div>
+                                                                <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item); setStatusShow(false); setUpdate(true) }}>
+                                                                    <div className={`text-[0.85rem] font-bold ${item === 'completed' && 'text-[green]'}`}>{item}</div>
                                                                 </div>
                                                             </div>
                                                         ))}

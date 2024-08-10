@@ -182,16 +182,16 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
                             </div>
                             <div className='mt-4'>
                                 {fundScreen === 1 ?
-                                    <div className='flex items-center justify-center'>
+                                    <div className='flex justify-center'>
                                         <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setFundScreen(2); setDeleteScreen(1); MoveToBottom() }}>fund user account</button>
                                     </div>
                                     :
                                     <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
                                         {loading && <Loading />}
                                         <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setFundScreen(1)} />
-                                        <div className='font-[650] border-b text-center uppercase'>Fund {singleUser.username}'s account</div>
+                                        <div className='font-[650] border-b text-center uppercase'>Fund {singleUser.username} account</div>
                                         <div className='flex flex-col gap-8 items-center justify-center mt-6'>
-                                            <div className='flex flex-col gap-2 text-sm capitalize'>
+                                            <div className='flex flex-col gap-1.5 text-sm capitalize'>
                                                 <div className='text-center'>Enter an amount</div>
                                                 <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[3px] px-2 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                             </div>
@@ -204,7 +204,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
                             </div>
                             <div className='mt-2'>
                                 {deleteScreen === 1 &&
-                                    <div className='flex items-center justify-center'>
+                                    <div className='flex justify-center'>
                                         <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setDeleteScreen(2); setFundScreen(1); MoveToBottom() }}>delete user</button>
                                     </div>
                                 }

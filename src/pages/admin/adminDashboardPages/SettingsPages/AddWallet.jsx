@@ -20,7 +20,7 @@ const AddWallet = () => {
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
-  const [pageend, setpageend] = useState(adminWallets.length / end)
+  const [pageend, setpageend] = useState(0)
 
 
   const FetchAdminWallets = useCallback(async () => {
@@ -28,6 +28,7 @@ const AddWallet = () => {
       const response = await UserGetApi(Apis.admin.get_admin_wallets)
       if (response.status === 200) {
         setAdminWallets(response.msg)
+        setpageend(response.msg.length / end)
       }
 
     } catch (error) {

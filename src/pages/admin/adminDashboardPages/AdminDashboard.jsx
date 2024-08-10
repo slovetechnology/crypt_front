@@ -159,7 +159,7 @@ const AdminDashboard = ({ children }) => {
                 <div>admin</div>
               </div>
               <div>
-                <AdminNotis refetchNotifications={FetchNotifications} refetchUnreadNotis={FetchUnreadNotis} />
+                <AdminNotis refetchNotifications={FetchNotifications} refetchUnreadNotis={FetchUnreadNotis}/>
               </div>
             </div>
             <div className='flex gap-1.5 capitalize items-center text-[#292929] font-bold md:text-[0.85rem] text-xs '>

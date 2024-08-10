@@ -1,7 +1,42 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import Loading from '../../GeneralComponents/Loading'
+import { RiErrorWarningLine } from 'react-icons/ri'
+import { Alert } from '../../utils/utils'
+import { Apis, PostApi } from '../../services/API'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa6'
+import { countryApi } from '../../services/CountryAPI'
 
 const CreateUsersModal = ({ closeView, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllUsers }) => {
   const toggler = useRef()
+  const [countries, setCountries] = useState(countryApi)
+  const [countryshow, setCountryShow] = useState(false)
+  const [usercountry, setUserCountry] = useState({
+    name: 'choose country',
+    flag: null
+  })
+  const [searchCountry, setSearchCountry] = useState('')
+  const [role, setRole] = useState('choose role')
+  const [roleShow, setRoleShow] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const Roles = [
+    "user",
+    "admin",
+  ]
+
+  const [form, setForm] = useState({
+    full_name: '',
+    username: '',
+    email: '',
+  })
+
+  const inputHandler = event => {
+    setForm({
+      ...form,
+      [event.target.name]: event.target.value
+    })
+  }
 
   useEffect(() => {
     if (toggler) {
@@ -15,9 +50,149 @@ const CreateUsersModal = ({ closeView, setStart, setEnd, setpagestart, setpageen
     }
   }, [])
 
+  const FilterCountry = () => {
+    const altCountries = countryApi
+    if (!searchCountry) {
+      setCountries(countryApi)
+    }
+    else {
+      let searchResult = altCountries.filter(item => item.name.toLowerCase().includes(searchCountry.toLowerCase()))
+      setCountries(searchResult)
+    }
+  }
+
+  const CreateUser = async () => {
+    setTimeout(() => {
+      setError('')
+    }, 2000)
+
+    if (!form.full_name || !form.username || !form.email) return setError('Enter all fields')
+    if (usercountry.name === 'choose country') return setError('Choose user country')
+    if (role === 'choose role') return setError('Choose the user role')
+
+    const formbody = {
+      full_name: form.full_name,
+      username: form.username,
+      email: form.email
+    }
+
+    setLoading(true)
+
+    // try {
+    //   const response = await PostApi(Apis.user.signup, formbody)
+    //   if (response.status === 200) {
+    //     Alert('Request Successful', 'Trading plan created successfully', 'success')
+    //     refetchAllUsers()
+    //     setSearch('')
+    //     setWrite(false)
+    //     setpageend(response.msg.length / 5)
+    //     setpagestart(1)
+    //     setStart(0)
+    //     setEnd(5)
+    //     closeView()
+    //   } else {
+    //     setError(response.msg)
+    //   }
+    // } catch (error) {
+    //   Alert('Request Failed', `${error.message}`, 'error')
+    // } finally {
+    //   setLoading(false)
+    // }
+  }
+
   return (
     <div className='w-full h-screen fixed top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
-      <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-60 bg-white rounded-lg overflow-hidden' ref={toggler}>
+      <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden relative' ref={toggler}>
+        {loading && <Loading />}
+        <div className='flex flex-col gap-4 py-6 md:px-6 px-4 relative'>
+          <div className='text-xl uppercase text-center font-bold border-b w-full mb-2'>create new user</div>
+          <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
+            <div className='flex flex-col gap-1'>
+              <div className='text-sm capitalize font-[550] '>full name:</div>
+              <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' value={form.full_name} name='full_name' onChange={inputHandler}></input>
+              <div></div>
+            </div>
+            <div className='flex flex-col gap-1'>
+              <div className='text-sm capitalize font-[550] '>username:</div>
+              <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' value={form.username} name='username' onChange={inputHandler}></input>
+              <div></div>
+            </div>
+          </div>
+          <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
+            <div className='flex flex-col gap-1'>
+              <div className='text-sm capitalize font-[550] '>email:</div>
+              <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' value={form.email} name='email' onChange={inputHandler}></input>
+              <div></div>
+            </div>
+            <div className='relative'>
+              <div className='flex flex-col gap-1'>
+                <div className='text-sm capitalize font-[550]'>country:</div>
+                <div className='flex gap-1 items-center'>
+                  {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
+                  <div className='px-2 py-1 h-fit w-full bg-white sha cursor-pointer rounded-sm' onClick={() => { setCountryShow(!countryshow); setSearchCountry(''); setCountries(countryApi) }}>
+                    <div className='flex justify-between items-center text-[0.8rem]'>
+                      <span >{usercountry.name}</span>
+                      <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>
+                        <FaAngleUp />
+                        <FaAngleDown className='-mt-1' />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {countryshow && <div className='h-fit w-full bg-white sha absolute top-[3.4rem] left-0 z-10 py-2 rounded-sm '>
+                <div className='px-4'>
+                  <input className='ipt border border-semi-white bg-transparent text-black px-2 py-1 w-full outline-none md:text-[0.85rem] text-base md:h-6 h-7 rounded-sm mb-1' type='text' placeholder='search' value={searchCountry} onChange={(e) => setSearchCountry(e.target.value)} onKeyUp={FilterCountry}></input>
+                </div>
+                <div className='overflow-y-auto scroll h-28 px-4'>
+                  {countries.map((item, i) => (
+                    <div className='flex flex-col mt-2' key={i}>
+                      <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setUserCountry(item); setCountryShow(false) }}>
+                        <img src={item.flag} className='w-4 h-auto object-cover'></img>
+                        <div className='text-[0.85rem] font-bold'>{item.name}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>}
+            </div>
+          </div>
+          <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
+            <div className='relative'>
+              <div className='flex flex-col gap-1'>
+                <div className='text-sm capitalize font-[550]'>role:</div>
+                <div className='px-2 py-1 h-fit w-full bg-white sha cursor-pointer rounded-sm' onClick={() => setRoleShow(!roleShow)} >
+                  <div className='flex justify-between items-center text-[0.8rem]'>
+                    <span >{role}</span>
+                    <div className={`flex flex-col items-center text-xs trans ${roleShow ? 'rotate-90' : 'rotate-0'} `}>
+                      <FaAngleUp />
+                      <FaAngleDown className='-mt-1' />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {roleShow && <div className='px-2 py-1 h-fit w-full absolute top-[3.2rem] left-0 z-10 bg-white rounded-sm sha'>
+                {Roles.map((item, i) => (
+                  <div className='flex flex-col mt-2' key={i}>
+                    <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setRole(item); setRoleShow(false) }}>
+                      <div className='text-[0.85rem] font-bold'>{item}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>}
+            </div>
+          </div>
+          <div className='mx-auto mt-6'>
+            <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={CreateUser}>create user</button>
+          </div>
+          {error !== '' &&
+            <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
+              <RiErrorWarningLine className='md:text-base text-sm' />
+              <span>{error}</span>
+              <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
+            </div>
+          }
+        </div>
       </div>
     </div>
   )

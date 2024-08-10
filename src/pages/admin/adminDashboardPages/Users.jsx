@@ -28,7 +28,7 @@ const Users = () => {
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
-  const [pageend, setpageend] = useState(allusers.length / end)
+  const [pageend, setpageend] = useState(0)
 
 
   const FetchAllUsers = useCallback(async () => {
@@ -37,6 +37,7 @@ const Users = () => {
       if (response.status === 200) {
         setAllUsers(response.msg)
         setFromAtom(response.msg)
+        setpageend(response.msg.length / end)
       }
 
     } catch (error) {

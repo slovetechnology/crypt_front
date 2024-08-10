@@ -22,7 +22,7 @@ const UpdateInvestment = () => {
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
-  const [pageend, setpageend] = useState(allInvestments.length / end)
+  const [pageend, setpageend] = useState(0)
 
 
   const FetchAllInvestments = useCallback(async () => {
@@ -31,6 +31,7 @@ const UpdateInvestment = () => {
       if (response.status === 200) {
         setAllInvestments(response.msg)
         setFromAtom(response.msg)
+        setpageend(response.msg.length / end)
       }
 
     } catch (error) {
