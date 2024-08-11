@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Apis, UserPutApi, imageurl } from '../services/API'
+import { Apis, UserPutApi, imageurl } from '../../services/API'
 import moment from 'moment';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
-import Loading from '../GeneralComponents/Loading';
-import { Alert } from '../utils/utils';
-import avatar from '../assets/images/avatar.png'
-import ModalLayout from '../utils/ModalLayout';
+import Loading from '../../GeneralComponents/Loading';
+import { Alert } from '../../utils/utils';
+import avatar from '../../assets/images/avatar.png'
+import ModalLayout from '../../utils/ModalLayout';
 
 const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllInvestments }) => {
     const toggler = useRef()
@@ -158,7 +158,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
                                         <div className='italic '>add profit:</div>
                                         <div className='flex gap-2 items-center'>
                                             <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
-                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-sm'>
                                                 <div>so far:</div>
                                                 {Object.values(singleInvestment).length !== 0 && <div>${singleInvestment.profit.toLocaleString()}</div>}
                                             </div>
@@ -168,7 +168,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
                                         <div className='italic '>add bonus:</div>
                                         <div className='flex gap-2 items-center'>
                                             <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
-                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium'>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-sm'>
                                                 <div>so far:</div>
                                                 {Object.values(singleInvestment).length !== 0 && <div>${singleInvestment.bonus.toLocaleString()}</div>}
                                             </div>

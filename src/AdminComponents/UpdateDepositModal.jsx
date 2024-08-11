@@ -121,6 +121,10 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
                     {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>}
                   </div>
                   <div className='flex justify-between items-center'>
+                    <div className='italic'>deposit address:</div>
+                    {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposit_address}</div>}
+                  </div>
+                  <div className='flex justify-between items-center'>
                     <div className='italic'>date/time:</div>
                     {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleDeposit.createdAt).format('DD-MM-yyyy')} / {moment(singleDeposit.createdAt).format('h:mm')}</div>}
                   </div>

@@ -9,7 +9,8 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
 import { Apis, UserGetApi } from '../../../services/API';
-import UpdateInvestmentModal from '../../../AdminComponents/UpdateInvestmentModal';
+import UpdateInvestmentModal from '../../../AdminComponents/InvestmentsComponents/UpdateInvestmentModal';
+import InvestingSettings from '../../../AdminComponents/InvestmentsComponents/InvestmentSettings';
 
 
 const UpdateInvestment = () => {
@@ -17,6 +18,7 @@ const UpdateInvestment = () => {
   const [allInvestments, setAllInvestments] = useState([])
   const [singleInvestment, setSingleInvestment] = useState({})
   const [modal, setModal] = useState(false)
+  const [modal2, setModal2] = useState(false)
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
@@ -121,6 +123,7 @@ const UpdateInvestment = () => {
     <AdminDashboard>
       <div className='h-screen'>
         {modal && <UpdateInvestmentModal closeView={() => setModal(false)} singleInvestment={singleInvestment} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllInvestments={FetchAllInvestments} />}
+        {modal2 && <InvestingSettings closeView={() => setModal2(false)}/>}
 
         <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all investments</div>
         <div className='mt-12'>
@@ -135,7 +138,11 @@ const UpdateInvestment = () => {
               }
             </div>
           </div>
-          <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
+          <button className='w-fit h-fit mt-4 mb-2 py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
+            <span>investment settings</span>
+            <IoIosSettings className='text-base' />
+          </button>
+          <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full '>
               <thead >
                 <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>

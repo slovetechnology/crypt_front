@@ -4,7 +4,7 @@ import { BiMoneyWithdraw } from 'react-icons/bi'
 import { IoIosSearch } from 'react-icons/io'
 import { IoCheckbox } from 'react-icons/io5'
 import { RiHistoryFill } from 'react-icons/ri'
-import { ADMINWALLETS, PROFILE, WALLET, WITHDRAWALS } from '../../../store'
+import { ADMINSTORE, ADMINWALLETS, PROFILE, WALLET, WITHDRAWALS } from '../../../store'
 import { MdSentimentVeryDissatisfied } from 'react-icons/md'
 import moment from 'moment'
 import LoadingAdmin from '../../../GeneralComponents/LoadingAdmin'
@@ -25,6 +25,7 @@ const Withdraw = () => {
     const [withdrawals, setWithdrawals] = useState([])
     const [userwallet] = useAtom(WALLET)
     const [adminWallets] = useAtom(ADMINWALLETS)
+    const [adminStore] = useAtom(ADMINSTORE)
 
     const [withdrawTitle, setWithdrawTitle] = useState('withdraw')
     const [screen, setScreen] = useState(1)
@@ -70,7 +71,7 @@ const Withdraw = () => {
 
         if (!amount) return setError('amount')
         if (isNaN(amount)) return setError('amount')
-        if (amount < 100) return setError('amount')
+        if (amount < adminStore.withdrawal_minimum) return setError('amount')
         if (Object.values(userwallet).length === 0) return setError('limit')
         if (amount > userwallet.balance) return setError('limit')
         if (Object.values(selectValue).length === 0) return setError('select')
@@ -202,7 +203,7 @@ const Withdraw = () => {
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-light mx-auto flex flex-col gap-2'>
                             <div className='w-fit h-fit text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-between ml-auto'>
                                 <span>minimum:</span>
-                                <span>$100</span>
+                                <span>${adminStore.withdrawal_minimum}</span>
                             </div>
                             <div className='flex items-center justify-center gap-2 border-t pt-2'>
                                 <span>Withdraw funds</span>
@@ -305,7 +306,7 @@ const Withdraw = () => {
                                             <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                             <td className='p-4  text-center truncate'>{item.crypto}</td>
                                             <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
-                                            <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
+                                            <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
                                         </tr>
                                     ))}
                                 </tbody>

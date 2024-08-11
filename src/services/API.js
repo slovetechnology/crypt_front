@@ -75,7 +75,8 @@ const admin_urls = {
     create_trading_plan: admin + 'create-trading-plan',
     update_trading_plan: admin + 'update-trading-plan',
     delete_trading_plan: admin + 'delete-trading-plan',
-    fund_user_account: admin + 'fund-user-account'
+    fund_user_account: admin + 'fund-user-account',
+    get_admin_store: admin + 'admin-store',
 }
 
 export const Apis = {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { NOTIFICATIONS, UNREADNOTIS } from '../../../store'
+import { ADMINSTORE, NOTIFICATIONS, UNREADNOTIS } from '../../../store'
 import { useAtom } from 'jotai'
 import Cookies from 'js-cookie'
 import { CookieName, MoveToTop } from '../../../utils/utils'
@@ -41,6 +41,7 @@ const toggleArray = [
 const AdminDashboard = ({ children }) => {
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
+  const [, setAdminStore] = useAtom(ADMINSTORE)
   const [logout, setLogOut] = useState(false)
   const [slideShow, setSlideShow] = useState(false)
   const navigate = useNavigate()
@@ -85,7 +86,21 @@ const AdminDashboard = ({ children }) => {
   }, [FetchUnreadNotis])
 
 
+  const FetchAdminStore = useCallback(async () => {
+    try {
+      const response = await UserGetApi(Apis.admin.get_admin_store)
+      if (response.status === 200) {
+        setAdminStore(response.msg)
+      }
 
+    } catch (error) {
+      //
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchAdminStore()
+  }, [FetchAdminStore])
 
 
 

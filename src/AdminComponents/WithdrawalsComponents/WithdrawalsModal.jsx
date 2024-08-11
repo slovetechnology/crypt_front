@@ -7,8 +7,11 @@ import { Alert } from '../../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
 import avatar from '../../assets/images/avatar.png'
 import ModalLayout from '../../utils/ModalLayout'
+import { useAtom } from 'jotai'
+import { ADMINSTORE } from '../../store'
 
 const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllWithdrawals }) => {
+    const [adminStore, setAdminStore] = useAtom(ADMINSTORE)
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const [statusShow, setStatusShow] = useState(false)
@@ -19,7 +22,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
     const toggler = useRef()
 
     const Statuses = [
-        "pending",
+        "processing",
         "confirmed"
     ]
 
@@ -32,7 +35,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
     }
 
     useEffect(() => {
-        if (statusShow) {
+        if (statusShow || message !== '') {
             MoveToBottom()
         }
     }, [MoveToBottom])
@@ -47,6 +50,12 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
         }, 2000)
         navigator.clipboard.writeText(singleWithdrawal.wallet_address)
         setCopy(true)
+    }
+
+    const GenerateWithdrawalMessage = () => {
+        const TaxAmount = singleWithdrawal.amount * adminStore.tax_percentage / 100
+        setMessage(`To complete your withdrawal amount of $${singleWithdrawal.amount}, you must pay a ${adminStore.tax_percentage}% tax fee of $${TaxAmount}. pay now?`)
+        setUpdate(true)
     }
 
     const AdminUpdateWithdrawal = async () => {
@@ -64,6 +73,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
             move.scrollTo({
                 top: 0,
             })
+            
             try {
                 const response = await UserPutApi(Apis.admin.update_withdrawals, formbody)
                 if (response.status === 200) {
@@ -149,11 +159,14 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>withdrawal message:</div>
-                                        <textarea placeholder='Type A Message' className='p-2 w-52 h-32 text-black lg:text-[0.9rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)}></textarea>
+                                        <div className='flex flex-col gap-1'>
+                                            <textarea placeholder='Type A Message' className='p-2 w-52 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)}></textarea>
+                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-xs' onClick={GenerateWithdrawalMessage}>Generate</button>
+                                        </div>
                                     </div>
                                     <div className='flex justify-between items-center my-6'>
                                         <div className='italic '>status:</div>
-                                        {singleWithdrawal.status === 'pending' ?
+                                        {singleWithdrawal.status === 'processing' ?
                                             <div className='relative'>
                                                 <div className='px-2 py-1 h-fit md:w-48 w-36 rounded-sm bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                     <div className='flex justify-between items-center text-[0.8rem]'>

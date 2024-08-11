@@ -43,6 +43,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
     const formbody = {
       amount: parseFloat(amount),
       crypto: selectValue.crypto,
+      deposit_address: selectValue.address,
       depositUser: user.username
     }
 

@@ -1,13 +1,12 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
 import { Link } from 'react-router-dom'
 import { MoveToTop } from '../../utils/utils'
 import { Apis, UserGetApi } from '../../services/API'
-import { TRADINGPLANS } from '../../store'
-import { useAtom } from 'jotai'
+import noplans from '../../assets/images/noplans.png'
 
 const TradingPlansPage = () => {
-  const [tradingPlans, setTradingPlans] = useAtom(TRADINGPLANS)
+  const [tradingPlans, setTradingPlans] = useState([])
 
   const FetchTradingPlans = useCallback(async () => {
     try {
@@ -34,7 +33,7 @@ const TradingPlansPage = () => {
             <div className='md:text-[1.1rem] text-center'>- Below are the different trading plans on the AI Algorithm Trading System -</div>
           </div>
           <div className='flex flex-wrap gap-12 mt-20 text-[#30465c] justify-center'>
-            {tradingPlans.length > 0 &&
+            {tradingPlans.length > 0 ?
               <>
                 {tradingPlans.map((item, i) => (
                   <div key={i} className={`w-[23rem] h-fit rounded-md ${item.title === 'premier plan' || item.title === 'test run' ? 'bg-[#30465c] text-white shabox' : 'bg-transparent'}`}>
@@ -64,6 +63,11 @@ const TradingPlansPage = () => {
                   </div>
                 ))}
               </>
+              :
+              <div className='flex flex-col gap-4 items-center'>
+                <img src={noplans} className=''></img>
+                <div className='text-center text-xl'>Oops! No trading plans yet...</div>
+              </div>
             }
           </div>
         </div>

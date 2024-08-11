@@ -216,6 +216,7 @@ const Deposit = () => {
                                     <td className='text-center truncate  capitalize p-2'>time</td>
                                     <td className='text-center truncate  capitalize p-2'>amount</td>
                                     <td className='text-center truncate  capitalize p-2'>crypto</td>
+                                    <td className='text-center truncate  capitalize p-2'>address</td>
                                     <td className='text-center truncate  capitalize p-2'>status </td>
                                 </tr>
                             </thead>
@@ -227,6 +228,7 @@ const Deposit = () => {
                                             <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
                                             <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
                                             <td className='p-4 text-center truncate'> {item.crypto}</td>
+                                            <td className='p-4 text-center truncate'> {item.address}</td>
                                             <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
                                         </tr>
                                     ))}

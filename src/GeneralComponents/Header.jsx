@@ -3,7 +3,6 @@ import logo from '../assets/images/logobrand.png'
 import { TfiAngleDown } from "react-icons/tfi";
 import { PiWindowsLogoThin } from "react-icons/pi";
 import { LuBoxes } from "react-icons/lu";
-import { GiBookPile } from "react-icons/gi";
 import { MdMapsHomeWork, MdConnectWithoutContact, MdOutlineSecurity } from "react-icons/md";
 import { HiBars4 } from "react-icons/hi2";
 import { LuFileSearch } from "react-icons/lu";
@@ -73,8 +72,8 @@ const Header = () => {
                                         <TfiAngleDown className={`mt-1 text-[0.5rem] text-[#1E2833] ${toggleDrop ? ' rotate-180' : 'rotate-0'} trans`} />
                                     </div>
                                 </div>
-                                <div className={`bg-white p-8 w-[40rem] h-fit absolute top-[4.2rem] -left-40 shd ${toggleDrop ? 'flex' : 'hidden'}`} ref={closer}>
-                                    <div className='grid grid-cols-2 gap-5 w-full'>
+                                <div className={`bg-white p-8 w-96 h-fit absolute top-[4.2rem] -left-40 shd ${toggleDrop ? 'flex' : 'hidden'}`} ref={closer}>
+                                    <div className='w-full'>
                                         <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] hover:text-white' onClick={MoveToTop}>
                                             <div className=' flex flex-col gap-2'>
                                                 <div className='flex gap-2 items-center text-[#1E2833]'>
@@ -83,17 +82,6 @@ const Header = () => {
                                                 </div>
                                                 <div className='text-[0.8rem] ml-[1.7rem]'>
                                                     View the different trading plans you can invest and trade cryptocurrency with on the AI algorithm trading system.
-                                                </div>
-                                            </div>
-                                        </Link>
-                                        <Link to='/performances' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] hover:text-white' onClick={MoveToTop}>
-                                            <div className='flex flex-col gap-2'>
-                                                <div className='flex gap-2 items-center text-[#1E2833]'>
-                                                    <GiBookPile />
-                                                    <div className='text-[0.95rem] font-medium capitalize'>past performances</div>
-                                                </div>
-                                                <div className='text-[0.8rem]  ml-[1.7rem]'>
-                                                    View records of recent performances on the AI algorithm trading system and be sure of how efficient we've been.
                                                 </div>
                                             </div>
                                         </Link>
@@ -163,17 +151,6 @@ const Header = () => {
                                         </div>
                                         <div className='text-[0.8rem] text-[#c2c1c1] ml-[1.7rem]'>
                                             View the different trading plans you can invest and trade cryptocurrency with on the AI algorithm trading system.
-                                        </div>
-                                    </div>
-                                </Link>
-                                <Link to='/performances' className='flex flex-col gap-2 hover:bg-[#303e4d] p-2' onClick={MoveToTop}>
-                                    <div className='flex flex-col gap-2 text-white'>
-                                        <div className='flex gap-2 items-center'>
-                                            <GiBookPile className=' mt-[0.2rem] text-[#4b6f96]' />
-                                            <div className='text-[0.95rem] font-medium capitalize'>past performances</div>
-                                        </div>
-                                        <div className='text-[0.8rem] text-[#c2c1c1] ml-[1.7rem]'>
-                                            View records of recent performances on the AI algorithm trading system and be sure of how efficient we've been.
                                         </div>
                                     </div>
                                 </Link>

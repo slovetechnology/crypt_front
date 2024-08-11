@@ -9,6 +9,7 @@ import Deposit from "../pages/admin/userDashboardPages/Deposit";
 import Feedback from "../pages/admin/userDashboardPages/Feedback";
 import Investment from "../pages/admin/userDashboardPages/Investment";
 import Profile from "../pages/admin/userDashboardPages/Profile";
+import TaxPayment from "../pages/admin/userDashboardPages/TaxPayment";
 import VerifyAcount from "../pages/admin/userDashboardPages/VerifyAcount";
 import Wallet from "../pages/admin/userDashboardPages/Wallet";
 import Withdraw from "../pages/admin/userDashboardPages/Withdraw";
@@ -17,7 +18,6 @@ import ContactPage from "../pages/general/ContactPage";
 import HomePage from "../pages/general/HomePage";
 import LegalSecurityPage from "../pages/general/LegalSecurityPage";
 import LoginPage from "../pages/general/LoginPage";
-import PerformancesPage from "../pages/general/PerformancesPage";
 import PrivacyPage from "../pages/general/PrivacyPage";
 import SignupPage from "../pages/general/SignupPage";
 import TermsPage from "../pages/general/TermsPage";
@@ -30,7 +30,6 @@ export const GeneralPagesLinks = [
     { path: '/about', component: AboutPage },
     { path: '/signup', component: SignupPage },
     { path: '/trading', component: TradingPlansPage },
-    { path: '/performances', component: PerformancesPage },
     { path: '/terms', component: TermsPage },
     { path: '/privacy', component: PrivacyPage },
     { path: '/legal', component: LegalSecurityPage }
@@ -46,6 +45,7 @@ export const UserDashboardPagesLinks = [
     { path: dashboard + '/profile', component: Profile },
     { path: dashboard + '/feedback', component: Feedback },
     { path: dashboard + '/verify-account', component: VerifyAcount },
+    { path: dashboard + '/tax-payment', component: TaxPayment },
 ]
 
 const admin = '/admin-controls'
