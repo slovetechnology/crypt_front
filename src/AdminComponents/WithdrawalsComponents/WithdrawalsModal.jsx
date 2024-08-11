@@ -21,6 +21,10 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
     const [copy, setCopy] = useState(false)
     const toggler = useRef()
 
+    setTimeout(() => {
+        setBeforeshow(false)
+    }, 1500)
+
     const Statuses = [
         "processing",
         "confirmed"
@@ -40,9 +44,6 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
         }
     }, [MoveToBottom])
 
-    setTimeout(() => {
-        setBeforeshow(false)
-    }, 1500)
 
     const copyFunction = () => {
         setTimeout(() => {
@@ -50,6 +51,14 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
         }, 2000)
         navigator.clipboard.writeText(singleWithdrawal.wallet_address)
         setCopy(true)
+    }
+
+    const UpdateHandler = () => {
+        if (message === '') {
+            setUpdate(false)
+        } else {
+            setUpdate(true)
+        }
     }
 
     const GenerateWithdrawalMessage = () => {
@@ -81,10 +90,11 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                     Alert('Request Successful', 'Withdrawal updated successfully', 'success')
                     setWrite(false)
                     setSearch('')
-                    setpageend(response.msg.length / 6)
+                    setpageend(response.msg.length / 5)
                     setpagestart(1)
                     setStart(0)
-                    setEnd(6)
+                    setEnd(5)
+                    closeView()
                 } else {
                     Alert('Request Failed', `${response.msg}`, 'error')
                 }
@@ -92,7 +102,6 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                 Alert('Request Failed', `${error.message}`, 'error')
             } finally {
                 setLoading(false)
-                closeView()
             }
         }
     }
@@ -160,7 +169,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>withdrawal message:</div>
                                         <div className='flex flex-col gap-1'>
-                                            <textarea placeholder='Type A Message' className='p-2 w-52 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)}></textarea>
+                                            <textarea placeholder='Type A Message' className='p-2 w-52 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandler}></textarea>
                                             <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-xs' onClick={GenerateWithdrawalMessage}>Generate</button>
                                         </div>
                                     </div>

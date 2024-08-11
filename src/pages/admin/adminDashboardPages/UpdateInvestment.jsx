@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
+import { BsToggle2Off, BsToggle2On } from "react-icons/bs";
 import { FiX } from 'react-icons/fi'
 import { useAtom } from 'jotai';
 import { ADMINALLINVESTMENTS } from '../../../store';
@@ -22,9 +23,10 @@ const UpdateInvestment = () => {
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(6)
+  const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
+  const [system, setSystem] = useState(false)
 
 
   const FetchAllInvestments = useCallback(async () => {
@@ -55,31 +57,31 @@ const UpdateInvestment = () => {
     const altinvestments = fromAtom
     if (!search) {
       setAllInvestments(fromAtom)
-      setpageend(fromAtom.length / 6)
+      setpageend(fromAtom.length / 5)
       setWrite(false)
       setpagestart(1)
       setStart(0)
-      setEnd(6)
+      setEnd(5)
     }
     else {
       setWrite(true)
       const showSearch = altinvestments.filter(item => item.investmentUser.username.includes(search.toLowerCase()) || item.investmentUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
       setAllInvestments(showSearch)
-      setpageend(showSearch.length / 6)
+      setpageend(showSearch.length / 5)
       setpagestart(1)
       setStart(0)
-      setEnd(6)
+      setEnd(5)
     }
   }
 
   const CancelWrite = () => {
     setSearch('')
     setAllInvestments(fromAtom)
-    setpageend(fromAtom.length / 6)
+    setpageend(fromAtom.length / 5)
     setWrite(false)
     setpagestart(1)
     setStart(0)
-    setEnd(6)
+    setEnd(5)
   }
 
   let MovePage = () => {
@@ -89,10 +91,10 @@ const UpdateInvestment = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 6
+      altend += 5
       setEnd(altend)
 
-      altstart += 6
+      altstart += 5
       setStart(altstart)
 
       altlengthstart += 1
@@ -102,15 +104,15 @@ const UpdateInvestment = () => {
 
   let BackPage = () => {
 
-    if (end > 6) {
+    if (end > 5) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 6
+      altend -= 5
       setEnd(altend)
 
-      altstart -= 6
+      altstart -= 5
       setStart(altstart)
 
       altlengthstart -= 1
@@ -123,9 +125,21 @@ const UpdateInvestment = () => {
     <AdminDashboard>
       <div className='h-screen'>
         {modal && <UpdateInvestmentModal closeView={() => setModal(false)} singleInvestment={singleInvestment} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllInvestments={FetchAllInvestments} />}
-        {modal2 && <InvestingSettings closeView={() => setModal2(false)}/>}
+        {modal2 && <InvestingSettings closeView={() => setModal2(false)} />}
 
-        <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all investments</div>
+        <div className='flex justify-between items-center pt-10'>
+          <div className='uppercase font-bold md:text-2xl text-lg text-black'>all investments</div>
+          <div className='h-fit py-1 px-4 w-fit text-xs capitalize bg-[#c9b8eb] rounded-full text-black font-bold flex justify-center gap-2 items-center cursor-default'>
+            <div className='md:text-3xl text-2xl cursor-pointer' onClick={() => setSystem(!system)}>
+              {system ?
+                <BsToggle2On />
+                :
+                <BsToggle2Off />
+              }
+            </div>
+            <div>{system ? 'automatic' : 'manual'}</div>
+          </div>
+        </div>
         <div className='mt-12'>
           <div className='relative w-fit mx-auto'>
             <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>

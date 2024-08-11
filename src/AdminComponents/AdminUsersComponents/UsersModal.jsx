@@ -25,6 +25,9 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
     const EyeIcon = eye === true ? IoEye : IoMdEyeOff
     const [loading, setLoading] = useState(false)
 
+    setTimeout(() => {
+        setBeforeshow(false)
+    }, 1500)
 
     const MoveToBottom = () => {
         const move = document.querySelector('.move')
@@ -39,10 +42,6 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
             MoveToBottom()
         }
     }, [MoveToBottom])
-
-    setTimeout(() => {
-        setBeforeshow(false)
-    }, 1500)
 
     const FundUserAccount = async () => {
         setTimeout(() => {
@@ -111,7 +110,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
             setLoading(false)
         }
     }
-    
+
 
     return (
         <ModalLayout closeView={closeView} toggler={toggler}>

@@ -107,10 +107,10 @@ const Wallet = () => {
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white capitalize bg-[#6859bb] overflow-hidden'>
                         <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                             <div>referrals</div>
-                            <Link to="/dashboard/profile" onClick={() => MoveToTop()}>
+                            <Link to="/dashboard/profile">
                                 <button className='bg-[#130e27] text-[0.7rem] md:text-xs rounded-xl py-1 px-4 -mt-1 italic flex gap-1 items-center justify-center'>
                                     <span>refer</span>
-                                    <VscDebugDisconnect/>
+                                    <VscDebugDisconnect />
                                 </button>
                             </Link>
                         </div>
@@ -148,7 +148,7 @@ const Wallet = () => {
                                 <div>profit</div>
                                 <div className='text-[green] text-[0.85rem] font-bold'>60%</div>
                             </div>
-                            <Link to='/dashboard/deposit' className='flex flex-col gap-1'>
+                            <Link to='/dashboard/deposit' className='flex flex-col gap-1' onClick={() => MoveToTop()}>
                                 <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]'>purchase</button>
                                 <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]'>upgrade</button>
                             </Link>

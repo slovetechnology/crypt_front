@@ -189,7 +189,7 @@ const Deposit = () => {
                                         ))}
                                     </>}
                             </div>
-                            {tradingPlans.length > 0 &&<div className='bg-white w-full h-fit py-1 rounded-t-sm rounded-b-lg border-t border-[#5BB4FD] flex gap-1 items-center justify-center font-bold text-xs'>
+                            {tradingPlans.length > 0 && <div className='bg-white w-full h-fit py-1 rounded-t-sm rounded-b-lg border-t border-[#5BB4FD] flex gap-1 items-center justify-center font-bold text-xs'>
                                 <FaRegCopyright className='text-[#5BB4FD]' />
                                 <div>2024, Al Algo, All rights reserved.</div>
                             </div>}
@@ -228,7 +228,7 @@ const Deposit = () => {
                                             <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
                                             <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
                                             <td className='p-4 text-center truncate'> {item.crypto}</td>
-                                            <td className='p-4 text-center truncate'> {item.address}</td>
+                                            <td className='p-4  text-center truncate'>{item.deposit_address?.slice(0, 5)}.....{item.deposit_address?.slice(-10)} </td>
                                             <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
                                         </tr>
                                     ))}
@@ -237,7 +237,7 @@ const Deposit = () => {
                             {deposits.length < 1 &&
                                 <tbody>
                                     <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                        <td colSpan="5" className='py-2 italic text-center truncate'>
+                                        <td colSpan="6" className='py-2 italic text-center truncate'>
                                             <div className='flex gap-1 items-center justify-center'>
                                                 <span>no deposits found...</span>
                                                 <img src={nothnyet} className='h-4 w-auto'></img>

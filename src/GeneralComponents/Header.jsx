@@ -11,6 +11,14 @@ import { Link } from 'react-router-dom';
 import { MoveToTop } from '../utils/utils';
 
 
+const CompanyLinks = [
+    { path: 'home', url: '/', icon: MdMapsHomeWork },
+    { path: 'contact', url: '/contact', icon: MdConnectWithoutContact },
+    { path: 'about', url: '/about', icon: LuFileSearch },
+    { path: 'legal & security', url: '/legal', icon: MdOutlineSecurity },
+]
+
+
 const Header = () => {
     const [toggleDrop, setToggleDrop] = useState(false)
     const [toggleDroptwo, setToggleDroptwo] = useState(false)
@@ -34,7 +42,6 @@ const Header = () => {
             }
         }, []
     )
-
 
     useEffect(
         () => {
@@ -74,7 +81,7 @@ const Header = () => {
                                 </div>
                                 <div className={`bg-white p-8 w-96 h-fit absolute top-[4.2rem] -left-40 shd ${toggleDrop ? 'flex' : 'hidden'}`} ref={closer}>
                                     <div className='w-full'>
-                                        <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] hover:text-white' onClick={MoveToTop}>
+                                        <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] hover:text-white' onClick={() => { setToggleDrop(false); MoveToTop() }}>
                                             <div className=' flex flex-col gap-2'>
                                                 <div className='flex gap-2 items-center text-[#1E2833]'>
                                                     <LuBoxes />
@@ -96,22 +103,12 @@ const Header = () => {
                                     <TfiAngleDown className={`mt-1 text-[0.5rem] text-white  ${toggleDroptwo ? ' rotate-180' : 'rotate-0'} trans`} />
                                 </div>
                                 <div className={`flex flex-col gap-5 bg-white py-8 pl-10 pr-3 w-56 h-fit absolute top-[3.7rem] -left-8 shd ${toggleDroptwo ? 'flex' : 'hidden'}`} ref={closertwo}>
-                                    <Link to='/' onClick={MoveToTop} className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>
-                                        <MdMapsHomeWork className='text-[1.2rem] text-[#1E2833]' />
-                                        <div className='text-[#1E2833] text-[0.95rem] font-medium'>Home</div>
-                                    </Link>
-                                    <Link to='/contact' onClick={MoveToTop} className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>
-                                        <MdConnectWithoutContact className='text-[1.2rem] text-[#1E2833]' />
-                                        <div className='text-[#1E2833] text-[0.95rem] font-medium'>Contact</div>
-                                    </Link>
-                                    <Link to='/about' className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all' onClick={MoveToTop}>
-                                        <LuFileSearch className='text-[1.2rem] text-[#1E2833] ' />
-                                        <div className='text-[#1E2833] text-[0.95rem] font-medium'>About</div>
-                                    </Link>
-                                    <Link to='/legal' onClick={MoveToTop} className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>
-                                        <MdOutlineSecurity className='text-[1.2rem] text-[#1E2833] ' />
-                                        <div className='text-[#1E2833] text-[0.95rem] font-medium'>Legal & Security</div>
-                                    </Link>
+                                    {CompanyLinks.map((item, i) => (
+                                        <Link to={item.url} onClick={() => { setToggleDroptwo(false); MoveToTop() }} className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>
+                                            <item.icon className='text-[1.2rem] text-[#1E2833]' />
+                                            <div className='text-[#1E2833] text-[0.95rem] font-medium capitalize'>{item.path}</div>
+                                        </Link>
+                                    ))}
                                 </div>
                             </div>
                         </div>
@@ -143,7 +140,7 @@ const Header = () => {
                                 <TfiAngleDown className={`text-sm ${overview ? ' rotate-180' : 'rotate-0'} trans`} />
                             </div>
                             {overview && <div className='flex flex-col gap-3 border-b border-[grey] px-6 py-5'>
-                                <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#303e4d] p-2 ' onClick={MoveToTop}>
+                                <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#303e4d] p-2 ' onClick={() => { setDropDown(false); setOverview(false); MoveToTop() }}>
                                     <div className=' flex flex-col gap-2 text-white'>
                                         <div className='flex gap-2 items-center'>
                                             <LuBoxes className=' text-[#4b6f96]' />
@@ -162,22 +159,12 @@ const Header = () => {
                                 <TfiAngleDown className={`text-sm ${company ? ' rotate-180' : 'rotate-0'} trans`} />
                             </div>
                             {company && <div className='flex flex-col gap-8 px-6 py-5'>
-                                <Link to='/' onClick={MoveToTop} className='flex gap-2 items-center text-white w-fit'>
-                                    <MdMapsHomeWork className='text-[1.2rem] text-[#4b6f96] ' />
-                                    <div className='text-[0.9rem] font-medium hover:text-[#4b6f96]'>Home</div>
-                                </Link>
-                                <Link to='/contact' onClick={MoveToTop} className='flex gap-2 items-center text-white w-fit'>
-                                    <MdConnectWithoutContact className='text-[1.2rem] text-[#4b6f96] ' />
-                                    <div className='text-[0.9rem] font-medium hover:text-[#4b6f96]'>Contact</div>
-                                </Link>
-                                <Link to='/about' className='flex gap-2 items-center text-white w-fit' onClick={MoveToTop}>
-                                    <LuFileSearch className='text-[1.2rem] text-[#4b6f96] ' />
-                                    <div className='text-[0.9rem] font-medium hover:text-[#4b6f96]'>About</div>
-                                </Link>
-                                <Link to='/legal' onClick={MoveToTop} className='flex gap-2 items-center text-white w-fit'>
-                                    <MdOutlineSecurity className='text-[1.2rem] text-[#4b6f96] ' />
-                                    <div className='text-[0.9rem] font-medium hover:text-[#4b6f96]'>Legal & Security</div>
-                                </Link>
+                                {CompanyLinks.map((item, i) => (
+                                    <Link key={i} to={item.url} onClick={() => { setDropDown(false); setCompany(false); MoveToTop() }} className='flex gap-2 items-center text-white w-fit'>
+                                        <item.icon className='text-[1.2rem] text-[#4b6f96] ' />
+                                        <div className='text-[0.9rem] font-medium hover:text-[#4b6f96] capitalize'>{item.path}</div>
+                                    </Link>
+                                ))}
                             </div>}
                         </div>
                     </div>

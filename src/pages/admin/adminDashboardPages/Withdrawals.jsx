@@ -21,7 +21,7 @@ const Withdrawals = () => {
     const [write, setWrite] = useState(false)
     const [search, setSearch] = useState('')
     const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(6)
+    const [end, setEnd] = useState(5)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
 
@@ -53,31 +53,31 @@ const Withdrawals = () => {
         const altwithdrawals = fromAtom
         if (!search) {
             setAllWithdrawals(fromAtom)
-            setpageend(fromAtom.length / 6)
+            setpageend(fromAtom.length / 5)
             setWrite(false)
             setpagestart(1)
             setStart(0)
-            setEnd(6)
+            setEnd(5)
         }
         else {
             setWrite(true)
             const showSearch = altwithdrawals.filter(item => item.wthUser.username.includes(search.toLowerCase()) || item.wthUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
-            setpageend(showSearch.length / 6)
+            setpageend(showSearch.length / 5)
             setpagestart(1)
             setStart(0)
-            setEnd(6)
+            setEnd(5)
         }
     }
 
     const CancelWrite = () => {
         setSearch('')
         setAllWithdrawals(fromAtom)
-        setpageend(fromAtom.length / 6)
+        setpageend(fromAtom.length / 5)
         setWrite(false)
         setpagestart(1)
         setStart(0)
-        setEnd(6)
+        setEnd(5)
     }
 
     let MovePage = () => {
@@ -87,10 +87,10 @@ const Withdrawals = () => {
             let altend = end
             let altlengthstart = pagestart
 
-            altend += 6
+            altend += 5
             setEnd(altend)
 
-            altstart += 6
+            altstart += 5
             setStart(altstart)
 
             altlengthstart += 1
@@ -100,15 +100,15 @@ const Withdrawals = () => {
 
     let BackPage = () => {
 
-        if (end > 6) {
+        if (end > 5) {
             let altstart = start
             let altend = end
             let altlengthstart = pagestart
 
-            altend -= 6
+            altend -= 5
             setEnd(altend)
 
-            altstart -= 6
+            altstart -= 5
             setStart(altstart)
 
             altlengthstart -= 1

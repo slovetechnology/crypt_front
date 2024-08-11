@@ -151,7 +151,7 @@ const Users = () => {
         {modal3 && <SetReferralModal closeView={() => setModal3(false)}/>}
         <div className='flex justify-between items-center pt-10'>
           <div className='uppercase font-bold md:text-2xl text-lg text-black'>all users</div>
-          <div className='h-fit py-2.5 px-4 w-36 text-xs capitalize bg-[#9f7ae7] rounded-full text-black font-bold flex gap-2 justify-between items-center cursor-default'>
+          <div className='h-fit py-2.5 px-4 w-36 text-xs capitalize bg-[#c9b8eb] rounded-full text-black font-bold flex justify-between items-center cursor-default'>
             <div className='flex items-center gap-1'>
               <TbUsers className='text-base' />
               <span>total users:</span>

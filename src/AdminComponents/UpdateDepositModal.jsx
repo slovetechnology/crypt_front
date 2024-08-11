@@ -62,10 +62,11 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
           Alert('Request Successful', 'Deposit updated successfully', 'success')
           setWrite(false)
           setSearch('')
-          setpageend(response.msg.length / 6)
+          setpageend(response.msg.length / 5)
           setpagestart(1)
           setStart(0)
-          setEnd(6)
+          setEnd(5)
+          closeView()
         } else {
           Alert('Request Failed', `${response.msg}`, 'error')
         }
@@ -73,7 +74,6 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
         Alert('Request Failed', `${error.message}`, 'error')
       } finally {
         setLoading(false)
-        closeView()
       }
     }
   }

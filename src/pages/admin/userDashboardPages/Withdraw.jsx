@@ -203,7 +203,7 @@ const Withdraw = () => {
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-light mx-auto flex flex-col gap-2'>
                             <div className='w-fit h-fit text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-between ml-auto'>
                                 <span>minimum:</span>
-                                <span>${adminStore.withdrawal_minimum}</span>
+                                {Object.values(adminStore).length !== 0 && <span>${adminStore.withdrawal_minimum.toLocaleString()}</span>}
                             </div>
                             <div className='flex items-center justify-center gap-2 border-t pt-2'>
                                 <span>Withdraw funds</span>
@@ -214,7 +214,8 @@ const Withdraw = () => {
                             <div className='flex gap-3 items-center'>
                                 <div className='flex flex-col gap-2'>
                                     <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
-                                    <div className='relative'>
+                                    <div className='flex items-center gap-0.5'>
+                                        <div className='text-sm'>$</div>
                                         <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-2 h-8 rounded-[5px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     </div>
                                 </div>
@@ -228,27 +229,24 @@ const Withdraw = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className='h-fit w-fit rounded-[0.2rem] bg-white mt-10 p-1'>
-                                <div className={`relative w-52 py-1  bg-white shantf rounded-[0.2rem] text-black  ${error === 'select' && 'border border-[red]'}`}>
-                                    <div className='cursor-pointer' onClick={() => setSelectState(!selectState)} >
-                                        <div className='flex gap-1.5 justify-center items-center capitalize text-[0.8rem] font-semibold'>
-                                            <span >choose cryptocurrency</span>
-                                            <SiBitcoincash className='text-light' />
-                                        </div>
-                                    </div>
-                                    {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey]  rounded-md z-50'>
-                                        {adminWallets.length > 0 && <>
+                            <div className='h-fit w-fit rounded-[0.2rem] bg-white p-1 relative mt-6'>
+                                <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>
+                                    <div className='text-[0.8rem]'>choose cryptocurrency</div>
+                                    <SiBitcoincash className='text-light' />
+                                </div>
+                                {adminWallets.length > 0 &&
+                                    <>
+                                        {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
                                             {adminWallets.map((item, i) => (
-                                                <div className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`} key={i}>
+                                                <div className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#f7f5f5]'}`} key={i}>
                                                     <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
                                                         <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
                                                         <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
                                                     </div>
                                                 </div>
                                             ))}
-                                        </>}
-                                    </div>}
-                                </div>
+                                        </div>}
+                                    </>}
                             </div>
                             {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                                 <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>

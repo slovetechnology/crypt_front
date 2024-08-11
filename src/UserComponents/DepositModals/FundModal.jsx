@@ -78,19 +78,18 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
         <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => closeView()} />
         <div className='flex flex-col gap-5 items-center'>
           <div className='text-lg font-bold uppercase border-b w-full text-center'>fund wallet</div>
-          <div className='relative'>
+          <div className='flex items-center gap-0.5'>
+            <div className='text-sm'>$</div>
             <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
           </div>
-          <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1'>
-            <div className={`relative w-52 py-1  bg-white shantf rounded-[0.2rem] text-black  ${error === 'select' && 'border border-[red]'}`}>
-              <div className='cursor-pointer' onClick={() => setSelectState(!selectState)} >
-                <div className='flex gap-1.5 justify-center items-center capitalize text-[0.8rem] font-semibold'>
-                  <span >choose cryptocurrency</span>
-                  <SiBitcoincash className='text-[#5BB4FD]' />
-                </div>
-              </div>
-              {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
-                {adminWallets.length > 0 && <>
+          <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>
+            <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>
+              <div className='text-[0.8rem]'>choose cryptocurrency</div>
+              <SiBitcoincash className='text-[#5BB4FD] z-50' />
+            </div>
+            {adminWallets.length > 0 &&
+              <>
+                {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
                   {adminWallets.map((item, i) => (
                     <div className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`} key={i}>
                       <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
@@ -99,9 +98,8 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
                       </div>
                     </div>
                   ))}
-                </>}
-              </div>}
-            </div>
+                </div>}
+              </>}
           </div>
           {Object.values(selectValue).length !== 0 &&
             <div className='text-[0.8rem] text-center'><span className='capitalize'>{selectValue.crypto}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>:</div>

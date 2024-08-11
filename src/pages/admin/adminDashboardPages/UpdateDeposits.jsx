@@ -20,7 +20,7 @@ const UpdateDeposits = () => {
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(6)
+  const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
 
@@ -54,31 +54,31 @@ const UpdateDeposits = () => {
     const altDeposits = fromAtom
     if (!search) {
       setAllDeposits(fromAtom)
-      setpageend(fromAtom.length / 6)
+      setpageend(fromAtom.length / 5)
       setWrite(false)
       setpagestart(1)
       setStart(0)
-      setEnd(6)
+      setEnd(5)
     }
     else {
       setWrite(true)
       const showSearch = altDeposits.filter(item => item.depositUser.username.includes(search.toLowerCase()) || item.depositUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
       setAllDeposits(showSearch)
-      setpageend(showSearch.length / 6)
+      setpageend(showSearch.length / 5)
       setpagestart(1)
       setStart(0)
-      setEnd(6)
+      setEnd(5)
     }
   }
 
   const CancelWrite = () => {
     setSearch('')
     setAllDeposits(fromAtom)
-    setpageend(fromAtom.length / 6)
+    setpageend(fromAtom.length / 5)
     setWrite(false)
     setpagestart(1)
     setStart(0)
-    setEnd(6)
+    setEnd(5)
   }
 
   let MovePage = () => {
@@ -88,10 +88,10 @@ const UpdateDeposits = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 6
+      altend += 5
       setEnd(altend)
 
-      altstart += 6
+      altstart += 5
       setStart(altstart)
 
       altlengthstart += 1
@@ -101,15 +101,15 @@ const UpdateDeposits = () => {
 
   let BackPage = () => {
 
-    if (end > 6) {
+    if (end > 5) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 6
+      altend -= 5
       setEnd(altend)
 
-      altstart -= 6
+      altstart -= 5
       setStart(altstart)
 
       altlengthstart -= 1

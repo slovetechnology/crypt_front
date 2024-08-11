@@ -17,6 +17,10 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
     const [profitError, setProfitError] = useState(false)
     const [bonusError, setBonusError] = useState(false)
 
+    setTimeout(() => {
+        setBeforeshow(false)
+    }, 1500)
+
     const [form, setForm] = useState({
         profit: "",
         bonus: ""
@@ -57,10 +61,6 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
     }, [MoveToBottom]
     )
 
-    setTimeout(() => {
-        setBeforeshow(false)
-    }, 1500)
-
     const AdminUpdateInvestment = async () => {
         setTimeout(() => {
             setProfitError(false)
@@ -92,10 +92,11 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
                     Alert('Request Successful', 'Investment updated successfully', 'success')
                     setWrite(false)
                     setSearch('')
-                    setpageend(response.msg.length / 6)
+                    setpageend(response.msg.length / 5)
                     setpagestart(1)
                     setStart(0)
-                    setEnd(6)
+                    setEnd(5)
+                    closeView()
                 } else {
                     Alert('Request Failed', `${response.msg}`, 'error')
                 }
@@ -103,7 +104,6 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
                 Alert('Request Failed', `${error.message}`, 'error')
             } finally {
                 setLoading(false)
-                closeView()
             }
         }
     }
@@ -158,7 +158,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
                                         <div className='italic '>add profit:</div>
                                         <div className='flex gap-2 items-center'>
                                             <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
-                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-sm'>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
                                                 <div>so far:</div>
                                                 {Object.values(singleInvestment).length !== 0 && <div>${singleInvestment.profit.toLocaleString()}</div>}
                                             </div>
@@ -168,7 +168,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, setStart, setEnd, 
                                         <div className='italic '>add bonus:</div>
                                         <div className='flex gap-2 items-center'>
                                             <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
-                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-sm'>
+                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
                                                 <div>so far:</div>
                                                 {Object.values(singleInvestment).length !== 0 && <div>${singleInvestment.bonus.toLocaleString()}</div>}
                                             </div>
