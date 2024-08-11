@@ -140,9 +140,12 @@ const Deposit = () => {
                     }
                 </div>
                 {screen === 1 &&
-                    <div className={`my-10 h-[32rem] w-fit mx-auto bg-semi-white md:px-4 px-3 rounded-xl relative overflow-x-hidden shlz scrollDiv thediv  ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'}`}>
+                    <div className='my-10 h-fit w-fit mx-auto bg-semi-white rounded-xl relative shlz thediv'>
                         {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} refetchDeposits={FetchDeposits} />}
-                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-md mx-auto flex flex-col gap-2'>
+                        {modal &&
+                            <BuyPlanModal setModal={setModal} buybal={buybal} deposits={deposits} />
+                        }
+                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
                             <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true); MoveToTopDivs() }}>
                                 <span>fund wallet</span>
                                 <SiBitcoincash />
@@ -152,8 +155,8 @@ const Deposit = () => {
                                 <TbListDetails className='text-[#5BB4FD]' />
                             </div>
                         </div>
-                        <div className='w-full flex flex-col gap-8 mt-6 items-center'>
-                            <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center'>
+                        <div className={`w-full h-[26rem] flex flex-col gap-8 pt-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
+                            <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center md:px-4 px-3'>
                                 {tradingPlans.length > 0 &&
                                     <>
                                         {tradingPlans.map((item, i) => (
@@ -186,14 +189,11 @@ const Deposit = () => {
                                         ))}
                                     </>}
                             </div>
-                            {tradingPlans.length > 0 && <div className='bg-white w-full h-fit py-1 px-4 rounded-t-md flex gap-1 items-center justify-center font-bold text-xs'>
+                            {tradingPlans.length > 0 &&<div className='bg-white w-full h-fit py-1 rounded-t-sm rounded-b-lg border-t border-[#5BB4FD] flex gap-1 items-center justify-center font-bold text-xs'>
                                 <FaRegCopyright className='text-[#5BB4FD]' />
                                 <div>2024, Al Algo, All rights reserved.</div>
                             </div>}
                         </div>
-                        {modal &&
-                            <BuyPlanModal setModal={setModal} buybal={buybal} deposits={deposits} />
-                        }
                     </div>
                 }
                 {screen === 2 && <div className='mt-12'>
@@ -254,7 +254,7 @@ const Deposit = () => {
                 </div>
                 }
             </div >
-        </Dashboard>
+        </Dashboard >
     )
 }
 

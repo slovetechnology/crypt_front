@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { IoIosAddCircleOutline, IoIosSearch, IoIosSettings } from 'react-icons/io'
+import { LiaGiftSolid } from "react-icons/lia"
 import { FiX } from 'react-icons/fi'
 import { ADMINALLUSERS } from '../../../store'
 import { useAtom } from 'jotai'
@@ -12,6 +13,7 @@ import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard'
 import UsersModal from '../../../AdminComponents/AdminUsersComponents/UsersModal'
 import CreateUsersModal from '../../../AdminComponents/AdminUsersComponents/CreateUsersModal'
+import SetReferralModal from '../../../AdminComponents/AdminUsersComponents/SetReferralModal'
 
 
 
@@ -21,6 +23,7 @@ const Users = () => {
 
   const [modal, setModal] = useState(false)
   const [modal2, setModal2] = useState(false)
+  const [modal3, setModal3] = useState(false)
   const [singleUser, setSingleUser] = useState({})
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
@@ -145,8 +148,17 @@ const Users = () => {
       <div className='h-screen'>
         {modal && <UsersModal closeView={() => setModal(false)} singleUser={singleUser} userFigures={userFigures} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={FetchAllUsers} />}
         {modal2 && <CreateUsersModal closeView={() => setModal2(false)} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={FetchAllUsers} />}
-
-        <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all users</div>
+        {modal3 && <SetReferralModal closeView={() => setModal3(false)}/>}
+        <div className='flex justify-between items-center pt-10'>
+          <div className='uppercase font-bold md:text-2xl text-lg text-black'>all users</div>
+          <div className='h-fit py-2.5 px-4 w-36 text-xs capitalize bg-black rounded-full text-white font-medium flex gap-2 justify-between items-center cursor-default'>
+            <div className='flex items-center gap-1'>
+              <TbUsers className='text-base' />
+              <span>total users:</span>
+            </div>
+            <div>{allusers.length}</div>
+          </div>
+        </div>
         <div className='mt-12'>
           <div className='relative w-fit mx-auto'>
             <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
@@ -159,15 +171,12 @@ const Users = () => {
               }
             </div>
           </div>
-          <div className='flex justify-between mb-2 mt-4'>
-            <div className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-2 justify-center cursor-default'>
-              <div className='flex items-center gap-1'>
-                <TbUsers className='text-base' />
-                <span>total users:</span>
-              </div>
-              <div>{allusers.length}</div>
-            </div>
-            <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
+          <div className='flex justify-between items-center mb-2'>
+            <button className='w-fit h-fit mt-4 py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal3(true)}>
+              <span>set referral bonus</span>
+              <IoIosSettings className='text-base' />
+            </button>
+            <button className='w-fit h-fit mt-4 py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
               <span>create new user</span>
               <IoIosAddCircleOutline className='text-base' />
             </button>
@@ -176,7 +185,7 @@ const Users = () => {
           <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full'>
               <thead >
-                <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => setModal(true)}>
+                <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
                   <td className='text-center truncate  capitalize p-2'>joined</td>
                   <td className='text-center truncate  capitalize p-2'>full name</td>
                   <td className='text-center truncate  capitalize p-2'>username</td>

@@ -11,7 +11,7 @@ import { FaCheck, FaRegRectangleXmark } from "react-icons/fa6";
 import { IoCheckbox } from "react-icons/io5";
 import { PiWarningCircleBold } from "react-icons/pi";
 import { FaRegEdit } from "react-icons/fa";
-import { Alert, CookieName } from '../../../utils/utils';
+import { Alert, CookieName, MoveToTop } from '../../../utils/utils';
 import { IoMdEyeOff } from 'react-icons/io';
 import Cookies from 'js-cookie';
 import { Link, useNavigate } from 'react-router-dom';
@@ -231,7 +231,7 @@ const Profile = () => {
                     <div className='mt-8 '>
                         <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-semi-white rounded-xl capitalize shlz md:px-8 px-4 py-4 mx-auto'>
                             <div className='flex items-center gap-5'>
-                                <Link to='/dashboard/verify-account'>
+                                <Link to='/dashboard/verify-account' onClick={() => MoveToTop()}>
                                     <div className='flex flex-col gap-2'>
                                         <div className='md:text-[1.4rem] text-lg text-black'>Status</div>
                                         <div className='cursor-pointer'>

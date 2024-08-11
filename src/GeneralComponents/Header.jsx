@@ -75,7 +75,7 @@ const Header = () => {
                                 </div>
                                 <div className={`bg-white p-8 w-[40rem] h-fit absolute top-[4.2rem] -left-40 shd ${toggleDrop ? 'flex' : 'hidden'}`} ref={closer}>
                                     <div className='grid grid-cols-2 gap-5 w-full'>
-                                        <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] lnk' onClick={MoveToTop}>
+                                        <Link to='/trading' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] hover:text-white' onClick={MoveToTop}>
                                             <div className=' flex flex-col gap-2'>
                                                 <div className='flex gap-2 items-center text-[#1E2833]'>
                                                     <LuBoxes />
@@ -86,7 +86,7 @@ const Header = () => {
                                                 </div>
                                             </div>
                                         </Link>
-                                        <Link to='/performances' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] lnk' onClick={MoveToTop}>
+                                        <Link to='/performances' className='flex flex-col gap-1 hover:bg-[#929da0] rounded-lg p-2 text-[grey] hover:text-white' onClick={MoveToTop}>
                                             <div className='flex flex-col gap-2'>
                                                 <div className='flex gap-2 items-center text-[#1E2833]'>
                                                     <GiBookPile />

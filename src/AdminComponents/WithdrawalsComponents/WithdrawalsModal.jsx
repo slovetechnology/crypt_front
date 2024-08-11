@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Loading from '../GeneralComponents/Loading'
-import { Apis, UserPutApi, imageurl } from '../services/API'
+import Loading from '../../GeneralComponents/Loading'
+import { Apis, UserPutApi, imageurl } from '../../services/API'
 import moment from 'moment'
 import { FaAngleDown, FaAngleUp, FaCheck } from 'react-icons/fa6'
-import { Alert } from '../utils/utils'
+import { Alert } from '../../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
-import avatar from '../assets/images/avatar.png'
+import avatar from '../../assets/images/avatar.png'
+import ModalLayout from '../../utils/ModalLayout'
 
 const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllWithdrawals }) => {
+    const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const [statusShow, setStatusShow] = useState(false)
     const [status, setStatus] = useState(singleWithdrawal.status)
@@ -20,18 +22,6 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
         "pending",
         "confirmed"
     ]
-
-    useEffect(() => {
-        if (toggler) {
-            window.addEventListener('click', (event) => {
-                if (toggler.current !== null) {
-                    if (!toggler.current.contains(event.target)) {
-                        closeView()
-                    }
-                }
-            }, true)
-        }
-    }, [])
 
     const MoveToBottom = () => {
         const move = document.querySelector('.move')
@@ -64,6 +54,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
         const formbody = {
             withdrawal_id: singleWithdrawal.id,
             user: singleWithdrawal.user,
+            message: message,
             status: status
         }
 
@@ -97,14 +88,14 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
     }
 
     return (
-        <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20'>
+        <ModalLayout closeView={closeView} toggler={toggler}>
             <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[70vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {loading && <Loading />}
                     {beforeshow && <div className='beforeshow'></div>}
                     {!beforeshow &&
                         <div className='md:w-[90%] w-11/12 mx-auto md:py-8 py-4 flex flex-col gap-8 md:text-[0.9rem] text-[0.8rem]'>
-                            <div className='flex flex-col gap-4 border p-1 overflow-hidden'>
+                            <div className='flex flex-col gap-4 border p-1'>
                                 <div className=' uppercase font-bold border px-1 '>user details:</div>
                                 <div className='flex items-center justify-center md:w-[5.8rem] md:h-[5.8rem] w-20 h-20  rounded-full bg-[#c9b8eb] mx-auto'>
                                     {Object.values(singleWithdrawal).length !== 0 &&
@@ -127,7 +118,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                     </div>
                                 </div>
                             </div>
-                            <div className='flex flex-col gap-4 border p-1 overflow-hidden'>
+                            <div className='flex flex-col gap-4 border p-1'>
                                 <div className=' uppercase font-bold border px-1 '>withdrawal details:</div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
@@ -156,11 +147,15 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                         <div className='italic '>date/time:</div>
                                         {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleWithdrawal.createdAt).format('DD-MM-yyyy')} / {moment(singleWithdrawal.createdAt).format('h:mm')}</div>}
                                     </div>
+                                    <div className='flex justify-between items-center'>
+                                        <div className='italic '>withdrawal message:</div>
+                                        <textarea placeholder='Type A Message' className='p-2 w-52 h-32 text-black lg:text-[0.9rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)}></textarea>
+                                    </div>
                                     <div className='flex justify-between items-center my-6'>
                                         <div className='italic '>status:</div>
                                         {singleWithdrawal.status === 'pending' ?
-                                            <div className='flex flex-col'>
-                                                <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
+                                            <div className='relative'>
+                                                <div className='px-2 py-1 h-fit md:w-48 w-36 rounded-sm bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                     <div className='flex justify-between items-center text-[0.8rem]'>
                                                         <span >{status}</span>
                                                         <div className={`flex flex-col items-center text-xs trans ${statusShow ? 'rotate-90' : 'rotate-0'} `}>
@@ -169,9 +164,9 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {statusShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
+                                                {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                                     {Statuses.map((item, i) => (
-                                                        <div className='flex flex-col mt-2' key={i}>
+                                                        <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
                                                             <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item); setStatusShow(false); setUpdate(true) }}>
                                                                 <div className={`text-[0.85rem] font-bold ${item === 'confirmed' && 'text-[green]'}`}>{item}</div>
                                                             </div>
@@ -194,7 +189,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                     }
                 </div>
             </div>
-        </div>
+        </ModalLayout>
     )
 }
 

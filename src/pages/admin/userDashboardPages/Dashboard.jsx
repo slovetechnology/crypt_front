@@ -16,7 +16,7 @@ import { ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, W
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
-import { CookieName } from '../../../utils/utils';
+import { CookieName, MoveToTop } from '../../../utils/utils';
 import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
 import { HiOutlineDotsVertical } from "react-icons/hi";
@@ -180,7 +180,7 @@ const Dashboard = ({ children }) => {
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
                             <div className='flex flex-col gap-8'>
                                 {MainLinks.map((item, i) => (
-                                    <Link key={i} onClick={() => setSlideShow(false)} to={item.url}>
+                                    <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
                                         <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -193,7 +193,7 @@ const Dashboard = ({ children }) => {
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-8'>
                                 {OtherLinks.map((item, i) => (
-                                    <Link key={i} onClick={() => setSlideShow(false)} to={item.url}>
+                                    <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
                                         <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -263,7 +263,7 @@ const Dashboard = ({ children }) => {
                 <div className='bg-[#131024] w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
                     <div className='grid grid-cols-5 items-center h-full w-full'>
                         {MainLinks.map((item, i) => (
-                            <Link key={i} onClick={() => setSlideShow(false)} to={item.url}>
+                            <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
                                 <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-light' : ' text-semi-white'}`} >
                                     <item.icon className='md:text-xl text-base ' />
                                     <div className='capitalize md:text-xs text-[0.6rem] font-medium'>{item.path}</div>
@@ -290,7 +290,7 @@ const Dashboard = ({ children }) => {
                             {user.email_verified === 'true' && <MdVerified className='text-[0.7rem] text-light border-light' />}
                         </div>
                         <div className='text-[grey] text-[0.8rem] font-medium lowercase -mt-2 '>{user.email}</div>
-                        <Link to='/dashboard/profile'>
+                        <Link to='/dashboard/profile' onClick={() => MoveToTop()}>
                             <div className=' cursor-pointer text-[0.85rem] text-light border-light mt-2'>edit profile</div>
                         </Link>
                     </div>
@@ -305,7 +305,7 @@ const Dashboard = ({ children }) => {
                             <div>${wallet.balance}</div>
                         </div>
                     </div>
-                    <Link to='/dashboard/investment'>
+                    <Link to='/dashboard/investment' onClick={() => MoveToTop()}>
                         <div className='w-full h-14 rounded-[3px] bg-semi-white mt-8 capitalize font-bold flex items-center justify-center gap-2 cursor-pointer'>
                             <LuArrowDownUp />
                             <div>trade now</div>

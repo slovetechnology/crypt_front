@@ -10,6 +10,7 @@ import avatar from '../../assets/images/avatar.png'
 import { Alert } from '../../utils/utils';
 import Loading from '../../GeneralComponents/Loading';
 import { Apis, imageurl, PostApi, UserPutApi } from '../../services/API';
+import ModalLayout from '../../utils/ModalLayout';
 
 const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllUsers }) => {
     const toggler = useRef()
@@ -24,17 +25,6 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
     const EyeIcon = eye === true ? IoEye : IoMdEyeOff
     const [loading, setLoading] = useState(false)
 
-    useEffect(() => {
-        if (toggler) {
-            window.addEventListener('click', (event) => {
-                if (toggler.current !== null) {
-                    if (!toggler.current.contains(event.target)) {
-                        closeView()
-                    }
-                }
-            }, true)
-        }
-    }, [])
 
     const MoveToBottom = () => {
         const move = document.querySelector('.move')
@@ -54,7 +44,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
         setBeforeshow(false)
     }, 1500)
 
-    const FundUserAccount = async() => {
+    const FundUserAccount = async () => {
         setTimeout(() => {
             setAmountError(false)
         }, 1000)
@@ -71,7 +61,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
         try {
             const response = await UserPutApi(Apis.admin.fund_user_account, formbody)
             if (response.status === 200) {
-                Alert('Request Successful',  `${response.msg}`, 'success')
+                Alert('Request Successful', `${response.msg}`, 'success')
                 setFundScreen(1)
                 closeView()
             } else {
@@ -121,10 +111,10 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
             setLoading(false)
         }
     }
-
+    
 
     return (
-        <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
+        <ModalLayout closeView={closeView} toggler={toggler}>
             <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[70vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {beforeshow && <div className='beforeshow'></div>}
@@ -196,7 +186,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
                                                 <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[3px] px-2 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                             </div>
                                             <div className='mx-auto'>
-                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-bold' onClick={FundUserAccount}>send fund</button>
+                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-bold' onClick={FundUserAccount}>send funds</button>
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +250,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, setStart, setEnd, setp
                         </div>}
                 </div>
             </div>
-        </div>
+        </ModalLayout>
     )
 }
 

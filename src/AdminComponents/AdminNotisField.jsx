@@ -3,6 +3,7 @@ import { HiCheckCircle } from 'react-icons/hi2'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { Apis, UserPutApi } from '../services/API'
+import { MoveToTop } from '../utils/utils'
 
 const AdminNotisField = ({item, refetchNotifications, refetchUnreadNotis, setShowNotis}) => {
 
@@ -21,7 +22,7 @@ const AdminNotisField = ({item, refetchNotifications, refetchUnreadNotis, setSho
     }
 
     return (
-        <Link to={item.URL} onClick={() => {MarkSingleRead(); setShowNotis(false)}} className='flex flex-col items-center md:pt-2 pt-3 md:text-xs text-[0.8rem] text-black'>
+        <Link to={item.URL} onClick={() => {MarkSingleRead(); setShowNotis(false); MoveToTop()}} className='flex flex-col items-center md:pt-2 pt-3 md:text-xs text-[0.8rem] text-black'>
             <div className={`p-2 rounded-md relative shantf w-full h-fit ${item.read === 'true' ? 'bg-white' : 'bg-[#bfb1d4]'}`}>
                 <div className='flex flex-col gap-2'>
                     <div className='flex items-center'>

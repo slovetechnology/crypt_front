@@ -114,14 +114,14 @@ const AdminNotis = ({refetchNotifications, refetchUnreadNotis}) => {
                 </div>
             </>
 
-            <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-[silver] bg-white z-50 py-3 px-2 text-black ${showNotis ? 'block' : 'hidden'}`} ref={closer}>
+            <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-[#d1d1d1] bg-white z-50 py-3 px-2 text-black ${showNotis ? 'block' : 'hidden'}`} ref={closer}>
                 <div className='flex justify-between items-center mt-2 md:mt-0'>
                     <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>
                         <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
                         <div>notifications</div>
                     </div>
                     <div className='relative'>
-                        <div className='rounded-full w-fit h-fit p-1 md:bg-semi-white bg-[#b4b3b3] cursor-pointer md:text-[0.85rem] text-lg' onClick={() => setMark(!mark)}>
+                        <div className='rounded-full w-fit h-fit p-1 md:bg-white bg-[#b4b3b3] cursor-pointer md:text-[0.85rem] text-lg' onClick={() => setMark(!mark)}>
                             <IoMdSettings />
                         </div>
                         {mark && <div className='md:w-36 w-40 h-fit py-1 px-2 flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-8 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
@@ -141,9 +141,9 @@ const AdminNotis = ({refetchNotifications, refetchUnreadNotis}) => {
                     </div>
                 }
                 {notifications.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end'>
-                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-semi-white cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
+                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-zinc-100 cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold md:text-zinc-600 text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-semi-white cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
+                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-500 text-zinc-600 hover:bg-zinc-100 cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
                 </div>}
             </div>
         </div>

@@ -18,6 +18,7 @@ import Dashboard from './Dashboard';
 import { Link } from 'react-router-dom';
 import { Apis, UserGetApi } from '../../../services/API';
 import ClaimButtons from '../../../UserComponents/InvestmentComponents/ClaimButtons';
+import { MoveToTop } from '../../../utils/utils';
 
 
 const Investment = () => {
@@ -231,7 +232,7 @@ const Investment = () => {
                             <div className='w-fit h-fit rounded-xl flex flex-col items-center justify-center py-4 px-8 md:px-16  text-semi-white gap-4 border border-dashed border-[grey] bg-[#130e27] mx-auto'>
                                 <div className='md:text-[1.2rem] text-base italic'>No new investment made</div>
                                 <img src={investbg} className='md:w-80 w-52 h-auto'></img>
-                                <Link to='/dashboard/deposit'>
+                                <Link to='/dashboard/deposit' onClick={() => MoveToTop()}>
                                     <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.85rem] text-xs text-white font-medium bg-light rounded-full flex items-center gap-3 mt-4'>
                                         <span>Make new</span>
                                         <div className='makenew'></div>

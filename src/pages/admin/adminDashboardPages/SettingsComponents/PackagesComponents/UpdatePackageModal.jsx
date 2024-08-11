@@ -4,6 +4,7 @@ import Loading from '../../../../../GeneralComponents/Loading';
 import { PiWarningCircleBold } from 'react-icons/pi';
 import { Apis, PostApi, UserPutApi } from '../../../../../services/API';
 import { Alert } from '../../../../../utils/utils';
+import ModalLayout from '../../../../../utils/ModalLayout';
 
 
 const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setStart, setEnd, setpagestart, setpageend }) => {
@@ -35,18 +36,6 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setSta
             setCommit(true)
         }
     }
-
-    useEffect(() => {
-        if (toggler) {
-            window.addEventListener('click', (event) => {
-                if (toggler.current !== null) {
-                    if (!toggler.current.contains(event.target)) {
-                        closeView()
-                    }
-                }
-            }, true)
-        }
-    }, [])
 
     const UpdateTradingPlan = async () => {
         setTimeout(() => {
@@ -119,7 +108,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setSta
 
 
     return (
-        <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
+        <ModalLayout closeView={closeView} toggler={toggler}>
             <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden' ref={toggler}>
                 <div className={`w-full h-full relative`}>
                     {loading && <Loading />}
@@ -177,7 +166,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setSta
                     </div>
                 </div>
             </div>
-        </div>
+        </ModalLayout>
     )
 }
 

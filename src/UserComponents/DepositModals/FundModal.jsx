@@ -80,19 +80,19 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
           <div className='relative'>
             <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
           </div>
-          <div className='h-fit w-fit rounded-[0.2rem] bg-[#eeeded] p-1'>
-            <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scrollDiv' : 'h-[1.6rem]'}  w-52 px-2 py-1  bg-white shantf rounded-[0.2rem]   text-black ${error === 'select' && 'border border-[red]'} trans`}>
-              <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
+          <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1'>
+            <div className={`relative w-52 py-1  bg-white shantf rounded-[0.2rem] text-black  ${error === 'select' && 'border border-[red]'}`}>
+              <div className='cursor-pointer' onClick={() => setSelectState(!selectState)} >
                 <div className='flex gap-1.5 justify-center items-center capitalize text-[0.8rem] font-semibold'>
                   <span >choose cryptocurrency</span>
-                  <SiBitcoincash className='text-[#5BB4FD]'/>
+                  <SiBitcoincash className='text-[#5BB4FD]' />
                 </div>
               </div>
-              {selectState && <div>
+              {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
                 {adminWallets.length > 0 && <>
                   {adminWallets.map((item, i) => (
-                    <div className='flex flex-col mt-1' key={i}>
-                      <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
+                    <div className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`} key={i}>
+                      <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
                         <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
                         <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
                       </div>

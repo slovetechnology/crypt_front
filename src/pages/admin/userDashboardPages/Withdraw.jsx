@@ -17,6 +17,7 @@ import { SiBitcoincash } from "react-icons/si";
 import nothnyet from '../../../assets/images/nothn.png'
 import Dashboard from './Dashboard'
 import { Link } from 'react-router-dom'
+import { TbTransferOut } from "react-icons/tb";
 
 const Withdraw = () => {
     const [user] = useAtom(PROFILE)
@@ -190,7 +191,7 @@ const Withdraw = () => {
                         <RiHistoryFill />
                     </div>
                         :
-                        <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdrawTitle('withdawal') }}>
+                        <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdrawTitle('withdaw') }}>
                             <span>withdraw</span>
                             <BiMoneyWithdraw />
                         </div>}
@@ -198,7 +199,17 @@ const Withdraw = () => {
                 {screen === 1 &&
                     <div className='mt-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
                         {loading && <LoadingAdmin />}
-                        <div className='flex flex-col items-center md:py-12 py-8 md:px-16 px-4'>
+                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-light mx-auto flex flex-col gap-2'>
+                            <div className='w-fit h-fit text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-between ml-auto'>
+                                <span>minimum:</span>
+                                <span>$100</span>
+                            </div>
+                            <div className='flex items-center justify-center gap-2 border-t pt-2'>
+                                <span>Withdraw funds</span>
+                                <TbTransferOut className='text-light' />
+                            </div>
+                        </div>
+                        <div className='flex flex-col items-center py-6 md:px-16 px-4'>
                             <div className='flex gap-3 items-center'>
                                 <div className='flex flex-col gap-2'>
                                     <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
@@ -217,18 +228,18 @@ const Withdraw = () => {
                                 </div>
                             </div>
                             <div className='h-fit w-fit rounded-[0.2rem] bg-white mt-10 p-1'>
-                                <div className={`flex flex-col gap-1 ${selectState ? 'h-[5.75rem] overflow-y-auto scrollDiv' : 'h-[1.6rem]'}  w-52 px-2 py-1  bg-white shantf rounded-[0.2rem] text-black  ${error === 'select' && 'border border-[red]'} trans`}>
-                                    <div className={`${selectState && 'border-b border-[#c7c6c6]'}  cursor-pointer `} onClick={() => setSelectState(!selectState)} >
-                                        <div className='flex gap-1.5 justify-center items-center capitalize text-[0.8rem]  font-semibold'>
+                                <div className={`relative w-52 py-1  bg-white shantf rounded-[0.2rem] text-black  ${error === 'select' && 'border border-[red]'}`}>
+                                    <div className='cursor-pointer' onClick={() => setSelectState(!selectState)} >
+                                        <div className='flex gap-1.5 justify-center items-center capitalize text-[0.8rem] font-semibold'>
                                             <span >choose cryptocurrency</span>
                                             <SiBitcoincash className='text-light' />
                                         </div>
                                     </div>
-                                    {selectState && <div>
+                                    {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey]  rounded-md z-50'>
                                         {adminWallets.length > 0 && <>
                                             {adminWallets.map((item, i) => (
-                                                <div className='flex flex-col mt-1' key={i}>
-                                                    <div className='flex gap-2 items-center cursor-pointer hover:bg-semi-white' onClick={() => { setSelectState(false); setSelectValue(item) }}>
+                                                <div className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`} key={i}>
+                                                    <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
                                                         <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
                                                         <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
                                                     </div>

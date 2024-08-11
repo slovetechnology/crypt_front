@@ -3,6 +3,7 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import Loading from '../../../../../GeneralComponents/Loading';
 import { Apis, PostApi } from '../../../../../services/API';
 import { Alert } from '../../../../../utils/utils';
+import ModalLayout from '../../../../../utils/ModalLayout';
 
 
 const CreatePackageModal = ({ closeView, refetchTradingPlans, setStart, setEnd, setpagestart, setpageend }) => {
@@ -23,18 +24,6 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans, setStart, setEnd, 
             [event.target.name]: event.target.value
         })
     }
-
-    useEffect(() => {
-        if (toggler) {
-            window.addEventListener('click', (event) => {
-                if (toggler.current !== null) {
-                    if (!toggler.current.contains(event.target)) {
-                        closeView()
-                    }
-                }
-            }, true)
-        }
-    }, [])
 
     const CreatePackage = async () => {
         setTimeout(() => {
@@ -77,7 +66,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans, setStart, setEnd, 
 
 
     return (
-        <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
+        <ModalLayout closeView={closeView} toggler={toggler}>
             <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden' ref={toggler}>
                 <div className={`w-full h-full relative`}>
                     {loading && <Loading />}
@@ -123,7 +112,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans, setStart, setEnd, 
                     </div>
                 </div>
             </div>
-        </div>
+        </ModalLayout>
     )
 }
 

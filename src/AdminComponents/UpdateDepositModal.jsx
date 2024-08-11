@@ -5,6 +5,7 @@ import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
 import Loading from '../GeneralComponents/Loading';
 import { Alert } from '../utils/utils';
 import avatar from '../assets/images/avatar.png'
+import ModalLayout from '../utils/ModalLayout';
 
 const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite }) => {
   const toggler = useRef()
@@ -19,18 +20,6 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
     "confirmed",
     "failed"
   ]
-
-  useEffect(() => {
-    if (toggler) {
-      window.addEventListener('click', (event) => {
-        if (toggler.current !== null) {
-          if (!toggler.current.contains(event.target)) {
-            closeView()
-          }
-        }
-      }, true)
-    }
-  }, [])
 
   const MoveToBottom = () => {
     const move = document.querySelector('.move')
@@ -90,7 +79,7 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
   }
 
   return (
-    <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20'>
+    <ModalLayout closeView={closeView} toggler={toggler}>
       <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[70vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
         <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
           {loading && <Loading />}
@@ -138,8 +127,8 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
                   <div className='flex flex-col gap-6 my-6'>
                     <div className='flex justify-between items-center'>
                       <div className='italic'>status:</div>
-                      {singleDeposit.status === 'pending' ? <div className='flex flex-col'>
-                        <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
+                      {singleDeposit.status === 'pending' ? <div className='relative'>
+                        <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white rounded-sm sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                           <div className='flex justify-between items-center text-[0.8rem]'>
                             <span >{status}</span>
                             <div className={`flex flex-col items-center text-xs trans ${statusShow ? 'rotate-90' : 'rotate-0'} `}>
@@ -148,9 +137,9 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
                             </div>
                           </div>
                         </div>
-                        {statusShow && <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white adsha'>
+                        {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                           {Statuses.map((item, i) => (
-                            <div className='flex flex-col mt-2' key={i}>
+                            <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
                               <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item); setStatusShow(false); setUpdate(true) }}>
                                 <div className={`text-[0.85rem] font-bold ${item === 'confirmed' && 'text-[green]'} ${item === 'failed' && 'text-[red]'}`}>{item}</div>
                               </div>
@@ -173,7 +162,7 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
             </div>}
         </div>
       </div>
-    </div>
+    </ModalLayout>
   )
 }
 

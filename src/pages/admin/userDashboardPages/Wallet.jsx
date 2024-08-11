@@ -11,6 +11,7 @@ import bonus3d from '../../../assets/images/bonus3d.png'
 import referral from '../../../assets/images/referral.png'
 import Dashboard from './Dashboard';
 import { Link } from 'react-router-dom';
+import { MoveToTop } from '../../../utils/utils';
 
 
 const Wallet = () => {
@@ -106,7 +107,7 @@ const Wallet = () => {
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white capitalize bg-[#6859bb] overflow-hidden'>
                         <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                             <div>referrals</div>
-                            <Link to="/dashboard/profile">
+                            <Link to="/dashboard/profile" onClick={() => MoveToTop()}>
                                 <button className='bg-[#130e27] text-[0.7rem] md:text-xs rounded-xl py-1 px-4 -mt-1 italic flex gap-1 items-center justify-center'>
                                     <span>refer</span>
                                     <VscDebugDisconnect/>

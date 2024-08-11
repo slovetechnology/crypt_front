@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { MdOutlineEdit } from "react-icons/md";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { PiWarningCircleBold } from "react-icons/pi";
 import { Apis, imageurl, PostApi, UserPutApi } from '../../../../../services/API';
 import Loading from '../../../../../GeneralComponents/Loading';
 import { Alert } from '../../../../../utils/utils';
+import ModalLayout from '../../../../../utils/ModalLayout';
 
 const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setStart, setEnd, setpagestart, setpageend }) => {
   const [error, setError] = useState('')
@@ -44,18 +45,6 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setSt
       setCommit(true)
     }
   }
-
-  useEffect(() => {
-    if (toggler) {
-      window.addEventListener('click', (event) => {
-        if (toggler.current !== null) {
-          if (!toggler.current.contains(event.target)) {
-            closeView()
-          }
-        }
-      }, true)
-    }
-  }, [])
 
   const handleUpload = (event) => {
     setTimeout(() => {
@@ -170,7 +159,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setSt
 
 
   return (
-    <div className='w-full h-screen fixed  top-0 left-0 flex items-center justify-center bg-[#0000008a] z-20 '>
+    <ModalLayout closeView={closeView} toggler={toggler}>
       <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden' ref={toggler}>
         <div className={`w-full h-full relative`}>
           {loading && <Loading />}
@@ -238,7 +227,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setSt
           </div>
         </div>
       </div>
-    </div>
+    </ModalLayout>
   )
 }
 

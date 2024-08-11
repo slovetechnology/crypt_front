@@ -9,13 +9,15 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
 import { Apis, UserGetApi } from '../../../services/API';
-import WithdrawalsModal from '../../../AdminComponents/WithdrawalsModal';
+import WithdrawalsModal from '../../../AdminComponents/WithdrawalsComponents/WithdrawalsModal';
+import SetWithdrawalMinimum from '../../../AdminComponents/WithdrawalsComponents/SetWithdrawalMinimum';
 
 const Withdrawals = () => {
     const [fromAtom, setFromAtom] = useAtom(ADMINALLWITHDRAWALS)
     const [allWithdrawals, setAllWithdrawals] = useState([])
     const [singleWithdrawal, setSingleWithdrawal] = useState({})
     const [modal, setModal] = useState(false)
+    const [modal2, setModal2] = useState(false)
     const [write, setWrite] = useState(false)
     const [search, setSearch] = useState('')
     const [start, setStart] = useState(0)
@@ -119,6 +121,7 @@ const Withdrawals = () => {
         <AdminDashboard>
             <div className='h-screen'>
                 {modal && <WithdrawalsModal closeView={() => setModal(false)} singleWithdrawal={singleWithdrawal} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllWithdrawals={FetchAllWithdrawals} />}
+                {modal2 && <SetWithdrawalMinimum closeView={() => setModal2(false)} />}
 
                 <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>withdrawals</div>
                 <div className='mt-12'>
@@ -133,7 +136,11 @@ const Withdrawals = () => {
                             }
                         </div>
                     </div>
-                    <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
+                    <button className='w-fit h-fit mt-4 mb-2 ml-auto py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
+                        <span>set withdrawal minimum</span>
+                        <IoIosSettings className='text-base' />
+                    </button>
+                    <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
                         <table className='w-full '>
                             <thead >
                                 <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
