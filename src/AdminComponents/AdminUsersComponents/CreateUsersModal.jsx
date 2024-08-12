@@ -110,7 +110,7 @@ const CreateUsersModal = ({ closeView, setStart, setEnd, setpagestart, setpageen
             <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
               <div className='flex flex-col gap-1'>
                 <div className='text-sm capitalize font-[550] '>email:</div>
-                <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' value={form.email} name='email' onChange={inputHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' type='email' value={form.email} name='email' onChange={inputHandler}></input>
                 <div></div>
               </div>
               <div className='relative'>

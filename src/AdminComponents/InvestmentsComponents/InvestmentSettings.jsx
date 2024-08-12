@@ -64,7 +64,7 @@ const InvestingSettings = ({ closeView }) => {
                             <div className='text-center'>Enter profit percentage for investments:</div>
                             <div className='flex gap-4 items-center justify-center'>
                                 <div className='flex items-center gap-0.5'>
-                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt`} name='profit_percentage' value={form.profit_percentage} onChange={inputHandler}></input>
+                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] text-base md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt`} name='profit_percentage' value={form.profit_percentage} onChange={inputHandler}></input>
                                     <div>%</div>
                                 </div>
                                 <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
@@ -77,7 +77,7 @@ const InvestingSettings = ({ closeView }) => {
                             <div className='text-center'>Enter the duration of investments:</div>
                             <div className='flex gap-4 items-center'>
                                 <div className='flex items-center gap-0.5'>
-                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt`} name='investment_duration' value={form.investment_duration} onChange={inputHandler}></input>
+                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] text-base md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt`} name='investment_duration' value={form.investment_duration} onChange={inputHandler}></input>
                                     <div>days</div>
                                 </div>
                                 <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
