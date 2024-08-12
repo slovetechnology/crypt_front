@@ -55,35 +55,35 @@ const InvestingSettings = ({ closeView }) => {
 
     return (
         <ModalLayout closeView={closeView} toggler={toggler}>
-            <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden relative' ref={toggler}>
+            <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-10/12 bg-white rounded-lg overflow-hidden relative' ref={toggler}>
                 {loading && <Loading />}
                 <div className='relative'>
-                    <div className='w-11/12 mx-auto flex flex-col gap-4 py-6'>
-                        <div className='text-xl uppercase text-center font-bold border-b w-full mb-2'>investment settings</div>
-                        <div className='w-full grid grid-cols-4 gap-4 items-center'>
-                            <div className='flex flex-col gap-1.5 text-sm capitalize items-center col-span-3'>
-                                <div className='text-center'>enter profit percentage for investments</div>
+                    <div className='flex flex-col gap-4 py-6 px-2'>
+                        <div className='md:text-xl text-lg uppercase text-center font-bold border-b w-full mb-2'>investment settings</div>
+                        <div className='flex flex-col gap-2 text-sm items-center'>
+                            <div className='text-center'>Enter profit percentage for investments:</div>
+                            <div className='flex gap-4 items-center justify-center'>
                                 <div className='flex items-center gap-0.5'>
-                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] w-full h-8 rounded-[3px] px-2 bg-transparent ipt `} name='profit_percentage' value={form.profit_percentage} onChange={inputHandler}></input>
+                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt`} name='profit_percentage' value={form.profit_percentage} onChange={inputHandler}></input>
                                     <div>%</div>
                                 </div>
-                            </div>
-                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
-                                <div>current:</div>
-                                {Object.values(adminStore).length !== 0 && <div>{adminStore.profit_percentage}%</div>}
-                            </div>
-                        </div>
-                        <div className='w-full grid grid-cols-4 gap-4 items-center mt-4'>
-                            <div className='flex flex-col gap-1.5 text-sm capitalize items-center col-span-3'>
-                                <div className='text-center'>enter duration for investments</div>
-                                <div className='flex items-center gap-0.5'>
-                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] w-full h-8 rounded-[3px] px-2 bg-transparent ipt`} name='investment_duration' value={form.investment_duration} onChange={inputHandler}></input>
-                                    <div className='lowercase'>days</div>
+                                <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
+                                    <div>current:</div>
+                                    {Object.values(adminStore).length !== 0 && <div>{adminStore.profit_percentage}%</div>}
                                 </div>
                             </div>
-                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
-                                <div>current:</div>
-                                {Object.values(adminStore).length !== 0 && <div>{adminStore.investment_duration} days</div>}
+                        </div>
+                        <div className='flex flex-col gap-2 mt-4 text-sm items-center'>
+                            <div className='text-center'>Enter the duration of investments:</div>
+                            <div className='flex gap-4 items-center'>
+                                <div className='flex items-center gap-0.5'>
+                                    <input className={`outline-none border border-[#9f7ae7] lg:text-[0.85rem] md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt`} name='investment_duration' value={form.investment_duration} onChange={inputHandler}></input>
+                                    <div>days</div>
+                                </div>
+                                <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
+                                    <div>current:</div>
+                                    {Object.values(adminStore).length !== 0 && <div>{adminStore.investment_duration}days</div>}
+                                </div>
                             </div>
                         </div>
                         <div className='mx-auto mt-6'>

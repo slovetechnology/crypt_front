@@ -157,7 +157,6 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setSt
 
 
 
-
   return (
     <ModalLayout closeView={closeView} toggler={toggler}>
       <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden' ref={toggler}>
@@ -168,15 +167,15 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setSt
             <div className='flex flex-col gap-4 mt-4 relative'>
               <div className='flex justify-between items-center'>
                 <div className='italic'>crypto name:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler} onKeyUp={CommitHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>network:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler} onKeyUp={CommitHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>address:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler} onKeyUp={CommitHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>crypto image:</div>

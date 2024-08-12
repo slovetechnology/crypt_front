@@ -4,8 +4,8 @@ import { Link, useLocation } from 'react-router-dom'
 
 
 const SettingsLinks = [
-  { path: 'add wallet', url: '/admin-controls/settings' },
-  { path: 'add package', url: '/admin-controls/settings/packages' },
+  { path: 'wallets', url: '/admin-controls/settings' },
+  { path: 'packages', url: '/admin-controls/settings/packages' },
   { path: 'personalize', url: '/admin-controls/settings/personalize' },
 ]
 

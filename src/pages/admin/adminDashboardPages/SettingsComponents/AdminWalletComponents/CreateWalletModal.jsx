@@ -122,15 +122,15 @@ const CreateWalletModal = ({ closeView, refetchAdminWallets, setStart, setEnd, s
                         <div className='flex flex-col gap-4 mt-4 relative'>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>crypto name:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>network:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.network} name='network' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>address:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.address} name='address' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>crypto image:</div>

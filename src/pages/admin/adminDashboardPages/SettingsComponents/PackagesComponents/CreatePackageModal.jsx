@@ -31,7 +31,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans, setStart, setEnd, 
         }, 2000)
 
         if (!form.title || !form.price_limit || !form.price_start || !form.plan_bonus) return setError('Enter all fields')
-        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.plan_bonus)) return setError('Number only for cash')
+        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.plan_bonus)) return setError('Enter valid numbers')
 
         const formbody = {
             title: form.title,
@@ -75,27 +75,27 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans, setStart, setEnd, 
                         <div className='flex flex-col gap-4 mt-4 relative'>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>title:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 p-1 md:text-sm text-base' value={form.title} name='title' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.title} name='title' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>price start:</div>
-                                <div className='relative'>
-                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-5 md:text-sm text-base' value={form.price_start} name='price_start' onChange={inputHandler}></input>
-                                    <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
+                                <div className='flex gap-0.5 items-center'>
+                                    <div className='text-xs'>$</div>
+                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.price_start} name='price_start' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>price limit:</div>
-                                <div className='relative'>
-                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-5 md:text-sm text-base' value={form.price_limit} name='price_limit' onChange={inputHandler}></input>
-                                    <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
+                                <div className='flex gap-0.5 items-center'>
+                                    <div className='text-xs'>$</div>
+                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.price_limit} name='price_limit' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>plan bonus:</div>
-                                <div className='relative'>
-                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-5 md:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler}></input>
-                                    <div className='absolute top-1.5 left-2 text-[0.85rem]'>$</div>
+                                <div className='flex gap-0.5 items-center'>
+                                    <div className='text-xs'>$</div>
+                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             {error !== '' &&

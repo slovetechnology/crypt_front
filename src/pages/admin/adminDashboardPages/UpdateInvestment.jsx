@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
-import { BsToggle2Off, BsToggle2On } from "react-icons/bs";
+import { FaToggleOn, FaToggleOff} from "react-icons/fa";
 import { FiX } from 'react-icons/fi'
 import { useAtom } from 'jotai';
 import { ADMINALLINVESTMENTS } from '../../../store';
@@ -132,9 +132,9 @@ const UpdateInvestment = () => {
           <div className='h-fit py-1 px-4 w-fit text-xs capitalize bg-[#c9b8eb] rounded-full text-black font-bold flex justify-center gap-2 items-center cursor-default'>
             <div className='md:text-3xl text-2xl cursor-pointer' onClick={() => setSystem(!system)}>
               {system ?
-                <BsToggle2On />
+                <FaToggleOn />
                 :
-                <BsToggle2Off />
+                <FaToggleOff />
               }
             </div>
             <div>{system ? 'automatic' : 'manual'}</div>
