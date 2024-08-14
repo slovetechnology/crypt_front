@@ -7,13 +7,17 @@ import { Alert } from '../utils/utils';
 import avatar from '../assets/images/avatar.png'
 import ModalLayout from '../utils/ModalLayout';
 
-const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite }) => {
+const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) => {
   const toggler = useRef()
   const [status, setStatus] = useState(singleDeposit.status)
   const [statusShow, setStatusShow] = useState(false)
   const [loading, setLoading] = useState(false)
   const [update, setUpdate] = useState(false)
   const [beforeshow, setBeforeshow] = useState(true)
+
+  setTimeout(() => {
+    setBeforeshow(false)
+  }, 1500)
 
   const Statuses = [
     "pending",
@@ -36,10 +40,6 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
   }, [MoveToBottom]
   )
 
-  setTimeout(() => {
-    setBeforeshow(false)
-  }, 1500)
-
   const AdminUpdateDeposit = async () => {
 
     const formbody = {
@@ -59,13 +59,7 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
         const response = await UserPutApi(Apis.admin.update_deposits, formbody)
         if (response.status === 200) {
           refetchAllDeposits()
-          Alert('Request Successful', 'Deposit updated successfully', 'success')
-          setWrite(false)
-          setSearch('')
-          setpageend(response.msg.length / 5)
-          setpagestart(1)
-          setStart(0)
-          setEnd(5)
+          Alert('Request Successful', `${response.msg}`, 'success')
           closeView()
         } else {
           Alert('Request Failed', `${response.msg}`, 'error')
@@ -122,7 +116,7 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit, setS
                   </div>
                   <div className='flex justify-between items-center'>
                     <div className='italic'>deposit address:</div>
-                    {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposit_address}</div>}
+                    {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposit_address?.slice(0, 5)}.....{singleDeposit.deposit_address?.slice(-8)}</div>}
                   </div>
                   <div className='flex justify-between items-center'>
                     <div className='italic'>date/time:</div>

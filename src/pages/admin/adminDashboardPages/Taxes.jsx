@@ -2,35 +2,36 @@ import React, { useCallback, useEffect, useState } from 'react'
 import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
-import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
 import { FiX } from 'react-icons/fi'
 import { useAtom } from 'jotai';
-import { ADMINALLINVESTMENTS } from '../../../store';
+import { ADMINALLTAXES } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
 import { Apis, UserGetApi } from '../../../services/API';
-import UpdateInvestmentModal from '../../../AdminComponents/UpdateInvestmentModal';
+import SetTaxPercentage from '../../../AdminComponents/TaxComponents/SetTaxPercentage';
+import TaxModal from '../../../AdminComponents/TaxComponents/TaxModal';
 
 
-const UpdateInvestment = () => {
-  const [fromAtom, setFromAtom] = useAtom(ADMINALLINVESTMENTS)
-  const [allInvestments, setAllInvestments] = useState([])
-  const [singleInvestment, setSingleInvestment] = useState({})
+const Taxes = () => {
+  const [fromAtom, setFromAtom] = useAtom(ADMINALLTAXES)
+  const [allTaxes, setAllTaxes] = useState([])
+  const [singleTax, setSingleTax] = useState({})
   const [modal, setModal] = useState(false)
+  const [modal2, setModal2] = useState(false)
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
-  const [system, setSystem] = useState(false)
 
-  const FetchAllInvestments = useCallback(async () => {
+
+  const FetchAllTaxes = useCallback(async () => {
     try {
-      const response = await UserGetApi(Apis.admin.all_investments)
+      const response = await UserGetApi(Apis.admin.get_all_taxes)
       if (response.status === 200) {
-        setAllInvestments(response.msg)
+        setAllTaxes(response.msg)
         setFromAtom(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
@@ -47,18 +48,18 @@ const UpdateInvestment = () => {
   }, [])
 
   useEffect(() => {
-    FetchAllInvestments()
-  }, [FetchAllInvestments])
+    FetchAllTaxes()
+  }, [FetchAllTaxes])
 
-  const SingleInvestmentFunction = (item) => {
-    setSingleInvestment(item)
+  const singleTaxFunction = (item) => {
+    setSingleTax(item)
     setModal(true)
   }
 
   const HandleSearch = () => {
-    const altinvestments = fromAtom
+    const altTaxes = fromAtom
     if (!search) {
-      setAllInvestments(fromAtom)
+      setAllTaxes(fromAtom)
       setpageend(fromAtom.length / 5)
       setWrite(false)
       setpagestart(1)
@@ -67,8 +68,8 @@ const UpdateInvestment = () => {
     }
     else {
       setWrite(true)
-      const showSearch = altinvestments.filter(item => item.investmentUser.username.includes(search.toLowerCase()) || item.investmentUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
-      setAllInvestments(showSearch)
+      const showSearch = altTaxes.filter(item => item.taxPayer.username.includes(search.toLowerCase()) || item.taxPayer.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
+      setAllTaxes(showSearch)
       setpageend(showSearch.length / 5)
       setpagestart(1)
       setStart(0)
@@ -78,7 +79,7 @@ const UpdateInvestment = () => {
 
   const CancelWrite = () => {
     setSearch('')
-    setAllInvestments(fromAtom)
+    setAllTaxes(fromAtom)
     setpageend(fromAtom.length / 5)
     setWrite(false)
     setpagestart(1)
@@ -86,13 +87,9 @@ const UpdateInvestment = () => {
     setEnd(5)
   }
 
-  const SystemSet = () => {
-    setSystem(!system)
-  }
-
   let MovePage = () => {
 
-    if (end < allInvestments.length) {
+    if (end < allTaxes.length) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
@@ -130,21 +127,10 @@ const UpdateInvestment = () => {
   return (
     <AdminDashboard>
       <div className='h-screen'>
-        {modal && <UpdateInvestmentModal closeView={() => setModal(false)} singleInvestment={singleInvestment} refetchAllInvestments={FetchAllInvestments} />}
+        {modal && <TaxModal closeView={() => setModal(false)} singleTax={singleTax} refetchAllTaxes={FetchAllTaxes} />}
+        {modal2 && <SetTaxPercentage closeView={() => setModal2(false)} />}
 
-        <div className='flex justify-between items-center pt-10'>
-          <div className='uppercase font-bold md:text-2xl text-lg text-black'>all investments</div>
-          <div className='flex flex-col items-center'>
-            <div className='text-[0.8rem] text-admin-page font-medium'>{system ? 'automatic' : 'manual'}</div>
-            <div className='md:text-3xl text-2xl cursor-pointer' onClick={SystemSet}>
-              {system ?
-                <FaToggleOn />
-                :
-                <FaToggleOff />
-              }
-            </div>
-          </div>
-        </div>
+        <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>taxes</div>
         <div className='mt-12'>
           <div className='relative w-fit mx-auto'>
             <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
@@ -157,7 +143,11 @@ const UpdateInvestment = () => {
               }
             </div>
           </div>
-          <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
+          <button className='w-fit h-fit mt-4 mb-2 py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
+            <span>set tax percentage</span>
+            <IoIosSettings className='text-base' />
+          </button>
+          <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full '>
               <thead >
                 <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
@@ -165,36 +155,30 @@ const UpdateInvestment = () => {
                   <td className='text-center truncate  capitalize p-2 '>username</td>
                   <td className='text-center truncate  capitalize p-2 '>email</td>
                   <td className='text-center truncate  capitalize p-2 '>amount</td>
-                  <td className='text-center truncate  capitalize p-2 '>trading plan</td>
-                  <td className='text-center truncate  capitalize p-2 '>profit</td>
-                  <td className='text-center truncate  capitalize p-2 '>bonus </td>
                   <td className='text-center truncate  capitalize p-2 '>status </td>
                   <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
                 </tr>
               </thead>
-              {allInvestments.length > 0 &&
+              {allTaxes.length > 0 &&
                 <tbody>
-                  {allInvestments.slice(start, end).map((item, i) => (
+                  {allTaxes.slice(start, end).map((item, i) => (
                     <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
                       <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                      <td className='p-4  text-center truncate'>{item.investmentUser.username}</td>
-                      <td className='p-4  text-center truncate'>{item.investmentUser.email}</td>
+                      <td className='p-4  text-center truncate'>{item.taxPayer.username}</td>
+                      <td className='p-4  text-center truncate'>{item.taxPayer.email}</td>
                       <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                      <td className='p-4  text-center truncate capitalize'>{item.trading_plan}</td>
-                      <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
-                      <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
-                      <td className={`p-4  text-center truncate ${item.status === 'completed' && 'text-[#459e45]'}`}>{item.status}</td>
-                      <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleInvestmentFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                      <td className={`p-4  text-center truncate ${item.status === 'received' && 'text-[#459e45]'} ${item.status === 'failed' && 'text-[red]'}`}>{item.status}</td>
+                      <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => singleTaxFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                     </tr>
                   ))}
                 </tbody>
               }
-              {allInvestments.length < 1 &&
+              {allTaxes.length < 1 &&
                 <tbody>
                   <tr className='text-black text-[0.8rem] bg-white font-[550]'>
-                    <td colSpan="9" className='py-2 italic text-center truncate'>
+                    <td colSpan="7" className='py-2 italic text-center truncate'>
                       <div className='flex gap-1 items-center justify-center'>
-                        <span>no investments found...</span>
+                        <span>no taxes found...</span>
                         <img src={nothnyet} className='h-4 w-auto'></img>
                       </div>
                     </td>
@@ -203,10 +187,10 @@ const UpdateInvestment = () => {
               }
             </table>
           </div>
-          {allInvestments.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
+          {allTaxes.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-admin-page '>
             {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
             {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-            {end < allInvestments.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+            {end < allTaxes.length && <div className='py-1 px-2 rounded-md border border-admin-page hover:bg-admin-page hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
           </div>}
         </div>
 
@@ -215,4 +199,4 @@ const UpdateInvestment = () => {
   )
 }
 
-export default UpdateInvestment
+export default Taxes

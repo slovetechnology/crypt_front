@@ -7,7 +7,7 @@ import Loading from '../../../../../GeneralComponents/Loading';
 import { Alert } from '../../../../../utils/utils';
 import ModalLayout from '../../../../../utils/ModalLayout';
 
-const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setStart, setEnd, setpagestart, setpageend }) => {
+const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => {
   const [error, setError] = useState('')
   const [deleteState, setdeleteState] = useState(false)
   const [commit, setCommit] = useState(false)
@@ -108,12 +108,8 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setSt
     try {
       const response = await UserPutApi(Apis.admin.update_admin_wallet, formbody)
       if (response.status === 200) {
-        Alert('Request Successful', 'Wallet updated successfully', 'success')
+        Alert('Request Successful', `${response.msg}`, 'success')
         refetchAdminWallets()
-        setpageend(response.msg.length / 5)
-        setpagestart(1)
-        setStart(0)
-        setEnd(5)
         closeView()
       } else {
         setError(response.msg)
@@ -137,13 +133,8 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets, setSt
     try {
       const response = await PostApi(Apis.admin.delete_admin_wallet, formbody)
       if (response.status === 200) {
-        Alert('Request Successful', 'Wallet deleted successfully', 'success')
+        Alert('Request Successful', `${response.msg}`, 'success')
         refetchAdminWallets()
-        setdeleteState(false)
-        setpageend(response.msg.length / 5)
-        setpagestart(1)
-        setStart(0)
-        setEnd(5)
         closeView()
       } else {
         setError(response.msg)

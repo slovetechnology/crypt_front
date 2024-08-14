@@ -42,6 +42,9 @@ const Deposit = () => {
                 setDeposits(response.msg)
                 setFromAtom(response.msg)
                 setpageend(response.msg.length / end)
+                setpagestart(1)
+                setStart(0)
+                setEnd(6)
             }
 
         } catch (error) {
@@ -141,9 +144,9 @@ const Deposit = () => {
                 </div>
                 {screen === 1 &&
                     <div className='my-10 h-fit w-fit mx-auto bg-semi-white rounded-xl relative shlz thediv'>
-                        {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} refetchDeposits={FetchDeposits} />}
+                        {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} refetchDeposits={FetchDeposits} />}
                         {modal &&
-                            <BuyPlanModal setModal={setModal} buybal={buybal} deposits={deposits} />
+                            <BuyPlanModal setModal={setModal} buybal={buybal} />
                         }
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
                             <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true); MoveToTopDivs() }}>
@@ -165,7 +168,7 @@ const Deposit = () => {
                                                     <div className='plan_bg w-full md:h-20 h-16 rounded-t-lg'>
                                                         <div className='uppercase font-[800]  text-center md:text-[1.1rem] text-sm pt-4'>{item.title}</div>
                                                     </div>
-                                                    <div className='-mt-6 flex flex-col gap-3 items-center justify-center'>
+                                                    <div className='-mt-6 flex flex-col gap-2 items-center justify-center'>
                                                         <div className='md:h-[5.1rem] md:w-[5.1rem] w-[4.5rem] h-[4.5rem] rounded-full bg-white flex items-center justify-center'>
                                                             <div className='md:h-[4.3rem] md:w-[4.3rem] w-[3.7rem] h-[3.7rem] rounded-full bg-[#252525] flex flex-col gap-1 items-center justify-center'>
                                                                 <div className='italic md:text-[0.65rem] text-[0.6rem]'>from</div>
@@ -175,11 +178,15 @@ const Deposit = () => {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div className='text-xs text-[#353434] font-[600] text-center w-11/12'>
-                                                            60% profit return on investment plus bonus up to ${item.plan_bonus}
+                                                        <div className='text-xs text-[#252525] font-medium text-center w-11/12 border py-1 rounded-md'>
+                                                            {item.profit_percentage}% profit return on investment plus bonus up to ${item.plan_bonus}
+                                                        </div>
+                                                        <div className='text-[0.7rem] text-[#252525] font-medium w-11/12 flex gap-2 items-center justify-center italic'>
+                                                            <span>Duration:</span>
+                                                            <span className='text-[#5BB4FD]'>{item.duration + item.duration_type}</span>
                                                         </div>
                                                         <div className='mb-4 mt-2'>
-                                                            <button className='w-fit h-fit md:py-2 py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
+                                                            <button className='w-fit h-fit py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
                                                                 buy now
                                                             </button>
                                                         </div>

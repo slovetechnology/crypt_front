@@ -114,7 +114,7 @@ const AdminNotis = ({refetchNotifications, refetchUnreadNotis}) => {
                 </div>
             </>
 
-            <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-[#a7a6a6] bg-white z-50 py-3 px-2 text-black ${showNotis ? 'block' : 'hidden'}`} ref={closer}>
+            <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-zinc-400 bg-white z-50 py-3 px-2 text-black ${showNotis ? 'block' : 'hidden'}`} ref={closer}>
                 <div className='flex justify-between items-center mt-2 md:mt-0'>
                     <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>
                         <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>

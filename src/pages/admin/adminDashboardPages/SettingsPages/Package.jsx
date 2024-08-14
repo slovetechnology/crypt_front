@@ -28,6 +28,9 @@ const Package = () => {
       if (response.status === 200) {
         setTradingPlans(response.msg)
         setpageend(response.msg.length / end)
+        setStart(0)
+        setEnd(5)
+        setpagestart(1)
       }
 
     } catch (error) {
@@ -84,8 +87,8 @@ const Package = () => {
   return (
     <SettingsLayout>
       <div className='mt-4'>
-        {modal && <UpdatePackageModal closeView={() => setModal(false)} singlePlan={singlePlan} refetchTradingPlans={FetchTradingPlans} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} />}
-        {modal2 && <CreatePackageModal closeView={() => setModal2(false)} refetchTradingPlans={FetchTradingPlans} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} />}
+        {modal && <UpdatePackageModal closeView={() => setModal(false)} singlePlan={singlePlan} refetchTradingPlans={FetchTradingPlans} />}
+        {modal2 && <CreatePackageModal closeView={() => setModal2(false)} refetchTradingPlans={FetchTradingPlans} />}
 
         <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center ml-auto mb-2' onClick={() => setModal2(true)}>
           <span>create new trading plan</span>
@@ -98,7 +101,9 @@ const Package = () => {
                 <td className='text-center truncate  capitalize p-2 '>title</td>
                 <td className='text-center truncate  capitalize p-2 '>price start</td>
                 <td className='text-center truncate  capitalize p-2 '>price limit</td>
-                <td className='text-center truncate  capitalize p-2 '>bonus attainable</td>
+                <td className='text-center truncate  capitalize p-2 '>profit percentage</td>
+                <td className='text-center truncate  capitalize p-2 '>plan bonus</td>
+                <td className='text-center truncate  capitalize p-2 '>duration</td>
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
@@ -109,7 +114,9 @@ const Package = () => {
                     <td className='p-4  text-center truncate capitalize'>{item.title}</td>
                     <td className={`p-4  text-center truncate`}>${item.price_start.toLocaleString()}</td>
                     <td className='p-4  text-center truncate capitalize'>${item.price_limit.toLocaleString()}</td>
+                    <td className='p-4  text-center truncate capitalize'>{item.profit_percentage}%</td>
                     <td className='p-4  text-center truncate capitalize'>${item.plan_bonus.toLocaleString()}</td>
+                    <td className='p-4  text-center truncate capitalize'>{item.duration + item.duration_type}</td>
                     <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SinglePlanFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                   </tr>
                 ))}

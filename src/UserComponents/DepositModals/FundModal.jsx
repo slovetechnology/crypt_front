@@ -5,13 +5,15 @@ import { MdContentCopy } from 'react-icons/md'
 import { useAtom } from 'jotai'
 import { Alert } from '../../utils/utils'
 import { Apis, imageurl, PostApi } from '../../services/API'
-import { ADMINWALLETS, PROFILE } from '../../store'
+import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../store'
 import { SiBitcoincash } from 'react-icons/si'
 
 
-const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, setpagestart, setpageend, refetchDeposits }) => {
+const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) => {
   const [user] = useAtom(PROFILE)
   const [adminWallets] = useAtom(ADMINWALLETS)
+  const [, setNotifications] = useAtom(NOTIFICATIONS)
+  const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
   const [amount, setAmount] = useState('')
   const [selectState, setSelectState] = useState(false)
@@ -52,13 +54,11 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
       const response = await PostApi(Apis.deposit.create_deposit, formbody)
       if (response.status === 200) {
         refetchDeposits()
-        Alert('Request Successful', 'Deposit success', 'success')
+        setNotifications(response.notis)
+        setUnreadNotis(response.unread)
+        Alert('Request Successful', `${response.msg}`, 'success')
         setDepositTitle('deposit history')
         setScreen(2)
-        setpageend(response.msg.length / 6)
-        setpagestart(1)
-        setStart(0)
-        setEnd(6)
         closeView()
       } else {
         Alert('Request Failed', `${response.msg}`, 'error')
@@ -77,9 +77,9 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, setStart, setEnd, se
         {loading && <Loading />}
         <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => closeView()} />
         <div className='flex flex-col gap-5 items-center'>
-          <div className='text-lg font-bold uppercase border-b w-full text-center'>fund wallet</div>
+          <div className='font-bold uppercase border-b w-full text-center'>fund wallet</div>
           <div className='flex items-center gap-0.5'>
-            <div className='text-sm'>$</div>
+            <div className='text-xs'>$</div>
             <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
           </div>
           <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>

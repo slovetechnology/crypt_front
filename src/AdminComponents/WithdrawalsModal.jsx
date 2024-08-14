@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Loading from '../../GeneralComponents/Loading'
-import { Apis, UserPutApi, imageurl } from '../../services/API'
+import Loading from '../GeneralComponents/Loading'
+import { Apis, UserPutApi, imageurl } from '../services/API'
 import moment from 'moment'
 import { FaAngleDown, FaAngleUp, FaCheck } from 'react-icons/fa6'
-import { Alert } from '../../utils/utils'
+import { Alert } from '../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
-import avatar from '../../assets/images/avatar.png'
-import ModalLayout from '../../utils/ModalLayout'
+import avatar from '../assets/images/avatar.png'
+import ModalLayout from '../utils/ModalLayout'
 import { useAtom } from 'jotai'
-import { ADMINSTORE } from '../../store'
+import { ADMINSTORE } from '../store'
 
-const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpagestart, setpageend, setSearch, setWrite, refetchAllWithdrawals }) => {
-    const [adminStore, setAdminStore] = useAtom(ADMINSTORE)
+const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }) => {
+    const [adminStore] = useAtom(ADMINSTORE)
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const [statusShow, setStatusShow] = useState(false)
@@ -82,18 +82,12 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
             move.scrollTo({
                 top: 0,
             })
-            
+
             try {
                 const response = await UserPutApi(Apis.admin.update_withdrawals, formbody)
                 if (response.status === 200) {
                     refetchAllWithdrawals()
-                    Alert('Request Successful', 'Withdrawal updated successfully', 'success')
-                    setWrite(false)
-                    setSearch('')
-                    setpageend(response.msg.length / 5)
-                    setpagestart(1)
-                    setStart(0)
-                    setEnd(5)
+                    Alert('Request Successful', `${response.msg}`, 'success')
                     closeView()
                 } else {
                     Alert('Request Failed', `${response.msg}`, 'error')
@@ -167,9 +161,9 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, setStart, setEnd, setpa
                                         {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleWithdrawal.createdAt).format('DD-MM-yyyy')} / {moment(singleWithdrawal.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic '>withdrawal message:</div>
+                                        <div className='italic'>withdrawal message:</div>
                                         <div className='flex flex-col gap-1'>
-                                            <textarea placeholder='Type A Message' className='p-2 w-52 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandler}></textarea>
+                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandler}></textarea>
                                             <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-xs' onClick={GenerateWithdrawalMessage}>Generate</button>
                                         </div>
                                     </div>

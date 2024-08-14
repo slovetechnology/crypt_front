@@ -1,26 +1,38 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
 import Loading from '../../../../../GeneralComponents/Loading';
 import { PiWarningCircleBold } from 'react-icons/pi';
 import { Apis, PostApi, UserPutApi } from '../../../../../services/API';
 import { Alert } from '../../../../../utils/utils';
 import ModalLayout from '../../../../../utils/ModalLayout';
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
 
 
-const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setStart, setEnd, setpagestart, setpageend }) => {
+const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
+    const [type, setType] = useState(singlePlan.duration_type)
+    const [typeShow, setTypeShow] = useState(false)
     const [error, setError] = useState('')
     const [deleteState, setDeleteState] = useState(false)
     const [commit, setCommit] = useState(false)
     const [loading, setLoading] = useState(false)
     const toggler = useRef()
 
+    const DurationTypes = [
+        "minutes",
+        "hours",
+        "days",
+        "weeks",
+        "months",
+    ]
+
     const [form, setForm] = useState({
         title: singlePlan.title || '',
         price_start: singlePlan.price_start || '',
         price_limit: singlePlan.price_limit || '',
-        plan_bonus: singlePlan.plan_bonus || ''
+        profit_percentage: singlePlan.profit_percentage || '',
+        plan_bonus: singlePlan.plan_bonus || '',
+        duration: singlePlan.duration || '',
     })
-
 
     const inputHandler = event => {
         setForm({
@@ -30,7 +42,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setSta
     }
 
     const CommitHandler = () => {
-        if (form.title === singlePlan.title && form.price_start === singlePlan.price_start && form.price_limit === singlePlan.price_limit && form.plan_bonus === singlePlan.plan_bonus) {
+        if (form.title === singlePlan.title && form.price_start === singlePlan.price_start && form.price_limit === singlePlan.price_limit && form.profit_percentage === singlePlan.profit_percentage && form.plan_bonus === singlePlan.plan_bonus && form.duration === singlePlan.duration) {
             setCommit(false)
         } else {
             setCommit(true)
@@ -42,27 +54,26 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setSta
             setError('')
         }, 2000)
 
-        if (!form.title || !form.price_limit || !form.price_start || !form.plan_bonus) return setError('Enter all fields')
-        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.plan_bonus)) return setError('Enter valid numbers')
+        if (!form.title || !form.price_limit || !form.price_start || !form.profit_percentage || !form.plan_bonus || !form.duration) return setError('Enter all fields')
+        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.profit_percentage) || isNaN(form.plan_bonus) || isNaN(form.duration)) return setError('Enter valid numbers')
 
         const formbody = {
             plan_id: singlePlan.id,
             title: form.title,
             price_start: parseFloat(form.price_start),
             price_limit: parseFloat(form.price_limit),
-            plan_bonus: parseFloat(form.plan_bonus)
+            profit_percentage: parseFloat(form.profit_percentage),
+            plan_bonus: parseFloat(form.plan_bonus),
+            duration: parseFloat(form.duration),
+            duration_type: type
         }
 
         setLoading(true)
         try {
             const response = await UserPutApi(Apis.admin.update_trading_plan, formbody)
             if (response.status === 200) {
-                Alert('Request Successful', 'Trading plan updated successfully', 'success')
+                Alert('Request Successful', `${response.msg}`, 'success')
                 refetchTradingPlans()
-                setpageend(response.msg.length / 5)
-                setpagestart(1)
-                setStart(0)
-                setEnd(5)
                 closeView()
             } else {
                 setError(response.msg)
@@ -88,11 +99,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setSta
             const response = await PostApi(Apis.admin.delete_trading_plan, formbody)
             if (response.status === 200) {
                 refetchTradingPlans()
-                Alert('Request Successful', 'Trading plan deleted successfully', 'success')
-                setpageend(response.msg.length / 5)
-                setpagestart(1)
-                setStart(0)
-                setEnd(5)
+                Alert('Request Successful', `${response.msg}`, 'success')
                 closeView()
             } else {
                 setError(response.msg)
@@ -134,11 +141,46 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans, setSta
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
+                                <div className='italic'>profit percentage:</div>
+                                <div className='flex gap-0.5 items-center'>
+                                    <div className='text-xs'>%</div>
+                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                </div>
+                            </div>
+                            <div className='flex justify-between items-center'>
                                 <div className='italic'>plan bonus:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>$</div>
                                     <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                                 </div>
+                            </div>
+                            <div className='flex justify-between items-center'>
+                                <div className='italic'>duration:</div>
+                                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.duration} name='duration' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                            </div>
+                            <div className='flex justify-between items-center'>
+                                <div className='italic'>duration type:</div>
+                                <div className='relative'>
+                                    <div className='px-2 py-1 h-fit w-48 bg-white sha cursor-pointer rounded-sm' onClick={() => setTypeShow(!typeShow)} >
+                                        <div className='flex justify-between items-center text-[0.8rem]'>
+                                            <span >{type}</span>
+                                            <div className={`flex flex-col items-center text-xs trans ${typeShow ? 'rotate-90' : 'rotate-0'} `}>
+                                                <FaAngleUp />
+                                                <FaAngleDown className='-mt-1' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {typeShow && <div className='h-16 overflow-y-auto w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-50 scrollDiv'>
+                                        {DurationTypes.map((item, i) => (
+                                            <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === DurationTypes.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
+                                                <div className='flex items-center cursor-pointer' onClick={() => { setType(item); setTypeShow(false) }}>
+                                                    <div className='text-[0.85rem] font-bold'>{item}</div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>}
+                                </div>
+
                             </div>
 
                             {error !== '' &&

@@ -12,7 +12,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import avatar from '../../../assets/images/avatar.png'
-import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET} from '../../../store';
+import { ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET} from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
@@ -54,7 +54,6 @@ const Dashboard = ({ children }) => {
     const [, setUps] = useAtom(UPS)
     const [, setAdminWallets] = useAtom(ADMINWALLETS)
     const [, setTradingPlans] = useAtom(TRADINGPLANS)
-    const [, setAdminStore] = useAtom(ADMINSTORE)
     const [slideShow, setSlideShow] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
@@ -161,23 +160,6 @@ const Dashboard = ({ children }) => {
     useEffect(() => {
         FetchTradingPlans()
     }, [FetchTradingPlans])
-
-    const FetchAdminStore = useCallback(async () => {
-        try {
-          const response = await UserGetApi(Apis.admin.get_admin_store)
-          if (response.status === 200) {
-            setAdminStore(response.msg)
-          }
-    
-        } catch (error) {
-          //
-        }
-      }, [])
-    
-      useEffect(() => {
-        FetchAdminStore()
-      }, [FetchAdminStore])
-
 
 
     return (

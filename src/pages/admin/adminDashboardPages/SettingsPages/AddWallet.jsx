@@ -29,6 +29,9 @@ const AddWallet = () => {
       if (response.status === 200) {
         setAdminWallets(response.msg)
         setpageend(response.msg.length / end)
+        setStart(0)
+        setEnd(5)
+        setpagestart(1)
       }
 
     } catch (error) {
@@ -86,8 +89,8 @@ const AddWallet = () => {
   return (
     <SettingsLayout>
       <div className='mt-4'>
-        {modal && <UpdateWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} refetchAdminWallets={FetchAdminWallets} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} />}
-        {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} />}
+        {modal && <UpdateWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} refetchAdminWallets={FetchAdminWallets} />}
+        {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets}/>}
 
         <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center ml-auto mb-2' onClick={() => setModal2(true)}>
           <span>create new wallet</span>

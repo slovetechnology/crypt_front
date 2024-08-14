@@ -18,6 +18,7 @@ import { Apis, UserGetApi } from '../../../services/API'
 import { FaAngleRight } from 'react-icons/fa6'
 import { HiOutlineDotsVertical } from 'react-icons/hi'
 import { LuX } from 'react-icons/lu'
+import { TbReceiptTax } from "react-icons/tb";
 
 
 const MainLinks = [
@@ -28,6 +29,7 @@ const MainLinks = [
 ]
 
 const OtherLinks = [
+  { path: 'taxes', url: '/admin-controls/taxes', icon: TbReceiptTax },
   { path: 'settings', url: '/admin-controls/settings', icon: IoSettingsOutline },
 ]
 
@@ -120,7 +122,7 @@ const AdminDashboard = ({ children }) => {
               <div className=' text-[0.65rem] uppercase'>main</div>
               <div className='flex flex-col gap-8'>
                 {MainLinks.map((item, i) => (
-                  <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
+                  <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                     <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
                       <item.icon className='text-[1.3rem] ' />
                       <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -133,7 +135,7 @@ const AdminDashboard = ({ children }) => {
               <div className='text-[0.65rem] uppercase'>others</div>
               <div className='flex flex-col gap-8'>
                 {OtherLinks.map((item, i) => (
-                  <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
+                  <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                     <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
                       <item.icon className='text-[1.3rem] ' />
                       <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -174,7 +176,7 @@ const AdminDashboard = ({ children }) => {
                 <div>admin</div>
               </div>
               <div>
-                <AdminNotis refetchNotifications={FetchNotifications} refetchUnreadNotis={FetchUnreadNotis}/>
+                <AdminNotis refetchNotifications={FetchNotifications} refetchUnreadNotis={FetchUnreadNotis} />
               </div>
             </div>
             <div className='flex gap-1.5 capitalize items-center text-[#292929] font-bold md:text-[0.85rem] text-xs '>
@@ -194,7 +196,7 @@ const AdminDashboard = ({ children }) => {
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-5 items-center h-full w-full'>
               {MainLinks.map((item, i) => (
-                <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
+                <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-xl text-base' />
                     <div className='capitalize md:text-xs text-[0.6rem] font-medium'>{item.path}</div>

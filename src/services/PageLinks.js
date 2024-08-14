@@ -1,6 +1,7 @@
 import AddWallet from "../pages/admin/adminDashboardPages/SettingsPages/AddWallet";
 import Package from "../pages/admin/adminDashboardPages/SettingsPages/Package";
 import Personalize from "../pages/admin/adminDashboardPages/SettingsPages/Personalize";
+import Taxes from "../pages/admin/adminDashboardPages/Taxes";
 import UpdateDeposits from "../pages/admin/adminDashboardPages/UpdateDeposits";
 import UpdateInvestment from "../pages/admin/adminDashboardPages/UpdateInvestment";
 import Users from "../pages/admin/adminDashboardPages/Users";
@@ -56,6 +57,7 @@ export const AdminDashboardPagesLinks = [
     { path: admin + '/investments', component: UpdateInvestment },
     { path: admin + '/withdrawals', component: Withdrawals },
     { path: admin + '/users', component: Users },
+    { path: admin + '/taxes', component: Taxes },
     { path: admin + settings, component: AddWallet },
     { path: admin + settings + '/packages', component: Package },
     { path: admin + settings + '/personalize', component: Personalize },

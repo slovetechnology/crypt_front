@@ -1,4 +1,4 @@
-import {atom} from 'jotai'
+import { atom } from 'jotai'
 
 
 export const PROFILE = atom({})
@@ -10,6 +10,7 @@ export const UNREADNOTIS = atom({})
 export const WITHDRAWALS = atom({})
 export const WALLET = atom({})
 export const UPS = atom({})
+export const TAXES = atom({})
 export const ADMINALLDEPOSITS = atom({})
 export const ADMINALLINVESTMENTS = atom({})
 export const ADMINALLUSERS = atom({})
@@ -17,3 +18,4 @@ export const ADMINALLWITHDRAWALS = atom({})
 export const ADMINWALLETS = atom({})
 export const TRADINGPLANS = atom({})
 export const ADMINSTORE = atom({})
+export const ADMINALLTAXES = atom({})

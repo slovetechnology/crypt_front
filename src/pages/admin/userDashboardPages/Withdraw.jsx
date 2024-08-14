@@ -4,7 +4,7 @@ import { BiMoneyWithdraw } from 'react-icons/bi'
 import { IoIosSearch } from 'react-icons/io'
 import { IoCheckbox } from 'react-icons/io5'
 import { RiHistoryFill } from 'react-icons/ri'
-import { ADMINSTORE, ADMINWALLETS, PROFILE, WALLET, WITHDRAWALS } from '../../../store'
+import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET, WITHDRAWALS } from '../../../store'
 import { MdSentimentVeryDissatisfied } from 'react-icons/md'
 import moment from 'moment'
 import LoadingAdmin from '../../../GeneralComponents/LoadingAdmin'
@@ -23,9 +23,10 @@ const Withdraw = () => {
     const [user] = useAtom(PROFILE)
     const [fromAtom, setFromAtom] = useAtom(WITHDRAWALS)
     const [withdrawals, setWithdrawals] = useState([])
-    const [userwallet] = useAtom(WALLET)
+    const [userwallet, setUserWallet] = useAtom(WALLET)
     const [adminWallets] = useAtom(ADMINWALLETS)
-    const [adminStore] = useAtom(ADMINSTORE)
+    const [, setNotifications] = useAtom(NOTIFICATIONS)
+    const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
     const [withdrawTitle, setWithdrawTitle] = useState('withdraw')
     const [screen, setScreen] = useState(1)
@@ -53,6 +54,9 @@ const Withdraw = () => {
                 setWithdrawals(response.msg)
                 setFromAtom(response.msg)
                 setpageend(response.msg.length / end)
+                setpagestart(1)
+                setStart(0)
+                setEnd(6)
             }
 
         } catch (error) {
@@ -71,7 +75,7 @@ const Withdraw = () => {
 
         if (!amount) return setError('amount')
         if (isNaN(amount)) return setError('amount')
-        if (amount < adminStore.withdrawal_minimum) return setError('amount')
+        if (amount < user.withdrawal_minimum) return setError('minimum')
         if (Object.values(userwallet).length === 0) return setError('limit')
         if (amount > userwallet.balance) return setError('limit')
         if (Object.values(selectValue).length === 0) return setError('select')
@@ -92,17 +96,16 @@ const Withdraw = () => {
             const response = await PostApi(Apis.withdrawal.make_withdrawal, formbody)
             if (response.status === 200) {
                 FetchWithdrawals()
-                Alert('Request Successful', 'Withdrawal success', 'success')
+                setUserWallet(response.wallet)
+                setNotifications(response.notis)
+                setUnreadNotis(response.unread)
+                Alert('Request Successful', `${response.msg}`, 'success')
                 setAmount('')
                 setWalletAddress('')
                 setCheck(!check)
                 setSelectValue({})
                 setWithdrawTitle('withdrawal history')
                 setScreen(2)
-                setpageend(response.msg.length / 6)
-                setpagestart(1)
-                setStart(0)
-                setEnd(6)
             } else {
                 Alert('Request Failed', `${response.msg}`, 'error')
             }
@@ -203,7 +206,7 @@ const Withdraw = () => {
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-light mx-auto flex flex-col gap-2'>
                             <div className='w-fit h-fit text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-between ml-auto'>
                                 <span>minimum:</span>
-                                {Object.values(adminStore).length !== 0 && <span>${adminStore.withdrawal_minimum.toLocaleString()}</span>}
+                                {Object.values(user).length !== 0 && <span className={error === 'minimum' ? 'text-[red]' : 'text-white'}>${user.withdrawal_minimum.toLocaleString()}</span>}
                             </div>
                             <div className='flex items-center justify-center gap-2 border-t pt-2'>
                                 <span>Withdraw funds</span>
@@ -215,7 +218,7 @@ const Withdraw = () => {
                                 <div className='flex flex-col gap-2'>
                                     <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                                     <div className='flex items-center gap-0.5'>
-                                        <div className='text-sm'>$</div>
+                                        <div className='text-xs'>$</div>
                                         <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-2 h-8 rounded-[5px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     </div>
                                 </div>

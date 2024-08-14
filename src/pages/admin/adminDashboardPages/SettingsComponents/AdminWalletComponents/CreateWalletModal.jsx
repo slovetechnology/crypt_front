@@ -7,7 +7,7 @@ import { Apis, PostApi } from '../../../../../services/API';
 import { Alert } from '../../../../../utils/utils';
 import ModalLayout from '../../../../../utils/ModalLayout';
 
-const CreateWalletModal = ({ closeView, refetchAdminWallets, setStart, setEnd, setpagestart, setpageend }) => {
+const CreateWalletModal = ({ closeView, refetchAdminWallets }) => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const toggler = useRef()
@@ -93,12 +93,8 @@ const CreateWalletModal = ({ closeView, refetchAdminWallets, setStart, setEnd, s
         try {
             const response = await PostApi(Apis.admin.create_admin_wallet, formbody)
             if (response.status === 200) {
-                Alert('Request Successful', 'Wallet created successfully', 'success')
+                Alert('Request Successful', `${response.msg}`, 'success')
                 refetchAdminWallets()
-                setpageend(response.msg.length / 5)
-                setpagestart(1)
-                setStart(0)
-                setEnd(5)
                 closeView()
             } else {
                 setError(response.msg)

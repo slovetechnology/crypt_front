@@ -7,7 +7,7 @@ import { Apis, PostApi } from '../../services/API'
 import { PROFILE, WALLET } from '../../store'
 import { Alert } from '../../utils/utils'
 
-const BuyPlanModal = ({ setModal, buybal, deposits}) => {
+const BuyPlanModal = ({ setModal, buybal}) => {
     const [userwallet] = useAtom(WALLET)
     const [user] = useAtom(PROFILE)
 
@@ -27,11 +27,6 @@ const BuyPlanModal = ({ setModal, buybal, deposits}) => {
         if (amount > buybal.price_limit) return setError('limit')
         if (Object.values(userwallet).length === 0) return setError('balance')
         if (amount > userwallet.balance) return setError('balance')
-
-        if (buybal.title === 'test run') {
-            const TestRunTrial = deposits.filter(item => item.trading_plan === 'test run')
-            if (TestRunTrial.length > 0) return Alert('Request Failed', `Test Run plan is one trial only`, 'error')
-        }
 
         const formbody = {
             amount: parseFloat(amount),
@@ -68,7 +63,7 @@ const BuyPlanModal = ({ setModal, buybal, deposits}) => {
                     </div>
                     <div className='relative flex gap-3 items-center mx-auto'>
                         <div className='flex items-center gap-0.5'>
-                            <div className='text-sm'>$</div>
+                            <div className='text-xs'>$</div>
                             <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
                         </div>
                         <div className={`h-fit w-fit text-nowrap py-2 px-4 ${error === 'balance' ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-md`}>

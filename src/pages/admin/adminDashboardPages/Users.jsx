@@ -41,6 +41,11 @@ const Users = () => {
         setAllUsers(response.msg)
         setFromAtom(response.msg)
         setpageend(response.msg.length / end)
+        setStart(0)
+        setEnd(5)
+        setpagestart(1)
+        setSearch('')
+        setWrite(false)
       }
 
     } catch (error) {
@@ -146,8 +151,8 @@ const Users = () => {
   return (
     <AdminDashboard>
       <div className='h-screen'>
-        {modal && <UsersModal closeView={() => setModal(false)} singleUser={singleUser} userFigures={userFigures} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={FetchAllUsers} />}
-        {modal2 && <CreateUsersModal closeView={() => setModal2(false)} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} refetchAllUsers={FetchAllUsers} />}
+        {modal && <UsersModal closeView={() => setModal(false)} singleUser={singleUser} userFigures={userFigures} refetchAllUsers={FetchAllUsers} />}
+        {modal2 && <CreateUsersModal closeView={() => setModal2(false)} refetchAllUsers={FetchAllUsers} />}
         {modal3 && <SetReferralModal closeView={() => setModal3(false)} />}
         <div className='flex justify-between items-center pt-10'>
           <div className='uppercase font-bold md:text-2xl text-lg text-black'>all users</div>
@@ -171,12 +176,12 @@ const Users = () => {
               }
             </div>
           </div>
-          <div className='flex justify-between items-center mb-2'>
-            <button className='w-fit h-fit mt-4 py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal3(true)}>
+          <div className='flex justify-between items-center mt-4 mb-2'>
+            <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal3(true)}>
               <span>set referral bonus</span>
               <IoIosSettings className='text-base' />
             </button>
-            <button className='w-fit h-fit mt-4 py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
+            <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
               <span>create new user</span>
               <IoIosAddCircleOutline className='text-base' />
             </button>
@@ -185,7 +190,7 @@ const Users = () => {
           <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full'>
               <thead >
-                <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
+                <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => setModal(true)}>
                   <td className='text-center truncate  capitalize p-2'>joined</td>
                   <td className='text-center truncate  capitalize p-2'>full name</td>
                   <td className='text-center truncate  capitalize p-2'>username</td>

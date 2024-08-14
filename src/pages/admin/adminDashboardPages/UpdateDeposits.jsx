@@ -32,6 +32,11 @@ const UpdateDeposits = () => {
         setAllDeposits(response.msg)
         setFromAtom(response.msg)
         setpageend(response.msg.length / end)
+        setStart(0)
+        setEnd(5)
+        setpagestart(1)
+        setSearch('')
+        setWrite(false)
       }
 
     } catch (error) {
@@ -49,7 +54,6 @@ const UpdateDeposits = () => {
     setModal(true)
   }
 
-
   const HandleSearch = () => {
     const altDeposits = fromAtom
     if (!search) {
@@ -62,7 +66,7 @@ const UpdateDeposits = () => {
     }
     else {
       setWrite(true)
-      const showSearch = altDeposits.filter(item => item.depositUser.username.includes(search.toLowerCase()) || item.depositUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
+      const showSearch = altDeposits.filter(item => item.depositUser.username.includes(search.toLowerCase()) || item.depositUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllDeposits(showSearch)
       setpageend(showSearch.length / 5)
       setpagestart(1)
@@ -121,7 +125,7 @@ const UpdateDeposits = () => {
   return (
     <AdminDashboard>
       <div className='h-screen'>
-        {modal && <UpdateDepositModal closeView={() => setModal(false)} singleDeposit={singleDeposit} refetchAllDeposits={FetchAllDeposits} setStart={setStart} setEnd={setEnd} setpagestart={setpagestart} setpageend={setpageend} setSearch={setSearch} setWrite={setWrite} />}
+        {modal && <UpdateDepositModal closeView={() => setModal(false)} singleDeposit={singleDeposit} refetchAllDeposits={FetchAllDeposits}/>}
 
         <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all deposits</div>
         <div className='mt-12'>

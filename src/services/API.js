@@ -56,6 +56,12 @@ const investment_urls = {
     claim_investment: investment + 'claim-investment'
 }
 
+const tax = 'api/tax'
+const tax_urls = {
+    pay_tax: tax + 'pay-tax',
+    user_taxes: tax + 'user-taxes'
+}
+
 const admin = 'api/admin/'
 const admin_urls = {
     all_users: admin + 'all-users',
@@ -64,7 +70,7 @@ const admin_urls = {
     all_withdrawals: admin + 'all-withdrawals',
     update_deposits: admin + 'update-deposits',
     update_investments: admin + 'update-investments',
-    delete_users: admin + 'delete-users',
+    suspend_unsuspend_users: admin + 'suspend-unsuspend-users',
     get_user_figures: admin + 'get-user-total',
     update_withdrawals: admin + 'update-withdrawals',
     get_admin_wallets: admin + 'all-admin-wallets',
@@ -76,8 +82,10 @@ const admin_urls = {
     update_trading_plan: admin + 'update-trading-plan',
     delete_trading_plan: admin + 'delete-trading-plan',
     fund_user_account: admin + 'fund-user-account',
+    update_withdrawal_minimum: admin + 'update-withdrawal-minimum',
     get_admin_store: admin + 'admin-store',
-    update_admin_store: admin + 'update-admin-store'
+    update_admin_store: admin + 'update-admin-store',
+    get_all_taxes: admin + 'all-taxes'
 }
 
 export const Apis = {
@@ -86,6 +94,7 @@ export const Apis = {
     notification: notification_urls,
     withdrawal: withdrawal_urls,
     investment: investment_urls,
+    tax: tax_urls,
     admin: admin_urls
 }
 
