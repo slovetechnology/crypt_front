@@ -190,7 +190,7 @@ const AdminDashboard = ({ children }) => {
               }
             </div>
           </div>
-          <div>
+          <div className='h-screen overflow-y-auto'>
             {children}
           </div>
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>

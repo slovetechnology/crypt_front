@@ -11,6 +11,7 @@ import Dashboard from './Dashboard'
 
 const Feedback = () => {
     const [user] = useAtom(PROFILE)
+    
     const [message, setMessage] = useState('')
     const [messageError, setMessageError] = useState(false)
     const [loading, setLoading] = useState(false)

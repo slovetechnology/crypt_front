@@ -12,7 +12,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import avatar from '../../../assets/images/avatar.png'
-import { ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET} from '../../../store';
+import { ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET } from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
@@ -54,6 +54,7 @@ const Dashboard = ({ children }) => {
     const [, setUps] = useAtom(UPS)
     const [, setAdminWallets] = useAtom(ADMINWALLETS)
     const [, setTradingPlans] = useAtom(TRADINGPLANS)
+
     const [slideShow, setSlideShow] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
@@ -178,7 +179,7 @@ const Dashboard = ({ children }) => {
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
                             <div className='flex flex-col gap-8'>
                                 {MainLinks.map((item, i) => (
-                                    <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
+                                    <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                                         <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -191,7 +192,7 @@ const Dashboard = ({ children }) => {
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-8'>
                                 {OtherLinks.map((item, i) => (
-                                    <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
+                                    <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                                         <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -247,21 +248,22 @@ const Dashboard = ({ children }) => {
                         <div className='flex gap-1.5 capitalize items-center text-[grey] md:text-[0.85rem] text-xs font-bold'>
                             <span>dashboard</span>
                             <FaAngleRight className='text-[0.6rem]' />
-                            {location.pathname === '/dashboard' ?
-                                <span>wallet</span>
+                            {location.pathname === '/dashboard' && <span>wallet</span>}
+                            {location.pathname.includes('/dashboard/verify-account') ?
+                                <span>{location.pathname.slice(11, 25)}</span>
                                 :
                                 <span>{location.pathname.slice(11)}</span>
                             }
                         </div>
                     </div>
-                        <div>
-                            {children}
-                        </div>
+                    <div>
+                        {children}
+                    </div>
                 </div>
                 <div className='bg-[#131024] w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
                     <div className='grid grid-cols-5 items-center h-full w-full'>
                         {MainLinks.map((item, i) => (
-                            <Link key={i} onClick={() => {setSlideShow(false); MoveToTop()}} to={item.url}>
+                            <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                                 <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-light' : ' text-semi-white'}`} >
                                     <item.icon className='md:text-xl text-base ' />
                                     <div className='capitalize md:text-xs text-[0.6rem] font-medium'>{item.path}</div>

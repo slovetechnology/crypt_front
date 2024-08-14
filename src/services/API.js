@@ -56,7 +56,7 @@ const investment_urls = {
     claim_investment: investment + 'claim-investment'
 }
 
-const tax = 'api/tax'
+const tax = 'api/tax/'
 const tax_urls = {
     pay_tax: tax + 'pay-tax',
     user_taxes: tax + 'user-taxes'
@@ -85,7 +85,8 @@ const admin_urls = {
     update_withdrawal_minimum: admin + 'update-withdrawal-minimum',
     get_admin_store: admin + 'admin-store',
     update_admin_store: admin + 'update-admin-store',
-    get_all_taxes: admin + 'all-taxes'
+    get_all_taxes: admin + 'all-taxes',
+    update_taxes: admin + 'update-taxes'
 }
 
 export const Apis = {

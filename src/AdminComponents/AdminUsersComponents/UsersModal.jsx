@@ -182,7 +182,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 border p-1'>
-                                <div className=' uppercase font-bold border px-1 '>investment records:</div>
+                                <div className=' uppercase font-bold border px-1 '>deposit records:</div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>total amount deposited:</div>

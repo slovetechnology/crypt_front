@@ -35,14 +35,26 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
     }
 
     useEffect(() => {
-        if (statusShow || message !== '') {
-            MoveToBottom()
+        if (!loading) {
+            if (statusShow || status !== singleTax.status || message !== '') {
+                MoveToBottom()
+            }
         }
     }, [MoveToBottom]
     )
 
-    const UpdateHandler = () => {
-        if (message === '') {
+    const UpdateHandlerForText = () => {
+        if (message === '' && status === singleTax.status) {
+            setUpdate(false)
+        } else {
+            setUpdate(true)
+        }
+    }
+
+    const UpdateHandlerForStatus = (item) => {
+        setStatus(item)
+        setStatusShow(false)
+        if (item === singleTax.status && message === '') {
             setUpdate(false)
         } else {
             setUpdate(true)
@@ -65,20 +77,20 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                 top: 0,
             })
 
-            // try {
-            //     const response = await UserPutApi(Apis.admin.update_deposits, formbody)
-            //     if (response.status === 200) {
-            //         refetchAllDeposits()
-            //         Alert('Request Successful', `${response.msg}`, 'success')
-            //         closeView()
-            //     } else {
-            //         Alert('Request Failed', `${response.msg}`, 'error')
-            //     }
-            // } catch (error) {
-            //     Alert('Request Failed', `${error.message}`, 'error')
-            // } finally {
-            //     setLoading(false)
-            // }
+            try {
+                const response = await UserPutApi(Apis.admin.update_taxes, formbody)
+                if (response.status === 200) {
+                    refetchAllTaxes()
+                    Alert('Request Successful', `${response.msg}`, 'success')
+                    closeView()
+                } else {
+                    Alert('Request Failed', `${response.msg}`, 'error')
+                }
+            } catch (error) {
+                Alert('Request Failed', `${error.message}`, 'error')
+            } finally {
+                setLoading(false)
+            }
         }
     }
 
@@ -139,7 +151,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>tax message:</div>
                                         <div className='flex flex-col gap-1'>
-                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandler}></textarea>
+                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
                                         </div>
                                     </div>
                                     <div className='flex flex-col gap-6 my-6'>
@@ -158,7 +170,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                                 {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                                     {Statuses.map((item, i) => (
                                                         <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                                                            <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item); setStatusShow(false); setUpdate(true) }}>
+                                                            <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => UpdateHandlerForStatus(item)}>
                                                                 <div className={`text-[0.85rem] font-bold ${item === 'received' && 'text-[green]'} ${item === 'failed' && 'text-[red]'}`}>{item}</div>
                                                             </div>
                                                         </div>

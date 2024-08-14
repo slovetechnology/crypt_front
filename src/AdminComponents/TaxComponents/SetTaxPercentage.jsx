@@ -55,7 +55,7 @@ const SetTaxPercentage = ({ closeView }) => {
                                     <input className={`outline-none border lg:text-[0.85rem] text-base md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt ${error ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     <div className='text-xs'>%</div>
                                 </div>
-                                <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
+                                <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
                                     <div>current:</div>
                                     {Object.values(adminStore).length !== 0 && <div>{adminStore.tax_percentage}%</div>}
                                 </div>

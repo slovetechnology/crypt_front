@@ -23,6 +23,7 @@ import Dashboard from './Dashboard';
 
 const Profile = () => {
     const [user, setUser] = useAtom(PROFILE)
+    
     const [nameEdit, setNameEdit] = useState(false)
     const [userEdit, setUserEdit] = useState(false)
     const [emailEdit, setEmailEdit] = useState(false)

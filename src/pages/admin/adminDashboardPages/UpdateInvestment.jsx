@@ -2,10 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
-import { FaToggleOff, FaToggleOn } from "react-icons/fa6";
 import { FiX } from 'react-icons/fi'
-import { useAtom } from 'jotai';
-import { ADMINALLINVESTMENTS } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
@@ -14,7 +11,7 @@ import UpdateInvestmentModal from '../../../AdminComponents/UpdateInvestmentModa
 
 
 const UpdateInvestment = () => {
-  const [fromAtom, setFromAtom] = useAtom(ADMINALLINVESTMENTS)
+  const [original, setOriginal] = useState([])
   const [allInvestments, setAllInvestments] = useState([])
   const [singleInvestment, setSingleInvestment] = useState({})
   const [modal, setModal] = useState(false)
@@ -24,14 +21,13 @@ const UpdateInvestment = () => {
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
-  const [system, setSystem] = useState(false)
 
   const FetchAllInvestments = useCallback(async () => {
     try {
       const response = await UserGetApi(Apis.admin.all_investments)
       if (response.status === 200) {
         setAllInvestments(response.msg)
-        setFromAtom(response.msg)
+        setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
         setEnd(5)
@@ -56,10 +52,10 @@ const UpdateInvestment = () => {
   }
 
   const HandleSearch = () => {
-    const altinvestments = fromAtom
+    const altinvestments = original
     if (!search) {
-      setAllInvestments(fromAtom)
-      setpageend(fromAtom.length / 5)
+      setAllInvestments(original)
+      setpageend(original.length / 5)
       setWrite(false)
       setpagestart(1)
       setStart(0)
@@ -78,8 +74,8 @@ const UpdateInvestment = () => {
 
   const CancelWrite = () => {
     setSearch('')
-    setAllInvestments(fromAtom)
-    setpageend(fromAtom.length / 5)
+    setAllInvestments(original)
+    setpageend(original.length / 5)
     setWrite(false)
     setpagestart(1)
     setStart(0)
@@ -129,21 +125,11 @@ const UpdateInvestment = () => {
 
   return (
     <AdminDashboard>
-      <div className='h-screen'>
+      <div>
         {modal && <UpdateInvestmentModal closeView={() => setModal(false)} singleInvestment={singleInvestment} refetchAllInvestments={FetchAllInvestments} />}
 
         <div className='flex justify-between items-center pt-10'>
           <div className='uppercase font-bold md:text-2xl text-lg text-black'>all investments</div>
-          <div className='flex flex-col items-center'>
-            <div className='text-[0.8rem] text-admin-page font-medium'>{system ? 'automatic' : 'manual'}</div>
-            <div className='md:text-3xl text-2xl cursor-pointer' onClick={SystemSet}>
-              {system ?
-                <FaToggleOn />
-                :
-                <FaToggleOff />
-              }
-            </div>
-          </div>
         </div>
         <div className='mt-12'>
           <div className='relative w-fit mx-auto'>

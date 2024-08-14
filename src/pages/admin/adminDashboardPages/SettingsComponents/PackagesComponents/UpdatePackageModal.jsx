@@ -124,44 +124,44 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                         <div className='flex flex-col gap-4 mt-4 relative'>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>title:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.title} name='title' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-2 md:text-sm text-base' value={form.title} name='title' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>price start:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>$</div>
-                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.price_start} name='price_start' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-2 md:text-sm text-base' value={form.price_start} name='price_start' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>price limit:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>$</div>
-                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.price_limit} name='price_limit' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-2 md:text-sm text-base' value={form.price_limit} name='price_limit' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>profit percentage:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>%</div>
-                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-2 md:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>plan bonus:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>$</div>
-                                    <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-2 md:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>duration:</div>
-                                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 md:text-sm text-base' value={form.duration} name='duration' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-2 md:text-sm text-base' value={form.duration} name='duration' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>duration type:</div>
                                 <div className='relative'>
-                                    <div className='px-2 py-1 h-fit w-48 bg-white sha cursor-pointer rounded-sm' onClick={() => setTypeShow(!typeShow)} >
+                                    <div className='px-2 py-1 h-fit md:w-48 w-40 bg-white sha cursor-pointer rounded-[3px]' onClick={() => setTypeShow(!typeShow)} >
                                         <div className='flex justify-between items-center text-[0.8rem]'>
                                             <span >{type}</span>
                                             <div className={`flex flex-col items-center text-xs trans ${typeShow ? 'rotate-90' : 'rotate-0'} `}>
@@ -184,7 +184,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                             </div>
 
                             {error !== '' &&
-                                <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[red] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
+                                <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
                                     <RiErrorWarningLine className='md:text-base text-sm' />
                                     <span>{error}</span>
                                     <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>

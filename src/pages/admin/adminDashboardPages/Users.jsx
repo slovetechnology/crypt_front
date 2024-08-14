@@ -1,12 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { BsThreeDots } from 'react-icons/bs'
 import { IoIosAddCircleOutline, IoIosSearch, IoIosSettings } from 'react-icons/io'
-import { LiaGiftSolid } from "react-icons/lia"
 import { FiX } from 'react-icons/fi'
-import { ADMINALLUSERS } from '../../../store'
-import { useAtom } from 'jotai'
 import moment from 'moment';
-import { Apis, PostApi, UserGetApi } from '../../../services/API'
+import { Apis, UserGetApi } from '../../../services/API'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import { TbUsers } from "react-icons/tb";
 import nothnyet from '../../../assets/images/nothn.png'
@@ -14,13 +10,13 @@ import AdminDashboard from './AdminDashboard'
 import UsersModal from '../../../AdminComponents/AdminUsersComponents/UsersModal'
 import CreateUsersModal from '../../../AdminComponents/AdminUsersComponents/CreateUsersModal'
 import SetReferralModal from '../../../AdminComponents/AdminUsersComponents/SetReferralModal'
+import UserTableBody from '../../../AdminComponents/AdminUsersComponents/UserTableBody';
 
 
 
 const Users = () => {
-  const [fromAtom, setFromAtom] = useAtom(ADMINALLUSERS)
+  const [orignal, setOriginal] = useState([])
   const [allusers, setAllUsers] = useState([])
-
   const [modal, setModal] = useState(false)
   const [modal2, setModal2] = useState(false)
   const [modal3, setModal3] = useState(false)
@@ -39,7 +35,7 @@ const Users = () => {
       const response = await UserGetApi(Apis.admin.all_users)
       if (response.status === 200) {
         setAllUsers(response.msg)
-        setFromAtom(response.msg)
+        setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
         setEnd(5)
@@ -57,33 +53,12 @@ const Users = () => {
     FetchAllUsers()
   }, [FetchAllUsers])
 
-  const SingleUserFunction = (item) => {
-    setSingleUser(item)
-  }
-
-  const GetUserFigures = async () => {
-    try {
-      const formbody = {
-        user_id: singleUser.id
-      }
-
-      setModal(true)
-
-      const response = await PostApi(Apis.admin.get_user_figures, formbody)
-      if (response.status === 200) {
-        setUserFigures(response.msg)
-      }
-
-    } catch (error) {
-      //
-    }
-  }
 
   const HandleSearch = () => {
-    const altusers = fromAtom
+    const altusers = orignal
     if (!search) {
-      setAllUsers(fromAtom)
-      setpageend(fromAtom.length / 5)
+      setAllUsers(orignal)
+      setpageend(orignal.length / 5)
       setWrite(false)
       setpagestart(1)
       setStart(0)
@@ -102,8 +77,8 @@ const Users = () => {
 
   const CancelWrite = () => {
     setSearch('')
-    setAllUsers(fromAtom)
-    setpageend(fromAtom.length / 5)
+    setAllUsers(orignal)
+    setpageend(orignal.length / 5)
     setWrite(false)
     setpagestart(1)
     setStart(0)
@@ -150,7 +125,7 @@ const Users = () => {
 
   return (
     <AdminDashboard>
-      <div className='h-screen'>
+      <div>
         {modal && <UsersModal closeView={() => setModal(false)} singleUser={singleUser} userFigures={userFigures} refetchAllUsers={FetchAllUsers} />}
         {modal2 && <CreateUsersModal closeView={() => setModal2(false)} refetchAllUsers={FetchAllUsers} />}
         {modal3 && <SetReferralModal closeView={() => setModal3(false)} />}
@@ -161,7 +136,7 @@ const Users = () => {
               <TbUsers className='text-base' />
               <span>total users:</span>
             </div>
-            <div>{allusers.length}</div>
+            <div className='text-[0.85rem]'>{allusers.length}</div>
           </div>
         </div>
         <div className='mt-12'>
@@ -202,14 +177,7 @@ const Users = () => {
               {allusers.length > 0 &&
                 <tbody>
                   {allusers.slice(start, end).map((item, i) => (
-                    <tr className='text-[0.8rem] font-[550]  text-black bg-white even:bg-semi-white ' key={i}>
-                      <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                      <td className='p-4  text-center truncate'>{item.full_name}</td>
-                      <td className='p-4  text-center truncate'>{item.username}</td>
-                      <td className='p-4  text-center truncate'>{item.email}</td>
-                      <td className='p-4  truncate'><img src={item.country_flag} className='w-4 h-auto mx-auto'></img></td>
-                      <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onMouseOver={() => SingleUserFunction(item)} onClick={GetUserFigures}> <BsThreeDots className="mx-auto text-base" /></td>
-                    </tr>
+                    <UserTableBody key={i} item={item} setModal={setModal} setSingleUser={setSingleUser} setUserFigures={setUserFigures} />
                   ))}
                 </tbody>
               }

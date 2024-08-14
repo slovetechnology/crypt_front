@@ -11,7 +11,7 @@ import { IoMdCheckmarkCircleOutline, IoMdSettings } from 'react-icons/io'
 import AdminNotisField from '../../../AdminComponents/AdminNotisField'
 
 
-const AdminNotis = ({refetchNotifications, refetchUnreadNotis}) => {
+const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
     const [notifications] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
 
@@ -89,14 +89,14 @@ const AdminNotis = ({refetchNotifications, refetchUnreadNotis}) => {
     return (
         <div className='relative'>
             <>
-                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => {setShowNotis(true); setpageend(notifications.length / 4)}}>
+                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 4) }}>
                     <IoNotificationsOutline />
                 </div>
                 <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white  border-white cursor-pointer  ${showNotis ? 'flex' : 'hidden'}`}>
                     <IoNotificationsOutline />
                 </div>
                 <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-[#462c7c] text-[0.65rem] font-extrabold bg-white notisha'>
-                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => {setShowNotis(true); setpageend(notifications.length / 4)}}>
+                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 4) }}>
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
@@ -124,7 +124,7 @@ const AdminNotis = ({refetchNotifications, refetchUnreadNotis}) => {
                         <div className='rounded-full w-fit h-fit p-1 md:bg-semi-white bg-[#b4b3b3] cursor-pointer md:text-[0.85rem] text-lg' onClick={() => setMark(!mark)}>
                             <IoMdSettings />
                         </div>
-                        {mark && <div className='md:w-36 w-40 h-fit py-1 px-2 flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-8 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
+                        {mark && <div className='w-fit h-fit py-1 px-3 truncate flex items-center justify-center gap-1 bg-white shantf2 font-bold absolute md:top-6 top-8 right-0 rounded-md cursor-pointer z-20 hover:bg-[#f1f1f1] md:text-xs text-sm' onClick={MarkAllRead}>
                             <span>Mark all as read</span>
                             <IoMdCheckmarkCircleOutline className='text-[#462c7c]' />
                         </div>}
@@ -132,7 +132,7 @@ const AdminNotis = ({refetchNotifications, refetchUnreadNotis}) => {
                 </div>
                 {notifications.length > 0 ? <div className='mt-2 md:mt-0'>
                     {notifications.slice(start, end).map((item, i) => (
-                        <AdminNotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} setShowNotis={setShowNotis}/>
+                        <AdminNotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} setShowNotis={setShowNotis} />
                     ))}
                 </div>
                     :

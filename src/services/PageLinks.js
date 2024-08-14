@@ -11,7 +11,9 @@ import Feedback from "../pages/admin/userDashboardPages/Feedback";
 import Investment from "../pages/admin/userDashboardPages/Investment";
 import Profile from "../pages/admin/userDashboardPages/Profile";
 import TaxPayment from "../pages/admin/userDashboardPages/TaxPayment";
-import VerifyAcount from "../pages/admin/userDashboardPages/VerifyAcount";
+import VerifyEmail from "../pages/admin/userDashboardPages/VerifyPages/VerifyEmail";
+import VerifyAcount from "../pages/admin/userDashboardPages/VerifyPages/VerifyEmail";
+import VerifyKYC from "../pages/admin/userDashboardPages/VerifyPages/VerifyKYC";
 import Wallet from "../pages/admin/userDashboardPages/Wallet";
 import Withdraw from "../pages/admin/userDashboardPages/Withdraw";
 import AboutPage from "../pages/general/AboutPage";
@@ -37,6 +39,7 @@ export const GeneralPagesLinks = [
 ]
 
 const dashboard = '/dashboard'
+const verify = '/verify-account'
 
 export const UserDashboardPagesLinks = [
     { path: dashboard, component: Wallet },
@@ -45,8 +48,9 @@ export const UserDashboardPagesLinks = [
     { path: dashboard + '/withdraw', component: Withdraw },
     { path: dashboard + '/profile', component: Profile },
     { path: dashboard + '/feedback', component: Feedback },
-    { path: dashboard + '/verify-account', component: VerifyAcount },
     { path: dashboard + '/tax-payment', component: TaxPayment },
+    { path: dashboard + verify, component: VerifyEmail },
+    { path: dashboard + verify + '/kyc', component: VerifyKYC },
 ]
 
 const admin = '/admin-controls'

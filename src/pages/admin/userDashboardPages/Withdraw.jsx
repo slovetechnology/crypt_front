@@ -4,7 +4,7 @@ import { BiMoneyWithdraw } from 'react-icons/bi'
 import { IoIosSearch } from 'react-icons/io'
 import { IoCheckbox } from 'react-icons/io5'
 import { RiHistoryFill } from 'react-icons/ri'
-import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET, WITHDRAWALS } from '../../../store'
+import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET} from '../../../store'
 import { MdSentimentVeryDissatisfied } from 'react-icons/md'
 import moment from 'moment'
 import LoadingAdmin from '../../../GeneralComponents/LoadingAdmin'
@@ -21,13 +21,13 @@ import { TbTransferOut } from "react-icons/tb";
 
 const Withdraw = () => {
     const [user] = useAtom(PROFILE)
-    const [fromAtom, setFromAtom] = useAtom(WITHDRAWALS)
-    const [withdrawals, setWithdrawals] = useState([])
     const [userwallet, setUserWallet] = useAtom(WALLET)
     const [adminWallets] = useAtom(ADMINWALLETS)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
-
+    
+    const [original, setOriginal] = useState([])
+    const [withdrawals, setWithdrawals] = useState([])
     const [withdrawTitle, setWithdrawTitle] = useState('withdraw')
     const [screen, setScreen] = useState(1)
     const [amount, setAmount] = useState('')
@@ -52,7 +52,7 @@ const Withdraw = () => {
             const response = await UserGetApi(Apis.withdrawal.user_withdrawals)
             if (response.status === 200) {
                 setWithdrawals(response.msg)
-                setFromAtom(response.msg)
+                setOriginal(response.msg)
                 setpageend(response.msg.length / end)
                 setpagestart(1)
                 setStart(0)
@@ -118,11 +118,11 @@ const Withdraw = () => {
     }
 
     const HandleSearch = () => {
-        const altwithdrawals = fromAtom
+        const altwithdrawals = original
         if (!search) {
             setWrite(false)
-            setWithdrawals(fromAtom)
-            setpageend(fromAtom.length / 6)
+            setWithdrawals(original)
+            setpageend(original.length / 6)
             setpagestart(1)
             setStart(0)
             setEnd(6)
@@ -141,8 +141,8 @@ const Withdraw = () => {
     const CancelWrite = () => {
         setSearch('')
         setWrite(false)
-        setWithdrawals(fromAtom)
-        setpageend(fromAtom.length / 6)
+        setWithdrawals(original)
+        setpageend(original.length / 6)
         setpagestart(1)
         setStart(0)
         setEnd(6)

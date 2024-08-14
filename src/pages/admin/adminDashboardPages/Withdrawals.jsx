@@ -3,8 +3,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
 import { FiX } from 'react-icons/fi';
 import { BsThreeDots } from 'react-icons/bs';
-import { useAtom } from 'jotai';
-import { ADMINALLWITHDRAWALS } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
@@ -13,7 +11,7 @@ import WithdrawalsModal from '../../../AdminComponents/WithdrawalsModal';
 
 
 const Withdrawals = () => {
-    const [fromAtom, setFromAtom] = useAtom(ADMINALLWITHDRAWALS)
+    const [original, setOriginal] = useState([])
     const [allWithdrawals, setAllWithdrawals] = useState([])
     const [singleWithdrawal, setSingleWithdrawal] = useState({})
     const [modal, setModal] = useState(false)
@@ -30,7 +28,7 @@ const Withdrawals = () => {
             const response = await UserGetApi(Apis.admin.all_withdrawals)
             if (response.status === 200) {
                 setAllWithdrawals(response.msg)
-                setFromAtom(response.msg)
+                setOriginal(response.msg)
                 setpageend(response.msg.length / end)
                 setStart(0)
                 setEnd(5)
@@ -54,10 +52,10 @@ const Withdrawals = () => {
     }
 
     const HandleSearch = () => {
-        const altwithdrawals = fromAtom
+        const altwithdrawals = original
         if (!search) {
-            setAllWithdrawals(fromAtom)
-            setpageend(fromAtom.length / 5)
+            setAllWithdrawals(original)
+            setpageend(original.length / 5)
             setWrite(false)
             setpagestart(1)
             setStart(0)
@@ -76,8 +74,8 @@ const Withdrawals = () => {
 
     const CancelWrite = () => {
         setSearch('')
-        setAllWithdrawals(fromAtom)
-        setpageend(fromAtom.length / 5)
+        setAllWithdrawals(original)
+        setpageend(original.length / 5)
         setWrite(false)
         setpagestart(1)
         setStart(0)
@@ -123,7 +121,7 @@ const Withdrawals = () => {
 
     return (
         <AdminDashboard>
-            <div className='h-screen'>
+            <div>
                 {modal && <WithdrawalsModal closeView={() => setModal(false)} singleWithdrawal={singleWithdrawal} refetchAllWithdrawals={FetchAllWithdrawals} />}
 
                 <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>withdrawals</div>

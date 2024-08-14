@@ -3,8 +3,6 @@ import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
 import { FiX } from 'react-icons/fi'
-import { useAtom } from 'jotai';
-import { ADMINALLDEPOSITS } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
@@ -13,7 +11,7 @@ import UpdateDepositModal from '../../../AdminComponents/UpdateDepositModal';
 
 
 const UpdateDeposits = () => {
-  const [fromAtom, setFromAtom] = useAtom(ADMINALLDEPOSITS)
+  const [original, setOriginal] = useState([])
   const [allDeposits, setAllDeposits] = useState([])
   const [singleDeposit, setSingleDeposit] = useState({})
   const [modal, setModal] = useState(false)
@@ -30,7 +28,7 @@ const UpdateDeposits = () => {
       const response = await UserGetApi(Apis.admin.all_deposits)
       if (response.status === 200) {
         setAllDeposits(response.msg)
-        setFromAtom(response.msg)
+        setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
         setEnd(5)
@@ -55,10 +53,10 @@ const UpdateDeposits = () => {
   }
 
   const HandleSearch = () => {
-    const altDeposits = fromAtom
+    const altDeposits = original
     if (!search) {
-      setAllDeposits(fromAtom)
-      setpageend(fromAtom.length / 5)
+      setAllDeposits(original)
+      setpageend(original.length / 5)
       setWrite(false)
       setpagestart(1)
       setStart(0)
@@ -77,8 +75,8 @@ const UpdateDeposits = () => {
 
   const CancelWrite = () => {
     setSearch('')
-    setAllDeposits(fromAtom)
-    setpageend(fromAtom.length / 5)
+    setAllDeposits(original)
+    setpageend(original.length / 5)
     setWrite(false)
     setpagestart(1)
     setStart(0)
@@ -124,8 +122,8 @@ const UpdateDeposits = () => {
 
   return (
     <AdminDashboard>
-      <div className='h-screen'>
-        {modal && <UpdateDepositModal closeView={() => setModal(false)} singleDeposit={singleDeposit} refetchAllDeposits={FetchAllDeposits}/>}
+      <div>
+        {modal && <UpdateDepositModal closeView={() => setModal(false)} singleDeposit={singleDeposit} refetchAllDeposits={FetchAllDeposits} />}
 
         <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>all deposits</div>
         <div className='mt-12'>

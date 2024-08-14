@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { RiHistoryFill, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
 import { useAtom } from 'jotai';
-import { DEPOSITS, TRADINGPLANS } from '../../../store';
+import { TRADINGPLANS } from '../../../store';
 import { MoveToTopDivs } from '../../../utils/utils';
 import moment from 'moment';
 import { FaAngleLeft, FaAngleRight, FaRegCopyright } from 'react-icons/fa6';
@@ -18,10 +18,10 @@ import BuyPlanModal from '../../../UserComponents/DepositModals/BuyPlanModal';
 
 
 const Deposit = () => {
-    const [fromAtom, setFromAtom] = useAtom(DEPOSITS)
-    const [deposits, setDeposits] = useState([])
     const [tradingPlans] = useAtom(TRADINGPLANS)
-
+    
+    const [original, setOriginal] = useState([])
+    const [deposits, setDeposits] = useState([])
     const [depositTitle, setDepositTitle] = useState('deposit')
     const [screen, setScreen] = useState(1)
     const [search, setSearch] = useState('')
@@ -40,7 +40,7 @@ const Deposit = () => {
             const response = await UserGetApi(Apis.deposit.user_deposits)
             if (response.status === 200) {
                 setDeposits(response.msg)
-                setFromAtom(response.msg)
+                setOriginal(response.msg)
                 setpageend(response.msg.length / end)
                 setpagestart(1)
                 setStart(0)
@@ -57,11 +57,11 @@ const Deposit = () => {
     }, [FetchDeposits])
 
     const HandleSearch = () => {
-        const altdeposits = fromAtom
+        const altdeposits = original
         if (!search) {
             setWrite(false)
-            setDeposits(fromAtom)
-            setpageend(fromAtom.length / 6)
+            setDeposits(original)
+            setpageend(original.length / 6)
             setpagestart(1)
             setStart(0)
             setEnd(6)
@@ -80,8 +80,8 @@ const Deposit = () => {
     const CancelWrite = () => {
         setSearch('')
         setWrite(false)
-        setDeposits(fromAtom)
-        setpageend(fromAtom.length / 6)
+        setDeposits(original)
+        setpageend(original.length / 6)
         setpagestart(1)
         setStart(0)
         setEnd(6)

@@ -21,6 +21,11 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
         setBeforeshow(false)
     }, 1500)
 
+    const Statuses = [
+        "running",
+        "completed"
+    ]
+
     const [form, setForm] = useState({
         profit: "",
         bonus: ""
@@ -33,7 +38,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
         })
     }
 
-    const UpdateHandler = () => {
+    const UpdateHandlerForText = () => {
         if (form.profit === '' && form.bonus === '' && status === singleInvestment.status) {
             setUpdate(false)
         } else {
@@ -41,10 +46,15 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
         }
     }
 
-    const Statuses = [
-        "running",
-        "completed"
-    ]
+    const UpdateHandlerForStatus = (item) => {
+        setStatus(item)
+        setStatusShow(false)
+        if (item === singleInvestment.status && form.bonus === '' && form.profit === '') {
+            setUpdate(false)
+        } else {
+            setUpdate(true)
+        }
+    }
 
     const MoveToBottom = () => {
         const move = document.querySelector('.move')
@@ -55,8 +65,10 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
     }
 
     useEffect(() => {
-        if (statusShow) {
-            MoveToBottom()
+        if (!loading) {
+            if (statusShow || status !== singleInvestment.status || form.profit !== '' || form.bonus !== '') {
+                MoveToBottom()
+            }
         }
     }, [MoveToBottom]
     )
@@ -153,7 +165,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                         <div className='flex gap-2 items-center'>
                                             <div className='flex gap-0.5 items-center text-xs'>
                                                 <div>$</div>
-                                                <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
+                                                <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler} onKeyUp={UpdateHandlerForText}></input>
                                             </div>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
                                                 <div>so far:</div>
@@ -166,7 +178,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                         <div className='flex gap-2 items-center'>
                                             <div className='flex gap-0.5 items-center text-xs'>
                                                 <div>$</div>
-                                                <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler} onKeyUp={UpdateHandler}></input>
+                                                <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler} onKeyUp={UpdateHandlerForText}></input>
                                             </div>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
                                                 <div>so far:</div>
@@ -179,7 +191,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                             <div className='italic '>status:</div>
                                             {singleInvestment.status === 'running' ?
                                                 <div className='relative'>
-                                                    <div className='px-2 py-1 h-fit md:w-48 w-36 rounded-sm bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
+                                                    <div className='px-2 py-1 h-fit md:w-48 w-36 rounded-[3px] bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                         <div className='flex justify-between items-center text-[0.8rem]'>
                                                             <span >{status}</span>
                                                             <div className={`flex flex-col items-center text-xs trans ${statusShow ? 'rotate-90' : 'rotate-0'} `}>
@@ -191,7 +203,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                                     {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                                         {Statuses.map((item, i) => (
                                                             <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                                                                <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => { setStatus(item); setStatusShow(false); setUpdate(true) }}>
+                                                                <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => UpdateHandlerForStatus(item)}>
                                                                     <div className={`text-[0.85rem] font-bold ${item === 'completed' && 'text-[green]'}`}>{item}</div>
                                                                 </div>
                                                             </div>

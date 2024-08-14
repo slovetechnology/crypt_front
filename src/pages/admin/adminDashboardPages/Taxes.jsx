@@ -3,8 +3,6 @@ import moment from 'moment';
 import { BsThreeDots } from 'react-icons/bs';
 import { IoIosSearch, IoIosSettings } from 'react-icons/io';
 import { FiX } from 'react-icons/fi'
-import { useAtom } from 'jotai';
-import { ADMINALLTAXES } from '../../../store';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
@@ -14,7 +12,7 @@ import TaxModal from '../../../AdminComponents/TaxComponents/TaxModal';
 
 
 const Taxes = () => {
-  const [fromAtom, setFromAtom] = useAtom(ADMINALLTAXES)
+  const [original, setOriginal] = useState([])
   const [allTaxes, setAllTaxes] = useState([])
   const [singleTax, setSingleTax] = useState({})
   const [modal, setModal] = useState(false)
@@ -32,7 +30,7 @@ const Taxes = () => {
       const response = await UserGetApi(Apis.admin.get_all_taxes)
       if (response.status === 200) {
         setAllTaxes(response.msg)
-        setFromAtom(response.msg)
+        setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
         setEnd(5)
@@ -57,10 +55,10 @@ const Taxes = () => {
   }
 
   const HandleSearch = () => {
-    const altTaxes = fromAtom
+    const altTaxes = original
     if (!search) {
-      setAllTaxes(fromAtom)
-      setpageend(fromAtom.length / 5)
+      setAllTaxes(original)
+      setpageend(original.length / 5)
       setWrite(false)
       setpagestart(1)
       setStart(0)
@@ -79,8 +77,8 @@ const Taxes = () => {
 
   const CancelWrite = () => {
     setSearch('')
-    setAllTaxes(fromAtom)
-    setpageend(fromAtom.length / 5)
+    setAllTaxes(original)
+    setpageend(original.length / 5)
     setWrite(false)
     setpagestart(1)
     setStart(0)
@@ -126,7 +124,7 @@ const Taxes = () => {
 
   return (
     <AdminDashboard>
-      <div className='h-screen'>
+      <div>
         {modal && <TaxModal closeView={() => setModal(false)} singleTax={singleTax} refetchAllTaxes={FetchAllTaxes} />}
         {modal2 && <SetTaxPercentage closeView={() => setModal2(false)} />}
 
@@ -150,7 +148,7 @@ const Taxes = () => {
           <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full '>
               <thead >
-                <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
+                <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => setModal(true)}>
                   <td className='text-center truncate  capitalize p-2 '>date</td>
                   <td className='text-center truncate  capitalize p-2 '>username</td>
                   <td className='text-center truncate  capitalize p-2 '>email</td>

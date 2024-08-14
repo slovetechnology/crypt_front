@@ -2,8 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BsCurrencyDollar } from "react-icons/bs";
 import { RiHistoryFill } from "react-icons/ri";
 import { IoListOutline } from "react-icons/io5";
-import { useAtom } from 'jotai';
-import { INVESTMENTS, INVESTMENTUNCLAIM } from '../../../store';
 import deposit3d from '../../../assets/images/deposit3d.png'
 import profit3d from '../../../assets/images/profit3d.png'
 import bonus3d from '../../../assets/images/bonus3d.png'
@@ -22,10 +20,9 @@ import { MoveToTop } from '../../../utils/utils';
 
 
 const Investment = () => {
-    const [fromAtom, setFromAtom] = useAtom(INVESTMENTS)
+    const [original, setOriginal] = useState([])
     const [investment, setInvestment] = useState([])
-    const [investmentUnclaim, setInvestUnclaim] = useAtom(INVESTMENTUNCLAIM)
-
+    const [investmentUnclaim, setInvestUnclaim] = useState([])
     const [investtitle, setInvestTitle] = useState('my investment')
     const [screen, setScreen] = useState(1)
     const [search, setSearch] = useState('')
@@ -41,7 +38,7 @@ const Investment = () => {
             const response = await UserGetApi(Apis.investment.user_investment)
             if (response.status === 200) {
                 setInvestment(response.msg)
-                setFromAtom(response.msg)
+                setOriginal(response.msg)
                 setpageend(response.msg.length / end)
             }
 
@@ -72,11 +69,11 @@ const Investment = () => {
 
 
     const HandleSearch = () => {
-        const altinvestment = fromAtom
+        const altinvestment = original
         if (!search) {
             setWrite(false)
-            setInvestment(fromAtom)
-            setpageend(fromAtom.length / 6)
+            setInvestment(original)
+            setpageend(original.length / 6)
             setpagestart(1)
             setStart(0)
             setEnd(6)
@@ -95,8 +92,8 @@ const Investment = () => {
     const CancelWrite = () => {
         setSearch('')
         setWrite(false)
-        setInvestment(fromAtom)
-        setpageend(fromAtom.length / 6)
+        setInvestment(original)
+        setpageend(original.length / 6)
         setpagestart(1)
         setStart(0)
         setEnd(6)
