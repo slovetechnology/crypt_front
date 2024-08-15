@@ -1,13 +1,18 @@
 import React, { useRef, useState } from 'react'
 import Loading from '../../GeneralComponents/Loading'
 import { RiErrorWarningLine } from 'react-icons/ri'
-import { Alert } from '../../utils/utils'
 import { Apis, PostApi } from '../../services/API'
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa6'
 import { countryApi } from '../../services/CountryAPI'
 import ModalLayout from '../../utils/ModalLayout'
+import { Alert } from '../../utils/utils'
+import { useAtom } from 'jotai'
+import { NOTIFICATIONS, UNREADNOTIS } from '../../store'
 
 const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
+  const [, setNotifications] = useAtom(NOTIFICATIONS)
+  const [, setUnreadNotis] = useAtom(UNREADNOTIS)
+
   const toggler = useRef()
   const [countries, setCountries] = useState(countryApi)
   const [countryshow, setCountryShow] = useState(false)
@@ -57,6 +62,7 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
     }, 2000)
 
     if (!form.full_name || !form.username || !form.email || !form.password) return setError('Enter all fields')
+    if (form.password.length < 6) return setError('Password length too short')
     if (usercountry.name === 'choose country') return setError('Choose user country')
     if (role === 'choose role') return setError('Assign a role')
 
@@ -65,24 +71,28 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
       username: form.username,
       email: form.email,
       password: form.password,
-      role: role
+      role: role,
+      country: usercountry.name,
+      country_flag: usercountry.flag
     }
 
     setLoading(true)
-    // try {
-    //   const response = await PostApi(Apis.user.signup, formbody)
-    //   if (response.status === 200) {
-    //     Alert('Request Successful', `${response.msg}`, 'success')
-    //     refetchAllUsers()
-    //     closeView()
-    //   } else {
-    //     setError(response.msg)
-    //   }
-    // } catch (error) {
-    //   Alert('Request Failed', `${error.message}`, 'error')
-    // } finally {
-    //   setLoading(false)
-    // }
+    try {
+      const response = await PostApi(Apis.admin.admin_create_account, formbody)
+      if (response.status === 200) {
+        Alert('Request Successful', `${response.msg}`, 'success')
+        refetchAllUsers()
+        setNotifications(response.notis)
+        setUnreadNotis(response.unread)
+        closeView()
+      } else {
+        setError(response.msg)
+      }
+    } catch (error) {
+      Alert('Request Failed', `${error.message}`, 'error')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

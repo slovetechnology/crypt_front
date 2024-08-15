@@ -35,11 +35,12 @@ const notification_urls = {
     admin_notifications: notification + 'admin-notifications',
     unread_notis: notification + 'unread-notis',
     admin_unread_notis: notification + 'admin-unread-notis',
-    delete_notification: notification + 'delete-notification',
     update_all: notification + 'update-all',
     update_admin_all: notification + 'update-admin-all',
     update_single: notification + 'update-single',
-    update_admin_single: notification + 'update-admin-single'
+    update_admin_single: notification + 'update-admin-single',
+    delete_notification: notification + 'delete-notification',
+    delete_admin_notification: notification + 'delete-admin-notification',
 }
 
 const withdrawal = 'api/withdrawal/'
@@ -86,7 +87,8 @@ const admin_urls = {
     get_admin_store: admin + 'admin-store',
     update_admin_store: admin + 'update-admin-store',
     get_all_taxes: admin + 'all-taxes',
-    update_taxes: admin + 'update-taxes'
+    update_taxes: admin + 'update-taxes',
+    admin_create_account: admin + 'admin-create-account'
 }
 
 export const Apis = {

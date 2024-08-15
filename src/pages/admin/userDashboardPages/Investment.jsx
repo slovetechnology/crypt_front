@@ -277,7 +277,7 @@ const Investment = () => {
                                                 <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
                                                 <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
                                                 <td className={`p-4  text-center truncate italic ${item.status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.status}</td>
-                                                <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-semi-white'}`}>{item.claim} </td>
+                                                <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.claim} </td>
                                             </tr>
                                         ))}
                                     </tbody>

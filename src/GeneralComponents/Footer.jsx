@@ -50,7 +50,7 @@ const Footer = () => {
             <div className="border-b border-[#29415c] pt-2 w-[60%]"></div>
             <div className='flex flex-col gap-4 mt-4'>
               {CompanyLinks.map((item, i) => (
-                <Link to={item.url} onClick={MoveToTop} className='hover:text-orange w-fit'>{item.path}</Link>
+                <Link key={i} to={item.url} onClick={MoveToTop} className='hover:text-orange w-fit'>{item.path}</Link>
               ))}
             </div>
           </div>

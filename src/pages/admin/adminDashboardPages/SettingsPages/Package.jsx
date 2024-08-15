@@ -4,16 +4,14 @@ import nothnyet from '../../../../assets/images/nothn.png'
 import { IoIosSettings } from 'react-icons/io';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { BsThreeDots } from 'react-icons/bs';
-import { useAtom } from 'jotai';
 import SettingsLayout from '../SettingsComponents/SettingsLayout';
 import UpdatePackageModal from '../SettingsComponents/PackagesComponents/UpdatePackageModal';
 import CreatePackageModal from '../SettingsComponents/PackagesComponents/CreatePackageModal';
-import { TRADINGPLANS } from '../../../../store';
 import { Apis, UserGetApi } from '../../../../services/API';
 
-const Package = () => {
-  const [tradingPlans, setTradingPlans] = useAtom(TRADINGPLANS)
 
+const Package = () => {
+  const [tradingPlans, setTradingPlans] = useState([])
   const [modal, setModal] = useState(false)
   const [modal2, setModal2] = useState(false)
   const [singlePlan, setSinglePlan] = useState({})
@@ -85,8 +83,8 @@ const Package = () => {
 
 
   return (
-    <SettingsLayout>
-      <div className='mt-4'>
+    <SettingsLayout>z
+      <div className='pt-10'>
         {modal && <UpdatePackageModal closeView={() => setModal(false)} singlePlan={singlePlan} refetchTradingPlans={FetchTradingPlans} />}
         {modal2 && <CreatePackageModal closeView={() => setModal2(false)} refetchTradingPlans={FetchTradingPlans} />}
 

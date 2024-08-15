@@ -39,6 +39,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
 
     if (!amount) return setError('amount')
     if (isNaN(amount)) return setError('amount')
+    if (amount < 20) return setError('amount')
     if (Object.values(selectValue).length === 0) return setError('select')
     if (!check) return setError('check')
 
@@ -80,7 +81,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
           <div className='font-bold uppercase border-b w-full text-center'>fund wallet</div>
           <div className='flex items-center gap-0.5'>
             <div className='text-xs'>$</div>
-            <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-2 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
+            <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[5px] px-1.5 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
           </div>
           <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>
             <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>

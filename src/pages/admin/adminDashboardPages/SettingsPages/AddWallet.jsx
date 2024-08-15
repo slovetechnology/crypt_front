@@ -4,16 +4,14 @@ import nothnyet from '../../../../assets/images/nothn.png'
 import { IoIosSettings } from 'react-icons/io';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { BsThreeDots } from 'react-icons/bs';
-import { useAtom } from 'jotai';
 import SettingsLayout from '../SettingsComponents/SettingsLayout';
 import UpdateWalletModal from '../SettingsComponents/AdminWalletComponents/UpdateWalletModal';
 import CreateWalletModal from '../SettingsComponents/AdminWalletComponents/CreateWalletModal';
-import { ADMINWALLETS } from '../../../../store';
 import { Apis, imageurl, UserGetApi } from '../../../../services/API';
 
-const AddWallet = () => {
-  const [adminWallets, setAdminWallets] = useAtom(ADMINWALLETS)
 
+const AddWallet = () => {
+  const [adminWallets, setAdminWallets] = useState([])
   const [modal, setModal] = useState(false)
   const [modal2, setModal2] = useState(false)
   const [singleWallet, setSingleWallet] = useState({})
@@ -88,9 +86,9 @@ const AddWallet = () => {
 
   return (
     <SettingsLayout>
-      <div className='mt-4'>
+      <div className='pt-10'>
         {modal && <UpdateWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} refetchAdminWallets={FetchAdminWallets} />}
-        {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets}/>}
+        {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets} />}
 
         <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center ml-auto mb-2' onClick={() => setModal2(true)}>
           <span>create new wallet</span>

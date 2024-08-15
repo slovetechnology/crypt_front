@@ -23,7 +23,7 @@ import Dashboard from './Dashboard';
 
 const Profile = () => {
     const [user, setUser] = useAtom(PROFILE)
-    
+
     const [nameEdit, setNameEdit] = useState(false)
     const [userEdit, setUserEdit] = useState(false)
     const [emailEdit, setEmailEdit] = useState(false)
@@ -125,7 +125,6 @@ const Profile = () => {
 
         const formbody = new FormData()
         formbody.append('image', profile.image)
-        formbody.append('user_id', user.id)
         formbody.append('full_name', form.full_name)
         formbody.append('username', form.username)
         formbody.append('email', form.email)
@@ -232,21 +231,28 @@ const Profile = () => {
                     <div className='mt-8 '>
                         <div className='flex gap-8 items-center w-fit overflow-hidden h-fit bg-semi-white rounded-xl capitalize shlz md:px-8 px-4 py-4 mx-auto'>
                             <div className='flex items-center gap-5'>
-                                <Link to='/dashboard/verify-account' onClick={() => MoveToTop()}>
-                                    <div className='flex flex-col gap-2'>
-                                        <div className='md:text-[1.4rem] text-lg text-black'>Status</div>
-                                        <div className='cursor-pointer'>
-                                            {user.email_verified === 'true' && <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
-                                                <span className='text-zinc-700'>verified</span>
-                                                <MdVerified className='text-light ' />
-                                            </div>}
-                                            {user.email_verified === 'false' && <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]'>
+                                <div className='flex flex-col gap-2'>
+                                    <div className='md:text-[1.4rem] text-lg text-black'>Status</div>
+                                    <Link to='/dashboard/verify-account' onClick={() => MoveToTop()} >
+                                        {user.email_verified === 'false' && user.kyc_verified === 'false' ?
+                                            <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]'>
                                                 <span>unverified</span>
                                                 <MdSentimentVeryDissatisfied />
-                                            </div>}
-                                        </div>
-                                    </div>
-                                </Link>
+                                            </div>
+                                            :
+                                            <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
+                                                <span className='text-zinc-700'>verified</span>
+                                                <MdVerified className={`${user.email_verified === 'true' ? 'text-light' : 'text-[#a09e9e]'}`} />
+                                                <MdVerified className={`${user.kyc_verified === 'true' ? 'text-[#b19e34]' : 'text-[grey]'}`} />
+                                                {user.email_verified === 'false' || user.kyc_verified === 'false' ?
+                                                    <span>1/2</span>
+                                                    :
+                                                    <span></span>
+                                                }
+                                            </div>
+                                        }
+                                    </Link>
+                                </div>
                                 <div className='border-r-2 h-12 border-[#bebebe]'></div>
                                 <div className='flex flex-col gap-2'>
                                     <div className='md:text-[1.4rem] text-lg text-black '>joined</div>
@@ -269,7 +275,7 @@ const Profile = () => {
                                 <div className='capitalize'>referral id:</div>
                                 <div className='flex gap-4 items-center'>
                                     <span>{user.referral_id}</span>
-                                    <button className='outline-none w-fit h-fit py-1.5 px-2 text-[0.8rem] text-semi-white bg-light rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()} type='button'>
+                                    <button className='outline-none w-fit h-fit py-1.5 px-2 text-[0.8rem] text-semi-white bg-[#594ca1] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()} type='button'>
                                         {!copy && <MdContentCopy />}
                                         {copy && <FaCheck />}
                                     </button>
@@ -331,11 +337,11 @@ const Profile = () => {
                                 {passEdit && <div className='flex md:gap-4 gap-2 items-center'>
                                     <div className='flex flex-col gap-6'>
                                         <div className='relative'>
-                                            <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                            <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye ? 'text' : 'password'}`}></input>
                                             <EyeIcon className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye(!eye)} />
                                         </div>
                                         <div className='relative'>
-                                            <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye2 === true ? 'text' : 'password'}`}></input>
+                                            <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye2 ? 'text' : 'password'}`}></input>
                                             <EyeIcon2 className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
                                         </div>
                                     </div>
@@ -346,12 +352,12 @@ const Profile = () => {
                             </div>
                             {commit &&
                                 <div className='flex md:gap-8 gap-4 items-center justify-center md:mt-8 mt-4'>
-                                    <button className='outline-none w-fit h-fit py-2 px-6 md:text-sm text-xs text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-[550]' type='button' onClick={cancelChanges}>
-                                        <span>cancel changes</span>
+                                    <button className='outline-none w-fit h-fit py-2 px-6 text-xs text-semi-white  bg-[#594ca1] rounded-md capitalize flex items-center gap-1 font-[550]' type='button' onClick={cancelChanges}>
+                                        <span>cancel</span>
                                         <FaRegRectangleXmark />
                                     </button>
-                                    <button className='outline-none w-fit h-fit py-2 px-6 md:text-sm text-semi-white  bg-light rounded-md capitalize flex items-center gap-1 font-[550]'>
-                                        <span>save changes</span>
+                                    <button className='outline-none w-fit h-fit py-2 px-6 text-xs text-semi-white  bg-[#594ca1] rounded-md capitalize flex items-center gap-1 font-[550]'>
+                                        <span>save</span>
                                         <IoCheckbox />
                                     </button>
                                 </div>

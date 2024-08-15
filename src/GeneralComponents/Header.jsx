@@ -104,7 +104,7 @@ const Header = () => {
                                 </div>
                                 <div className={`flex flex-col gap-5 bg-white py-8 pl-10 pr-3 w-56 h-fit absolute top-[3.7rem] -left-8 shd ${toggleDroptwo ? 'flex' : 'hidden'}`} ref={closertwo}>
                                     {CompanyLinks.map((item, i) => (
-                                        <Link to={item.url} onClick={() => { setToggleDroptwo(false); MoveToTop() }} className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>
+                                        <Link key={i} to={item.url} onClick={() => { setToggleDroptwo(false); MoveToTop() }} className='flex gap-2 items-center hover:bg-[#d4dcdf] rounded-lg p-3 transition-all'>
                                             <item.icon className='text-[1.2rem] text-[#1E2833]' />
                                             <div className='text-[#1E2833] text-[0.95rem] font-medium capitalize'>{item.path}</div>
                                         </Link>

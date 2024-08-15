@@ -151,7 +151,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>tax message:</div>
                                         <div className='flex flex-col gap-1'>
-                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem]  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
+                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
                                         </div>
                                     </div>
                                     <div className='flex flex-col gap-6 my-6'>

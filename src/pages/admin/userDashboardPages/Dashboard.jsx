@@ -266,13 +266,13 @@ const Dashboard = ({ children }) => {
                             <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                                 <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-light' : ' text-semi-white'}`} >
                                     <item.icon className='md:text-xl text-base ' />
-                                    <div className='capitalize md:text-xs text-[0.6rem] font-medium'>{item.path}</div>
+                                    <div className='capitalize md:text-[0.7rem] text-[0.6rem] font-medium'>{item.path}</div>
                                 </div>
                             </Link>
                         ))}
                         <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow) }}>
                             <HiOutlineDotsVertical className={`md:text-xl text-base`} />
-                            <div className='capitalize md:text-xs text-[0.6rem] font-medium'>more</div>
+                            <div className='capitalize md:text-[0.7rem] text-[0.6rem] font-medium'>more</div>
                         </div>
                     </div>
                 </div>
@@ -288,6 +288,7 @@ const Dashboard = ({ children }) => {
                         <div className='flex gap-1'>
                             <div className='text-semi-white '>{user.username}</div>
                             {user.email_verified === 'true' && <MdVerified className='text-[0.7rem] text-light border-light' />}
+                            {user.kyc_verified === 'true' && <MdVerified className='text-[0.7rem] text-[#b19e34] border-light' />}
                         </div>
                         <div className='text-[grey] text-[0.8rem] font-medium lowercase -mt-2 '>{user.email}</div>
                         <Link to='/dashboard/profile' onClick={() => MoveToTop()}>

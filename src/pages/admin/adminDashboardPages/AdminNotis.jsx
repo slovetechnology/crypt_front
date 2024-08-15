@@ -19,7 +19,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
     const [mark, setMark] = useState(false)
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(4)
-    const [pagestart, setPagestart] = useState(1)
+    const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
 
     const closer = useRef()
@@ -64,7 +64,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
             setStart(altstart)
 
             altlengthstart += 1
-            setPagestart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -82,7 +82,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
             setStart(altstart)
 
             altlengthstart -= 1
-            setPagestart(altlengthstart)
+            setpagestart(altlengthstart)
         }
     }
 
@@ -132,7 +132,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
                 </div>
                 {notifications.length > 0 ? <div className='mt-2 md:mt-0'>
                     {notifications.slice(start, end).map((item, i) => (
-                        <AdminNotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} setShowNotis={setShowNotis} />
+                        <AdminNotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} setShowNotis={setShowNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} />
                     ))}
                 </div>
                     :

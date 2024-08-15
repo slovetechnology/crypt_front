@@ -18,7 +18,7 @@ const Withdrawals = () => {
     const [write, setWrite] = useState(false)
     const [search, setSearch] = useState('')
     const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(5)
+    const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
 
@@ -31,7 +31,7 @@ const Withdrawals = () => {
                 setOriginal(response.msg)
                 setpageend(response.msg.length / end)
                 setStart(0)
-                setEnd(5)
+                setEnd(6)
                 setpagestart(1)
                 setSearch('')
                 setWrite(false)
@@ -55,31 +55,31 @@ const Withdrawals = () => {
         const altwithdrawals = original
         if (!search) {
             setAllWithdrawals(original)
-            setpageend(original.length / 5)
+            setpageend(original.length / 6)
             setWrite(false)
             setpagestart(1)
             setStart(0)
-            setEnd(5)
+            setEnd(6)
         }
         else {
             setWrite(true)
             const showSearch = altwithdrawals.filter(item => item.wthUser.username.includes(search.toLowerCase()) || item.wthUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
-            setpageend(showSearch.length / 5)
+            setpageend(showSearch.length / 6)
             setpagestart(1)
             setStart(0)
-            setEnd(5)
+            setEnd(6)
         }
     }
 
     const CancelWrite = () => {
         setSearch('')
         setAllWithdrawals(original)
-        setpageend(original.length / 5)
+        setpageend(original.length / 6)
         setWrite(false)
         setpagestart(1)
         setStart(0)
-        setEnd(5)
+        setEnd(6)
     }
 
     let MovePage = () => {
@@ -89,10 +89,10 @@ const Withdrawals = () => {
             let altend = end
             let altlengthstart = pagestart
 
-            altend += 5
+            altend += 6
             setEnd(altend)
 
-            altstart += 5
+            altstart += 6
             setStart(altstart)
 
             altlengthstart += 1
@@ -102,15 +102,15 @@ const Withdrawals = () => {
 
     let BackPage = () => {
 
-        if (end > 5) {
+        if (end > 6) {
             let altstart = start
             let altend = end
             let altlengthstart = pagestart
 
-            altend -= 5
+            altend -= 6
             setEnd(altend)
 
-            altstart -= 5
+            altstart -= 6
             setStart(altstart)
 
             altlengthstart -= 1
@@ -121,10 +121,10 @@ const Withdrawals = () => {
 
     return (
         <AdminDashboard>
-            <div>
+            <div className='h-screen pt-10'>
                 {modal && <WithdrawalsModal closeView={() => setModal(false)} singleWithdrawal={singleWithdrawal} refetchAllWithdrawals={FetchAllWithdrawals} />}
 
-                <div className='uppercase font-bold md:text-2xl text-lg text-black pt-10'>withdrawals</div>
+                <div className='uppercase font-bold md:text-2xl text-lg text-black'>withdrawals</div>
                 <div className='mt-12'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>

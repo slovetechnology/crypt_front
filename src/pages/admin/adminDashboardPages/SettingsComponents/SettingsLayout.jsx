@@ -15,14 +15,14 @@ const SettingsLayout = ({ children }) => {
 
   return (
     <AdminDashboard>
-      <div className='pt-10'>
+      <div className='pt-10 h-screen'>
         <div className='uppercase font-bold md:text-2xl text-lg text-black'>settings</div>
         <div className="flex items-center gap-1 mt-4">
           {SettingsLinks.map((item, index) => (
             <Link key={index} to={item.url} className={`py-1.5 px-4 rounded-lg capitalize text-sm font-medium cursor-pointer ${location.pathname === item.url ? ' bg-zinc-100' : ''} `}>{item.path}</Link>
           ))}
         </div>
-        <div className='mt-10'>
+        <div>
           {children}
         </div>
       </div>

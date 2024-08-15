@@ -3,8 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { IoIosSearch } from 'react-icons/io'
 import { IoCheckbox } from 'react-icons/io5'
-import { RiHistoryFill } from 'react-icons/ri'
-import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET} from '../../../store'
+import { RiErrorWarningLine, RiHistoryFill } from 'react-icons/ri'
+import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET } from '../../../store'
 import { MdSentimentVeryDissatisfied } from 'react-icons/md'
 import moment from 'moment'
 import LoadingAdmin from '../../../GeneralComponents/LoadingAdmin'
@@ -25,7 +25,7 @@ const Withdraw = () => {
     const [adminWallets] = useAtom(ADMINWALLETS)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
-    
+
     const [original, setOriginal] = useState([])
     const [withdrawals, setWithdrawals] = useState([])
     const [withdrawTitle, setWithdrawTitle] = useState('withdraw')
@@ -81,7 +81,9 @@ const Withdraw = () => {
         if (Object.values(selectValue).length === 0) return setError('select')
         if (!walletAddress) return setError('wallet')
         if (!check) return setError('check')
-        if (user.email_verified === 'false') return setErrorMsg('Complete account verification to continue')
+        if (user.email_verified === 'false') return setErrorMsg('Complete account verification to continue;')
+        if (user.kyc_verified === 'false') return setErrorMsg('Complete account verification to continue;')
+
 
         const formbody = {
             amount: parseFloat(amount),
@@ -219,10 +221,10 @@ const Withdraw = () => {
                                     <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                                     <div className='flex items-center gap-0.5'>
                                         <div className='text-xs'>$</div>
-                                        <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-2 h-8 rounded-[5px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                        <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[5px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     </div>
                                 </div>
-                                <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
+                                <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3.5 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
                                     <div className='flex  justify-center items-center gap-1'>
                                         <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
                                         <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
@@ -264,14 +266,13 @@ const Withdraw = () => {
                                     <span>make withdrawal</span>
                                     <IoCheckbox />
                                 </button>
-                                <Link to='/dashboard/verify-account'>
-                                    <div className='absolute -bottom-8 left-0 text-[0.8rem] font-[600] text-[red] cursor-pointer flex gap-1 items-center'>
-                                        <span>{errorMsg}</span>
-                                        {errorMsg !== '' && <MdSentimentVeryDissatisfied />}
-                                    </div>
-                                </Link>
                             </div>
                         </div>
+                        {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] cursor-pointer flex gap-1 items-center bg-[#bdbcbc] p-1 rounded-sm'>
+                            <RiErrorWarningLine className='text-sm'/>
+                            <span>{errorMsg}</span>
+                            <Link to='/dashboard/verify-account' className='underline'>click here</Link>
+                        </div>}
                     </div>
                 }
                 {screen === 2 && <div className='mt-12'>
