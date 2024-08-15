@@ -83,7 +83,7 @@ const Package = () => {
 
 
   return (
-    <SettingsLayout>z
+    <SettingsLayout>
       <div className='pt-10'>
         {modal && <UpdatePackageModal closeView={() => setModal(false)} singlePlan={singlePlan} refetchTradingPlans={FetchTradingPlans} />}
         {modal2 && <CreatePackageModal closeView={() => setModal2(false)} refetchTradingPlans={FetchTradingPlans} />}
