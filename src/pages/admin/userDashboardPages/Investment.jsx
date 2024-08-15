@@ -138,7 +138,7 @@ const Investment = () => {
 
     return (
         <Dashboard>
-            <div className={`pt-10 pb-24 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 1 ? 'h-fit' : 'h-screen'} z-10 `}>
+            <div className={`pt-10 pb-24 ${screen === 2 && 'h-screen'} ${investmentUnclaim.length > 1 ? 'h-fit' : 'h-screen'}`}>
                 <div className='flex justify-between items-center'>
                     <div className='uppercase font-bold md:text-2xl text-lg text-semi-white'>{investtitle}</div>
                     {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>

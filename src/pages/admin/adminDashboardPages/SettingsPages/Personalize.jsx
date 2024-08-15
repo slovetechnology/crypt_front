@@ -131,7 +131,7 @@ const Personalize = () => {
     <SettingsLayout>
       <div className='relative'>
         {loading && <Loading />}
-        <div className='md:w-3/4 w-11/12 mx-auto md:mt-4 mt-8'>
+        <div className='md:w-3/4  mx-auto mt-10 mb-20'>
           <div className='flex items-center justify-center gap-2 flex-col'>
             <div className='md:w-40 md:h-40 h-32 w-32 rounded-full bg-[#c9b8eb] flex items-center justify-center relative'>
               <div className='md:w-[9.5rem] md:h-[9.5rem] w-[7.5rem] h-[7.5rem]'>
@@ -145,8 +145,12 @@ const Personalize = () => {
               </label>
               <div className='absolute -bottom-1.5 -right-10 text-xs text-[red]'>{imageError}</div>
             </div>
+            <div>
+              <div className='capitalize font-bold md:text-2xl text-lg text-center'>{user.full_name}</div>
+              <div className='capitalize font-bold text-[#9f7ae7] text-center text-sm'>admin</div>
+            </div>
           </div>
-          <form className='flex flex-col md:gap-4 gap-6 md:mt-4 mt-6' onSubmit={SubmitForm}>
+          <form className='flex flex-col gap-6 mt-10' onSubmit={SubmitForm}>
             <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
               <div className='flex flex-col gap-1'>
                 <div className='text-sm capitalize font-[550] '>full name:</div>
@@ -177,7 +181,7 @@ const Personalize = () => {
               </div>
             </div>
             {commit &&
-              <div className='flex md:gap-8 gap-4 items-center justify-center md:mt-0 lg:mt-4 mt-4'>
+              <div className='flex md:gap-8 gap-4 items-center justify-center mt-4'>
                 <button className='outline-none w-fit h-fit py-2 px-6 text-xs text-semi-white  bg-[#462c7c] rounded-md capitalize flex items-center gap-1 font-[550]' type='button' onClick={cancelChanges}>
                   <span>cancel</span>
                   <FaRegRectangleXmark />

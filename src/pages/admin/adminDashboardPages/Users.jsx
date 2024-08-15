@@ -125,7 +125,7 @@ const Users = () => {
 
   return (
     <AdminDashboard>
-      <div className='h-screen pt-10'>
+      <div>
         {modal && <UsersModal closeView={() => setModal(false)} singleUser={singleUser} userFigures={userFigures} refetchAllUsers={FetchAllUsers} />}
         {modal2 && <CreateUsersModal closeView={() => setModal2(false)} refetchAllUsers={FetchAllUsers} />}
         {modal3 && <SetReferralModal closeView={() => setModal3(false)} />}
@@ -139,7 +139,7 @@ const Users = () => {
             <div className='text-[0.85rem]'>{allusers.length}</div>
           </div>
         </div>
-        <div className='mt-12'>
+        <div className='mt-10 mb-10 lg:mb-0'>
           <div className='relative w-fit mx-auto'>
             <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
             <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10  rounded-full flex items-center justify-center bg-admin-page shantf2' >

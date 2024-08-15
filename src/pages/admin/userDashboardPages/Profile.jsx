@@ -208,7 +208,7 @@ const Profile = () => {
                 {loading && <LoadingAdmin />}
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white mb-6 '>profile</div>
                 <div>
-                    <div className='flex items-center justify-center gap-2 flex-col'>
+                    <div className='flex items-center justify-center'>
                         <div className='md:w-[12.5rem] md:h-[12.5rem] h-[8.5rem] w-[8.5rem] rounded-full bg-[#afa7df] flex items-center justify-center relative'>
                             <div className='md:w-48 md:h-48 w-32 h-32'>
                                 <img className='w-full h-full rounded-full object-cover' src={profile.img}></img>
@@ -222,7 +222,6 @@ const Profile = () => {
                             <div className='absolute -bottom-1.5 -right-10 text-xs text-[#c42e2e]'>{imageError}</div>
                         </div>
                     </div>
-
                     <div className=' justify-center  mt-4  text-semi-white flex gap-2 items-center'>
                         <div className='capitalize font-bold md:text-2xl text-lg'>{user.full_name}</div>
                         <img className='md:h-4 h-2 w-auto' src={user.country_flag}></img>

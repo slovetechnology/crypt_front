@@ -107,67 +107,65 @@ const AdminDashboard = ({ children }) => {
 
 
   return (
-    <div className='w-full flex relative'>
-      <div className={`w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:block lg:relative overflow-hidden ${slideShow ? 'block fixed top-0 left-0 h-full z-50' : 'hidden'}`}>
-        <div className={`xl:w-[20%] lg:w-[25%] lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:bg-admin-auth`}>
-          <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
-            <LuX />
-          </div>
-          <div className='flex justify-center lg:mt-14 mt-12 items-center'>
-            <img src={logo} className='w-12 h-auto'></img>
-            <div className=' capitalize font-bold lg:text-[#7561a0] text-[#462eb3] drop-shadow-txt-sha2 text-2xl'>AialgoControls</div>
-          </div>
-          <div className='flex flex-col gap-8  mt-10 pl-12 lg:text-[#bbb9b9] text-semi-white '>
-            <div className='flex gap-4 flex-col'>
-              <div className=' text-[0.65rem] uppercase'>main</div>
-              <div className='flex flex-col gap-8'>
-                {MainLinks.map((item, i) => (
-                  <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
-                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
-                      <item.icon className='text-[1.3rem] ' />
-                      <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-            <div className='flex gap-4 flex-col'>
-              <div className='text-[0.65rem] uppercase'>others</div>
-              <div className='flex flex-col gap-8'>
-                {OtherLinks.map((item, i) => (
-                  <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
-                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
-                      <item.icon className='text-[1.3rem] ' />
-                      <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
-                    </div>
-                  </Link>
-                ))}
-                <div className='relative'>
-                  <div className='flex gap-3 lg:text-[#bbb9b9] text-semi-white lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
-                    <RiLogoutCircleLine className='text-[1.3rem] ' />
-                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
+    <div className='flex relative overflow-hidden'>
+      <div className={`w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:block overflow-hidden ${slideShow ? 'block fixed top-0 left-0 h-full z-50' : 'hidden'}`}>
+        <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
+          <LuX />
+        </div>
+        <div className='flex justify-center lg:mt-14 mt-12 items-center'>
+          <img src={logo} className='w-12 h-auto'></img>
+          <div className=' capitalize font-bold lg:text-[#7561a0] text-[#462eb3] drop-shadow-txt-sha2 text-2xl'>AialgoControls</div>
+        </div>
+        <div className='flex flex-col gap-8  mt-10 pl-12 lg:text-[#bbb9b9] text-semi-white '>
+          <div className='flex gap-4 flex-col'>
+            <div className=' text-[0.65rem] uppercase'>main</div>
+            <div className='flex flex-col gap-8'>
+              {MainLinks.map((item, i) => (
+                <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                  <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
+                    <item.icon className='text-[1.3rem] ' />
+                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
                   </div>
-                  {logout && <div className='absolute top-0 -left-4 lg:right-4 lg:bg-admin-auth bg-[#27137e] w-fit  h-fit z-10 rounded-[10px] text-white p-4 lg:shadow-logout-sha3 shadow-logout-sha2'>
-                    <div className=' text-[0.8rem] mb-4 text-center'>Logout of your account?</div>
-                    <div className='flex gap-[1rem] items-center'>
-                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white lg:hover:text-admin-auth hover:text-[#27137e] lg:bg-admin-auth bg-[#27137e] ' onClick={() => setLogOut(!logout)}>
-                        <span>cancel</span>
-                        <TiCancel className='text-[0.8rem]' />
-                      </button>
-                      <button className='outline-none py-1 px-4 w-fit h-fit border border-white  rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white lg:hover:text-admin-auth hover:text-[#27137e] lg:bg-admin-auth bg-[#27137e]' onClick={logoutAccount}>
-                        <span>logout</span>
-                        <IoMdLogOut className='text-[0.7rem]' />
-                      </button>
-                    </div>
-                  </div>}
+                </Link>
+              ))}
+            </div>
+          </div>
+          <div className='flex gap-4 flex-col'>
+            <div className='text-[0.65rem] uppercase'>others</div>
+            <div className='flex flex-col gap-8'>
+              {OtherLinks.map((item, i) => (
+                <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                  <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
+                    <item.icon className='text-[1.3rem] ' />
+                    <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
+                  </div>
+                </Link>
+              ))}
+              <div className='relative'>
+                <div className='flex gap-3 lg:text-[#bbb9b9] text-semi-white lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full' onClick={() => setLogOut(!logout)}>
+                  <RiLogoutCircleLine className='text-[1.3rem] ' />
+                  <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                 </div>
+                {logout && <div className='absolute top-0 -left-4 lg:right-4 lg:bg-admin-auth bg-[#27137e] w-fit  h-fit z-10 rounded-[10px] text-white p-4 lg:shadow-logout-sha3 shadow-logout-sha2'>
+                  <div className=' text-[0.8rem] mb-4 text-center'>Logout of your account?</div>
+                  <div className='flex gap-[1rem] items-center'>
+                    <button className='outline-none py-1 px-4 w-fit h-fit border border-white rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white lg:hover:text-admin-auth hover:text-[#27137e] lg:bg-admin-auth bg-[#27137e] ' onClick={() => setLogOut(!logout)}>
+                      <span>cancel</span>
+                      <TiCancel className='text-[0.8rem]' />
+                    </button>
+                    <button className='outline-none py-1 px-4 w-fit h-fit border border-white  rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white lg:hover:text-admin-auth hover:text-[#27137e] lg:bg-admin-auth bg-[#27137e]' onClick={logoutAccount}>
+                      <span>logout</span>
+                      <IoMdLogOut className='text-[0.7rem]' />
+                    </button>
+                  </div>
+                </div>}
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className={`xl:w-[80%] lg:w-[75%] w-full bg-white`}>
+      <div className={`xl:w-[80%] lg:w-[75%] w-full bg-white h-screen overflow-y-auto`}>
         <div className='md:w-[94%] w-11/12 mx-auto'>
           <div className='flex flex-col gap-4'>
             <div className='w-full h-fit  rounded-md bg-admin-auth mt-4 px-4 py-2 text-white text-[0.85rem] flex items-center justify-between'>
@@ -190,7 +188,7 @@ const AdminDashboard = ({ children }) => {
               }
             </div>
           </div>
-          <div>
+          <div className='py-10'>
             {children}
           </div>
           <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>

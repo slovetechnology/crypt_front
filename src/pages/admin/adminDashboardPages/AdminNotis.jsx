@@ -14,11 +14,11 @@ import AdminNotisField from '../../../AdminComponents/AdminNotisField'
 const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
     const [notifications] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
-
+    
     const [showNotis, setShowNotis] = useState(false)
     const [mark, setMark] = useState(false)
     const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(4)
+    const [end, setEnd] = useState(3)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
 
@@ -57,10 +57,10 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
             let altend = end
             let altlengthstart = pagestart
 
-            altend += 4
+            altend += 3
             setEnd(altend)
 
-            altstart += 4
+            altstart += 3
             setStart(altstart)
 
             altlengthstart += 1
@@ -70,15 +70,15 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
 
     let BackNotisPage = () => {
 
-        if (end > 4) {
+        if (end > 3) {
             let altstart = start
             let altend = end
             let altlengthstart = pagestart
 
-            altend -= 4
+            altend -= 3
             setEnd(altend)
 
-            altstart -= 4
+            altstart -= 3
             setStart(altstart)
 
             altlengthstart -= 1
@@ -89,14 +89,14 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
     return (
         <div className='relative'>
             <>
-                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 4) }}>
+                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 3) }}>
                     <IoNotificationsOutline />
                 </div>
                 <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white  border-white cursor-pointer  ${showNotis ? 'flex' : 'hidden'}`}>
                     <IoNotificationsOutline />
                 </div>
                 <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-[#462c7c] text-[0.65rem] font-extrabold bg-white notisha'>
-                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 4) }}>
+                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 3) }}>
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :

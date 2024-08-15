@@ -15,7 +15,7 @@ const SettingsLayout = ({ children }) => {
 
   return (
     <AdminDashboard>
-      <div className='pt-10 h-screen'>
+      <div>
         <div className='uppercase font-bold md:text-2xl text-lg text-black'>settings</div>
         <div className="flex items-center gap-1 mt-4">
           {SettingsLinks.map((item, index) => (

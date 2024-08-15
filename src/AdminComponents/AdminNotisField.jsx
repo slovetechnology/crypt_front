@@ -18,23 +18,21 @@ const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setSh
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()
-                setpageend(response.msg.length / 4)
-                if (pagestart > Math.ceil(response.msg.length / 4)) {
+                setpageend(response.msg.length / 3)
+                if (pagestart > Math.ceil(response.msg.length / 3)) {
                     let altstart = start
                     let altend = end
                     let altlengthstart = pagestart
 
-                    altend -= 4
+                    altend -= 3
                     setEnd(altend)
 
-                    altstart -= 4
+                    altstart -= 3
                     setStart(altstart)
 
                     altlengthstart -= 1
                     setpagestart(altlengthstart)
                 }
-            }else {
-                console.log(response.msg)
             }
         } catch (error) {
         }
