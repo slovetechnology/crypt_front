@@ -46,7 +46,6 @@ const toggleArray = [
 
 
 const Dashboard = ({ children }) => {
-    const [logout, setLogOut] = useState(false)
     const [user] = useAtom(PROFILE)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
@@ -55,6 +54,7 @@ const Dashboard = ({ children }) => {
     const [, setAdminWallets] = useAtom(ADMINWALLETS)
     const [, setTradingPlans] = useAtom(TRADINGPLANS)
 
+    const [logout, setLogOut] = useState(false)
     const [slideShow, setSlideShow] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
@@ -260,7 +260,7 @@ const Dashboard = ({ children }) => {
                         {children}
                     </div>
                 </div>
-                <div className='bg-[#131024] w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
+                <div className='bg-[#131024] w-full md:h-14 h-12 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
                     <div className='grid grid-cols-5 items-center h-full w-full'>
                         {MainLinks.map((item, i) => (
                             <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>

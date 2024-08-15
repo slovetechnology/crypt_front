@@ -44,6 +44,7 @@ const AdminDashboard = ({ children }) => {
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
   const [, setAdminStore] = useAtom(ADMINSTORE)
+  
   const [logout, setLogOut] = useState(false)
   const [slideShow, setSlideShow] = useState(false)
   const navigate = useNavigate()
@@ -146,7 +147,7 @@ const AdminDashboard = ({ children }) => {
                   <RiLogoutCircleLine className='text-[1.3rem] ' />
                   <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                 </div>
-                {logout && <div className='absolute top-0 -left-4 lg:right-4 lg:bg-admin-auth bg-[#27137e] w-fit  h-fit z-10 rounded-[10px] text-white p-4 lg:shadow-logout-sha3 shadow-logout-sha2'>
+                {logout && <div className='absolute lg:top-0 -top-16 -left-4 lg:right-4 lg:bg-admin-auth bg-[#27137e] w-fit  h-fit z-10 rounded-[10px] text-white p-4 lg:shadow-logout-sha3 shadow-logout-sha2'>
                   <div className=' text-[0.8rem] mb-4 text-center'>Logout of your account?</div>
                   <div className='flex gap-[1rem] items-center'>
                     <button className='outline-none py-1 px-4 w-fit h-fit border border-white rounded-lg capitalize text-xs flex items-center gap-1 hover:bg-white lg:hover:text-admin-auth hover:text-[#27137e] lg:bg-admin-auth bg-[#27137e] ' onClick={() => setLogOut(!logout)}>
@@ -191,7 +192,7 @@ const AdminDashboard = ({ children }) => {
           <div className='py-10'>
             {children}
           </div>
-          <div className='bg-admin-auth w-full h-14 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
+          <div className='bg-admin-auth w-full md:h-14 h-12 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-5 items-center h-full w-full'>
               {MainLinks.map((item, i) => (
                 <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
