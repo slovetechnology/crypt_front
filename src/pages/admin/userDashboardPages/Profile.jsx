@@ -189,8 +189,10 @@ const Profile = () => {
     }
 
     const MoveToBottom = () => {
-        document.documentElement.scrollTo({
-            top: document.documentElement.scrollHeight
+        const move = document.querySelector('.move')
+        move.scrollTo({
+            top: move.scrollHeight,
+            behavior: 'smooth'
         })
     }
 
@@ -200,11 +202,9 @@ const Profile = () => {
         }
     }, [MoveToBottom])
 
-    document.documentElement.style.overflow = loading ? 'hidden' : 'auto'
-
     return (
         <Dashboard>
-            <div className='relative pt-10 lg:pb-10 pb-24 h-fit'>
+            <div className='relative pb-10 lg:pb-0'>
                 {loading && <LoadingAdmin />}
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white mb-6 '>profile</div>
                 <div>
@@ -378,11 +378,11 @@ const Profile = () => {
                                     <PiWarningCircleBold className='text-[red]' />
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center justify-center mt-8'>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-admin-btn rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
                                         <span>cancel action</span>
                                         <FaRegRectangleXmark />
                                     </button>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={() => setDeleteScreen(2)}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={() => setDeleteScreen(2)}>
                                         <span>proceed action</span>
                                         <IoCheckbox />
                                     </button>
@@ -396,16 +396,16 @@ const Profile = () => {
                                 </div>
                                 <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-transparent lg:text-[0.85rem] text-base w-48 h-8 rounded-md pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-light bg-transparent lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon className='absolute top-2 right-2 cursor-pointer text-light' onClick={() => setEye(!eye)} />
                                         <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                     </div>
                                     <div className='flex md:gap-16 gap-6 items-center'>
-                                        <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setDeleteScreen(0); setDeletePassword('') }}>
+                                        <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setDeleteScreen(0); setDeletePassword('') }}>
                                             <span>cancel deletion</span>
                                             <FaRegRectangleXmark />
                                         </button>
-                                        <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={DeleteAccount}>
+                                        <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={DeleteAccount}>
                                             <span>delete account</span>
                                             <MdOutlineDeleteForever />
                                         </button>

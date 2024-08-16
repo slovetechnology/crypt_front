@@ -115,7 +115,7 @@ const TaxPayment = () => {
 
     return (
         <Dashboard>
-            <div className='h-screen pt-10'>
+            <div>
                 <div className='flex justify-between items-center'>
                     <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{taxTitle}</div>
                     {screen === 1 &&
@@ -136,7 +136,7 @@ const TaxPayment = () => {
                     </div>
                 }
                 {screen === 2 &&
-                    <div className='mt-12'>
+                    <div className='pt-10 pb-10 lg:pb-0'>
                         <div className='relative w-fit mx-auto'>
                             <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                             <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>

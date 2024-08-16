@@ -164,18 +164,18 @@ const Dashboard = ({ children }) => {
 
 
     return (
-        <div className='flex bg-[#0c091a] overflow-hidden'>
-            <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:block overflow-hidden ${slideShow ? 'block fixed top-0 left-0 h-full z-50' : 'hidden'} `}>
-                <div className={`xl:w-[20%] lg:w-[25%] lg:fixed lg:top-0 lg:left-0 lg:h-screen lg:bg-admin`}>
-                    <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
-                        <LuX />
-                    </div>
-                    <div className='flex justify-center lg:mt-14 mt-12 items-center'>
+        <div className='w-full flex relative overflow-hidden'>
+            <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:h-screen lg:relative lg:block overflow-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-full' : 'hidden'} `}>
+                <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
+                    <LuX />
+                </div>
+                <div className='lg:mt-14 mt-12 flex flex-col lg:gap-10 gap-8'>
+                    <div className='flex justify-center items-center'>
                         <img src={logo} className='w-12 h-auto'></img>
                         <div className='capitalize font-bold text-2xl lg:text-[#2b2255] text-[#462eb3] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
                     </div>
-                    <div className='flex flex-col gap-10 lg:mt-10 mt-8 pl-12'>
-                        <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
+                    <div className='flex flex-col gap-10 pl-12 lg:text-[grey] text-semi-white'>
+                        <div className='flex gap-4 flex-col'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
                             <div className='flex flex-col gap-8'>
                                 {MainLinks.map((item, i) => (
@@ -188,7 +188,7 @@ const Dashboard = ({ children }) => {
                                 ))}
                             </div>
                         </div>
-                        <div className='flex gap-4 flex-col lg:text-[grey] text-semi-white'>
+                        <div className='flex gap-4 flex-col'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-8'>
                                 {OtherLinks.map((item, i) => (
@@ -204,7 +204,7 @@ const Dashboard = ({ children }) => {
                                         <RiLogoutCircleLine className='text-[1.3rem] ' />
                                         <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                                     </div>
-                                    {logout && <div className='absolute -top-5 -left-4 lg:right-0  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-semi-white font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
+                                    {logout && <div className='absolute lg:-top-5 -top-16 -left-6  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-semi-white font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
                                         <div className=' text-[0.8rem] mb-4 text-center'>Logout of your account?</div>
                                         <div className='flex gap-4 items-center'>
                                             <button className='outline-none py-1 px-4 w-fit h-fit border lg:border-[#1c1733] border-white rounded-lg capitalize text-xs flex items-center gap-1 lg:hover:bg-[#1c1733] hover:bg-white lg:text-light text-white hover:text-[#27137e] lg:hover:text-white' onClick={() => setLogOut(!logout)}>
@@ -223,7 +223,7 @@ const Dashboard = ({ children }) => {
                     </div>
                 </div>
             </div>
-            <div className='xl:w-[62%] lg:w-[75%] w-full'>
+            <div className='bg-[#0c091a] xl:w-[62%] lg:w-[75%] w-full h-[100dvh] overflow-y-auto scrollDiv move'>
                 <div className='md:w-[94%] w-11/12 mx-auto'>
                     <div className='flex flex-col gap-4'>
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-light text-[0.85rem] flex items-center justify-between mt-4'>
@@ -256,7 +256,7 @@ const Dashboard = ({ children }) => {
                             }
                         </div>
                     </div>
-                    <div>
+                    <div className='py-10'>
                         {children}
                     </div>
                 </div>
@@ -277,7 +277,7 @@ const Dashboard = ({ children }) => {
                     </div>
                 </div>
             </div>
-            <div className='w-[18%] h-screen overflow-hidden bg-admin fixed top-0 right-0 hidden xl:block'>
+            <div className='w-[18%] h-screen overflow-hidden bg-admin hidden xl:block'>
                 <div className='w-[80%] mx-auto flex flex-col gap-12 justify-center mt-20'>
                     <div className=' text-semi-white text-[1.1rem] text-center font-bold capitalize'>trader profile</div>
                     <div className='flex gap-4 flex-col items-center font-bold capitalize'>

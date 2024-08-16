@@ -3,7 +3,6 @@ import { RiHistoryFill, RiMoneyDollarCircleFill } from "react-icons/ri";
 import { IoIosSearch } from "react-icons/io";
 import { useAtom } from 'jotai';
 import { TRADINGPLANS } from '../../../store';
-import { MoveToTopDivs } from '../../../utils/utils';
 import moment from 'moment';
 import { FaAngleLeft, FaAngleRight, FaRegCopyright } from 'react-icons/fa6';
 import { FiX } from "react-icons/fi";
@@ -19,7 +18,7 @@ import BuyPlanModal from '../../../UserComponents/DepositModals/BuyPlanModal';
 
 const Deposit = () => {
     const [tradingPlans] = useAtom(TRADINGPLANS)
-    
+
     const [original, setOriginal] = useState([])
     const [deposits, setDeposits] = useState([])
     const [depositTitle, setDepositTitle] = useState('deposit')
@@ -126,7 +125,7 @@ const Deposit = () => {
 
     return (
         <Dashboard>
-            <div className={`pt-10 pb-24 lg:pb-10 ${screen === 2 ? 'h-screen' : 'h-fit'}`}>
+            <div>
                 <div className='flex justify-between items-center'>
                     <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{depositTitle}</div>
                     {screen === 1 &&
@@ -143,13 +142,13 @@ const Deposit = () => {
                     }
                 </div>
                 {screen === 1 &&
-                    <div className='my-10 h-fit w-fit mx-auto bg-semi-white rounded-xl relative shlz thediv'>
+                    <div className='my-10 h-fit w-fit mx-auto bg-semi-white rounded-xl relative shlz'>
                         {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} refetchDeposits={FetchDeposits} />}
                         {modal &&
                             <BuyPlanModal setModal={setModal} buybal={buybal} />
                         }
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
-                            <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true); MoveToTopDivs() }}>
+                            <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true) }}>
                                 <span>fund wallet</span>
                                 <SiBitcoincash />
                             </button>
@@ -186,7 +185,7 @@ const Deposit = () => {
                                                             <span className='text-[#5BB4FD]'>{item.duration + item.duration_type}</span>
                                                         </div>
                                                         <div className='mb-4 mt-2'>
-                                                            <button className='w-fit h-fit py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true); MoveToTopDivs() }}>
+                                                            <button className='w-fit h-fit py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true) }}>
                                                                 buy now
                                                             </button>
                                                         </div>
@@ -203,7 +202,7 @@ const Deposit = () => {
                         </div>
                     </div>
                 }
-                {screen === 2 && <div className='mt-12'>
+                {screen === 2 && <div className='pt-10 pb-10 lg:pb-0'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>

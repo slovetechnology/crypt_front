@@ -258,7 +258,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                         <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setSuspendScreen(2); setFundScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>{singleUser.suspend === 'true' ? 'unsuspend' : 'suspend'} user</button>
                                     </div>
                                 }
-                                {suspendScreen !== 1 && <div className='w-fit h-fit md:p-8 px-2 py-4 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                {suspendScreen !== 1 && <div className='w-fit h-fit md:p-8 p-4 rounded-md bg-white adsha mx-auto  text-black relative'>
                                     {loading && <Loading />}
                                     {suspendScreen === 2 &&
                                         <div className='flex flex-col gap-8 items-center justify-center'>
@@ -270,11 +270,11 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                 </div>
                                             </div>
                                             <div className='flex md:gap-16 gap-4 items-center'>
-                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setSuspendScreen(1)}>
+                                                <button className='outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setSuspendScreen(1)}>
                                                     <span>cancel action</span>
                                                     <FaRegRectangleXmark />
                                                 </button>
-                                                <button className={`outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '} rounded-md capitalize flex items-center gap-1 font-bold`} onClick={() => setSuspendScreen(3)}>
+                                                <button className={`outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '} rounded-md capitalize flex items-center gap-1 font-bold`} onClick={() => setSuspendScreen(3)}>
                                                     <span>proceed action</span>
                                                     <MdOutlineDeleteForever />
                                                 </button>
@@ -289,16 +289,16 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                         </div>
                                         <div className='flex flex-col gap-8 items-center justify-center mt-4'>
                                             <div className='relative'>
-                                                <input className='outline-none border border-[#c9b8eb] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-md pl-2 pr-7 py-1 text-black ipt' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                                <input className='outline-none border border-[#c9b8eb] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-[4px] pl-2 pr-7 py-1 text-black ipt' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                                 <EyeIcon className='absolute top-2 right-2 text-base text-[red] cursor-pointer' onClick={() => setEye(!eye)} />
                                                 <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{suspendError}</div>
                                             </div>
                                             <div className='flex md:gap-16 gap-4 items-center'>
-                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setSuspendScreen(1); setPassword('') }}>
+                                                <button className='outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setSuspendScreen(1); setPassword('') }}>
                                                     <span>cancel action</span>
                                                     <FaRegRectangleXmark />
                                                 </button>
-                                                <button className={`outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '}  rounded-md capitalize flex items-center gap-1 font-bold`} onClick={Suspend_Unsuspend_UserAccount}>
+                                                <button className={`outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '}  rounded-md capitalize flex items-center gap-1 font-bold`} onClick={Suspend_Unsuspend_UserAccount}>
                                                     <span>{singleUser.suspend === 'true' ? 'unsuspend' : 'suspend'} account</span>
                                                     <MdOutlineDeleteForever />
                                                 </button>

@@ -20,9 +20,9 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
     const [mark, setMark] = useState(false)
     const [showNotis, setShowNotis] = useState(false)
     const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(4)
+    const [end, setEnd] = useState(3)
     const [pagestart, setpagestart] = useState(1)
-    const [pageend, setpageend] = useState(notis.length / 4)
+    const [pageend, setpageend] = useState(notis.length / 3)
 
     const closer = useRef()
 
@@ -58,10 +58,10 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
             let altend = end
             let altlengthstart = pagestart
 
-            altend += 4
+            altend += 3
             setEnd(altend)
 
-            altstart += 4
+            altstart += 3
             setStart(altstart)
 
             altlengthstart += 1
@@ -71,15 +71,15 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
 
     let BackNotisPage = () => {
 
-        if (end > 4) {
+        if (end > 3) {
             let altstart = start
             let altend = end
             let altlengthstart = pagestart
 
-            altend -= 4
+            altend -= 3
             setEnd(altend)
 
-            altstart -= 4
+            altstart -= 3
             setStart(altstart)
 
             altlengthstart -= 1
@@ -90,14 +90,14 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
     return (
         <div className='relative'>
             <>
-                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => {setShowNotis(true); setpageend(notis.length / 4)}}>
+                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notis.length / 3) }}>
                     <IoNotificationsOutline />
                 </div>
                 <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer ${showNotis ? 'flex' : 'hidden'}`}>
                     <IoNotificationsOutline />
                 </div>
                 <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
-                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => {setShowNotis(true); setpageend(notis.length / 4)}}>
+                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notis.length / 3) }}>
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
@@ -134,7 +134,7 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
                     </div>
                     {notis.length > 0 ? <div className='mt-2 md:mt-0'>
                         {notis.slice(start, end).map((item, i) => (
-                            <NotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} setShowNotis={setShowNotis}/>
+                            <NotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} setShowNotis={setShowNotis} />
                         ))}
                     </div>
                         :

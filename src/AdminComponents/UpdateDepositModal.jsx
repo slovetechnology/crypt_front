@@ -3,7 +3,7 @@ import { Apis, UserPutApi, imageurl } from '../services/API'
 import moment from 'moment';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
 import Loading from '../GeneralComponents/Loading';
-import { Alert } from '../utils/utils';
+import { Alert, MoveToTopDiv } from '../utils/utils';
 import avatar from '../assets/images/avatar.png'
 import ModalLayout from '../utils/ModalLayout';
 
@@ -62,10 +62,7 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) =>
 
     if (update) {
       setLoading(true)
-      const move = document.querySelector('.move')
-      move.scrollTo({
-        top: 0,
-      })
+      MoveToTopDiv()
 
       try {
         const response = await UserPutApi(Apis.admin.update_deposits, formbody)

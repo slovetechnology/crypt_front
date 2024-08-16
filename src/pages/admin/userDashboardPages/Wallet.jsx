@@ -24,7 +24,7 @@ const Wallet = () => {
 
     return (
         <Dashboard>
-            <div className='pt-10 pb-24 lg:pb-10 h-fit'>
+            <div className='pb-10 lg:pb-0'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>wallet</div>
                 <div className='flex flex-wrap gap-4 mt-8 items-center justify-center'>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white bg-[#6859bb]  overflow-hidden'>

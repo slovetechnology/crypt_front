@@ -3,7 +3,7 @@ import Loading from '../GeneralComponents/Loading'
 import { Apis, UserPutApi, imageurl } from '../services/API'
 import moment from 'moment'
 import { FaAngleDown, FaAngleUp, FaCheck } from 'react-icons/fa6'
-import { Alert } from '../utils/utils'
+import { Alert, MoveToTopDiv } from '../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
 import avatar from '../assets/images/avatar.png'
 import ModalLayout from '../utils/ModalLayout'
@@ -90,10 +90,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
 
         if (update) {
             setLoading(true)
-            const move = document.querySelector('.move')
-            move.scrollTo({
-                top: 0,
-            })
+            MoveToTopDiv()
 
             try {
                 const response = await UserPutApi(Apis.admin.update_withdrawals, formbody)

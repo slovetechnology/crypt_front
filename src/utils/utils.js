@@ -31,9 +31,9 @@ export const MoveToTop = () => {
     })
 }
 
-export const MoveToTopDivs = () => {
-    const thediv = document.querySelector('.thediv')
-    thediv.scrollTo({
+export const MoveToTopDiv = () => {
+    const move = document.querySelector('.move')
+    move.scrollTo({
         top: 0,
     })
 }

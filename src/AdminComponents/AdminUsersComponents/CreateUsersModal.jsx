@@ -56,7 +56,9 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
     }
   }
 
-  const CreateUser = async () => {
+  const CreateUser = async (event) => {
+    event.preventDefault()
+
     setTimeout(() => {
       setError('')
     }, 2000)
@@ -99,7 +101,7 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
     <ModalLayout closeView={closeView} toggler={toggler}>
       <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden relative' ref={toggler}>
         {loading && <Loading />}
-        <div className='flex flex-col gap-4 py-6 md:px-6 px-4 relative'>
+        <form className='flex flex-col gap-4 py-6 md:px-6 px-4 relative' onSubmit={CreateUser}>
           <div className='text-xl uppercase text-center font-bold border-b w-full mb-2'>create new user</div>
           <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
             <div className='flex flex-col gap-1'>
@@ -183,7 +185,7 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
             </div>
           </div>
           <div className='mx-auto mt-6'>
-            <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={CreateUser}>create user</button>
+            <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium'>create user</button>
           </div>
           {error !== '' &&
             <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
@@ -192,7 +194,7 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
               <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
             </div>
           }
-        </div>
+        </form>
       </div>
     </ModalLayout>
   )

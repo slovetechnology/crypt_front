@@ -189,7 +189,7 @@ const Withdraw = () => {
 
     return (
         <Dashboard>
-            <div className='pt-10 h-screen'>
+            <div>
                 <div className='flex justify-between items-center'>
                     <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{withdrawTitle}</div>
                     {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdrawTitle('withdawal history') }}>
@@ -203,7 +203,7 @@ const Withdraw = () => {
                         </div>}
                 </div>
                 {screen === 1 &&
-                    <div className='mt-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
+                    <div className='my-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
                         {loading && <LoadingAdmin />}
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-light mx-auto flex flex-col gap-2'>
                             <div className='w-fit h-fit text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-between ml-auto'>
@@ -221,7 +221,7 @@ const Withdraw = () => {
                                     <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
                                     <div className='flex items-center gap-0.5'>
                                         <div className='text-xs'>$</div>
-                                        <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[5px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                        <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[4px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     </div>
                                 </div>
                                 <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3.5 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
@@ -269,13 +269,13 @@ const Withdraw = () => {
                             </div>
                         </div>
                         {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] cursor-pointer flex gap-1 items-center bg-[#bdbcbc] p-1 rounded-sm'>
-                            <RiErrorWarningLine className='text-sm'/>
+                            <RiErrorWarningLine className='text-sm' />
                             <span>{errorMsg}</span>
                             <Link to='/dashboard/verify-account' className='underline'>click here</Link>
                         </div>}
                     </div>
                 }
-                {screen === 2 && <div className='mt-12'>
+                {screen === 2 && <div className='pt-10 pb-10 lg:pb-0'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
