@@ -148,7 +148,7 @@ const Taxes = () => {
           <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full '>
               <thead >
-                <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => setModal(true)}>
+                <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
                   <td className='text-center truncate  capitalize p-2 '>date</td>
                   <td className='text-center truncate  capitalize p-2 '>username</td>
                   <td className='text-center truncate  capitalize p-2 '>email</td>
