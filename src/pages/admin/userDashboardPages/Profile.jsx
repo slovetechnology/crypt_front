@@ -99,7 +99,7 @@ const Profile = () => {
         setCommit(false)
         imgref.current.value = null
         setProfile({
-            img: `${imageurl}/profiles/${user.image}`,
+            img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
             image: user.image
         })
         setForm({

@@ -198,13 +198,13 @@ const AdminDashboard = ({ children }) => {
                 <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-xl text-base' />
-                    <div className='capitalize md:text-[0.7rem] text-[0.6rem] font-medium'>{item.path}</div>
+                    <div className='capitalize md:text-[0.6rem] text-[0.5rem] font-medium'>{item.path}</div>
                   </div>
                 </Link>
               ))}
               <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-[green]' : 'text-semi-white'} `} onClick={() => setSlideShow(!slideShow)}>
                 <HiOutlineDotsVertical className='md:text-xl text-base' />
-                <div className='capitalize md:text-[0.7rem] text-[0.6rem] font-medium'>more</div>
+                <div className='capitalize md:text-[0.6rem] text-[0.5rem] font-medium'>more</div>
               </div>
             </div>
           </div>

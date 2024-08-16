@@ -87,39 +87,39 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
                         <div className='flex flex-col gap-4 mt-4 relative'>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>title:</div>
-                                <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 md:text-sm text-base' value={form.title} name='title' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.title} name='title' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>price start:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>$</div>
-                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 md:text-sm text-base' value={form.price_start} name='price_start' onChange={inputHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.price_start} name='price_start' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>price limit:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>$</div>
-                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 md:text-sm text-base' value={form.price_limit} name='price_limit' onChange={inputHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.price_limit} name='price_limit' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>profit percentage:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>%</div>
-                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 md:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>plan bonus:</div>
                                 <div className='flex gap-0.5 items-center'>
                                     <div className='text-xs'>$</div>
-                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 md:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>duration:</div>
-                                <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 md:text-sm text-base' value={form.duration} name='duration' onChange={inputHandler}></input>
+                                <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.duration} name='duration' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
                                 <div className='italic'>duration type:</div>

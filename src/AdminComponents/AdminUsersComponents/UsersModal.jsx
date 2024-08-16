@@ -211,7 +211,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                 <div className='text-center'>Enter an amount</div>
                                                 <div className='flex gap-0.5 items-center text-xs'>
                                                     <div>$</div>
-                                                    <input className={`outline-none border lg:text-[0.85rem] text-base w-full h-8 rounded-[3px] px-2 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                                    <input className={`outline-none border lg:text-[0.85rem] text-base w-full h-8 rounded-[3px] px-1.5 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                                 </div>
                                             </div>
                                             <div className='mx-auto'>
@@ -237,7 +237,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                     <div className='text-center'>Enter an amount</div>
                                                     <div className='flex gap-0.5 items-center text-xs'>
                                                         <div>$</div>
-                                                        <input className={`outline-none border lg:text-[0.85rem] text-base w-full h-8 rounded-[3px] px-2 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                                        <input className={`outline-none border lg:text-[0.85rem] text-base w-full h-8 rounded-[3px] px-1.5 bg-transparent ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                                     </div>
                                                 </div>
                                                 <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>

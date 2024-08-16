@@ -104,19 +104,19 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
           <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
             <div className='flex flex-col gap-1'>
               <div className='text-sm capitalize font-[550] '>full name:</div>
-              <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' value={form.full_name} name='full_name' onChange={inputHandler}></input>
+              <input className='outline-none border border-[#c9b8eb] w-full p-1 lg:text-sm text-base rounded-sm' value={form.full_name} name='full_name' onChange={inputHandler}></input>
               <div></div>
             </div>
             <div className='flex flex-col gap-1'>
               <div className='text-sm capitalize font-[550] '>username:</div>
-              <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' value={form.username} name='username' onChange={inputHandler}></input>
+              <input className='outline-none border border-[#c9b8eb] w-full p-1 lg:text-sm text-base rounded-sm' value={form.username} name='username' onChange={inputHandler}></input>
               <div></div>
             </div>
           </div>
           <div className='grid grid-cols-2 md:gap-6 gap-3 items-center'>
             <div className='flex flex-col gap-1'>
               <div className='text-sm capitalize font-[550] '>email:</div>
-              <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' type='email' value={form.email} name='email' onChange={inputHandler}></input>
+              <input className='outline-none border border-[#c9b8eb] w-full p-1 lg:text-sm text-base rounded-sm' type='email' value={form.email} name='email' onChange={inputHandler}></input>
               <div></div>
             </div>
             <div className='relative'>
@@ -178,7 +178,7 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
             </div>
             <div className='flex flex-col gap-1'>
               <div className='text-sm capitalize font-[550] '>password:</div>
-              <input className='outline-none border border-[#c9b8eb] w-full p-1 md:text-sm text-base rounded-sm' value={form.password} name='password' onChange={inputHandler}></input>
+              <input className='outline-none border border-[#c9b8eb] w-full p-1 lg:text-sm text-base rounded-sm' value={form.password} name='password' onChange={inputHandler}></input>
               <div></div>
             </div>
           </div>
