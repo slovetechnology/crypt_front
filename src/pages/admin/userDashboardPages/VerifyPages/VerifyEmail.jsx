@@ -82,7 +82,7 @@ const VerifyEmail = () => {
         <VerifyLayout>
             <div className='relative'>
                 {loading && <LoadingAdmin />}
-                <div className='flex flex-col justify-center items-center gap-16 mt-16'>
+                <div className='flex flex-col justify-center items-center gap-16 my-16'>
                     <div className='flex gap-2 items-center md:text-4xl text-2xl text-semi-white capitalize font-bold'>
                         <span>verify your email</span>
                         <MdVerified className='text-light' />

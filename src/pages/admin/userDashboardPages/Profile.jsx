@@ -242,7 +242,7 @@ const Profile = () => {
                                             <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
                                                 <span className='text-zinc-700'>verified</span>
                                                 <MdVerified className={`${user.email_verified === 'true' ? 'text-light' : 'text-[#a09e9e]'}`} />
-                                                <MdVerified className={`${user.kyc_verified === 'true' ? 'text-[#b19e34]' : 'text-[grey]'}`} />
+                                                <MdVerified className={`${user.kyc_verified === 'true' ? 'text-[#b19e34]' : 'text-[#a09e9e]'}`} />
                                                 {user.email_verified === 'false' || user.kyc_verified === 'false' ?
                                                     <span>1/2</span>
                                                     :
