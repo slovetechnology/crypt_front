@@ -14,7 +14,7 @@ import AdminNotisField from '../../../AdminComponents/AdminNotisField'
 const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
     const [notifications] = useAtom(NOTIFICATIONS)
     const [unreadNotis, setUnreadNotis] = useAtom(UNREADNOTIS)
-    
+
     const [showNotis, setShowNotis] = useState(false)
     const [mark, setMark] = useState(false)
     const [start, setStart] = useState(0)
@@ -88,22 +88,25 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
 
     return (
         <div className='relative'>
+
             <>
-                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 3) }}>
-                    <IoNotificationsOutline />
-                </div>
-                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white  border-white cursor-pointer  ${showNotis ? 'flex' : 'hidden'}`}>
-                    <IoNotificationsOutline />
-                </div>
-                <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-[#462c7c] text-[0.65rem] font-extrabold bg-white notisha'>
-                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 3) }}>
+                <div className={`relative ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 3) }}>
+                    <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer'>
+                        <IoNotificationsOutline />
+                    </div>
+                    <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-[#462c7c] text-[0.65rem] font-extrabold bg-white flex items-center justify-center notisha'  >
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
                             <span ><TbNotification /></span>
                         }
                     </div>
-                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'flex' : 'hidden'}`}>
+                </div>
+                <div className={`relative  ${showNotis ? 'flex' : 'hidden'}`}>
+                    <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer'>
+                        <IoNotificationsOutline />
+                    </div>
+                    <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-[#462c7c] text-[0.65rem] font-extrabold bg-white flex items-center justify-center notisha'  >
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
@@ -113,6 +116,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
                     </div>
                 </div>
             </>
+
 
             <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-zinc-400 bg-white z-50 py-3 px-2 text-black ${showNotis ? 'block' : 'hidden'}`} ref={closer}>
                 <div className='flex justify-between items-center mt-2 md:mt-0'>

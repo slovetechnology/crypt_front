@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa6'
+import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6'
 import Loading from '../../../../../GeneralComponents/Loading';
 import { Apis, PostApi } from '../../../../../services/API';
 import { Alert } from '../../../../../utils/utils';
@@ -80,8 +80,9 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
     return (
         <ModalLayout closeView={closeView} toggler={toggler}>
             <div className={`xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 md:h-fit h-[70vh] bg-white rounded-lg ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}`} ref={toggler}>
-                <div className={`w-full h-full relative`}>
+                <div className='w-full h-full relative'>
                     {loading && <Loading />}
+                    <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => closeView()} />
                     <div className='flex flex-col md:w-[90%] w-11/12 mx-auto py-4 md:text-[0.9rem] text-[0.8rem]'>
                         <div className='text-xl uppercase text-center font-bold border-b'>create trading plan</div>
                         <div className='flex flex-col gap-4 mt-4 relative'>
@@ -122,7 +123,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
                                 <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.duration} name='duration' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>duration type:</div>
+                                <div className='italic'>duration type:</div> 
                                 <div className='relative'>
                                     <div className='px-2 py-1 h-fit md:w-48 w-40 bg-white sha cursor-pointer rounded-[3px]' onClick={() => setTypeShow(!typeShow)} >
                                         <div className='flex justify-between items-center text-[0.8rem]'>

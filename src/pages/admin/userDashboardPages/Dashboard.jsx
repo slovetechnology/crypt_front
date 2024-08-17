@@ -164,7 +164,7 @@ const Dashboard = ({ children }) => {
 
 
     return (
-        <div className='w-full flex relative overflow-hidden'>
+        <div className='bg-[#0c091a] w-full flex relative overflow-hidden'>
             <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:h-screen lg:relative lg:block overflow-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-full' : 'hidden'} `}>
                 <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
                     <LuX />
@@ -223,7 +223,7 @@ const Dashboard = ({ children }) => {
                     </div>
                 </div>
             </div>
-            <div className='bg-[#0c091a] xl:w-[62%] lg:w-[75%] w-full h-[100dvh] overflow-y-auto scrollDiv move'>
+            <div className='xl:w-[62%] lg:w-[75%] w-full h-[100dvh] overflow-y-auto scrollDiv move'>
                 <div className='md:w-[94%] w-11/12 mx-auto'>
                     <div className='flex flex-col gap-4'>
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-light text-[0.85rem] flex items-center justify-between mt-4'>

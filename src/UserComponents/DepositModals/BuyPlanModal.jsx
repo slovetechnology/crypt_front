@@ -7,7 +7,7 @@ import { Apis, PostApi } from '../../services/API'
 import { PROFILE, WALLET } from '../../store'
 import { Alert } from '../../utils/utils'
 
-const BuyPlanModal = ({ setModal, buybal}) => {
+const BuyPlanModal = ({ setModal, buybal }) => {
     const [userwallet] = useAtom(WALLET)
     const [user] = useAtom(PROFILE)
 
@@ -31,6 +31,8 @@ const BuyPlanModal = ({ setModal, buybal}) => {
         const formbody = {
             amount: parseFloat(amount),
             trading_plan: buybal.title,
+            duration: buybal.duration,
+            duration_type: buybal.duration_type,
             investmentUser: user.username
         }
 
@@ -51,29 +53,29 @@ const BuyPlanModal = ({ setModal, buybal}) => {
         }
 
     }
-    
+
     return (
         <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center bg-[#0c091aa4] z-20'>
             <div className='w-96 h-fit bg-white rounded-lg p-4 flex flex-col gap-4 relative overflow-hidden'>
                 {loading && <Loading />}
                 <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => setModal(false)} />
-                    <div className='flex items-center gap-2 justify-center'>
-                        <div className='text-[0.85rem] uppercase font-bold'>{buybal.title}</div>
-                        <div className={`text-xs font-[550] bg-white py-1 px-2 rounded-full adsha ${error === 'limit' ? 'text-[red]' : 'text-black'} `}>${buybal.price_start.toLocaleString()} - ${buybal.price_limit.toLocaleString()}</div>
+                <div className='flex items-center gap-2 justify-center'>
+                    <div className='text-[0.85rem] uppercase font-bold'>{buybal.title}</div>
+                    <div className={`text-xs font-[550] bg-white py-1 px-2 rounded-full adsha ${error === 'limit' ? 'text-[red]' : 'text-black'} `}>${buybal.price_start.toLocaleString()} - ${buybal.price_limit.toLocaleString()}</div>
+                </div>
+                <div className='relative flex gap-3 items-center mx-auto'>
+                    <div className='flex items-center gap-0.5'>
+                        <div className='text-xs'>$</div>
+                        <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[4px] px-1.5 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
                     </div>
-                    <div className='relative flex gap-3 items-center mx-auto'>
-                        <div className='flex items-center gap-0.5'>
-                            <div className='text-xs'>$</div>
-                            <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[4px] px-1.5 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
-                        </div>
-                        <div className={`h-fit w-fit text-nowrap py-2 px-4 ${error === 'balance' ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-md`}>
-                            <div className='text-xs italic text-center'>wallet balance:</div>
-                            {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toLocaleString()}</div>}
-                        </div>
+                    <div className={`h-fit w-fit text-nowrap py-2 px-4 ${error === 'balance' ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-md`}>
+                        <div className='text-xs italic text-center'>wallet balance:</div>
+                        {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toLocaleString()}</div>}
                     </div>
-                    <div className='my-3 mx-auto'>
-                        <button className='py-2 px-16 rounded-md bg-[#252525] text-white capitalize font-medium text-xs' onClick={BuyPlanWithBalance}>confirm purchase</button>
-                    </div>
+                </div>
+                <div className='my-3 mx-auto'>
+                    <button className='py-2 px-16 rounded-md bg-[#252525] text-white capitalize font-medium text-xs' onClick={BuyPlanWithBalance}>confirm purchase</button>
+                </div>
             </div>
         </div>
     )

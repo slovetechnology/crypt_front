@@ -90,21 +90,23 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
     return (
         <div className='relative'>
             <>
-                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notis.length / 3) }}>
-                    <IoNotificationsOutline />
-                </div>
-                <div className={`flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer ${showNotis ? 'flex' : 'hidden'}`}>
-                    <IoNotificationsOutline />
-                </div>
-                <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light  shlz'  >
-                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notis.length / 3) }}>
+                <div className={`relative ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notis.length / 3) }}>
+                    <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer'>
+                        <IoNotificationsOutline />
+                    </div>
+                    <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light flex items-center justify-center shlz'  >
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
                             <span ><TbNotification /></span>
                         }
                     </div>
-                    <div className={`w-full h-full flex items-center justify-center ${showNotis ? 'flex' : 'hidden'}`}>
+                </div>
+                <div className={`relative  ${showNotis ? 'flex' : 'hidden'}`}>
+                    <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-light border-light cursor-pointer'>
+                        <IoNotificationsOutline />
+                    </div>
+                    <div className='rounded-full w-5 h-[1.2rem] absolute -top-2 -right-1 cursor-pointer text-white text-[0.65rem] font-bold bg-light flex items-center justify-center shlz'  >
                         {unreadNotis.length > 0 ?
                             <span>{unreadNotis.length}</span>
                             :
