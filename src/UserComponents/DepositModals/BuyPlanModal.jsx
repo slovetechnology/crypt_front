@@ -64,11 +64,11 @@ const BuyPlanModal = ({ setModal, buybal }) => {
                     <div className={`text-xs font-[550] bg-white py-1 px-2 rounded-full adsha ${error === 'limit' ? 'text-[red]' : 'text-black'} `}>${buybal.price_start.toLocaleString()} - ${buybal.price_limit.toLocaleString()}</div>
                 </div>
                 <div className='relative flex gap-3 items-center mx-auto'>
-                    <div className='flex items-center gap-0.5'>
-                        <div className='text-xs'>$</div>
-                        <input className={`outline-none border lg:text-[0.85rem] w-full h-8 rounded-[4px] px-1.5 bg-transparent ipt ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} placeholder='Enter Amount'></input>
+                    <div className='flex flex-col gap-0.5'>
+                        <div className='capitalize text-[0.8rem] font-medium'>enter an amount ($)</div>
+                        <input className={`outline-none lg:text-[0.85rem] w-full rounded-[4px] px-1.5 h-8 bg-[#d1d0d0] ${error === 'amount' ? 'border border-[red]' : ''}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
                     </div>
-                    <div className={`h-fit w-fit text-nowrap py-2 px-4 ${error === 'balance' ? 'border border-[red]' : ''} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-md`}>
+                    <div className={`h-fit w-fit text-nowrap py-2 px-4 ${error === 'balance' && 'border border-[red]'} bg-[#5BB4FD] flex flex-col gap-1 items-center justify-center text-white text-[0.85rem] rounded-md`}>
                         <div className='text-xs italic text-center'>wallet balance:</div>
                         {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toLocaleString()}</div>}
                     </div>

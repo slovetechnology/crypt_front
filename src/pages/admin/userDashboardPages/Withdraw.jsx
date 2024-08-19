@@ -217,12 +217,10 @@ const Withdraw = () => {
                         </div>
                         <div className='flex flex-col items-center py-6 md:px-16 px-4'>
                             <div className='flex gap-3 items-center'>
-                                <div className='flex flex-col gap-2'>
-                                    <div className='text-[0.85rem] capitalize text-center'>enter an amount</div>
-                                    <div className='flex items-center gap-0.5'>
-                                        <div className='text-xs'>$</div>
-                                        <input className={`outline-none border bg-transparent lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[4px] ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
-                                    </div>
+                                <div className='flex flex-col gap-0.5'>
+                                    <div className='text-[0.8rem] capitalize font-medium'>withdrawal amount ($)</div>
+                                    <input className={`outline-none bg-[#a8a8a8] lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[4px] ${error === 'amount' && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                    
                                 </div>
                                 <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3.5 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
                                     <div className='flex  justify-center items-center gap-1'>

@@ -161,8 +161,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add profit:</div>
                                         <div className='flex gap-2 items-center'>
-                                            <div className='flex gap-0.5 items-center text-xs'>
-                                                <div>$</div>
+                                            <div>
                                                 <input className={`border ${profitError ? 'border-[red]' : 'border-[#c9b8eb]'}  md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='profit' value={form.profit} onChange={inputHandler} onKeyUp={UpdateHandlerForText}></input>
                                             </div>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
@@ -174,8 +173,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>add bonus:</div>
                                         <div className='flex gap-2 items-center'>
-                                            <div className='flex gap-0.5 items-center text-xs'>
-                                                <div>$</div>
+                                            <div>
                                                 <input className={`border ${bonusError ? 'border-[red]' : 'border-[#c9b8eb]'} md:w-40 w-28 h-7 outline-none p-1 lg:text-[0.8rem] text-base rounded-sm`} name='bonus' value={form.bonus} onChange={inputHandler} onKeyUp={UpdateHandlerForText}></input>
                                             </div>
                                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>

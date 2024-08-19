@@ -337,11 +337,11 @@ const Profile = () => {
                                     <div className='flex flex-col gap-6'>
                                         <div className='relative'>
                                             <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Enter old password' name='old_password' value={form.old_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye ? 'text' : 'password'}`}></input>
-                                            <EyeIcon className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye(!eye)} />
+                                            <EyeIcon className='absolute top-2 right-2 text-light cursor-pointer text-lg' onClick={() => setEye(!eye)} />
                                         </div>
                                         <div className='relative'>
                                             <input className='outline-none border border-light bg-transparent lg:text-[0.8rem] text-base md:w-60 w-48 h-fit rounded-[3px] pl-2 pr-8 py-1 ipt' placeholder='Create new password' name='new_password' value={form.new_password} onChange={formHandler} onKeyUp={CommitHandler} type={`${eye2 ? 'text' : 'password'}`}></input>
-                                            <EyeIcon2 className='absolute top-2 right-2 text-base text-light cursor-pointer' onClick={() => setEye2(!eye2)} />
+                                            <EyeIcon2 className='absolute top-2 right-2 text-light cursor-pointer text-lg' onClick={() => setEye2(!eye2)} />
                                         </div>
                                     </div>
                                     <div className='text-[1.2rem] text-light cursor-pointer' onClick={() => setPassEdit(!passEdit)}>
@@ -397,7 +397,7 @@ const Profile = () => {
                                 <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                     <div className='relative'>
                                         <input className='outline-none border border-light bg-transparent lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                        <EyeIcon className='absolute top-2 right-2 cursor-pointer text-light' onClick={() => setEye(!eye)} />
+                                        <EyeIcon className='absolute top-2 right-2 cursor-pointer text-light text-lg' onClick={() => setEye(!eye)} />
                                         <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                     </div>
                                     <div className='flex md:gap-16 gap-6 items-center'>

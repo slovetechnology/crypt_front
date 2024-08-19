@@ -16,7 +16,7 @@ const SetTaxPercentage = ({ closeView }) => {
     const UpdateTaxPercentage = async () => {
         setTimeout(() => {
             setError('')
-        }, 2000)
+        }, 1000)
 
         if (!amount) return setError(true)
         if (isNaN(amount)) return setError(true)
@@ -49,11 +49,10 @@ const SetTaxPercentage = ({ closeView }) => {
                     <div className='flex flex-col gap-2 py-6 px-4'>
                         <div className='md:text-xl text-lg uppercase text-center font-bold border-b w-full mb-2'>set tax percentage</div>
                         <div className='flex flex-col gap-2 text-sm items-center border px-2 py-4 rounded-md'>
-                            <div className='text-center font-medium'>Enter tax percentage:</div>
+                            <div className='text-center font-medium'>Enter tax percentage (%)</div>
                             <div className='flex gap-4 items-center justify-center'>
-                                <div className='flex items-center gap-0.5'>
+                                <div>
                                     <input className={`outline-none border lg:text-[0.85rem] text-base md:w-44 w-36 h-8 rounded-[3px] px-1.5 bg-transparent ipt ${error ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
-                                    <div className='text-xs'>%</div>
                                 </div>
                                 <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
                                     <div>current:</div>

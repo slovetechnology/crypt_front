@@ -291,7 +291,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                         <div className='flex flex-col gap-8 items-center justify-center mt-4'>
                                             <div className='relative'>
                                                 <input className='outline-none border border-[#c9b8eb] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-[4px] pl-2 pr-7 py-1 text-black ipt' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                                <EyeIcon className='absolute top-2 right-2 text-base text-[red] cursor-pointer' onClick={() => setEye(!eye)} />
+                                                <EyeIcon className='absolute top-2 right-2 text-lg text-[red] cursor-pointer' onClick={() => setEye(!eye)} />
                                                 <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{suspendError}</div>
                                             </div>
                                             <div className='flex md:gap-16 gap-4 items-center'>

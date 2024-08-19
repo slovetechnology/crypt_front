@@ -91,30 +91,26 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
                                 <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.title} name='title' onChange={inputHandler}></input>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>price start:</div>
-                                <div className='flex gap-0.5 items-center'>
-                                    <div className='text-xs'>$</div>
+                                <div className='italic'>price start ($):</div>
+                                <div>
                                     <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.price_start} name='price_start' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>price limit:</div>
-                                <div className='flex gap-0.5 items-center'>
-                                    <div className='text-xs'>$</div>
+                                <div className='italic'>price limit ($):</div>
+                                <div>
                                     <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.price_limit} name='price_limit' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>profit percentage:</div>
-                                <div className='flex gap-0.5 items-center'>
-                                    <div className='text-xs'>%</div>
+                                <div className='italic'>profit percentage (%):</div>
+                                <div>
                                     <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>plan bonus:</div>
-                                <div className='flex gap-0.5 items-center'>
-                                    <div className='text-xs'>$</div>
+                                <div className='italic'>plan bonus ($):</div>
+                                <div>
                                     <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.plan_bonus} name='plan_bonus' onChange={inputHandler}></input>
                                 </div>
                             </div>

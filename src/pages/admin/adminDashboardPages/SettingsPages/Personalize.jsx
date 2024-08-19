@@ -152,31 +152,31 @@ const Personalize = () => {
           </div>
           <form className='flex flex-col gap-6 mt-10' onSubmit={SubmitForm}>
             <div className='grid md:grid-cols-2 grid-cols-1 gap-6 items-center'>
-              <div className='flex flex-col gap-1'>
+              <div className='flex flex-col gap-1.5'>
                 <div className='md:text-sm text-xs capitalize font-[550] '>full name:</div>
                 <input className='outline-none border border-[#c9b8eb] w-full  px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.full_name} name='full_name' onChange={formHandler} onKeyUp={CommitHandler}></input>
               </div>
-              <div className='flex flex-col gap-1'>
+              <div className='flex flex-col gap-1.5'>
                 <div className='md:text-sm text-xs capitalize font-[550] '>username:</div>
                 <input className='outline-none border border-[#c9b8eb] w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.username} name='username' onChange={formHandler} onKeyUp={CommitHandler}></input>
               </div>
             </div>
             <div className='grid md:grid-cols-2 grid-cols-1 gap-6 items-center'>
-              <div className='flex flex-col gap-1'>
+              <div className='flex flex-col gap-1.5'>
                 <div className='md:text-sm text-xs capitalize font-[550] '>email:</div>
                 <input className='outline-none border border-[#c9b8eb] w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.email} name='email' onChange={formHandler} onKeyUp={CommitHandler}></input>
               </div>
             </div>
-            <div className='flex flex-col gap-1'>
+            <div className='flex flex-col gap-1.5'>
               <div className='md:text-sm text-xs capitalize font-[550] '>change password:</div>
               <div className='grid md:grid-cols-2 grid-cols-1 gap-6 items-center'>
                 <div className='relative'>
                   <input className='outline-none border border-[#c9b8eb] w-full pl-2 pr-7 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ipt' type={`${eye ? 'text' : 'password'}`} value={form.old_password} name='old_password' placeholder='Enter old password' onChange={formHandler} onKeyUp={CommitHandler}></input>
-                  <EyeIcon className='absolute top-3 right-2 text-base text-[#9f7ae7] cursor-pointer' onClick={() => setEye(!eye)} />
+                  <EyeIcon className='absolute top-3 right-2 text-lg text-[#9f7ae7] cursor-pointer' onClick={() => setEye(!eye)} />
                 </div>
                 <div className='relative'>
                   <input className='outline-none border border-[#c9b8eb] w-full pl-2 pr-7 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ipt' type={`${eye2 ? 'text' : 'password'}`} value={form.new_password} name='new_password' placeholder='Create new password' onChange={formHandler} onKeyUp={CommitHandler}></input>
-                  <EyeIcon2 className='absolute top-3 right-2 text-base text-[#9f7ae7] cursor-pointer' onClick={() => setEye2(!eye2)} />
+                  <EyeIcon2 className='absolute top-3 right-2 text-lg text-[#9f7ae7] cursor-pointer' onClick={() => setEye2(!eye2)} />
                 </div>
               </div>
             </div>
