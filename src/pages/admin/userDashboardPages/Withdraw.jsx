@@ -5,7 +5,6 @@ import { IoIosSearch } from 'react-icons/io'
 import { IoCheckbox } from 'react-icons/io5'
 import { RiErrorWarningLine, RiHistoryFill } from 'react-icons/ri'
 import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET } from '../../../store'
-import { MdSentimentVeryDissatisfied } from 'react-icons/md'
 import moment from 'moment'
 import LoadingAdmin from '../../../GeneralComponents/LoadingAdmin'
 import { Alert } from '../../../utils/utils'
@@ -219,7 +218,7 @@ const Withdraw = () => {
                             <div className='flex gap-3 items-center'>
                                 <div className='flex flex-col gap-0.5'>
                                     <div className='text-[0.8rem] capitalize font-medium'>withdrawal amount ($)</div>
-                                    <input className={`outline-none bg-[#a8a8a8] lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[4px] ${error === 'amount' && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                    <input className={`outline-none bg-[#b1b0b0] lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[4px] ${error === 'amount' && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                     
                                 </div>
                                 <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3.5 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>

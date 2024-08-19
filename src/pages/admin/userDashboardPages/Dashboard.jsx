@@ -12,7 +12,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import avatar from '../../../assets/images/avatar.png'
-import { ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET } from '../../../store';
+import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET } from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
@@ -53,6 +53,7 @@ const Dashboard = ({ children }) => {
     const [, setUps] = useAtom(UPS)
     const [, setAdminWallets] = useAtom(ADMINWALLETS)
     const [, setTradingPlans] = useAtom(TRADINGPLANS)
+    const [, setAdminStore] = useAtom(ADMINSTORE)
 
     const [logout, setLogOut] = useState(false)
     const [slideShow, setSlideShow] = useState(false)
@@ -162,6 +163,22 @@ const Dashboard = ({ children }) => {
         FetchTradingPlans()
     }, [FetchTradingPlans])
 
+    const FetchAdminStore = useCallback(async () => {
+        try {
+            const response = await UserGetApi(Apis.admin.get_admin_store)
+            if (response.status === 200) {
+                setAdminStore(response.msg)
+            }
+
+        } catch (error) {
+            //
+        }
+    }, [])
+
+    useEffect(() => {
+        FetchAdminStore()
+    }, [FetchAdminStore])
+
 
     return (
         <div className='bg-[#0c091a] w-full flex relative overflow-hidden'>
@@ -266,7 +283,7 @@ const Dashboard = ({ children }) => {
                             <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                                 <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-light' : ' text-semi-white'}`} >
                                     <item.icon className='md:text-base text-sm ' />
-                                    <div className='capitalize md:text-[0.6rem] text-[0.5rem] font-medium'>{item.path}</div>
+                                    <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>{item.path}</div>
                                 </div>
                             </Link>
                         ))}

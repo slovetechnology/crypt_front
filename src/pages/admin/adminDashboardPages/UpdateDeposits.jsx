@@ -7,7 +7,8 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard';
 import { Apis, UserGetApi } from '../../../services/API';
-import UpdateDepositModal from '../../../AdminComponents/UpdateDepositModal';
+import UpdateDepositModal from '../../../AdminComponents/DepositComponents/UpdateDepositModal';
+import SetDepositMinimum from '../../../AdminComponents/DepositComponents/SetDepositMinimumModal';
 
 
 const UpdateDeposits = () => {
@@ -15,10 +16,11 @@ const UpdateDeposits = () => {
   const [allDeposits, setAllDeposits] = useState([])
   const [singleDeposit, setSingleDeposit] = useState({})
   const [modal, setModal] = useState(false)
+  const [modal2, setModal2] = useState(false)
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(6)
+  const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
 
@@ -31,7 +33,7 @@ const UpdateDeposits = () => {
         setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
-        setEnd(6)
+        setEnd(5)
         setpagestart(1)
         setSearch('')
         setWrite(false)
@@ -56,31 +58,31 @@ const UpdateDeposits = () => {
     const altDeposits = original
     if (!search) {
       setAllDeposits(original)
-      setpageend(original.length / 6)
+      setpageend(original.length / 5)
       setWrite(false)
       setpagestart(1)
       setStart(0)
-      setEnd(6)
+      setEnd(5)
     }
     else {
       setWrite(true)
       const showSearch = altDeposits.filter(item => item.depositUser.username.includes(search.toLowerCase()) || item.depositUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllDeposits(showSearch)
-      setpageend(showSearch.length / 6)
+      setpageend(showSearch.length / 5)
       setpagestart(1)
       setStart(0)
-      setEnd(6)
+      setEnd(5)
     }
   }
 
   const CancelWrite = () => {
     setSearch('')
     setAllDeposits(original)
-    setpageend(original.length / 6)
+    setpageend(original.length / 5)
     setWrite(false)
     setpagestart(1)
     setStart(0)
-    setEnd(6)
+    setEnd(5)
   }
 
   let MovePage = () => {
@@ -90,10 +92,10 @@ const UpdateDeposits = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 6
+      altend += 5
       setEnd(altend)
 
-      altstart += 6
+      altstart += 5
       setStart(altstart)
 
       altlengthstart += 1
@@ -103,15 +105,15 @@ const UpdateDeposits = () => {
 
   let BackPage = () => {
 
-    if (end > 6) {
+    if (end > 5) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 6
+      altend -= 5
       setEnd(altend)
 
-      altstart -= 6
+      altstart -= 5
       setStart(altstart)
 
       altlengthstart -= 1
@@ -124,6 +126,7 @@ const UpdateDeposits = () => {
     <AdminDashboard>
       <div>
         {modal && <UpdateDepositModal closeView={() => setModal(false)} singleDeposit={singleDeposit} refetchAllDeposits={FetchAllDeposits} />}
+        {modal2 && <SetDepositMinimum closeView={() => setModal2(false)} />}
 
         <div className='uppercase font-bold md:text-2xl text-lg text-black'>all deposits</div>
         <div className='pt-10 pb-10 lg:pb-0'>
@@ -138,7 +141,11 @@ const UpdateDeposits = () => {
               }
             </div>
           </div>
-          <div className='relative overflow-x-auto shadow-xl rounded-lg mt-4 scrollsdown'>
+          <button className='w-fit h-fit mt-4 mb-2 py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
+            <span>set deposit minimum</span>
+            <IoIosSettings className='text-base' />
+          </button>
+          <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full '>
               <thead >
                 <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>

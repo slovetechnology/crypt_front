@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Apis, UserPutApi, imageurl } from '../services/API'
+import { Apis, UserPutApi, imageurl } from '../../services/API'
 import moment from 'moment';
 import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6';
-import Loading from '../GeneralComponents/Loading';
-import { Alert, MoveToTopDiv } from '../utils/utils';
-import avatar from '../assets/images/avatar.png'
-import ModalLayout from '../utils/ModalLayout';
+import Loading from '../../GeneralComponents/Loading';
+import { Alert, MoveToTopDiv } from '../../utils/utils';
+import avatar from '../../assets/images/avatar.png'
+import ModalLayout from '../../utils/ModalLayout';
 
 const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) => {
   const toggler = useRef()

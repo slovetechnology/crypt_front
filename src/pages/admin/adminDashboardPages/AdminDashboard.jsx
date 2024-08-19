@@ -200,7 +200,7 @@ const AdminDashboard = ({ children }) => {
                 <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-base text-sm' />
-                    <div className='capitalize md:text-[0.6rem] text-[0.5rem] font-medium'>{item.path}</div>
+                    <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>{item.path}</div>
                   </div>
                 </Link>
               ))}

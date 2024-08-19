@@ -5,7 +5,7 @@ import { MdContentCopy } from 'react-icons/md'
 import { useAtom } from 'jotai'
 import { Alert } from '../../utils/utils'
 import { Apis, imageurl, PostApi } from '../../services/API'
-import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../store'
+import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../store'
 import { SiBitcoincash } from 'react-icons/si'
 
 
@@ -14,6 +14,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
   const [adminWallets] = useAtom(ADMINWALLETS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
+  const [adminStore] = useAtom(ADMINSTORE)
 
   const [amount, setAmount] = useState('')
   const [selectState, setSelectState] = useState(false)
@@ -39,7 +40,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
 
     if (!amount) return setError('amount')
     if (isNaN(amount)) return setError('amount')
-    if (amount < 100) return setError('amount')
+    if (amount < adminStore.deposit_minimum) return setError('minimum')
     if (Object.values(selectValue).length === 0) return setError('select')
     if (!check) return setError('check')
 
@@ -82,8 +83,8 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
           <div className='flex flex-col gap-0.5'>
             <div className='capitalize text-[0.8rem] font-medium'>deposit amount ($)</div>
             <div className='relative'>
-              <input className={`outline-none  lg:text-[0.85rem] w-52 h-8 rounded-[4px] px-1.5 bg-[#d1d0d0] ${error === 'amount' && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
-              <div className='text-xs text-black absolute top-2 right-2'>min: 100</div>
+              <input className={`outline-none  lg:text-[0.85rem] w-52 h-8 rounded-[4px] px-1.5 bg-semi-white ${error === 'amount' && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
+              <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[red]' : 'text-black'}`}>min: {adminStore.deposit_minimum}</div>
             </div>
           </div>
           <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>
