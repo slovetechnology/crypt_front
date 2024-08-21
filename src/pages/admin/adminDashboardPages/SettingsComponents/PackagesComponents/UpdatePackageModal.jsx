@@ -29,7 +29,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
         title: singlePlan.title || '',
         price_start: singlePlan.price_start || '',
         price_limit: singlePlan.price_limit || '',
-        profit_percentage: singlePlan.profit_percentage || '',
+        profit_return: singlePlan.profit_return || '',
         plan_bonus: singlePlan.plan_bonus || '',
         duration: singlePlan.duration || '',
     })
@@ -42,7 +42,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
     }
 
     const CommitHandler = () => {
-        if (form.title === singlePlan.title && form.price_start === singlePlan.price_start && form.price_limit === singlePlan.price_limit && form.profit_percentage === singlePlan.profit_percentage && form.plan_bonus === singlePlan.plan_bonus && form.duration === singlePlan.duration && type === singlePlan.duration_type) {
+        if (form.title === singlePlan.title && form.price_start === singlePlan.price_start && form.price_limit === singlePlan.price_limit && form.profit_return === singlePlan.profit_return && form.plan_bonus === singlePlan.plan_bonus && form.duration === singlePlan.duration && type === singlePlan.duration_type) {
             setCommit(false)
         } else {
             setCommit(true)
@@ -52,7 +52,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
     const CommmitHandlerForDuration = (item) => {
         setType(item)
         setTypeShow(false)
-        if (item === singlePlan.duration_type && form.title === singlePlan.title && form.price_start === singlePlan.price_start && form.price_limit === singlePlan.price_limit && form.profit_percentage === singlePlan.profit_percentage && form.plan_bonus === singlePlan.plan_bonus && form.duration === singlePlan.duration) {
+        if (item === singlePlan.duration_type && form.title === singlePlan.title && form.price_start === singlePlan.price_start && form.price_limit === singlePlan.price_limit && form.profit_return === singlePlan.profit_return && form.plan_bonus === singlePlan.plan_bonus && form.duration === singlePlan.duration) {
             setCommit(false)
         } else {
             setCommit(true)
@@ -64,15 +64,15 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
             setError('')
         }, 2000)
 
-        if (!form.title || !form.price_limit || !form.price_start || !form.profit_percentage || !form.plan_bonus || !form.duration) return setError('Enter all fields')
-        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.profit_percentage) || isNaN(form.plan_bonus) || isNaN(form.duration)) return setError('Enter valid numbers')
+        if (!form.title || !form.price_limit || !form.price_start || !form.profit_return || !form.plan_bonus || !form.duration) return setError('Enter all fields')
+        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.profit_return) || isNaN(form.plan_bonus) || isNaN(form.duration)) return setError('Enter valid numbers')
 
         const formbody = {
             plan_id: singlePlan.id,
             title: form.title,
             price_start: parseFloat(form.price_start),
             price_limit: parseFloat(form.price_limit),
-            profit_percentage: parseFloat(form.profit_percentage),
+            profit_return: parseFloat(form.profit_return),
             plan_bonus: parseFloat(form.plan_bonus),
             duration: parseFloat(form.duration),
             duration_type: type
@@ -150,9 +150,9 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>profit percentage (%):</div>
+                                <div className='italic'>profit return (%):</div>
                                 <div>
-                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_return} name='profit_return' onChange={inputHandler} onKeyUp={CommitHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>

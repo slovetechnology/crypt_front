@@ -12,6 +12,7 @@ import referral from '../../../assets/images/referral.png'
 import Dashboard from './Dashboard';
 import { Link } from 'react-router-dom';
 import { MoveToTop } from '../../../utils/utils';
+import { FaArrowTrendUp } from "react-icons/fa6";
 
 
 const Wallet = () => {
@@ -52,18 +53,12 @@ const Wallet = () => {
                             </div>
                             <img src={profit3d} className='md:h-12 h-8 w-[auto]'></img>
                         </div>
-                        <div className='flex flex-col items-center text-xs capitalize font-medium gap-1 mt-4'>
-                            <div>up</div>
+                        <div className='flex items-center text-xs capitalize font-medium gap-2 mt-6 w-fit h-fit mx-auto py-1 px-2 rounded-full border border-[green] text-white'>
+                            <FaArrowTrendUp />
                             {Object.values(ups).length !== 0 ?
-                                <div>
-                                    {wallet.total_profit !== 0 ?
-                                        <div className='text-[green]'>+{profitUp.toFixed(2)}%</div>
-                                        :
-                                        <div className='text-[green]'>+0.00%</div>
-                                    }
-                                </div>
+                                <div>+{profitUp.toFixed(2)}%</div>
                                 :
-                                <div className='text-[green]'>+0.00%</div>
+                                <div>+0.00%</div>
                             }
                         </div>
                     </div>
@@ -79,18 +74,12 @@ const Wallet = () => {
                             </div>
                             <img src={bonus3d} className='md:h-12 h-8 w-[auto]'></img>
                         </div>
-                        <div className='flex flex-col items-center text-xs capitalize font-medium gap-1 mt-4'>
-                            <div>up</div>
+                        <div className='flex items-center text-xs capitalize font-medium gap-2 mt-6 w-fit h-fit mx-auto py-1 px-2 rounded-full border border-[green] text-white'>
+                            <FaArrowTrendUp />
                             {Object.values(ups).length !== 0 ?
-                                <div>
-                                    {wallet.total_bonus !== 0 ?
-                                        <div className='text-[green]'>+{bonusUp.toFixed(2)}%</div>
-                                        :
-                                        <div className='text-[green]'>+0.00%</div>
-                                    }
-                                </div>
+                                <div>+{bonusUp.toFixed(2)}%</div>
                                 :
-                                <div className='text-[green]'>+0.00%</div>
+                                <div>+0.00%</div>
                             }
                         </div>
                     </div>

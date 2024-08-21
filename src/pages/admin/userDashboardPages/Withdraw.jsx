@@ -7,7 +7,7 @@ import { RiErrorWarningLine, RiHistoryFill } from 'react-icons/ri'
 import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET } from '../../../store'
 import moment from 'moment'
 import LoadingAdmin from '../../../GeneralComponents/LoadingAdmin'
-import { Alert } from '../../../utils/utils'
+import { Alert, MoveToTop } from '../../../utils/utils'
 import { Apis, imageurl, PostApi, UserGetApi } from '../../../services/API'
 import { FiX } from 'react-icons/fi'
 import wthwallet from '../../../assets/images/wthwallet.png'
@@ -16,7 +16,8 @@ import { SiBitcoincash } from "react-icons/si";
 import nothnyet from '../../../assets/images/nothn.png'
 import Dashboard from './Dashboard'
 import { Link } from 'react-router-dom'
-import { TbTransferOut } from "react-icons/tb";
+
+
 
 const Withdraw = () => {
     const [user] = useAtom(PROFILE)
@@ -115,7 +116,6 @@ const Withdraw = () => {
         } finally {
             setLoading(false)
         }
-
     }
 
     const HandleSearch = () => {
@@ -204,24 +204,25 @@ const Withdraw = () => {
                 {screen === 1 &&
                     <div className='my-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
                         {loading && <LoadingAdmin />}
-                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-light mx-auto flex flex-col gap-2'>
-                            <div className='w-fit h-fit text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-between ml-auto'>
-                                <span>minimum:</span>
-                                {Object.values(user).length !== 0 && <span className={error === 'minimum' ? 'text-[red]' : 'text-white'}>${user.withdrawal_minimum.toLocaleString()}</span>}
-                            </div>
-                            <div className='flex items-center justify-center gap-2 border-t pt-2'>
-                                <span>Withdraw funds</span>
-                                <TbTransferOut className='text-light' />
-                            </div>
+                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-light mx-auto flex flex-col gap-2'>
+                            <Link to='/dashboard/deposit' onClick={MoveToTop}>
+                                <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto'>
+                                    <span>fund account</span>
+                                    <SiBitcoincash />
+                                </button>
+                            </Link>
+                            <div className='border-t pt-2 text-center'>Withdraw funds</div>
                         </div>
-                        <div className='flex flex-col items-center py-6 md:px-16 px-4'>
+                        <div className='flex flex-col items-center py-6 md:px-14 px-4'>
                             <div className='flex gap-3 items-center'>
-                                <div className='flex flex-col gap-0.5'>
-                                    <div className='text-[0.8rem] capitalize font-medium'>withdrawal amount ($)</div>
-                                    <input className={`outline-none bg-[#b1b0b0] lg:text-[0.85rem] md:w-full w-40 px-1.5 h-8 rounded-[4px] ${error === 'amount' && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
-                                    
+                                <div className='flex flex-col gap-1'>
+                                    <div className='capitalize text-[0.8rem] font-medium'>withdawal amount ($)</div>
+                                    <div className='relative'>
+                                        <input className={`outline-none border lg:text-[0.85rem] md:w-48 w-40 h-8 rounded-[4px] pl-2 pr-16 bg-white ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
+                                        <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[#cf4444]' : 'text-black'}`}>min: {user.withdrawal_minimum}</div>
+                                    </div>
                                 </div>
-                                <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3.5 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
+                                <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
                                     <div className='flex  justify-center items-center gap-1'>
                                         <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
                                         <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
@@ -252,14 +253,14 @@ const Withdraw = () => {
                             </div>
                             {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                                 <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                                <input className={`outline-none border bg-transparent lg:text-[0.85rem] w-full h-8 rounded-md px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
+                                <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
                             </div>}
                             <div className='flex flex-col gap-1 items-center relative mt-10'>
                                 <div className='flex gap-1.5 items-center'>
-                                    <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' ? 'outline outline-1 outline-[red]' : ''}`}></input>
+                                    <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
                                     <div className='text-[#252525] text-[0.8rem]'>I provided my correct wallet address</div>
                                 </div>
-                                <button className='outline-none w-fit h-fit py-2 px-8 md:text-base text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-bold' onClick={makeWithdrawal}>
+                                <button className='outline-none w-fit h-fit py-2 px-10 md:text-sm text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-semibold' onClick={makeWithdrawal}>
                                     <span>make withdrawal</span>
                                     <IoCheckbox />
                                 </button>

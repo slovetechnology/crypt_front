@@ -209,9 +209,9 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                         <div className='font-[650] border-b text-center uppercase'>Fund {singleUser.username} account</div>
                                         <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                             <div className='flex flex-col gap-1 capitalize'>
-                                                <div className='text-center text-[0.8rem]'>Enter an amount ($)</div>
+                                                <div className='text-[0.8rem]'>Enter an amount ($)</div>
                                                 <div>
-                                                    <input className={`outline-none lg:text-[0.85rem] text-base w-full h-8 rounded-[3px] px-1.5 bg-semi-white ipt ${amountError && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                                    <input className={`outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                                 </div>
                                             </div>
                                             <div className='mx-auto'>
@@ -234,9 +234,9 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                         <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                             <div className='flex gap-4 items-center'>
                                                 <div className='flex flex-col gap-1 capitalize'>
-                                                    <div className='text-center text-[0.8rem]'>Enter an amount ($)</div>
+                                                    <div className='text-[0.8rem]'>Enter an amount ($)</div>
                                                     <div>
-                                                        <input className={`outline-none lg:text-[0.85rem] text-base w-full h-8 rounded-[3px] px-1.5 bg-semi-white ${amountError && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                                        <input className={`outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt ${amountError ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                                                     </div>
                                                 </div>
                                                 <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
@@ -288,7 +288,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                         </div>
                                         <div className='flex flex-col gap-8 items-center justify-center mt-4'>
                                             <div className='relative'>
-                                                <input className='outline-none border border-[#c9b8eb] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-[4px] pl-2 pr-7 py-1 text-black ipt' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                                <input className='outline-none border border-[#9f7ae7] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-[4px] pl-2 pr-7 py-1 text-black ipt' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                                 <EyeIcon className='absolute top-2 right-2 text-lg text-[red] cursor-pointer' onClick={() => setEye(!eye)} />
                                                 <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{suspendError}</div>
                                             </div>

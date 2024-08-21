@@ -75,15 +75,15 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
 
   return (
     <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center bg-[#0c091aa4] z-20'>
-      <div className='w-96 h-fit bg-white rounded-lg p-4 overflow-hidden relative'>
+      <div className='w-96 h-fit bg-white rounded-lg py-4 overflow-hidden relative'>
         {loading && <Loading />}
         <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => closeView()} />
-        <div className='flex flex-col gap-5 items-center'>
-          <div className='font-bold uppercase border-b w-full text-center'>fund wallet</div>
-          <div className='flex flex-col gap-0.5'>
+        <div className='font-bold uppercase border-b w-full text-center'>fund wallet</div>
+        <div className='flex flex-col gap-5 items-center px-4 mt-5'>
+          <div className='flex flex-col gap-1'>
             <div className='capitalize text-[0.8rem] font-medium'>deposit amount ($)</div>
             <div className='relative'>
-              <input className={`outline-none  lg:text-[0.85rem] w-52 h-8 rounded-[4px] px-1.5 bg-semi-white ${error === 'amount' && 'border border-[red]'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
+              <input className={`outline-none border lg:text-[0.85rem] w-52 h-8 rounded-[4px] pl-2 pr-16 bg-semi-white ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
               <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[red]' : 'text-black'}`}>min: {adminStore.deposit_minimum}</div>
             </div>
           </div>
@@ -107,20 +107,20 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
               </>}
           </div>
           {Object.values(selectValue).length !== 0 &&
-            <div className='text-[0.8rem] text-center'><span className='capitalize'>{selectValue.crypto}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>:</div>
-          }
-          {Object.values(selectValue).length !== 0 &&
-            <div className='flex gap-2 items-center'>
-              <div className='text-xs text-[#5BB4FD] w-11/12 overflow-x-auto'>{selectValue.address?.slice(0, 35)}{selectValue.address.length > 35 && '....'}</div>
-              <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
-                {!copy && <MdContentCopy />}
-                {copy && <FaCheck />}
-              </button>
+            <div className='flex flex-col gap-2 items-center'>
+              <div className='text-[0.85rem] text-center'><span className='capitalize'>{selectValue.crypto}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>:</div>
+              <div className='flex gap-2 items-center'>
+                <div className='text-xs text-[#5BB4FD] w-11/12 overflow-x-auto'>{selectValue.address?.slice(0, 35)}{selectValue.address.length > 35 && '....'}</div>
+                <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
+                  {!copy && <MdContentCopy />}
+                  {copy && <FaCheck />}
+                </button>
+              </div>
             </div>
           }
           {Object.values(selectValue).length !== 0 &&
             <div>
-              <div className='text-[0.8rem] text-center'>or scan qr code:</div>
+              <div className='text-[0.85rem] text-center italic'>or scan qr code:</div>
               <div className='flex items-center justify-center'>
                 <img src={`${imageurl}/cryptocurrency/${selectValue.qrcode_img}`} className='h-32 w-auto'></img>
               </div>
@@ -128,7 +128,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
           }
           <div className='flex flex-col gap-1 items-center mt-4'>
             <div className='flex gap-1.5 items-center'>
-              <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' ? 'outline outline-1 outline-[red] ' : ''}`}></input>
+              <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
               <div className='text-[#252525] text-[0.8rem]'>Confirm you've made this deposit</div>
             </div>
             <div className='relative'>

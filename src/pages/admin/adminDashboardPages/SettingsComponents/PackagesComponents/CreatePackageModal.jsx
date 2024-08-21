@@ -26,7 +26,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
         title: '',
         price_start: '',
         price_limit: '',
-        profit_percentage: '',
+        profit_return: '',
         plan_bonus: '',
         duration: '',
     })
@@ -43,14 +43,14 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
             setError('')
         }, 2000)
 
-        if (!form.title || !form.price_limit || !form.price_start || !form.profit_percentage || !form.plan_bonus || !form.duration) return setError('Enter all fields')
-        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.profit_percentage) || isNaN(form.plan_bonus) || isNaN(form.duration)) return setError('Enter valid numbers')
+        if (!form.title || !form.price_limit || !form.price_start || !form.profit_return || !form.plan_bonus || !form.duration) return setError('Enter all fields')
+        if (isNaN(form.price_start) || isNaN(form.price_limit) || isNaN(form.profit_return) || isNaN(form.plan_bonus) || isNaN(form.duration)) return setError('Enter valid numbers')
 
         const formbody = {
             title: form.title,
             price_start: parseFloat(form.price_start),
             price_limit: parseFloat(form.price_limit),
-            profit_percentage: parseFloat(form.profit_percentage),
+            profit_return: parseFloat(form.profit_return),
             plan_bonus: parseFloat(form.plan_bonus),
             duration: parseFloat(form.duration),
             duration_type: type
@@ -103,9 +103,9 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>profit percentage (%):</div>
+                                <div className='italic'>profit return (%):</div>
                                 <div>
-                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_percentage} name='profit_percentage' onChange={inputHandler}></input>
+                                    <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_return} name='profit_return' onChange={inputHandler}></input>
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>

@@ -12,7 +12,6 @@ import Investment from "../pages/admin/userDashboardPages/Investment";
 import Profile from "../pages/admin/userDashboardPages/Profile";
 import TaxPayment from "../pages/admin/userDashboardPages/TaxPayment";
 import VerifyEmail from "../pages/admin/userDashboardPages/VerifyPages/VerifyEmail";
-import VerifyAcount from "../pages/admin/userDashboardPages/VerifyPages/VerifyEmail";
 import VerifyKYC from "../pages/admin/userDashboardPages/VerifyPages/VerifyKYC";
 import Wallet from "../pages/admin/userDashboardPages/Wallet";
 import Withdraw from "../pages/admin/userDashboardPages/Withdraw";

@@ -9,13 +9,13 @@ import { useNavigate } from 'react-router-dom';
 import VerifyLayout from '../../../../UserComponents/VerifyLayout';
 
 const VerifyEmail = () => {
-    const [, setUser] = useAtom(PROFILE)
+    const [user, setUser] = useAtom(PROFILE)
 
     const [email, setEmail] = useState('')
     const [emailError, setEmailError] = useState('')
     const [code, setCode] = useState('')
     const [codeError, setCodeError] = useState('')
-    const [verifyScreen, setVerifyScreen] = useState(1)
+    const [screen, setScreen] = useState(1)
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
 
@@ -36,7 +36,7 @@ const VerifyEmail = () => {
         try {
             const response = await UserPostApi(Apis.user.find_email, formbody)
             if (response.status === 200) {
-                setVerifyScreen(2)
+                setScreen(2)
             } else {
                 setEmailError(`${response.msg}`)
             }
@@ -82,38 +82,41 @@ const VerifyEmail = () => {
         <VerifyLayout>
             <div className='relative'>
                 {loading && <LoadingAdmin />}
-                <div className='flex flex-col justify-center items-center gap-16 my-16'>
-                    <div className='flex gap-2 items-center md:text-4xl text-2xl text-semi-white capitalize font-bold'>
-                        <span>verify your email</span>
-                        <MdVerified className='text-light' />
+                <div className='flex flex-col justify-center items-center gap-14 my-16'>
+                    <div className='flex flex-col gap-2 items-center text-semi-white'>
+                        <div className='flex gap-2 items-center md:text-4xl text-2x capitalize font-bold'>
+                            <span>verify your email</span>
+                            <MdVerified className='text-light' />
+                        </div>
+                        <div className='italic text-sm flex items-center gap-2'><span>Status:</span> <span className={`${user.email_verified === 'true' ? 'text-light' : 'text-[#c42e2e]' }`}>{user.email_verified === 'true' ? 'verified' : 'unverified'}</span></div>
                     </div>
-                    {verifyScreen === 1 &&
+                    {screen === 1 &&
                         <form onSubmit={FindEmail}>
                             <div className='flex flex-col gap-10 items-center'>
                                 <div className='flex flex-col gap-2'>
                                     <div className='text-[0.85rem] capitalize text-semi-white'> email address</div>
                                     <div className='relative'>
-                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
+                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-3 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
                                         <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{emailError}</div>
                                     </div>
                                 </div>
-                                <div className='flex items-center mt-2'>
+                                <div className='flex items-center'>
                                     <button className='outline-none bg-light py-2 px-8 rounded-md capitalize text-xs md:text-sm text-white cursor-pointer font-[600]' >find email</button>
                                 </div>
                             </div>
                         </form>
                     }
-                    {verifyScreen === 2 &&
+                    {screen === 2 &&
                         <form onSubmit={ValidateEmail}>
                             <div className='flex flex-col gap-10 items-center'>
                                 <div className='flex flex-col gap-4 items-center'>
                                     <div className='text-[0.85rem]  text-semi-white text-center'> A six digits verification code was sent to <span className='text-[#7665D5]'>{email?.slice(0, 3)}*****{email?.slice(-10)}</span>, copy and enter below</div>
                                     <div className='relative'>
-                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-4 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
+                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-3 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
                                         <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{codeError}</div>
                                     </div>
                                 </div>
-                                <div className='flex items-center  mt-2'>
+                                <div className='flex items-center'>
                                     <button className='outline-none bg-light py-2 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[600]' >verify email</button>
                                 </div>
                             </div>

@@ -51,7 +51,7 @@ const SetDepositMinimum = ({ closeView }) => {
                         <div className='text-center font-medium'>Enter deposit minimum amount ($)</div>
                         <div className='flex gap-4 items-center'>
                             <div>
-                                <input className={`outline-none border lg:text-[0.85rem] text-base md:w-44 w-36 h-8 rounded-[3px] px-1.5 bg-transparent ipt ${error ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                                <input className={`outline-none border lg:text-[0.85rem] text-base md:w-44 w-36 h-8 rounded-[3px] px-2 bg-transparent ipt ${error ? 'border-[red]' : 'border-[#9f7ae7]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                             </div>
                             <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-medium rounded-md'>
                                 <div>current:</div>

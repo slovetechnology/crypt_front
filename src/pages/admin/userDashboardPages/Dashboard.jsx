@@ -3,7 +3,7 @@ import logo from '../../../assets/images/logobrand.png'
 import { HiOutlineCollection } from "react-icons/hi";
 import { IoWalletOutline } from "react-icons/io5";
 import { FaAngleRight } from "react-icons/fa6";
-import { RiBankLine } from "react-icons/ri";
+import { TbBuildingBank } from "react-icons/tb";
 import { LuSend, LuArrowDownUp } from "react-icons/lu";
 import { RiAccountPinCircleLine } from "react-icons/ri";
 import { MdVerified } from "react-icons/md";
@@ -28,7 +28,7 @@ const MainLinks = [
     { path: 'wallet', url: '/dashboard', icon: IoWalletOutline },
     { path: 'investment', url: '/dashboard/investment', icon: HiOutlineCollection },
     { path: 'deposit', url: '/dashboard/deposit', icon: HiOutlineCreditCard },
-    { path: 'withdraw', url: '/dashboard/withdraw', icon: RiBankLine },
+    { path: 'withdraw', url: '/dashboard/withdraw', icon: TbBuildingBank },
 ]
 
 const OtherLinks = [

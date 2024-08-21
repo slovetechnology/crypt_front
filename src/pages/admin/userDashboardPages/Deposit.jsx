@@ -7,13 +7,13 @@ import moment from 'moment';
 import { FaAngleLeft, FaAngleRight, FaRegCopyright } from 'react-icons/fa6';
 import { FiX } from "react-icons/fi";
 import nothnyet from '../../../assets/images/nothn.png'
-import { TbListDetails } from "react-icons/tb";
 import { BsCurrencyDollar } from "react-icons/bs";
 import { SiBitcoincash } from "react-icons/si";
 import Dashboard from './Dashboard';
 import { Apis, UserGetApi } from '../../../services/API';
 import FundModal from '../../../UserComponents/DepositModals/FundModal';
 import BuyPlanModal from '../../../UserComponents/DepositModals/BuyPlanModal';
+import noplans from '../../../assets/images/noplans.png'
 
 
 const Deposit = () => {
@@ -147,17 +147,14 @@ const Deposit = () => {
                         {modal &&
                             <BuyPlanModal setModal={setModal} buybal={buybal} />
                         }
-                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-lg border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
+                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
                             <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true) }}>
                                 <span>fund wallet</span>
                                 <SiBitcoincash />
                             </button>
-                            <div className='flex items-center justify-center gap-2 border-t pt-2'>
-                                <span>buy trading plans</span>
-                                <TbListDetails className='text-[#5BB4FD]' />
-                            </div>
+                            <div className='border-t pt-2 text-center'>buy trading plans</div>
                         </div>
-                        <div className={`w-full h-[26rem] flex flex-col gap-8 pt-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
+                        <div className={`w-full md:h-[26rem] h-96 flex flex-col pt-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
                             <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center md:px-4 px-3'>
                                 {tradingPlans.length > 0 &&
                                     <>
@@ -178,7 +175,7 @@ const Deposit = () => {
                                                             </div>
                                                         </div>
                                                         <div className='text-xs text-[#252525] font-medium text-center w-11/12 border py-1 rounded-md'>
-                                                            {item.profit_percentage}% profit return on investment plus bonus up to ${item.plan_bonus}
+                                                            {item.profit_return}% profit return on investment plus bonus up to ${item.plan_bonus}
                                                         </div>
                                                         <div className='text-[0.7rem] text-[#252525] font-medium w-11/12 flex gap-2 items-center justify-center italic'>
                                                             <span>Duration:</span>
@@ -193,12 +190,17 @@ const Deposit = () => {
                                                 </div>
                                             </div>
                                         ))}
-                                    </>}
+                                    </>
+                                }
                             </div>
-                            {tradingPlans.length > 0 && <div className='bg-white w-full h-fit py-1 rounded-t-sm rounded-b-lg border-t border-[#5BB4FD] flex gap-1 items-center justify-center font-bold text-xs'>
+                            {tradingPlans.length < 1 && <div className='flex flex-col -mt-4 items-center md:px-4 px-3'>
+                                <img src={noplans} className='w-auto'></img>
+                                <div className='text-center text-lg'>Oops! No trading plans yet...</div>
+                            </div>}
+                            <div className='bg-white w-full h-fit py-1 rounded-t-sm rounded-b-xl border-t border-[#5BB4FD] flex gap-1 items-center justify-center font-bold text-xs mt-8'>
                                 <FaRegCopyright className='text-[#5BB4FD]' />
                                 <div>2024, Al Algo, All rights reserved.</div>
-                            </div>}
+                            </div>
                         </div>
                     </div>
                 }

@@ -6,8 +6,12 @@ import avatar from '../../assets/images/avatar.png'
 import Loading from '../../GeneralComponents/Loading';
 import { Alert } from '../../utils/utils';
 import ModalLayout from '../../utils/ModalLayout';
+import { useAtom } from 'jotai';
+import { ADMINSTORE } from '../../store';
 
 const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
+    const [adminStore] = useAtom(ADMINSTORE)
+
     const [message, setMessage] = useState('')
     const toggler = useRef()
     const [status, setStatus] = useState(singleTax.status)
@@ -60,6 +64,13 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
             setUpdate(true)
         }
     }
+
+    const GenerateTaxMessage = () => {
+        const NewTaxAmount = singleTax.amount / 2
+        setMessage(`Your first tax payment cleared. Now you have to pay an additional ${adminStore.tax_percentage / 2}% tax fee of $${NewTaxAmount} to successfully complete your withdrawal. Pay now?`)
+        setUpdate(true)
+    }
+
 
     const UpdateTaxPayment = async () => {
 
@@ -151,7 +162,8 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>tax message:</div>
                                         <div className='flex flex-col gap-1'>
-                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base  outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
+                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
+                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem]' onClick={GenerateTaxMessage}>Generate</button>
                                         </div>
                                     </div>
                                     <div className='flex flex-col gap-6 my-6'>

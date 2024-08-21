@@ -99,7 +99,7 @@ const Package = () => {
                 <td className='text-center truncate  capitalize p-2 '>title</td>
                 <td className='text-center truncate  capitalize p-2 '>price start</td>
                 <td className='text-center truncate  capitalize p-2 '>price limit</td>
-                <td className='text-center truncate  capitalize p-2 '>profit percentage</td>
+                <td className='text-center truncate  capitalize p-2 '>profit return</td>
                 <td className='text-center truncate  capitalize p-2 '>plan bonus</td>
                 <td className='text-center truncate  capitalize p-2 '>duration</td>
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
@@ -112,7 +112,7 @@ const Package = () => {
                     <td className='p-4  text-center truncate capitalize'>{item.title}</td>
                     <td className={`p-4  text-center truncate`}>${item.price_start.toLocaleString()}</td>
                     <td className='p-4  text-center truncate capitalize'>${item.price_limit.toLocaleString()}</td>
-                    <td className='p-4  text-center truncate capitalize'>{item.profit_percentage}%</td>
+                    <td className='p-4  text-center truncate capitalize'>{item.profit_return}%</td>
                     <td className='p-4  text-center truncate capitalize'>${item.plan_bonus.toLocaleString()}</td>
                     <td className='p-4  text-center truncate capitalize'>{item.duration + item.duration_type}</td>
                     <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SinglePlanFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
@@ -123,7 +123,7 @@ const Package = () => {
             {tradingPlans.length < 1 &&
               <tbody>
                 <tr className='text-black text-[0.8rem] bg-white font-[550]'>
-                  <td colSpan="5" className='py-2 italic text-center truncate'>
+                  <td colSpan="7" className='py-2 italic text-center truncate'>
                     <div className='flex gap-1 items-center justify-center'>
                       <span>no trading plans found...</span>
                       <img src={nothnyet} className='h-4 w-auto'></img>

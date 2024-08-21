@@ -6,7 +6,7 @@ import { CookieName, MoveToTop } from '../../../utils/utils'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from '../../../assets/images/logobrand.png'
 import { RiLogoutCircleLine } from "react-icons/ri";
-import { RiBankLine } from "react-icons/ri";
+import { TbBuildingBank } from "react-icons/tb";
 import { TiCancel } from 'react-icons/ti'
 import { IoMdLogOut } from 'react-icons/io'
 import { HiOutlineCreditCard } from "react-icons/hi2";
@@ -25,7 +25,7 @@ const MainLinks = [
   { path: 'deposits', url: '/admin-controls', icon: HiOutlineCreditCard },
   { path: 'investments', url: '/admin-controls/investments', icon: HiOutlineCollection },
   { path: 'users', url: '/admin-controls/users', icon: TbUsers },
-  { path: 'withdrawals', url: '/admin-controls/withdrawals', icon: RiBankLine },
+  { path: 'withdrawals', url: '/admin-controls/withdrawals', icon: TbBuildingBank },
 ]
 
 const OtherLinks = [

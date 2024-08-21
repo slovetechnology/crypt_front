@@ -22,7 +22,7 @@ const LegalSecurityPage = () => {
                     <div className='flex flex-col gap-2'>
                       <PiCertificate className='text-7xl text-[#1E2833]' />
                       <div className=' font-bold flex flex-col gap-1'>
-                        <span>Us licenses and registrations</span>
+                        <span>US licenses and registrations</span>
                         <span>AL ALGO TRADE Corp</span>
                       </div>
                     </div>
@@ -31,7 +31,7 @@ const LegalSecurityPage = () => {
                     <div className='flex flex-col gap-2'>
                       <PiCertificate className='text-7xl text-[#1E2833]' />
                       <div className=' font-bold flex flex-col gap-1'>
-                        <span>Us licenses and registrations</span>
+                        <span>US licenses and registrations</span>
                         <span>AL ALGO TRADE Corp</span>
                       </div>
                     </div>
