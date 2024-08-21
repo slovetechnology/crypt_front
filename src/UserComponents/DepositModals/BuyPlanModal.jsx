@@ -51,7 +51,6 @@ const BuyPlanModal = ({ setModal, buybal }) => {
         } finally {
             setLoading(false)
         }
-
     }
 
     return (

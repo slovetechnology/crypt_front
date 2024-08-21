@@ -15,7 +15,7 @@ const VerifyKYC = () => {
                 {loading && <LoadingAdmin />}
                 <div className='flex flex-col justify-center items-center gap-14 my-16'>
                     <div className='flex flex-col gap-2 items-center text-semi-white'>
-                        <div className='flex gap-2 items-center md:text-4xl text-2x capitalize font-bold'>
+                        <div className='flex gap-2 items-center md:text-4xl text-2xl capitalize font-bold'>
                             <span>verify kyc</span>
                             <MdVerified className='text-[#b19e34]' />
                         </div>

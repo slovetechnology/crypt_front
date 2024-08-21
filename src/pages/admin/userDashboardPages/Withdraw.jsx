@@ -205,7 +205,7 @@ const Withdraw = () => {
                     <div className='my-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
                         {loading && <LoadingAdmin />}
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-light mx-auto flex flex-col gap-2'>
-                            <Link to='/dashboard/deposit' onClick={MoveToTop}>
+                            <Link to='/dashboard/tax-payment' onClick={MoveToTop}>
                                 <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto'>
                                     <span>fund account</span>
                                     <SiBitcoincash />
