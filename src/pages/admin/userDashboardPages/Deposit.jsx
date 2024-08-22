@@ -190,8 +190,8 @@ const Deposit = () => {
                                 ))}
                             </div>
                                 :
-                                <div className='flex flex-col -mt-4 items-center md:px-16 px-0'>
-                                    <img src={noplans} className='h-80 w-auto'></img>
+                                <div className='flex flex-col -mt-4 items-center md:px-6 px-0'>
+                                    <img src={noplans} className='h-80 w-96'></img>
                                     <div className='text-center text-lg'>Oops! No trading plans yet...</div>
                                 </div>
                             }

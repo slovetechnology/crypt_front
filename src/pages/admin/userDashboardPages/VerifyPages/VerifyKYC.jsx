@@ -7,6 +7,7 @@ import { useAtom } from 'jotai'
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti'
 import { countryApi } from '../../../../services/CountryAPI'
 import { PhoneCodesApi } from '../../../../services/PhoneCodes'
+import { RiErrorWarningLine } from 'react-icons/ri'
 
 const Genders = [
     "male",
@@ -93,20 +94,20 @@ const VerifyKYC = () => {
     const CreateKyc = async () => {
         setTimeout(() => {
             setError('')
-        }, 1000)
+        }, 2000)
 
-        if (!form.first_name) return setError('full')
-        if (!form.last_name) return setError('last')
-        if (gender === 'select') return setError('gender')
-        if (marital === 'select') return setError('marital')
-        if (!form.date_of_birth) return setError('date')
-        if (usercountry.name === 'select') return setError('country')
-        if (!form.address) return setError('address')
-        if (!form.state) return setError('state')
-        if (!form.postal) return setError('postal')
-        if (!form.phone_number) return setError('phone')
-        if (!form.ssn) return setError('ssn')
-        if (id === null) return setError('id')
+        if (!form.first_name) return setError('Enter first name')
+        if (!form.last_name) return setError('Enter last name')
+        if (gender === 'select') return setError('Select gender')
+        if (marital === 'select') return setError('Select marital status')
+        if (!form.date_of_birth) return setError('Enter date of birth')
+        if (usercountry.name === 'select') return setError('Select Country')
+        if (!form.address) return setError('Enter address')
+        if (!form.state) return setError('Enter state of residence')
+        if (!form.postal) return setError('Enter postal / zipcode')
+        if (!form.phone_number) return setError('Enter phone number')
+        if (!form.ssn) return setError('Enter SSN')
+        if (id === null) return setError('Provide valid ID')
 
         const formbody = new FormData()
         formbody.append('valid_id', id)
@@ -121,6 +122,8 @@ const VerifyKYC = () => {
         formbody.append('gender', gender)
         formbody.append('marital_status', marital)
         formbody.append('country', usercountry.name)
+
+        setLoading(true)
 
     }
 
@@ -143,22 +146,22 @@ const VerifyKYC = () => {
                             }
                         </div>
                     </div>
-                    <div className='flex flex-col gap-6 text-black md:w-3/4 w-[97%] mx-auto bg-semi-white py-5 md:px-8 px-5 rounded-md'>
+                    <div className='flex flex-col gap-6 text-black md:w-3/4 w-[95%] mx-auto bg-semi-white py-6 md:px-8 px-5 rounded-md relative'>
                         <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>first name:</div>
-                                <input className={`outline-none bg-transparent border w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ${error === 'full' ? 'border-[red]' : 'border-light'}`} value={form.first_name} name='first_name' onChange={formHandler}></input>
+                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.first_name} name='first_name' onChange={formHandler}></input>
                             </div>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>last name:</div>
-                                <input className={`outline-none bg-transparent border w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ${error === 'last' ? 'border-[red]' : 'border-light'}`} value={form.last_name} name='last_name' onChange={formHandler}></input>
+                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.last_name} name='last_name' onChange={formHandler}></input>
                             </div>
                         </div>
                         <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
                             <div className='relative'>
                                 <div className='flex flex-col gap-1'>
                                     <div className='md:text-sm text-xs capitalize font-semibold'>gender:</div>
-                                    <div className={`px-2 py-1 h-fit w-full bg-white shantf cursor-pointer rounded-[3px] ${error === 'gender' && 'border border-[red]'}`} onClick={() => setGenderShow(!genderShow)} >
+                                    <div className='px-2 py-1 h-fit w-full bg-white shantf cursor-pointer rounded-[3px]' onClick={() => setGenderShow(!genderShow)} >
                                         <div className='flex justify-between items-center text-[0.8rem] text-black'>
                                             <span className='font-semibold'>{gender}</span>
                                             <div className='text-sm'>
@@ -170,9 +173,9 @@ const VerifyKYC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {genderShow && <div className='h-fit w-full absolute top-[3.3rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                {genderShow && <div className='h-fit w-full absolute top-[3.4rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                     {Genders.map((item, i) => (
-                                        <div key={i} className={`flex flex-col px-2 py-0.5 text-black hover:bg-[#e6e5e5] ${i === Genders.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
+                                        <div key={i} className={`flex flex-col px-2 py-0.5 text-black hover:bg-[#f8f8f8] ${i === Genders.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'} ${i === 0 && 'hover:rounded-t-md'}`}>
                                             <div className='flex items-center cursor-pointer' onClick={() => { setGender(item); setGenderShow(false) }}>
                                                 <div className='text-[0.85rem] font-bold'>{item}</div>
                                             </div>
@@ -183,7 +186,7 @@ const VerifyKYC = () => {
                             <div className='relative'>
                                 <div className='flex flex-col gap-1'>
                                     <div className='md:text-sm text-xs capitalize font-semibold'>marital status:</div>
-                                    <div className={`px-2 py-1 h-fit w-full bg-white shantf cursor-pointer rounded-[3px] ${error === 'marital' && 'border border-[red]'}`} onClick={() => setMaritalShow(!maritalShow)} >
+                                    <div className='px-2 py-1 h-fit w-full bg-white shantf cursor-pointer rounded-[3px]' onClick={() => setMaritalShow(!maritalShow)} >
                                         <div className='flex justify-between items-center text-[0.8rem] text-black'>
                                             <span className='font-semibold'>{marital}</span>
                                             <div className='text-sm'>
@@ -195,9 +198,9 @@ const VerifyKYC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {maritalShow && <div className='h-fit w-full absolute top-[3.3rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                {maritalShow && <div className='h-fit w-full absolute top-[3.4rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                     {MaritalStatus.map((item, i) => (
-                                        <div key={i} className={`flex flex-col px-2 py-0.5 text-black hover:bg-[#e6e5e5] ${i === MaritalStatus.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
+                                        <div key={i} className={`flex flex-col px-2 py-0.5 text-black hover:bg-[#f8f8f8] ${i === MaritalStatus.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'} ${i === 0 && 'hover:rounded-t-md'}`}>
                                             <div className='flex items-center cursor-pointer' onClick={() => { setMarital(item); setMaritalShow(false) }}>
                                                 <div className='text-[0.85rem] font-bold'>{item}</div>
                                             </div>
@@ -209,14 +212,14 @@ const VerifyKYC = () => {
                         <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>date of birth:</div>
-                                <input type='date' value={form.date_of_birth} name='date_of_birth' className={`text-black py-0.5 px-1 rounded-[3px] shantf outline-none cursor-pointer text-sm ${error === 'date' && 'border border-[red]'}`} onChange={formHandler} />
+                                <input type='date' value={form.date_of_birth} name='date_of_birth' className='text-black py-0.5 px-1 rounded-[3px] shantf outline-none text-sm' onChange={formHandler} />
                             </div>
                             <div className='relative'>
                                 <div className='flex flex-col gap-1'>
                                     <div className='text-sm capitalize font-semibold'>country:</div>
                                     <div className='flex gap-1 items-center'>
                                         {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
-                                        <div className={`px-2 py-1 h-fit w-full bg-white shantf cursor-pointer rounded-sm ${error === 'country' && 'border border-[red]'}`} onClick={() => { setCountryShow(!countryshow); setSearchCountry(''); setCountries(countryApi) }}>
+                                        <div className='px-2 py-1 h-fit w-full bg-white shantf cursor-pointer rounded-sm' onClick={() => { setCountryShow(!countryshow); setSearchCountry(''); setCountries(countryApi) }}>
                                             <div className='flex justify-between items-center text-[0.8rem] text-black'>
                                                 <span className='font-semibold'>{usercountry.name}</span>
                                                 <div className='text-sm'>
@@ -251,23 +254,23 @@ const VerifyKYC = () => {
                         <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>address:</div>
-                                <input className={`outline-none bg-transparent border w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ${error === 'address' ? 'border-[red]' : 'border-light'}`} value={form.address} name='address' onChange={formHandler}></input>
+                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.address} name='address' onChange={formHandler}></input>
                             </div>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>state / province:</div>
-                                <input className={`outline-none bg-transparent border w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ${error === 'state' ? 'border-[red]' : 'border-light'}`} value={form.state} name='state' onChange={formHandler}></input>
+                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.state} name='state' onChange={formHandler}></input>
                             </div>
                         </div>
                         <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>postal / zipcode:</div>
-                                <input className={`outline-none bg-transparent border w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ${error === 'postal' ? 'border-[red]' : 'border-light'}`} value={form.postal} name='postal' onChange={formHandler}></input>
+                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.postal} name='postal' onChange={formHandler}></input>
                             </div>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>phone number:</div>
                                 <div className='flex gap-2 items-center'>
                                     <div className='relative'>
-                                        <div className={`py-1 px-2 h-fit w-fit bg-white shantf cursor-pointer rounded-sm ${error === 'country' && 'border border-[red]'}`} onClick={() => { setPhoneShow(!phoneShow); setSearchPhone(''); setPhones(PhoneCodesApi) }}>
+                                        <div className='py-1 px-2 h-fit w-fit bg-white shantf cursor-pointer rounded-sm' onClick={() => { setPhoneShow(!phoneShow); setSearchPhone(''); setPhones(PhoneCodesApi) }}>
                                             <div className='flex gap-1 items-center text-[0.8rem] text-black'>
                                                 <span className='font-semibold'>{phoneCode}</span>
                                                 <div className='text-sm'>
@@ -296,7 +299,7 @@ const VerifyKYC = () => {
                                         }
                                     </div>
                                     <div>
-                                        <input className={`outline-none bg-transparent border w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ${error === 'phone' ? 'border-[red]' : 'border-light'}`} value={form.phone_number} name='phone_number' onChange={formHandler}></input>
+                                        <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.phone_number} name='phone_number' onChange={formHandler}></input>
                                     </div>
                                 </div>
                             </div>
@@ -304,13 +307,13 @@ const VerifyKYC = () => {
                         <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>social security number:</div>
-                                <input className={`outline-none bg-transparent border w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ${error === 'ssn' ? 'border-[red]' : 'border-light'}`} value={form.ssn} name='ssn' onChange={formHandler}></input>
+                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.ssn} name='ssn' onChange={formHandler}></input>
                             </div>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>valid identity document:</div>
-                                <div className={`w-full rounded-[3px] h-fit flex items-center gap-4 relative py-1 border ${error === 'id' ? 'border-[red]' : 'border-light'}`}>
+                                <div className='w-full rounded-[3px] h-fit flex items-center gap-4 relative py-1 border border-light'>
                                     <label className='cursor-pointer'>
-                                        <div className='bg-white h-fit w-fit px-2 py-1.5 text-sm text-black shantf rounded-sm'>choose file</div>
+                                        <div className='bg-white h-fit w-fit px-2 py-1.5 text-sm text-black shantf rounded-sm font-semibold'>choose file</div>
                                         <input ref={idref} type="file" onChange={handleUpload} hidden />
                                     </label>
                                     <div className='text-sm text-center'>{id === null ? 'No file choosen' : id.name}</div>
@@ -318,6 +321,13 @@ const VerifyKYC = () => {
                             </div>
                         </div>
                         <button className='outline-none bg-[#252525] py-2 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[600] mt-6 mx-auto' onClick={CreateKyc}>upload details</button>
+                        {error !== '' &&
+                            <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
+                                <RiErrorWarningLine className='md:text-base text-sm' />
+                                <span>{error}</span>
+                                <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
