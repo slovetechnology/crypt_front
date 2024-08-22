@@ -173,7 +173,7 @@ const VerifyKYC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {genderShow && <div className='h-fit w-full absolute top-[3.4rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                {genderShow && <div className='h-fit w-full absolute  top-12 md:top-[3.4rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                     {Genders.map((item, i) => (
                                         <div key={i} className={`flex flex-col px-2 py-0.5 text-black hover:bg-[#f8f8f8] ${i === Genders.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'} ${i === 0 && 'hover:rounded-t-md'}`}>
                                             <div className='flex items-center cursor-pointer' onClick={() => { setGender(item); setGenderShow(false) }}>
@@ -198,7 +198,7 @@ const VerifyKYC = () => {
                                         </div>
                                     </div>
                                 </div>
-                                {maritalShow && <div className='h-fit w-full absolute top-[3.4rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                {maritalShow && <div className='h-fit w-full absolute top-12 md:top-[3.4rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                     {MaritalStatus.map((item, i) => (
                                         <div key={i} className={`flex flex-col px-2 py-0.5 text-black hover:bg-[#f8f8f8] ${i === MaritalStatus.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'} ${i === 0 && 'hover:rounded-t-md'}`}>
                                             <div className='flex items-center cursor-pointer' onClick={() => { setMarital(item); setMaritalShow(false) }}>
