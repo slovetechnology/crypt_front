@@ -146,7 +146,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                     }
                     <div className='flex flex-col gap-2 items-center'>
                         <div className='italic text-sm'>attach proof of payment:</div>
-                        <div className={`w-64 rounded-[3px] h-fit flex items-center gap-4 relative py-1 border ${error === 'proof' ? 'border-[red]' : 'border-[#3966FF]'}`}>
+                        <div className={`w-64 rounded-[3px] h-fit flex items-center gap-4 relative p-1 border ${error === 'proof' ? 'border-[red]' : 'border-[#3966FF]'}`}>
                             <label className='cursor-pointer'>
                                 <div className='bg-white h-fit w-fit px-2 py-1.5 text-sm rounded-sm font-medium shantf'>choose file</div>
                                 <input ref={proofref} type="file" onChange={handleUpload} hidden />

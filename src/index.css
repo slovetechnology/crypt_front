@@ -27,17 +27,12 @@ body {
 }
 
 input[type="date"] {
-  display: block;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
 input[type="date"]::before {
   content: attr(placeholder)
-}
-
-input[type="date"]:valid::before {
-	content: "";
 }
 
 .scroll::-webkit-scrollbar {

@@ -311,7 +311,7 @@ const VerifyKYC = () => {
                             </div>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>valid identity document:</div>
-                                <div className='w-full rounded-[3px] h-fit flex items-center gap-4 relative py-1 border border-light'>
+                                <div className='w-full rounded-[3px] h-fit flex items-center gap-4 relative p-1 border border-light'>
                                     <label className='cursor-pointer'>
                                         <div className='bg-white h-fit w-fit px-2 py-1.5 text-sm text-black shantf rounded-sm font-semibold'>choose file</div>
                                         <input ref={idref} type="file" onChange={handleUpload} hidden />
