@@ -212,7 +212,7 @@ const VerifyKYC = () => {
                         <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>date of birth:</div>
-                                <input type='date' value={form.date_of_birth} name='date_of_birth' className='w-full h-fit text-black py-1 px-2 rounded-[3px] shantf outline-none text-[0.8rem] font-semibold bg-white text-left' placeholder='select date' onChange={formHandler} />
+                                <input type='date' value={form.date_of_birth} name='date_of_birth' className='w-full h-fit text-black py-1 px-2 rounded-[3px] shantf outline-none text-[0.8rem] font-semibold bg-white text-left' placeholder='enter' onChange={formHandler} />
                             </div>
                             <div className='relative'>
                                 <div className='flex flex-col gap-1'>
