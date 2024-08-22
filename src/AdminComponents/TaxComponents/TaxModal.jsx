@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Apis, UserPutApi, imageurl } from '../../services/API'
 import moment from 'moment';
-import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
+import { FaXmark } from 'react-icons/fa6';
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import avatar from '../../assets/images/avatar.png'
 import Loading from '../../GeneralComponents/Loading';
 import { Alert } from '../../utils/utils';
 import ModalLayout from '../../utils/ModalLayout';
 import { useAtom } from 'jotai';
 import { ADMINSTORE } from '../../store';
+import {Image} from 'antd'
 
 const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
     const [adminStore] = useAtom(ADMINSTORE)
@@ -110,6 +112,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
             <div className={`bg-white rounded-lg lg:w-1/2 md:w-4/6 w-11/12 lg:h-[90vh] md:h-[80vh] h-[70vh] ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}  move`} ref={toggler}>
                 <div className={`w-full h-full relative  ${beforeshow && 'flex items-center justify-center'}`}>
                     {loading && <Loading />}
+                    <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => closeView()} />
                     {beforeshow && <div className='beforeshow'></div>}
                     {!beforeshow &&
                         <div className='md:w-[90%] w-11/12 mx-auto md:py-8 py-4 flex flex-col gap-8 md:text-[0.9rem] text-[0.8rem]'>
@@ -141,7 +144,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic'>amount:</div>
-                                        {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleTax.amount.toLocaleString()}</div>}
+                                        {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleTax.amount.toFixed(1).toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic'>crypto:</div>
@@ -157,7 +160,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic'>proof of payment:</div>
-                                        {Object.values(singleTax).length !== 0 && <img src={`${imageurl}/taxPayment/${singleTax.payment_proof}`} className='h-40 w-auto object-cover'></img>}
+                                        {Object.values(singleTax).length !== 0 && <Image src={`${imageurl}/taxPayment/${singleTax.payment_proof}`} height={200}/>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>tax message:</div>
@@ -170,12 +173,14 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                         <div className='flex justify-between items-center'>
                                             <div className='italic'>status:</div>
                                             {singleTax.status === 'processing' ? <div className='relative'>
-                                                <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white rounded-sm sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
+                                                <div className='px-2 py-1 h-fit md:w-44 w-36 bg-white rounded-sm sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                     <div className='flex justify-between items-center text-[0.8rem]'>
                                                         <span >{status}</span>
-                                                        <div className={`flex flex-col items-center text-xs trans ${statusShow ? 'rotate-90' : 'rotate-0'} `}>
-                                                            <FaAngleUp />
-                                                            <FaAngleDown className='-mt-1' />
+                                                        <div className='text-sm'>
+                                                            {!statusShow ? <TiArrowSortedDown />
+                                                                :
+                                                                <TiArrowSortedUp />
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>

@@ -187,13 +187,13 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>total amount deposited:</div>
-                                        {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.total_investment.toLocaleString()}</div>}
+                                        {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.total_investment.toFixed(1).toLocaleString()}</div>}
                                     </div>
                                 </div>
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>account balance:</div>
-                                        {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.wallet_balance.toLocaleString()}</div>}
+                                        {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.wallet_balance.toFixed(1).toLocaleString()}</div>}
                                     </div>
                                 </div>
                             </div>

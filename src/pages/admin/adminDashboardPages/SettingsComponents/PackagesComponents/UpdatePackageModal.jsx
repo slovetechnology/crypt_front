@@ -5,7 +5,8 @@ import { PiWarningCircleBold } from 'react-icons/pi';
 import { Apis, PostApi, UserPutApi } from '../../../../../services/API';
 import { Alert } from '../../../../../utils/utils';
 import ModalLayout from '../../../../../utils/ModalLayout';
-import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6';
+import { FaXmark } from 'react-icons/fa6';
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 
 const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
@@ -22,7 +23,6 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
         "hours",
         "days",
         "weeks",
-        "months",
     ]
 
     const [form, setForm] = useState({
@@ -171,9 +171,11 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                                     <div className='px-2 py-1 h-fit md:w-48 w-40 bg-white sha cursor-pointer rounded-[3px]' onClick={() => setTypeShow(!typeShow)} >
                                         <div className='flex justify-between items-center text-[0.8rem]'>
                                             <span >{type}</span>
-                                            <div className={`flex flex-col items-center text-xs trans ${typeShow ? 'rotate-90' : 'rotate-0'} `}>
-                                                <FaAngleUp />
-                                                <FaAngleDown className='-mt-1' />
+                                            <div className='text-sm'>
+                                                {!typeShow ? <TiArrowSortedDown />
+                                                    :
+                                                    <TiArrowSortedUp />
+                                                }
                                             </div>
                                         </div>
                                     </div>

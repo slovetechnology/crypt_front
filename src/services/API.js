@@ -63,6 +63,11 @@ const tax_urls = {
     user_taxes: tax + 'user-taxes'
 }
 
+const kyc = 'api/kyc/'
+const kyc_urls = {
+    user_kyc: kyc + 'user-kyc'
+}
+
 const admin = 'api/admin/'
 const admin_urls = {
     all_users: admin + 'all-users',
@@ -98,6 +103,7 @@ export const Apis = {
     withdrawal: withdrawal_urls,
     investment: investment_urls,
     tax: tax_urls,
+    kyc: kyc_urls,
     admin: admin_urls
 }
 

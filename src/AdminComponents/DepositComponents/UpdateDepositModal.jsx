@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Apis, UserPutApi, imageurl } from '../../services/API'
 import moment from 'moment';
-import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6';
+import { FaXmark } from 'react-icons/fa6';
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import Loading from '../../GeneralComponents/Loading';
 import { Alert, MoveToTopDiv } from '../../utils/utils';
 import avatar from '../../assets/images/avatar.png'
@@ -136,12 +137,14 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) =>
                     <div className='flex justify-between items-center'>
                       <div className='italic'>status:</div>
                       {singleDeposit.status === 'pending' ? <div className='relative'>
-                        <div className='px-2 py-1 h-fit md:w-48 w-36 bg-white rounded-[3px] sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
+                        <div className='px-2 py-1 h-fit md:w-44 w-36 bg-white rounded-[3px] sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                           <div className='flex justify-between items-center text-[0.8rem]'>
                             <span >{status}</span>
-                            <div className={`flex flex-col items-center text-xs trans ${statusShow ? 'rotate-90' : 'rotate-0'} `}>
-                              <FaAngleUp />
-                              <FaAngleDown className='-mt-1' />
+                            <div className='text-sm'>
+                              {!statusShow ? <TiArrowSortedDown />
+                                :
+                                <TiArrowSortedUp />
+                              }
                             </div>
                           </div>
                         </div>

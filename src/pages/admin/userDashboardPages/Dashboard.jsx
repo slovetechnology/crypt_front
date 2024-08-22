@@ -12,7 +12,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import avatar from '../../../assets/images/avatar.png'
-import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET } from '../../../store';
+import { ADMINSTORE, ADMINWALLETS, KYC, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET } from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
@@ -51,6 +51,7 @@ const Dashboard = ({ children }) => {
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
     const [wallet, setWallet] = useAtom(WALLET)
     const [, setUps] = useAtom(UPS)
+    const [kyc, setKyc] = useAtom(KYC)
     const [, setAdminWallets] = useAtom(ADMINWALLETS)
     const [, setTradingPlans] = useAtom(TRADINGPLANS)
     const [, setAdminStore] = useAtom(ADMINSTORE)
@@ -130,6 +131,23 @@ const Dashboard = ({ children }) => {
     useEffect(() => {
         FetchUps()
     }, [FetchUps])
+
+    const FetKyc = useCallback(async () => {
+        try {
+            const response = await UserGetApi(Apis.kyc.user_kyc)
+            if (response.status === 200) {
+                setKyc(response.msg)
+                console.log(response.msg)
+            }
+
+        } catch (error) {
+            //
+        }
+    }, [])
+
+    useEffect(() => {
+        FetKyc()
+    }, [FetKyc])
 
     const FetchAdminWallets = useCallback(async () => {
         try {

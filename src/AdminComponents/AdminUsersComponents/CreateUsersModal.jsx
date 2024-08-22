@@ -2,7 +2,8 @@ import React, { useRef, useState } from 'react'
 import Loading from '../../GeneralComponents/Loading'
 import { RiErrorWarningLine } from 'react-icons/ri'
 import { Apis, PostApi } from '../../services/API'
-import { FaAngleDown, FaAngleUp, FaXmark } from 'react-icons/fa6'
+import { FaXmark } from 'react-icons/fa6'
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import { countryApi } from '../../services/CountryAPI'
 import ModalLayout from '../../utils/ModalLayout'
 import { Alert } from '../../utils/utils'
@@ -17,11 +18,11 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
   const [countries, setCountries] = useState(countryApi)
   const [countryshow, setCountryShow] = useState(false)
   const [usercountry, setUserCountry] = useState({
-    name: 'choose country',
+    name: 'select',
     flag: null
   })
   const [searchCountry, setSearchCountry] = useState('')
-  const [role, setRole] = useState('choose role')
+  const [role, setRole] = useState('select')
   const [roleShow, setRoleShow] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
@@ -65,8 +66,8 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
 
     if (!form.full_name || !form.username || !form.email || !form.password) return setError('Enter all fields')
     if (form.password.length < 6) return setError('Password length too short')
-    if (usercountry.name === 'choose country') return setError('Choose user country')
-    if (role === 'choose role') return setError('Assign a role')
+    if (usercountry.name === 'select') return setError('Choose user country')
+    if (role === 'select') return setError('Assign a role')
 
     const formbody = {
       full_name: form.full_name,
@@ -130,9 +131,11 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
                   <div className='px-2 py-1 h-fit w-full bg-white sha cursor-pointer rounded-sm' onClick={() => { setCountryShow(!countryshow); setSearchCountry(''); setCountries(countryApi) }}>
                     <div className='flex justify-between items-center text-[0.8rem]'>
                       <span >{usercountry.name}</span>
-                      <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>
-                        <FaAngleUp />
-                        <FaAngleDown className='-mt-1' />
+                      <div className='text-sm'>
+                        {!countryshow ? <TiArrowSortedDown />
+                          :
+                          <TiArrowSortedUp />
+                        }
                       </div>
                     </div>
                   </div>
@@ -162,9 +165,11 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
                 <div className='px-2 py-1 h-fit w-full bg-white sha cursor-pointer rounded-[3px]' onClick={() => setRoleShow(!roleShow)} >
                   <div className='flex justify-between items-center text-[0.8rem]'>
                     <span >{role}</span>
-                    <div className={`flex flex-col items-center text-xs trans ${roleShow ? 'rotate-90' : 'rotate-0'} `}>
-                      <FaAngleUp />
-                      <FaAngleDown className='-mt-1' />
+                    <div className='text-sm'>
+                      {!roleShow ? <TiArrowSortedDown />
+                        :
+                        <TiArrowSortedUp />
+                      }
                     </div>
                   </div>
                 </div>

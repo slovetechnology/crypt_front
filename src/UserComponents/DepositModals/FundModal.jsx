@@ -126,7 +126,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
               </div>
             </div>
           }
-          <div className='flex flex-col gap-1 items-center mt-4'>
+          <div className='flex flex-col gap-1 items-center mt-2'>
             <div className='flex gap-1.5 items-center'>
               <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
               <div className='text-[#252525] text-[0.8rem]'>Confirm you've made this deposit</div>

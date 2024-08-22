@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import Loading from '../GeneralComponents/Loading'
 import { Apis, UserPutApi, imageurl } from '../services/API'
 import moment from 'moment'
-import { FaAngleDown, FaAngleUp, FaCheck, FaXmark } from 'react-icons/fa6'
+import { FaCheck, FaXmark } from 'react-icons/fa6'
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import { Alert, MoveToTopDiv } from '../utils/utils'
 import { MdContentCopy } from 'react-icons/md'
 import avatar from '../assets/images/avatar.png'
@@ -12,7 +13,7 @@ import { ADMINSTORE } from '../store'
 
 const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }) => {
     const [adminStore] = useAtom(ADMINSTORE)
-    
+
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const [statusShow, setStatusShow] = useState(false)
@@ -147,7 +148,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toLocaleString()}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toFixed(1).toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>crypto:</div>
@@ -182,12 +183,14 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                         <div className='italic '>status:</div>
                                         {singleWithdrawal.status === 'processing' ?
                                             <div className='relative'>
-                                                <div className='px-2 py-1 h-fit md:w-48 w-36 rounded-[3px] bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
+                                                <div className='px-2 py-1 h-fit md:w-44 w-36 rounded-[3px] bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                     <div className='flex justify-between items-center text-[0.8rem]'>
                                                         <span >{status}</span>
-                                                        <div className={`flex flex-col items-center text-xs trans ${statusShow ? 'rotate-90' : 'rotate-0'} `}>
-                                                            <FaAngleUp />
-                                                            <FaAngleDown className='-mt-1' />
+                                                        <div className='text-sm'>
+                                                            {!statusShow ? <TiArrowSortedDown />
+                                                                :
+                                                                <TiArrowSortedUp />
+                                                            }
                                                         </div>
                                                     </div>
                                                 </div>

@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
 import logo from '../../assets/images/logobrand.png'
 import { Link, useNavigate } from 'react-router-dom';
-import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { SlCamera, SlUser } from 'react-icons/sl'
@@ -13,6 +12,7 @@ import { Apis, UserPostApi } from '../../services/API'
 import Cookies from 'js-cookie'
 import { decodeToken } from 'react-jwt'
 import { countryApi } from '../../services/CountryAPI'
+import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
 
 
 const SignupPage = () => {
@@ -30,7 +30,7 @@ const SignupPage = () => {
   const [countries, setCountries] = useState(countryApi)
   const [countryshow, setCountryShow] = useState(false)
   const [usercountry, setUserCountry] = useState({
-    name: 'choose country',
+    name: 'select',
     flag: null
   })
   const [search, setSearch] = useState('')
@@ -49,7 +49,7 @@ const SignupPage = () => {
     password: '',
     confirm_password: ''
   })
-  
+
   const inputHandler = event => {
     setForm({
       ...form,
@@ -91,7 +91,7 @@ const SignupPage = () => {
     if (!form.full_name) return setError('name')
     if (!form.username) return setError('user')
     if (!form.email) return setError('email')
-    if (usercountry.name === 'choose country') return setError('country')
+    if (usercountry.name === 'select') return setError('country')
     if (!form.password) return setError('password')
     if (form.password.length < 6) {
       setErrorMsg('length too short')
@@ -244,13 +244,13 @@ const SignupPage = () => {
                                   <div className='text-sm capitalize font-[550]'>country:</div>
                                   <div className='flex gap-1 items-center'>
                                     {usercountry.flag !== null && <img className='h-5 w-auto' src={usercountry.flag}></img>}
-                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer rounded-sm ${error === 'country' ? 'border border-[red]' : ''}`} onClick={() => { setCountryShow(!countryshow); setSearch(''); setCountries(countryApi) }}>
+                                    <div className={`px-2 py-1 h-fit w-full bg-white sha cursor-pointer rounded-sm ${error === 'country' && 'border border-[red]'}`} onClick={() => { setCountryShow(!countryshow); setSearch(''); setCountries(countryApi) }}>
                                       <div className='flex justify-between items-center text-[0.8rem]'>
                                         <span >{usercountry.name}</span>
-                                        <div className={`flex flex-col items-center text-xs trans ${countryshow ? 'rotate-90' : 'rotate-0'} `}>
-                                          <FaAngleUp />
-                                          <FaAngleDown className='-mt-1' />
-                                        </div>
+                                        {!countryshow ? <TiArrowSortedDown />
+                                          :
+                                          <TiArrowSortedUp />
+                                        }
                                       </div>
                                     </div>
                                   </div>

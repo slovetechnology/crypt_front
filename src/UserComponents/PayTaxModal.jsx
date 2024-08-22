@@ -41,10 +41,6 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
             setImageError('')
         }, 2000)
         const file = event.target.files[0]
-        if (file.size >= 1000000) {
-            proofref.current.value = null
-            return setImageError('File size too large')
-        }
         if (!file.type.startsWith('image/')) {
             proofref.current.value = null
             return setImageError('File Error')
@@ -152,7 +148,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                         <div className='italic text-sm'>attach proof of payment:</div>
                         <div className={`w-64 rounded-[3px] h-fit flex items-center gap-4 relative py-1 border ${error === 'proof' ? 'border-[red]' : 'border-[#3966FF]'}`}>
                             <label className='cursor-pointer'>
-                                <div className='bg-semi-white h-fit w-fit px-2 py-1.5 text-sm'>choose file</div>
+                                <div className='bg-semi-white h-fit w-fit px-2 py-1.5 text-sm rounded-sm'>choose file</div>
                                 <input ref={proofref} type="file" onChange={handleUpload} hidden />
                             </label>
                             <div className='text-sm text-center'>{proof === null ? 'No file choosen' : proof.name}</div>

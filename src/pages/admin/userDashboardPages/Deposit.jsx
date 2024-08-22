@@ -154,7 +154,7 @@ const Deposit = () => {
                             </button>
                             <div className='border-t pt-2 text-center'>buy trading plans</div>
                         </div>
-                        <div className={`w-full md:h-[26rem] h-96 flex flex-col pt-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
+                        <div className={`w-full md:h-[26rem] h-96 flex flex-col py-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
                             {tradingPlans.length > 0 ? <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center md:px-4 px-3'>
                                 {tradingPlans.map((item, i) => (
                                     <div key={i}>
@@ -172,10 +172,10 @@ const Deposit = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className='text-xs text-[#252525] font-medium text-center w-11/12 border py-1 rounded-md'>
+                                                <div className='text-xs text-[#252525] font-semibold text-center w-11/12 border py-1 rounded-md'>
                                                     {item.profit_return}% profit return on investment plus bonus up to ${item.plan_bonus}
                                                 </div>
-                                                <div className='text-[0.7rem] text-[#252525] font-medium w-11/12 flex gap-2 items-center justify-center italic'>
+                                                <div className='text-[0.7rem] text-[#252525] font-semibold w-11/12 flex gap-2 items-center justify-center italic'>
                                                     <span>Duration:</span>
                                                     <span className='text-[#5BB4FD]'>{item.duration + item.duration_type}</span>
                                                 </div>
@@ -190,15 +190,11 @@ const Deposit = () => {
                                 ))}
                             </div>
                                 :
-                                <div className='flex flex-col -mt-4 items-center md:px-10 px-2'>
-                                    <img src={noplans} className='w-auto'></img>
+                                <div className='flex flex-col -mt-4 items-center md:px-16 px-0'>
+                                    <img src={noplans} className='h-80 w-auto'></img>
                                     <div className='text-center text-lg'>Oops! No trading plans yet...</div>
                                 </div>
                             }
-                            <div className='bg-white w-full h-fit py-1 rounded-t-sm rounded-b-xl border-t border-[#5BB4FD] flex gap-1 items-center justify-center font-bold text-xs mt-9'>
-                                <FaRegCopyright className='text-[#5BB4FD]' />
-                                <div>2024, Al Algo, All rights reserved.</div>
-                            </div>
                         </div>
                     </div>
                 }

@@ -205,7 +205,7 @@ const Withdraw = () => {
                     <div className='my-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
                         {loading && <LoadingAdmin />}
                         <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-light mx-auto flex flex-col gap-2'>
-                            <Link to='/dashboard/tax-payment' onClick={MoveToTop}>
+                            <Link to='/dashboard/deposit' onClick={MoveToTop}>
                                 <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto'>
                                     <span>fund account</span>
                                     <SiBitcoincash />
@@ -228,7 +228,7 @@ const Withdraw = () => {
                                         <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
                                     </div>
                                     <div className='flex items-center justify-center md:text-base text-sm'>
-                                        {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toLocaleString()}</div>}
+                                        {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toFixed(1).toLocaleString()}</div>}
                                     </div>
                                 </div>
                             </div>
@@ -303,7 +303,7 @@ const Withdraw = () => {
                                         <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                             <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                             <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                            <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                                            <td className='p-4  text-center truncate'>${item.amount.toFixed(1).toLocaleString()}</td>
                                             <td className='p-4  text-center truncate'>{item.crypto}</td>
                                             <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
                                             <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
