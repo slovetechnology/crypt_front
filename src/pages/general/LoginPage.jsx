@@ -48,22 +48,23 @@ const LoginPage = () => {
             password: form.password
         }
 
-        setLoading(true)
-        try {
-            const response = await UserPostApi(Apis.user.login, formbody)
-            if (response.status === 200) {
-                Cookies.set(CookieName, response.token)
-                const decoded = decodeToken(response.token)
-                const findRole = UserRole.find(item => item.role === decoded.role)
-                if (findRole) return navigate(`${findRole.url}`)
-            } else {
-                return Alert('Request Failed', response.msg, 'error')
-            }
-        } catch (error) {
-            Alert('Request Unsuccessful', `${error.message}`, 'error')
-        } finally {
-            setLoading(false)
-        }
+        // setLoading(true)
+        // try {
+        //     const response = await UserPostApi(Apis.user.login, formbody)
+        //     if (response.status === 200) {
+        //         Cookies.set(CookieName, response.token)
+        //         const decoded = decodeToken(response.token)
+        //         const findRole = UserRole.find(item => item.role === decoded.role)
+        //         if (findRole) return navigate(`${findRole.url}`)
+        //     } else {
+        //         return Alert('Request Failed', response.msg, 'error')
+        //     }
+        // } catch (error) {
+        //     Alert('Request Unsuccessful', `${error.message}`, 'error')
+        // } finally {
+        //     setLoading(false)
+        // }
+        navigate('/dashboard')
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 
