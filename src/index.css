@@ -30,7 +30,10 @@ input[type="date"] {
   display: block;
   -webkit-appearance: none;
   -moz-appearance: none;
-  min-height: 1.2em;
+}
+
+input[type="date"]::before {
+  content: attr(placeholder)
 }
 
 .scroll::-webkit-scrollbar {
