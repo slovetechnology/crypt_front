@@ -26,12 +26,9 @@ body {
   -webkit-border-radius: 0px;
 }
 
-input[type="date"] {
+input[type="date"]::before {
   -webkit-appearance: none;
   -moz-appearance: none;
-}
-
-input[type="date"]::before {
   content: attr(placeholder)
 }
 

@@ -8,6 +8,7 @@ import { IoCheckbox } from 'react-icons/io5'
 import Loading from '../GeneralComponents/Loading'
 import { Alert } from '../utils/utils'
 import { Apis, imageurl, PostApi } from '../services/API'
+import { FiUploadCloud } from 'react-icons/fi'
 
 const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
     const [user] = useAtom(PROFILE)
@@ -148,7 +149,9 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                         <div className='italic text-sm'>attach proof of payment:</div>
                         <div className={`w-64 rounded-[3px] h-fit flex items-center gap-4 relative p-1 border ${error === 'proof' ? 'border-[red]' : 'border-[#3966FF]'}`}>
                             <label className='cursor-pointer'>
-                                <div className='bg-white h-fit w-fit px-2 py-1.5 text-sm rounded-sm font-medium shantf'>choose file</div>
+                                <div className='bg-white h-fit w-fit px-2 py-1 text-sm rounded-sm font-medium shantf'>
+                                    <div className='bg-semi-white rounded-full p-2'><FiUploadCloud /></div>
+                                </div>
                                 <input ref={proofref} type="file" onChange={handleUpload} hidden />
                             </label>
                             <div className='text-sm text-center'>{proof === null ? 'No file choosen' : proof.name}</div>

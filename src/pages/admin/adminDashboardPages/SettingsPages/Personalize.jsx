@@ -25,7 +25,7 @@ const Personalize = () => {
 
   const [profile, setProfile] = useState({
     img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-    image: user.image
+    image: null
   })
 
   const [form, setForm] = useState({
@@ -78,7 +78,7 @@ const Personalize = () => {
 
     setProfile({
       img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-      image: user.image
+      image: null
     })
 
     setForm({

@@ -4,7 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import { useAtom } from 'jotai';
 import { TRADINGPLANS } from '../../../store';
 import moment from 'moment';
-import { FaAngleLeft, FaAngleRight, FaRegCopyright } from 'react-icons/fa6';
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { FiX } from "react-icons/fi";
 import nothnyet from '../../../assets/images/nothn.png'
 import { BsCurrencyDollar } from "react-icons/bs";
@@ -17,7 +17,7 @@ import noplans from '../../../assets/images/noplans.png'
 
 
 const Deposit = () => {
-    const [tradingPlans] = useState([])
+    const [tradingPlans] = useAtom(TRADINGPLANS)
 
     const [original, setOriginal] = useState([])
     const [deposits, setDeposits] = useState([])

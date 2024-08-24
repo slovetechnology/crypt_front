@@ -32,15 +32,10 @@ const deposit_urls = {
 const notification = 'api/notification/'
 const notification_urls = {
     user_notifications: notification + 'user-notifications',
-    admin_notifications: notification + 'admin-notifications',
     unread_notis: notification + 'unread-notis',
-    admin_unread_notis: notification + 'admin-unread-notis',
     update_all: notification + 'update-all',
-    update_admin_all: notification + 'update-admin-all',
     update_single: notification + 'update-single',
-    update_admin_single: notification + 'update-admin-single',
     delete_notification: notification + 'delete-notification',
-    delete_admin_notification: notification + 'delete-admin-notification',
 }
 
 const withdrawal = 'api/withdrawal/'
@@ -65,7 +60,8 @@ const tax_urls = {
 
 const kyc = 'api/kyc/'
 const kyc_urls = {
-    user_kyc: kyc + 'user-kyc'
+    user_kyc: kyc + 'user-kyc',
+    create_update_kyc: kyc + 'create-update-kyc'
 }
 
 const admin = 'api/admin/'
@@ -76,7 +72,7 @@ const admin_urls = {
     all_withdrawals: admin + 'all-withdrawals',
     update_deposits: admin + 'update-deposits',
     update_investments: admin + 'update-investments',
-    suspend_unsuspend_users: admin + 'suspend-unsuspend-users',
+    update_users: admin + 'update-users',
     get_user_figures: admin + 'get-user-total',
     update_withdrawals: admin + 'update-withdrawals',
     get_admin_wallets: admin + 'all-admin-wallets',
@@ -87,13 +83,12 @@ const admin_urls = {
     create_trading_plan: admin + 'create-trading-plan',
     update_trading_plan: admin + 'update-trading-plan',
     delete_trading_plan: admin + 'delete-trading-plan',
-    fund_user_account: admin + 'fund-user-account',
-    update_withdrawal_minimum: admin + 'update-withdrawal-minimum',
     get_admin_store: admin + 'admin-store',
     update_admin_store: admin + 'update-admin-store',
     get_all_taxes: admin + 'all-taxes',
     update_taxes: admin + 'update-taxes',
-    admin_create_account: admin + 'admin-create-account'
+    admin_create_account: admin + 'admin-create-account',
+    update_kyc: admin + 'update-kyc'
 }
 
 export const Apis = {

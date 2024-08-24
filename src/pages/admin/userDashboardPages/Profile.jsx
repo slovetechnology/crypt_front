@@ -45,7 +45,7 @@ const Profile = () => {
 
     const [profile, setProfile] = useState({
         img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-        image: user.image
+        image: null
     })
 
     const [form, setForm] = useState({
@@ -97,11 +97,13 @@ const Profile = () => {
         setPassEdit(false)
         setUserEdit(false)
         setCommit(false)
+
         imgref.current.value = null
         setProfile({
             img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-            image: user.image
+            image: null
         })
+        
         setForm({
             full_name: user.full_name,
             email: user.email,
@@ -158,7 +160,6 @@ const Profile = () => {
         } finally {
             setLoading(false)
         }
-
     }
 
     const DeleteAccount = async () => {

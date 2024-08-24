@@ -19,7 +19,6 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
         "minutes",
         "hours",
         "days",
-        "weeks",
     ]
 
     const [form, setForm] = useState({
@@ -83,7 +82,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
                 <div className='w-full h-full relative'>
                     {loading && <Loading />}
                     <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => closeView()} />
-                    <div className='flex flex-col md:w-[90%] w-11/12 mx-auto py-4 md:text-[0.9rem] text-[0.8rem]'>
+                    <div className='flex flex-col md:w-[90%] w-11/12 mx-auto py-5 md:text-[0.9rem] text-[0.8rem]'>
                         <div className='text-xl uppercase text-center font-bold border-b'>create trading plan</div>
                         <div className='flex flex-col gap-4 mt-4 relative'>
                             <div className='flex justify-between items-center'>
@@ -132,7 +131,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    {typeShow && <div className='h-16 overflow-y-auto w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-50 scrollDiv'>
+                                    {typeShow && <div className='h-fit w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
                                         {DurationTypes.map((item, i) => (
                                             <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === DurationTypes.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
                                                 <div className='flex items-center cursor-pointer' onClick={() => { setType(item); setTypeShow(false) }}>

@@ -27,6 +27,23 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
         "completed"
     ]
 
+    const MoveToBottom = () => {
+        const move = document.querySelector('.move')
+        move.scrollTo({
+            top: move.scrollHeight,
+            behavior: 'smooth'
+        })
+    }
+
+    useEffect(() => {
+        if (!loading) {
+            if (statusShow || status !== singleInvestment.status || form.profit !== '' || form.bonus !== '') {
+                MoveToBottom()
+            }
+        }
+    }, [MoveToBottom]
+    )
+
     const [form, setForm] = useState({
         profit: "",
         bonus: ""
@@ -56,23 +73,6 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
             setUpdate(true)
         }
     }
-
-    const MoveToBottom = () => {
-        const move = document.querySelector('.move')
-        move.scrollTo({
-            top: move.scrollHeight,
-            behavior: 'smooth'
-        })
-    }
-
-    useEffect(() => {
-        if (!loading) {
-            if (statusShow || status !== singleInvestment.status || form.profit !== '' || form.bonus !== '') {
-                MoveToBottom()
-            }
-        }
-    }, [MoveToBottom]
-    )
 
     const AdminUpdateInvestment = async () => {
         setTimeout(() => {

@@ -5,11 +5,11 @@ import { FaXmark } from 'react-icons/fa6';
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import avatar from '../../assets/images/avatar.png'
 import Loading from '../../GeneralComponents/Loading';
-import { Alert } from '../../utils/utils';
+import { Alert, MoveToTopDiv } from '../../utils/utils';
 import ModalLayout from '../../utils/ModalLayout';
 import { useAtom } from 'jotai';
 import { ADMINSTORE } from '../../store';
-import {Image} from 'antd'
+import { Image } from 'antd'
 
 const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
     const [adminStore] = useAtom(ADMINSTORE)
@@ -85,10 +85,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
 
         if (update) {
             setLoading(true)
-            const move = document.querySelector('.move')
-            move.scrollTo({
-                top: 0,
-            })
+            MoveToTopDiv()
 
             try {
                 const response = await UserPutApi(Apis.admin.update_taxes, formbody)
@@ -160,7 +157,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic'>proof of payment:</div>
-                                        {Object.values(singleTax).length !== 0 && <Image src={`${imageurl}/taxPayment/${singleTax.payment_proof}`} height={200}/>}
+                                        {Object.values(singleTax).length !== 0 && <Image src={`${imageurl}/taxPayment/${singleTax.payment_proof}`} height={200} />}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>tax message:</div>

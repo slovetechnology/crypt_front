@@ -14,7 +14,7 @@ const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setSh
         }
 
         try {
-            const response = await PostApi(Apis.notification.delete_admin_notification, formbody)
+            const response = await PostApi(Apis.notification.delete_notification, formbody)
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()
@@ -43,7 +43,7 @@ const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setSh
             notification_id: item.id,
         }
         try {
-            const response = await UserPutApi(Apis.notification.update_admin_single, formbody)
+            const response = await UserPutApi(Apis.notification.update_single, formbody)
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()

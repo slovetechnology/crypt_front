@@ -1,13 +1,16 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import VerifyLayout from '../../../../UserComponents/VerifyLayout'
 import LoadingAdmin from '../../../../GeneralComponents/LoadingAdmin'
-import { KYC } from '../../../../store'
+import { NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../../../store'
 import { MdVerified } from 'react-icons/md'
 import { useAtom } from 'jotai'
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti'
 import { countryApi } from '../../../../services/CountryAPI'
 import { PhoneCodesApi } from '../../../../services/PhoneCodes'
 import { RiErrorWarningLine } from 'react-icons/ri'
+import { FiUploadCloud } from 'react-icons/fi'
+import { Apis, PostApi, UserGetApi } from '../../../../services/API'
+import { Alert } from '../../../../utils/utils'
 
 const Genders = [
     "male",
@@ -23,8 +26,11 @@ const MaritalStatus = [
 ]
 
 const VerifyKYC = () => {
-    const [kyc] = useAtom(KYC)
+    const [user, setUser] = useAtom(PROFILE)
+    const [, setNotifications] = useAtom(NOTIFICATIONS)
+    const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
+    const [kyc, setKyc] = useState([])
     const [gender, setGender] = useState('select')
     const [genderShow, setGenderShow] = useState(false)
     const [marital, setMarital] = useState('select')
@@ -45,16 +51,15 @@ const VerifyKYC = () => {
     const [id, setId] = useState(null)
     const [loading, setLoading] = useState(false)
 
-
     const [form, setForm] = useState({
-        first_name: kyc.first_name,
-        last_name: kyc.last_name,
-        date_of_birth: kyc.date_of_birth,
-        state: kyc.state,
-        postal: kyc.postal,
-        address: kyc.address,
-        ssn: kyc.ssn,
-        phone_number: kyc.phone_number,
+        first_name: '',
+        last_name: '',
+        date_of_birth: '',
+        state: '',
+        postal: '',
+        address: '',
+        ssn: '',
+        phone_number: '',
     })
 
     const formHandler = (event) => {
@@ -64,8 +69,54 @@ const VerifyKYC = () => {
         })
     }
 
+    const FetchKyc = useCallback(async () => {
+        try {
+            const response = await UserGetApi(Apis.kyc.user_kyc)
+            if (response.status === 200) {
+                setKyc(response.msg)
+                setForm({
+                    first_name: response.msg.first_name,
+                    last_name: response.msg.last_name,
+                    date_of_birth: response.msg.date_of_birth,
+                    state: response.msg.state,
+                    postal: response.msg.postal,
+                    address: response.msg.address,
+                    ssn: response.msg.ssn,
+                    phone_number: response.msg.phone_number,
+                })
+                setGender(response.msg.gender)
+                setMarital(response.msg.marital_status)
+                setUserCountry({
+                    name: response.msg.country,
+                    flag: response.msg.country_flag
+                })
+                setPhoneCode(response.msg.phone_code)
+                setId({
+                    name: response.msg.valid_id
+                })
+            }
+
+        } catch (error) {
+            //
+        }
+    }, [])
+
+    useEffect(() => {
+        FetchKyc()
+    }, [FetchKyc])
+
     const handleUpload = (event) => {
+        setTimeout(() => {
+            setError('')
+        }, 2000)
+
         const file = event.target.files[0]
+
+        if (!file.type.startsWith('image/')) {
+            console.log('wrong')
+            idref.current.value = null
+            return setError('File Error')
+        }
         setId(file)
     }
 
@@ -91,7 +142,7 @@ const VerifyKYC = () => {
         }
     }
 
-    const CreateKyc = async () => {
+    const Create_Update_KYC = async () => {
         setTimeout(() => {
             setError('')
         }, 2000)
@@ -109,6 +160,8 @@ const VerifyKYC = () => {
         if (!form.ssn) return setError('Enter SSN')
         if (id === null) return setError('Provide valid ID')
 
+        if (form.first_name === kyc.first_name && form.last_name === kyc.last_name && form.address === kyc.address && form.state === kyc.state && form.postal === kyc.postal && form.date_of_birth === kyc.date_of_birth && form.phone_number === kyc.phone_number && form.ssn === kyc.ssn && phoneCode === kyc.phone_code && gender === kyc.gender && marital === kyc.marital_status && usercountry.name === kyc.country && id.name === kyc.valid_id) return setError('No changes made')
+
         const formbody = new FormData()
         formbody.append('valid_id', id)
         formbody.append('first_name', form.first_name)
@@ -118,13 +171,31 @@ const VerifyKYC = () => {
         formbody.append('postal', form.postal)
         formbody.append('address', form.address)
         formbody.append('ssn', form.ssn)
-        formbody.append('phone_number', phoneCode + form.phone_number)
+        formbody.append('phone_code', phoneCode)
+        formbody.append('phone_number', form.phone_number)
         formbody.append('gender', gender)
         formbody.append('marital_status', marital)
         formbody.append('country', usercountry.name)
+        formbody.append('country_flag', usercountry.flag)
+        formbody.append('kycUser', user.username)
 
         setLoading(true)
-
+        try {
+            const response = await PostApi(Apis.kyc.create_update_kyc, formbody)
+            if (response.status === 200) {
+                Alert('Request Successful', `${response.msg}`, 'success')
+                FetchKyc()
+                setUser(response.profile)
+                setNotifications(response.notis)
+                setUnreadNotis(response.unread)
+            } else {
+                Alert('Request Failed', `${response.msg}`, 'error')
+            }
+        } catch (error) {
+            Alert('Request Failed', `${error.message}`, 'error')
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -140,14 +211,14 @@ const VerifyKYC = () => {
                         <div className='italic text-sm flex items-center gap-2'>
                             <span>Status:</span>
                             {Object.values(kyc).length !== 0 ?
-                                <span className={`${kyc.verified === 'failed' ? 'text-[#c42e2e]' : 'text-light'}`}>{kyc.verified}</span>
+                                <span className={`${kyc.status === 'failed' ? 'text-[#c42e2e]' : 'text-light'}`}>{kyc.status}</span>
                                 :
                                 <span className='text-[#c42e2e]'>unverified</span>
                             }
                         </div>
                     </div>
                     <div className='flex flex-col gap-6 text-black md:w-3/4 w-[93%] mx-auto bg-semi-white py-6 md:px-8 px-5 rounded-md relative'>
-                        <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
+                        <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>first name:</div>
                                 <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.first_name} name='first_name' onChange={formHandler}></input>
@@ -157,7 +228,7 @@ const VerifyKYC = () => {
                                 <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.last_name} name='last_name' onChange={formHandler}></input>
                             </div>
                         </div>
-                        <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
+                        <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='relative'>
                                 <div className='flex flex-col gap-1'>
                                     <div className='md:text-sm text-xs capitalize font-semibold'>gender:</div>
@@ -209,10 +280,10 @@ const VerifyKYC = () => {
                                 </div>}
                             </div>
                         </div>
-                        <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
+                        <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>date of birth:</div>
-                                <input type='date' value={form.date_of_birth} name='date_of_birth' className='w-full h-fit text-black py-1 px-2 rounded-[3px] shantf outline-none text-[0.8rem] font-semibold bg-white text-left' placeholder='enter' onChange={formHandler} />
+                                <input type='date' value={form.date_of_birth} name='date_of_birth' className='w-full h-fit text-black py-1 px-2 rounded-[3px] shantf outline-none text-[0.8rem] font-semibold bg-white text-left' placeholder={`${!form.date_of_birth ? 'select' : ''}`} onChange={formHandler} />
                             </div>
                             <div className='relative'>
                                 <div className='flex flex-col gap-1'>
@@ -251,9 +322,9 @@ const VerifyKYC = () => {
                                 }
                             </div>
                         </div>
-                        <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
+                        <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
-                                <div className='md:text-sm text-xs capitalize font-semibold '>address:</div>
+                                <div className='md:text-sm text-xs capitalize font-semibold '>address & city:</div>
                                 <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.address} name='address' onChange={formHandler}></input>
                             </div>
                             <div className='flex flex-col gap-1.5'>
@@ -261,7 +332,7 @@ const VerifyKYC = () => {
                                 <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.state} name='state' onChange={formHandler}></input>
                             </div>
                         </div>
-                        <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
+                        <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>postal / zipcode:</div>
                                 <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.postal} name='postal' onChange={formHandler}></input>
@@ -304,7 +375,7 @@ const VerifyKYC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='grid md:grid-cols-2 grid-cols-1 gap-8 items-center'>
+                        <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>social security number:</div>
                                 <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.ssn} name='ssn' onChange={formHandler}></input>
@@ -313,14 +384,16 @@ const VerifyKYC = () => {
                                 <div className='md:text-sm text-xs capitalize font-semibold'>valid identity document:</div>
                                 <div className='w-full rounded-[3px] h-fit flex items-center gap-4 relative p-1 border border-light'>
                                     <label className='cursor-pointer'>
-                                        <div className='bg-white h-fit w-fit px-2 py-1.5 text-sm text-black shantf rounded-sm font-semibold'>choose file</div>
+                                        <div className='bg-white h-fit w-fit px-2 py-1 text-sm rounded-sm font-medium shantf'>
+                                            <div className='bg-semi-white rounded-full p-2'><FiUploadCloud /></div>
+                                        </div>
                                         <input ref={idref} type="file" onChange={handleUpload} hidden />
                                     </label>
                                     <div className='text-sm text-center'>{id === null ? 'No file choosen' : id.name}</div>
                                 </div>
                             </div>
                         </div>
-                        <button className='outline-none bg-[#252525] py-2 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[600] mt-6 mx-auto' onClick={CreateKyc}>upload details</button>
+                        <button className='outline-none bg-[#252525] py-2 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[600] mt-6 mx-auto' onClick={Create_Update_KYC}>upload details</button>
                         {error !== '' &&
                             <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
                                 <RiErrorWarningLine className='md:text-base text-sm' />

@@ -57,7 +57,7 @@ const AdminDashboard = ({ children }) => {
 
   const FetchNotifications = useCallback(async () => {
     try {
-      const response = await UserGetApi(Apis.notification.admin_notifications)
+      const response = await UserGetApi(Apis.notification.user_notifications)
       if (response.status === 200) {
         setNotifications(response.msg)
       }
@@ -74,7 +74,7 @@ const AdminDashboard = ({ children }) => {
 
   const FetchUnreadNotis = useCallback(async () => {
     try {
-      const response = await UserGetApi(Apis.notification.admin_unread_notis)
+      const response = await UserGetApi(Apis.notification.unread_notis)
       if (response.status === 200) {
         setUnreadNotis(response.msg)
       }

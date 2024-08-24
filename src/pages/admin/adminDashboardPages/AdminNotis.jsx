@@ -40,7 +40,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
 
     const MarkAllRead = async () => {
         try {
-            const response = await UserPutApi(Apis.notification.update_admin_all)
+            const response = await UserPutApi(Apis.notification.update_all)
             if (response.status === 200) {
                 setUnreadNotis(0)
                 refetchNotifications()

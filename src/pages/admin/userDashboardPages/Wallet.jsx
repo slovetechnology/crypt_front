@@ -43,7 +43,7 @@ const Wallet = () => {
                     </div>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
                         <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
-                            <span>total profits</span>
+                            <span>profits</span>
                             <span className='text-[0.7rem] md:text-xs italic lowercase'>claimed</span>
                         </div>
                         <div className='flex justify-between font-bold mt-4'>
@@ -64,7 +64,7 @@ const Wallet = () => {
                     </div>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
                         <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
-                            <span>total bonuses</span>
+                            <span>bonuses</span>
                             <span className='text-[0.7rem] md:text-xs italic lowercase'>claimed</span>
                         </div>
                         <div className='flex justify-between font-bold mt-4'>
