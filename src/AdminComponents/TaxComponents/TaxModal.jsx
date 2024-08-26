@@ -3,13 +3,13 @@ import { Apis, UserPutApi, imageurl } from '../../services/API'
 import moment from 'moment';
 import { FaXmark } from 'react-icons/fa6';
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
+import { RiAiGenerate } from "react-icons/ri";
 import avatar from '../../assets/images/avatar.png'
 import Loading from '../../GeneralComponents/Loading';
 import { Alert, MoveToTopDiv } from '../../utils/utils';
 import ModalLayout from '../../utils/ModalLayout';
 import { useAtom } from 'jotai';
 import { ADMINSTORE } from '../../store';
-import { Image } from 'antd'
 
 const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
     const [adminStore] = useAtom(ADMINSTORE)
@@ -141,7 +141,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic'>amount:</div>
-                                        {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleTax.amount.toFixed(1).toLocaleString()}</div>}
+                                        {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleTax.amount.toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic'>crypto:</div>
@@ -152,18 +152,17 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                         {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleTax.deposit_address?.slice(0, 5)}.....{singleTax.deposit_address?.slice(-8)}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic'>date/time:</div>
+                                        <div className='italic'>date / time:</div>
                                         {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleTax.createdAt).format('DD-MM-yyyy')} / {moment(singleTax.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic'>proof of payment:</div>
-                                        {Object.values(singleTax).length !== 0 && <Image src={`${imageurl}/taxPayment/${singleTax.payment_proof}`} height={200} />}
-                                    </div>
-                                    <div className='flex justify-between items-center'>
-                                        <div className='italic '>tax message:</div>
-                                        <div className='flex flex-col gap-1'>
-                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
-                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem]' onClick={GenerateTaxMessage}>Generate</button>
+                                        <div className='italic '>message:</div>
+                                        <div className='flex flex-col gap-1.5'>
+                                            <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
+                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5' onClick={GenerateTaxMessage}>
+                                                <span>Generate</span>
+                                                <RiAiGenerate className='text-xs'/>
+                                            </button>
                                         </div>
                                     </div>
                                     <div className='flex flex-col gap-6 my-6'>

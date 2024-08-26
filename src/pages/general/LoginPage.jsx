@@ -64,7 +64,7 @@ const LoginPage = () => {
         // } finally {
         //     setLoading(false)
         // }
-        navigate('/admin-controls')
+        navigate('/dashboard')
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 

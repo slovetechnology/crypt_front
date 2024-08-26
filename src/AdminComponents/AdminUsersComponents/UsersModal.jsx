@@ -13,6 +13,7 @@ import { Apis, imageurl, UserPutApi } from '../../services/API';
 import ModalLayout from '../../utils/ModalLayout';
 import { Image } from 'antd'
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
+import { PiDownloadLight } from "react-icons/pi"
 
 const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => {
     const toggler = useRef()
@@ -28,7 +29,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
     const [eye, setEye] = useState(false)
     const EyeIcon = eye === true ? IoEye : IoMdEyeOff
     const [message, setMessage] = useState('')
-    const [status, setStatus] = useState('processing')
+    const [status, setStatus] = useState(Object.values(singleUser).length !== 0 && singleUser.kycUser.length !== 0 && singleUser.kycUser[0].status)
     const [statusShow, setStatusShow] = useState(false)
     const [update, setUpdate] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -65,12 +66,12 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
         }, 1500)
 
         if (fundScreen !== 1) {
-            if (!fundAmount) return setError('enter amount')
+            if (!fundAmount) return setError('enter an amount')
             if (isNaN(fundAmount)) return setError('must be a number')
         }
 
         if (withdrawalScreen !== 1) {
-            if (!minimumAmount) return setError('enter amount')
+            if (!minimumAmount) return setError('enter an amount')
             if (isNaN(minimumAmount)) return setError('must be a number')
         }
 
@@ -388,16 +389,24 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                     <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].phone_code + singleUser.kycUser[0].phone_number}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
-                                                    <div className='italic '>social security number:</div>
+                                                    <div className='italic '>identification number:</div>
                                                     <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].ssn}</div>
                                                 </div>
-                                                <div className='flex justify-between items-center mt-3'>
-                                                    <div className='italic '>valid identity:</div>
-                                                    <Image src={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} height={200} />
+                                                <div className='flex flex-col gap-2'>
+                                                    <div className='flex justify-between items-center mt-3'>
+                                                        <div className='italic '>valid identity:</div>
+                                                        <Image src={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} height={200} />
+                                                    </div>
+                                                    <a href={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} download="user valid ID">
+                                                        <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5'>
+                                                            <span>Download</span>
+                                                            <PiDownloadLight />
+                                                        </button>
+                                                    </a>
                                                 </div>
                                                 <div className='flex justify-between items-center mt-3'>
                                                     <div className='italic '>send message:</div>
-                                                    <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
+                                                    <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
                                                 </div>
                                                 <div className='flex justify-between items-center my-6'>
                                                     <div className='italic'>status:</div>

@@ -10,6 +10,7 @@ import avatar from '../assets/images/avatar.png'
 import ModalLayout from '../utils/ModalLayout'
 import { useAtom } from 'jotai'
 import { ADMINSTORE } from '../store'
+import { RiAiGenerate } from 'react-icons/ri'
 
 const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }) => {
     const [adminStore] = useAtom(ADMINSTORE)
@@ -148,7 +149,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                 <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>amount:</div>
-                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toFixed(1).toLocaleString()}</div>}
+                                        {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${singleWithdrawal.amount.toLocaleString()}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>crypto:</div>
@@ -169,14 +170,17 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                         </div>
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic '>date/time:</div>
+                                        <div className='italic '>date / time:</div>
                                         {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleWithdrawal.createdAt).format('DD-MM-yyyy')} / {moment(singleWithdrawal.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic'>withdrawal message:</div>
-                                        <div className='flex flex-col gap-1'>
-                                            <textarea placeholder='Type A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
-                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem]' onClick={GenerateWithdrawalMessage}>Generate</button>
+                                        <div className='italic'>message:</div>
+                                        <div className='flex flex-col gap-1.5'>
+                                            <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
+                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5' onClick={GenerateWithdrawalMessage}>
+                                                <span>Generate</span>
+                                                <RiAiGenerate className='text-xs'/>
+                                            </button>
                                         </div>
                                     </div>
                                     <div className='flex justify-between items-center my-6'>

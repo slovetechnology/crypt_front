@@ -154,7 +154,7 @@ const Deposit = () => {
                             </button>
                             <div className='border-t pt-2 text-center'>buy trading plans</div>
                         </div>
-                        <div className={`w-full md:h-[26rem] h-96 flex flex-col py-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
+                        <div className={`w-full h-[26rem] flex flex-col py-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
                             {tradingPlans.length > 0 ?
                                 <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center md:px-4 px-3'>
                                     {tradingPlans.map((item, i) => (

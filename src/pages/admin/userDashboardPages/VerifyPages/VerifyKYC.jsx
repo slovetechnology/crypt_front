@@ -115,7 +115,7 @@ const VerifyKYC = () => {
         if (!file.type.startsWith('image/')) {
             console.log('wrong')
             idref.current.value = null
-            return setError('File Error')
+            return setError('File error, invalid image format.')
         }
         setId(file)
     }
@@ -217,7 +217,7 @@ const VerifyKYC = () => {
                             }
                         </div>
                     </div>
-                    <div className='flex flex-col gap-6 text-black md:w-3/4 w-[93%] mx-auto bg-semi-white py-6 md:px-8 px-5 rounded-md relative'>
+                    <div className='flex flex-col gap-6 text-black md:w-3/4 w-[95%] mx-auto bg-semi-white py-6 md:px-8 px-5 rounded-md relative'>
                         <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold '>first name:</div>
@@ -377,7 +377,7 @@ const VerifyKYC = () => {
                         </div>
                         <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
-                                <div className='md:text-sm text-xs capitalize font-semibold'>social security number:</div>
+                                <div className='md:text-sm text-xs capitalize font-semibold'>identification number:</div>
                                 <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.ssn} name='ssn' onChange={formHandler}></input>
                             </div>
                             <div className='flex flex-col gap-1.5'>

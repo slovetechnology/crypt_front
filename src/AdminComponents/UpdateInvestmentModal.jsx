@@ -156,7 +156,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                         {Object.values(singleInvestment).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleInvestment.trading_plan}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic '>date/time:</div>
+                                        <div className='italic '>date / time:</div>
                                         {Object.values(singleInvestment).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{moment(singleInvestment.createdAt).format('DD-MM-yyyy')} / {moment(singleInvestment.createdAt).format('h:mm')}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>

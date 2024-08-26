@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../store'
 import { MdContentCopy } from 'react-icons/md'
 import { FaCheck, FaXmark } from 'react-icons/fa6'
@@ -8,7 +8,6 @@ import { IoCheckbox } from 'react-icons/io5'
 import Loading from '../GeneralComponents/Loading'
 import { Alert } from '../utils/utils'
 import { Apis, imageurl, PostApi } from '../services/API'
-import { FiUploadCloud } from 'react-icons/fi'
 
 const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
     const [user] = useAtom(PROFILE)
@@ -22,11 +21,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
     const [copy, setCopy] = useState(false)
     const [check, setCheck] = useState('')
     const [error, setError] = useState('')
-    const [imageError, setImageError] = useState('')
     const [loading, setLoading] = useState(false)
-
-    const proofref = useRef()
-    const [proof, setProof] = useState(null)
 
     const copyFunction = () => {
         setTimeout(() => {
@@ -37,18 +32,6 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
         setCopy(true)
     }
 
-    const handleUpload = (event) => {
-        setTimeout(() => {
-            setImageError('')
-        }, 2000)
-        const file = event.target.files[0]
-        if (!file.type.startsWith('image/')) {
-            proofref.current.value = null
-            return setImageError('File Error')
-        }
-        setProof(file)
-    }
-
     const ConfirmTaxPayment = async () => {
         setTimeout(() => {
             setError('')
@@ -57,11 +40,9 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
         if (!amount) return setError('amount')
         if (isNaN(amount)) return setError('amount')
         if (Object.values(selectValue).length === 0) return setError('select')
-        if (proof === null) return setError('proof')
         if (!check) return setError('check')
 
         const formbody = new FormData()
-        formbody.append('payment_proof', proof)
         formbody.append('amount', amount)
         formbody.append('crypto', selectValue.crypto)
         formbody.append('deposit_address', selectValue.address)
@@ -79,10 +60,6 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                 setCheck(!check)
                 setSelectValue({})
                 setTaxTitle('tax history')
-                setProof({
-                    img: null,
-                    image: null
-                })
                 setScreen(2)
             } else {
                 Alert('Request Failed', `${response.msg}`, 'error')
@@ -145,19 +122,6 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                             </div>
                         </div>
                     }
-                    <div className='flex flex-col gap-2 items-center'>
-                        <div className='italic text-sm'>attach proof of payment:</div>
-                        <div className={`w-64 rounded-[3px] h-fit flex items-center gap-4 relative p-1 border ${error === 'proof' ? 'border-[red]' : 'border-[#3966FF]'}`}>
-                            <label className='cursor-pointer'>
-                                <div className='bg-white h-fit w-fit px-2 py-1 text-sm rounded-sm font-medium shantf'>
-                                    <div className='bg-semi-white rounded-full p-2'><FiUploadCloud /></div>
-                                </div>
-                                <input ref={proofref} type="file" onChange={handleUpload} hidden />
-                            </label>
-                            <div className='text-sm text-center'>{proof === null ? 'No file choosen' : proof.name}</div>
-                            <div className='absolute -bottom-5 right-0 text-[0.8rem] text-[red]'>{imageError}</div>
-                        </div>
-                    </div>
                     <div className='flex flex-col gap-1 items-center mt-2'>
                         <div className='flex gap-1.5 items-center'>
                             <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>

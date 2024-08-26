@@ -14,11 +14,11 @@ const App = () => {
       ))}
 
       {UserDashboardPagesLinks.map((item, index) => (
-        <Route key={index} path={`${item.path}`} element={<AuthRoute><item.component /></AuthRoute>} />
+        <Route key={index} path={`${item.path}`} element={<item.component />} />
       ))}
 
       {AdminDashboardPagesLinks.map((item, index) => (
-        <Route key={index} path={`${item.path}`} element={<item.component />} />
+        <Route key={index} path={`${item.path}`} element={<AuthRoute><item.component /></AuthRoute>} />
       ))}
 
     </Routes>
