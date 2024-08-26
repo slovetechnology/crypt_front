@@ -202,75 +202,77 @@ const Withdraw = () => {
                         </div>}
                 </div>
                 {screen === 1 &&
-                    <div className='my-10 text-black font-medium h-fit w-fit mx-auto bg-semi-white shlz rounded-xl overflow-hidden relative'>
-                        {loading && <LoadingAdmin />}
-                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-light mx-auto flex flex-col gap-2'>
-                            <Link to='/dashboard/tax-payment' onClick={MoveToTop}>
-                                <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto'>
-                                    <span>fund account</span>
-                                    <SiBitcoincash />
-                                </button>
-                            </Link>
-                            <div className='border-t pt-2 text-center'>Withdraw funds</div>
-                        </div>
-                        <div className='flex flex-col items-center py-6 md:px-14 px-4'>
-                            <div className='flex gap-3 items-center'>
-                                <div className='flex flex-col gap-1'>
-                                    <div className='capitalize text-[0.8rem] font-medium'>withdawal amount ($)</div>
-                                    <div className='relative'>
-                                        <input className={`outline-none border lg:text-[0.85rem] md:w-48 w-40 h-8 rounded-[4px] pl-2 pr-16 bg-white ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
-                                        <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[#cf4444]' : 'text-black'}`}>min: {user.withdrawal_minimum}</div>
-                                    </div>
-                                </div>
-                                <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
-                                    <div className='flex  justify-center items-center gap-1'>
-                                        <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
-                                        <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
-                                    </div>
-                                    <div className='flex items-center justify-center md:text-base text-sm'>
-                                        {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toFixed(1).toLocaleString()}</div>}
-                                    </div>
-                                </div>
+                    <div className='flex justify-center'>
+                        <div className='my-10 text-black font-medium h-fit w-fit bg-semi-white shlz rounded-xl overflow-hidden relative'>
+                            {loading && <LoadingAdmin />}
+                            <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-light mx-auto flex flex-col gap-2'>
+                                <Link to='/dashboard/tax-payment' onClick={MoveToTop}>
+                                    <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto'>
+                                        <span>fund account</span>
+                                        <SiBitcoincash />
+                                    </button>
+                                </Link>
+                                <div className='border-t pt-2 text-center'>Withdraw funds</div>
                             </div>
-                            <div className='h-fit w-fit rounded-[0.2rem] bg-white p-1 relative mt-6'>
-                                <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>
-                                    <div className='text-[0.8rem]'>choose cryptocurrency</div>
-                                    <SiBitcoincash className='text-light' />
+                            <div className='flex flex-col items-center py-6 md:px-14 px-4'>
+                                <div className='flex gap-3 items-center'>
+                                    <div className='flex flex-col gap-1'>
+                                        <div className='capitalize text-[0.8rem] font-medium'>withdawal amount ($)</div>
+                                        <div className='relative'>
+                                            <input className={`outline-none border lg:text-[0.85rem] md:w-48 w-40 h-8 rounded-[4px] pl-2 pr-16 bg-white ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
+                                            <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[#cf4444]' : 'text-black'}`}>min: {user.withdrawal_minimum}</div>
+                                        </div>
+                                    </div>
+                                    <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
+                                        <div className='flex  justify-center items-center gap-1'>
+                                            <div className='md:text-[0.85rem] text-xs font-[600]'>withdrawable</div>
+                                            <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
+                                        </div>
+                                        <div className='flex items-center justify-center md:text-base text-sm'>
+                                            {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toFixed(1).toLocaleString()}</div>}
+                                        </div>
+                                    </div>
                                 </div>
-                                {adminWallets.length > 0 &&
-                                    <>
-                                        {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
-                                            {adminWallets.map((item, i) => (
-                                                <div className={`flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#f7f5f5]'}  ${i === 0 && 'hover:rounded-t-md'}`} key={i}>
-                                                    <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                                        <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
-                                                        <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
+                                <div className='h-fit w-fit rounded-[0.2rem] bg-white p-1 relative mt-6'>
+                                    <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>
+                                        <div className='text-[0.8rem]'>choose cryptocurrency</div>
+                                        <SiBitcoincash className='text-light' />
+                                    </div>
+                                    {adminWallets.length > 0 &&
+                                        <>
+                                            {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
+                                                {adminWallets.map((item, i) => (
+                                                    <div className={`flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#f7f5f5]'}  ${i === 0 && 'hover:rounded-t-md'}`} key={i}>
+                                                        <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
+                                                            <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
+                                                            <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            ))}
-                                        </div>}
-                                    </>}
-                            </div>
-                            {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
-                                <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                                <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
-                            </div>}
-                            <div className='flex flex-col gap-1 items-center relative mt-10'>
-                                <div className='flex gap-1.5 items-center'>
-                                    <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
-                                    <div className='text-[#252525] text-[0.8rem]'>I provided my correct wallet address</div>
+                                                ))}
+                                            </div>}
+                                        </>}
                                 </div>
-                                <button className='outline-none w-fit h-fit py-2 px-10 md:text-sm text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-semibold' onClick={makeWithdrawal}>
-                                    <span>make withdrawal</span>
-                                    <IoCheckbox />
-                                </button>
+                                {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
+                                    <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
+                                    <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
+                                </div>}
+                                <div className='flex flex-col gap-1 items-center relative mt-10'>
+                                    <div className='flex gap-1.5 items-center'>
+                                        <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
+                                        <div className='text-[#252525] text-[0.8rem]'>I provided my correct wallet address</div>
+                                    </div>
+                                    <button className='outline-none w-fit h-fit py-2 px-10 md:text-sm text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-semibold' onClick={makeWithdrawal}>
+                                        <span>make withdrawal</span>
+                                        <IoCheckbox />
+                                    </button>
+                                </div>
                             </div>
+                            {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] cursor-pointer flex gap-1 items-center bg-[#bdbcbc] p-1 rounded-sm'>
+                                <RiErrorWarningLine className='text-sm' />
+                                <span>{errorMsg}</span>
+                                <Link to='/dashboard/verify-account' className='underline'>click here</Link>
+                            </div>}
                         </div>
-                        {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] cursor-pointer flex gap-1 items-center bg-[#bdbcbc] p-1 rounded-sm'>
-                            <RiErrorWarningLine className='text-sm' />
-                            <span>{errorMsg}</span>
-                            <Link to='/dashboard/verify-account' className='underline'>click here</Link>
-                        </div>}
                     </div>
                 }
                 {screen === 2 && <div className='pt-10 pb-10 lg:pb-0'>

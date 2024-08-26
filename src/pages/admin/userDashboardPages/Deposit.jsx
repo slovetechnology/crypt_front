@@ -142,60 +142,62 @@ const Deposit = () => {
                     }
                 </div>
                 {screen === 1 &&
-                    <div className='my-10 h-fit w-fit mx-auto bg-semi-white rounded-xl relative shlz'>
-                        {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} refetchDeposits={FetchDeposits} />}
-                        {modal &&
-                            <BuyPlanModal setModal={setModal} buybal={buybal} />
-                        }
-                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
-                            <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true) }}>
-                                <span>fund wallet</span>
-                                <SiBitcoincash />
-                            </button>
-                            <div className='border-t pt-2 text-center'>buy trading plans</div>
-                        </div>
-                        <div className={`w-full h-[26rem] flex flex-col py-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
-                            {tradingPlans.length > 0 ?
-                                <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center md:px-4 px-3'>
-                                    {tradingPlans.map((item, i) => (
-                                        <div key={i}>
-                                            <div className='md:w-52 w-36 h-fit rounded-lg flex flex-col text-white shantf bg-white'>
-                                                <div className='plan_bg w-full md:h-20 h-16 rounded-t-lg'>
-                                                    <div className='uppercase font-[800]  text-center md:text-[1.1rem] text-sm pt-4'>{item.title}</div>
-                                                </div>
-                                                <div className='-mt-6 flex flex-col gap-2 items-center justify-center'>
-                                                    <div className='md:h-[5.1rem] md:w-[5.1rem] w-[4.5rem] h-[4.5rem] rounded-full bg-white flex items-center justify-center'>
-                                                        <div className='md:h-[4.3rem] md:w-[4.3rem] w-[3.7rem] h-[3.7rem] rounded-full bg-[#252525] flex flex-col gap-1 items-center justify-center'>
-                                                            <div className='italic md:text-[0.65rem] text-[0.6rem]'>from</div>
-                                                            <div className='flex items-center font-bold gap-[0.1rem] text-[#5BB4FD] md:text-base text-sm'>
-                                                                <BsCurrencyDollar className='-mt-0.5' />
-                                                                <div className='md:text-base text-sm -ml-1'>{item.price_start}</div>
+                    <div className='flex justify-center'>
+                        <div className='my-10 h-fit w-fit bg-semi-white rounded-xl relative shlz'>
+                            {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} refetchDeposits={FetchDeposits} />}
+                            {modal &&
+                                <BuyPlanModal setModal={setModal} buybal={buybal} />
+                            }
+                            <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
+                                <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true) }}>
+                                    <span>fund wallet</span>
+                                    <SiBitcoincash />
+                                </button>
+                                <div className='border-t pt-2 text-center'>buy trading plans</div>
+                            </div>
+                            <div className={`w-full h-[26rem] flex flex-col py-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
+                                {tradingPlans.length > 0 ?
+                                    <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center md:px-4 px-3'>
+                                        {tradingPlans.map((item, i) => (
+                                            <div key={i}>
+                                                <div className='md:w-52 w-36 h-fit rounded-lg flex flex-col text-white shantf bg-white'>
+                                                    <div className='plan_bg w-full md:h-20 h-16 rounded-t-lg'>
+                                                        <div className='uppercase font-[800]  text-center md:text-[1.1rem] text-sm pt-4'>{item.title}</div>
+                                                    </div>
+                                                    <div className='-mt-6 flex flex-col gap-2 items-center justify-center'>
+                                                        <div className='md:h-[5.1rem] md:w-[5.1rem] w-[4.5rem] h-[4.5rem] rounded-full bg-white flex items-center justify-center'>
+                                                            <div className='md:h-[4.3rem] md:w-[4.3rem] w-[3.7rem] h-[3.7rem] rounded-full bg-[#252525] flex flex-col gap-1 items-center justify-center'>
+                                                                <div className='italic md:text-[0.65rem] text-[0.6rem]'>from</div>
+                                                                <div className='flex items-center font-bold gap-[0.1rem] text-[#5BB4FD] md:text-base text-sm'>
+                                                                    <BsCurrencyDollar className='-mt-0.5' />
+                                                                    <div className='md:text-base text-sm -ml-1'>{item.price_start}</div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div className='text-xs text-[#252525] font-semibold text-center w-11/12 border py-1 rounded-md'>
-                                                        {item.profit_return}% profit return on investment plus bonus up to ${item.plan_bonus}
-                                                    </div>
-                                                    <div className='text-[0.7rem] text-[#252525] font-semibold w-11/12 flex gap-2 items-center justify-center italic'>
-                                                        <span>Duration:</span>
-                                                        <span className='text-[#5BB4FD]'>{item.duration + item.duration_type}</span>
-                                                    </div>
-                                                    <div className='mb-4 mt-2'>
-                                                        <button className='w-fit h-fit py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true) }}>
-                                                            buy now
-                                                        </button>
+                                                        <div className='text-xs text-[#252525] font-semibold text-center w-11/12 border py-1 rounded-md'>
+                                                            {item.profit_return}% profit return on investment plus bonus up to ${item.plan_bonus}
+                                                        </div>
+                                                        <div className='text-[0.7rem] text-[#252525] font-semibold w-11/12 flex gap-2 items-center justify-center italic'>
+                                                            <span>Duration:</span>
+                                                            <span className='text-[#5BB4FD]'>{item.duration + item.duration_type}</span>
+                                                        </div>
+                                                        <div className='mb-4 mt-2'>
+                                                            <button className='w-fit h-fit py-1.5 md:px-6 px-4 rounded-full bg-[#5BB4FD] text-white uppercase font-bold md:text-[0.65rem] text-[0.6rem]' onClick={() => { setBuyBal(item); setModal(true) }}>
+                                                                buy now
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                :
-                                <div className='flex flex-col -mt-4 items-center md:px-16 px-0'>
-                                    <img src={noplans} className='h-80 w-80'></img>
-                                    <div className='text-center text-lg'>Oops! No trading plans yet...</div>
-                                </div>
-                            }
+                                        ))}
+                                    </div>
+                                    :
+                                    <div className='flex flex-col -mt-4 items-center md:px-16 px-0'>
+                                        <img src={noplans} className='h-80 w-80'></img>
+                                        <div className='text-center text-lg'>Oops! No trading plans yet...</div>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 }

@@ -182,11 +182,11 @@ const Dashboard = ({ children }) => {
 
     return (
         <div className='bg-[#0c091a] w-full flex relative overflow-hidden'>
-            <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:h-screen lg:relative lg:block overflow-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-full' : 'hidden'} `}>
+            <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:h-screen lg:relative lg:block overflow-x-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-screen overflow-y-auto' : 'hidden'} `}>
                 <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
                     <LuX />
                 </div>
-                <div className='lg:mt-14 mt-12 flex flex-col lg:gap-10 gap-8'>
+                <div className='lg:my-14 my-12 flex flex-col lg:gap-10 gap-8'>
                     <div className='flex justify-center items-center'>
                         <img src={logo} className='w-12 h-auto'></img>
                         <div className='capitalize font-bold text-2xl lg:text-[#2b2255] text-[#462eb3] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
@@ -221,7 +221,7 @@ const Dashboard = ({ children }) => {
                                         <RiLogoutCircleLine className='text-[1.3rem] ' />
                                         <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>logout</div>
                                     </div>
-                                    {logout && <div className='absolute lg:-top-5 -top-16 -left-6  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-semi-white font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
+                                    {logout && <div className='absolute -top-6 -left-6  lg:bg-admin bg-[#27137e] w-fit h-fit z-50 rounded-[10px] text-semi-white font-medium p-4 lg:shadow-logout-sha shadow-logout-sha2'>
                                         <div className=' text-[0.8rem] mb-4 text-center'>Logout of your account?</div>
                                         <div className='flex gap-4 items-center'>
                                             <button className='outline-none py-1 px-4 w-fit h-fit border lg:border-[#1c1733] border-white rounded-lg capitalize text-xs flex items-center gap-1 lg:hover:bg-[#1c1733] hover:bg-white lg:text-light text-white hover:text-[#27137e] lg:hover:text-white' onClick={() => setLogOut(!logout)}>

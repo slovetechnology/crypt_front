@@ -109,11 +109,11 @@ const AdminDashboard = ({ children }) => {
 
   return (
     <div className='w-full flex relative overflow-hidden'>
-      <div className={`w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:h-screen lg:relative lg:block overflow-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-full' : 'hidden'}`}>
+      <div className={`w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:h-screen lg:relative lg:block overflow-x-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-screen overflow-y-auto' : 'hidden'}`}>
         <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
           <LuX />
         </div>
-        <div className='lg:mt-14 mt-12 flex flex-col lg:gap-10 gap-8'>
+        <div className='lg:my-14 my-12 flex flex-col lg:gap-10 gap-8'>
           <div className='flex justify-center items-center'>
             <img src={logo} className='w-12 h-auto'></img>
             <div className=' capitalize font-bold lg:text-[#7561a0] text-[#462eb3] drop-shadow-txt-sha2 text-2xl'>AialgoControls</div>

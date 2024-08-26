@@ -137,18 +137,20 @@ const TaxPayment = () => {
                     }
                 </div>
                 {screen === 1 &&
-                    <div className='mt-10 mb-20 lg:mb-10 bg-semi-white w-fit h-fit rounded-xl mx-auto relative'>
-                        {modal && <PayTaxModal closeView={() => setModal(false)} setScreen={setScreen} setTaxTitle={setTaxTitle} refetchTaxes={FetchTaxes} />}
-                        <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-[#3966FF] mx-auto flex flex-col gap-2'>
-                            <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal(true) }}>
-                                <span>pay tax</span>
-                                <SiBitcoincash />
-                            </button>
-                            <div className='border-t pt-2 text-center'>taxes</div>
-                        </div>
-                        <div className='flex flex-col items-center gap-4 py-6 md:px-10 px-4'>
-                            <img src={receipts} className='h-64 w-auto'></img>
-                            <div className='text-center text-sm font-medium md:w-96 w-72'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, neque. Id nostrum molestias incidunt ex perferendis veniam sapiente. Fugiat error id, nobis libero eligendi numquam quo nesciunt unde incidunt sequi nulla aliquid natus et dolor eius, explicabo deleniti recusandae.</div>
+                    <div className='flex justify-center'>
+                        <div className='mt-10 mb-20 lg:mb-10 bg-semi-white w-fit h-fit rounded-xl relative'>
+                            {modal && <PayTaxModal closeView={() => setModal(false)} setScreen={setScreen} setTaxTitle={setTaxTitle} refetchTaxes={FetchTaxes} />}
+                            <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-[#3966FF] mx-auto flex flex-col gap-2'>
+                                <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal(true) }}>
+                                    <span>pay tax</span>
+                                    <SiBitcoincash />
+                                </button>
+                                <div className='border-t pt-2 text-center'>taxes</div>
+                            </div>
+                            <div className='flex flex-col items-center gap-4 py-6 md:px-10 px-4'>
+                                <img src={receipts} className='h-64 w-auto'></img>
+                                <div className='text-center text-sm font-medium md:w-96 w-72'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo, neque. Id nostrum molestias incidunt ex perferendis veniam sapiente. Fugiat error id, nobis libero eligendi numquam quo nesciunt unde incidunt sequi nulla aliquid natus et dolor eius, explicabo deleniti recusandae.</div>
+                            </div>
                         </div>
                     </div>
                 }
