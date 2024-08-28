@@ -31,6 +31,7 @@ const BuyPlanModal = ({ setModal, buybal }) => {
         const formbody = {
             amount: parseFloat(amount),
             trading_plan: buybal.title,
+            trading_plan_id: buybal.id,
             duration: buybal.duration,
             duration_type: buybal.duration_type,
             investmentUser: user.username
@@ -59,7 +60,7 @@ const BuyPlanModal = ({ setModal, buybal }) => {
                 {loading && <Loading />}
                 <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => setModal(false)} />
                 <div className='flex items-center gap-2 justify-center'>
-                    <div className='text-[0.85rem] uppercase font-bold'>{buybal.title}</div>
+                    <div className='text-[0.85rem] uppercase font-bold'>{buybal.title} plan</div>
                     <div className={`text-xs font-[550] bg-white py-1 px-2 rounded-full adsha ${error === 'limit' ? 'text-[red]' : 'text-black'} `}>${buybal.price_start.toLocaleString()} - ${buybal.price_limit.toLocaleString()}</div>
                 </div>
                 <div className='relative flex gap-3 items-center mx-auto'>

@@ -365,7 +365,7 @@ const Profile = () => {
 
                         </div>
                     </form>
-                    <div className='relative mx-auto mt-12'>
+                    <div className='relative mx-auto mt-20'>
                         {deleteScreen === 0 && <div className='justify-center md:text-[0.85rem] text-xs text-light cursor-pointer flex items-center gap-1' onClick={() => { setDeleteScreen(1); MoveToBottom() }}>
                             <span>Delete my account</span>
                             <MdOutlineDeleteForever />

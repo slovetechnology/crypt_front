@@ -2,10 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BsCurrencyDollar } from "react-icons/bs";
 import { RiHistoryFill } from "react-icons/ri";
 import { IoListOutline } from "react-icons/io5";
-import deposit3d from '../../../assets/images/deposit3d.png'
-import profit3d from '../../../assets/images/profit3d.png'
-import bonus3d from '../../../assets/images/bonus3d.png'
-import trading3d from '../../../assets/images/trading3d.png'
 import { IoIosSearch } from "react-icons/io";
 import moment from 'moment';
 import { FiX } from 'react-icons/fi';
@@ -17,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { Apis, UserGetApi } from '../../../services/API';
 import ClaimButtons from '../../../UserComponents/InvestmentComponents/ClaimButtons';
 import { MoveToTop } from '../../../utils/utils';
+import lines from '../../../assets/images/lines2.png'
 
 
 const Investment = () => {
@@ -167,7 +164,7 @@ const Investment = () => {
                                                 <BsCurrencyDollar className="-mt-0.5" />
                                                 <div className='-ml-1'>{item.amount.toLocaleString()}</div>
                                             </div>
-                                            <img src={deposit3d} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
                                         </div>
                                     </div>
                                     <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
@@ -185,7 +182,7 @@ const Investment = () => {
                                                 <BsCurrencyDollar className="-mt-0.5" />
                                                 <div className='-ml-1'>{item.profit.toLocaleString()}</div>
                                             </div>
-                                            <img src={profit3d} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
                                         </div>
                                     </div>
                                     <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
@@ -205,7 +202,7 @@ const Investment = () => {
                                                     <div className='-ml-1'>{item.bonus.toLocaleString()}</div>
                                                 </div>
                                             </div>
-                                            <img src={bonus3d} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
                                         </div>
                                     </div>
                                     <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[0.9rem] text-sm py-2  px-2 text-semi-white gap-2 font-bold bg-[#6859bb]'>
@@ -216,7 +213,7 @@ const Investment = () => {
                                                     <div className='capitalize'>{item.trading_plan}</div>
                                                 </div>
                                             </div>
-                                            <img src={trading3d} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
                                         </div>
                                     </div>
                                 </div>

@@ -81,7 +81,10 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                 <div className='flex flex-col items-center gap-5 mt-5 px-4'>
                     <div className='flex flex-col gap-1'>
                         <div className='text-[0.8rem] capitalize font-medium'>tax amount ($)</div>
-                        <input className={`outline-none border bg-semi-white text-black lg:text-[0.85rem] md:w-48 w-40 px-2 h-8 rounded-[4px] ${error === 'amount' ? 'border-[red]' : 'border-[#3966FF]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                        <div className='relative'>
+                            <input className={`outline-none border bg-semi-white text-black lg:text-[0.85rem] w-52 px-2 h-8 rounded-[4px] ${error === 'amount' ? 'border-[red]' : 'border-[#3966FF]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                            {/* <div className={`text-xs absolute top-2 right-2 ${error === 'expected' ? 'text-[red]' : 'text-black'}`}>exp: 150</div> */}
+                        </div>
                     </div>
                     <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>
                         <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>
