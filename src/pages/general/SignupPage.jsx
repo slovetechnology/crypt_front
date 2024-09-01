@@ -117,7 +117,7 @@ const SignupPage = () => {
     setLoading(true)
     try {
       const response = await UserPostApi(Apis.user.signup, formbody)
-      if (response.status === 201) {
+      if (response.status === 200) {
         setScreen(2)
       } else {
         Alert('Request Failed', response.msg, 'error')

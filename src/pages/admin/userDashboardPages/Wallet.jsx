@@ -19,19 +19,22 @@ const Wallet = () => {
     const [wallet] = useAtom(WALLET)
     const [ups] = useAtom(UPS)
 
-    let profitUp = ups.new_profit / wallet.total_profit * 100
-    let bonusUp = ups.new_bonus / wallet.total_bonus * 100
-
+    let profitUp = 0
+    let bonusUp = 0
+    if (Object.keys(ups).length !== 0) {
+        profitUp = ups.new_profit / wallet.total_profit * 100
+        bonusUp = ups.new_bonus / wallet.total_bonus * 100
+    }
 
     return (
         <Dashboard>
-            <div className='pb-10 lg:pb-0'>
+            <div>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>wallet</div>
                 <div className='flex flex-wrap gap-4 mt-8 items-center justify-center'>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white bg-[#6859bb]  overflow-hidden'>
                         <div className='capitalize text-xs md:text-[0.9rem] font-[600] flex justify-between items-center'>
                             <span>deposits</span>
-                            <span className='text-[0.7rem] md:text-xs italic lowercase'>external</span>
+                            <span className='text-[0.7rem] md:text-xs italic lowercase'>confirmed</span>
                         </div>
                         <div className='flex flex-col items-center font-bold gap-4 mt-4'>
                             <div className='flex items-center'>
@@ -55,11 +58,7 @@ const Wallet = () => {
                         </div>
                         <div className='flex items-center text-xs capitalize font-medium gap-2 mt-6 w-fit h-fit mx-auto py-1 px-2 rounded-full border border-[green] text-white'>
                             <FaArrowTrendUp />
-                            {Object.values(ups).length !== 0 ?
-                                <div>+{profitUp.toFixed(2)}%</div>
-                                :
-                                <div>+0.00%</div>
-                            }
+                            <div>+{profitUp.toFixed(2)}%</div>
                         </div>
                     </div>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden'>
@@ -76,11 +75,7 @@ const Wallet = () => {
                         </div>
                         <div className='flex items-center text-xs capitalize font-medium gap-2 mt-6 w-fit h-fit mx-auto py-1 px-2 rounded-full border border-[green] text-white'>
                             <FaArrowTrendUp />
-                            {Object.values(ups).length !== 0 ?
-                                <div>+{bonusUp.toFixed(2)}%</div>
-                                :
-                                <div>+0.00%</div>
-                            }
+                            <div>+{bonusUp.toFixed(2)}%</div>
                         </div>
                     </div>
                     <div className='w-[9.8rem] md:w-[15.5rem] md:h-[10rem] h-[8.5rem] rounded-[10px] text-xl md:text-3xl py-2 px-2 md:px-4 text-semi-white border border-[grey] bg-[#130e27] overflow-hidden' >

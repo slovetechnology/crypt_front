@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Apis, PostApi, UserPutApi, imageurl } from '../../../services/API'
-import { PROFILE } from '../../../store'
+import { ADMINSTORE, PROFILE } from '../../../store'
 import { useAtom } from 'jotai'
 import { IoEye } from 'react-icons/io5';
 import { MdVerified, MdOutlineDateRange, MdOutlineCancel, MdSentimentVeryDissatisfied, MdOutlineDeleteForever, MdOutlineEdit, MdContentCopy } from "react-icons/md";
@@ -23,6 +23,7 @@ import Dashboard from './Dashboard';
 
 const Profile = () => {
     const [user, setUser] = useAtom(PROFILE)
+    const [adminStore] = useAtom(ADMINSTORE)
 
     const [nameEdit, setNameEdit] = useState(false)
     const [userEdit, setUserEdit] = useState(false)
@@ -103,7 +104,7 @@ const Profile = () => {
             img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
             image: null
         })
-        
+
         setForm({
             full_name: user.full_name,
             email: user.email,
@@ -205,7 +206,7 @@ const Profile = () => {
 
     return (
         <Dashboard>
-            <div className='relative pb-10 lg:pb-0'>
+            <div className='relative'>
                 {loading && <LoadingAdmin />}
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white mb-6 '>profile</div>
                 <div>
@@ -234,12 +235,7 @@ const Profile = () => {
                                 <div className='flex flex-col gap-2'>
                                     <div className='md:text-[1.4rem] text-lg text-black'>Status</div>
                                     <Link to='/dashboard/verify-account' onClick={() => MoveToTop()} >
-                                        {user.email_verified === 'false' && user.kyc_verified === 'false' ?
-                                            <div className='flex gap-1 items-center cursor-pointer md:text-[0.8rem] text-xs text-[red]'>
-                                                <span>unverified</span>
-                                                <MdSentimentVeryDissatisfied />
-                                            </div>
-                                            :
+                                        {user.email_verified === 'true' || user.kyc_verified === 'true' ?
                                             <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
                                                 <span className='text-zinc-700'>verified</span>
                                                 <MdVerified className={`${user.email_verified === 'true' ? 'text-light' : 'text-[#a09e9e]'}`} />
@@ -249,6 +245,11 @@ const Profile = () => {
                                                     :
                                                     <span></span>
                                                 }
+                                            </div>
+                                            :
+                                            <div className='flex gap-1 items-center md:text-[0.8rem] text-xs text-[red]'>
+                                                <span>unverified</span>
+                                                <MdSentimentVeryDissatisfied />
                                             </div>
                                         }
                                     </Link>
@@ -281,6 +282,7 @@ const Profile = () => {
                                     </button>
                                 </div>
                             </div>
+                            <div className='italic text-[0.7rem] text-center ml-auto -mt-4 text-[#66c466]'>- refer and earn {adminStore.referral_bonus_percentage}% of your referral's first deposit -</div>
                             <div className='flex justify-between items-center  capitalize'>
                                 <div>full name:</div>
                                 {!nameEdit && <div className='flex gap-4'>
@@ -397,7 +399,7 @@ const Profile = () => {
                                 </div>
                                 <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-transparent lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-light bg-white lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon className='absolute top-2 right-2 cursor-pointer text-light text-lg' onClick={() => setEye(!eye)} />
                                         <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                     </div>

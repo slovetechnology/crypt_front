@@ -140,8 +140,9 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
                     ))}
                 </div>
                     :
-                    <div className='mt-32 md:mt-20 flex justify-center'>
+                    <div className='mt-28 md:mt-12 flex flex-col gap-2 items-center justify-center'>
                         <img src={nothnyet} className='md:h-20 h-48 w-auto'></img>
+                        <div className='font-semibold text-xl md:text-base'>No notifications...</div>
                     </div>
                 }
                 {notifications.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end'>

@@ -94,7 +94,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
             </div>
             {adminWallets.length > 0 &&
               <>
-                {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
+                {selectState && <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
                   {adminWallets.map((item, i) => (
                     <div className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`} key={i}>
                       <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>

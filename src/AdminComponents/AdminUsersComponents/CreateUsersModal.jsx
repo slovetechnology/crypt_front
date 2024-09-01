@@ -194,10 +194,10 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
             <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium'>create user</button>
           </div>
           {error !== '' &&
-            <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
-              <RiErrorWarningLine className='md:text-base text-sm' />
+            <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-10'>
+              <RiErrorWarningLine/>
               <span>{error}</span>
-              <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
+              <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-10'></div>
             </div>
           }
         </form>

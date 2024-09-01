@@ -143,7 +143,7 @@ const Deposit = () => {
                 </div>
                 {screen === 1 &&
                     <div className='flex justify-center'>
-                        <div className='my-10 h-fit w-fit bg-semi-white rounded-xl relative shlz'>
+                        <div className='mt-10 h-fit w-fit bg-semi-white rounded-xl relative shlz'>
                             {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} refetchDeposits={FetchDeposits} />}
                             {modal &&
                                 <BuyPlanModal setModal={setModal} buybal={buybal} />
@@ -201,7 +201,7 @@ const Deposit = () => {
                         </div>
                     </div>
                 }
-                {screen === 2 && <div className='pt-10 pb-10 lg:pb-0'>
+                {screen === 2 && <div className='mt-10'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                         <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>

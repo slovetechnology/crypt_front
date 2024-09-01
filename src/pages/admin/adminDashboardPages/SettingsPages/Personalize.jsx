@@ -131,7 +131,7 @@ const Personalize = () => {
     <SettingsLayout>
       <div className='relative'>
         {loading && <Loading />}
-        <div className='md:w-3/4 w-11/12 mx-auto pt-10 pb-20'>
+        <div className='md:w-3/4 w-11/12 mx-auto py-10'>
           <div className='flex items-center justify-center gap-2 flex-col'>
             <div className='md:w-[12.5rem] md:h-[12.5rem] h-[8.5rem] w-[8.5rem] rounded-full bg-[#c9b8eb] flex items-center justify-center relative'>
               <div className='md:w-48 md:h-48 w-32 h-32'>

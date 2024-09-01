@@ -15,6 +15,7 @@ import { Alert } from '../../../../utils/utils'
 const Genders = [
     "male",
     "female",
+    "non binary",
     "rather not say",
 ]
 
@@ -58,7 +59,7 @@ const VerifyKYC = () => {
         state: '',
         postal: '',
         address: '',
-        ssn: '',
+        id_number: '',
         phone_number: '',
     })
 
@@ -81,7 +82,7 @@ const VerifyKYC = () => {
                     state: response.msg.state,
                     postal: response.msg.postal,
                     address: response.msg.address,
-                    ssn: response.msg.ssn,
+                    id_number: response.msg.id_number,
                     phone_number: response.msg.phone_number,
                 })
                 setGender(response.msg.gender)
@@ -157,10 +158,10 @@ const VerifyKYC = () => {
         if (!form.state) return setError('Enter state of residence')
         if (!form.postal) return setError('Enter postal / zipcode')
         if (!form.phone_number) return setError('Enter phone number')
-        if (!form.ssn) return setError('Enter SSN')
+        if (!form.id_number) return setError('Enter Identification number')
         if (id === null) return setError('Provide valid ID')
 
-        if (form.first_name === kyc.first_name && form.last_name === kyc.last_name && form.address === kyc.address && form.state === kyc.state && form.postal === kyc.postal && form.date_of_birth === kyc.date_of_birth && form.phone_number === kyc.phone_number && form.ssn === kyc.ssn && phoneCode === kyc.phone_code && gender === kyc.gender && marital === kyc.marital_status && usercountry.name === kyc.country && id.name === kyc.valid_id) return setError('No changes made')
+        if (form.first_name === kyc.first_name && form.last_name === kyc.last_name && form.address === kyc.address && form.state === kyc.state && form.postal === kyc.postal && form.date_of_birth === kyc.date_of_birth && form.phone_number === kyc.phone_number && form.id_number === kyc.id_number && phoneCode === kyc.phone_code && gender === kyc.gender && marital === kyc.marital_status && usercountry.name === kyc.country && id.name === kyc.valid_id) return setError('No changes made')
 
         const formbody = new FormData()
         formbody.append('valid_id', id)
@@ -170,7 +171,7 @@ const VerifyKYC = () => {
         formbody.append('state', form.state)
         formbody.append('postal', form.postal)
         formbody.append('address', form.address)
-        formbody.append('ssn', form.ssn)
+        formbody.append('id_number', form.id_number)
         formbody.append('phone_code', phoneCode)
         formbody.append('phone_number', form.phone_number)
         formbody.append('gender', gender)
@@ -202,7 +203,7 @@ const VerifyKYC = () => {
         <VerifyLayout>
             <div className='relative'>
                 {loading && <LoadingAdmin />}
-                <div className='flex flex-col gap-14 py-16'>
+                <div className='flex flex-col gap-14 pt-16'>
                     <div className='flex flex-col gap-2 items-center text-semi-white'>
                         <div className='flex gap-2 items-center md:text-4xl text-2xl capitalize font-bold'>
                             <span>verify kyc</span>
@@ -378,11 +379,11 @@ const VerifyKYC = () => {
                         <div className='grid md:grid-cols-2 grid-cols-1 md:gap-8 gap-6 items-center'>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>identification number:</div>
-                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.ssn} name='ssn' onChange={formHandler}></input>
+                                <input className='outline-none bg-transparent border border-light w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm' value={form.id_number} name='id_number' onChange={formHandler}></input>
                             </div>
                             <div className='flex flex-col gap-1.5'>
                                 <div className='md:text-sm text-xs capitalize font-semibold'>valid identity document:</div>
-                                <div className='w-full rounded-[3px] h-fit flex items-center gap-4 relative p-1 border border-light'>
+                                <div className='w-full rounded-sm h-fit flex items-center gap-4 relative p-1 border border-light'>
                                     <label className='cursor-pointer'>
                                         <div className='bg-white h-fit w-fit px-2 py-1 text-sm rounded-sm font-medium shantf'>
                                             <div className='bg-semi-white rounded-full p-2'><FiUploadCloud /></div>
@@ -395,10 +396,10 @@ const VerifyKYC = () => {
                         </div>
                         <button className='outline-none bg-[#252525] py-2 px-8 h-fit w-fit rounded-md capitalize md:text-sm text-xs text-white cursor-pointer font-[600] mt-6 mx-auto' onClick={Create_Update_KYC}>upload details</button>
                         {error !== '' &&
-                            <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
-                                <RiErrorWarningLine className='md:text-base text-sm' />
+                            <div className='md:text-sm text-xs absolute bottom-10 left-2 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-10'>
+                                <RiErrorWarningLine />
                                 <span>{error}</span>
-                                <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
+                                <div className='error-progress2 absolute -bottom-1 left-0 rounded-sm z-10'></div>
                             </div>
                         }
                     </div>

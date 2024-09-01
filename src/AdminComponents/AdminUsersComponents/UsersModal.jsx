@@ -213,11 +213,11 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                         </div>
                                     </div>
                                     {singleUser.role !== 'admin' && <div className='flex flex-col gap-4 border p-1'>
-                                        <div className=' uppercase font-bold border px-1 '>deposit records:</div>
+                                        <div className=' uppercase font-bold border px-1 '>financial details:</div>
                                         <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
                                             <div className='flex justify-between items-center'>
                                                 <div className='italic '>total amount deposited:</div>
-                                                {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.total_investment.toLocaleString()}</div>}
+                                                {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.total_deposit.toLocaleString()}</div>}
                                             </div>
                                         </div>
                                         <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
@@ -390,11 +390,11 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>identification number:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].ssn}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].id_number}</div>
                                                 </div>
                                                 <div className='flex flex-col gap-2'>
                                                     <div className='flex justify-between items-center mt-3'>
-                                                        <div className='italic '>valid identity:</div>
+                                                        <div className='italic '>valid ID:</div>
                                                         <Image src={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} height={200} />
                                                     </div>
                                                     <a href={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} download="user valid ID">
@@ -405,7 +405,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                     </a>
                                                 </div>
                                                 <div className='flex justify-between items-center mt-3'>
-                                                    <div className='italic '>send message:</div>
+                                                    <div className='italic '>message:</div>
                                                     <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
                                                 </div>
                                                 <div className='flex justify-between items-center my-6'>

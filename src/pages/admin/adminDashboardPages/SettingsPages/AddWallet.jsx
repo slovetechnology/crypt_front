@@ -86,7 +86,7 @@ const AddWallet = () => {
 
   return (
     <SettingsLayout>
-      <div className='pt-10 pb-10 lg:pb-0'>
+      <div className='mt-10'>
         {modal && <UpdateWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} refetchAdminWallets={FetchAdminWallets} />}
         {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets} />}
 

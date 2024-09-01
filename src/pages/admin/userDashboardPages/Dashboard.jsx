@@ -21,6 +21,7 @@ import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { HiOutlineCreditCard } from "react-icons/hi2";
+import { PiDotsNineBold } from "react-icons/pi";
 import Notifications from './Notifications';
 
 
@@ -273,7 +274,7 @@ const Dashboard = ({ children }) => {
                             }
                         </div>
                     </div>
-                    <div className='py-10'>
+                    <div className='pt-10 pb-28 lg:pb-10'>
                         {children}
                     </div>
                 </div>
@@ -282,13 +283,13 @@ const Dashboard = ({ children }) => {
                         {MainLinks.map((item, i) => (
                             <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                                 <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-light' : ' text-semi-white'}`} >
-                                    <item.icon className='text-base' />
+                                    <item.icon className='text-lg' />
                                     <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>{item.path}</div>
                                 </div>
                             </Link>
                         ))}
                         <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow) }}>
-                            <HiOutlineDotsVertical className='text-base' />
+                            <PiDotsNineBold className='text-lg'/>
                             <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>more</div>
                         </div>
                     </div>

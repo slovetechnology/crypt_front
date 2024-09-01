@@ -195,10 +195,10 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
                 </label>
               </div>
               {error !== '' &&
-                <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-50'>
-                  <RiErrorWarningLine className='md:text-base text-sm' />
+                <div className='md:text-sm text-xs absolute -bottom-5 left-0 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-10'>
+                  <RiErrorWarningLine />
                   <span>{error}</span>
-                  <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-50'></div>
+                  <div className='error-progress absolute -bottom-1 left-0 rounded-sm z-10'></div>
                 </div>
               }
             </div>
@@ -206,9 +206,9 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
               {commit && <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={UpdateWallet}>update</button>}
               <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium ml-auto' onClick={() => setdeleteState(true)}>delete</button>
               {deleteState && <div className='bg-white adsha w-fit h-fit flex flex-col gap-4 items-center justify-center absolute bottom-0 right-0 p-3 rounded-md text-xs'>
-                <div className='md:text-[0.85rem] text-xs flex items-center gap-1 justify-center text-center font-medium'>
-                  <span> Are you sure you want to Delete Wallet</span>
-                  <PiWarningCircleBold className='text-[red] md:text-base text-sm' />
+                <div className='md:text-sm text-[0.8rem] flex items-center gap-1 justify-center text-center font-medium'>
+                  <span> Are you sure you want to Delete Wallet?</span>
+                  <PiWarningCircleBold className='text-[red]' />
                 </div>
                 <div className='flex items-center gap-6'>
                   <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setdeleteState(false)}>no</button>

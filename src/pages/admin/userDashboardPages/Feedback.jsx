@@ -48,7 +48,7 @@ const Feedback = () => {
 
     return (
         <Dashboard>
-            <div className='relative pb-10 lg:pb-0'>
+            <div className='relative'>
                 <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>send feedback</div>
                 {loading && <LoadingAdmin />}
                 <div className='md:w-3/4 w-11/12 mx-auto flex flex-col gap-12 mt-16'>

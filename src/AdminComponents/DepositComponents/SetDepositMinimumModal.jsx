@@ -58,6 +58,7 @@ const SetDepositMinimum = ({ closeView }) => {
                                 {Object.values(adminStore).length !== 0 && <div>${adminStore.deposit_minimum.toLocaleString()}</div>}
                             </div>
                         </div>
+                        <div className='italic text-xs mt-4'>- the least amount users can deposit is {Object.values(adminStore).length !== 0 && <span>${adminStore.deposit_minimum.toLocaleString()}</span>} -</div>
                     </div>
                     <div className='mx-auto mt-6'>
                         <button className='w-fit h-fit py-2.5 px-8 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={SetReferalBonus}>set</button>

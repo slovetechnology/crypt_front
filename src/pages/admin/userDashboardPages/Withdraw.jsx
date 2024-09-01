@@ -203,10 +203,10 @@ const Withdraw = () => {
                 </div>
                 {screen === 1 &&
                     <div className='flex justify-center'>
-                        <div className='my-10 text-black font-medium h-fit w-fit bg-semi-white shlz rounded-xl overflow-hidden relative'>
+                        <div className='mt-10 text-black font-medium h-fit w-fit bg-semi-white shlz rounded-xl overflow-hidden relative'>
                             {loading && <LoadingAdmin />}
                             <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-light mx-auto flex flex-col gap-2'>
-                                <Link to='/dashboard/tax-payment' onClick={MoveToTop}>
+                                <Link to='/dashboard/deposit' onClick={MoveToTop}>
                                     <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto'>
                                         <span>fund account</span>
                                         <SiBitcoincash />
@@ -220,7 +220,7 @@ const Withdraw = () => {
                                         <div className='capitalize text-[0.8rem] font-medium'>withdawal amount ($)</div>
                                         <div className='relative'>
                                             <input className={`outline-none border lg:text-[0.85rem] md:w-48 w-40 h-8 rounded-[4px] pl-2 pr-16 bg-white ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
-                                            <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[#cf4444]' : 'text-black'}`}>min: {user.withdrawal_minimum}</div>
+                                            <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[red]' : 'text-black'}`}>min: {user.withdrawal_minimum}</div>
                                         </div>
                                     </div>
                                     <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
@@ -240,7 +240,7 @@ const Withdraw = () => {
                                     </div>
                                     {adminWallets.length > 0 &&
                                         <>
-                                            {selectState && <div className='absolute top-0 left-0 h-fit w-full bg-white border border-[lightgrey] rounded-md z-50'>
+                                            {selectState && <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
                                                 {adminWallets.map((item, i) => (
                                                     <div className={`flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#f7f5f5]'}  ${i === 0 && 'hover:rounded-t-md'}`} key={i}>
                                                         <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
@@ -267,15 +267,15 @@ const Withdraw = () => {
                                     </button>
                                 </div>
                             </div>
-                            {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] cursor-pointer flex gap-1 items-center bg-[#bdbcbc] p-1 rounded-sm'>
-                                <RiErrorWarningLine className='text-sm' />
+                            {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] flex gap-1  bg-[#bdbcbc] p-1 rounded-sm'>
+                                <RiErrorWarningLine className='text-base' />
                                 <span>{errorMsg}</span>
                                 <Link to='/dashboard/verify-account' className='underline'>click here</Link>
                             </div>}
                         </div>
                     </div>
                 }
-                {screen === 2 && <div className='pt-10 pb-10 lg:pb-0'>
+                {screen === 2 && <div className='mt-10'>
                     <div className='relative w-fit mx-auto'>
                         <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>

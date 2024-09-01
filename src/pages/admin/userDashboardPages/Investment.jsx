@@ -151,7 +151,7 @@ const Investment = () => {
                 {screen === 1 && <div>
                     {investmentUnclaim.length > 0 ? <div>
                         {investmentUnclaim.map((item, i) => (
-                            <div className='flex flex-col gap-4 my-10' key={i}>
+                            <div className='flex flex-col gap-4 mt-10' key={i}>
                                 <div className='flex gap-2 items-center'>
                                     <div className='text-[grey] text-[0.8rem]'>{moment(item.createdAt).format('DD-MM-yyyy')}</div>
                                     <div className='text-[grey] text-[0.8rem]'>{moment(item.createdAt).format('h:mm')}</div>
@@ -222,7 +222,7 @@ const Investment = () => {
                         ))}
                     </div>
                         :
-                        <div className='my-16'>
+                        <div className='mt-16'>
                             <div className='w-fit h-fit rounded-xl flex flex-col items-center justify-center py-4 px-8 md:px-16  text-semi-white gap-4 border border-dashed border-[grey] bg-[#130e27] mx-auto'>
                                 <div className='md:text-[1.2rem] text-base italic'>No new investment made</div>
                                 <img src={investbg} className='md:w-80 w-52 h-auto'></img>
@@ -237,7 +237,7 @@ const Investment = () => {
                     }
                 </div>}
                 {screen === 2 &&
-                    <div className='pt-10 pb-10 lg:pb-0'>
+                    <div className='mt-10'>
                         <div className='relative w-fit mx-auto'>
                             <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                             <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-10 rounded-full flex items-center justify-center bg-light shlz'>

@@ -31,7 +31,7 @@ const BuyPlanModal = ({ setModal, buybal }) => {
         const formbody = {
             amount: parseFloat(amount),
             trading_plan: buybal.title,
-            trading_plan_id: buybal.id,
+            trading_plan_id: parseInt(buybal.id),
             duration: buybal.duration,
             duration_type: buybal.duration_type,
             investmentUser: user.username

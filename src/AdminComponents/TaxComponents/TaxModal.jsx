@@ -3,17 +3,12 @@ import { Apis, UserPutApi, imageurl } from '../../services/API'
 import moment from 'moment';
 import { FaXmark } from 'react-icons/fa6';
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
-import { RiAiGenerate } from "react-icons/ri";
 import avatar from '../../assets/images/avatar.png'
 import Loading from '../../GeneralComponents/Loading';
 import { Alert, MoveToTopDiv } from '../../utils/utils';
 import ModalLayout from '../../utils/ModalLayout';
-import { useAtom } from 'jotai';
-import { ADMINSTORE } from '../../store';
 
 const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
-    const [adminStore] = useAtom(ADMINSTORE)
-
     const [message, setMessage] = useState('')
     const toggler = useRef()
     const [status, setStatus] = useState(singleTax.status)
@@ -66,13 +61,6 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
             setUpdate(true)
         }
     }
-
-    const GenerateTaxMessage = () => {
-        const NewTaxAmount = singleTax.amount / 2
-        setMessage(`Your first tax payment cleared. Now you have to pay an additional ${adminStore.tax_percentage / 2}% tax fee of $${NewTaxAmount} to successfully complete your withdrawal. Pay now?`)
-        setUpdate(true)
-    }
-
 
     const UpdateTaxPayment = async () => {
 
@@ -157,39 +145,34 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                     </div>
                                     <div className='flex justify-between items-center'>
                                         <div className='italic '>message:</div>
-                                        <div className='flex flex-col gap-1.5'>
-                                            <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
-                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5' onClick={GenerateTaxMessage}>
-                                                <span>Generate</span>
-                                                <RiAiGenerate className='text-xs'/>
-                                            </button>
-                                        </div>
+                                        <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
                                     </div>
                                     <div className='flex flex-col gap-6 my-6'>
                                         <div className='flex justify-between items-center'>
                                             <div className='italic'>status:</div>
-                                            {singleTax.status === 'processing' ? <div className='relative'>
-                                                <div className='px-2 py-1 h-fit md:w-44 w-36 bg-white rounded-sm sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
-                                                    <div className='flex justify-between items-center text-[0.8rem]'>
-                                                        <span >{status}</span>
-                                                        <div className='text-sm'>
-                                                            {!statusShow ? <TiArrowSortedDown />
-                                                                :
-                                                                <TiArrowSortedUp />
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
-                                                    {Statuses.map((item, i) => (
-                                                        <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                                                            <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => UpdateHandlerForStatus(item)}>
-                                                                <div className={`text-[0.85rem] font-bold ${item === 'received' && 'text-[green]'} ${item === 'failed' && 'text-[red]'}`}>{item}</div>
+                                            {singleTax.status === 'processing' ?
+                                                <div className='relative'>
+                                                    <div className='px-2 py-1 h-fit md:w-44 w-36 bg-white rounded-sm sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
+                                                        <div className='flex justify-between items-center text-[0.8rem]'>
+                                                            <span >{status}</span>
+                                                            <div className='text-sm'>
+                                                                {!statusShow ? <TiArrowSortedDown />
+                                                                    :
+                                                                    <TiArrowSortedUp />
+                                                                }
                                                             </div>
                                                         </div>
-                                                    ))}
-                                                </div>}
-                                            </div>
+                                                    </div>
+                                                    {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                                        {Statuses.map((item, i) => (
+                                                            <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
+                                                                <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => UpdateHandlerForStatus(item)}>
+                                                                    <div className={`text-[0.85rem] font-bold ${item === 'received' && 'text-[green]'} ${item === 'failed' && 'text-[red]'}`}>{item}</div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>}
+                                                </div>
                                                 :
                                                 <>
                                                     {Object.values(singleTax).length !== 0 && <div className={`md:text-base text-sm capitalize ${singleTax.status === 'received' && 'text-[green]'} ${singleTax.status === 'failed' && 'text-[red]'}`}>{singleTax.status}</div>}
