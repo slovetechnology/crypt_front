@@ -9,7 +9,7 @@ import investbg from '../../../assets/images/investbg.png'
 import nothnyet from '../../../assets/images/nothn.png'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import Dashboard from './Dashboard';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Apis, UserGetApi } from '../../../services/API';
 import ClaimButtons from '../../../UserComponents/InvestmentComponents/ClaimButtons';
 import { MoveToTop } from '../../../utils/utils';
@@ -17,11 +17,13 @@ import lines from '../../../assets/images/lines2.png'
 
 
 const Investment = () => {
+    const [searchParams, setSearchParams] = useSearchParams()
+    const params = searchParams.get('screen')
     const [original, setOriginal] = useState([])
     const [investment, setInvestment] = useState([])
     const [investmentUnclaim, setInvestUnclaim] = useState([])
     const [investtitle, setInvestTitle] = useState('my investment')
-    const [screen, setScreen] = useState(1)
+    const [screen, setScreen] = useState(params ? parseInt(params) : 1)
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
     const [start, setStart] = useState(0)
@@ -164,7 +166,7 @@ const Investment = () => {
                                                 <BsCurrencyDollar className="-mt-0.5" />
                                                 <div className='-ml-1'>{item.amount.toLocaleString()}</div>
                                             </div>
-                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:w-16 w-12 h-auto'></img>
                                         </div>
                                     </div>
                                     <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
@@ -182,7 +184,7 @@ const Investment = () => {
                                                 <BsCurrencyDollar className="-mt-0.5" />
                                                 <div className='-ml-1'>{item.profit.toLocaleString()}</div>
                                             </div>
-                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:w-16 w-12 h-auto'></img>
                                         </div>
                                     </div>
                                     <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[1.2rem] py-2  px-2 text-semi-white gap-2 border border-[grey] bg-[#130e27]'>
@@ -202,7 +204,7 @@ const Investment = () => {
                                                     <div className='-ml-1'>{item.bonus.toLocaleString()}</div>
                                                 </div>
                                             </div>
-                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:w-16 w-12 h-auto'></img>
                                         </div>
                                     </div>
                                     <div className='md:w-44 w-[9.5rem] h-fit rounded-[10px] flex flex-col md:text-[0.9rem] text-sm py-2  px-2 text-semi-white gap-2 font-bold bg-[#6859bb]'>
@@ -213,7 +215,7 @@ const Investment = () => {
                                                     <div className='capitalize'>{item.trading_plan}</div>
                                                 </div>
                                             </div>
-                                            <img src={lines} className='md:h-10 h-8 w-auto'></img>
+                                            <img src={lines} className='md:w-16 w-12 h-auto'></img>
                                         </div>
                                     </div>
                                 </div>

@@ -1,18 +1,22 @@
 import React, { useRef, useState } from 'react'
 import SettingsLayout from '../SettingsComponents/SettingsLayout'
 import { useAtom } from 'jotai'
-import { PROFILE } from '../../../../store'
+import { ADMINSTORE, PROFILE } from '../../../../store'
 import Loading from '../../../../GeneralComponents/Loading'
 import { Apis, imageurl, UserPutApi } from '../../../../services/API'
 import { MdOutlineEdit } from 'react-icons/md'
 import { FaRegRectangleXmark } from 'react-icons/fa6'
 import { IoCheckbox, IoEye } from 'react-icons/io5'
-import { Alert } from '../../../../utils/utils'
 import { IoMdEyeOff } from 'react-icons/io'
+import { PiTelegramLogoLight } from "react-icons/pi";
+import { TfiInstagram } from "react-icons/tfi";
+import { GrFacebookOption } from 'react-icons/gr';
 import avatar from '../../../../assets/images/avatar.png'
+import { Alert } from '../../../../utils/utils'
 
 const Personalize = () => {
   const [user, setUser] = useAtom(PROFILE)
+  const [adminStore, setAdminStore] = useAtom(ADMINSTORE)
 
   const [imageError, setImageError] = useState('')
   const [commit, setCommit] = useState(false)
@@ -34,6 +38,9 @@ const Personalize = () => {
     username: user.username,
     old_password: '',
     new_password: '',
+    facebook: adminStore.facebook,
+    instagram: adminStore.instagram,
+    telegram: adminStore.telegram
   })
 
   const formHandler = (event) => {
@@ -44,7 +51,7 @@ const Personalize = () => {
   }
 
   const CommitHandler = () => {
-    if (form.full_name === user.full_name && form.username === user.username && form.email === user.email && form.old_password === '' && form.new_password === '' && profile.image === user.image) {
+    if (form.full_name === user.full_name && form.username === user.username && form.email === user.email && form.old_password === '' && form.new_password === '' && form.facebook === adminStore.facebook && form.instagram === adminStore.instagram && form.telegram === adminStore.telegram && profile.image === user.image) {
       setCommit(false)
     } else {
       setCommit(true)
@@ -87,6 +94,9 @@ const Personalize = () => {
       username: user.username,
       old_password: '',
       new_password: '',
+      facebook: adminStore.facebook,
+      instagram: adminStore.instagram,
+      telegram: adminStore.telegram
     })
   }
 
@@ -100,6 +110,9 @@ const Personalize = () => {
     formbody.append('email', form.email)
     formbody.append('old_password', form.old_password)
     formbody.append('new_password', form.new_password)
+    formbody.append('facebook', form.facebook)
+    formbody.append('instagram', form.instagram)
+    formbody.append('telegram', form.telegram)
 
     setLoading(true)
     try {
@@ -108,12 +121,16 @@ const Personalize = () => {
         Alert('Request Successful', 'Profile updated successfully', 'success')
         setCommit(false)
         setUser(response.msg)
+        setAdminStore(response.store)
         setForm({
           full_name: response.msg.full_name,
           email: response.msg.email,
           username: response.msg.username,
           old_password: '',
           new_password: '',
+          facebook: response.store.facebook,
+          instagram: response.store.instagram,
+          telegram: response.store.telegram
         })
 
       } else {
@@ -180,6 +197,29 @@ const Personalize = () => {
                 </div>
               </div>
             </div>
+            {user.id === 1 &&<div className='flex flex-col gap-1.5'>
+              <div className='md:text-sm text-xs capitalize font-[550] '>company medias:</div>
+              <div className='grid md:grid-cols-3 grid-cols-2 gap-4 items-center'>
+                <div className='flex gap-1.5 items-center'>
+                  <div className='text-black text-lg'>
+                    <GrFacebookOption />
+                  </div>
+                  <input className='outline-none border border-[#c9b8eb] w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ipt' type='text' value={form.facebook} name='facebook' placeholder='Enter fb link' onChange={formHandler} onKeyUp={CommitHandler}></input>
+                </div>
+                <div className='flex gap-1.5 items-center'>
+                  <div className='text-black text-lg'>
+                    <TfiInstagram />
+                  </div>
+                  <input className='outline-none border border-[#c9b8eb] w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ipt' type='text' value={form.instagram} name='instagram' placeholder='Enter IG link' onChange={formHandler} onKeyUp={CommitHandler}></input>
+                </div>
+                <div className='flex gap-1.5 items-center'>
+                  <div className='text-black text-lg'>
+                    <PiTelegramLogoLight />
+                  </div>
+                  <input className='outline-none border border-[#c9b8eb] w-full px-2 md:py-2 py-1.5 lg:text-sm text-base rounded-sm ipt' type='text' value={form.telegram} name='telegram' placeholder='Enter Tg link' onChange={formHandler} onKeyUp={CommitHandler}></input>
+                </div>
+              </div>
+            </div>}
             {commit &&
               <div className='flex md:gap-8 gap-4 items-center justify-center mt-4'>
                 <button className='outline-none w-fit h-fit py-2 px-6 text-xs text-semi-white  bg-[#462c7c] rounded-md capitalize flex items-center gap-1 font-[550]' type='button' onClick={cancelChanges}>

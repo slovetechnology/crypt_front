@@ -25,12 +25,12 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
     ]
 
     const [form, setForm] = useState({
-        title: singlePlan.title || '',
-        price_start: singlePlan.price_start || '',
-        price_limit: singlePlan.price_limit || '',
-        profit_return: singlePlan.profit_return || '',
-        plan_bonus: singlePlan.plan_bonus || '',
-        duration: singlePlan.duration || '',
+        title: singlePlan.title,
+        price_start: singlePlan.price_start,
+        price_limit: singlePlan.price_limit,
+        profit_return: singlePlan.profit_return,
+        plan_bonus: singlePlan.plan_bonus,
+        duration: singlePlan.duration,
     })
 
     const inputHandler = event => {
@@ -41,7 +41,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
     }
 
     const CommitHandler = () => {
-        if (form.title === singlePlan.title && form.price_start === singlePlan.price_start && form.price_limit === singlePlan.price_limit && form.profit_return === singlePlan.profit_return && form.plan_bonus === singlePlan.plan_bonus && form.duration === singlePlan.duration && type === singlePlan.duration_type) {
+        if (form.title === singlePlan.title && parseFloat(form.price_start) === singlePlan.price_start && parseFloat(form.price_limit) === singlePlan.price_limit && parseFloat(form.profit_return) === singlePlan.profit_return && parseFloat(form.plan_bonus) === singlePlan.plan_bonus && parseFloat(form.duration) === singlePlan.duration && type === singlePlan.duration_type) {
             setCommit(false)
         } else {
             setCommit(true)
@@ -208,7 +208,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                                         <span> Are you sure you want to Delete plan?</span>
                                         <PiWarningCircleBold className='text-[red]' />
                                     </div>
-                                    <div className='text-xs text-center italic'>- All investments under this trading plan will no longer update automatically -</div>
+                                    <div className='text-xs text-center italic text-[#c04747]'>- All investments under this trading plan will no longer update automatically -</div>
                                 </div>
                                 <div className='flex items-center gap-6'>
                                     <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setDeleteState(false)}>no</button>

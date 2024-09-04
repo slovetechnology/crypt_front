@@ -1,5 +1,3 @@
-import traderimg from "../assets/images/trader.jfif"
-import bg from "../assets/images/bg.jfif"
 
 export const questions = [
     {

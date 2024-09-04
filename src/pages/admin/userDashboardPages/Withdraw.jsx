@@ -15,7 +15,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import { SiBitcoincash } from "react-icons/si";
 import nothnyet from '../../../assets/images/nothn.png'
 import Dashboard from './Dashboard'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 
 
@@ -26,10 +26,12 @@ const Withdraw = () => {
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
+    const [searchParams, setSearchParams] = useSearchParams()
+    const params = searchParams.get('screen')
     const [original, setOriginal] = useState([])
     const [withdrawals, setWithdrawals] = useState([])
     const [withdrawTitle, setWithdrawTitle] = useState('withdraw')
-    const [screen, setScreen] = useState(1)
+    const [screen, setScreen] = useState(params ? parseInt(params) : 1)
     const [amount, setAmount] = useState('')
     const [selectState, setSelectState] = useState(false)
     const [selectValue, setSelectValue] = useState({})

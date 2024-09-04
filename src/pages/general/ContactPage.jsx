@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
 import contactimg from '../../assets/images/contactimg2.webp'
 import { PiTelegramLogoLight } from "react-icons/pi";
@@ -7,15 +7,33 @@ import { GrFacebookOption } from "react-icons/gr";
 import { MdOutlineHearing } from "react-icons/md";
 import { BiMailSend } from "react-icons/bi";
 import { Alert } from '../../utils/utils';
-import { Apis, UserPostApi } from '../../services/API';
+import { Apis, UserGetApi, UserPostApi } from '../../services/API';
 import Loading from '../../GeneralComponents/Loading'
-import { Link } from 'react-router-dom';
 
 
 
 const ContactPage = () => {
+  const [adminstore, setAdminStore] = useState([])
+
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  const FetchAdminStore = useCallback(async () => {
+    try {
+      const response = await UserGetApi(Apis.admin.get_admin_store)
+      if (response.status === 200) {
+        setAdminStore(response.msg)
+      }
+
+    } catch (error) {
+      //
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchAdminStore()
+  }, [FetchAdminStore])
+
 
   const [form, setForm] = useState({
     username: '',
@@ -112,23 +130,23 @@ const ContactPage = () => {
             <div className='w-full h-fit py-4 bg-[#9e5c36] overflow-hidden trans relative'>
               <div className='w-11/12 mx-auto '>
                 <div className='grid grid-cols-1 gap-2 items-center lg:flex lg:justify-between h-full' >
-                  <div className='text-white text-[0.9rem] capitalize font-[550] text-center'>follow account manager on:</div>
+                  <div className='text-white text-[0.9rem] capitalize font-[550] text-center'>follow us on:</div>
                   <div className='flex gap-4 justify-center'>
-                    <Link to=''>
+                    <a href={adminstore.telegram}>
                       <div className='h-8 w-8 border-2 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-lg hover:text-black'>
                         <PiTelegramLogoLight />
                       </div>
-                    </Link>
-                    <Link to=''>
+                    </a>
+                    <a href={adminstore.instagram}>
                       <div className='h-8 w-8 border-2 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-lg hover:text-black'>
                         <TfiInstagram />
                       </div>
-                    </Link>
-                    <Link to=''>
+                    </a>
+                    <a href={adminstore.facebook}>
                       <div className='h-8 w-8 border-2 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-orange text-[1.rem] hover:text-black'>
                         <GrFacebookOption />
                       </div>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </div>

@@ -9,13 +9,16 @@ import { IoIosSearch } from 'react-icons/io'
 import { SiBitcoincash } from 'react-icons/si'
 import receipts from '../../../assets/images/receipts.png'
 import PayTaxModal from '../../../UserComponents/PayTaxModal'
+import { useSearchParams } from 'react-router-dom'
 
 
 const TaxPayment = () => {
+    const [searchParams, setSearchParams] = useSearchParams()
+    const params = searchParams.get('screen')
     const [original, setOriginal] = useState([])
     const [taxes, setTaxes] = useState([])
     const [taxTitle, setTaxTitle] = useState('pay tax')
-    const [screen, setScreen] = useState(1)
+    const [screen, setScreen] = useState(params ? parseInt(params) : 1)
     const [modal, setModal] = useState(false)
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)

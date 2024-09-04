@@ -18,7 +18,7 @@ const ClaimButtons = ({ item, refetchInvestments, refetchInvestmentsUnclaim }) =
 
         setTimeout(() => {
             refetchInvestmentsUnclaim()
-            setClaim(false)
+            setError('')
         }, 1500)
 
         if (item.status !== 'completed') {
@@ -28,29 +28,29 @@ const ClaimButtons = ({ item, refetchInvestments, refetchInvestmentsUnclaim }) =
             }, 1500)
 
             setLoading(true)
-            return setError(`running till ${moment(item.endDate).format('DD-MM-yyyy')} / ${moment(item.endDate).format('h:mm')}`)
+            return setError(`running till ${moment(new Date (item.endDate)).format('DD-MM-yyyy')} / ${moment(new Date (item.endDate)).format('h:mm')}`)
         }
 
-        if (item.claim !== 'true') {
-            try {
-                setLoading(true)
+        try {
+            setLoading(true)
 
-                const formbody = {
-                    invest_id: item.id
-                }
-
-                const response = await PostApi(Apis.investment.claim_investment, formbody)
-                if (response.status === 200) {
-                    refetchInvestments()
-                    setNotifications(response.notis)
-                    setUnreadNotis(response.unread)
-                }
-            } catch (error) {
-                //
-            } finally {
-                setLoading(false)
-                setClaim(true)
+            const formbody = {
+                invest_id: item.id
             }
+
+            const response = await PostApi(Apis.investment.claim_investment, formbody)
+            if (response.status === 200) {
+                setClaim(true)
+                refetchInvestments()
+                setNotifications(response.notis)
+                setUnreadNotis(response.unread)
+            } else {
+                setError(response.msg)
+            }
+        } catch (error) {
+            setError(error.message)
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -61,13 +61,9 @@ const ClaimButtons = ({ item, refetchInvestments, refetchInvestmentsUnclaim }) =
                 <button className='outline-none py-2 px-6 text-xs font-medium text-semi-white bg-[#241a49]  hover:bg-[#17112e] rounded-full flex items-center gap-1' onClick={ClaimingInvestment}>
                     <span>{claim ? 'Claimed' : 'Claim to wallet'}</span>
                     {!claim ?
-                        <div>
                             <IoWalletOutline className='text-sm' />
-                        </div>
                         :
-                        <div>
                             <IoMdCheckmarkCircleOutline className='text-[#52e652] text-sm' />
-                        </div>
                     }
                 </button>
                 {loading && <div className="w-full h-full absolute left-0 top-0 flex items-center justify-center bg-[#0c091aa4] z-20">

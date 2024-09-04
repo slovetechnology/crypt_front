@@ -18,18 +18,18 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
   const qrimgref = useRef()
 
   const [cryptoImg, setCryptoImg] = useState({
-    img: `${imageurl}/cryptocurrency/${singleWallet.crypto_img}` || null,
+    img: `${imageurl}/cryptocurrency/${singleWallet.crypto_img}`,
     image: singleWallet.crypto_img
   })
   const [qrImg, setQrImg] = useState({
-    img: `${imageurl}/cryptocurrency/${singleWallet.qrcode_img}` || null,
+    img: `${imageurl}/cryptocurrency/${singleWallet.qrcode_img}`,
     image: singleWallet.qrcode_img
   })
 
   const [form, setForm] = useState({
-    crypto: singleWallet.crypto || '',
-    address: singleWallet.address || '',
-    network: singleWallet.network || '',
+    crypto: singleWallet.crypto,
+    address: singleWallet.address,
+    network: singleWallet.network,
   })
 
   const inputHandler = event => {

@@ -14,15 +14,18 @@ import { Apis, UserGetApi } from '../../../services/API';
 import FundModal from '../../../UserComponents/DepositModals/FundModal';
 import BuyPlanModal from '../../../UserComponents/DepositModals/BuyPlanModal';
 import noplans from '../../../assets/images/noplans.png'
+import { useSearchParams } from 'react-router-dom';
 
 
 const Deposit = () => {
     const [tradingPlans] = useAtom(TRADINGPLANS)
 
+    const [searchParams, setSearchParams] = useSearchParams()
+    const params = searchParams.get('screen')
     const [original, setOriginal] = useState([])
     const [deposits, setDeposits] = useState([])
     const [depositTitle, setDepositTitle] = useState('deposit')
-    const [screen, setScreen] = useState(1)
+    const [screen, setScreen] = useState(params ? parseInt(params) : 1)
     const [search, setSearch] = useState('')
     const [write, setWrite] = useState(false)
     const [buybal, setBuyBal] = useState({})

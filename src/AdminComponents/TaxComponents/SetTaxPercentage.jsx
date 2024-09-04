@@ -29,7 +29,7 @@ const SetTaxPercentage = ({ closeView }) => {
             const response = await UserPutApi(Apis.admin.update_admin_store, formbody)
             if (response.status === 200) {
                 setAdminStore(response.msg)
-                Alert('Request Successful', 'Profit percentage updated', 'success')
+                Alert('Request Successful', 'Tax percentage updated', 'success')
                 closeView()
             } else {
                 Alert('Request Failed', `${response.msg}`, 'error')
