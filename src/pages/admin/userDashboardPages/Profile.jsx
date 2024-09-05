@@ -76,6 +76,7 @@ const Profile = () => {
         setTimeout(() => {
             setImageError('')
         }, 2000)
+
         const file = event.target.files[0]
         if (file.size >= 1000000) {
             imgref.current.value = null
@@ -83,8 +84,9 @@ const Profile = () => {
         }
         if (!file.type.startsWith('image/')) {
             imgref.current.value = null
-            return setImageError('File Error')
+            return setImageError('File error, invalid image format')
         }
+
         setCommit(true)
         setProfile({
             img: URL.createObjectURL(file),
@@ -208,9 +210,9 @@ const Profile = () => {
         <Dashboard>
             <div className='relative'>
                 {loading && <LoadingAdmin />}
-                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white mb-6 '>profile</div>
+                <div className='uppercase font-bold md:text-2xl text-lg text-semi-white'>profile</div>
                 <div>
-                    <div className='flex items-center justify-center'>
+                    <div className='flex items-center justify-center mt-10'>
                         <div className='md:w-[12.5rem] md:h-[12.5rem] h-[8.5rem] w-[8.5rem] rounded-full bg-[#afa7df] flex items-center justify-center relative'>
                             <div className='md:w-48 md:h-48 w-32 h-32'>
                                 <img className='w-full h-full rounded-full object-cover' src={profile.img}></img>
@@ -221,10 +223,10 @@ const Profile = () => {
                                 </div>
                                 <input ref={imgref} type="file" onChange={handleProfileUpload} hidden></input>
                             </label>
-                            <div className='absolute -bottom-1.5 -right-10 text-xs text-[#c42e2e]'>{imageError}</div>
+                            <div className='absolute -bottom-5 right-0 md:text-sm text-xs text-[#c42e2e]'>{imageError}</div>
                         </div>
                     </div>
-                    <div className=' justify-center  mt-4  text-semi-white flex gap-2 items-center'>
+                    <div className=' justify-center mt-4 text-semi-white flex gap-2 items-center'>
                         <div className='capitalize font-bold md:text-2xl text-lg'>{user.full_name}</div>
                         <img className='md:h-4 h-2 w-auto' src={user.country_flag}></img>
                     </div>

@@ -100,8 +100,8 @@ const AddWallet = () => {
               <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
                 <td className='text-center truncate  capitalize p-2 '>image</td>
                 <td className='text-center truncate  capitalize p-2 '>crypto</td>
-                <td className='text-center truncate  capitalize p-2 '>address</td>
                 <td className='text-center truncate  capitalize p-2 '>network</td>
+                <td className='text-center truncate  capitalize p-2 '>address</td>
                 <td className='text-center truncate  capitalize p-2 '>qr code</td>
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
@@ -112,8 +112,8 @@ const AddWallet = () => {
                   <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
                     <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='w-4 h-auto mx-auto'></img></td>
                     <td className='p-4  text-center truncate capitalize'>{item.crypto}</td>
-                    <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
                     <td className='p-4  text-center truncate capitalize'>{item.network}</td>
+                    <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
                     <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
                     <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                   </tr>

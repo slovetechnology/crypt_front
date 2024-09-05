@@ -149,7 +149,7 @@ const Deposit = () => {
                         <div className='mt-10 h-fit w-fit bg-semi-white rounded-xl relative shlz'>
                             {modal2 && <FundModal closeView={() => setModal2(false)} setScreen={setScreen} setDepositTitle={setDepositTitle} refetchDeposits={FetchDeposits} />}
                             {modal &&
-                                <BuyPlanModal setModal={setModal} buybal={buybal} />
+                                <BuyPlanModal setModal={setModal} buybal={buybal} setModal2={setModal2} />
                             }
                             <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-[#5BB4FD] mx-auto flex flex-col gap-2'>
                                 <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto' onClick={() => { setModal2(true) }}>

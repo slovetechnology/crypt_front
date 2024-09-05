@@ -59,7 +59,7 @@ const SetTaxPercentage = ({ closeView }) => {
                                     {Object.values(adminStore).length !== 0 && <div>{adminStore.tax_percentage}%</div>}
                                 </div>
                             </div>
-                            <div className='italic text-xs mt-4'>- users are taxed {Object.values(adminStore).length !== 0 && <span>{adminStore.tax_percentage}%</span>} on every withdrawal -</div>
+                            <div className='italic text-xs mt-4 text-[green]'>- users are taxed {Object.values(adminStore).length !== 0 && <span>{adminStore.tax_percentage}%</span>} on every withdrawal -</div>
                         </div>
                         <div className='mx-auto mt-6'>
                             <button className='w-fit h-fit py-2.5 px-8 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={UpdateTaxPercentage}>set</button>

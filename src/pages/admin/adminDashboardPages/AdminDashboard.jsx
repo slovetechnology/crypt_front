@@ -191,7 +191,7 @@ const AdminDashboard = ({ children }) => {
               }
             </div>
           </div>
-          <div className='pt-10 pb-28 lg:pb-10'>
+          <div className='pt-10 pb-24 lg:pb-10'>
             {children}
           </div>
           <div className='bg-admin-auth w-full md:h-14 h-12 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
@@ -199,13 +199,13 @@ const AdminDashboard = ({ children }) => {
               {MainLinks.map((item, i) => (
                 <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-[green]' : ' text-semi-white'}`} >
-                    <item.icon className='text-lg' />
+                    <item.icon className='md:text-lg text-base' />
                     <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>{item.path}</div>
                   </div>
                 </Link>
               ))}
               <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-[green]' : 'text-semi-white'} `} onClick={() => setSlideShow(!slideShow)}>
-                <PiDotsNineBold className='text-lg' />
+                <PiDotsNineBold className='md:text-lg text-base' />
                 <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>more</div>
               </div>
             </div>

@@ -70,7 +70,7 @@ const Personalize = () => {
     }
     if (!file.type.startsWith('image/')) {
       imgref.current.value = null
-      return setImageError('File Error')
+      return setImageError('File error, invalid image format')
     }
     setCommit(true)
     setProfile({
@@ -149,7 +149,7 @@ const Personalize = () => {
       <div className='relative'>
         {loading && <Loading />}
         <div className='md:w-3/4 w-11/12 mx-auto py-10'>
-          <div className='flex items-center justify-center gap-2 flex-col'>
+          <div className='flex items-center justify-center gap-4 flex-col'>
             <div className='md:w-[12.5rem] md:h-[12.5rem] h-[8.5rem] w-[8.5rem] rounded-full bg-[#c9b8eb] flex items-center justify-center relative'>
               <div className='md:w-48 md:h-48 w-32 h-32'>
                 <img className='w-full h-full rounded-full object-cover' src={profile.img}></img>
@@ -160,7 +160,7 @@ const Personalize = () => {
                 </div>
                 <input ref={imgref} type="file" onChange={handleProfileUpload} hidden></input>
               </label>
-              <div className='absolute -bottom-1.5 -right-10 text-xs text-[red]'>{imageError}</div>
+              <div className='absolute -bottom-5 right-0 md:text-sm text-xs text-[red] font-semibold'>{imageError}</div>
             </div>
             <div>
               <div className='capitalize font-bold md:text-2xl text-lg text-center'>{user.full_name}</div>

@@ -208,7 +208,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                                         <span> Are you sure you want to Delete plan?</span>
                                         <PiWarningCircleBold className='text-[red]' />
                                     </div>
-                                    <div className='text-xs text-center italic text-[#c04747]'>- All investments under this trading plan will no longer update automatically -</div>
+                                    <div className='text-xs text-center italic text-[green]'>- All investments under this trading plan will no longer update automatically -</div>
                                 </div>
                                 <div className='flex items-center gap-6'>
                                     <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setDeleteState(false)}>no</button>

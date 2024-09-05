@@ -58,7 +58,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
     }
     if (!file.type.startsWith('image/')) {
       cryptoimgref.current.value = null
-      return setError('File Error')
+      return setError('File error, invalid image format')
     }
     setCryptoImg({
       img: URL.createObjectURL(file),
@@ -78,7 +78,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
     }
     if (!file.type.startsWith('image/')) {
       qrimgref.current.value = null
-      return setError('File Error')
+      return setError('File error, invalid image format')
     }
     setQrImg({
       img: URL.createObjectURL(file),
