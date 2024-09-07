@@ -136,6 +136,10 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                         {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleTax.crypto}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
+                                        <div className='italic'>network:</div>
+                                        {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleTax.network}</div>}
+                                    </div>
+                                    <div className='flex justify-between items-center'>
                                         <div className='italic'>deposit address:</div>
                                         {Object.values(singleTax).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleTax.deposit_address?.slice(0, 5)}.....{singleTax.deposit_address?.slice(-8)}</div>}
                                     </div>

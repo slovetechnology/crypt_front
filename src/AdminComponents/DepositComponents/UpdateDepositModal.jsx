@@ -126,6 +126,10 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) =>
                     {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.crypto}</div>}
                   </div>
                   <div className='flex justify-between items-center'>
+                    <div className='italic'>network:</div>
+                    {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.network}</div>}
+                  </div>
+                  <div className='flex justify-between items-center'>
                     <div className='italic'>deposit address:</div>
                     {Object.values(singleDeposit).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleDeposit.deposit_address?.slice(0, 5)}.....{singleDeposit.deposit_address?.slice(-8)}</div>}
                   </div>

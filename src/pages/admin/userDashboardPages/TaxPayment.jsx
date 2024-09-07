@@ -178,6 +178,7 @@ const TaxPayment = () => {
                                         <td className='text-center truncate  capitalize p-2'>time</td>
                                         <td className='text-center truncate  capitalize p-2'>amount</td>
                                         <td className='text-center truncate  capitalize p-2'>crypto</td>
+                                        <td className='text-center truncate  capitalize p-2'>network</td>
                                         <td className='text-center truncate  capitalize p-2'>deposit address</td>
                                         <td className='text-center truncate  capitalize p-2'>status </td>
                                     </tr>
@@ -190,6 +191,7 @@ const TaxPayment = () => {
                                                 <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
                                                 <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
                                                 <td className='p-4 text-center truncate'> {item.crypto}</td>
+                                                <td className='p-4 text-center truncate'> {item.network}</td>
                                                 <td className='p-4  text-center truncate'>{item.deposit_address?.slice(0, 5)}.....{item.deposit_address?.slice(-10)} </td>
                                                 <td className={`p-4  text-center truncate italic ${item.status === 'received' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
                                             </tr>

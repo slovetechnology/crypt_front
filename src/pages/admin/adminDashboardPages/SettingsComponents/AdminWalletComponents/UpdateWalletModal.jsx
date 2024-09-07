@@ -14,20 +14,14 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
   const [commit, setCommit] = useState(false)
   const [loading, setLoading] = useState(false)
   const toggler = useRef()
-  const cryptoimgref = useRef()
   const qrimgref = useRef()
 
-  const [cryptoImg, setCryptoImg] = useState({
-    img: `${imageurl}/cryptocurrency/${singleWallet.crypto_img}`,
-    image: singleWallet.crypto_img
-  })
   const [qrImg, setQrImg] = useState({
-    img: `${imageurl}/cryptocurrency/${singleWallet.qrcode_img}`,
+    img: `${imageurl}/adminWallets/${singleWallet.qrcode_img}`,
     image: singleWallet.qrcode_img
   })
 
   const [form, setForm] = useState({
-    crypto: singleWallet.crypto,
     address: singleWallet.address,
     network: singleWallet.network,
   })
@@ -40,46 +34,30 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
   }
 
   const CommitHandler = () => {
-    if (form.crypto === singleWallet.crypto && form.network === singleWallet.network && form.address === singleWallet.address && cryptoImg.image === singleWallet.crypto_img && qrImg.image === singleWallet.qrcode_img) {
+    if (form.network === singleWallet.network && form.address === singleWallet.address && qrImg.image === singleWallet.qrcode_img) {
       setCommit(false)
     } else {
       setCommit(true)
     }
   }
 
+
   const handleUpload = (event) => {
     setTimeout(() => {
       setError('')
     }, 2000)
-    const file = event.target.files[0]
-    if (file.size >= 1000000) {
-      cryptoimgref.current.value = null
-      return setError('File size too large')
-    }
-    if (!file.type.startsWith('image/')) {
-      cryptoimgref.current.value = null
-      return setError('File error, invalid image format')
-    }
-    setCryptoImg({
-      img: URL.createObjectURL(file),
-      image: file
-    })
-    setCommit(true)
-  }
 
-  const handleUpload2 = (event) => {
-    setTimeout(() => {
-      setError('')
-    }, 2000)
     const file = event.target.files[0]
     if (file.size >= 1000000) {
       qrimgref.current.value = null
       return setError('File size too large')
     }
+
     if (!file.type.startsWith('image/')) {
       qrimgref.current.value = null
       return setError('File error, invalid image format')
     }
+
     setQrImg({
       img: URL.createObjectURL(file),
       image: file
@@ -94,14 +72,12 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
 
     setdeleteState(false)
 
-    if (!form.crypto || !form.network || !form.address) return setError('Enter all fields')
-    if (cryptoImg.img === null || qrImg.img === null) return setError('Upload all images')
+    if (!form.network || !form.address) return setError('Enter all fields')
+    if (qrImg.img === null) return setError('Upload QR images')
 
     const formbody = new FormData()
     formbody.append('wallet_id', singleWallet.id)
-    formbody.append('crypto_img', cryptoImg.image)
     formbody.append('qrcode_img', qrImg.image)
-    formbody.append('crypto', form.crypto)
     formbody.append('network', form.network)
     formbody.append('address', form.address)
 
@@ -151,7 +127,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
 
   return (
     <ModalLayout closeView={closeView} toggler={toggler}>
-      <div className={`xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 md:h-fit h-[70vh] bg-white rounded-lg ${loading ? 'overflow-hidden' : 'overflow-y-auto scroll'}`} ref={toggler}>
+      <div className='xl:w-1/3 lg:w-2/5 md:w-1/2 w-11/12 h-fit bg-white rounded-lg overflow-hidden relative' ref={toggler}>
         <div className='w-full h-full relative'>
           {loading && <Loading />}
           <FaXmark className='absolute top-0 right-1 cursor-pointer text-2xl' onClick={() => closeView()} />
@@ -159,8 +135,8 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
             <div className='text-xl uppercase text-center font-bold border-b'>update wallet</div>
             <div className='flex flex-col gap-4 mt-4 relative'>
               <div className='flex justify-between items-center'>
-                <div className='italic'>crypto name:</div>
-                <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 lg:text-sm text-base' value={form.crypto} name='crypto' onChange={inputHandler} onKeyUp={CommitHandler}></input>
+                <div className='italic'>crypto / coin:</div>
+                <div className='capitalize'>{singleWallet.crypto_name}</div>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>network:</div>
@@ -171,18 +147,6 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
                 <input className='outline-none border border-[#c9b8eb] w-48 py-1 px-2 lg:text-sm text-base' value={form.address} name='address' onChange={inputHandler} onKeyUp={CommitHandler}></input>
               </div>
               <div className='flex justify-between items-center'>
-                <div className='italic'>crypto image:</div>
-                <label className='cursor-pointer'>
-                  <div className='flex items-center gap-1'>
-                    <img src={cryptoImg.img} className='h-10 w-auto'></img>
-                    <div className='text-sm bg-white rounded-lg p-1 sha'>
-                      <MdOutlineEdit />
-                    </div>
-                  </div>
-                  <input ref={cryptoimgref} type="file" onChange={handleUpload} hidden />
-                </label>
-              </div>
-              <div className='flex justify-between items-center'>
                 <div className='italic'>qr code image:</div>
                 <label className='cursor-pointer'>
                   <div className='flex items-center gap-1'>
@@ -191,7 +155,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
                       <MdOutlineEdit />
                     </div>
                   </div>
-                  <input ref={qrimgref} type="file" onChange={handleUpload2} hidden />
+                  <input ref={qrimgref} type="file" onChange={handleUpload} hidden />
                 </label>
               </div>
               {error !== '' &&
@@ -206,7 +170,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
               {commit && <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={UpdateWallet}>update</button>}
               <button className='w-fit h-fit py-2 px-6 text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium ml-auto' onClick={() => setdeleteState(true)}>delete</button>
               {deleteState && <div className='bg-white adsha w-fit h-fit flex flex-col gap-4 items-center justify-center absolute bottom-0 right-0 p-3 rounded-md text-xs'>
-                <div className='md:text-sm text-[0.8rem] flex items-center gap-1 justify-center text-center font-medium'>
+                <div className='md:text-sm text-[0.8rem] flex items-center gap-1 justify-center text-center font-semibold'>
                   <span> Are you sure you want to Delete Wallet?</span>
                   <PiWarningCircleBold className='text-[red]' />
                 </div>

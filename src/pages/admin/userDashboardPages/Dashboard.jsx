@@ -19,7 +19,6 @@ import Cookies from 'js-cookie';
 import { CookieName, MoveToTop } from '../../../utils/utils';
 import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
-import { HiOutlineDotsVertical } from "react-icons/hi";
 import { HiOutlineCreditCard } from "react-icons/hi2";
 import { PiDotsNineBold } from "react-icons/pi";
 import Notifications from './Notifications';
@@ -132,9 +131,9 @@ const Dashboard = ({ children }) => {
         FetchUps()
     }, [FetchUps])
 
-    const FetchAdminWallets = useCallback(async () => {
+    const FetchAdminCrypto_Wallets = useCallback(async () => {
         try {
-            const response = await UserGetApi(Apis.admin.get_admin_wallets)
+            const response = await UserGetApi(Apis.user.get_crypto_and_their_wallets)
             if (response.status === 200) {
                 setAdminWallets(response.msg)
             }
@@ -145,8 +144,8 @@ const Dashboard = ({ children }) => {
     }, [])
 
     useEffect(() => {
-        FetchAdminWallets()
-    }, [FetchAdminWallets])
+        FetchAdminCrypto_Wallets()
+    }, [FetchAdminCrypto_Wallets])
 
     const FetchTradingPlans = useCallback(async () => {
         try {

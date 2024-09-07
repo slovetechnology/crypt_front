@@ -16,8 +16,10 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
     const [amount, setAmount] = useState('')
-    const [selectState, setSelectState] = useState(false)
-    const [selectValue, setSelectValue] = useState({})
+    const [select, setSelect] = useState(false)
+    const [mode, setMode] = useState(1)
+    const [firstValues, setFirstValues] = useState({})
+    const [secondValues, setSecondValues] = useState({})
     const [copy, setCopy] = useState(false)
     const [check, setCheck] = useState('')
     const [error, setError] = useState('')
@@ -28,7 +30,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
             setCopy(false)
         }, 2000)
 
-        navigator.clipboard.writeText(selectValue.address)
+        navigator.clipboard.writeText(secondValues.address)
         setCopy(true)
     }
 
@@ -39,14 +41,16 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
 
         if (!amount) return setError('amount')
         if (isNaN(amount)) return setError('amount')
-        if (Object.values(selectValue).length === 0) return setError('select')
+        if (Object.values(secondValues).length === 0) return setError('select')
         if (!check) return setError('check')
 
-        const formbody = new FormData()
-        formbody.append('amount', amount)
-        formbody.append('crypto', selectValue.crypto)
-        formbody.append('deposit_address', selectValue.address)
-        formbody.append('taxPayer', user.username)
+        const formbody = {
+            amount: parseFloat(amount),
+            crypto: secondValues.crypto_name,
+            network: secondValues.network,
+            deposit_address: secondValues.address,
+            taxPayer: user.username
+        }
 
         setLoading(true)
         try {
@@ -56,11 +60,9 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                 setNotifications(response.notis)
                 setUnreadNotis(response.unread)
                 Alert('Request Successful', `${response.msg}`, 'success')
-                setAmount('')
-                setCheck(!check)
-                setSelectValue({})
                 setTaxTitle('tax history')
                 setScreen(2)
+                closeView()
             } else {
                 Alert('Request Failed', `${response.msg}`, 'error')
             }
@@ -87,29 +89,51 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                         </div>
                     </div>
                     <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>
-                        <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>
+                        <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelect(!select)}>
                             <div className='text-[0.8rem]'>choose cryptocurrency</div>
                             <SiBitcoincash className='text-[#3966FF]' />
                         </div>
-                        {adminWallets.length > 0 &&
-                            <>
-                                {selectState && <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
-                                    {adminWallets.map((item, i) => (
-                                        <div className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#f7f5f5]'}`} key={i}>
-                                            <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                                <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
-                                                <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
-                                            </div>
+                        {select &&
+                            <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
+                                {mode === 1 ?
+                                    <>
+                                        {adminWallets.length > 0 &&
+                                            <>
+                                                {adminWallets.map((item, i) => (
+                                                    <div className='flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] border-b border-[#ebeaea]' key={i}>
+                                                        <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setFirstValues(item); setMode(2) }}>
+                                                            <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
+                                                            <div className='text-[0.85rem] font-bold capitalize'>{item.crypto_name}</div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </>
+                                        }
+                                    </>
+                                    :
+                                    <>
+                                        <div className='py-1 border-b flex justify-center'>
+                                            <div className='font-medium italic text-xs capitalize text-[#5BB4FD] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
                                         </div>
-                                    ))}
-                                </div>}
-                            </>}
+                                        {firstValues.cryptoWallet.length > 0 &&
+                                            <>
+                                                {firstValues.cryptoWallet.map((item, i) => (
+                                                    <div className='flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] border-b border-[#ebeaea]' key={i}>
+                                                        <div className='text-[0.85rem] font-bold capitalize cursor-pointer' onClick={() => { setSelect(false); setSecondValues(item); setMode(1) }}>{item.network}</div>
+                                                    </div>
+                                                ))}
+                                            </>
+                                        }
+                                    </>
+                                }
+                            </div>
+                        }
                     </div>
-                    {Object.values(selectValue).length !== 0 &&
+                    {Object.values(secondValues).length !== 0 &&
                         <div className='flex flex-col gap-2 items-center'>
-                            <div className='text-[0.85rem] text-center'><span className='capitalize'>{selectValue.crypto}</span> deposit address for <span className='capitalize'>{selectValue.network}</span>:</div>
+                            <div className='text-[0.85rem] text-center'><span className='capitalize'>{secondValues.crypto_name}</span> deposit address for <span className='capitalize'>{secondValues.network} network:</span></div>
                             <div className='flex gap-2 items-center'>
-                                <div className='text-xs text-[#3966FF] w-11/12 overflow-x-auto'>{selectValue.address?.slice(0, 35)}{selectValue.address.length > 35 && '....'}</div>
+                                <div className='text-xs text-[#3966FF] w-11/12 overflow-x-auto'>{secondValues.address?.slice(0, 35)}{secondValues.address.length > 35 && '....'}</div>
                                 <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                     {!copy && <MdContentCopy />}
                                     {copy && <FaCheck />}
@@ -117,11 +141,11 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                             </div>
                         </div>
                     }
-                    {Object.values(selectValue).length !== 0 &&
+                    {Object.values(secondValues).length !== 0 &&
                         <div>
                             <div className='text-center italic text-sm'>or scan qr code:</div>
                             <div className='flex items-center justify-center'>
-                                <img src={`${imageurl}/cryptocurrency/${selectValue.qrcode_img}`} className='h-32 w-auto'></img>
+                                <img src={`${imageurl}/adminWallets/${secondValues.qrcode_img}`} className='h-32 w-auto'></img>
                             </div>
                         </div>
                     }

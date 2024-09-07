@@ -8,18 +8,37 @@ import SettingsLayout from '../SettingsComponents/SettingsLayout';
 import UpdateWalletModal from '../SettingsComponents/AdminWalletComponents/UpdateWalletModal';
 import CreateWalletModal from '../SettingsComponents/AdminWalletComponents/CreateWalletModal';
 import { Apis, imageurl, UserGetApi } from '../../../../services/API';
+import CryptocurrencyComponent from '../SettingsComponents/Cryptocurrency/CryptocurrencyComponent';
 
 
 const AddWallet = () => {
+  const [cryptocurrency, setCryptocurrency] = useState([])
   const [adminWallets, setAdminWallets] = useState([])
   const [modal, setModal] = useState(false)
   const [modal2, setModal2] = useState(false)
+  const [modal3, setModal3] = useState(false)
   const [singleWallet, setSingleWallet] = useState({})
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
 
+
+  const FetchCryptocurrency = useCallback(async () => {
+    try {
+      const response = await UserGetApi(Apis.admin.get_cryptocurrency)
+      if (response.status === 200) {
+        setCryptocurrency(response.msg)
+      }
+
+    } catch (error) {
+      //
+    }
+  }, [])
+
+  useEffect(() => {
+    FetchCryptocurrency()
+  }, [FetchCryptocurrency])
 
   const FetchAdminWallets = useCallback(async () => {
     try {
@@ -88,17 +107,23 @@ const AddWallet = () => {
     <SettingsLayout>
       <div className='mt-10'>
         {modal && <UpdateWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} refetchAdminWallets={FetchAdminWallets} />}
-        {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets} />}
+        {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets} cryptocurrency={cryptocurrency} />}
+        {modal3 && <CryptocurrencyComponent  closeView={() => setModal3(false)} cryptocurrency={cryptocurrency} refetchCryptocurrency={FetchCryptocurrency} refetchAdminWallets={FetchAdminWallets}/>}
 
-        <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center ml-auto mb-2' onClick={() => setModal2(true)}>
-          <span>create new wallet</span>
-          <IoIosAddCircleOutline className='text-base' />
-        </button>
+        <div className='flex justify-between mb-2'>
+          <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal3(true)}>
+            <span>add crypto</span>
+            <IoIosAddCircleOutline className='text-base' />
+          </button>
+          <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal2(true)}>
+            <span>create new wallet</span>
+            <IoIosAddCircleOutline className='text-base' />
+          </button>
+        </div>
         <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
           <table className='w-full '>
             <thead >
               <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
-                <td className='text-center truncate  capitalize p-2 '>image</td>
                 <td className='text-center truncate  capitalize p-2 '>crypto</td>
                 <td className='text-center truncate  capitalize p-2 '>network</td>
                 <td className='text-center truncate  capitalize p-2 '>address</td>
@@ -110,11 +135,10 @@ const AddWallet = () => {
               <tbody>
                 {adminWallets.slice(start, end).map((item, i) => (
                   <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                    <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='w-4 h-auto mx-auto'></img></td>
-                    <td className='p-4  text-center truncate capitalize'>{item.crypto}</td>
+                    <td className='p-4  text-center truncate capitalize'>{item.crypto_name}</td>
                     <td className='p-4  text-center truncate capitalize'>{item.network}</td>
                     <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
-                    <td className='p-4  text-center truncate'><img src={`${imageurl}/cryptocurrency/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
+                    <td className='p-4  text-center truncate'><img src={`${imageurl}/adminWallets/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
                     <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                   </tr>
                 ))}

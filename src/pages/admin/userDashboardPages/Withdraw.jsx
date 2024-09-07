@@ -32,10 +32,10 @@ const Withdraw = () => {
     const [withdrawals, setWithdrawals] = useState([])
     const [withdrawTitle, setWithdrawTitle] = useState('withdraw')
     const [screen, setScreen] = useState(params ? parseInt(params) : 1)
-    const [amount, setAmount] = useState('')
-    const [selectState, setSelectState] = useState(false)
-    const [selectValue, setSelectValue] = useState({})
-    const [walletAddress, setWalletAddress] = useState('')
+    const [select, setSelect] = useState(false)
+    const [mode, setMode] = useState(1)
+    const [firstValues, setFirstValues] = useState({})
+    const [secondValues, setSecondValues] = useState({})
     const [check, setCheck] = useState('')
     const [error, setError] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
@@ -47,6 +47,17 @@ const Withdraw = () => {
     const [pageend, setpageend] = useState(0)
     const [loading, setLoading] = useState(false)
 
+    const [form, setForm] = useState({
+        amount: '',
+        wallet_address: ''
+    })
+
+    const inputHandler = event => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    }
 
 
     const FetchWithdrawals = useCallback(async () => {
@@ -75,23 +86,23 @@ const Withdraw = () => {
             setError('')
         }, 1000)
 
-        if (!amount) return setError('amount')
-        if (isNaN(amount)) return setError('amount')
-        if (amount < user.withdrawal_minimum) return setError('minimum')
+        if (!form.amount) return setError('amount')
+        if (isNaN(form.amount)) return setError('amount')
+        if (form.amount < user.withdrawal_minimum) return setError('minimum')
         if (Object.values(userwallet).length === 0) return setError('limit')
-        if (amount > userwallet.balance) return setError('limit')
-        if (Object.values(selectValue).length === 0) return setError('select')
-        if (!walletAddress) return setError('wallet')
+        if (form.amount > userwallet.balance) return setError('limit')
+        if (Object.values(secondValues).length === 0) return setError('select')
+        if (!form.wallet_address) return setError('wallet')
         if (!check) return setError('check')
         if (user.email_verified === 'false') return setErrorMsg('Complete account verification to continue;')
         if (user.kyc_verified === 'false') return setErrorMsg('Complete account verification to continue;')
 
 
         const formbody = {
-            amount: parseFloat(amount),
-            wallet_address: walletAddress,
-            crypto: selectValue.crypto,
-            network: selectValue.network,
+            amount: parseFloat(form.amount),
+            wallet_address: form.wallet_address,
+            crypto: secondValues.crypto_name,
+            network: secondValues.network,
             wthuser: user.username
         }
 
@@ -107,7 +118,7 @@ const Withdraw = () => {
                 setAmount('')
                 setWalletAddress('')
                 setCheck(!check)
-                setSelectValue({})
+                setSecondValues({})
                 setWithdrawTitle('withdrawal history')
                 setScreen(2)
             } else {
@@ -221,7 +232,7 @@ const Withdraw = () => {
                                     <div className='flex flex-col gap-1'>
                                         <div className='capitalize text-[0.8rem] font-medium'>withdawal amount ($)</div>
                                         <div className='relative'>
-                                            <input className={`outline-none border lg:text-[0.85rem] md:w-48 w-40 h-8 rounded-[4px] pl-2 pr-16 bg-white ${error === 'amount' ? 'border-[red]' : 'border-light'}`} value={amount} onChange={e => setAmount(e.target.value)} ></input>
+                                            <input className={`outline-none border lg:text-[0.85rem] md:w-48 w-40 h-8 rounded-[4px] pl-2 pr-16 bg-white ${error === 'amount' ? 'border-[red]' : 'border-light'}`} name='amount' value={form.amount} onChange={inputHandler} ></input>
                                             <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[red]' : 'text-black'}`}>min: {user.withdrawal_minimum}</div>
                                         </div>
                                     </div>
@@ -236,27 +247,49 @@ const Withdraw = () => {
                                     </div>
                                 </div>
                                 <div className='h-fit w-fit rounded-[0.2rem] bg-white p-1 relative mt-6'>
-                                    <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelectState(!selectState)}>
+                                    <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelect(!select)}>
                                         <div className='text-[0.8rem]'>choose cryptocurrency</div>
                                         <SiBitcoincash className='text-light' />
                                     </div>
-                                    {adminWallets.length > 0 &&
-                                        <>
-                                            {selectState && <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
-                                                {adminWallets.map((item, i) => (
-                                                    <div className={`flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] ${i === adminWallets.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#f7f5f5]'}  ${i === 0 && 'hover:rounded-t-md'}`} key={i}>
-                                                        <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setSelectState(false); setSelectValue(item) }}>
-                                                            <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
-                                                            <div className='text-[0.85rem] font-bold capitalize'>{item.crypto}</div>
-                                                        </div>
+                                    {select &&
+                                        <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
+                                            {mode === 1 ?
+                                                <>
+                                                    {adminWallets.length > 0 &&
+                                                        <>
+                                                            {adminWallets.map((item, i) => (
+                                                                <div className='flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] border-b border-[#ebeaea]' key={i}>
+                                                                    <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setFirstValues(item); setMode(2) }}>
+                                                                        <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
+                                                                        <div className='text-[0.85rem] font-bold capitalize'>{item.crypto_name}</div>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </>
+                                                    }
+                                                </>
+                                                :
+                                                <>
+                                                    <div className='py-1 border-b flex justify-center'>
+                                                        <div className='font-medium italic text-xs capitalize text-[#5BB4FD] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
                                                     </div>
-                                                ))}
-                                            </div>}
-                                        </>}
+                                                    {firstValues.cryptoWallet.length > 0 &&
+                                                        <>
+                                                            {firstValues.cryptoWallet.map((item, i) => (
+                                                                <div className='flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] border-b border-[#ebeaea]' key={i}>
+                                                                    <div className='text-[0.85rem] font-bold capitalize cursor-pointer' onClick={() => { setSelect(false); setSecondValues(item); setMode(1) }}>{item.network}</div>
+                                                                </div>
+                                                            ))}
+                                                        </>
+                                                    }
+                                                </>
+                                            }
+                                        </div>
+                                    }
                                 </div>
-                                {Object.values(selectValue).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
-                                    <div className='text-[0.85rem] text-center'>Enter your wallet address for <span className=' capitalize'>{selectValue.network}</span> below</div>
-                                    <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} value={walletAddress} onChange={e => setWalletAddress(e.target.value)} type='text'></input>
+                                {Object.values(secondValues).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
+                                    <div className='text-[0.85rem] text-center'>Enter your <span className=' capitalize'>{secondValues.crypto_name}</span> wallet address for <span className=' capitalize'> {secondValues.network}</span> Network</div>
+                                    <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} name='wallet_address' value={form.wallet_address} onChange={inputHandler} type='text'></input>
                                 </div>}
                                 <div className='flex flex-col gap-1 items-center relative mt-10'>
                                     <div className='flex gap-1.5 items-center'>
@@ -297,6 +330,7 @@ const Withdraw = () => {
                                     <td className='text-center truncate  capitalize p-2'>time</td>
                                     <td className='text-center truncate  capitalize p-2'>amount</td>
                                     <td className='text-center truncate  capitalize p-2'>crypto</td>
+                                    <td className='text-center truncate  capitalize p-2'>network</td>
                                     <td className='text-center truncate  capitalize p-2'>wallet address</td>
                                     <td className='text-center truncate  capitalize p-2'>status </td>
                                 </tr>
@@ -307,8 +341,9 @@ const Withdraw = () => {
                                         <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
                                             <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
                                             <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                            <td className='p-4  text-center truncate'>${item.amount.toFixed(1).toLocaleString()}</td>
+                                            <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                             <td className='p-4  text-center truncate'>{item.crypto}</td>
+                                            <td className='p-4  text-center truncate'>{item.network}</td>
                                             <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
                                             <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
                                         </tr>

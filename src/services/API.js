@@ -21,6 +21,7 @@ const user_urls = {
     delete: user + 'delete-account',
     wallet: user + 'user-wallet',
     ups: user + 'user-ups',
+    get_crypto_and_their_wallets: user + 'get_crypto_and_thier_wallets'
 }
 
 const deposit = 'api/deposit/'
@@ -75,6 +76,10 @@ const admin_urls = {
     update_users: admin + 'update-users',
     get_user_figures: admin + 'get-user-total',
     update_withdrawals: admin + 'update-withdrawals',
+    get_cryptocurrency: admin + 'all-cryptocurrency',
+    create_cryptocurrency: admin + 'create-cryptocurrency',
+    update_cryptocurrency: admin + 'update-cryptocurrency',
+    delete_cryptocurrency: admin + 'delete-cryptocurrency',
     get_admin_wallets: admin + 'all-admin-wallets',
     create_admin_wallet: admin + 'create-admin-wallet',
     update_admin_wallet: admin + 'update-admin-wallet',
