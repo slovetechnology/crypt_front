@@ -57,7 +57,6 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) =>
 
     const formbody = {
       deposit_id: singleDeposit.id,
-      user_id: singleDeposit.user,
       status: status,
     }
 

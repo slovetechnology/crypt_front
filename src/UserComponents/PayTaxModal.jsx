@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
-import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../store'
+import { ADMINWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../store'
 import { MdContentCopy } from 'react-icons/md'
 import { FaCheck, FaXmark } from 'react-icons/fa6'
 import { SiBitcoincash } from 'react-icons/si'
@@ -10,7 +10,6 @@ import { Alert } from '../utils/utils'
 import { Apis, imageurl, PostApi } from '../services/API'
 
 const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
-    const [user] = useAtom(PROFILE)
     const [adminWallets] = useAtom(ADMINWALLETS)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
@@ -49,7 +48,6 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
             crypto: secondValues.crypto_name,
             network: secondValues.network,
             deposit_address: secondValues.address,
-            taxPayer: user.username
         }
 
         setLoading(true)
@@ -94,7 +92,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                             <SiBitcoincash className='text-[#3966FF]' />
                         </div>
                         {select &&
-                            <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
+                            <div className={`absolute top-0 left-0 ${adminWallets.length > 4 ? 'h-[8.05rem] overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[lightgrey] rounded-md z-50`}>
                                 {mode === 1 ?
                                     <>
                                         {adminWallets.length > 0 &&
@@ -154,10 +152,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                             <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
                             <div className='text-[#252525] text-[0.8rem]'>Confirm you've paid this tax</div>
                         </div>
-                        <button className='outline-none w-fit h-fit py-2 px-10 text-xs text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-medium' onClick={ConfirmTaxPayment}>
-                            <span>confirm payment</span>
-                            <IoCheckbox />
-                        </button>
+                        <button className='outline-none w-fit h-fit py-2 px-14 text-xs text-semi-white bg-[#252525] rounded-md capitalize font-medium' onClick={ConfirmTaxPayment}>confirm payment</button>
                     </div>
                 </div>
             </div>

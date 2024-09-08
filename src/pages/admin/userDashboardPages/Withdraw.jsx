@@ -59,7 +59,6 @@ const Withdraw = () => {
         })
     }
 
-
     const FetchWithdrawals = useCallback(async () => {
         try {
             const response = await UserGetApi(Apis.withdrawal.user_withdrawals)
@@ -103,7 +102,6 @@ const Withdraw = () => {
             wallet_address: form.wallet_address,
             crypto: secondValues.crypto_name,
             network: secondValues.network,
-            wthuser: user.username
         }
 
         setLoading(true)
@@ -252,7 +250,7 @@ const Withdraw = () => {
                                         <SiBitcoincash className='text-light' />
                                     </div>
                                     {select &&
-                                        <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
+                                        <div className={`absolute top-0 left-0 ${adminWallets.length > 4 ? 'h-[8.05rem] overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#c2c2c2] rounded-md z-50`}>
                                             {mode === 1 ?
                                                 <>
                                                     {adminWallets.length > 0 &&

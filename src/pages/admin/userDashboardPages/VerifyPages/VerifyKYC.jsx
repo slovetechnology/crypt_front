@@ -27,7 +27,7 @@ const MaritalStatus = [
 ]
 
 const VerifyKYC = () => {
-    const [user, setUser] = useAtom(PROFILE)
+    const [, setUser] = useAtom(PROFILE)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
@@ -178,7 +178,6 @@ const VerifyKYC = () => {
         formbody.append('marital_status', marital)
         formbody.append('country', usercountry.name)
         formbody.append('country_flag', usercountry.flag)
-        formbody.append('kycUser', user.username)
 
         setLoading(true)
         try {

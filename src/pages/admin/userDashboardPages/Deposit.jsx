@@ -156,7 +156,7 @@ const Deposit = () => {
                                     <span>fund wallet</span>
                                     <SiBitcoincash />
                                 </button>
-                                <div className='border-t pt-2 text-center'>buy trading plans</div>
+                                <div className='border-t pt-2 text-center'>trading plans</div>
                             </div>
                             <div className={`w-full h-[26rem] flex flex-col py-6 items-center ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
                                 {tradingPlans.length > 0 ?
@@ -247,7 +247,7 @@ const Deposit = () => {
                             {deposits.length < 1 &&
                                 <tbody>
                                     <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                        <td colSpan="6" className='py-2 italic text-center truncate'>
+                                        <td colSpan="7" className='py-2 italic text-center truncate'>
                                             <div className='flex gap-1 items-center justify-center'>
                                                 <span>no deposits found...</span>
                                                 <img src={nothnyet} className='h-4 w-auto'></img>

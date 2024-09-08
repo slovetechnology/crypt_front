@@ -66,7 +66,6 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
 
         const formbody = {
             tax_id: singleTax.id,
-            user_id: singleTax.user,
             message: message,
             status: status,
         }

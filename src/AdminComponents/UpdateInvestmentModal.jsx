@@ -85,7 +85,6 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
 
         const formbody = {
             investment_id: singleInvestment.id,
-            user_id: singleInvestment.user,
             profit: parseFloat(form.profit),
             bonus: parseFloat(form.bonus),
             status: status,

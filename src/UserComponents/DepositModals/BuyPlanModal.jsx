@@ -4,12 +4,11 @@ import { FaXmark } from 'react-icons/fa6'
 import { useAtom } from 'jotai'
 import { useNavigate } from 'react-router-dom'
 import { Apis, PostApi } from '../../services/API'
-import { PROFILE, WALLET } from '../../store'
+import { WALLET } from '../../store'
 import { Alert } from '../../utils/utils'
 
 const BuyPlanModal = ({ setModal, buybal, setModal2 }) => {
     const [userwallet] = useAtom(WALLET)
-    const [user] = useAtom(PROFILE)
 
     const [amount, setAmount] = useState('')
     const [error, setError] = useState('')
@@ -34,7 +33,6 @@ const BuyPlanModal = ({ setModal, buybal, setModal2 }) => {
             trading_plan_id: parseInt(buybal.id),
             duration: buybal.duration,
             duration_type: buybal.duration_type,
-            investmentUser: user.username
         }
 
         setLoading(true)

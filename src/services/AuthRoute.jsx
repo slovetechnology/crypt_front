@@ -32,7 +32,7 @@ const AuthRoute = ({ children }) => {
                 setProfile(response.msg)
             }
         } catch (error) {
-            Alert('request failed', error.msg, 'error')
+            Alert('Request failed', error.msg, 'error')
         }
     }
     

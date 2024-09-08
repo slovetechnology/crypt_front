@@ -127,7 +127,6 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
 
         const formbody = {
             kyc_id: singleUser.kycUser[0].id,
-            user_id: singleUser.id,
             message: message,
             status: status,
         }

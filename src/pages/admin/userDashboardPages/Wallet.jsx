@@ -22,9 +22,12 @@ const Wallet = () => {
     let profitUp = 0
     let bonusUp = 0
     if (Object.keys(ups).length !== 0) {
-        profitUp = ups.new_profit / wallet.total_profit * 100
-        bonusUp = ups.new_bonus / wallet.total_bonus * 100
+        if (wallet.total_profit > 0) {
+            profitUp = ups.new_profit / wallet.total_profit * 100
+            bonusUp = ups.new_bonus / wallet.total_bonus * 100
+        }
     }
+
 
     return (
         <Dashboard>

@@ -5,12 +5,11 @@ import { MdContentCopy } from 'react-icons/md'
 import { useAtom } from 'jotai'
 import { Alert } from '../../utils/utils'
 import { Apis, imageurl, PostApi } from '../../services/API'
-import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../store'
+import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../../store'
 import { SiBitcoincash } from 'react-icons/si'
 
 
 const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) => {
-  const [user] = useAtom(PROFILE)
   const [adminWallets] = useAtom(ADMINWALLETS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
@@ -51,7 +50,6 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
       crypto: secondValues.crypto_name,
       network: secondValues.network,
       deposit_address: secondValues.address,
-      depositUser: user.username
     }
 
     setLoading(true)
@@ -96,7 +94,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
               <SiBitcoincash className='text-[#5BB4FD] z-50' />
             </div>
             {select &&
-              <div className='absolute top-0 left-0 h-32 overflow-y-auto scroll w-full bg-white border border-[lightgrey] rounded-md z-50'>
+              <div className={`absolute top-0 left-0 ${adminWallets.length > 4 ? 'h-[8.05rem] overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[lightgrey] rounded-md z-50`}>
                 {mode === 1 ?
                   <>
                     {adminWallets.length > 0 &&

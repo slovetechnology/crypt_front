@@ -219,7 +219,7 @@ const UpdateCrypto = ({ setScreen, singleCrypto, refetchCryptocurrency, refetchA
     return (
         <div>
             <div className='flex flex-col gap-4 mt-4 relative'>
-                <div className='flex gap-1 cursor-pointer items-center text-base text-[#462c7c] -ml-3' onClick={() => setScreen(1)}>
+                <div className='flex gap-1 cursor-pointer items-center text-base text-[#462c7c] -ml-1' onClick={() => setScreen(1)}>
                     <FaArrowLeft />
                 </div>
                 <div className='flex justify-between items-center'>
@@ -271,7 +271,7 @@ const UpdateCrypto = ({ setScreen, singleCrypto, refetchCryptocurrency, refetchA
                                 <span> Are you sure you want to Delete Crypto?</span>
                                 <PiWarningCircleBold className='text-[red]' />
                             </div>
-                            <div className='text-xs text-center italic text-[#eb2e2e]'>- Deleting this crypto will also deletes all wallet addresses under it -</div>
+                            <div className='text-xs text-center italic text-[#eb2e2e]'>- Deleting this crypto will also delete all wallet addresses under it -</div>
                         </div>
                         <div className='flex items-center gap-6'>
                             <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setdeleteState(false)}>no</button>

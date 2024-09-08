@@ -118,7 +118,7 @@ const CreateWalletModal = ({ closeView, refetchAdminWallets, cryptocurrency }) =
                                             </div>
                                         </div>
                                     </div>
-                                    {select && <div className='h-24 overflow-y-auto scroll w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                    {select && <div className={`${cryptocurrency.length > 4 ? 'h-24' : 'h-fit'} overflow-y-auto scroll w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-50`}>
                                         {cryptocurrency.length > 0 ?
                                             <>
                                                 {cryptocurrency.map((item, i) => (
