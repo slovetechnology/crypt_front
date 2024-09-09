@@ -53,7 +53,6 @@ const Users = () => {
     FetchAllUsers()
   }, [FetchAllUsers])
 
-
   const HandleSearch = () => {
     const altusers = orignal
     if (!search) {
@@ -84,7 +83,6 @@ const Users = () => {
     setStart(0)
     setEnd(6)
   }
-
 
   let MovePage = () => {
 
@@ -165,7 +163,7 @@ const Users = () => {
           <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full'>
               <thead >
-                <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
+                <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => setModal(true)}>
                   <td className='text-center truncate  capitalize p-2'>joined</td>
                   <td className='text-center truncate  capitalize p-2'>full name</td>
                   <td className='text-center truncate  capitalize p-2'>username</td>
