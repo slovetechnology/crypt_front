@@ -20,20 +20,20 @@ const Taxes = () => {
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(5)
+  const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
 
 
   const FetchAllTaxes = useCallback(async () => {
     try {
-      const response = await UserGetApi(Apis.admin.get_all_taxes)
+      const response = await UserGetApi(Apis.admin.all_taxes)
       if (response.status === 200) {
         setAllTaxes(response.msg)
         setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
-        setEnd(5)
+        setEnd(6)
         setpagestart(1)
         setSearch('')
         setWrite(false)
@@ -58,31 +58,31 @@ const Taxes = () => {
     const altTaxes = original
     if (!search) {
       setAllTaxes(original)
-      setpageend(original.length / 5)
+      setpageend(original.length / 6)
       setWrite(false)
       setpagestart(1)
       setStart(0)
-      setEnd(5)
+      setEnd(6)
     }
     else {
       setWrite(true)
       const showSearch = altTaxes.filter(item => item.taxPayer.username.includes(search.toLowerCase()) || item.taxPayer.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllTaxes(showSearch)
-      setpageend(showSearch.length / 5)
+      setpageend(showSearch.length / 6)
       setpagestart(1)
       setStart(0)
-      setEnd(5)
+      setEnd(6)
     }
   }
 
   const CancelWrite = () => {
     setSearch('')
     setAllTaxes(original)
-    setpageend(original.length / 5)
+    setpageend(original.length / 6)
     setWrite(false)
     setpagestart(1)
     setStart(0)
-    setEnd(5)
+    setEnd(6)
   }
 
   let MovePage = () => {
@@ -92,10 +92,10 @@ const Taxes = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 5
+      altend += 6
       setEnd(altend)
 
-      altstart += 5
+      altstart += 6
       setStart(altstart)
 
       altlengthstart += 1
@@ -105,15 +105,15 @@ const Taxes = () => {
 
   let BackPage = () => {
 
-    if (end > 5) {
+    if (end > 6) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 5
+      altend -= 6
       setEnd(altend)
 
-      altstart -= 5
+      altstart -= 6
       setStart(altstart)
 
       altlengthstart -= 1

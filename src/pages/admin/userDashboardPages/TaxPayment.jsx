@@ -193,7 +193,7 @@ const TaxPayment = () => {
                                                 <td className='p-4 text-center truncate'> {item.crypto}</td>
                                                 <td className='p-4 text-center truncate'> {item.network}</td>
                                                 <td className='p-4  text-center truncate'>{item.deposit_address?.slice(0, 5)}.....{item.deposit_address?.slice(-10)} </td>
-                                                <td className={`p-4  text-center truncate italic ${item.status === 'received' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
+                                                <td className={`p-4  text-center truncate italic ${item.status === 'received' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
                                             </tr>
                                         ))}
                                     </tbody>

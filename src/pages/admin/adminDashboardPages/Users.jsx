@@ -25,7 +25,7 @@ const Users = () => {
   const [search, setSearch] = useState('')
   const [userFigures, setUserFigures] = useState({})
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(5)
+  const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
 
@@ -38,7 +38,7 @@ const Users = () => {
         setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
-        setEnd(5)
+        setEnd(6)
         setpagestart(1)
         setSearch('')
         setWrite(false)
@@ -58,31 +58,31 @@ const Users = () => {
     const altusers = orignal
     if (!search) {
       setAllUsers(orignal)
-      setpageend(orignal.length / 5)
+      setpageend(orignal.length / 6)
       setWrite(false)
       setpagestart(1)
       setStart(0)
-      setEnd(5)
+      setEnd(6)
     }
     else {
       setWrite(true)
       const showSearch = altusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
       setAllUsers(showSearch)
-      setpageend(showSearch.length / 5)
+      setpageend(showSearch.length / 6)
       setpagestart(1)
       setStart(0)
-      setEnd(5)
+      setEnd(6)
     }
   }
 
   const CancelWrite = () => {
     setSearch('')
     setAllUsers(orignal)
-    setpageend(orignal.length / 5)
+    setpageend(orignal.length / 6)
     setWrite(false)
     setpagestart(1)
     setStart(0)
-    setEnd(5)
+    setEnd(6)
   }
 
 
@@ -93,10 +93,10 @@ const Users = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 5
+      altend += 6
       setEnd(altend)
 
-      altstart += 5
+      altstart += 6
       setStart(altstart)
 
       altlengthstart += 1
@@ -106,15 +106,15 @@ const Users = () => {
 
   let BackPage = () => {
 
-    if (end > 5) {
+    if (end > 6) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 5
+      altend -= 6
       setEnd(altend)
 
-      altstart -= 5
+      altstart -= 6
       setStart(altstart)
 
       altlengthstart -= 1
@@ -165,7 +165,7 @@ const Users = () => {
           <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
             <table className='w-full'>
               <thead >
-                <tr className='bg-admin-page text-[0.8rem] font-bold text-white' onClick={() => setModal(true)}>
+                <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
                   <td className='text-center truncate  capitalize p-2'>joined</td>
                   <td className='text-center truncate  capitalize p-2'>full name</td>
                   <td className='text-center truncate  capitalize p-2'>username</td>

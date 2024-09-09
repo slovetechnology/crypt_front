@@ -61,7 +61,7 @@ const Withdraw = () => {
 
     const FetchWithdrawals = useCallback(async () => {
         try {
-            const response = await UserGetApi(Apis.withdrawal.user_withdrawals)
+            const response = await UserGetApi(Apis.withdraw.user_withdrawals)
             if (response.status === 200) {
                 setWithdrawals(response.msg)
                 setOriginal(response.msg)
@@ -96,7 +96,6 @@ const Withdraw = () => {
         if (user.email_verified === 'false') return setErrorMsg('Complete account verification to continue;')
         if (user.kyc_verified === 'false') return setErrorMsg('Complete account verification to continue;')
 
-
         const formbody = {
             amount: parseFloat(form.amount),
             wallet_address: form.wallet_address,
@@ -106,15 +105,17 @@ const Withdraw = () => {
 
         setLoading(true)
         try {
-            const response = await PostApi(Apis.withdrawal.make_withdrawal, formbody)
+            const response = await PostApi(Apis.withdraw.make_withdrawal, formbody)
             if (response.status === 200) {
                 FetchWithdrawals()
                 setUserWallet(response.wallet)
                 setNotifications(response.notis)
                 setUnreadNotis(response.unread)
                 Alert('Request Successful', `${response.msg}`, 'success')
-                setAmount('')
-                setWalletAddress('')
+                setForm({
+                    amount : '',
+                    wallet_address: ''
+                })
                 setCheck(!check)
                 setSecondValues({})
                 setWithdrawTitle('withdrawal history')
@@ -351,7 +352,7 @@ const Withdraw = () => {
                             {withdrawals.length < 1 &&
                                 <tbody>
                                     <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                        <td colSpan="6" className='py-2 italic text-center truncate'>
+                                        <td colSpan="7" className='py-2 italic text-center truncate'>
                                             <div className='flex gap-1 items-center justify-center'>
                                                 <span>no withdrawals found...</span>
                                                 <img src={nothnyet} className='h-4 w-auto'></img>

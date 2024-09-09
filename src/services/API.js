@@ -39,10 +39,10 @@ const notification_urls = {
     delete_notification: notification + 'delete-notification',
 }
 
-const withdrawal = 'api/withdrawal/'
-const withdrawal_urls = {
-    user_withdrawals: withdrawal + 'user-withdrawals',
-    make_withdrawal: withdrawal + 'make-withdrawal'
+const withdraw = 'api/withdraw/'
+const withdraw_urls = {
+    user_withdrawals: withdraw + 'user-withdrawals',
+    make_withdrawal: withdraw + 'make-withdrawal'
 }
 
 const investment = 'api/investment/'
@@ -71,12 +71,16 @@ const admin_urls = {
     all_deposits: admin + 'all-deposits',
     all_investments: admin + 'all-investments',
     all_withdrawals: admin + 'all-withdrawals',
+    all_taxes: admin + 'all-taxes',
     update_deposits: admin + 'update-deposits',
     update_investments: admin + 'update-investments',
+    update_withdrawals: admin + 'update-withdrawals',
+    update_taxes: admin + 'update-taxes',
     update_users: admin + 'update-users',
     get_user_figures: admin + 'get-user-total',
-    update_withdrawals: admin + 'update-withdrawals',
     get_cryptocurrency: admin + 'all-cryptocurrency',
+    admin_create_account: admin + 'admin-create-account',
+    update_kyc: admin + 'update-kyc',
     create_cryptocurrency: admin + 'create-cryptocurrency',
     update_cryptocurrency: admin + 'update-cryptocurrency',
     delete_cryptocurrency: admin + 'delete-cryptocurrency',
@@ -90,17 +94,13 @@ const admin_urls = {
     delete_trading_plan: admin + 'delete-trading-plan',
     get_admin_store: admin + 'admin-store',
     update_admin_store: admin + 'update-admin-store',
-    get_all_taxes: admin + 'all-taxes',
-    update_taxes: admin + 'update-taxes',
-    admin_create_account: admin + 'admin-create-account',
-    update_kyc: admin + 'update-kyc'
 }
 
 export const Apis = {
     user: user_urls,
     deposit: deposit_urls,
     notification: notification_urls,
-    withdrawal: withdrawal_urls,
+    withdraw: withdraw_urls,
     investment: investment_urls,
     tax: tax_urls,
     kyc: kyc_urls,

@@ -20,7 +20,7 @@ const UpdateDeposits = () => {
   const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(5)
+  const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
 
@@ -33,7 +33,7 @@ const UpdateDeposits = () => {
         setOriginal(response.msg)
         setpageend(response.msg.length / end)
         setStart(0)
-        setEnd(5)
+        setEnd(6)
         setpagestart(1)
         setSearch('')
         setWrite(false)
@@ -58,31 +58,31 @@ const UpdateDeposits = () => {
     const altDeposits = original
     if (!search) {
       setAllDeposits(original)
-      setpageend(original.length / 5)
+      setpageend(original.length / 6)
       setWrite(false)
       setpagestart(1)
       setStart(0)
-      setEnd(5)
+      setEnd(6)
     }
     else {
       setWrite(true)
       const showSearch = altDeposits.filter(item => item.depositUser.username.includes(search.toLowerCase()) || item.depositUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllDeposits(showSearch)
-      setpageend(showSearch.length / 5)
+      setpageend(showSearch.length / 6)
       setpagestart(1)
       setStart(0)
-      setEnd(5)
+      setEnd(6)
     }
   }
 
   const CancelWrite = () => {
     setSearch('')
     setAllDeposits(original)
-    setpageend(original.length / 5)
+    setpageend(original.length / 6)
     setWrite(false)
     setpagestart(1)
     setStart(0)
-    setEnd(5)
+    setEnd(6)
   }
 
   let MovePage = () => {
@@ -92,10 +92,10 @@ const UpdateDeposits = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 5
+      altend += 6
       setEnd(altend)
 
-      altstart += 5
+      altstart += 6
       setStart(altstart)
 
       altlengthstart += 1
@@ -105,15 +105,15 @@ const UpdateDeposits = () => {
 
   let BackPage = () => {
 
-    if (end > 5) {
+    if (end > 6) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 5
+      altend -= 6
       setEnd(altend)
 
-      altstart -= 5
+      altstart -= 6
       setStart(altstart)
 
       altlengthstart -= 1
