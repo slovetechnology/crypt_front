@@ -5,9 +5,9 @@ import { RiVerifiedBadgeLine } from "react-icons/ri";
 import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { MdVerified } from "react-icons/md";
-import { Apis, UserPostApi } from '../../services/API';
-import { Alert } from '../../utils/utils';
-import Loading from '../../GeneralComponents/Loading';
+import { Apis, UserPostApi } from '../services/API';
+import { Alert } from '../utils/utils';
+import Loading from './Loading';
 
 const ForgottenPassword = ({ closePass }) => {
     const passwordField = useRef()

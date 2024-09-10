@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { ADMINSTORE, NOTIFICATIONS, UNREADNOTIS } from '../../../store'
+import { ADMINSTORE, NOTIFICATIONS, PROFILE, UNREADNOTIS } from '../../../store'
 import { useAtom } from 'jotai'
 import Cookies from 'js-cookie'
 import { CookieName, MoveToTop } from '../../../utils/utils'
@@ -41,6 +41,7 @@ const toggleArray = [
 ]
 
 const AdminDashboard = ({ children }) => {
+  const [user, setUser] = useAtom(PROFILE)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
   const [, setAdminStore] = useAtom(ADMINSTORE)
@@ -173,8 +174,8 @@ const AdminDashboard = ({ children }) => {
           <div className='flex flex-col gap-4'>
             <div className='w-full h-fit  rounded-md bg-admin-auth mt-4 px-4 py-2 text-white text-[0.85rem] flex items-center justify-between'>
               <div className='flex items-center gap-1 capitalize'>
-                <div>hello,</div>
-                <div>admin</div>
+                <div>hi,</div>
+                <div>{user.username}</div>
               </div>
               <div>
                 <AdminNotis refetchNotifications={FetchNotifications} refetchUnreadNotis={FetchUnreadNotis} />

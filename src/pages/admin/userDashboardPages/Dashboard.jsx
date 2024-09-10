@@ -320,7 +320,7 @@ const Dashboard = ({ children }) => {
                         </div>
                         <div className='flex justify-between'>
                             <div>assets value</div>
-                            <div>${wallet.balance}</div>
+                            <div>${Object.values(wallet).length !== 0 && <span>{wallet.balance.toLocaleString()}</span>}</div>
                         </div>
                     </div>
                     <Link to='/dashboard/investment' onClick={() => MoveToTop()}>

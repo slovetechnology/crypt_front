@@ -156,7 +156,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
             </div>
             <div className='relative'>
               <button className='py-2 px-16 rounded-md bg-[#252525] text-white capitalize font-medium text-xs' onClick={CreateDeposit}>
-                fund account
+                confirm deposit
               </button>
             </div>
           </div>

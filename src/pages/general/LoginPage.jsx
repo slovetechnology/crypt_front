@@ -6,12 +6,12 @@ import { IoEye } from "react-icons/io5";
 import { IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/logobrand.png'
-import ForgottenPassword from './ForgottenPassword';
 import Loading from '../../GeneralComponents/Loading'
 import { Alert, CookieName, MoveToTop, UserRole } from '../../utils/utils'
 import { Apis, UserPostApi } from '../../services/API'
 import Cookies from 'js-cookie'
 import { decodeToken } from 'react-jwt'
+import ForgottenPassword from '../../GeneralComponents/ForgottenPassword';
 
 
 const LoginPage = () => {
@@ -64,7 +64,7 @@ const LoginPage = () => {
         // } finally {
         //     setLoading(false)
         // }
-        navigate('/admin-controls')
+        navigate('/dashboard')
     }
     document.documentElement.style.overflow = forgotPass === true ? 'hidden' : 'auto'
 
