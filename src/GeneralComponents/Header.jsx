@@ -169,10 +169,10 @@ const Header = () => {
                         </div>
                     </div>
                     <div className='flex gap-8 justify-center py-8'>
-                        <Link to='/login' onClick={MoveToTop}>
+                        <Link to='/login' onClick={() => { setDropDown(false); MoveToTop() }}>
                             <button className=' outline-0 w-fit h-fit py-1 px-6 border-2 text-[0.9rem] text-white font-medium rounded-lg border-orange hover:bg-orange hover:text-white flex items-center justify-center'>Sign In</button>
                         </Link>
-                        <Link to='/signup' onClick={MoveToTop}>
+                        <Link to='/signup' onClick={() => { setDropDown(false); MoveToTop() }}>
                             <button className=' outline-0 w-fit h-fit py-1 px-6 text-[0.9rem] text-white rounded-lg bg-orange hover:bg-[#1E2833] border-2 border-orange hover:border-orange font-medium flex items-center justify-center' >Sign Up</button>
                         </Link>
                     </div>
