@@ -41,7 +41,7 @@ const toggleArray = [
 ]
 
 const AdminDashboard = ({ children }) => {
-  const [user, setUser] = useAtom(PROFILE)
+  const [user] = useAtom(PROFILE)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
   const [, setAdminStore] = useAtom(ADMINSTORE)
@@ -110,11 +110,11 @@ const AdminDashboard = ({ children }) => {
 
   return (
     <div className='w-full flex relative overflow-hidden'>
-      <div className={`w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:h-screen lg:relative lg:block overflow-x-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-screen overflow-y-auto' : 'hidden'}`}>
+      <div className={`h-screen w-full xl:w-[20%] lg:w-[25%] lg:bg-admin-auth bg-[#27137eee] lg:relative lg:block overflow-x-hidden overflow-y-auto z-50 ${slideShow ? 'block fixed top-0 left-0' : 'hidden'}`}>
         <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
           <LuX />
         </div>
-        <div className='lg:my-14 my-12 flex flex-col lg:gap-10 gap-8'>
+        <div className='lg:py-14 py-12 flex flex-col lg:gap-10 gap-8'>
           <div className='flex justify-center items-center'>
             <img src={logo} className='w-12 h-auto'></img>
             <div className=' capitalize font-bold lg:text-[#7561a0] text-[#462eb3] drop-shadow-txt-sha2 text-2xl'>AialgoControls</div>
@@ -125,7 +125,7 @@ const AdminDashboard = ({ children }) => {
               <div className='flex flex-col gap-8'>
                 {MainLinks.map((item, i) => (
                   <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
-                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
+                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-white'}`}>
                       <item.icon className='text-[1.3rem] ' />
                       <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
                     </div>
@@ -138,7 +138,7 @@ const AdminDashboard = ({ children }) => {
               <div className='flex flex-col gap-8'>
                 {OtherLinks.map((item, i) => (
                   <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
-                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : ''}`}>
+                    <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${item.path === 'settings' ? location.pathname.includes('/admin-controls/settings') && 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-white'}`}>
                       <item.icon className='text-[1.3rem] ' />
                       <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
                     </div>
@@ -199,7 +199,7 @@ const AdminDashboard = ({ children }) => {
             <div className='grid grid-cols-5 items-center h-full w-full'>
               {MainLinks.map((item, i) => (
                 <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
-                  <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-[green]' : ' text-semi-white'}`} >
+                  <div className={`flex flex-col gap-1 items-center cursor-pointe ${location.pathname === item.url ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-lg text-base' />
                     <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>{item.path}</div>
                   </div>

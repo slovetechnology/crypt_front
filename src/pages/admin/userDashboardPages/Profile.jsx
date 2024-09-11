@@ -32,14 +32,15 @@ const Profile = () => {
     const [imageError, setImageError] = useState('')
     const [loading, setLoading] = useState(false)
     const [commit, setCommit] = useState(false)
-    const [deleteScreen, setDeleteScreen] = useState(0)
-    const [deletePassword, setDeletePassword] = useState('')
+    const [screen, setScreen] = useState(0)
     const [deleteError, setDeleteError] = useState('')
     const [deleteloading, setDeleteLoading] = useState(false)
     const [eye, setEye] = useState(false)
     const [eye2, setEye2] = useState(false)
+    const [eye3, setEye3] = useState(false)
     const EyeIcon = eye === true ? IoEye : IoMdEyeOff
     const EyeIcon2 = eye2 === true ? IoEye : IoMdEyeOff
+    const EyeIcon3 = eye3 === true ? IoEye : IoMdEyeOff
     const [copy, setCopy] = useState(false)
     const imgref = useRef()
     const navigate = useNavigate()
@@ -55,6 +56,7 @@ const Profile = () => {
         username: user.username,
         old_password: '',
         new_password: '',
+        dl_password: ''
     })
 
     const formHandler = (event) => {
@@ -170,10 +172,10 @@ const Profile = () => {
             setDeleteError('')
         }, 1000)
 
-        if (!deletePassword) return setDeleteError(`enter your password`)
+        if (!form.dl_password) return setDeleteError(`enter your password`)
 
         const formbody = {
-            password: deletePassword
+            password: form.dl_password
         }
         setDeleteLoading(true)
         try {
@@ -201,7 +203,7 @@ const Profile = () => {
     }
 
     useEffect(() => {
-        if (deleteScreen !== 0) {
+        if (screen !== 0) {
             MoveToBottom()
         }
     }, [MoveToBottom])
@@ -370,30 +372,30 @@ const Profile = () => {
                         </div>
                     </form>
                     <div className='relative mx-auto mt-20'>
-                        {deleteScreen === 0 && <div className='justify-center md:text-[0.85rem] text-xs text-light cursor-pointer flex items-center gap-1' onClick={() => { setDeleteScreen(1); MoveToBottom() }}>
+                        {screen === 0 && <div className='justify-center md:text-[0.85rem] text-xs text-light cursor-pointer flex items-center gap-1' onClick={() => { setScreen(1); MoveToBottom() }}>
                             <span>Delete my account</span>
                             <MdOutlineDeleteForever />
                         </div>}
-                        {deleteScreen !== 0 && <div className=' w-fit h-fit bg-semi-white rounded-xl md:p-8 p-4 mx-auto relative shlz '>
+                        {screen !== 0 && <div className=' w-fit h-fit bg-semi-white rounded-xl md:p-8 p-4 mx-auto relative shlz '>
                             {deleteloading && <LoadingAdmin />}
-                            {deleteScreen === 1 && <div>
+                            {screen === 1 && <div>
                                 <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Are you sure you want to delete your account?</div>
                                 <div className='flex justify-center items-center gap-0.5 mt-1.5 text-xs text-admin-btn'>
                                     <span className='text-center'>Action is permanent and all your assets will be lost</span>
                                     <PiWarningCircleBold className='text-[red]' />
                                 </div>
                                 <div className='flex md:gap-16 gap-6 items-center justify-center mt-8'>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-admin-btn rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setDeleteScreen(0)}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-admin-btn rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setScreen(0)}>
                                         <span>cancel action</span>
                                         <FaRegRectangleXmark />
                                     </button>
-                                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={() => setDeleteScreen(2)}>
+                                    <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-[#642424] rounded-md capitalize flex items-center gap-1 font-bold' onClick={() => setScreen(2)}>
                                         <span>proceed action</span>
                                         <IoCheckbox />
                                     </button>
                                 </div>
                             </div>}
-                            {deleteScreen === 2 && <div>
+                            {screen === 2 && <div>
                                 <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>Last step to permanently delete your account!</div>
                                 <div className='flex gap-1 items-center justify-center mt-1.5 text-xs text-[red]'>
                                     <span className='text-admin-btn'>Enter your password below to finalize action</span>
@@ -401,12 +403,12 @@ const Profile = () => {
                                 </div>
                                 <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-white lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' value={deletePassword} onChange={e => setDeletePassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                        <EyeIcon className='absolute top-2 right-2 cursor-pointer text-light text-lg' onClick={() => setEye(!eye)} />
+                                        <input className='outline-none border border-light bg-white lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' name='dl_password' value={form.dl_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <EyeIcon3 className='absolute top-2 right-2 cursor-pointer text-light text-lg' onClick={() => setEye3(!eye3)} />
                                         <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                     </div>
                                     <div className='flex md:gap-16 gap-6 items-center'>
-                                        <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setDeleteScreen(0); setDeletePassword('') }}>
+                                        <button className='outline-none w-fit h-fit py-2 px-4 text-xs text-semi-white  bg-admin-btn  rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setScreen(0); setDeletePassword('') }}>
                                             <span>cancel deletion</span>
                                             <FaRegRectangleXmark />
                                         </button>

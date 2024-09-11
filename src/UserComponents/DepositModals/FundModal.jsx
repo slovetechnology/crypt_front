@@ -47,9 +47,7 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
 
     const formbody = {
       amount: parseFloat(amount),
-      crypto: secondValues.crypto_name,
-      network: secondValues.network,
-      deposit_address: secondValues.address,
+      wallet_id: secondValues.id
     }
 
     setLoading(true)

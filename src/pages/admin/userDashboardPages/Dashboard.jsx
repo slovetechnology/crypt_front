@@ -182,11 +182,11 @@ const Dashboard = ({ children }) => {
 
     return (
         <div className='bg-[#0c091a] w-full flex relative overflow-hidden'>
-            <div className={`bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:h-screen lg:relative lg:block overflow-x-hidden z-50 ${slideShow ? 'block fixed top-0 left-0 h-screen overflow-y-auto' : 'hidden'} `}>
+            <div className={`h-screen bg-[#27137eee] lg:bg-admin w-full xl:w-[20%] lg:w-[25%] lg:relative lg:block overflow-x-hidden overflow-y-auto z-50 ${slideShow ? 'block fixed top-0 left-0' : 'hidden'} `}>
                 <div className='text-white text-3xl cursor-pointer lg:hidden absolute top-4 right-4' onClick={() => setSlideShow(!slideShow)}>
                     <LuX />
                 </div>
-                <div className='lg:my-14 my-12 flex flex-col lg:gap-10 gap-8'>
+                <div className='lg:py-14 py-12 flex flex-col lg:gap-10 gap-8'>
                     <div className='flex justify-center items-center'>
                         <img src={logo} className='w-12 h-auto'></img>
                         <div className='capitalize font-bold text-2xl lg:text-[#2b2255] text-[#462eb3] lg:drop-shadow-txt-sha1 drop-shadow-txt-sha2'>AialgoVault</div>
@@ -197,7 +197,7 @@ const Dashboard = ({ children }) => {
                             <div className='flex flex-col gap-8'>
                                 {MainLinks.map((item, i) => (
                                     <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
-                                        <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} >
+                                        <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-light'}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
                                         </div>
@@ -210,7 +210,7 @@ const Dashboard = ({ children }) => {
                             <div className='flex flex-col gap-8'>
                                 {OtherLinks.map((item, i) => (
                                     <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
-                                        <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url ? 'lg:border-r-[3px] lg:rounded-sm lg:border-light' : ''}`} >
+                                        <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-light'}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
                                         </div>
