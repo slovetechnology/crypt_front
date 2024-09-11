@@ -8,9 +8,10 @@ import { MdVerified } from "react-icons/md";
 import { Apis, UserPostApi } from '../services/API';
 import { Alert } from '../utils/utils';
 import Loading from './Loading';
+import ModalLayout from '../utils/ModalLayout';
 
-const ForgottenPassword = ({ closePass }) => {
-    const passwordField = useRef()
+const ForgottenPassword = ({ closeView }) => {
+    const toggler = useRef()
     const [screen, setScreen] = useState(1)
     const [loading, setLoading] = useState(false)
     const [eye, setEye] = useState(false)
@@ -19,30 +20,20 @@ const ForgottenPassword = ({ closePass }) => {
     const EyeIcon2 = eye2 === true ? IoEye : IoMdEyeOff
     const [error, setError] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
-    const [email, setEmail] = useState('')
-    const [code, setCode] = useState('')
-    const [passwords, setPasswords] = useState({
+
+    const [form, setForm] = useState({
+        email: '',
+        code: '',
         new_password: '',
         confirm_password: ''
     })
-    const passwordHandler = event => {
-        setPasswords({
-            ...passwords,
+
+    const formHandler = event => {
+        setForm({
+            ...form,
             [event.target.name]: event.target.value
         })
     }
-
-    useEffect(() => {
-        if (passwordField) {
-            window.addEventListener('click', (event) => {
-                if (passwordField.current !== null) {
-                    if (!passwordField.current.contains(event.target)) {
-                        closePass()
-                    }
-                }
-            }, true)
-        }
-    }, [])
 
     const FindEmail = async (e) => {
         e.preventDefault()
@@ -52,7 +43,7 @@ const ForgottenPassword = ({ closePass }) => {
             setErrorMsg('')
         }, 1500)
 
-        if (!email) {
+        if (!form.email) {
             setError('email')
             return setErrorMsg('enter your email address')
         }
@@ -60,8 +51,9 @@ const ForgottenPassword = ({ closePass }) => {
         setLoading(true)
         try {
             const formbody = {
-                email: email
+                email: form.email
             }
+
             const response = await UserPostApi(Apis.user.find_email, formbody)
             if (response.status === 200) {
                 setScreen(2)
@@ -85,7 +77,7 @@ const ForgottenPassword = ({ closePass }) => {
             setErrorMsg('')
         }, 1500)
 
-        if (!code) {
+        if (!form.code) {
             setError('code')
             return setErrorMsg('verification code is required')
         }
@@ -93,9 +85,10 @@ const ForgottenPassword = ({ closePass }) => {
         setLoading(true)
         try {
             const formbody = {
-                email: email,
-                code: code
+                email: form.email,
+                code: form.code
             }
+
             const response = await UserPostApi(Apis.user.verify_email, formbody)
             if (response.status === 200) {
                 setScreen(3)
@@ -119,15 +112,15 @@ const ForgottenPassword = ({ closePass }) => {
             setErrorMsg('')
         }, 1500)
 
-        if (!passwords.new_password) {
+        if (!form.new_password) {
             setError('password')
             return setErrorMsg('enter new password')
         }
-        if (!passwords.confirm_password) {
+        if (!form.confirm_password) {
             setError('confirm_p')
             return setErrorMsg('confirm new password')
         }
-        if (passwords.confirm_password !== passwords.new_password) {
+        if (form.confirm_password !== form.new_password) {
             setError('confirm_p')
             return setErrorMsg('passwords mismatch')
         }
@@ -135,10 +128,11 @@ const ForgottenPassword = ({ closePass }) => {
         setLoading(true)
         try {
             const formbody = {
-                email: email,
-                password: passwords.new_password,
-                confirm_password: passwords.confirm_password
+                email: form.email,
+                password: form.new_password,
+                confirm_password: form.confirm_password
             }
+
             const response = await UserPostApi(Apis.user.change_password, formbody)
             if (response.status === 200) {
                 setScreen(4)
@@ -154,11 +148,9 @@ const ForgottenPassword = ({ closePass }) => {
 
 
 
-
-
     return (
-        <div className='fixed bg-black/40 w-full h-full  left-0 top-0 flex items-center justify-center px-4 z-50'>
-            <div className={`bg-white  py-4 w-fit h-fit rounded-xl  shld overflow-auto relative`} ref={passwordField}>
+        <ModalLayout toggler={toggler} closeView={closeView}>
+            <div className='bg-white py-4 w-fit h-fit rounded-xl shld overflow-auto relative' ref={toggler}>
                 {loading && <Loading />}
                 {screen === 1 && <>
                     <div className='md:w-[85%] w-11/12 mx-auto'>
@@ -173,7 +165,7 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-8'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>enter email address</div>
-                                    <input className='outline-none w-full border-b border-black lg:text-[0.9rem] text-base ipt input-off' type='email' placeholder='E.g: john14@gmail.com' value={email} onChange={e => setEmail(e.target.value)}></input>
+                                    <input className='outline-none w-full border-b border-black lg:text-[0.9rem] text-base ipt input-off' type='email' placeholder='E.g: john14@gmail.com' name='email' value={form.email} onChange={formHandler}></input>
                                     {error === 'email' && <div className='text-xs text-[red] absolute -bottom-4 left-0'>{errorMsg}</div>}
                                 </div>
                                 <div className='flex items-center justify-center mt-2'>
@@ -196,7 +188,7 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-8'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>enter verification code:</div>
-                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off ipt' type='text' placeholder='Six digits code' value={code} onChange={e => setCode(e.target.value)}></input>
+                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off ipt' type='text' placeholder='Six digits code' name='code' value={form.code} onChange={formHandler}></input>
                                     {error === 'code' && <div className='text-xs text-[red] absolute -bottom-4 left-0'>{errorMsg}</div>}
                                 </div>
                                 <div className='flex items-center justify-center mt-2'>
@@ -219,13 +211,13 @@ const ForgottenPassword = ({ closePass }) => {
                             <div className='flex flex-col gap-5 mt-8'>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>enter new password</div>
-                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off  ipt' type={eye === true ? 'text' : 'password'} placeholder='Characters more than five' name='new_password' value={passwords.new_password} onChange={passwordHandler}></input>
+                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off  ipt' type={eye === true ? 'text' : 'password'} placeholder='Characters more than five' name='new_password' value={form.new_password} onChange={formHandler}></input>
                                     <EyeIcon className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye(!eye)} />
                                     {error === 'password' && <div className='text-xs text-[red] absolute -bottom-4 left-0'>{errorMsg}</div>}
                                 </div>
                                 <div className='flex flex-col gap-2 relative'>
                                     <div className='text-xs capitalize font-[600]'>confirm password</div>
-                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off ipt' type={eye2 === true ? 'text' : 'password'} placeholder='Re-type password' name='confirm_password' value={passwords.confirm_password} onChange={passwordHandler}></input>
+                                    <input className='outline-none w-full  border-b border-black lg:text-[0.9rem] text-base input-off ipt' type={eye2 === true ? 'text' : 'password'} placeholder='Re-type password' name='confirm_password' value={form.confirm_password} onChange={formHandler}></input>
                                     <EyeIcon2 className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
                                     {error === 'confirm_p' && <div className='text-xs text-[red] absolute -bottom-4 left-0'>{errorMsg}</div>}
                                 </div>
@@ -244,7 +236,7 @@ const ForgottenPassword = ({ closePass }) => {
                             </div>
                             <div className='text-[0.9rem] font-extrabold uppercase text-center'>password Reset!</div>
                             <div className='text-center text-[0.8rem] font-[600]'>Password reset successful, you can now login with new password created</div>
-                            <div className='flex gap-1 cursor-pointer mt-4 items-center text-sm text-[green] hover:text-orange' onClick={closePass}>
+                            <div className='flex gap-1 cursor-pointer mt-4 items-center text-sm text-[green] hover:text-orange' onClick={closeView}>
                                 <div className='font-[600]'>Back to login</div>
                                 <FaArrowRight />
                             </div>
@@ -252,7 +244,7 @@ const ForgottenPassword = ({ closePass }) => {
                     </div>
                 </>}
             </div>
-        </div>
+        </ModalLayout>
     )
 }
 

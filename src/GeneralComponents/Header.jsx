@@ -63,7 +63,7 @@ const Header = () => {
                 <div className={`flex items-center justify-between ${dropDown && 'border-b lg:border-0 border-[grey]'} px-6 lg:px-8 py-2`}>
                     <div className='flex gap-20'>
                         <div>
-                            <Link to='/' className='flex items-center'>
+                            <Link to='/' className='flex items-center' onClick={MoveToTop}>
                                 <img src={logo} className=' w-16 h-auto'></img>
                                 <div className='capitalize text-white font-bold'>the force</div>
                             </Link>

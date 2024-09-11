@@ -52,7 +52,7 @@ const TradingPlansPage = () => {
                       </div>
                       <div className='flex flex-col gap-8 w-full'>
                         <div className='border-b border-[#a5a3a3] w-full'></div>
-                        <div className='text text-center'><span className='italic text-[0.8rem]'>Profit:</span> {item.profit_percentage}% return on investment plus additional bonus up to ${item.plan_bonus}.</div>
+                        <div className='text text-center'><span className='italic text-[0.8rem]'>Profit:</span> {item.profit_return}% return on investment plus additional bonus up to ${item.plan_bonus}.</div>
                         <Link to='/signup' onClick={MoveToTop} className='flex items-center justify-center'>
                           <button className={`w-fit h-fit py-4 px-8 rounded-full capitalize  hover:translate-y-[-2px] transition-all ${item.price_start === 1000 || item.title === 'test run' ? 'bg-white text-[#30465c]  ' : 'bg-[#30465c] text-white'}`}>
                             join now

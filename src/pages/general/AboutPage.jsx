@@ -23,7 +23,7 @@ import { MoveToTop } from '../../utils/utils';
 import CountComponent from '../../GeneralComponents/CountComponent';
 
 const AboutPage = () => {
-  const [more, setMore] = useState(false)
+  const [view, setView] = useState(false)
 
   return (
     <Pagelayout>
@@ -48,15 +48,13 @@ const AboutPage = () => {
                 </Link>
               </div>
             </div>
-            <div className='col-span-1 order-first lg:order-last'>
-              <div className='relative h-fit w-full rounded-[20px] flex items-center justify-center bg-[#192633] overflow-hidden'>
-                <img src={robotabt} className='h-[50vh] object-cover w-full '></img>
-                <div className='bda flex items-center justify-center rotate-90 w-32 h-32 border-2 bottom-4 rounded-full -left-20 absolute'>
-                  <div className='bdb w-20 h-20 border-2 rounded-full'></div>
-                </div>
-                <div className='bda flex items-center justify-center rotate-90 w-20 h-20 border-2  rounded-full absolute -top-12 -right-4' >
-                  <div className='bdb w-12 h-12 border-2 rounded-full'></div>
-                </div>
+            <div className='relative h-fit w-full rounded-[20px] bg-[#192633] overflow-hidden col-span-1 order-first lg:order-last'>
+              <div><img src={robotabt} className='h-[50vh] object-cover w-full'></img></div>
+              <div className='bda flex items-center justify-center rotate-90 w-32 h-32 border-2 bottom-4 rounded-full -left-20 absolute'>
+                <div className='bdb w-20 h-20 border-2 rounded-full'></div>
+              </div>
+              <div className='bda flex items-center justify-center rotate-90 w-20 h-20 border-2  rounded-full absolute -top-12 -right-4' >
+                <div className='bdb w-12 h-12 border-2 rounded-full'></div>
               </div>
             </div>
           </div>
@@ -196,13 +194,13 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>
-            {!more && <div className='flex justify-center mt-8'>
-              <button className='w-fit h-fit px-6 py-1 bg-orange outline-none rounded-[3px] text-[0.85rem] capitalize text-white flex items-center justify-center  hover:bg-[#642626]' onClick={() => setMore(!more)}>
+            {!view && <div className='flex justify-center mt-8'>
+              <button className='w-fit h-fit px-6 py-1 bg-orange outline-none rounded-[3px] text-[0.85rem] capitalize text-white flex items-center justify-center  hover:bg-[#642626]' onClick={() => setView(!view)}>
                 <span>more</span>
                 <MdExpandMore />
               </button>
             </div>}
-            {more && <div className='flex flex-wrap items-center justify-center gap-6 mt-8'>
+            {view && <div className='flex flex-wrap items-center justify-center gap-6 mt-8'>
               <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center shlltw'>
                 <div className='flex items-center relative'>
                   <img src={uk} className='w-16 h-16 rounded-full object-cover'></img>
@@ -240,8 +238,8 @@ const AboutPage = () => {
                 </div>
               </div>
             </div>}
-            {more && <div className='flex justify-center mt-8'>
-              <button className='w-fit h-fit px-6 py-1 bg-orange outline-none rounded-[3px] text-[0.85rem] capitalize text-white flex items-center justify-center hover:bg-[#642626]' onClick={() => setMore(!more)}>
+            {view && <div className='flex justify-center mt-8'>
+              <button className='w-fit h-fit px-6 py-1 bg-orange outline-none rounded-[3px] text-[0.85rem] capitalize text-white flex items-center justify-center hover:bg-[#642626]' onClick={() => setView(!view)}>
                 <span>less</span>
                 <MdExpandLess />
               </button>

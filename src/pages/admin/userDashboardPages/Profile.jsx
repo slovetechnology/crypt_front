@@ -284,7 +284,7 @@ const Profile = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className='italic text-[0.7rem] text-center ml-auto -mt-4 text-[#66c466]'>- refer and earn {adminStore.referral_bonus_percentage}% of your referral's first deposit -</div>
+                            <div className='italic text-[0.7rem] text-center ml-auto -mt-4 text-[#2fbe2f] p-0.5 bg-[#130e27]'>- refer and earn {adminStore.referral_bonus_percentage}% of your referral's first deposit -</div>
                             <div className='flex justify-between items-center  capitalize'>
                                 <div>full name:</div>
                                 {!nameEdit && <div className='flex gap-4'>

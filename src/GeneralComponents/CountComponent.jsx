@@ -4,45 +4,46 @@ import cash from '../assets/images/cash.png'
 import efficient from '../assets/images/efficient.png'
 
 const CountComponent = () => {
-    const [userCount, setUserCount] = useState('0')
-    const [investCount, setInvestCount] = useState('0')
-    const [tradeCount, setTradeCount] = useState('0')
+    const [userCount, setUserCount] = useState(0)
+    const [investCount, setInvestCount] = useState(0)
+    const [tradeCount, setTradeCount] = useState(0)
     const ref = useRef()
 
     useEffect(() => {
 
         const element = ref.current
 
-        let countIndexOne = 0
-        let countIndexTwo = 0
-        let countIndexThree = 0
+        let index = 0
+        let index2 = 0
+        let index3 = 0
 
         const countFunction = () => {
+            
             if (userCount < 1) {
                 let countOne = setInterval(() => {
-                    if (countIndexOne === 1200) {
+                    if (index === 1200) {
                         clearInterval(countOne)
                     } else {
-                        countIndexOne += 100
-                        setUserCount(countIndexOne)
+                        index += 100
+                        setUserCount(index)
                     }
                 }, 100)
 
                 let countTwo = setInterval(() => {
-                    if (countIndexTwo === 15) {
+                    if (index2 === 15) {
                         clearInterval(countTwo)
                     } else {
-                        countIndexTwo++
-                        setInvestCount(countIndexTwo)
+                        index2++
+                        setInvestCount(index2)
                     }
                 }, 100)
 
                 let countThree = setInterval(() => {
-                    if (countIndexThree === 95) {
+                    if (index3 === 95) {
                         clearInterval(countThree)
                     } else {
-                        countIndexThree += 5
-                        setTradeCount(countIndexThree)
+                        index3 += 5
+                        setTradeCount(index3)
                     }
                 }, 100)
             }
