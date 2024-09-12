@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Loading from '../../GeneralComponents/Loading'
-import { FaCheck, FaXmark } from 'react-icons/fa6'
+import { FaAngleLeft, FaCheck, FaXmark } from 'react-icons/fa6'
 import { MdContentCopy } from 'react-icons/md'
 import { useAtom } from 'jotai'
 import { Alert } from '../../utils/utils'
 import { Apis, imageurl, PostApi } from '../../services/API'
 import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../../store'
 import { SiBitcoincash } from 'react-icons/si'
+import nothnyet from '../../assets/images/nothn.png'
 
 
 const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) => {
@@ -92,37 +93,47 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
               <SiBitcoincash className='text-[#5BB4FD] z-50' />
             </div>
             {select &&
-              <div className={`absolute top-0 left-0 ${adminWallets.length > 4 ? 'h-[8.05rem] overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[lightgrey] rounded-md z-50`}>
-                {mode === 1 ?
+              <div className={`absolute top-9 left-0 ${adminWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
+                {adminWallets.length > 1 ?
                   <>
-                    {adminWallets.length > 0 &&
+                    {mode === 1 ?
                       <>
-                        {adminWallets.map((item, i) => (
-                          <div className='flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] border-b border-[#ebeaea]' key={i}>
-                            <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setFirstValues(item); setMode(2) }}>
-                              <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
-                              <div className='text-[0.85rem] font-bold capitalize'>{item.crypto_name}</div>
-                            </div>
-                          </div>
-                        ))}
+                        {adminWallets.length > 0 &&
+                          <>
+                            {adminWallets.map((item, i) => (
+                              <div className='flex flex-col px-2 py-0.5 hover:bg-[#ececec] border-b border-[#ebeaea] cursor-pointer' key={i} onClick={() => { setFirstValues(item); setMode(2) }}>
+                                <div className='flex gap-2 items-center'>
+                                  <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
+                                  <div>{item.crypto_name}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </>
+                        }
                       </>
+                      :
+                      <div className='relative'>
+                        <div className='cursor-pointer absolute top-2 left-0 text-[#5BB4FD]' onClick={() => setMode(1)}><FaAngleLeft /></div>
+                        <div className='py-1 border-b flex justify-center'>
+                          <div className='font-medium italic text-xs capitalize text-[#5BB4FD] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
+                        </div>
+                        {firstValues.cryptoWallet.length > 0 &&
+                          <>
+                            {firstValues.cryptoWallet.map((item, i) => (
+                              <div className='flex flex-col px-2 py-0.5 hover:bg-[#ececec] border-b border-[#ebeaea] cursor-pointer' key={i} onClick={() => { setSelect(false); setSecondValues(item); setMode(1) }}>
+                                <div>{item.network}</div>
+                              </div>
+                            ))}
+                          </>
+                        }
+                      </div>
                     }
                   </>
                   :
-                  <>
-                   <div className='py-1 border-b flex justify-center'>
-                    <div className='font-medium italic text-xs capitalize text-[#5BB4FD] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
-                   </div>
-                    {firstValues.cryptoWallet.length > 0 &&
-                      <>
-                        {firstValues.cryptoWallet.map((item, i) => (
-                          <div className='flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] border-b border-[#ebeaea]' key={i}>
-                            <div className='text-[0.85rem] font-bold capitalize cursor-pointer' onClick={() => { setSelect(false); setSecondValues(item); setMode(1)}}>{item.network}</div>
-                          </div>
-                        ))}
-                      </>
-                    }
-                  </>
+                  <div className='px-2 py-1 flex items-center justify-center lowercase'>
+                    <div>no crypto yet...</div>
+                    <img src={nothnyet} className='h-3 w-auto'></img>
+                  </div>
                 }
               </div>
             }

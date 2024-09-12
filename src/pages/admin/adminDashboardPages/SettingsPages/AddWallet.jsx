@@ -147,7 +147,7 @@ const AddWallet = () => {
             {adminWallets.length < 1 &&
               <tbody>
                 <tr className='text-black text-[0.8rem] bg-white font-[550]'>
-                  <td colSpan="6" className='py-2 italic text-center truncate'>
+                  <td colSpan="5" className='py-2 italic text-center truncate'>
                     <div className='flex gap-1 items-center justify-center'>
                       <span>no wallets found...</span>
                       <img src={nothnyet} className='h-4 w-auto'></img>

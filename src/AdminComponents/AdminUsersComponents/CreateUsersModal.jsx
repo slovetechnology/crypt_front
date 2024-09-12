@@ -174,12 +174,10 @@ const CreateUsersModal = ({ closeView, refetchAllUsers }) => {
                   </div>
                 </div>
               </div>
-              {roleShow && <div className='h-fit w-full absolute top-[3.3rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+              {roleShow && <div className='h-fit w-full absolute top-[3.3rem] left-0 bg-white border border-[lightgrey] rounded-md z-10 text-[0.85rem] font-bold'>
                 {Roles.map((item, i) => (
-                  <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Roles.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                    <div className='flex items-center cursor-pointer' onClick={() => { setRole(item); setRoleShow(false) }}>
-                      <div className='text-[0.85rem] font-bold'>{item}</div>
-                    </div>
+                  <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#ececec] cursor-pointer ${i !== Roles.length - 1 && 'border-b border-[#ebeaea]'}`}  onClick={() => { setRole(item); setRoleShow(false) }}>
+                      <div>{item}</div>
                   </div>
                 ))}
               </div>}

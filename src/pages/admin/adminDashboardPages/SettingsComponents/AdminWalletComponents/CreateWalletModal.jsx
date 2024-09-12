@@ -109,7 +109,7 @@ const CreateWalletModal = ({ closeView, refetchAdminWallets, cryptocurrency }) =
                                 <div className='relative'>
                                     <div className='px-2 py-1 h-fit md:w-48 w-40 bg-white sha cursor-pointer rounded-[3px]' onClick={() => setSelect(!select)} >
                                         <div className='flex justify-between items-center text-[0.8rem]'>
-                                            <span >{crypto.name}</span>
+                                            <span>{crypto.name}</span>
                                             <div className='text-sm'>
                                                 {!select ? <TiArrowSortedDown />
                                                     :
@@ -118,14 +118,14 @@ const CreateWalletModal = ({ closeView, refetchAdminWallets, cryptocurrency }) =
                                             </div>
                                         </div>
                                     </div>
-                                    {select && <div className={`${cryptocurrency.length > 4 ? 'h-24' : 'h-fit'} overflow-y-auto scroll w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-50`}>
+                                    {select && <div className={`${cryptocurrency.length > 4 ? 'h-24' : 'h-fit'} overflow-y-auto scroll w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
                                         {cryptocurrency.length > 0 ?
                                             <>
                                                 {cryptocurrency.map((item, i) => (
-                                                    <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === cryptocurrency.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                                                        <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setCrypto({name: item.crypto_name, id: item.id}); setSelect(false) }}>
+                                                    <div key={i} className={`flex flex-col px-2 py-0.5  cursor-pointer hover:bg-[#ececec] ${i !== cryptocurrency.length - 1 && 'border-b border-[#ebeaea]'}`} onClick={() => { setCrypto({name: item.crypto_name, id: item.id}); setSelect(false) }}>
+                                                        <div className='flex gap-2 items-center'>
                                                             <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
-                                                            <div className='text-[0.85rem] font-bold capitalize'>{item.crypto_name}</div>
+                                                            <div>{item.crypto_name}</div>
                                                         </div>
                                                     </div>
                                                 ))}

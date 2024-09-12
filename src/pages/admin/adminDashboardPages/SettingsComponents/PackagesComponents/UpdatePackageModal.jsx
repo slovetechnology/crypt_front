@@ -178,19 +178,17 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                                             </div>
                                         </div>
                                     </div>
-                                    {typeShow && <div className='h-fit w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                    {typeShow && <div className='h-fit w-full absolute top-[1.9rem] left-0 bg-white border border-[lightgrey] rounded-md z-10 text-[0.85rem] font-bold'>
                                         {DurationTypes.map((item, i) => (
-                                            <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === DurationTypes.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                                                <div className='flex items-center cursor-pointer' onClick={() => CommmitHandlerForDuration(item)}>
-                                                    <div className='text-[0.85rem] font-bold'>{item}</div>
+                                            <div key={i} className={`flex flex-col px-2 py-0.5 cursor-pointer hover:bg-[#ececec] ${i !== DurationTypes.length - 1 && 'border-b border-[#ebeaea]'}`} onClick={() => { setType(item); setTypeShow(false) }}>
+                                                <div className='flex items-center'>
+                                                    <div>{item}</div>
                                                 </div>
                                             </div>
                                         ))}
                                     </div>}
                                 </div>
-
                             </div>
-
                             {error !== '' &&
                                 <div className='md:text-sm text-xs absolute -bottom-6 left-0 text-[#eb2e2e] bg-white sha px-4 py-1 flex items-center gap-1 rounded-sm text-center z-10'>
                                     <RiErrorWarningLine />

@@ -113,7 +113,7 @@ const Withdraw = () => {
                 setUnreadNotis(response.unread)
                 Alert('Request Successful', `${response.msg}`, 'success')
                 setForm({
-                    amount : '',
+                    amount: '',
                     wallet_address: ''
                 })
                 setCheck(!check)
@@ -251,37 +251,47 @@ const Withdraw = () => {
                                         <SiBitcoincash className='text-light' />
                                     </div>
                                     {select &&
-                                        <div className={`absolute top-0 left-0 ${adminWallets.length > 4 ? 'h-[8.05rem] overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#c2c2c2] rounded-md z-50`}>
-                                            {mode === 1 ?
+                                        <div className={`absolute top-9 left-0 ${adminWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
+                                            {adminWallets.length > 1 ?
                                                 <>
-                                                    {adminWallets.length > 0 &&
+                                                    {mode === 1 ?
                                                         <>
-                                                            {adminWallets.map((item, i) => (
-                                                                <div className='flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] border-b border-[#ebeaea]' key={i}>
-                                                                    <div className='flex gap-2 items-center cursor-pointer' onClick={() => { setFirstValues(item); setMode(2) }}>
-                                                                        <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
-                                                                        <div className='text-[0.85rem] font-bold capitalize'>{item.crypto_name}</div>
-                                                                    </div>
-                                                                </div>
-                                                            ))}
+                                                            {adminWallets.length > 0 &&
+                                                                <>
+                                                                    {adminWallets.map((item, i) => (
+                                                                        <div className='flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] border-b border-[#ebeaea] cursor-pointer' key={i} onClick={() => { setFirstValues(item); setMode(2) }}>
+                                                                            <div className='flex gap-2 items-center'>
+                                                                                <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
+                                                                                <div>{item.crypto_name}</div>
+                                                                            </div>
+                                                                        </div>
+                                                                    ))}
+                                                                </>
+                                                            }
                                                         </>
+                                                        :
+                                                        <div className='relative'>
+                                                            <div className='cursor-pointer absolute top-2 left-0 text-light' onClick={() => setMode(1)}><FaAngleLeft /></div>
+                                                            <div className='py-1 border-b flex justify-center'>
+                                                                <div className='font-medium italic text-xs capitalize text-light border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
+                                                            </div>
+                                                            {firstValues.cryptoWallet.length > 0 &&
+                                                                <>
+                                                                    {firstValues.cryptoWallet.map((item, i) => (
+                                                                        <div className='flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] border-b border-[#ebeaea] cursor-pointer' key={i} onClick={() => { setSelect(false); setSecondValues(item); setMode(1) }}>
+                                                                            <div>{item.network}</div>
+                                                                        </div>
+                                                                    ))}
+                                                                </>
+                                                            }
+                                                        </div>
                                                     }
                                                 </>
                                                 :
-                                                <>
-                                                    <div className='py-1 border-b flex justify-center'>
-                                                        <div className='font-medium italic text-xs capitalize text-[#5BB4FD] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
-                                                    </div>
-                                                    {firstValues.cryptoWallet.length > 0 &&
-                                                        <>
-                                                            {firstValues.cryptoWallet.map((item, i) => (
-                                                                <div className='flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] border-b border-[#ebeaea]' key={i}>
-                                                                    <div className='text-[0.85rem] font-bold capitalize cursor-pointer' onClick={() => { setSelect(false); setSecondValues(item); setMode(1) }}>{item.network}</div>
-                                                                </div>
-                                                            ))}
-                                                        </>
-                                                    }
-                                                </>
+                                                <div className='px-2 py-1 flex items-center justify-center lowercase'>
+                                                    <div>no crypto yet...</div>
+                                                    <img src={nothnyet} className='h-3 w-auto'></img>
+                                                </div>
                                             }
                                         </div>
                                     }
@@ -295,10 +305,7 @@ const Withdraw = () => {
                                         <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
                                         <div className='text-[#252525] text-[0.8rem]'>I provided my correct wallet address</div>
                                     </div>
-                                    <button className='outline-none w-fit h-fit py-2 px-10 md:text-sm text-sm text-semi-white bg-[#252525] rounded-md capitalize flex items-center gap-1 font-semibold' onClick={makeWithdrawal}>
-                                        <span>make withdrawal</span>
-                                        <IoCheckbox />
-                                    </button>
+                                    <button className='outline-none w-fit h-fit py-2 px-14 md:text-sm text-sm text-semi-white bg-[#252525] rounded-md capitalize font-semibold' onClick={makeWithdrawal}>make withdrawal</button>
                                 </div>
                             </div>
                             {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] flex gap-1  bg-[#bdbcbc] p-1 rounded-sm'>
