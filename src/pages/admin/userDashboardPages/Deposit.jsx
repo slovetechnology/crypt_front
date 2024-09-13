@@ -203,7 +203,7 @@ const Deposit = () => {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className='text-xs text-[#252525] font-semibold text-center w-11/12 border py-1 rounded-md'>
+                                                                <div className='text-xs text-[#252525] font-semibold text-center w-11/12 border border-dashed border-[#c0c0c0] py-1 rounded-md'>
                                                                     {item.profit_return}% profit return on investment plus bonus up to ${item.plan_bonus}
                                                                 </div>
                                                                 <div className='text-[0.7rem] text-[#252525] font-semibold w-11/12 flex gap-2 items-center justify-center italic'>

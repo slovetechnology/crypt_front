@@ -179,7 +179,7 @@ const TaxPayment = () => {
                                         <td className='text-center truncate  capitalize p-2'>amount</td>
                                         <td className='text-center truncate  capitalize p-2'>crypto</td>
                                         <td className='text-center truncate  capitalize p-2'>network</td>
-                                        <td className='text-center truncate  capitalize p-2'>deposit address</td>
+                                        <td className='text-center truncate  capitalize p-2'>address</td>
                                         <td className='text-center truncate  capitalize p-2'>status </td>
                                     </tr>
                                 </thead>

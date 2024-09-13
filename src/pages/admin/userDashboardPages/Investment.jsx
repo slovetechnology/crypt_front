@@ -280,7 +280,7 @@ const Investment = () => {
                                         <td className='text-center  capitalize p-2 truncate'>profit</td>
                                         <td className='text-center  capitalize p-2 truncate'>bonus</td>
                                         <td className='text-center  capitalize p-2 truncate'>status</td>
-                                        <td className='text-center  capitalize p-2 truncate'>claimed</td>
+                                        <td className='text-center  capitalize p-2 truncate'>claim</td>
                                     </tr>
                                 </thead>
                                 {investment.length > 0 &&

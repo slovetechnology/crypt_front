@@ -54,7 +54,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
         setTimeout(() => {
             setCopy(false)
         }, 2000)
-        navigator.clipboard.writeText(singleWithdrawal.wallet_address)
+        navigator.clipboard.writeText(singleWithdrawal.withdrawal_address)
         setCopy(true)
     }
 
@@ -159,9 +159,9 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                         {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.network}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic '>wallet address:</div>
+                                        <div className='italic '>withdrawal address:</div>
                                         <div className='flex gap-1.5 items-center'>
-                                            {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wallet_address?.slice(0, 5)}.....{singleWithdrawal.wallet_address?.slice(-8)}</div>}
+                                            {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.withdrawal_address?.slice(0, 5)}.....{singleWithdrawal.withdrawal_address?.slice(-8)}</div>}
                                             <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-black bg-[#c9b8eb] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                                 {!copy && <MdContentCopy />}
                                                 {copy && <FaCheck />}

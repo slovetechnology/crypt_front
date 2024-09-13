@@ -48,7 +48,7 @@ const Withdraw = () => {
 
     const [form, setForm] = useState({
         amount: '',
-        wallet_address: ''
+        withdrawal_address: ''
     })
 
     const inputHandler = event => {
@@ -90,14 +90,14 @@ const Withdraw = () => {
         if (Object.values(userwallet).length === 0) return setError('limit')
         if (form.amount > userwallet.balance) return setError('limit')
         if (Object.values(secondValues).length === 0) return setError('select')
-        if (!form.wallet_address) return setError('wallet')
+        if (!form.withdrawal_address) return setError('wallet')
         if (!check) return setError('check')
-        if (user.email_verified === 'false') return setErrorMsg('Complete account verification to continue;')
-        if (user.kyc_verified === 'false') return setErrorMsg('Complete account verification to continue;')
+        if (user.email_verified === 'false') return setErrorMsg('Complete account verification to continue.')
+        if (user.kyc_verified === 'false') return setErrorMsg('Complete account verification to continue.')
 
         const formbody = {
             amount: parseFloat(form.amount),
-            wallet_address: form.wallet_address,
+            withdrawal_address: form.withdrawal_address,
             crypto: secondValues.crypto_name,
             network: secondValues.network,
         }
@@ -113,7 +113,7 @@ const Withdraw = () => {
                 Alert('Request Successful', `${response.msg}`, 'success')
                 setForm({
                     amount: '',
-                    wallet_address: ''
+                    withdrawal_address: ''
                 })
                 setCheck(!check)
                 setSecondValues({})
@@ -297,7 +297,7 @@ const Withdraw = () => {
                                 </div>
                                 {Object.values(secondValues).length !== 0 && <div className='flex flex-col gap-2 items-center mt-8'>
                                     <div className='text-[0.85rem] text-center'>Enter your <span className=' capitalize'>{secondValues.crypto_name}</span> wallet address for <span className=' capitalize'> {secondValues.network}</span> Network</div>
-                                    <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} name='wallet_address' value={form.wallet_address} onChange={inputHandler} type='text'></input>
+                                    <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} name='withdrawal_address' value={form.withdrawal_address} onChange={inputHandler} type='text'></input>
                                 </div>}
                                 <div className='flex flex-col gap-1 items-center relative mt-10'>
                                     <div className='flex gap-1.5 items-center'>
@@ -310,7 +310,7 @@ const Withdraw = () => {
                             {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] flex gap-1  bg-[#bdbcbc] p-1 rounded-sm'>
                                 <RiErrorWarningLine className='text-base' />
                                 <span>{errorMsg}</span>
-                                <Link to='/dashboard/verify-account' className='underline'>click here</Link>
+                                <Link to='/dashboard/verify-account' className='underline'>Click here</Link>
                             </div>}
                         </div>
                     </div>
@@ -336,7 +336,7 @@ const Withdraw = () => {
                                     <td className='text-center truncate  capitalize p-2'>amount</td>
                                     <td className='text-center truncate  capitalize p-2'>crypto</td>
                                     <td className='text-center truncate  capitalize p-2'>network</td>
-                                    <td className='text-center truncate  capitalize p-2'>wallet address</td>
+                                    <td className='text-center truncate  capitalize p-2'>address</td>
                                     <td className='text-center truncate  capitalize p-2'>status </td>
                                 </tr>
                             </thead>
@@ -349,7 +349,7 @@ const Withdraw = () => {
                                             <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
                                             <td className='p-4  text-center truncate'>{item.crypto}</td>
                                             <td className='p-4  text-center truncate'>{item.network}</td>
-                                            <td className='p-4  text-center truncate'>{item.wallet_address?.slice(0, 5)}.....{item.wallet_address?.slice(-10)} </td>
+                                            <td className='p-4  text-center truncate'>{item.withdrawal_address?.slice(0, 5)}.....{item.withdrawal_address?.slice(-10)} </td>
                                             <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
                                         </tr>
                                     ))}
