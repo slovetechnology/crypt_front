@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
 import React, { useState } from 'react'
-import { ADMINWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../store'
+import { ADMINCRYPTOWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../store'
 import { MdContentCopy } from 'react-icons/md'
 import { FaAngleLeft, FaCheck, FaXmark } from 'react-icons/fa6'
 import { SiBitcoincash } from 'react-icons/si'
@@ -10,7 +10,7 @@ import { Apis, imageurl, PostApi } from '../services/API'
 import nothnyet from '../assets/images/nothn.png'
 
 const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
-    const [adminWallets] = useAtom(ADMINWALLETS)
+    const [adminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
@@ -90,14 +90,14 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                             <SiBitcoincash className='text-[#3966FF]' />
                         </div>
                         {select &&
-                            <div className={`absolute top-9 left-0 ${adminWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
-                                {adminWallets.length > 1 ?
+                            <div className={`absolute top-9 left-0 ${adminCryptoWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
+                                {adminCryptoWallets.length > 1 ?
                                     <>
                                         {mode === 1 ?
                                             <>
-                                                {adminWallets.length > 0 &&
+                                                {adminCryptoWallets.length > 0 &&
                                                     <>
-                                                        {adminWallets.map((item, i) => (
+                                                        {adminCryptoWallets.map((item, i) => (
                                                             <div className='flex flex-col px-2 py-0.5 hover:bg-[#ececec] border-b border-[#ebeaea] cursor-pointer' key={i} onClick={() => { setFirstValues(item); setMode(2) }}>
                                                                 <div className='flex gap-2 items-center'>
                                                                     <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>

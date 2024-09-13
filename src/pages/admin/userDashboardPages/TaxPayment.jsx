@@ -13,7 +13,7 @@ import { useSearchParams } from 'react-router-dom'
 
 
 const TaxPayment = () => {
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
     const params = searchParams.get('screen')
     const [original, setOriginal] = useState([])
     const [taxes, setTaxes] = useState([])

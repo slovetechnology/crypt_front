@@ -5,13 +5,13 @@ import { MdContentCopy } from 'react-icons/md'
 import { useAtom } from 'jotai'
 import { Alert } from '../../utils/utils'
 import { Apis, imageurl, PostApi } from '../../services/API'
-import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, UNREADNOTIS } from '../../store'
+import { ADMINCRYPTOWALLETS, ADMINSTORE, NOTIFICATIONS, UNREADNOTIS } from '../../store'
 import { SiBitcoincash } from 'react-icons/si'
 import nothnyet from '../../assets/images/nothn.png'
 
 
 const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) => {
-  const [adminWallets] = useAtom(ADMINWALLETS)
+  const [adminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
   const [adminStore] = useAtom(ADMINSTORE)
@@ -93,14 +93,14 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
               <SiBitcoincash className='text-[#5BB4FD] z-50' />
             </div>
             {select &&
-              <div className={`absolute top-9 left-0 ${adminWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
-                {adminWallets.length > 1 ?
+              <div className={`absolute top-9 left-0 ${adminCryptoWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
+                {adminCryptoWallets.length > 1 ?
                   <>
                     {mode === 1 ?
                       <>
-                        {adminWallets.length > 0 &&
+                        {adminCryptoWallets.length > 0 &&
                           <>
-                            {adminWallets.map((item, i) => (
+                            {adminCryptoWallets.map((item, i) => (
                               <div className='flex flex-col px-2 py-0.5 hover:bg-[#ececec] border-b border-[#ebeaea] cursor-pointer' key={i} onClick={() => { setFirstValues(item); setMode(2) }}>
                                 <div className='flex gap-2 items-center'>
                                   <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>

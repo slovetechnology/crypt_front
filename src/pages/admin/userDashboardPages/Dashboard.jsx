@@ -12,7 +12,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import avatar from '../../../assets/images/avatar.png'
-import { ADMINSTORE, ADMINWALLETS, NOTIFICATIONS, PROFILE, TRADINGPLANS, UNREADNOTIS, UPS, WALLET } from '../../../store';
+import { ADMINCRYPTOWALLETS, ADMINSTORE, NOTIFICATIONS, PROFILE, UNREADNOTIS, UPS, WALLET } from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
@@ -51,8 +51,7 @@ const Dashboard = ({ children }) => {
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
     const [wallet, setWallet] = useAtom(WALLET)
     const [, setUps] = useAtom(UPS)
-    const [, setAdminWallets] = useAtom(ADMINWALLETS)
-    const [, setTradingPlans] = useAtom(TRADINGPLANS)
+    const [, setAdminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
     const [, setAdminStore] = useAtom(ADMINSTORE)
 
     const [logout, setLogOut] = useState(false)
@@ -135,7 +134,7 @@ const Dashboard = ({ children }) => {
         try {
             const response = await UserGetApi(Apis.user.get_crypto_and_their_wallets)
             if (response.status === 200) {
-                setAdminWallets(response.msg)
+                setAdminCryptoWallets(response.msg)
             }
 
         } catch (error) {
@@ -146,22 +145,6 @@ const Dashboard = ({ children }) => {
     useEffect(() => {
         FetchAdminCrypto_Wallets()
     }, [FetchAdminCrypto_Wallets])
-
-    const FetchTradingPlans = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.admin.get_trading_plans)
-            if (response.status === 200) {
-                setTradingPlans(response.msg)
-            }
-
-        } catch (error) {
-            //
-        }
-    }, [])
-
-    useEffect(() => {
-        FetchTradingPlans()
-    }, [FetchTradingPlans])
 
     const FetchAdminStore = useCallback(async () => {
         try {

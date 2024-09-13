@@ -2,9 +2,8 @@ import { useAtom } from 'jotai'
 import React, { useCallback, useEffect, useState } from 'react'
 import { BiMoneyWithdraw } from 'react-icons/bi'
 import { IoIosSearch } from 'react-icons/io'
-import { IoCheckbox } from 'react-icons/io5'
 import { RiErrorWarningLine, RiHistoryFill } from 'react-icons/ri'
-import { ADMINWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET } from '../../../store'
+import { ADMINCRYPTOWALLETS, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET } from '../../../store'
 import moment from 'moment'
 import LoadingAdmin from '../../../GeneralComponents/LoadingAdmin'
 import { Alert, MoveToTop } from '../../../utils/utils'
@@ -22,11 +21,11 @@ import { Link, useSearchParams } from 'react-router-dom'
 const Withdraw = () => {
     const [user] = useAtom(PROFILE)
     const [userwallet, setUserWallet] = useAtom(WALLET)
-    const [adminWallets] = useAtom(ADMINWALLETS)
+    const [adminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
     const params = searchParams.get('screen')
     const [original, setOriginal] = useState([])
     const [withdrawals, setWithdrawals] = useState([])
@@ -251,14 +250,14 @@ const Withdraw = () => {
                                         <SiBitcoincash className='text-light' />
                                     </div>
                                     {select &&
-                                        <div className={`absolute top-9 left-0 ${adminWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
-                                            {adminWallets.length > 1 ?
+                                        <div className={`absolute top-9 left-0 ${adminCryptoWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
+                                            {adminCryptoWallets.length > 1 ?
                                                 <>
                                                     {mode === 1 ?
                                                         <>
-                                                            {adminWallets.length > 0 &&
+                                                            {adminCryptoWallets.length > 0 &&
                                                                 <>
-                                                                    {adminWallets.map((item, i) => (
+                                                                    {adminCryptoWallets.map((item, i) => (
                                                                         <div className='flex flex-col px-2 py-0.5 hover:bg-[#f8f8f8] border-b border-[#ebeaea] cursor-pointer' key={i} onClick={() => { setFirstValues(item); setMode(2) }}>
                                                                             <div className='flex gap-2 items-center'>
                                                                                 <img src={`${imageurl}/cryptocurrency/${item.crypto_img}`} className='h-auto w-4'></img>
