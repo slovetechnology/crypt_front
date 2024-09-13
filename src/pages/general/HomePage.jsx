@@ -85,7 +85,7 @@ const HomePage = () => {
                 <span className='font-bold capitalize md:text-[2.5rem] text-3xl'>have any questions?</span>
                 <div className='text-center lg:w-[50%] text-semi-white tracking-[0.05rem] text-[0.95rem]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem obcaecati, architecto numquam libero perspiciatis veniam!</div>
               </div>
-              <div className='flex flex-col gap-4 mt-8 h-fit w-full bg-[#192633] md:p-10 px-4 py-6'>
+              <div className='flex flex-col gap-4 mt-8 h-fit w-full bg-[#182531] md:p-10 px-4 py-6'>
                 {questions.map((item, i) => (
                   <div className={`w-full mx-auto h-fit bg-white rounded-md px-3 py-2 md:p-4 flex flex-col gap-4 overflow-hidden border border-[grey] shadow-sm trans`} key={i}>
                     <div onClick={() => handleQuestions(i)} className='flex justify-between w-full h-fit cursor-pointer md:text-lg text-base font-medium'>

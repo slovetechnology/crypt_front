@@ -110,9 +110,9 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                                             </>
                                             :
                                             <div className='relative'>
-                                                <div className='cursor-pointer absolute top-2 left-0 text-[#5BB4FD]' onClick={() => setMode(1)}><FaAngleLeft /></div>
+                                                <div className='cursor-pointer absolute top-2 left-0 text-[#3966FF]' onClick={() => setMode(1)}><FaAngleLeft /></div>
                                                 <div className='py-1 border-b flex justify-center'>
-                                                    <div className='font-medium italic text-xs capitalize text-[#5BB4FD] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
+                                                    <div className='font-medium italic text-xs capitalize text-[#3966FF] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
                                                 </div>
                                                 {firstValues.cryptoWallet.length > 0 &&
                                                     <>
