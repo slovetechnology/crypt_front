@@ -12,6 +12,7 @@ import { FiX } from 'react-icons/fi'
 import wthwallet from '../../../assets/images/wthwallet.png'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import { SiBitcoincash } from "react-icons/si";
+import { GiTwoCoins } from "react-icons/gi";
 import nothnyet from '../../../assets/images/nothn.png'
 import Dashboard from './Dashboard'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -217,10 +218,10 @@ const Withdraw = () => {
                         <div className='mt-10 text-black font-medium h-fit w-fit bg-semi-white shlz rounded-xl overflow-hidden relative'>
                             {loading && <LoadingAdmin />}
                             <div className='md:text-2xl text-xl text-black font-bold uppercase bg-white w-full h-fit py-1 px-4 rounded-b-sm rounded-t-xl border-b border-light mx-auto flex flex-col gap-2'>
-                                <Link to='/dashboard/tax-payment' onClick={MoveToTop}>
-                                    <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center ml-auto'>
+                                <Link to='/dashboard/tax-payment' onClick={MoveToTop} className='w-fit ml-auto'>
+                                    <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center'>
                                         <span>taxes</span>
-                                        <SiBitcoincash />
+                                        <GiTwoCoins/>
                                     </button>
                                 </Link>
                                 <div className='border-t pt-2 text-center'>Withdraw funds</div>
@@ -299,7 +300,7 @@ const Withdraw = () => {
                                     <div className='text-[0.85rem] text-center'>Enter your <span className=' capitalize'>{secondValues.crypto_name}</span> wallet address for <span className=' capitalize'> {secondValues.network}</span> Network</div>
                                     <input className={`outline-none border bg-white lg:text-[0.85rem] w-full h-8 rounded-[4px] px-2  ${error === 'wallet' ? 'border-[red]' : 'border-light'}`} name='withdrawal_address' value={form.withdrawal_address} onChange={inputHandler} type='text'></input>
                                 </div>}
-                                <div className='flex flex-col gap-1 items-center relative mt-10'>
+                                <div className='flex flex-col gap-1 items-center relative md:mt-10 mt-8'>
                                     <div className='flex gap-1.5 items-center'>
                                         <input type='checkbox' value={check} checked={check} onChange={event => { setCheck(event.target.checked) }} className={`${error === 'check' && 'outline outline-1 outline-[red]'}`}></input>
                                         <div className='text-[#252525] text-[0.8rem]'>I provided my correct wallet address</div>

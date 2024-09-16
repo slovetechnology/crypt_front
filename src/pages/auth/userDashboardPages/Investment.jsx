@@ -153,7 +153,7 @@ const Investment = () => {
 
                 {pageloading ?
                     <div className='flex flex-col gap-4 mt-10'>
-                        <div className='w-24 h-2 bg-slate-300 animate-pulse'></div>
+                        <div className='w-28 h-2 bg-slate-300 animate-pulse rounded-full'></div>
                         <div className='flex flex-wrap gap-4 items-center justify-center'>
                             {new Array(4).fill(0).map((ele, i) => (
                                 <div className='md:w-44 w-[9.5rem] h-20 rounded-[10px] bg-slate-300 animate-pulse' key={i}>

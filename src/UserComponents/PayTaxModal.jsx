@@ -80,14 +80,13 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                     <div className='flex flex-col gap-1'>
                         <div className='text-[0.8rem] capitalize font-medium'>tax amount ($)</div>
                         <div className='relative'>
-                            <input className={`outline-none border bg-semi-white text-black lg:text-[0.85rem] w-52 px-2 h-8 rounded-[4px] ${error === 'amount' ? 'border-[red]' : 'border-[#3966FF]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
-                            {/* <div className={`text-xs absolute top-2 right-2 ${error === 'expected' ? 'text-[red]' : 'text-black'}`}>exp: 150</div> */}
+                            <input className={`outline-none border bg-semi-white text-black lg:text-[0.85rem] w-52 px-2 h-8 rounded-[4px] ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
                         </div>
                     </div>
                     <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>
                         <div className={`w-52 py-1 bg-white flex gap-1.5 justify-center items-center capitalize text-sm font-semibold rounded-[0.2rem] text-black cursor-pointer  ${error === 'select' && 'border border-[red]'} shantf`} onClick={() => setSelect(!select)}>
                             <div className='text-[0.8rem]'>choose cryptocurrency</div>
-                            <SiBitcoincash className='text-[#3966FF]' />
+                            <SiBitcoincash className='text-[#5BB4FD]' />
                         </div>
                         {select &&
                             <div className={`absolute top-9 left-0 ${adminCryptoWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
@@ -110,9 +109,9 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                                             </>
                                             :
                                             <div className='relative'>
-                                                <div className='cursor-pointer absolute top-2 left-0 text-[#3966FF]' onClick={() => setMode(1)}><FaAngleLeft /></div>
+                                                <div className='cursor-pointer absolute top-2 left-0 text-[#5BB4FD]' onClick={() => setMode(1)}><FaAngleLeft /></div>
                                                 <div className='py-1 border-b flex justify-center'>
-                                                    <div className='font-medium italic text-xs capitalize text-[#3966FF] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
+                                                    <div className='font-medium italic text-xs capitalize text-[#5BB4FD] border border-[lightgrey] border-dashed py-0.5 px-1'>choose network</div>
                                                 </div>
                                                 {firstValues.cryptoWallet.length > 0 &&
                                                     <>
@@ -139,7 +138,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                         <div className='flex flex-col gap-2 items-center'>
                             <div className='text-[0.85rem] text-center'><span className='capitalize'>{secondValues.crypto_name}</span> deposit address for <span className='capitalize'>{secondValues.network} network:</span></div>
                             <div className='flex gap-2 items-center'>
-                                <div className='text-xs text-[#3966FF] w-11/12 overflow-x-auto'>{secondValues.address?.slice(0, 35)}{secondValues.address.length > 35 && '....'}</div>
+                                <div className='text-xs text-[#5BB4FD] w-11/12 overflow-x-auto'>{secondValues.address?.slice(0, 35)}{secondValues.address.length > 35 && '....'}</div>
                                 <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-semi-white bg-[#252525] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                     {!copy && <MdContentCopy />}
                                     {copy && <FaCheck />}

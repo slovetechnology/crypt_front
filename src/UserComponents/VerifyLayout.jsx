@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import Dashboard from '../pages/admin/userDashboardPages/Dashboard'
+import Dashboard from '../pages/auth/userDashboardPages/Dashboard'
 
 
 const VerifyLinks = [
