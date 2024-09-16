@@ -286,7 +286,7 @@ const Profile = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className='italic text-[0.7rem] text-center ml-auto -mt-4 text-[#2fbe2f] p-0.5 bg-[#130e27]'>- refer and earn {adminStore.referral_bonus_percentage}% of your referral's first deposit -</div>
+                            <div className='italic md:text-[0.75rem] text-[0.65rem] text-center ml-auto -mt-4 text-[#2fbe2f] p-0.5 bg-[#130e27]'>..refer and earn {adminStore.referral_bonus_percentage}% commission of your referral(s) first deposit</div>
                             <div className='flex justify-between items-center  capitalize'>
                                 <div>full name:</div>
                                 {!nameEdit && <div className='flex gap-4'>
@@ -403,7 +403,7 @@ const Profile = () => {
                                 </div>
                                 <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                     <div className='relative'>
-                                        <input className='outline-none border border-light bg-white lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' name='dl_password' value={form.dl_password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                        <input className='outline-none border border-light bg-white lg:text-[0.85rem] text-base w-48 h-8 rounded-[4px] pl-2 pr-8 py-1 text-black ipt' placeholder='Enter your password' name='dl_password' value={form.dl_password} onChange={formHandler} type={`${eye3 === true ? 'text' : 'password'}`}></input>
                                         <EyeIcon3 className='absolute top-2 right-2 cursor-pointer text-light text-lg' onClick={() => setEye3(!eye3)} />
                                         <div className='absolute -bottom-5 left-0 text-xs text-[#e62f2f]'>{deleteError}</div>
                                     </div>
