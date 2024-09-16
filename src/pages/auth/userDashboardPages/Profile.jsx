@@ -142,7 +142,7 @@ const Profile = () => {
         try {
             const response = await UserPutApi(Apis.user.update, formbody)
             if (response.status === 200) {
-                Alert('Request Successful', 'Profile updated successfully', 'success')
+                Alert('Request Successful', 'Profile updated', 'success')
                 setEmailEdit(false)
                 setNameEdit(false)
                 setPassEdit(false)
