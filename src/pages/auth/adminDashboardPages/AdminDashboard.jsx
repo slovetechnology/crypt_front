@@ -90,21 +90,20 @@ const AdminDashboard = ({ children }) => {
   }, [FetchUnreadNotis])
 
 
-  const FetchAdminStore = useCallback(async () => {
-    try {
-      const response = await UserGetApi(Apis.admin.get_admin_store)
-      if (response.status === 200) {
-        setAdminStore(response.msg)
-      }
-
-    } catch (error) {
-      //
-    }
-  }, [])
-
   useEffect(() => {
+    const FetchAdminStore = async () => {
+      try {
+        const response = await UserGetApi(Apis.admin.get_admin_store)
+        if (response.status === 200) {
+          setAdminStore(response.msg)
+        }
+
+      } catch (error) {
+        //
+      }
+    }
     FetchAdminStore()
-  }, [FetchAdminStore])
+  }, [])
 
 
 

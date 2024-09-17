@@ -97,70 +97,66 @@ const Dashboard = ({ children }) => {
         FetchUnreadNotis()
     }, [FetchUnreadNotis])
 
-    const FetchWallet = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.user.wallet)
-            if (response.status === 200) {
-                setWallet(response.msg)
-            }
-
-        } catch (error) {
-            //
-        } finally {
-        }
-    }, [])
 
     useEffect(() => {
+        const FetchWallet = async() => {
+            try {
+                const response = await UserGetApi(Apis.user.wallet)
+                if (response.status === 200) {
+                    setWallet(response.msg)
+                }
+    
+            } catch (error) {
+                //
+            }
+        }
         FetchWallet()
-    }, [FetchWallet])
-
-    const FetchUps = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.user.ups)
-            if (response.status === 200) {
-                setUps(response.msg)
-            }
-
-        } catch (error) {
-            //
-        }
     }, [])
 
     useEffect(() => {
+        const FetchUps = async () => {
+            try {
+                const response = await UserGetApi(Apis.user.ups)
+                if (response.status === 200) {
+                    setUps(response.msg)
+                }
+    
+            } catch (error) {
+                //
+            }
+        }
         FetchUps()
-    }, [FetchUps])
-
-    const FetchAdminCrypto_Wallets = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.user.get_crypto_and_their_wallets)
-            if (response.status === 200) {
-                setAdminCryptoWallets(response.msg)
-            }
-
-        } catch (error) {
-            //
-        }
     }, [])
 
     useEffect(() => {
+        const FetchAdminCrypto_Wallets = async () => {
+            try {
+                const response = await UserGetApi(Apis.user.get_crypto_and_their_wallets)
+                if (response.status === 200) {
+                    setAdminCryptoWallets(response.msg)
+                }
+    
+            } catch (error) {
+                //
+            }
+        }    
         FetchAdminCrypto_Wallets()
-    }, [FetchAdminCrypto_Wallets])
-
-    const FetchAdminStore = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.admin.get_admin_store)
-            if (response.status === 200) {
-                setAdminStore(response.msg)
-            }
-
-        } catch (error) {
-            //
-        }
     }, [])
 
     useEffect(() => {
+        const FetchAdminStore = async () => {
+            try {
+                const response = await UserGetApi(Apis.admin.get_admin_store)
+                if (response.status === 200) {
+                    setAdminStore(response.msg)
+                }
+    
+            } catch (error) {
+                //
+            }
+        }
         FetchAdminStore()
-    }, [FetchAdminStore])
+    }, [])
 
 
     return (
@@ -303,7 +299,7 @@ const Dashboard = ({ children }) => {
                         </div>
                         <div className='flex justify-between'>
                             <div>assets value</div>
-                            <div>${Object.values(wallet).length !== 0 && <span>{wallet.balance.toLocaleString()}</span>}</div>
+                            <div>{Object.values(wallet).length !== 0 && <span>${wallet.balance.toLocaleString()}</span>}</div>
                         </div>
                     </div>
                     <Link to='/dashboard/investment' onClick={() => MoveToTop()}>

@@ -82,10 +82,6 @@ const UpdateInvestment = () => {
     setEnd(6)
   }
 
-  const SystemSet = () => {
-    setSystem(!system)
-  }
-
   let MovePage = () => {
 
     if (end < allInvestments.length) {

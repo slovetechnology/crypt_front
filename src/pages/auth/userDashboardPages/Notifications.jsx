@@ -22,7 +22,7 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(3)
     const [pagestart, setpagestart] = useState(1)
-    const [pageend, setpageend] = useState(notis.length / 3)
+    const [pageend, setpageend] = useState(0)
 
     const closer = useRef()
 
@@ -134,11 +134,12 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
                             </div>}
                         </div>
                     </div>
-                    {notis.length > 0 ? <div className='mt-2 md:mt-0'>
-                        {notis.slice(start, end).map((item, i) => (
-                            <NotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} setShowNotis={setShowNotis} />
-                        ))}
-                    </div>
+                    {notis.length > 0 ?
+                        <div className='mt-2 md:mt-0'>
+                            {notis.slice(start, end).map((item, i) => (
+                                <NotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} setShowNotis={setShowNotis} />
+                            ))}
+                        </div>
                         :
                         <div className='mt-28 md:mt-12 flex flex-col gap-2 items-center justify-center'>
                             <img src={nothnyet} className='md:h-20 h-48 w-auto'></img>

@@ -8,6 +8,20 @@ import { FaXmark } from 'react-icons/fa6'
 
 const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setShowNotis, start, end, pagestart, setStart, setEnd, setpagestart, setpageend, }) => {
 
+    const MarkSingleRead = async () => {
+        const formbody = {
+            notification_id: item.id,
+        }
+        try {
+            const response = await UserPutApi(Apis.notification.update_single, formbody)
+            if (response.status === 200) {
+                refetchNotifications()
+                refetchUnreadNotis()
+            }
+        } catch (error) {
+        }
+    }
+
     const DeleteNotification = async () => {
         const formbody = {
             notification_id: item.id,
@@ -33,20 +47,6 @@ const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setSh
                     altlengthstart -= 1
                     setpagestart(altlengthstart)
                 }
-            }
-        } catch (error) {
-        }
-    }
-
-    const MarkSingleRead = async () => {
-        const formbody = {
-            notification_id: item.id,
-        }
-        try {
-            const response = await UserPutApi(Apis.notification.update_single, formbody)
-            if (response.status === 200) {
-                refetchNotifications()
-                refetchUnreadNotis()
             }
         } catch (error) {
         }

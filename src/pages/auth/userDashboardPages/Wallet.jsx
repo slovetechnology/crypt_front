@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { BsCurrencyDollar } from "react-icons/bs";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { useAtom } from 'jotai';
@@ -13,11 +13,13 @@ import Dashboard from './Dashboard';
 import { Link } from 'react-router-dom';
 import { MoveToTop } from '../../../utils/utils';
 import { FaArrowTrendUp } from "react-icons/fa6";
+import { Apis, UserGetApi } from '../../../services/API';
 
 
 const Wallet = () => {
     const [wallet] = useAtom(WALLET)
     const [ups] = useAtom(UPS)
+    const [testRun, setTestRun] = useState({})
 
     let profitUp = 0
     let bonusUp = 0
@@ -27,6 +29,21 @@ const Wallet = () => {
             bonusUp = ups.new_bonus / wallet.total_bonus * 100
         }
     }
+
+    useEffect(() => {
+        const FetchTestRun = async () => {
+            try {
+                const response = await UserGetApi(Apis.user.get_test_run_plan)
+                if (response.status === 200) {
+                    setTestRun(response.msg)
+                }
+
+            } catch (error) {
+                //
+            }
+        }
+        FetchTestRun()
+    }, [])
 
 
     return (
@@ -128,12 +145,12 @@ const Wallet = () => {
                                 <div>price</div>
                                 <div className='flex items-center gap-1'>
                                     <div className='italic lowercase'>from</div>
-                                    <div className='text-[green] text-[0.85rem] font-bold'>$20</div>
+                                    <div className='text-[green] text-[0.85rem] font-bold'>{Object.values(testRun).length !== 0 ? <span>${testRun.price_start.toLocaleString()}</span> : <span>N/A</span>}</div>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <div>profit</div>
-                                <div className='text-[green] text-[0.85rem] font-bold'>60%</div>
+                                <div className='text-[green] text-[0.85rem] font-bold'>{Object.values(testRun).length !== 0 ? <span>{testRun.profit_return.toLocaleString()}%</span> : <span>N/A</span>}</div>
                             </div>
                             <Link to='/dashboard/deposit' className='flex flex-col gap-1' onClick={() => MoveToTop()}>
                                 <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]'>purchase</button>

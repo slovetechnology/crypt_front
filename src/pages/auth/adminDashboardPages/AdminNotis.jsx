@@ -134,11 +134,12 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
                         </div>}
                     </div>
                 </div>
-                {notifications.length > 0 ? <div className='mt-2 md:mt-0'>
-                    {notifications.slice(start, end).map((item, i) => (
-                        <AdminNotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} setShowNotis={setShowNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} />
-                    ))}
-                </div>
+                {notifications.length > 0 ?
+                    <div className='mt-2 md:mt-0'>
+                        {notifications.slice(start, end).map((item, i) => (
+                            <AdminNotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} setShowNotis={setShowNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} />
+                        ))}
+                    </div>
                     :
                     <div className='mt-28 md:mt-12 flex flex-col gap-2 items-center justify-center'>
                         <img src={nothnyet} className='md:h-20 h-48 w-auto'></img>

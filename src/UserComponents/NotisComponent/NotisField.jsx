@@ -9,10 +9,25 @@ import { MoveToTop } from '../../utils/utils';
 
 const NotisField = ({ item, refetchNotifications, refetchUnreadNotis, start, end, pagestart, setStart, setEnd, setpagestart, setpageend, setShowNotis }) => {
 
+    const MarkSingleRead = async () => {
+        const formbody = {
+            notification_id: item.id,
+        }
+        try {
+            const response = await UserPutApi(Apis.notification.update_single, formbody)
+            if (response.status === 200) {
+                refetchNotifications()
+                refetchUnreadNotis()
+            }
+        } catch (error) {
+        }
+    }
+
     const DeleteNotification = async () => {
         const formbody = {
             notification_id: item.id,
         }
+
         try {
             const response = await PostApi(Apis.notification.delete_notification, formbody)
             if (response.status === 200) {
@@ -33,20 +48,6 @@ const NotisField = ({ item, refetchNotifications, refetchUnreadNotis, start, end
                     altlengthstart -= 1
                     setpagestart(altlengthstart)
                 }
-            }
-        } catch (error) {
-        }
-    }
-
-    const MarkSingleRead = async () => {
-        const formbody = {
-            notification_id: item.id,
-        }
-        try {
-            const response = await UserPutApi(Apis.notification.update_single, formbody)
-            if (response.status === 200) {
-                refetchNotifications()
-                refetchUnreadNotis()
             }
         } catch (error) {
         }
