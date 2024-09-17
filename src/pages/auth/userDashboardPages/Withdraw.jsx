@@ -241,7 +241,7 @@ const Withdraw = () => {
                                             <img src={wthwallet} className='md:h-6 h-4 w-auto'></img>
                                         </div>
                                         <div className='flex items-center justify-center md:text-base text-sm'>
-                                            {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toFixed(1).toLocaleString()}</div>}
+                                            {Object.values(userwallet).length !== 0 && <div>${userwallet.balance.toLocaleString()}</div>}
                                         </div>
                                     </div>
                                 </div>
