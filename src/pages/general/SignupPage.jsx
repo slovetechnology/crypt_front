@@ -205,7 +205,7 @@ const SignupPage = () => {
                       {loading && <Loading />}
                       {screen === 1 && <div className='w-11/12 md:w-[85%] mx-auto '>
                         <div className='text-center text-[1.7rem] capitalize font-[550]'>create an account</div>
-                        <div className='text-[0.8rem] mt-0.5 text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
+                        <div className='text-sm mt-0.5 text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
                         <form onSubmit={submitForm}>
                           <div className='flex flex-col gap-[0.7rem] mt-4'>
                             <div className='relative mx-auto'>
@@ -225,17 +225,17 @@ const SignupPage = () => {
                               {error === 'image' && <div className='absolute -bottom-4 -right-10 text-xs text-[red]'>{errorMsg}</div>}
                             </div>
                             <div className='flex flex-col gap-[0.3rem]'>
-                              <div className='text-sm capitalize font-[550] '>full name:</div>
+                              <div className='text-sm capitalize font-[550]'>full name:</div>
                               <input className={`outline-none w-full  border-b  ${error === 'name' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt input-off`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 w-full md:gap-8 gap-[0.7rem]'>
-                              <div className='flex flex-col gap-[0.3rem] relative '>
-                                <div className='text-sm capitalize font-[550] '>username:</div>
-                                <input className={`outline-none w-full  border-b  ${error === 'user' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
+                              <div className='flex flex-col gap-[0.3rem] relative'>
+                                <div className='text-sm capitalize font-[550]'>username:</div>
+                                <input className={`outline-none w-full border-b  ${error === 'user' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
                               </div>
-                              <div className='flex flex-col gap-[0.3rem] relative '>
-                                <div className='text-sm capitalize font-[550] '>e-mail address:</div>
-                                <input className={`outline-none w-full   border-b   ${error === 'email' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
+                              <div className='flex flex-col gap-[0.3rem] relative'>
+                                <div className='text-sm capitalize font-[550]'>e-mail address:</div>
+                                <input className={`outline-none w-full border-b   ${error === 'email' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
                               </div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-[0.7rem] w-full'>
@@ -273,7 +273,7 @@ const SignupPage = () => {
                                 }
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
-                                <div className='text-sm capitalize font-[550] '>referral code:</div>
+                                <div className='text-sm capitalize font-[550]'>referral code:</div>
                                 <input className='outline-none w-full   border-b border-[#4d4c4c] lg:text-sm text-base  ipt input-off' placeholder='Optional' code type='text' name='referral_code' value={form.referral_code} onChange={inputHandler}></input>
                               </div>
                             </div>
@@ -285,7 +285,7 @@ const SignupPage = () => {
                                 {error === 'password' && <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{errorMsg}</div>}
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
-                                <div className='text-sm capitalize font-[550] '>confirm password:</div>
+                                <div className='text-sm capitalize font-[550]'>confirm password:</div>
                                 <input className={`outline-none w-full border-b  ${error === 'confirm_p' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base pr-6 ipt input-off`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
                                 <EyeIcon2 className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
                                 {error === 'confirm_p' && <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{errorMsg}</div>}
