@@ -8,6 +8,7 @@ import { Alert } from '../../utils/utils'
 
 const SetTaxPercentage = ({ closeView }) => {
     const [adminStore, setAdminStore] = useAtom(ADMINSTORE)
+    
     const [amount, setAmount] = useState('')
     const [error, setError] = useState(false)
     const toggler = useRef()

@@ -72,6 +72,7 @@ const Personalize = () => {
       imgref.current.value = null
       return setImageError('File error, invalid image format')
     }
+    
     setCommit(true)
     setProfile({
       img: URL.createObjectURL(file),

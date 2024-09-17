@@ -11,6 +11,7 @@ import PayTaxModal from '../../../UserComponents/PayTaxModal'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ADMINSTORE } from '../../../store'
 import { useAtom } from 'jotai'
+import { FiX } from 'react-icons/fi'
 
 
 const TaxPayment = () => {
