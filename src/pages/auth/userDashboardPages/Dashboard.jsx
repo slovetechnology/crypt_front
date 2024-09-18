@@ -175,7 +175,7 @@ const Dashboard = ({ children }) => {
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>main</div>
                             <div className='flex flex-col gap-8'>
                                 {MainLinks.map((item, i) => (
-                                    <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                                    <Link key={i} onClick={MoveToTop} to={item.url}>
                                         <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-light'}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -188,7 +188,7 @@ const Dashboard = ({ children }) => {
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-8'>
                                 {OtherLinks.map((item, i) => (
-                                    <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                                    <Link key={i} onClick={MoveToTop} to={item.url}>
                                         <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-light'}`} >
                                             <item.icon className='text-[1.3rem] ' />
                                             <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -223,7 +223,7 @@ const Dashboard = ({ children }) => {
                 <div className='md:w-[94%] w-11/12 mx-auto'>
                     <div className='flex flex-col gap-4'>
                         <div className='w-full h-fit rounded-md bg-[#131024] py-2 px-4 text-light text-[0.85rem] flex items-center justify-between mt-4'>
-                            <div className='flex gap-2 xl:gap-0 items-center'>
+                            <div className='flex gap-2 items-center'>
                                 <Link className='xl:hidden cursor-pointer' to='/dashboard/profile'>
                                     {user.image ? <img src={`${imageurl}/profiles/${user.image}`} className='w-10 h-10 object-cover rounded-full border border-light'></img>
                                         :
@@ -231,7 +231,7 @@ const Dashboard = ({ children }) => {
                                     }
                                 </Link>
                                 <div className='capitalize font-medium'>
-                                    hi, <span> {user.username}</span>
+                                    hi, <span> {user?.username}</span>
                                 </div>
                             </div>
                             <div>
@@ -259,7 +259,7 @@ const Dashboard = ({ children }) => {
                 <div className='bg-[#131024] w-full md:h-14 h-12 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
                     <div className='grid grid-cols-5 items-center h-full w-full'>
                         {MainLinks.map((item, i) => (
-                            <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                            <Link key={i} onClick={MoveToTop} to={item.url}>
                                 <div className={`flex flex-col gap-1 items-center cursor-pointer  ${location.pathname === item.url ? 'text-light' : ' text-semi-white'}`} >
                                     <item.icon className='md:text-lg text-base' />
                                     <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>{item.path}</div>
@@ -282,12 +282,12 @@ const Dashboard = ({ children }) => {
                             <img src={avatar} className='w-16 h-16 object-cover rounded-full border-2 border-light'></img>
                         }
                         <div className='flex gap-1'>
-                            <div className='text-semi-white '>{user.username}</div>
+                            <div className='text-semi-white '>{user?.username}</div>
                             {user.email_verified === 'true' && <MdVerified className='text-[0.7rem] text-light border-light' />}
                             {user.kyc_verified === 'true' && <MdVerified className='text-[0.7rem] text-[#b19e34] border-light' />}
                         </div>
-                        <div className='text-[grey] text-[0.8rem] font-medium lowercase -mt-2 '>{user.email}</div>
-                        <Link to='/dashboard/profile' onClick={() => MoveToTop()}>
+                        <div className='text-[grey] text-[0.8rem] font-medium lowercase -mt-2 '>{user?.email}</div>
+                        <Link to='/dashboard/profile' onClick={MoveToTop}>
                             <div className=' cursor-pointer text-[0.85rem] text-light border-light mt-2'>edit profile</div>
                         </Link>
                     </div>
@@ -295,14 +295,14 @@ const Dashboard = ({ children }) => {
                         <div className='text-semi-white text-[0.85rem]'>account</div>
                         <div className='flex justify-between'>
                             <div>joined</div>
-                            <div>{moment(user.createdAt).format('DD/MM/yyyy')}</div>
+                            <div>{moment(user?.createdAt).format('DD/MM/yyyy')}</div>
                         </div>
                         <div className='flex justify-between'>
                             <div>assets value</div>
                             <div>{Object.values(wallet).length !== 0 && <span>${wallet.balance.toLocaleString()}</span>}</div>
                         </div>
                     </div>
-                    <Link to='/dashboard/investment' onClick={() => MoveToTop()}>
+                    <Link to='/dashboard/investment' onClick={MoveToTop}>
                         <div className='w-full h-14 rounded-[3px] bg-semi-white mt-8 capitalize font-bold flex items-center justify-center gap-2 cursor-pointer'>
                             <LuArrowDownUp />
                             <div>trade now</div>

@@ -123,7 +123,7 @@ const AdminDashboard = ({ children }) => {
               <div className=' text-[0.65rem] uppercase'>main</div>
               <div className='flex flex-col gap-8'>
                 {MainLinks.map((item, i) => (
-                  <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                  <Link key={i} onClick={MoveToTop} to={item.url}>
                     <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-white'}`}>
                       <item.icon className='text-[1.3rem] ' />
                       <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -136,7 +136,7 @@ const AdminDashboard = ({ children }) => {
               <div className='text-[0.65rem] uppercase'>others</div>
               <div className='flex flex-col gap-8'>
                 {OtherLinks.map((item, i) => (
-                  <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                  <Link key={i} onClick={MoveToTop} to={item.url}>
                     <div className={`flex gap-3 lg:text-[#bbb9b9] text-semi-white  lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${item.path === 'settings' ? location.pathname.includes('/admin-controls/settings') && 'lg:border-r-[3px] lg:rounded-sm lg:border-white' : location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-white'}`}>
                       <item.icon className='text-[1.3rem] ' />
                       <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>{item.path}</div>
@@ -174,7 +174,7 @@ const AdminDashboard = ({ children }) => {
             <div className='w-full h-fit  rounded-md bg-admin-auth mt-4 px-4 py-2 text-white text-[0.85rem] flex items-center justify-between'>
               <div className='flex items-center gap-1 capitalize'>
                 <div>hi,</div>
-                <div>{user.username}</div>
+                <div>{user?.username}</div>
               </div>
               <div>
                 <AdminNotis refetchNotifications={FetchNotifications} refetchUnreadNotis={FetchUnreadNotis} />
@@ -197,7 +197,7 @@ const AdminDashboard = ({ children }) => {
           <div className='bg-admin-auth w-full md:h-14 h-12 fixed bottom-0 left-0 z-30 lg:hidden px-2'>
             <div className='grid grid-cols-5 items-center h-full w-full'>
               {MainLinks.map((item, i) => (
-                <Link key={i} onClick={() => { setSlideShow(false); MoveToTop() }} to={item.url}>
+                <Link key={i} onClick={MoveToTop} to={item.url}>
                   <div className={`flex flex-col gap-1 items-center cursor-pointe ${location.pathname === item.url ? 'text-[green]' : ' text-semi-white'}`} >
                     <item.icon className='md:text-lg text-base' />
                     <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>{item.path}</div>

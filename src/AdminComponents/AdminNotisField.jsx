@@ -32,16 +32,16 @@ const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setSh
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()
-                setpageend(response.msg.length / 3)
-                if (pagestart > Math.ceil(response.msg.length / 3)) {
+                setpageend(response.msg.length / 5)
+                if (pagestart > Math.ceil(response.msg.length / 5)) {
                     let altstart = start
                     let altend = end
                     let altlengthstart = pagestart
 
-                    altend -= 3
+                    altend -= 5
                     setEnd(altend)
 
-                    altstart -= 3
+                    altstart -= 5
                     setStart(altstart)
 
                     altlengthstart -= 1
@@ -53,7 +53,7 @@ const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setSh
     }
 
     return (
-        <div className='flex flex-col items-center md:pt-2 pt-3 md:text-xs text-[0.8rem] text-black'>
+        <div className='flex flex-col items-center md:pt-2 pt-4 md:text-xs text-[0.8rem] text-black'>
             <div className={`p-2 rounded-md relative shantf w-full h-fit ${item.read === 'true' ? 'bg-white' : 'bg-[#bca2e6]'}`}>
                 <Link to={item.URL} onClick={() => { MarkSingleRead(); setShowNotis(false); MoveToTop() }}>
                     <div className='flex flex-col gap-2'>

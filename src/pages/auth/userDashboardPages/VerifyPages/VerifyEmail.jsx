@@ -5,31 +5,38 @@ import { Apis, UserPostApi } from '../../../../services/API';
 import { Alert } from '../../../../utils/utils';
 import { PROFILE } from '../../../../store';
 import { useAtom } from 'jotai';
-import { useNavigate } from 'react-router-dom';
 import VerifyLayout from '../../../../UserComponents/VerifyLayout';
 
 const VerifyEmail = () => {
     const [user, setUser] = useAtom(PROFILE)
 
-    const [email, setEmail] = useState('')
-    const [emailError, setEmailError] = useState('')
-    const [code, setCode] = useState('')
-    const [codeError, setCodeError] = useState('')
     const [screen, setScreen] = useState(1)
     const [loading, setLoading] = useState(false)
-    const navigate = useNavigate()
+    const [error, setError] = useState('')
+
+    const [form, setForm] = useState({
+        email: '',
+        code: ''
+    })
+
+    const formHandler = (event) => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    }
 
     const FindEmail = async (e) => {
         e.preventDefault()
 
         setTimeout(() => {
-            setEmailError(false)
+            setError(false)
         }, 2000)
 
-        if (!email) return setEmailError('email address is required')
+        if (!form.email) return setError('email address is required')
 
         const formbody = {
-            email: email
+            email: form.email
         }
 
         setLoading(true)
@@ -38,10 +45,10 @@ const VerifyEmail = () => {
             if (response.status === 200) {
                 setScreen(2)
             } else {
-                setEmailError(`${response.msg}`)
+                setError(`${response.msg}`)
             }
         } catch (error) {
-            return setEmailError(`${error.message}`)
+            setError(`${error.message}`)
         } finally {
             setLoading(false)
         }
@@ -51,14 +58,14 @@ const VerifyEmail = () => {
         e.preventDefault()
 
         setTimeout(() => {
-            setCodeError('')
+            setError('')
         }, 2000)
 
-        if (!code) return setCodeError('enter verification code sent to your email')
+        if (!form.code) return setError('enter verification code sent to your email')
 
         const formbody = {
-            code: code,
-            email: email
+            code: form.code,
+            email: form.email
         }
 
         setLoading(true)
@@ -67,9 +74,13 @@ const VerifyEmail = () => {
             if (response.status === 200) {
                 Alert('Request Successful', 'Email verified successfully', 'success')
                 setUser(response.msg)
-                navigate('/dashboard/profile')
+                setForm({
+                    email: '',
+                    code: ''
+                })
+                setScreen(1)
             } else {
-                setCodeError(`${response.msg}`)
+                setError(`${response.msg}`)
             }
         } catch (error) {
             Alert('Request Failed', `${error.message}`, 'error')
@@ -88,7 +99,7 @@ const VerifyEmail = () => {
                             <span>verify your email</span>
                             <MdVerified className='text-light' />
                         </div>
-                        <div className='italic text-sm flex items-center gap-2'><span>Status:</span> <span className={`${user.email_verified === 'true' ? 'text-light' : 'text-[#c42e2e]' }`}>{user.email_verified === 'true' ? 'verified' : 'unverified'}</span></div>
+                        <div className='italic text-sm flex items-center gap-2'><span>Status:</span> <span className={`${user.email_verified === 'true' ? 'text-light' : 'text-[#c42e2e]'}`}>{user.email_verified === 'true' ? 'verified' : 'unverified'}</span></div>
                     </div>
                     {screen === 1 &&
                         <form onSubmit={FindEmail}>
@@ -96,8 +107,8 @@ const VerifyEmail = () => {
                                 <div className='flex flex-col gap-2'>
                                     <div className='text-[0.85rem] capitalize text-semi-white'> email address</div>
                                     <div className='relative'>
-                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-3 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' value={email} onChange={e => setEmail(e.target.value)}></input>
-                                        <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{emailError}</div>
+                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-3 border border-light lg:text-[0.9rem] text-semi-white ipt' type='email' placeholder='Enter your account email address' name='email' value={form.email} onChange={formHandler}></input>
+                                        <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{error}</div>
                                     </div>
                                 </div>
                                 <div className='flex items-center'>
@@ -110,10 +121,10 @@ const VerifyEmail = () => {
                         <form onSubmit={ValidateEmail}>
                             <div className='flex flex-col gap-10 items-center'>
                                 <div className='flex flex-col gap-4 items-center'>
-                                    <div className='text-[0.85rem]  text-semi-white text-center'> A six digits verification code was sent to <span className='text-[#7665D5]'>{email?.slice(0, 3)}*****{email?.slice(-10)}</span>, copy and enter below</div>
+                                    <div className='text-[0.85rem]  text-semi-white text-center'> A six digits verification code was sent to <span className='text-[#7665D5]'>{form.email?.slice(0, 3)}*****{form.email?.slice(-10)}</span>, copy and enter below</div>
                                     <div className='relative'>
-                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-3 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' value={code} onChange={e => setCode(e.target.value)}></input>
-                                        <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{codeError}</div>
+                                        <input className='outline-none rounded-[3px] w-64 md:w-80 h-10 bg-transparent px-3 border border-light lg:text-[0.9rem] text-semi-white ipt' type='text' placeholder='Enter verification code' name='code' value={form.code} onChange={formHandler}></input>
+                                        <div className='text-xs  text-[#c42e2e] absolute -bottom-5 left-0'>{error}</div>
                                     </div>
                                 </div>
                                 <div className='flex items-center'>

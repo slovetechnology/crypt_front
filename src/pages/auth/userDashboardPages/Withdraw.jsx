@@ -232,7 +232,7 @@ const Withdraw = () => {
                                         <div className='capitalize text-[0.8rem] font-medium'>withdawal amount ($)</div>
                                         <div className='relative'>
                                             <input className={`outline-none border lg:text-[0.85rem] md:w-48 w-40 h-8 rounded-[4px] pl-2 pr-16 bg-white ${error === 'amount' ? 'border-[red]' : 'border-light'}`} name='amount' value={form.amount} onChange={inputHandler} ></input>
-                                            <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[red]' : 'text-black'}`}>min: {user.withdrawal_minimum}</div>
+                                            <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[red]' : 'text-black'}`}>min: {user?.withdrawal_minimum}</div>
                                         </div>
                                     </div>
                                     <div className={`w-fit h-fit rounded-md flex flex-col py-2 justify-center items-center md:px-4 px-3 text-semi-white gap-1 bg-light ${error === 'limit' ? 'border border-[red]' : ''}`}>
@@ -308,10 +308,10 @@ const Withdraw = () => {
                                     <button className='outline-none w-fit h-fit py-2 px-14 md:text-sm text-sm text-semi-white bg-[#252525] rounded-md capitalize font-semibold' onClick={makeWithdrawal}>make withdrawal</button>
                                 </div>
                             </div>
-                            {errorMsg !== '' && <div className='absolute bottom-0 left-4 text-[0.8rem] font-bold text-[#be3131] flex gap-1  bg-[#bdbcbc] p-1 rounded-sm'>
-                                <RiErrorWarningLine className='text-base' />
+                            {errorMsg !== '' && <div className='absolute bottom-0 left-1 md:text-[0.8rem] text-xs font-bold text-[#c42e2e] flex gap-0.5 bg-[#bdbcbc] p-1 rounded-sm'>
+                                <RiErrorWarningLine className='md:text-base text-sm' />
                                 <span>{errorMsg}</span>
-                                <Link to='/dashboard/verify-account' className='underline'>Click here</Link>
+                                <Link to='/dashboard/verify-account' onClick={MoveToTop} className='underline'>Click here</Link>
                             </div>}
                         </div>
                     </div>

@@ -18,18 +18,18 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
     const [showNotis, setShowNotis] = useState(false)
     const [mark, setMark] = useState(false)
     const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(3)
+    const [end, setEnd] = useState(5)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
 
-    const closer = useRef()
+    const toggler = useRef()
 
     useEffect(
         () => {
-            if (closer) {
+            if (toggler) {
                 window.addEventListener('click', (event) => {
-                    if (closer.current !== null) {
-                        if (!closer.current.contains(event.target)) {
+                    if (toggler.current !== null) {
+                        if (!toggler.current.contains(event.target)) {
                             setShowNotis(false)
                         }
                     }
@@ -57,10 +57,10 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
             let altend = end
             let altlengthstart = pagestart
 
-            altend += 3
+            altend += 5
             setEnd(altend)
 
-            altstart += 3
+            altstart += 5
             setStart(altstart)
 
             altlengthstart += 1
@@ -70,15 +70,15 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
 
     let BackNotisPage = () => {
 
-        if (end > 3) {
+        if (end > 5) {
             let altstart = start
             let altend = end
             let altlengthstart = pagestart
 
-            altend -= 3
+            altend -= 5
             setEnd(altend)
 
-            altstart -= 3
+            altstart -= 5
             setStart(altstart)
 
             altlengthstart -= 1
@@ -90,7 +90,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
         <div className='relative'>
 
             <>
-                <div className={`relative ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 3) }}>
+                <div className={`relative ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 5) }}>
                     <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer'>
                         <IoNotificationsOutline />
                     </div>
@@ -118,8 +118,8 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
             </>
 
 
-            <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:h-fit md:rounded-sm fixed top-0 left-0 h-screen w-full md:bg-zinc-400 bg-white z-50 py-3 px-2 text-black ${showNotis ? 'block' : 'hidden'}`} ref={closer}>
-                <div className='flex justify-between items-center mt-2 md:mt-0'>
+            <div className={`md:absolute md:top-12 md:-right-4 md:left-auto md:w-60 md:rounded-sm fixed top-0 left-0 md:h-fit h-screen overflow-y-auto w-full md:bg-zinc-400 bg-white z-50 text-black ${showNotis ? 'block' : 'hidden'}`} ref={toggler}>
+                <div className='flex justify-between items-center px-2 md:pt-3 pt-5'>
                     <div className='flex gap-1 items-center md:text-base text-2xl capitalize font-[800]'>
                         <div className='cursor-pointer md:hidden' onClick={() => setShowNotis(false)}><FaAngleLeft /></div>
                         <div>notifications</div>
@@ -135,21 +135,21 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
                     </div>
                 </div>
                 {notifications.length > 0 ?
-                    <div className='mt-2 md:mt-0'>
+                    <div className={`pt-2 md:pt-1 pb-4 px-2 ${notifications.length > 3 && 'md:h-[28rem]'} overflow-y-auto scrollDiv`}>
                         {notifications.slice(start, end).map((item, i) => (
                             <AdminNotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} setShowNotis={setShowNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} />
                         ))}
                     </div>
                     :
-                    <div className='mt-28 md:mt-12 flex flex-col gap-2 items-center justify-center'>
+                    <div className='pt-28 md:pt-12 pb-4 flex flex-col gap-2 items-center justify-center'>
                         <img src={nothnyet} className='md:h-20 h-48 w-auto'></img>
                         <div className='font-semibold text-xl md:text-base'>No notifications...</div>
                     </div>
                 }
-                {notifications.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end'>
-                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-300 cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
-                    {Math.ceil(pageend) > 1 && <div className='font-bold md:text-zinc-700 text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-300 cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
+                {notifications.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm md:p-2 pr-2 pb-4 justify-end'>
+                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-200 cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
+                    {Math.ceil(pageend) > 1 && <div className='font-bold text-zinc-700'>{pagestart} of {Math.ceil(pageend)}</div>}
+                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-200 cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
                 </div>}
             </div>
         </div>

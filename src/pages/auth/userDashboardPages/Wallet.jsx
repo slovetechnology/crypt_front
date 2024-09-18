@@ -150,7 +150,7 @@ const Wallet = () => {
                             </div>
                             <div className='flex flex-col gap-1'>
                                 <div>profit</div>
-                                <div className='text-[green] text-[0.85rem] font-bold'>{Object.values(testRun).length !== 0 ? <span>{testRun.profit_return.toLocaleString()}%</span> : <span>N/A</span>}</div>
+                                <div className='text-[green] text-[0.85rem] font-bold'>{Object.values(testRun).length !== 0 ? <span>{testRun.profit_return}%</span> : <span>N/A</span>}</div>
                             </div>
                             <Link to='/dashboard/deposit' className='flex flex-col gap-1' onClick={() => MoveToTop()}>
                                 <button className='outline-none flex items-center justify-center md:py-1 py-1.5 bg-[#130e27] w-20 h-fit rounded-[3px]  text-[0.7rem] text-[#c5c4c4] hover:bg-[#1a162b]'>purchase</button>

@@ -229,8 +229,8 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className=' justify-center mt-4 text-semi-white flex gap-2 items-center'>
-                        <div className='capitalize font-bold md:text-2xl text-lg'>{user.full_name}</div>
-                        <img className='md:h-4 h-2 w-auto' src={user.country_flag}></img>
+                        <div className='capitalize font-bold md:text-2xl text-lg'>{user?.full_name}</div>
+                        <img className='md:h-4 h-2 w-auto' src={user?.country_flag}></img>
                     </div>
                     <div className='text-light md:text-[0.8rem] text-xs text-center capitalize font-bold mt-2'>account trader</div>
                     <div className='mt-8 '>
@@ -238,7 +238,7 @@ const Profile = () => {
                             <div className='flex items-center gap-5'>
                                 <div className='flex flex-col gap-2'>
                                     <div className='md:text-[1.4rem] text-lg text-black'>Status</div>
-                                    <Link to='/dashboard/verify-account' onClick={() => MoveToTop()} >
+                                    <Link to='/dashboard/verify-account' onClick={MoveToTop} >
                                         {user.email_verified === 'true' || user.kyc_verified === 'true' ?
                                             <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
                                                 <span className='text-zinc-700'>verified</span>
@@ -262,7 +262,7 @@ const Profile = () => {
                                 <div className='flex flex-col gap-2'>
                                     <div className='md:text-[1.4rem] text-lg text-black '>joined</div>
                                     <div className='flex gap-1 items-center md:text-[0.8rem] text-xs'>
-                                        <span className='text-zinc-700'>{moment(user.createdAt).format('DD-MM-yyyy')}</span>
+                                        <span className='text-zinc-700'>{moment(user?.createdAt).format('DD-MM-yyyy')}</span>
                                         <MdOutlineDateRange className='text-light' />
                                     </div>
                                 </div>
@@ -279,7 +279,7 @@ const Profile = () => {
                             <div className='flex items-center justify-between'>
                                 <div className='capitalize'>referral id:</div>
                                 <div className='flex gap-4 items-center'>
-                                    <span>{user.referral_id}</span>
+                                    <span>{user?.referral_id}</span>
                                     <button className='outline-none w-fit h-fit py-1.5 px-2 text-[0.8rem] text-semi-white bg-[#594ca1] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()} type='button'>
                                         {!copy && <MdContentCopy />}
                                         {copy && <FaCheck />}
@@ -290,7 +290,7 @@ const Profile = () => {
                             <div className='flex justify-between items-center  capitalize'>
                                 <div>full name:</div>
                                 {!nameEdit && <div className='flex gap-4'>
-                                    <span>{user.full_name}</span>
+                                    <span>{user?.full_name}</span>
                                     <div className='text-[1.1rem] text-light cursor-pointer' onClick={() => { setNameEdit(!nameEdit) }}>
                                         <FaRegEdit />
                                     </div>
@@ -305,7 +305,7 @@ const Profile = () => {
                             <div className='flex justify-between items-center'>
                                 <div className=' capitalize'>username:</div>
                                 {!userEdit && <div className='flex gap-4'>
-                                    <span>{user.username}</span>
+                                    <span>{user?.username}</span>
                                     <div className='text-[1.1rem] text-light cursor-pointer' onClick={() => setUserEdit(!userEdit)}>
                                         <FaRegEdit />
                                     </div>
@@ -320,7 +320,7 @@ const Profile = () => {
                             <div className='flex justify-between items-center'>
                                 <div className=' capitalize'>email:</div>
                                 {!emailEdit && <div className='flex gap-4 lowercase'>
-                                    <span>{user.email}</span>
+                                    <span>{user?.email}</span>
                                     <div className='text-[1.1rem] text-light cursor-pointer' onClick={() => setEmailEdit(!emailEdit)}>
                                         <FaRegEdit />
                                     </div>
