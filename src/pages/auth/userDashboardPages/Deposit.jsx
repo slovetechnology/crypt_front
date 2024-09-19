@@ -41,7 +41,7 @@ const Deposit = () => {
             try {
                 const response = await UserGetApi(Apis.admin.get_trading_plans)
                 if (response.status === 200) {
-                    setTradingPlans(response.msg)
+                    // setTradingPlans(response.msg)
                 }
 
             } catch (error) {
@@ -223,8 +223,8 @@ const Deposit = () => {
                                                 ))}
                                             </div>
                                             :
-                                            <div className='flex flex-col -mt-4 items-center md:px-14 px-0'>
-                                                <img src={noplans} className='h-80 w-80'></img>
+                                            <div className='flex flex-col -mt-4 items-center md:px-14 px-1'>
+                                                <img src={noplans} className='md:h-80 h-72 w-auto'></img>
                                                 <div className='text-center text-lg'>Oops! No trading plans yet...</div>
                                             </div>
                                         }
