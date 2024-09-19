@@ -28,19 +28,19 @@ const Personalize = () => {
   const [loading, setLoading] = useState(false)
 
   const [profile, setProfile] = useState({
-    img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-    image: user.image
+    img: user.image ? `${imageurl}/profiles/${user?.image}` : avatar,
+    image: user?.image
   })
 
   const [form, setForm] = useState({
-    full_name: user.full_name,
-    email: user.email,
-    username: user.username,
+    full_name: user?.full_name,
+    email: user?.email,
+    username: user?.username,
     old_password: '',
     new_password: '',
-    facebook: adminStore.facebook,
-    instagram: adminStore.instagram,
-    telegram: adminStore.telegram
+    facebook: adminStore?.facebook,
+    instagram: adminStore?.instagram,
+    telegram: adminStore?.telegram
   })
 
   const formHandler = (event) => {
@@ -86,18 +86,18 @@ const Personalize = () => {
 
     setProfile({
       img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-      image: null
+      image: user?.image
     })
 
     setForm({
-      full_name: user.full_name,
-      email: user.email,
-      username: user.username,
+      full_name: user?.full_name,
+      email: user?.email,
+      username: user?.username,
       old_password: '',
       new_password: '',
-      facebook: adminStore.facebook,
-      instagram: adminStore.instagram,
-      telegram: adminStore.telegram
+      facebook: adminStore?.facebook,
+      instagram: adminStore?.instagram,
+      telegram: adminStore?.telegram
     })
   }
 
@@ -164,7 +164,7 @@ const Personalize = () => {
               <div className='absolute -bottom-5 right-0 md:text-sm text-xs text-[red] font-semibold'>{imageError}</div>
             </div>
             <div>
-              <div className='capitalize font-bold md:text-2xl text-lg text-center'>{user.full_name}</div>
+              <div className='capitalize font-bold md:text-2xl text-lg text-center'>{user?.full_name}</div>
               <div className='capitalize font-bold text-[#9f7ae7] text-center text-sm'>admin</div>
             </div>
           </div>

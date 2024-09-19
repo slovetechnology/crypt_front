@@ -17,13 +17,13 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
   const qrimgref = useRef()
 
   const [qrImg, setQrImg] = useState({
-    img: `${imageurl}/adminWallets/${singleWallet.qrcode_img}`,
-    image: singleWallet.qrcode_img
+    img: `${imageurl}/adminWallets/${singleWallet?.qrcode_img}`,
+    image: singleWallet?.qrcode_img
   })
 
   const [form, setForm] = useState({
-    address: singleWallet.address,
-    network: singleWallet.network,
+    address: singleWallet?.address,
+    network: singleWallet?.network,
   })
 
   const inputHandler = event => {
@@ -136,7 +136,7 @@ const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => 
             <div className='flex flex-col gap-4 mt-4 relative'>
               <div className='flex justify-between items-center'>
                 <div className='italic'>crypto / coin:</div>
-                <div className='capitalize'>{singleWallet.crypto_name}</div>
+                <div className='capitalize'>{singleWallet?.crypto_name}</div>
               </div>
               <div className='flex justify-between items-center'>
                 <div className='italic'>network:</div>

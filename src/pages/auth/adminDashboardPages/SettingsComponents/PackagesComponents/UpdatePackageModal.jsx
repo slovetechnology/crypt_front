@@ -10,7 +10,7 @@ import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 
 
 const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
-    const [type, setType] = useState(singlePlan.duration_type)
+    const [type, setType] = useState(singlePlan?.duration_type)
     const [typeShow, setTypeShow] = useState(false)
     const [error, setError] = useState('')
     const [deleteState, setDeleteState] = useState(false)
@@ -25,12 +25,12 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
     ]
 
     const [form, setForm] = useState({
-        title: singlePlan.title,
-        price_start: singlePlan.price_start,
-        price_limit: singlePlan.price_limit,
-        profit_return: singlePlan.profit_return,
-        plan_bonus: singlePlan.plan_bonus,
-        duration: singlePlan.duration,
+        title: singlePlan?.title,
+        price_start: singlePlan?.price_start,
+        price_limit: singlePlan?.price_limit,
+        profit_return: singlePlan?.profit_return,
+        plan_bonus: singlePlan?.plan_bonus,
+        duration: singlePlan?.duration,
     })
 
     const inputHandler = event => {

@@ -11,7 +11,7 @@ import ModalLayout from '../../utils/ModalLayout';
 const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
     const [message, setMessage] = useState('')
     const toggler = useRef()
-    const [status, setStatus] = useState(singleTax.status)
+    const [status, setStatus] = useState(singleTax?.status)
     const [statusShow, setStatusShow] = useState(false)
     const [loading, setLoading] = useState(false)
     const [update, setUpdate] = useState(false)

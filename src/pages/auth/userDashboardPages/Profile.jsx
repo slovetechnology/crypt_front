@@ -46,14 +46,14 @@ const Profile = () => {
     const navigate = useNavigate()
 
     const [profile, setProfile] = useState({
-        img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-        image: user.image
+        img: user.image ? `${imageurl}/profiles/${user?.image}` : avatar,
+        image: user?.image
     })
 
     const [form, setForm] = useState({
-        full_name: user.full_name,
-        email: user.email,
-        username: user.username,
+        full_name: user?.full_name,
+        email: user?.email,
+        username: user?.username,
         old_password: '',
         new_password: '',
         dl_password: ''
@@ -105,14 +105,14 @@ const Profile = () => {
 
         imgref.current.value = null
         setProfile({
-            img: user.image ? `${imageurl}/profiles/${user.image}` : avatar,
-            image: null
+            img: user.image ? `${imageurl}/profiles/${user?.image}` : avatar,
+            image: user?.image
         })
 
         setForm({
-            full_name: user.full_name,
-            email: user.email,
-            username: user.username,
+            full_name: user?.full_name,
+            email: user?.email,
+            username: user?.username,
             old_password: '',
             new_password: '',
         })
@@ -123,7 +123,7 @@ const Profile = () => {
             setCopy(false)
         }, 2000)
 
-        navigator.clipboard.writeText(user.referral_id)
+        navigator.clipboard.writeText(user?.referral_id)
         setCopy(true)
     }
 

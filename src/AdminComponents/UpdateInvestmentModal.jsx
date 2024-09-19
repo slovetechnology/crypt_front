@@ -10,7 +10,7 @@ import ModalLayout from '../utils/ModalLayout';
 
 const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestments }) => {
     const toggler = useRef()
-    const [status, setStatus] = useState(singleInvestment.status)
+    const [status, setStatus] = useState(singleInvestment?.status)
     const [statusShow, setStatusShow] = useState(false)
     const [loading, setLoading] = useState(false)
     const [update, setUpdate] = useState(false)

@@ -368,54 +368,54 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                             <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-2'>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>first name:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].first_name}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.first_name}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>last name:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].last_name}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.last_name}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>gender:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].gender}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.gender}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>marital status:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].marital_status}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.marital_status}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>country:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].country}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.country}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>date of birth:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].date_of_birth}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.date_of_birth}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>address:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].address}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.address}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>state:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].state}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.state}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>postal / zipcode:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].postal}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.postal}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>phone number:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].phone_code + singleUser.kycUser[0].phone_number}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.phone_code + singleUser.kycUser[0]?.phone_number}</div>
                                                 </div>
                                                 <div className='flex justify-between items-center'>
                                                     <div className='italic '>identification number:</div>
-                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0].id_number}</div>
+                                                    <div className='md:text-[0.95rem] text-sm'>{singleUser.kycUser[0]?.id_number}</div>
                                                 </div>
                                                 <div className='flex flex-col gap-2'>
                                                     <div className='flex justify-between items-center mt-3'>
                                                         <div className='italic '>valid ID:</div>
-                                                        <Image src={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} width={200}/>
+                                                        <Image src={`${imageurl}/identity/${singleUser.kycUser[0]?.valid_id}`} width={200}/>
                                                     </div>
-                                                    <a href={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} download="user valid ID">
+                                                    <a href={`${imageurl}/identity/${singleUser.kycUser[0]?.valid_id}`} download="user valid ID">
                                                         <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5'>
                                                             <span>Download</span>
                                                             <PiDownloadLight />
@@ -451,7 +451,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                         </div>}
                                                     </div>
                                                         :
-                                                        <div className={`md:text-base text-sm capitalize ${singleUser.kycUser[0].status === 'verified' && 'text-[green]'} ${singleUser.kycUser[0].status === 'failed' && 'text-[red]'}`}>{singleUser.kycUser[0].status}</div>
+                                                        <div className={`md:text-base text-sm capitalize ${singleUser.kycUser[0].status === 'verified' && 'text-[green]'} ${singleUser.kycUser[0].status === 'failed' && 'text-[red]'}`}>{singleUser.kycUser[0]?.status}</div>
                                                     }
                                                 </div>
                                             </div>}

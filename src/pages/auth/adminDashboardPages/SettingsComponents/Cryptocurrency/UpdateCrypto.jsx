@@ -17,12 +17,12 @@ const UpdateCrypto = ({ setScreen, singleCrypto, refetchCryptocurrency, refetchA
     const cryptoImgref = useRef()
 
     const [cryptoImg, setCryptoImg] = useState({
-        img: singleCrypto.id ? `${imageurl}/cryptocurrency/${singleCrypto.crypto_img}` : null,
-        image: singleCrypto.id ? singleCrypto.crypto_img : null
+        img: singleCrypto.id ? `${imageurl}/cryptocurrency/${singleCrypto?.crypto_img}` : null,
+        image: singleCrypto.id ? singleCrypto?.crypto_img : null
     })
 
     const [form, setForm] = useState({
-        crypto_name: singleCrypto.id ? singleCrypto.crypto_name : '',
+        crypto_name: singleCrypto.id ? singleCrypto?.crypto_name : '',
     })
 
     const inputHandler = event => {
