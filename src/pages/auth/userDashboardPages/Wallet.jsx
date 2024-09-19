@@ -140,7 +140,7 @@ const Wallet = () => {
                 <div className='mt-12 flex flex-col gap-1'>
                     <div className='text-semi-white md:text-sm text-[0.8rem] capitalize'>Try our test run package</div>
                     <div className='w-fit h-fit py-1 bg-[#130e27]'>
-                        <div className='w-full h-fit flex gap-10 md:gap-20  pl-10 pr-2 py-1 text-[0.55rem] items-center text-white uppercase relative bg-[#25203d]'>
+                        <div className='w-full h-fit flex gap-10 md:gap-20 pl-10 pr-2 py-1 text-[0.55rem] items-center text-white uppercase relative bg-[#25203d]'>
                             <div className='flex flex-col gap-1 items-center'>
                                 <div>price</div>
                                 <div className='flex items-center gap-1'>

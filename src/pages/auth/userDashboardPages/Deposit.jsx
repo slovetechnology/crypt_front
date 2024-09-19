@@ -41,7 +41,7 @@ const Deposit = () => {
             try {
                 const response = await UserGetApi(Apis.admin.get_trading_plans)
                 if (response.status === 200) {
-                    // setTradingPlans(response.msg)
+                    setTradingPlans(response.msg)
                 }
 
             } catch (error) {
