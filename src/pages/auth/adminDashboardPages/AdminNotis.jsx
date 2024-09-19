@@ -147,9 +147,9 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
                     </div>
                 }
                 {notifications.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm md:p-2 pr-2 pb-4 justify-end'>
-                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-200 cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
+                    {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-700 hover:text-zinc-200 cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold text-zinc-700'>{pagestart} of {Math.ceil(pageend)}</div>}
-                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-200 cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
+                    {end < notifications.length && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-700 hover:text-zinc-200 cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}
                 </div>}
             </div>
         </div>
