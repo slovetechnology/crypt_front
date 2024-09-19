@@ -131,7 +131,7 @@ const CreateWalletModal = ({ closeView, refetchAdminWallets, cryptocurrency }) =
                                                 ))}
                                             </>
                                             :
-                                            <div className='p-2 font-medium flex items-center justify-center'>
+                                            <div className='p-2 font-medium flex items-center justify-center lowercase'>
                                                <div>no crypto added...</div>
                                                <img src={nothnyet} className='h-3 w-auto'></img>
                                             </div>
