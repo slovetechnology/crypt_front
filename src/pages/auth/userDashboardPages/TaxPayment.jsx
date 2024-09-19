@@ -30,6 +30,7 @@ const TaxPayment = () => {
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
+    const [dataLoading, setDataLoading] = useState(true)
 
 
     const FetchTaxes = useCallback(async () => {
@@ -46,6 +47,8 @@ const TaxPayment = () => {
 
         } catch (error) {
             //
+        }finally{
+            setDataLoading(false)
         }
     }, [])
 
@@ -164,7 +167,7 @@ const TaxPayment = () => {
                                             <div className='md:h-[4.5rem] md:w-[4.5rem] w-[3.9rem] h-[3.9rem] rounded-full bg-[#252525] flex flex-col gap-1 items-center justify-center'>
                                                 <div className='italic md:text-[0.65rem] text-[0.6rem]'>low as</div>
                                                 <div className='flex items-center font-bold gap-[0.1rem] text-[#5BB4FD] md:text-base text-sm'>
-                                                    {Object.values(adminStore).length !== 0 &&<div className='md:text-base text-sm -ml-1'>{adminStore.tax_percentage}%</div>}
+                                                    {Object.values(adminStore).length !== 0 && <div className='md:text-base text-sm -ml-1'>{adminStore.tax_percentage}%</div>}
                                                 </div>
                                             </div>
                                         </div>
@@ -213,32 +216,41 @@ const TaxPayment = () => {
                                         <td className='text-center truncate  capitalize p-2'>status </td>
                                     </tr>
                                 </thead>
-                                {taxes.length > 0 &&
+                                {dataLoading ?
                                     <tbody>
-                                        {taxes.slice(start, end).map((item, i) => (
-                                            <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                                <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                                <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                                <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
-                                                <td className='p-4 text-center truncate'> {item.crypto}</td>
-                                                <td className='p-4 text-center truncate'> {item.network}</td>
-                                                <td className='p-4  text-center truncate'>{item.deposit_address?.slice(0, 5)}.....{item.deposit_address?.slice(-10)} </td>
-                                                <td className={`p-4  text-center truncate italic ${item.status === 'received' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                }
-                                {taxes.length < 1 &&
-                                    <tbody>
-                                        <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                            <td colSpan="7" className='py-2 italic text-center truncate'>
-                                                <div className='flex gap-1 items-center justify-center'>
-                                                    <span>no taxes found...</span>
-                                                    <img src={nothnyet} className='h-4 w-auto'></img>
-                                                </div>
-                                            </td>
+                                        <tr className='bg-gray-400 animate-pulse h-10'>
+                                            <td colSpan="7"></td>
                                         </tr>
                                     </tbody>
+                                    :
+                                    <>
+                                        {taxes.length > 0 ?
+                                            <tbody>
+                                                {taxes.slice(start, end).map((item, i) => (
+                                                    <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                                        <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
+                                                        <td className='p-4 text-center truncate'> {item.crypto}</td>
+                                                        <td className='p-4 text-center truncate'> {item.network}</td>
+                                                        <td className='p-4  text-center truncate'>{item.deposit_address?.slice(0, 5)}.....{item.deposit_address?.slice(-10)} </td>
+                                                        <td className={`p-4  text-center truncate italic ${item.status === 'received' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                            :
+                                            <tbody>
+                                                <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                                    <td colSpan="7" className='py-2 italic text-center truncate'>
+                                                        <div className='flex gap-1 items-center justify-center'>
+                                                            <span>no taxes found...</span>
+                                                            <img src={nothnyet} className='h-4 w-auto'></img>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </>
                                 }
                             </table>
                         </div>

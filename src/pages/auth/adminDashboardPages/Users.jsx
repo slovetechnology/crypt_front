@@ -28,7 +28,8 @@ const Users = () => {
   const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
-
+  const [dataLoading, setDataLoading] = useState(true)
+  
 
   const FetchAllUsers = useCallback(async () => {
     try {
@@ -46,6 +47,8 @@ const Users = () => {
 
     } catch (error) {
       //
+    }finally{
+      setDataLoading(false)
     }
   }, [])
 
@@ -172,24 +175,33 @@ const Users = () => {
                   <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
                 </tr>
               </thead>
-              {allusers.length > 0 &&
+              {dataLoading ?
                 <tbody>
-                  {allusers.slice(start, end).map((item, i) => (
-                    <UserTableBody key={i} item={item} setModal={setModal} setSingleUser={setSingleUser} setUserFigures={setUserFigures} />
-                  ))}
-                </tbody>
-              }
-              {allusers.length < 1 &&
-                <tbody>
-                  <tr className='text-black text-[0.8rem] bg-white font-[550]'>
-                    <td colSpan="6" className='py-2 italic text-center truncate'>
-                      <div className='flex gap-1 items-center justify-center'>
-                        <span>no users found...</span>
-                        <img src={nothnyet} className='h-4 w-auto'></img>
-                      </div>
-                    </td>
+                  <tr className='bg-gray-300 animate-pulse h-10'>
+                    <td colSpan="6"></td>
                   </tr>
                 </tbody>
+                :
+                <>
+                  {allusers.length > 0 ?
+                    <tbody>
+                      {allusers.slice(start, end).map((item, i) => (
+                        <UserTableBody key={i} item={item} setModal={setModal} setSingleUser={setSingleUser} setUserFigures={setUserFigures} />
+                      ))}
+                    </tbody>
+                    :
+                    <tbody>
+                      <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                        <td colSpan="6" className='py-2 italic text-center truncate'>
+                          <div className='flex gap-1 items-center justify-center'>
+                            <span>no users found...</span>
+                            <img src={nothnyet} className='h-4 w-auto'></img>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  }
+                </>
               }
             </table>
           </div>

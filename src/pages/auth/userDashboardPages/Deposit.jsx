@@ -32,7 +32,8 @@ const Deposit = () => {
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
-    const [pageloading, setPageLoading] = useState(true)
+    const [dataLoading, setDataLoading] = useState(true)
+    const [dataLoading2, setDataLoading2] = useState(true)
 
 
     useEffect(() => {
@@ -42,11 +43,11 @@ const Deposit = () => {
                 if (response.status === 200) {
                     setTradingPlans(response.msg)
                 }
-    
+
             } catch (error) {
                 //
             } finally {
-                setPageLoading(false)
+                setDataLoading(false)
             }
         }
         FetchTradingPlans()
@@ -67,6 +68,8 @@ const Deposit = () => {
 
         } catch (error) {
             //
+        }finally{
+            setDataLoading2(false)
         }
     }, [])
 
@@ -175,7 +178,7 @@ const Deposit = () => {
                                 <div className='border-t pt-2 text-center'>trading plans</div>
                             </div>
                             <div className={`w-fit h-[26rem] py-6 md:px-4 px-3 overflow-x-hidden ${modal || modal2 ? 'overflow-y-hidden' : 'overflow-y-auto'} scrollDiv`}>
-                                {pageloading ?
+                                {dataLoading ?
                                     <div className='grid grid-cols-2 md:gap-4 gap-2 justify-center'>
                                         {new Array(4).fill(0).map((ele, i) => (
                                             <div className='md:w-52 w-36 h-64 rounded-lg bg-gray-400 animate-pulse' key={i}>
@@ -257,32 +260,41 @@ const Deposit = () => {
                                         <td className='text-center truncate  capitalize p-2'>status </td>
                                     </tr>
                                 </thead>
-                                {deposits.length > 0 &&
+                                {dataLoading2 ?
                                     <tbody>
-                                        {deposits.slice(start, end).map((item, i) => (
-                                            <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                                <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                                <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                                <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
-                                                <td className='p-4 text-center truncate'> {item.crypto}</td>
-                                                <td className='p-4 text-center truncate'> {item.network}</td>
-                                                <td className='p-4  text-center truncate'>{item.deposit_address?.slice(0, 5)}.....{item.deposit_address?.slice(-10)} </td>
-                                                <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                }
-                                {deposits.length < 1 &&
-                                    <tbody>
-                                        <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                            <td colSpan="7" className='py-2 italic text-center truncate'>
-                                                <div className='flex gap-1 items-center justify-center'>
-                                                    <span>no deposits found...</span>
-                                                    <img src={nothnyet} className='h-4 w-auto'></img>
-                                                </div>
-                                            </td>
+                                        <tr className='bg-gray-400 animate-pulse h-10'>
+                                            <td colSpan="7"></td>
                                         </tr>
                                     </tbody>
+                                    :
+                                    <>
+                                        {deposits.length > 0 ?
+                                            <tbody>
+                                                {deposits.slice(start, end).map((item, i) => (
+                                                    <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                                        <td className='p-4 text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                                        <td className='p-4 text-center truncate'>${item.amount.toLocaleString()}</td>
+                                                        <td className='p-4 text-center truncate'> {item.crypto}</td>
+                                                        <td className='p-4 text-center truncate'> {item.network}</td>
+                                                        <td className='p-4  text-center truncate'>{item.deposit_address?.slice(0, 5)}.....{item.deposit_address?.slice(-10)} </td>
+                                                        <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'pending' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '} `}>{item.status}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                            :
+                                            <tbody>
+                                                <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                                    <td colSpan="7" className='py-2 italic text-center truncate'>
+                                                        <div className='flex gap-1 items-center justify-center'>
+                                                            <span>no deposits found...</span>
+                                                            <img src={nothnyet} className='h-4 w-auto'></img>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </>
                                 }
                             </table>
                         </div>

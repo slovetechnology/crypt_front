@@ -17,6 +17,17 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
     const [beforeshow, setBeforeshow] = useState(true)
     const [profitError, setProfitError] = useState(false)
     const [bonusError, setBonusError] = useState(false)
+    const [form, setForm] = useState({
+        profit: "",
+        bonus: ""
+    })
+
+    const inputHandler = event => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    }
 
     setTimeout(() => {
         setBeforeshow(false)
@@ -43,18 +54,6 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
         }
     }, [MoveToBottom]
     )
-
-    const [form, setForm] = useState({
-        profit: "",
-        bonus: ""
-    })
-
-    const inputHandler = event => {
-        setForm({
-            ...form,
-            [event.target.name]: event.target.value
-        })
-    }
 
     const UpdateHandlerForText = () => {
         if (form.profit === '' && form.bonus === '' && status === singleInvestment.status) {

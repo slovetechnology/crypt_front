@@ -22,6 +22,7 @@ const AddWallet = () => {
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
+  const [dataLoading, setDataLoading] = useState(true)
 
 
   const FetchCryptocurrency = useCallback(async () => {
@@ -33,6 +34,8 @@ const AddWallet = () => {
 
     } catch (error) {
       //
+    } finally {
+      setDataLoading(false)
     }
   }, [])
 
@@ -108,7 +111,7 @@ const AddWallet = () => {
       <div className='mt-10'>
         {modal && <UpdateWalletModal closeView={() => setModal(false)} singleWallet={singleWallet} refetchAdminWallets={FetchAdminWallets} />}
         {modal2 && <CreateWalletModal closeView={() => setModal2(false)} refetchAdminWallets={FetchAdminWallets} cryptocurrency={cryptocurrency} />}
-        {modal3 && <CryptocurrencyComponent  closeView={() => setModal3(false)} cryptocurrency={cryptocurrency} refetchCryptocurrency={FetchCryptocurrency} refetchAdminWallets={FetchAdminWallets}/>}
+        {modal3 && <CryptocurrencyComponent closeView={() => setModal3(false)} cryptocurrency={cryptocurrency} refetchCryptocurrency={FetchCryptocurrency} refetchAdminWallets={FetchAdminWallets} />}
 
         <div className='flex justify-between mb-2'>
           <button className='w-fit h-fit py-2.5 px-4 md:text-sm text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium flex items-center gap-1 justify-center' onClick={() => setModal3(true)}>
@@ -131,30 +134,39 @@ const AddWallet = () => {
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
-            {adminWallets.length > 0 &&
+            {dataLoading ?
               <tbody>
-                {adminWallets.slice(start, end).map((item, i) => (
-                  <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                    <td className='p-4  text-center truncate capitalize'>{item.crypto_name}</td>
-                    <td className='p-4  text-center truncate capitalize'>{item.network}</td>
-                    <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
-                    <td className='p-4  text-center truncate'><img src={`${imageurl}/adminWallets/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
-                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
-                  </tr>
-                ))}
-              </tbody>
-            }
-            {adminWallets.length < 1 &&
-              <tbody>
-                <tr className='text-black text-[0.8rem] bg-white font-[550]'>
-                  <td colSpan="5" className='py-2 italic text-center truncate'>
-                    <div className='flex gap-1 items-center justify-center'>
-                      <span>no wallets found...</span>
-                      <img src={nothnyet} className='h-4 w-auto'></img>
-                    </div>
-                  </td>
+                <tr className='bg-gray-300 animate-pulse h-10'>
+                  <td colSpan="5"></td>
                 </tr>
               </tbody>
+              :
+              <>
+                {adminWallets.length > 0 ?
+                  <tbody>
+                    {adminWallets.slice(start, end).map((item, i) => (
+                      <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
+                        <td className='p-4  text-center truncate capitalize'>{item.crypto_name}</td>
+                        <td className='p-4  text-center truncate capitalize'>{item.network}</td>
+                        <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
+                        <td className='p-4  text-center truncate'><img src={`${imageurl}/adminWallets/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
+                        <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  :
+                  <tbody>
+                    <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                      <td colSpan="5" className='py-2 italic text-center truncate'>
+                        <div className='flex gap-1 items-center justify-center'>
+                          <span>no wallets found...</span>
+                          <img src={nothnyet} className='h-4 w-auto'></img>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                }
+              </>
             }
           </table>
         </div>

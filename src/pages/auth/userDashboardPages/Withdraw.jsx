@@ -46,6 +46,7 @@ const Withdraw = () => {
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
     const [loading, setLoading] = useState(false)
+    const [dataLoading, setDataLoading] = useState(true)
 
     const [form, setForm] = useState({
         amount: '',
@@ -73,6 +74,8 @@ const Withdraw = () => {
 
         } catch (error) {
             //
+        } finally {
+            setDataLoading(false)
         }
     }, [])
 
@@ -221,7 +224,7 @@ const Withdraw = () => {
                                 <Link to='/dashboard/tax-payment' onClick={MoveToTop} className='w-fit ml-auto'>
                                     <button className='w-fit h-fit md:text-sm text-xs font-medium py-2 px-6 capitalize bg-[#252525] rounded-lg text-white flex items-center gap-1.5 justify-center'>
                                         <span>taxes</span>
-                                        <GiTwoCoins/>
+                                        <GiTwoCoins />
                                     </button>
                                 </Link>
                                 <div className='border-t pt-2 text-center'>Withdraw funds</div>
@@ -341,32 +344,41 @@ const Withdraw = () => {
                                     <td className='text-center truncate  capitalize p-2'>status </td>
                                 </tr>
                             </thead>
-                            {withdrawals.length > 0 &&
+                            {dataLoading ?
                                 <tbody>
-                                    {withdrawals.slice(start, end).map((item, i) => (
-                                        <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                            <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                            <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                            <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                                            <td className='p-4  text-center truncate'>{item.crypto}</td>
-                                            <td className='p-4  text-center truncate'>{item.network}</td>
-                                            <td className='p-4  text-center truncate'>{item.withdrawal_address?.slice(0, 5)}.....{item.withdrawal_address?.slice(-10)} </td>
-                                            <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            }
-                            {withdrawals.length < 1 &&
-                                <tbody>
-                                    <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                        <td colSpan="7" className='py-2 italic text-center truncate'>
-                                            <div className='flex gap-1 items-center justify-center'>
-                                                <span>no withdrawals found...</span>
-                                                <img src={nothnyet} className='h-4 w-auto'></img>
-                                            </div>
-                                        </td>
+                                    <tr className='bg-gray-400 animate-pulse h-10'>
+                                        <td colSpan="7"></td>
                                     </tr>
                                 </tbody>
+                                :
+                                <>
+                                    {withdrawals.length > 0 ?
+                                        <tbody>
+                                            {withdrawals.slice(start, end).map((item, i) => (
+                                                <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                                    <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                                                    <td className='p-4  text-center truncate'>{item.crypto}</td>
+                                                    <td className='p-4  text-center truncate'>{item.network}</td>
+                                                    <td className='p-4  text-center truncate'>{item.withdrawal_address?.slice(0, 5)}.....{item.withdrawal_address?.slice(-10)} </td>
+                                                    <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                        :
+                                        <tbody>
+                                            <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                                <td colSpan="7" className='py-2 italic text-center truncate'>
+                                                    <div className='flex gap-1 items-center justify-center'>
+                                                        <span>no withdrawals found...</span>
+                                                        <img src={nothnyet} className='h-4 w-auto'></img>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    }
+                                </>
                             }
                         </table>
                     </div>

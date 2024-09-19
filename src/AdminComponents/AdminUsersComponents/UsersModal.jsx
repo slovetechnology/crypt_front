@@ -20,19 +20,28 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
     const [beforeshow, setBeforeshow] = useState(true)
     const [screen, setScreen] = useState(1)
     const [fundScreen, setFundScreen] = useState(1)
-    const [fundAmount, setFundAmount] = useState('')
     const [withdrawalScreen, setWithdrawalScreen] = useState(1)
-    const [minimumAmount, setMinimumAmount] = useState('')
     const [suspendScreen, setSuspendScreen] = useState(1)
-    const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [eye, setEye] = useState(false)
     const EyeIcon = eye === true ? IoEye : IoMdEyeOff
-    const [message, setMessage] = useState('')
     const [status, setStatus] = useState(Object.values(singleUser).length !== 0 && singleUser.kycUser.length !== 0 && singleUser.kycUser[0].status)
     const [statusShow, setStatusShow] = useState(false)
     const [update, setUpdate] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [form, setForm] = useState({
+        fundAmount: '',
+        minimumAmount: '',
+        password: '',
+        message: ''
+    })
+
+    const formHandler = (event) => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    }
 
     setTimeout(() => {
         setBeforeshow(false)
@@ -54,7 +63,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
 
     useEffect(() => {
         if (!loading) {
-            if (suspendScreen !== 1 || fundScreen !== 1 || withdrawalScreen !== 1 || statusShow || message !== '') {
+            if (suspendScreen !== 1 || fundScreen !== 1 || withdrawalScreen !== 1 || statusShow || form.message !== '') {
                 MoveToBottom()
             }
         }
@@ -66,24 +75,24 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
         }, 1500)
 
         if (fundScreen !== 1) {
-            if (!fundAmount) return setError('enter an amount')
-            if (isNaN(fundAmount)) return setError('must be a number')
+            if (!form.fundAmount) return setError('enter an amount')
+            if (isNaN(form.fundAmount)) return setError('must be a number')
         }
 
         if (withdrawalScreen !== 1) {
-            if (!minimumAmount) return setError('enter an amount')
-            if (isNaN(minimumAmount)) return setError('must be a number')
+            if (!form.minimumAmount) return setError('enter an amount')
+            if (isNaN(form.minimumAmount)) return setError('must be a number')
         }
 
         if (suspendScreen !== 1) {
-            if (!password) return setError('field cannot be void')
+            if (!form.password) return setError('field cannot be void')
         }
 
         const formbody = {
             user_id: singleUser.id,
-            password: password,
-            fundAmount: parseFloat(fundAmount),
-            minimumAmount: parseFloat(minimumAmount)
+            password: form.password,
+            fundAmount: parseFloat(form.fundAmount),
+            minimumAmount: parseFloat(form.minimumAmount)
         }
 
         setLoading(true)
@@ -106,7 +115,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
     }
 
     const UpdateHandlerForText = () => {
-        if (message === '' && status === singleUser.kycUser[0].status) {
+        if (form.message === '' && status === singleUser.kycUser[0].status) {
             setUpdate(false)
         } else {
             setUpdate(true)
@@ -116,7 +125,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
     const UpdateHandlerForStatus = (item) => {
         setStatus(item)
         setStatusShow(false)
-        if (item === singleUser.kycUser[0].status && message === '') {
+        if (item === singleUser.kycUser[0].status && form.message === '') {
             setUpdate(false)
         } else {
             setUpdate(true)
@@ -127,7 +136,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
 
         const formbody = {
             kyc_id: singleUser.kycUser[0].id,
-            message: message,
+            message: form.message,
             status: status,
         }
 
@@ -169,7 +178,8 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                             <button className={`py-1 px-4 text-sm font-medium rounded-full ${screen === 2 ? 'bg-[#7c6d9e] text-white' : 'bg-[#c9b8eb] text-[#363636]'}`} onClick={() => setScreen(2)}>kyc field</button>
                                         </div>
                                     }
-                                </>}
+                                </>
+                            }
                             {screen === 1 &&
                                 <div className='flex flex-col gap-8'>
                                     <div className='flex flex-col gap-4 border p-1'>
@@ -226,117 +236,126 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                             </div>
                                         </div>
                                     </div>}
-                                    {singleUser.role !== 'admin' && <div className='mt-4'>
-                                        {fundScreen === 1 ?
-                                            <div className='flex justify-center'>
-                                                <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setFundScreen(2); setSuspendScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>fund account</button>
-                                            </div>
-                                            :
-                                            <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
-                                                {loading && <Loading />}
-                                                <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setFundScreen(1)} />
-                                                <div className='font-[650] border-b text-center uppercase'>Fund {singleUser.username} account</div>
-                                                <div className='flex flex-col gap-8 items-center justify-center mt-6'>
-                                                    <div className='flex flex-col gap-1'>
-                                                        <div className='text-[0.8rem] capitalize'>Enter an amount ($)</div>
-                                                        <div className='relative'>
-                                                            <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' value={fundAmount} onChange={e => setFundAmount(e.target.value)}></input>
-                                                            <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
-                                                        </div>
-                                                    </div>
-                                                    <div className='mx-auto'>
-                                                        <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>send funds</button>
-                                                    </div>
+                                    {singleUser.role !== 'admin' &&
+                                        <div className='mt-4'>
+                                            {fundScreen === 1 ?
+                                                <div className='flex justify-center'>
+                                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setFundScreen(2); setSuspendScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>fund account</button>
                                                 </div>
-                                            </div>
-                                        }
-                                    </div>}
-                                    {singleUser.role !== 'admin' && <div className='mt-2'>
-                                        {withdrawalScreen === 1 ?
-                                            <div className='flex justify-center'>
-                                                <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setWithdrawalScreen(2); setSuspendScreen(1); setFundScreen(1); MoveToBottom() }}>set withdrawal minimum</button>
-                                            </div>
-                                            :
-                                            <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
-                                                {loading && <Loading />}
-                                                <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setWithdrawalScreen(1)} />
-                                                <div className='font-[650] border-b text-center uppercase'>set {singleUser.username} withdrawal minimum</div>
-                                                <div className='flex flex-col gap-8 items-center justify-center mt-6'>
-                                                    <div className='flex gap-4 items-center'>
+                                                :
+                                                <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                                    {loading && <Loading />}
+                                                    <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setFundScreen(1)} />
+                                                    <div className='font-[650] border-b text-center uppercase'>Fund {singleUser?.username} account</div>
+                                                    <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                                         <div className='flex flex-col gap-1'>
                                                             <div className='text-[0.8rem] capitalize'>Enter an amount ($)</div>
                                                             <div className='relative'>
-                                                                <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' value={minimumAmount} onChange={e => setMinimumAmount(e.target.value)}></input>
+                                                                <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' name='fundAmount' value={form.fundAmount} onChange={formHandler}></input>
                                                                 <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
                                                             </div>
                                                         </div>
-                                                        <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
-                                                            <div>current:</div>
-                                                            {Object.values(singleUser).length !== 0 && <div>${singleUser.withdrawal_minimum.toLocaleString()}</div>}
+                                                        <div className='mx-auto'>
+                                                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>send funds</button>
                                                         </div>
-                                                    </div>
-                                                    <div className='mx-auto'>
-                                                        <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>set</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-                                    </div>}
-                                    {singleUser.id !== 1 && <div className='mt-2'>
-                                        {suspendScreen === 1 &&
-                                            <div className='flex justify-center'>
-                                                <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setSuspendScreen(2); setFundScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>{singleUser.suspend === 'true' ? 'unsuspend' : 'suspend'} account</button>
-                                            </div>
-                                        }
-                                        {suspendScreen !== 1 && <div className='w-fit h-fit md:p-8 p-4 rounded-md bg-white adsha mx-auto  text-black relative'>
-                                            {loading && <Loading />}
-                                            {suspendScreen === 2 &&
-                                                <div className='flex flex-col gap-8 items-center justify-center'>
-                                                    <div className='flex flex-col gap-2'>
-                                                        <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>{singleUser.suspend === 'true' ? 'Are you sure you want to unsuspend this user?' : 'Are you sure you want to suspend this user?'}</div>
-                                                        <div className='flex justify-center items-center gap-0.5  text-xs font-medium'>
-                                                            <span className='text-center'>{singleUser.suspend === 'true' ? 'User will be now be able to access account' : 'User will be unable to access account'}</span>
-                                                            <PiWarningCircleBold className='text-[red]' />
-                                                        </div>
-                                                    </div>
-                                                    <div className='flex md:gap-16 gap-4 items-center'>
-                                                        <button className='outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setSuspendScreen(1)}>
-                                                            <span>cancel action</span>
-                                                            <FaRegRectangleXmark />
-                                                        </button>
-                                                        <button className={`outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '} rounded-md capitalize flex items-center gap-1 font-bold`} onClick={() => setSuspendScreen(3)}>
-                                                            <span>proceed action</span>
-                                                            <MdOutlineDeleteForever />
-                                                        </button>
                                                     </div>
                                                 </div>
                                             }
-                                            {suspendScreen === 3 && <div className='flex flex-col gap-2 items-center justify-center'>
-                                                <div className='md:text-[1.1rem] text-sm font-medium text-center'>{singleUser.suspend === 'true' ? `Last step to unsuspend ${singleUser.username}'s account!` : `Last step to suspend ${singleUser.username}'s account!`}</div>
-                                                <div className='flex gap-1 items-center justify-center text-xs text-[red]'>
-                                                    <span className='text-black font-medium text-center'>Admin, enter your password to finalize action</span>
-                                                    <SlLockOpen />
+                                        </div>
+                                    }
+                                    {singleUser.role !== 'admin' &&
+                                        <div className='mt-2'>
+                                            {withdrawalScreen === 1 ?
+                                                <div className='flex justify-center'>
+                                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setWithdrawalScreen(2); setSuspendScreen(1); setFundScreen(1); MoveToBottom() }}>set withdrawal minimum</button>
                                                 </div>
-                                                <div className='flex flex-col gap-8 items-center justify-center mt-4'>
-                                                    <div className='relative'>
-                                                        <input className='outline-none border border-[#9f7ae7] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-[4px] pl-2 pr-7 py-1 text-black ipt' placeholder='Enter your password' value={password} onChange={e => setPassword(e.target.value)} type={`${eye === true ? 'text' : 'password'}`}></input>
-                                                        <EyeIcon className='absolute top-2 right-2 text-lg text-[red] cursor-pointer' onClick={() => setEye(!eye)} />
-                                                        <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
-                                                    </div>
-                                                    <div className='flex md:gap-16 gap-4 items-center'>
-                                                        <button className='outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setSuspendScreen(1); setPassword('') }}>
-                                                            <span>cancel action</span>
-                                                            <FaRegRectangleXmark />
-                                                        </button>
-                                                        <button className={`outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '}  rounded-md capitalize flex items-center gap-1 font-bold`} onClick={UpdateUser}>
-                                                            <span>{singleUser.suspend === 'true' ? 'unsuspend' : 'suspend'} account</span>
-                                                            <MdOutlineDeleteForever />
-                                                        </button>
+                                                :
+                                                <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                                    {loading && <Loading />}
+                                                    <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setWithdrawalScreen(1)} />
+                                                    <div className='font-[650] border-b text-center uppercase'>set {singleUser?.username} withdrawal minimum</div>
+                                                    <div className='flex flex-col gap-8 items-center justify-center mt-6'>
+                                                        <div className='flex gap-4 items-center'>
+                                                            <div className='flex flex-col gap-1'>
+                                                                <div className='text-[0.8rem] capitalize'>Enter an amount ($)</div>
+                                                                <div className='relative'>
+                                                                    <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' name='minimumAmount' value={form.minimumAmount} onChange={formHandler}></input>
+                                                                    <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
+                                                                <div>current:</div>
+                                                                {Object.values(singleUser).length !== 0 && <div>${singleUser.withdrawal_minimum.toLocaleString()}</div>}
+                                                            </div>
+                                                        </div>
+                                                        <div className='mx-auto'>
+                                                            <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>set</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>}
-                                        </div>}
-                                    </div>}
+                                            }
+                                        </div>
+                                    }
+                                    {singleUser.id !== 1 &&
+                                        <div className='mt-2'>
+                                            {suspendScreen === 1 ?
+                                                <div className='flex justify-center'>
+                                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setSuspendScreen(2); setFundScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>{singleUser.suspend === 'true' ? 'unsuspend' : 'suspend'} account</button>
+                                                </div>
+                                                :
+                                                <div className='w-fit h-fit md:p-8 p-4 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                                    {loading && <Loading />}
+                                                    {suspendScreen === 2 &&
+                                                        <div className='flex flex-col gap-8 items-center justify-center'>
+                                                            <div className='flex flex-col gap-2'>
+                                                                <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>{singleUser.suspend === 'true' ? 'Are you sure you want to unsuspend this user?' : 'Are you sure you want to suspend this user?'}</div>
+                                                                <div className='flex justify-center items-center gap-0.5  text-xs font-medium'>
+                                                                    <span className='text-center'>{singleUser.suspend === 'true' ? 'User will be now be able to access account' : 'User will be unable to access account'}</span>
+                                                                    <PiWarningCircleBold className='text-[red]' />
+                                                                </div>
+                                                            </div>
+                                                            <div className='flex md:gap-16 gap-4 items-center'>
+                                                                <button className='outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => setSuspendScreen(1)}>
+                                                                    <span>cancel action</span>
+                                                                    <FaRegRectangleXmark />
+                                                                </button>
+                                                                <button className={`outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '} rounded-md capitalize flex items-center gap-1 font-bold`} onClick={() => setSuspendScreen(3)}>
+                                                                    <span>proceed action</span>
+                                                                    <MdOutlineDeleteForever />
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                    {suspendScreen === 3 &&
+                                                        <div className='flex flex-col gap-2 items-center justify-center'>
+                                                            <div className='md:text-[1.1rem] text-sm font-medium text-center'>{singleUser.suspend === 'true' ? `Last step to unsuspend ${singleUser?.username}'s account!` : `Last step to suspend ${singleUser?.username}'s account!`}</div>
+                                                            <div className='flex gap-1 items-center justify-center text-xs text-[red]'>
+                                                                <span className='text-black font-medium text-center'>Admin, enter your password to finalize action</span>
+                                                                <SlLockOpen />
+                                                            </div>
+                                                            <div className='flex flex-col gap-8 items-center justify-center mt-4'>
+                                                                <div className='relative'>
+                                                                    <input className='outline-none border border-[#9f7ae7] bg-transparent lg:text-[0.85rem] text-base w-52 h-8 rounded-[4px] pl-2 pr-7 py-1 text-black ipt' placeholder='Enter your password' name='password' value={form.password} onChange={formHandler} type={`${eye === true ? 'text' : 'password'}`}></input>
+                                                                    <EyeIcon className='absolute top-2 right-2 text-lg text-[red] cursor-pointer' onClick={() => setEye(!eye)} />
+                                                                    <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
+                                                                </div>
+                                                                <div className='flex md:gap-16 gap-4 items-center'>
+                                                                    <button className='outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white  bg-[#5e5d5d] rounded-md capitalize flex items-center gap-1 font-bold' type='button' onClick={() => { setSuspendScreen(1); setPassword('') }}>
+                                                                        <span>cancel action</span>
+                                                                        <FaRegRectangleXmark />
+                                                                    </button>
+                                                                    <button className={`outline-none w-fit h-fit py-2 md:px-4 px-3 md:text-xs text-[0.7rem] text-white ${singleUser.suspend === 'true' ? 'bg-[#584383]' : 'bg-[#7e3232] '}  rounded-md capitalize flex items-center gap-1 font-bold`} onClick={UpdateUser}>
+                                                                        <span>{singleUser.suspend === 'true' ? 'unsuspend' : 'suspend'} account</span>
+                                                                        <MdOutlineDeleteForever />
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        </div>
+                                    }
                                 </div>
                             }
                             {screen === 2 &&
@@ -394,7 +413,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                 <div className='flex flex-col gap-2'>
                                                     <div className='flex justify-between items-center mt-3'>
                                                         <div className='italic '>valid ID:</div>
-                                                        <Image src={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} height={200} />
+                                                        <Image src={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} width={200}/>
                                                     </div>
                                                     <a href={`${imageurl}/identity/${singleUser.kycUser[0].valid_id}`} download="user valid ID">
                                                         <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5'>
@@ -405,7 +424,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                 </div>
                                                 <div className='flex justify-between items-center mt-3'>
                                                     <div className='italic '>message:</div>
-                                                    <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
+                                                    <textarea placeholder='Provide a reason for failed verification...' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' name='message' value={form.message} onChange={formHandler} onKeyUp={UpdateHandlerForText}></textarea>
                                                 </div>
                                                 <div className='flex justify-between items-center my-6'>
                                                     <div className='italic'>status:</div>

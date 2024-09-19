@@ -30,8 +30,26 @@ const Investment = () => {
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
-    const [pageloading, setPageLoading] = useState(true)
+    const [dataLoading, setDataLoading] = useState(true)
+    const [dataLoading2, setDataLoading2] = useState(true)
 
+
+    const FetchInvestmentUnclaim = useCallback(async () => {
+        try {
+            const response = await UserGetApi(Apis.investment.user_unclaim)
+            if (response.status === 200) {
+                setInvestUnclaim(response.msg)
+            }
+
+        } catch (error) {
+        } finally {
+            setDataLoading(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        FetchInvestmentUnclaim()
+    }, [FetchInvestmentUnclaim])
 
     const FetchInvestment = useCallback(async () => {
         try {
@@ -43,29 +61,14 @@ const Investment = () => {
             }
 
         } catch (error) {
+        } finally {
+            setDataLoading2(false)
         }
     }, [])
 
     useEffect(() => {
         FetchInvestment()
     }, [FetchInvestment])
-
-    const FetchInvestmentUnclaim = useCallback(async () => {
-        try {
-            const response = await UserGetApi(Apis.investment.user_unclaim)
-            if (response.status === 200) {
-                setInvestUnclaim(response.msg)
-            }
-
-        } catch (error) {
-        } finally {
-            setPageLoading(false)
-        }
-    }, [])
-
-    useEffect(() => {
-        FetchInvestmentUnclaim()
-    }, [FetchInvestmentUnclaim])
 
 
     const HandleSearch = () => {
@@ -151,17 +154,21 @@ const Investment = () => {
                     </div>}
                 </div>
 
-                {pageloading ?
-                    <div className='flex flex-col gap-4 mt-10'>
-                        <div className='w-28 h-2 bg-slate-300 animate-pulse rounded-full'></div>
-                        <div className='flex flex-wrap gap-4 items-center justify-center'>
-                            {new Array(4).fill(0).map((ele, i) => (
-                                <div className='md:w-44 w-[9.5rem] h-20 rounded-[10px] bg-slate-300 animate-pulse' key={i}>
+                {dataLoading ?
+                    <>
+                        {new Array(2).fill(0).map((ele, i) => (
+                            <div className='flex flex-col gap-4 mt-10'>
+                                <div className='w-28 h-2 bg-slate-300 animate-pulse rounded-full'></div>
+                                <div className='flex flex-wrap gap-4 items-center justify-center'>
+                                    {new Array(4).fill(0).map((ele, i) => (
+                                        <div className='md:w-44 w-[9.5rem] h-20 rounded-[10px] bg-slate-300 animate-pulse' key={i}>
+                                        </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                        <div className='rounded-full w-32 h-9 bg-slate-300 animate-pulse'></div>
-                    </div>
+                                <div className='rounded-full w-32 h-9 bg-slate-300 animate-pulse'></div>
+                            </div>
+                        ))}
+                    </>
                     :
                     <>
                         {screen === 1 &&
@@ -273,33 +280,42 @@ const Investment = () => {
                                         <td className='text-center  capitalize p-2 truncate'>claim</td>
                                     </tr>
                                 </thead>
-                                {investment.length > 0 &&
+                                {dataLoading2 ?
                                     <tbody>
-                                        {investment.slice(start, end).map((item, i) => (
-                                            <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                                <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                                <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                                <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                                                <td className='p-4  text-center truncate'>{item.trading_plan}</td>
-                                                <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
-                                                <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
-                                                <td className={`p-4  text-center truncate italic ${item.status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.status}</td>
-                                                <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.claim} </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                }
-                                {investment.length < 1 &&
-                                    <tbody>
-                                        <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                            <td colSpan="8" className='py-2 italic text-center truncate'>
-                                                <div className='flex gap-1 items-center justify-center'>
-                                                    <span>no investments found...</span>
-                                                    <img src={nothnyet} className='h-4 w-auto'></img>
-                                                </div>
-                                            </td>
+                                        <tr className='bg-gray-400 animate-pulse h-10'>
+                                            <td colSpan="8"></td>
                                         </tr>
                                     </tbody>
+                                    :
+                                    <>
+                                        {investment.length > 0 ?
+                                            <tbody>
+                                                {investment.slice(start, end).map((item, i) => (
+                                                    <tr className='text-[0.8rem] text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                                        <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                                                        <td className='p-4  text-center truncate'>{item.trading_plan}</td>
+                                                        <td className='p-4  text-center truncate'>${item.profit.toLocaleString()}</td>
+                                                        <td className='p-4  text-center truncate'>${item.bonus.toLocaleString()}</td>
+                                                        <td className={`p-4  text-center truncate italic ${item.status === 'completed' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.status}</td>
+                                                        <td className={`p-4  text-center truncate italic ${item.claim === 'true' ? 'text-[#adad40]' : 'text-[#6f6ff5]'}`}>{item.claim} </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                            :
+                                            <tbody>
+                                                <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                                    <td colSpan="8" className='py-2 italic text-center truncate'>
+                                                        <div className='flex gap-1 items-center justify-center'>
+                                                            <span>no investments found...</span>
+                                                            <img src={nothnyet} className='h-4 w-auto'></img>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </>
                                 }
                             </table>
                         </div>

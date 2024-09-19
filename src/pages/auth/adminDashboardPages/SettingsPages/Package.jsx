@@ -19,6 +19,7 @@ const Package = () => {
   const [end, setEnd] = useState(5)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
+  const [dataLoading, setDataLoading] = useState(true)
 
   const FetchTradingPlans = useCallback(async () => {
     try {
@@ -33,6 +34,8 @@ const Package = () => {
 
     } catch (error) {
       //
+    }finally{
+      setDataLoading(false)
     }
   }, [])
 
@@ -105,32 +108,41 @@ const Package = () => {
                 <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
               </tr>
             </thead>
-            {tradingPlans.length > 0 &&
+            {dataLoading ?
               <tbody>
-                {tradingPlans.slice(start, end).map((item, i) => (
-                  <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
-                    <td className='p-4  text-center truncate capitalize'>{item.title}</td>
-                    <td className={`p-4  text-center truncate`}>${item.price_start.toLocaleString()}</td>
-                    <td className='p-4  text-center truncate capitalize'>${item.price_limit.toLocaleString()}</td>
-                    <td className='p-4  text-center truncate capitalize'>{item.profit_return}%</td>
-                    <td className='p-4  text-center truncate capitalize'>${item.plan_bonus.toLocaleString()}</td>
-                    <td className='p-4  text-center truncate capitalize'>{item.duration + item.duration_type}</td>
-                    <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SinglePlanFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
-                  </tr>
-                ))}
-              </tbody>
-            }
-            {tradingPlans.length < 1 &&
-              <tbody>
-                <tr className='text-black text-[0.8rem] bg-white font-[550]'>
-                  <td colSpan="7" className='py-2 italic text-center truncate'>
-                    <div className='flex gap-1 items-center justify-center'>
-                      <span>no trading plans found...</span>
-                      <img src={nothnyet} className='h-4 w-auto'></img>
-                    </div>
-                  </td>
+                <tr className='bg-gray-300 animate-pulse h-10'>
+                  <td colSpan="7"></td>
                 </tr>
               </tbody>
+              :
+              <>
+                {tradingPlans.length > 0 ?
+                  <tbody>
+                    {tradingPlans.slice(start, end).map((item, i) => (
+                      <tr className='text-[0.8rem]  text-black font-[550] bg-white even:bg-semi-white' key={i}>
+                        <td className='p-4  text-center truncate capitalize'>{item.title}</td>
+                        <td className={`p-4  text-center truncate`}>${item.price_start.toLocaleString()}</td>
+                        <td className='p-4  text-center truncate capitalize'>${item.price_limit.toLocaleString()}</td>
+                        <td className='p-4  text-center truncate capitalize'>{item.profit_return}%</td>
+                        <td className='p-4  text-center truncate capitalize'>${item.plan_bonus.toLocaleString()}</td>
+                        <td className='p-4  text-center truncate capitalize'>{item.duration + item.duration_type}</td>
+                        <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SinglePlanFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
+                      </tr>
+                    ))}
+                  </tbody>
+                  :
+                  <tbody>
+                    <tr className='text-black text-[0.8rem] bg-white font-[550]'>
+                      <td colSpan="7" className='py-2 italic text-center truncate'>
+                        <div className='flex gap-1 items-center justify-center'>
+                          <span>no trading plans found...</span>
+                          <img src={nothnyet} className='h-4 w-auto'></img>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                }
+              </>
             }
           </table>
         </div>
