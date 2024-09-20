@@ -19,7 +19,7 @@ const AddWallet = () => {
   const [modal3, setModal3] = useState(false)
   const [singleWallet, setSingleWallet] = useState({})
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(5)
+  const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
   const [dataLoading, setDataLoading] = useState(true)
@@ -48,9 +48,9 @@ const AddWallet = () => {
       const response = await UserGetApi(Apis.admin.get_admin_wallets)
       if (response.status === 200) {
         setAdminWallets(response.msg)
-        setpageend(response.msg.length / end)
+        setpageend(response.msg.length / 6)
         setStart(0)
-        setEnd(5)
+        setEnd(6)
         setpagestart(1)
       }
 
@@ -75,10 +75,10 @@ const AddWallet = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 5
+      altend += 6
       setEnd(altend)
 
-      altstart += 5
+      altstart += 6
       setStart(altstart)
 
       altlengthstart += 1
@@ -88,15 +88,15 @@ const AddWallet = () => {
 
   let BackPage = () => {
 
-    if (end > 5) {
+    if (end > 6) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 5
+      altend -= 6
       setEnd(altend)
 
-      altstart -= 5
+      altstart -= 6
       setStart(altstart)
 
       altlengthstart -= 1

@@ -32,7 +32,7 @@ const UpdateDeposits = () => {
       if (response.status === 200) {
         setAllDeposits(response.msg)
         setOriginal(response.msg)
-        setpageend(response.msg.length / end)
+        setpageend(response.msg.length / 6)
         setStart(0)
         setEnd(6)
         setpagestart(1)
@@ -68,7 +68,7 @@ const UpdateDeposits = () => {
     }
     else {
       setWrite(true)
-      const showSearch = altDeposits.filter(item => item.depositUser.username.includes(search.toLowerCase()) || item.depositUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
+      const showSearch = altDeposits.filter(item => item.depositUser.username.includes(search.toLowerCase()) || item.depositUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search) || item.amount.toString().includes(search) || item.crypto.toLowerCase().includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllDeposits(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)

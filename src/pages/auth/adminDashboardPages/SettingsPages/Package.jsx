@@ -16,7 +16,7 @@ const Package = () => {
   const [modal2, setModal2] = useState(false)
   const [singlePlan, setSinglePlan] = useState({})
   const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(5)
+  const [end, setEnd] = useState(6)
   const [pagestart, setpagestart] = useState(1)
   const [pageend, setpageend] = useState(0)
   const [dataLoading, setDataLoading] = useState(true)
@@ -26,9 +26,9 @@ const Package = () => {
       const response = await UserGetApi(Apis.admin.get_trading_plans)
       if (response.status === 200) {
         setTradingPlans(response.msg)
-        setpageend(response.msg.length / end)
+        setpageend(response.msg.length / 6)
         setStart(0)
-        setEnd(5)
+        setEnd(6)
         setpagestart(1)
       }
 
@@ -55,10 +55,10 @@ const Package = () => {
       let altend = end
       let altlengthstart = pagestart
 
-      altend += 5
+      altend += 6
       setEnd(altend)
 
-      altstart += 5
+      altstart += 6
       setStart(altstart)
 
       altlengthstart += 1
@@ -68,15 +68,15 @@ const Package = () => {
 
   let BackPage = () => {
 
-    if (end > 5) {
+    if (end > 6) {
       let altstart = start
       let altend = end
       let altlengthstart = pagestart
 
-      altend -= 5
+      altend -= 6
       setEnd(altend)
 
-      altstart -= 5
+      altstart -= 6
       setStart(altstart)
 
       altlengthstart -= 1
@@ -96,7 +96,7 @@ const Package = () => {
           <IoIosAddCircleOutline className='text-base' />
         </button>
         <div className='relative overflow-x-auto shadow-xl rounded-lg scrollsdown'>
-          <table className='w-full '>
+          <table className='w-full'>
             <thead >
               <tr className='bg-admin-page text-[0.8rem] font-bold text-white'>
                 <td className='text-center truncate  capitalize p-2 '>title</td>

@@ -30,7 +30,7 @@ const Withdrawals = () => {
             if (response.status === 200) {
                 setAllWithdrawals(response.msg)
                 setOriginal(response.msg)
-                setpageend(response.msg.length / end)
+                setpageend(response.msg.length / 6)
                 setStart(0)
                 setEnd(6)
                 setpagestart(1)
@@ -66,7 +66,7 @@ const Withdrawals = () => {
         }
         else {
             setWrite(true)
-            const showSearch = altwithdrawals.filter(item => item.wthUser.username.includes(search.toLowerCase()) || item.wthUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
+            const showSearch = altwithdrawals.filter(item => item.wthUser.username.includes(search.toLowerCase()) || item.wthUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
             setpageend(showSearch.length / 6)
             setpagestart(1)

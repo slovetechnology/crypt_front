@@ -11,7 +11,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import Dashboard from './Dashboard';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Apis, UserGetApi } from '../../../services/API';
-import ClaimButtons from '../../../UserComponents/InvestmentComponents/ClaimButtons';
+import ClaimButtons from '../../../UserComponents/ClaimButtons';
 import { MoveToTop } from '../../../utils/utils';
 import lines from '../../../assets/images/lines2.png'
 
@@ -57,7 +57,7 @@ const Investment = () => {
             if (response.status === 200) {
                 setInvestment(response.msg)
                 setOriginal(response.msg)
-                setpageend(response.msg.length / end)
+                setpageend(response.msg.length / 6)
             }
 
         } catch (error) {
@@ -83,7 +83,7 @@ const Investment = () => {
 
         } else {
             setWrite(true)
-            const showSearch = altinvestment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
+            const showSearch = altinvestment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search) || moment(item.createdAt).format('h:mm').includes(search) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
             setInvestment(showSearch)
             setpageend(showSearch.length / 6)
             setpagestart(1)
@@ -157,7 +157,7 @@ const Investment = () => {
                 {dataLoading ?
                     <>
                         {new Array(2).fill(0).map((ele, i) => (
-                            <div className='flex flex-col gap-4 mt-10'>
+                            <div className='flex flex-col gap-4 mt-10' key={i}>
                                 <div className='w-28 h-2 bg-slate-300 animate-pulse rounded-full'></div>
                                 <div className='flex flex-wrap gap-4 items-center justify-center'>
                                     {new Array(4).fill(0).map((ele, i) => (

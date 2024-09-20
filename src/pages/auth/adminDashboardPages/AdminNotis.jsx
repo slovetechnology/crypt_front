@@ -18,7 +18,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
     const [showNotis, setShowNotis] = useState(false)
     const [mark, setMark] = useState(false)
     const [start, setStart] = useState(0)
-    const [end, setEnd] = useState(5)
+    const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
     const [pageend, setpageend] = useState(0)
 
@@ -57,10 +57,10 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
             let altend = end
             let altlengthstart = pagestart
 
-            altend += 5
+            altend += 6
             setEnd(altend)
 
-            altstart += 5
+            altstart += 6
             setStart(altstart)
 
             altlengthstart += 1
@@ -70,15 +70,15 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
 
     let BackNotisPage = () => {
 
-        if (end > 5) {
+        if (end > 6) {
             let altstart = start
             let altend = end
             let altlengthstart = pagestart
 
-            altend -= 5
+            altend -= 6
             setEnd(altend)
 
-            altstart -= 5
+            altstart -= 6
             setStart(altstart)
 
             altlengthstart -= 1
@@ -90,7 +90,7 @@ const AdminNotis = ({ refetchNotifications, refetchUnreadNotis }) => {
         <div className='relative'>
 
             <>
-                <div className={`relative ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 5) }}>
+                <div className={`relative ${showNotis ? 'hidden' : 'flex'}`} onClick={() => { setShowNotis(true); setpageend(notifications.length / 6) }}>
                     <div className='flex items-center justify-center border w-9 h-9 rounded-full text-xl text-white border-white cursor-pointer'>
                         <IoNotificationsOutline />
                     </div>

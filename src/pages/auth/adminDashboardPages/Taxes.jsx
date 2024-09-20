@@ -32,7 +32,7 @@ const Taxes = () => {
       if (response.status === 200) {
         setAllTaxes(response.msg)
         setOriginal(response.msg)
-        setpageend(response.msg.length / end)
+        setpageend(response.msg.length / 6)
         setStart(0)
         setEnd(6)
         setpagestart(1)
@@ -68,7 +68,7 @@ const Taxes = () => {
     }
     else {
       setWrite(true)
-      const showSearch = altTaxes.filter(item => item.taxPayer.username.includes(search.toLowerCase()) || item.taxPayer.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
+      const showSearch = altTaxes.filter(item => item.taxPayer.username.includes(search.toLowerCase()) || item.taxPayer.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search) || item.amount.toString().includes(search) || item.crypto.toLowerCase().includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllTaxes(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)
@@ -155,6 +155,7 @@ const Taxes = () => {
                   <td className='text-center truncate  capitalize p-2 '>username</td>
                   <td className='text-center truncate  capitalize p-2 '>email</td>
                   <td className='text-center truncate  capitalize p-2 '>amount</td>
+                  <td className='text-center truncate  capitalize p-2 '>crypto</td>
                   <td className='text-center truncate  capitalize p-2 '>status </td>
                   <td className='text-center truncate  capitalize p-2'> <IoIosSettings className="mx-auto text-base" /></td>
                 </tr>
@@ -175,6 +176,7 @@ const Taxes = () => {
                           <td className='p-4  text-center truncate'>{item.taxPayer.username}</td>
                           <td className='p-4  text-center truncate'>{item.taxPayer.email}</td>
                           <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                          <td className='p-4  text-center truncate'>{item.crypto}</td>
                           <td className={`p-4  text-center truncate ${item.status === 'received' && 'text-[#459e45]'} ${item.status === 'failed' && 'text-[red]'}`}>{item.status}</td>
                           <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => singleTaxFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                         </tr>

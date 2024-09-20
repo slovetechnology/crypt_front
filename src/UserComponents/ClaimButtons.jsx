@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io'
 import { IoWalletOutline } from 'react-icons/io5';
-import { Apis, PostApi } from '../../services/API';
-import { NOTIFICATIONS, UNREADNOTIS } from '../../store';
+import { Apis, PostApi } from '../services/API';
+import { NOTIFICATIONS, UNREADNOTIS } from '../store';
 import { useAtom } from 'jotai';
 import moment from 'moment';
 

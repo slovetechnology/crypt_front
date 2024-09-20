@@ -39,7 +39,7 @@ const TaxPayment = () => {
             if (response.status === 200) {
                 setTaxes(response.msg)
                 setOriginal(response.msg)
-                setpageend(response.msg.length / end)
+                setpageend(response.msg.length / 6)
                 setpagestart(1)
                 setStart(0)
                 setEnd(6)
@@ -69,7 +69,7 @@ const TaxPayment = () => {
         }
         else {
             setWrite(true)
-            const showSearch = altTaxes.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.crypto.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
+            const showSearch = altTaxes.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search) || moment(item.createdAt).format('h:mm').includes(search) || item.amount.toString().includes(search) || item.crypto.toLowerCase().includes(search.toLowerCase()) || item.network.toLowerCase().includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
             setTaxes(showSearch)
             setpageend(showSearch.length / 6)
             setpagestart(1)

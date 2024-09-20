@@ -37,7 +37,7 @@ const Users = () => {
       if (response.status === 200) {
         setAllUsers(response.msg)
         setOriginal(response.msg)
-        setpageend(response.msg.length / end)
+        setpageend(response.msg.length / 6)
         setStart(0)
         setEnd(6)
         setpagestart(1)
@@ -68,7 +68,7 @@ const Users = () => {
     }
     else {
       setWrite(true)
-      const showSearch = altusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()))
+      const showSearch = altusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search))
       setAllUsers(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)

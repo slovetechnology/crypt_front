@@ -4,8 +4,8 @@ import { FaXmark } from "react-icons/fa6";
 import { MdError } from 'react-icons/md';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-import { Apis, PostApi, UserPutApi } from '../../services/API';
-import { MoveToTop } from '../../utils/utils';
+import { Apis, PostApi, UserPutApi } from '../services/API';
+import { MoveToTop } from '../utils/utils';
 
 const NotisField = ({ item, refetchNotifications, refetchUnreadNotis, start, end, pagestart, setStart, setEnd, setpagestart, setpageend, setShowNotis }) => {
 
@@ -33,16 +33,16 @@ const NotisField = ({ item, refetchNotifications, refetchUnreadNotis, start, end
             if (response.status === 200) {
                 refetchNotifications()
                 refetchUnreadNotis()
-                setpageend(response.msg.length / 5)
-                if (pagestart > Math.ceil(response.msg.length / 5)) {
+                setpageend(response.msg.length / 6)
+                if (pagestart > Math.ceil(response.msg.length / 6)) {
                     let altstart = start
                     let altend = end
                     let altlengthstart = pagestart
 
-                    altend -= 5
+                    altend -= 6
                     setEnd(altend)
 
-                    altstart -= 5
+                    altstart -= 6
                     setStart(altstart)
 
                     altlengthstart -= 1

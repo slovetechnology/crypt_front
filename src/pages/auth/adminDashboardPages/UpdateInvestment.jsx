@@ -30,7 +30,7 @@ const UpdateInvestment = () => {
       if (response.status === 200) {
         setAllInvestments(response.msg)
         setOriginal(response.msg)
-        setpageend(response.msg.length / end)
+        setpageend(response.msg.length / 6)
         setStart(0)
         setEnd(6)
         setpagestart(1)
@@ -66,7 +66,7 @@ const UpdateInvestment = () => {
     }
     else {
       setWrite(true)
-      const showSearch = altinvestments.filter(item => item.investmentUser.username.includes(search.toLowerCase()) || item.investmentUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search.toString()) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
+      const showSearch = altinvestments.filter(item => item.investmentUser.username.includes(search.toLowerCase()) || item.investmentUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllInvestments(showSearch)
       setpageend(showSearch.length / 6)
       setpagestart(1)
@@ -150,7 +150,7 @@ const UpdateInvestment = () => {
                   <td className='text-center truncate  capitalize p-2 '>username</td>
                   <td className='text-center truncate  capitalize p-2 '>email</td>
                   <td className='text-center truncate  capitalize p-2 '>amount</td>
-                  <td className='text-center truncate  capitalize p-2 '>trading plan</td>
+                  <td className='text-center truncate  capitalize p-2 '>plan</td>
                   <td className='text-center truncate  capitalize p-2 '>profit</td>
                   <td className='text-center truncate  capitalize p-2 '>bonus </td>
                   <td className='text-center truncate  capitalize p-2 '>status </td>
