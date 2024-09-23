@@ -65,7 +65,7 @@ const Header = () => {
                         <div>
                             <Link to='/' className='flex items-center' onClick={MoveToTop}>
                                 <img src={logo} className=' w-16 h-auto'></img>
-                                <div className='capitalize text-white font-bold'>the force</div>
+                                <div className='capitalize text-white font-bold'>ai algo trade</div>
                             </Link>
                         </div>
                         <div className='lg:flex gap-5 items-center hidden'>
@@ -123,9 +123,11 @@ const Header = () => {
                     </div>
                     <div className='lg:hidden'>
                         <div className='text-white text-3xl cursor-pointer' onClick={() => setDropDown(!dropDown)}>
-                            {!dropDown ? <HiBars4 />
+                            {!dropDown ?
+                                <HiBars4 />
                                 :
-                                <LuX />}
+                                <LuX />
+                            }
                         </div>
                     </div>
                 </div>

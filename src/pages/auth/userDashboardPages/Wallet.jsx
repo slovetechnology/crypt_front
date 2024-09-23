@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { BsCurrencyDollar } from "react-icons/bs";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { useAtom } from 'jotai';
-import { UPS, WALLET } from '../../../store';
+import { WALLET } from '../../../store';
 import wallet3d from '../../../assets/images/wallet3d.png'
 import deposit3d from '../../../assets/images/deposit3d.png'
 import withdraw3d from '../../../assets/images/withdraw3d.png'
@@ -18,17 +18,9 @@ import { Apis, UserGetApi } from '../../../services/API';
 
 const Wallet = () => {
     const [wallet] = useAtom(WALLET)
-    const [ups] = useAtom(UPS)
+    
+    const [ups, setUps] = useState({})
     const [testRun, setTestRun] = useState({})
-
-    let profitUp = 0
-    let bonusUp = 0
-    if (Object.keys(ups).length !== 0) {
-        if (wallet.total_profit > 0) {
-            profitUp = ups.new_profit / wallet.total_profit * 100
-            bonusUp = ups.new_bonus / wallet.total_bonus * 100
-        }
-    }
 
     useEffect(() => {
         const FetchTestRun = async () => {
@@ -44,6 +36,30 @@ const Wallet = () => {
         }
         FetchTestRun()
     }, [])
+
+    useEffect(() => {
+        const FetchUps = async () => {
+            try {
+                const response = await UserGetApi(Apis.user.ups)
+                if (response.status === 200) {
+                    setUps(response.msg)
+                }
+    
+            } catch (error) {
+                //
+            }
+        }
+        FetchUps()
+    }, [])
+
+    let profitUp = 0
+    let bonusUp = 0
+    if (Object.keys(ups).length !== 0) {
+        if (wallet?.total_profit > 0) {
+            profitUp = ups.new_profit / wallet.total_profit * 100
+            bonusUp = ups.new_bonus / wallet.total_bonus * 100
+        }
+    }
 
 
     return (

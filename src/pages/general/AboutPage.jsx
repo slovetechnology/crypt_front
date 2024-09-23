@@ -19,8 +19,7 @@ import settings from '../../assets/images/setting.png'
 import tplan from '../../assets/images/trading3d.png'
 import bulb from '../../assets/images/bulb.png'
 import assist from '../../assets/images/assist.png'
-import { MoveToTop } from '../../utils/utils';
-import CountComponent from '../../GeneralComponents/CountComponent';
+import { MoveToTop } from '../../utils/utils'
 
 const AboutPage = () => {
   const [view, setView] = useState(false)
@@ -106,57 +105,64 @@ const AboutPage = () => {
             </div>
           </div>
           <div className='w-11/12 lg:w-4/5 xl:w-[70%] mx-auto md:mt-28 mt-20'>
-            <div className='text-[2rem] lg:text-[3rem] text-white font-[550] capitalize text-center'>our services</div>
-            <div className='text-center text-semi-white text-[0.85rem] capitalize pt-2 pb-10 md:pb-20'>- this services are designed to give you an edge in crypto trading -</div>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-              <div className='md:w-full w-fit h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw'>
-                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] pt-2 justify-center items-center'>
-                  <img src={efficient} className='h-auto w-8'></img>
-                </div>
-                <div className='text-white capitalize font-bold text-center'>artificial intelligence</div>
-                <div className=' text-ground text-[0.8rem] text-center'>Lorem ipsum dolor sit amet adip adipisicing elit. Aliquid  asper.</div>
-                <Link to='/signup' onClick={MoveToTop}>
+            <div className='relative w-fit mx-auto text-semi-white'>
+              <div className='text-[2rem] md:text-[3rem] text-white font-[550] capitalize'>our services</div>
+              <div className='border-t-4 md:w-48 w-32 absolute top-0 left-0'></div>
+              <div className='border-b-4 md:w-48 w-32 absolute bottom-0 right-0'></div>
+            </div>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-6 md:mt-20 mt-10'>
+              <Link to='/signup' onClick={MoveToTop}>
+                <div className='md:w-full w-fit h-fit  bg-[#192633] hover:bg-[#1f2f3f] hover:scale-90 transition-all rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw'>
+                  <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] pt-2 justify-center items-center'>
+                    <img src={efficient} className='h-auto w-8'></img>
+                  </div>
+                  <div className='text-white capitalize font-bold text-center'>artificial intelligence</div>
+                  <div className=' text-ground text-[0.8rem] text-center'>Lorem ipsum dolor sit amet adip adipisicing elit. Aliquid  asper.</div>
                   <div className='flex gap-1 items-center text-[0.65rem] capitalize font-bold text-orange pb-4'>
                     <div>try now</div>
                     <FaLongArrowAltRight />
                   </div>
-                </Link>
-              </div>
-              <div className='md:w-full w-fit h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw md:-mt-10'>
-                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.1rem] pt-4 justify-center '>
-                  <img src={tplan} className='h-[1.8rem] w-auto'></img>
                 </div>
-                <div className='text-white capitalize font-bold text-center'>affordable trading plans</div>
-                <div className=' text-ground text-[0.8rem] text-center'>Lorem ipsum dolor sit amet adip adipisicing elit. Aliquid  asper.</div>
-                <Link to='/trading' onClick={MoveToTop}>
-                  <div className='flex gap-1 items-center text-[0.65rem] capitalize font-bold text-orange pb-4'>
-                    <div>see plans</div>
-                    <FaLongArrowAltRight />
+              </Link>
+              <Link to='/trading' onClick={MoveToTop}>
+                <div className='md:w-full w-fit h-fit bg-[#192633] hover:bg-[#1f2f3f] hover:scale-90 transition-all rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw md:-mt-10'>
+                  <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.1rem] pt-4 justify-center '>
+                    <img src={tplan} className='h-[1.8rem] w-auto'></img>
                   </div>
-                </Link>
-              </div>
-              <div className='md:w-full w-fit h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw'>
-                <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] pt-2 justify-center items-center'>
-                  <img src={assist} className='h-8 w-auto'></img>
+                  <div className='text-white capitalize font-bold text-center'>affordable trading plans</div>
+                  <div className=' text-ground text-[0.8rem] text-center'>Lorem ipsum dolor sit amet adip adipisicing elit. Aliquid  asper.</div>
+                  <Link to='/trading' onClick={MoveToTop}>
+                    <div className='flex gap-1 items-center text-[0.65rem] capitalize font-bold text-orange pb-4'>
+                      <div>see plans</div>
+                      <FaLongArrowAltRight />
+                    </div>
+                  </Link>
                 </div>
-                <div className='text-white capitalize font-bold text-center'>trade assistance</div>
-                <div className=' text-ground text-[0.8rem] text-center'>Lorem ipsum dolor sit amet adip adipisicing elit. Aliquid  asper.</div>
-                <Link to='/signup' onClick={MoveToTop}>
-                  <div className='flex gap-1 items-center text-[0.65rem] capitalize font-bold text-orange pb-4'>
-                    <div>try now</div>
-                    <FaLongArrowAltRight />
+              </Link>
+              <Link to='/signup' onClick={MoveToTop}>
+                <div className='md:w-full w-fit h-fit bg-[#192633] hover:bg-[#1f2f3f] hover:scale-90 transition-all rounded-md p-4 flex flex-col gap-4 items-center mx-auto shlltw'>
+                  <div className='border-2 border-[#525151] rounded-full w-16 h-16 flex text-[2.2rem] pt-2 justify-center items-center'>
+                    <img src={assist} className='h-8 w-auto'></img>
                   </div>
-                </Link>
-              </div>
+                  <div className='text-white capitalize font-bold text-center'>trade assistance</div>
+                  <div className=' text-ground text-[0.8rem] text-center'>Lorem ipsum dolor sit amet adip adipisicing elit. Aliquid  asper.</div>
+                  <Link to='/signup' onClick={MoveToTop}>
+                    <div className='flex gap-1 items-center text-[0.65rem] capitalize font-bold text-orange pb-4'>
+                      <div>try now</div>
+                      <FaLongArrowAltRight />
+                    </div>
+                  </Link>
+                </div>
+              </Link>
             </div>
           </div>
-          <div className='md:mt-28 mt-20'>
-            <CountComponent />
-          </div>
           <div className='w-11/12 lg:w-[70%] mx-auto md:mt-28 mt-20 overflow-hidden h-fit trans'>
-            <div className='text-[2rem] lg:text-[3rem] text-white font-[550] capitalize text-center'>customer reviews</div>
-            <div className='text-center text-semi-white text-[0.85rem] capitalize pt-2 pb-10 md:pb-12'>- below are some of our customers reviews as a snippet of what you can expect -</div>
-            <div className='flex flex-wrap items-center justify-center gap-6'>
+            <div className='relative w-fit mx-auto text-semi-white'>
+              <div className='text-[2rem] md:text-[3rem] text-white font-[550] capitalize'>Testimonials</div>
+              <div className='border-t-4 md:w-40 w-28 absolute top-0 right-0'></div>
+              <div className='border-b-4 md:w-40 w-28 absolute bottom-0 left-0'></div>
+            </div>
+            <div className='flex flex-wrap items-center justify-center gap-6 mt-10'>
               <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center shlltw'>
                 <div className='flex items-center relative'>
                   <img src={us} className='w-16 h-16 rounded-full object-cover'></img>

@@ -9,23 +9,22 @@ const TradingPlansPage = () => {
   const [tradingPlans, setTradingPlans] = useState([])
   const [loading, setLoading] = useState(true)
 
-  const FetchTradingPlans = useCallback(async () => {
-    try {
-      const response = await UserGetApi(Apis.admin.get_trading_plans)
-      if (response.status === 200) {
-        setTradingPlans(response.msg)
-      }
-
-    } catch (error) {
-      //
-    }finally{
-      setLoading(false)
-    }
-  }, [])
-
   useEffect(() => {
+    const FetchTradingPlans = async () => {
+      try {
+        const response = await UserGetApi(Apis.admin.get_trading_plans)
+        if (response.status === 200) {
+          setTradingPlans(response.msg)
+        }
+  
+      } catch (error) {
+        //
+      }finally{
+        setLoading(false)
+      }
+    }
     FetchTradingPlans()
-  }, [FetchTradingPlans])
+  }, [])
 
   return (
     <Pagelayout>

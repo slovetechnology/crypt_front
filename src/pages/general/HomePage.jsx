@@ -7,6 +7,7 @@ import light from '../../assets/images/light.png'
 import { FiPlus, FiMinus } from "react-icons/fi";
 import { questions } from '../../services/Miscellaneous';
 import { useState } from 'react';
+import CountComponent from '../../GeneralComponents/CountComponent';
 
 
 const HomePage = () => {
@@ -49,7 +50,7 @@ const HomePage = () => {
           </div>
         </div>
         <div className='md:w-[95%] w-11/12 mx-auto'>
-          <div className='w-full h-fit py-8 px-4 bg-[#1B2530] z-10 -mt-8 border rounded-xl border-dashed overflow-hidden relative'>
+          <div className='w-full h-fit py-8 px-4 bg-gradient-to-tr from-[#1B2530] from-50% to-[#273f5e] z-10 -mt-8 border rounded-xl border-dashed overflow-hidden relative'>
             <div className='bda flex items-center justify-center rotate-90 w-40 h-40 border-2 bottom-4 rounded-full -left-20 absolute'>
               <div className='bdb w-28 h-28 border-2 rounded-full'></div>
             </div>
@@ -79,11 +80,15 @@ const HomePage = () => {
               </div>
             </div>
           </div>
+          <div className='mt-20 w-11/12 mx-auto'>
+            <CountComponent />
+          </div>
           <div className='mt-20 w-full md:w-5/6 lg:w-3/4 mx-auto'>
             <div className='flex flex-col'>
-              <div className=' flex flex-col gap-4 items-center justify-center text-white'>
-                <span className='font-bold capitalize md:text-[2.5rem] text-3xl'>have any questions?</span>
-                <div className='text-center lg:w-[50%] text-semi-white tracking-[0.05rem] text-[0.95rem]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem obcaecati, architecto numquam libero perspiciatis veniam!</div>
+              <div className='relative w-fit mx-auto text-semi-white'>
+                <div className='text-[2rem] md:text-[3rem] text-white font-[550] capitalize'>faq questions</div>
+                <div className='border-t-4 md:w-48 w-32 absolute top-0 right-0'></div>
+                <div className='border-b-4 md:w-48 w-32 absolute bottom-0 left-0'></div>
               </div>
               <div className='flex flex-col gap-4 mt-8 h-fit w-full bg-[#182531] md:p-10 px-4 py-6'>
                 {questions.map((item, i) => (
@@ -94,9 +99,9 @@ const HomePage = () => {
                         {faq !== i ?
                           <FiPlus />
                           :
-                          <FiMinus/>
+                          <FiMinus />
                         }
-                        
+
                       </div>
                     </div>
                     <div className={`md:text-[0.95rem] text-sm ${faq === i ? 'block' : 'hidden'} `}>{item.content}</div>

@@ -18,7 +18,7 @@ const CountComponent = () => {
         let index3 = 0
 
         const countFunction = () => {
-            
+
             if (userCount < 1) {
                 let countOne = setInterval(() => {
                     if (index === 1200) {
@@ -51,12 +51,12 @@ const CountComponent = () => {
 
         const handleObserver = (entries) => {
             const [entry] = entries;
-            if(entry.isIntersecting) {
+            if (entry.isIntersecting) {
                 requestAnimationFrame(countFunction)
             }
         }
 
-        const observer = new IntersectionObserver(handleObserver, {threshold: 0.1})
+        const observer = new IntersectionObserver(handleObserver, { threshold: 0.1 })
         observer.observe(element)
 
     }, [])
@@ -64,15 +64,12 @@ const CountComponent = () => {
 
     return (
         <div className='w-full h-fit bg-[#192633] py-16 px-4 rounded-md relative overflow-hidden' ref={ref}>
-            <div className='bda flex items-center justify-center rotate-90 w-32 h-32 border-2 bottom-4 rounded-full -left-20 absolute' >
-                <div className='bdb w-20 h-20 border-2 rounded-full'></div>
+            <div className='relative w-fit mx-auto text-semi-white'>
+                <div className='text-[2rem] md:text-[3rem] text-white font-[550] capitalize'>the numbers</div>
+                <div className='border-t-4 md:w-48 w-32 absolute top-0 left-0'></div>
+                <div className='border-b-4 md:w-48 w-32 absolute bottom-0 right-0'></div>
             </div>
-            <div className='bda flex items-center justify-center rotate-90 w-20 h-20 border-2  rounded-full absolute -top-12 -right-4' >
-                <div className='bdb w-12 h-12 border-2 rounded-full'></div>
-            </div>
-            <div className='text-[2rem] lg:text-[3rem] text-white font-[550] capitalize text-center'>the numbers</div>
-            <div className='text-center text-semi-white text-[0.85rem] capitalize pt-2 pb-10'>- below are the numbers that makes us the standout trading system -</div>
-            <div className='flex items-center flex-wrap gap-8 md:gap-20 justify-center'>
+            <div className='flex items-center flex-wrap gap-8 md:gap-20 justify-center mt-10'>
                 <div className='w-[8.2rem] h-[8.2rem] rounded-full border border-[#f0b28e] flex flex-col items-center pt-4 relative'>
                     <img src={heart} className='h-8 w-auto'></img>
                     <div className='text-[1.8rem] font-extrabold text-white'>{userCount}<span className='font-[500]'>+</span></div>

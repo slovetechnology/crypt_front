@@ -31,7 +31,7 @@ const VerifyKYC = () => {
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
 
-    const [kyc, setKyc] = useState([])
+    const [kyc, setKyc] = useState({})
     const [gender, setGender] = useState('select')
     const [genderShow, setGenderShow] = useState(false)
     const [marital, setMarital] = useState('select')

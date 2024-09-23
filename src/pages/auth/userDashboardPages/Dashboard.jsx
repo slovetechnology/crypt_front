@@ -12,17 +12,16 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment'
 import avatar from '../../../assets/images/avatar.png'
-import { ADMINCRYPTOWALLETS, ADMINSTORE, NOTIFICATIONS, PROFILE, UNREADNOTIS, UPS, WALLET } from '../../../store';
+import { ADMINCRYPTOWALLETS, ADMINSTORE, NOTIFICATIONS, PROFILE, UNREADNOTIS, WALLET } from '../../../store';
 import { Apis, UserGetApi, imageurl } from '../../../services/API';
 import { useAtom } from 'jotai';
 import Cookies from 'js-cookie';
 import { CookieName, MoveToTop } from '../../../utils/utils';
 import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
-import { HiOutlineCreditCard } from "react-icons/hi2";
-import { PiDotsNineBold } from "react-icons/pi";
+import { HiBars3, HiOutlineCreditCard } from "react-icons/hi2";
+import { FaBars } from "react-icons/fa";
 import Notifications from './Notifications';
-
 
 const MainLinks = [
     { path: 'wallet', url: '/dashboard', icon: IoWalletOutline },
@@ -35,7 +34,6 @@ const OtherLinks = [
     { path: 'profile', url: '/dashboard/profile', icon: RiAccountPinCircleLine },
     { path: 'feedback', url: '/dashboard/feedback', icon: LuSend },
 ]
-
 
 const toggleArray = [
     '/dashboard',
@@ -50,7 +48,6 @@ const Dashboard = ({ children }) => {
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
     const [wallet, setWallet] = useAtom(WALLET)
-    const [, setUps] = useAtom(UPS)
     const [, setAdminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
     const [, setAdminStore] = useAtom(ADMINSTORE)
 
@@ -58,7 +55,6 @@ const Dashboard = ({ children }) => {
     const [slideShow, setSlideShow] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
-
 
     const logoutAccount = () => {
         Cookies.remove(CookieName)
@@ -97,7 +93,6 @@ const Dashboard = ({ children }) => {
         FetchUnreadNotis()
     }, [FetchUnreadNotis])
 
-
     useEffect(() => {
         const FetchWallet = async() => {
             try {
@@ -111,21 +106,6 @@ const Dashboard = ({ children }) => {
             }
         }
         FetchWallet()
-    }, [])
-
-    useEffect(() => {
-        const FetchUps = async () => {
-            try {
-                const response = await UserGetApi(Apis.user.ups)
-                if (response.status === 200) {
-                    setUps(response.msg)
-                }
-    
-            } catch (error) {
-                //
-            }
-        }
-        FetchUps()
     }, [])
 
     useEffect(() => {
@@ -267,8 +247,8 @@ const Dashboard = ({ children }) => {
                             </Link>
                         ))}
                         <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow) }}>
-                            <PiDotsNineBold className='md:text-lg text-base'/>
-                            <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>more</div>
+                            <HiBars3 className='md:text-lg text-base'/>
+                            <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>a-z menu</div>
                         </div>
                     </div>
                 </div>

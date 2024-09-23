@@ -6,6 +6,9 @@ import { PiTelegramLogoLight } from "react-icons/pi";
 import { TfiInstagram } from "react-icons/tfi";
 import { MoveToTop } from '../utils/utils';
 import { GrFacebookOption } from 'react-icons/gr';
+import { AiOutlineMail } from "react-icons/ai";
+import { PiHeadsetLight } from "react-icons/pi";
+import { IoTimeOutline } from "react-icons/io5";
 
 const CompanyLinks = [
   { path: 'home', url: '/' },
@@ -21,12 +24,26 @@ const Footer = () => {
     <div className='bg-[#1E2833] pb-4 z-10 border-t border-[#171a1d] pt-10'>
       <div className='lg:w-4/5 w-11/12 mx-auto '>
         <div className='grid gap-5 grid-cols-1 lg:grid-cols-5'>
-          <div className='flex flex-col gap-2 lg:col-span-3'>
-            <Link to='/' onClick={MoveToTop} className='flex items-center'>
+          <div className='flex flex-col gap-2 lg:col-span-3 text-ground'>
+            <Link to='/' onClick={MoveToTop} className='flex items-center w-fit'>
               <img src={logo} className='w-20 h-auto -ml-4'></img>
-              <div className='capitalize text-white font-bold text-2xl'>the force</div>
+              <div className='capitalize text-white font-bold text-3xl'>Ai Algo Trade</div>
             </Link>
-            <div className='text-ground md:w-[80%] lg:w-[60%]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod omnis voluptate similique facere! Neque, cupiditate minus ea nulla fugit.</div>
+            <div className='md:w-[80%] lg:w-[60%]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod omnis voluptate similique facere! Neque, cupiditate minus ea nulla fugit.</div>
+            <div className='flex flex-col gap-2 mt-4'>
+              <div className='flex items-center gap-2'>
+                <IoTimeOutline className='text-lg'/>
+                <span>Working hours: 24/7</span>
+              </div>
+              <div className='flex items-center gap-2'>
+                <AiOutlineMail className='text-lg'/>
+                <span>support@aialgorithm.com</span>
+              </div>
+              <div className='flex items-center gap-2'>
+                <PiHeadsetLight className='text-lg'/>
+                <span>+ Coming soon</span>
+              </div>
+            </div>
             <div className='flex gap-4 items-center mt-4'>
               <Link to='/contact' onClick={MoveToTop}>
                 <div className='h-8 w-8 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#1E2833] text-lg hover:text-orange'>
