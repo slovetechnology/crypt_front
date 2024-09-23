@@ -73,7 +73,7 @@ const ClaimButtons = ({ item, refetchInvestments, refetchInvestmentsUnclaim }) =
                         <IoWalletOutline className='text-sm' />
                     }
                 </button>
-                {loading && <div className="w-full h-full absolute left-0 top-0 flex items-center justify-center bg-[#0c091aa4] z-20">
+                {loading && <div className="w-full h-full absolute left-0 top-0 flex items-center justify-center bg-[#0c091aa4] rounded-full z-20">
                     <div className='load'></div>
                 </div>}
             </div>
