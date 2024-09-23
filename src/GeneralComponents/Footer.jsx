@@ -9,6 +9,8 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { AiOutlineMail } from "react-icons/ai";
 import { PiHeadsetLight } from "react-icons/pi";
 import { IoTimeOutline } from "react-icons/io5";
+import { useAtom } from 'jotai';
+import { ADMINSTORE } from '../store';
 
 const CompanyLinks = [
   { path: 'home', url: '/' },
@@ -20,6 +22,8 @@ const CompanyLinks = [
 ]
 
 const Footer = () => {
+  const [adminstore] = useAtom(ADMINSTORE)
+
   return (
     <div className='bg-[#1E2833] pb-4 z-10 border-t border-[#171a1d] pt-10'>
       <div className='lg:w-4/5 w-11/12 mx-auto '>
@@ -45,21 +49,21 @@ const Footer = () => {
               </div>
             </div>
             <div className='flex gap-4 items-center mt-4'>
-              <Link to='/contact' onClick={MoveToTop}>
+              <a href={adminstore.telegram}>
                 <div className='h-8 w-8 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-[#1E2833] text-lg hover:text-orange'>
                   <PiTelegramLogoLight />
                 </div>
-              </Link>
-              <Link to='/contact' onClick={MoveToTop}>
+              </a>
+              <a href={adminstore.instagram}>
                 <div className='h-8 w-8 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#1E2833] text-lg hover:text-orange'>
                   <TfiInstagram />
                 </div>
-              </Link>
-              <Link to='/contact' onClick={MoveToTop}>
+              </a>
+              <a href={adminstore.facebook}>
                 <div className='h-8 w-8 bg-white  rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer transition-all text-[#1E2833] text-lg hover:text-orange'>
                   <GrFacebookOption />
                 </div>
-              </Link>
+              </a>
             </div>
           </div>
           <div className='text-ground capitalize lg:col-span-2 mt-4'>

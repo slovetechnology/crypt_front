@@ -4,7 +4,7 @@ import { TfiAngleDown } from "react-icons/tfi";
 import { PiWindowsLogoThin } from "react-icons/pi";
 import { LuBoxes } from "react-icons/lu";
 import { MdMapsHomeWork, MdConnectWithoutContact, MdOutlineSecurity } from "react-icons/md";
-import { HiBars4 } from "react-icons/hi2";
+import { LiaBarsSolid } from "react-icons/lia";
 import { LuFileSearch } from "react-icons/lu";
 import { LuX } from "react-icons/lu";
 import { Link } from 'react-router-dom';
@@ -124,7 +124,7 @@ const Header = () => {
                     <div className='lg:hidden'>
                         <div className='text-white text-3xl cursor-pointer' onClick={() => setDropDown(!dropDown)}>
                             {!dropDown ?
-                                <HiBars4 />
+                                <LiaBarsSolid />
                                 :
                                 <LuX />
                             }

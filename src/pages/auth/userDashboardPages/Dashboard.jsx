@@ -19,9 +19,9 @@ import Cookies from 'js-cookie';
 import { CookieName, MoveToTop } from '../../../utils/utils';
 import { TiCancel } from "react-icons/ti";
 import { IoMdLogOut } from "react-icons/io";
-import { HiBars3, HiOutlineCreditCard } from "react-icons/hi2";
-import { FaBars } from "react-icons/fa";
+import { HiOutlineCreditCard } from "react-icons/hi2";
 import Notifications from './Notifications';
+import { LiaBarsSolid } from 'react-icons/lia';
 
 const MainLinks = [
     { path: 'wallet', url: '/dashboard', icon: IoWalletOutline },
@@ -247,7 +247,7 @@ const Dashboard = ({ children }) => {
                             </Link>
                         ))}
                         <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow) }}>
-                            <HiBars3 className='md:text-lg text-base'/>
+                            <LiaBarsSolid className='md:text-lg text-base'/>
                             <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>a-z menu</div>
                         </div>
                     </div>

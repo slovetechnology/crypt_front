@@ -1,18 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
-import robotabt from '../../assets/images/robotabt.png'
-import { SiSpeedtest } from "react-icons/si";
 import { FaLongArrowAltRight } from "react-icons/fa";
-import { VscSignIn } from "react-icons/vsc";
 import { Link } from 'react-router-dom';
-import us from '../../assets/images/us.jfif'
-import australia from '../../assets/images/austrialia.jpg'
-import spanish from '../../assets/images/spanish.jfif'
-import uk from '../../assets/images/uk.webp'
-import blackUs from '../../assets/images/us-black.webp'
-import india from '../../assets/images/india.jfif'
-import { MdJoinRight, MdExpandLess, MdExpandMore } from "react-icons/md";
-import { BsFillChatQuoteFill } from "react-icons/bs";
+import aboutimage from '../../assets/images/about.webp'
+import { MdJoinRight} from "react-icons/md";
 import efficient from '../../assets/images/efficient.png'
 import crown from '../../assets/images/crown.png'
 import settings from '../../assets/images/setting.png'
@@ -22,7 +13,6 @@ import assist from '../../assets/images/assist.png'
 import { MoveToTop } from '../../utils/utils'
 
 const AboutPage = () => {
-  const [view, setView] = useState(false)
 
   return (
     <Pagelayout>
@@ -32,29 +22,22 @@ const AboutPage = () => {
             <div className='col-span-1'>
               <div className='text-[0.8rem] text-orange '>Who doesn't like easy?</div>
               <div className='text-3xl lg:text-[2.5rem] capitalize lg:w-[75%] lg:leading-[3.3rem] font-extrabold text-white'>privately own crypto trading set-up</div>
-              <div className='lg:w-[75%] pt-6 text-ground'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit accusamus, tenetur magni minus earum nihil neque, repellendus ullam aliquam alias pariatur aspernatur quam reiciendis debitis quibusdam similique molestias.</div>
+              <div className='lg:w-11/12 pt-6 text-ground'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit accusamus, tenetur magni minus earum nihil neque, repellendus ullam aliquam alias pariatur aspernatur quam reiciendis debitis quibusdam similique molestias.</div>
               <div className='flex gap-4 mt-6'>
                 <Link to='/signup' onClick={MoveToTop}>
                   <button className={`outline-0 w-fit h-fit py-2 px-4 text-sm text-white rounded-md bg-orange border-2 border-orange capitalize  flex gap-1 items-center font-[550] hover:translate-y-[-1px] trans`}>
-                    <span>sign up for free</span> <VscSignIn />
+                    <span>sign up for free</span>
                   </button>
                 </Link>
                 <Link to='/trading' onClick={MoveToTop}>
-                  <button className={`outline-0 w-fit h-fit py-2 px-4 text-sm text-white rounded-md border-2 border-orange capitalize flex gap-1 items-center font-[550] hover:translate-y-[-1px] trans`}>
+                  <button className={`outline-0 w-fit h-fit py-2 px-5 text-sm text-white rounded-md border-2 border-orange capitalize flex gap-1 items-center font-[550] hover:translate-y-[-1px] trans`}>
                     <span>test run</span>
-                    <SiSpeedtest />
                   </button>
                 </Link>
               </div>
             </div>
-            <div className='relative h-fit w-full rounded-[20px] bg-[#192633] overflow-hidden col-span-1 order-first lg:order-last'>
-              <div><img src={robotabt} className='h-[50vh] object-cover w-full'></img></div>
-              <div className='bda flex items-center justify-center rotate-90 w-32 h-32 border-2 bottom-4 rounded-full -left-20 absolute'>
-                <div className='bdb w-20 h-20 border-2 rounded-full'></div>
-              </div>
-              <div className='bda flex items-center justify-center rotate-90 w-20 h-20 border-2  rounded-full absolute -top-12 -right-4' >
-                <div className='bdb w-12 h-12 border-2 rounded-full'></div>
-              </div>
+            <div className='relative col-span-1 order-first lg:order-last'>
+              <img src={aboutimage} className='h-[50vh] object-cover w-full object-center'></img>
             </div>
           </div>
           <div className='lg:w-4/5 mx-auto md:mt-48 mt-40'>
@@ -155,101 +138,6 @@ const AboutPage = () => {
                 </div>
               </Link>
             </div>
-          </div>
-          <div className='w-11/12 lg:w-[70%] mx-auto md:mt-28 mt-20 overflow-hidden h-fit trans'>
-            <div className='relative w-fit mx-auto text-semi-white'>
-              <div className='text-[2rem] md:text-[3rem] text-white font-[550] capitalize'>Testimonials</div>
-              <div className='border-t-4 md:w-40 w-28 absolute top-0 right-0'></div>
-              <div className='border-b-4 md:w-40 w-28 absolute bottom-0 left-0'></div>
-            </div>
-            <div className='flex flex-wrap items-center justify-center gap-6 mt-10'>
-              <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center shlltw'>
-                <div className='flex items-center relative'>
-                  <img src={us} className='w-16 h-16 rounded-full object-cover'></img>
-                  <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
-                </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
-                <div className='border-b-[3px] w-9 border-orange mt-3'></div>
-                <div className='flex flex-col gap-1'>
-                  <div className='text-white capitalize'>henry calvin</div>
-                  <div className='text-[#c0bebe] text-[0.65rem] text-center uppercase'>nyc, us</div>
-                </div>
-              </div>
-              <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center  shlltw'>
-                <div className='flex items-center relative'>
-                  <img src={australia} className='w-16 h-16 rounded-full object-cover'></img>
-                  <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
-                </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
-                <div className='border-b-[3px] w-9 border-orange mt-3'></div>
-                <div className='flex flex-col gap-1'>
-                  <div className='text-white capitalize'>charlie brown</div>
-                  <div className='text-[#c0bebe] text-[0.65rem] text-center capitalize'>sydney, austrialia</div>
-                </div>
-              </div>
-              <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center shlltw'>
-                <div className='flex items-center relative'>
-                  <img src={spanish} className='w-16 h-16 rounded-full object-cover'></img>
-                  <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
-                </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
-                <div className='border-b-[3px] w-9 border-orange mt-3'></div>
-                <div className='flex flex-col gap-1'>
-                  <div className='text-white capitalize'>carlos rivera</div>
-                  <div className='text-[#c0bebe] text-[0.65rem] text-center capitalize'>seville, spain</div>
-                </div>
-              </div>
-            </div>
-            {!view && <div className='flex justify-center mt-8'>
-              <button className='w-fit h-fit px-6 py-1 bg-orange outline-none rounded-[3px] text-[0.85rem] capitalize text-white flex items-center justify-center  hover:bg-[#642626]' onClick={() => setView(!view)}>
-                <span>more</span>
-                <MdExpandMore />
-              </button>
-            </div>}
-            {view && <div className='flex flex-wrap items-center justify-center gap-6 mt-8'>
-              <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center shlltw'>
-                <div className='flex items-center relative'>
-                  <img src={uk} className='w-16 h-16 rounded-full object-cover'></img>
-                  <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
-                </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
-                <div className='border-b-[3px] w-9 border-orange mt-3'></div>
-                <div className='flex flex-col gap-1'>
-                  <div className='text-white capitalize'>arthur allen</div>
-                  <div className='text-[#c0bebe] text-[0.65rem] text-center capitalize'>manchester, UK</div>
-                </div>
-              </div>
-              <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center shlltw'>
-                <div className='flex items-center relative'>
-                  <img src={blackUs} className='w-16 h-16 rounded-full object-cover'></img>
-                  <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
-                </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
-                <div className='border-b-[3px] w-9 border-orange mt-3'></div>
-                <div className='flex flex-col gap-1'>
-                  <div className='text-white capitalize'>jeremy davis</div>
-                  <div className='text-[#c0bebe] text-[0.65rem] text-center capitalize'>atlanta, us</div>
-                </div>
-              </div>
-              <div className='w-[17rem] h-fit  bg-[#192633]  rounded-md p-4 flex flex-col gap-4 items-center shlltw'>
-                <div className='flex items-center relative'>
-                  <img src={india} className='w-16 h-16 rounded-full object-cover'></img>
-                  <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
-                </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
-                <div className='border-b-[3px] w-9 border-orange mt-3'></div>
-                <div className='flex flex-col gap-1'>
-                  <div className='text-white capitalize'>kabir kumar</div>
-                  <div className='text-[#c0bebe] text-[0.65rem] text-center capitalize'>surat, india</div>
-                </div>
-              </div>
-            </div>}
-            {view && <div className='flex justify-center mt-8'>
-              <button className='w-fit h-fit px-6 py-1 bg-orange outline-none rounded-[3px] text-[0.85rem] capitalize text-white flex items-center justify-center hover:bg-[#642626]' onClick={() => setView(!view)}>
-                <span>less</span>
-                <MdExpandLess />
-              </button>
-            </div>}
           </div>
         </div>
       </div>

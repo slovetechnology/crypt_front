@@ -9,7 +9,7 @@ import { RiLogoutCircleLine } from "react-icons/ri";
 import { TbBuildingBank } from "react-icons/tb";
 import { TiCancel } from 'react-icons/ti'
 import { IoMdLogOut } from 'react-icons/io'
-import { HiBars3, HiOutlineCreditCard } from "react-icons/hi2";
+import { HiOutlineCreditCard } from "react-icons/hi2";
 import { HiOutlineCollection } from "react-icons/hi";
 import { TbUsers } from "react-icons/tb";
 import { IoSettingsOutline } from "react-icons/io5";
@@ -18,6 +18,7 @@ import { Apis, UserGetApi } from '../../../services/API'
 import { FaAngleRight } from 'react-icons/fa6'
 import { LuX } from 'react-icons/lu'
 import { TbReceiptTax } from "react-icons/tb";
+import { LiaBarsSolid } from 'react-icons/lia'
 
 const MainLinks = [
   { path: 'deposits', url: '/admin-controls', icon: HiOutlineCreditCard },
@@ -204,7 +205,7 @@ const AdminDashboard = ({ children }) => {
                 </Link>
               ))}
               <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-[green]' : 'text-semi-white'} `} onClick={() => setSlideShow(!slideShow)}>
-                <HiBars3 className='md:text-lg text-base' />
+                <LiaBarsSolid className='md:text-lg text-base' />
                 <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>a-z menu</div>
               </div>
             </div>
