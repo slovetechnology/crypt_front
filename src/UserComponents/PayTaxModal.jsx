@@ -40,6 +40,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
 
         if (!amount) return setError('amount')
         if (isNaN(amount)) return setError('amount')
+        if (amount < 1) return setError('minimum')
         if (Object.values(secondValues).length === 0) return setError('select')
         if (!check) return setError('check')
 
@@ -81,6 +82,7 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                         <div className='text-[0.8rem] capitalize font-medium'>tax amount ($)</div>
                         <div className='relative'>
                             <input className={`outline-none border bg-semi-white text-black lg:text-[0.85rem] w-52 px-2 h-8 rounded-[4px] ${error === 'amount' ? 'border-[red]' : 'border-[#5BB4FD]'}`} value={amount} onChange={e => setAmount(e.target.value)}></input>
+                            <div className={`text-xs absolute top-2 right-2 ${error === 'minimum' ? 'text-[red]' : 'text-black'}`}>min: 0.99</div>
                         </div>
                     </div>
                     <div className='h-fit w-fit rounded-[0.2rem] bg-semi-white p-1 relative'>

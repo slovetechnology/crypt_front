@@ -135,19 +135,19 @@ const Notifications = ({ refetchUnreadNotis, refetchNotifications }) => {
                         </div>
                     </div>
                     {notis.length > 0 ?
-                        <div className={`pt-2 md:pt-1 pb-4 px-2 ${notis.length > 3 && 'md:h-[28rem]'} overflow-y-auto scrollDiv`}>
+                        <div className={`pt-1.5 pb-4 px-2 ${notis.length > 3 && 'md:h-[28rem]'} overflow-y-auto scroll`}>
                             {notis.slice(start, end).map((item, i) => (
                                 <NotisField key={i} item={item} refetchNotifications={refetchNotifications} refetchUnreadNotis={refetchUnreadNotis} start={start} setStart={setStart} end={end} setEnd={setEnd} pagestart={pagestart} setpagestart={setpagestart} setpageend={setpageend} setShowNotis={setShowNotis} />
                             ))}
                         </div>
                         :
-                        <div className='pt-28 md:pt-12 pb-4 flex flex-col gap-2 items-center justify-center'>
+                        <div className='pt-24 md:pt-12 pb-4 flex flex-col gap-2 items-center justify-center'>
                             <img src={nothnyet} className='md:h-20 h-48 w-auto'></img>
                             <div className='font-semibold text-xl md:text-base'>No notifications...</div>
                         </div>
                     }
                 </div>
-                {notis.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm md:p-2 pr-2 pb-4 justify-end'>
+                {notis.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm md:p-2 px-2 pb-4 justify-end'>
                     {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-700 hover:text-zinc-200 cursor-pointer' onClick={BackNotisPage}><FaAngleLeft /></div>}
                     {Math.ceil(pageend) > 1 && <div className='font-bold text-zinc-700'>{pagestart} of {Math.ceil(pageend)}</div>}
                     {end < notis.length && <div className='py-1 px-2 rounded-md border border-zinc-700 text-zinc-700 hover:bg-zinc-700 hover:text-zinc-200 cursor-pointer' onClick={MoveNotisPage}><FaAngleRight /></div>}

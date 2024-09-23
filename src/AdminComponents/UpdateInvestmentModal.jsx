@@ -184,7 +184,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                     <div className='flex flex-col gap-6 my-6'>
                                         <div className='flex justify-between items-center'>
                                             <div className='italic '>status:</div>
-                                            {singleInvestment.status === 'running' ?
+                                            {singleInvestment?.status === 'running' ?
                                                 <div className='relative'>
                                                     <div className='px-2 py-1 h-fit md:w-44 w-36 rounded-[3px] bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                         <div className='flex justify-between items-center text-[0.8rem]'>

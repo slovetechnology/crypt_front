@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Apis, PostApi, UserPutApi, imageurl } from '../../../services/API'
+import { Apis, UserPutApi, imageurl } from '../../../services/API'
 import { ADMINSTORE, PROFILE } from '../../../store'
 import { useAtom } from 'jotai'
 import { IoEye } from 'react-icons/io5';
@@ -179,7 +179,7 @@ const Profile = () => {
         }
         setDeleteLoading(true)
         try {
-            const response = await PostApi(Apis.user.delete, formbody)
+            const response = await UserPutApi(Apis.user.delete, formbody)
             if (response.status === 200) {
                 Alert('Request Successful', response.msg, 'success')
                 Cookies.remove(CookieName)
@@ -286,7 +286,7 @@ const Profile = () => {
                                     </button>
                                 </div>
                             </div>
-                            <div className='italic md:text-[0.75rem] text-[0.65rem] text-center ml-auto -mt-4 text-[#2fbe2f] p-0.5 bg-[#130e27]'>..refer and earn {Object.values(adminStore).length !== 0 && <span>{adminStore.referral_bonus_percentage}%</span>} commission of your referral(s) first deposit</div>
+                            <div className='italic md:text-[0.75rem] text-[0.65rem] text-center ml-auto -mt-4 text-[#2fbe2f] py-0.5 px-1 bg-[#130e27]'>refer and earn {Object.values(adminStore).length !== 0 && <span>{adminStore.referral_bonus_percentage}%</span>} commission of your referral(s) first deposit</div>
                             <div className='flex justify-between items-center  capitalize'>
                                 <div>full name:</div>
                                 {!nameEdit && <div className='flex gap-4'>

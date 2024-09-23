@@ -153,7 +153,7 @@ const TaxModal = ({ closeView, refetchAllTaxes, singleTax }) => {
                                     <div className='flex flex-col gap-6 my-6'>
                                         <div className='flex justify-between items-center'>
                                             <div className='italic'>status:</div>
-                                            {singleTax.status === 'processing' ?
+                                            {singleTax?.status === 'processing' ?
                                                 <div className='relative'>
                                                     <div className='px-2 py-1 h-fit md:w-44 w-36 bg-white rounded-sm sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                         <div className='flex justify-between items-center text-[0.8rem]'>

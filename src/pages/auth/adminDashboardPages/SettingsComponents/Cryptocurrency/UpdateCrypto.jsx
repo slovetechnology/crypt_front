@@ -82,7 +82,7 @@ const UpdateCrypto = ({ setScreen, singleCrypto, refetchCryptocurrency, refetchA
 
         if (!form.crypto_name) return setAlert({
             status: false,
-            message: 'Enter all fields'
+            message: 'Enter crypto name'
         })
         if (cryptoImg.img === null) return setAlert({
             status: false,
@@ -131,7 +131,7 @@ const UpdateCrypto = ({ setScreen, singleCrypto, refetchCryptocurrency, refetchA
 
         if (!form.crypto_name) return setAlert({
             status: false,
-            message: 'Enter all fields'
+            message: 'Enter crypto name'
         })
         if (cryptoImg.img === null) return setAlert({
             status: false,

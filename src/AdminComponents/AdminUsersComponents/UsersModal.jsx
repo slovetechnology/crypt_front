@@ -3,7 +3,7 @@ import moment from 'moment';
 import { FaRegRectangleXmark, FaXmark } from "react-icons/fa6";
 import { MdOutlineDeleteForever } from 'react-icons/md';
 import { IoEye } from 'react-icons/io5';
-import { IoMdEyeOff } from 'react-icons/io';
+import { IoMdCheckmarkCircleOutline, IoMdEyeOff } from 'react-icons/io';
 import { SlLockOpen } from 'react-icons/sl';
 import { PiWarningCircleBold } from 'react-icons/pi';
 import avatar from '../../assets/images/avatar.png'
@@ -29,6 +29,8 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
     const [statusShow, setStatusShow] = useState(false)
     const [update, setUpdate] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [reactivate, setReactivate] = useState(false)
+    const [rvtloading, setRvtLoading] = useState(false)
     const [form, setForm] = useState({
         fundAmount: '',
         minimumAmount: '',
@@ -103,7 +105,6 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                 Alert('Request Successful', `${response.msg}`, 'success')
                 setSuspendScreen(1)
                 closeView()
-
             } else {
                 setError(`${response.msg}`)
             }
@@ -111,6 +112,26 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
             Alert('Request Failed', `${error.message}`, 'error')
         } finally {
             setLoading(false)
+        }
+    }
+
+    const ReactivateUsers = async () => {
+
+        const formbody = {
+            user_id: singleUser.id,
+        }
+
+        setRvtLoading(true)
+        try {
+            const response = await UserPutApi(Apis.admin.reactivate_users, formbody)
+            if (response.status === 200) {
+                refetchAllUsers()
+                setReactivate(true)
+            }
+        } catch (error) {
+            //
+        } finally {
+            setRvtLoading(false)
         }
     }
 
@@ -221,83 +242,99 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                             </div>
                                         </div>
                                     </div>
-                                    {singleUser.role !== 'admin' && <div className='flex flex-col gap-4 border p-1'>
-                                        <div className=' uppercase font-bold border px-1 '>financial details:</div>
-                                        <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
-                                            <div className='flex justify-between items-center'>
-                                                <div className='italic '>total amount deposited:</div>
-                                                {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.total_deposit.toLocaleString()}</div>}
-                                            </div>
-                                        </div>
-                                        <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
-                                            <div className='flex justify-between items-center'>
-                                                <div className='italic '>account balance:</div>
-                                                {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.wallet_balance.toLocaleString()}</div>}
-                                            </div>
-                                        </div>
-                                    </div>}
-                                    {singleUser.role !== 'admin' &&
-                                        <div className='mt-4'>
-                                            {fundScreen === 1 ?
-                                                <div className='flex justify-center'>
-                                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setFundScreen(2); setSuspendScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>fund account</button>
+                                    {singleUser?.role !== 'admin' &&
+                                        <div className='flex flex-col gap-4 border p-1'>
+                                            <div className=' uppercase font-bold border px-1 '>financial details:</div>
+                                            <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
+                                                <div className='flex justify-between items-center'>
+                                                    <div className='italic '>total amount deposited:</div>
+                                                    {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.total_deposit.toLocaleString()}</div>}
                                                 </div>
-                                                :
-                                                <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
-                                                    {loading && <Loading />}
-                                                    <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setFundScreen(1)} />
-                                                    <div className='font-[650] border-b text-center uppercase'>Fund {singleUser?.username} account</div>
-                                                    <div className='flex flex-col gap-8 items-center justify-center mt-6'>
-                                                        <div className='flex flex-col gap-1'>
-                                                            <div className='text-[0.8rem] capitalize'>Enter an amount ($)</div>
-                                                            <div className='relative'>
-                                                                <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' name='fundAmount' value={form.fundAmount} onChange={formHandler}></input>
-                                                                <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
-                                                            </div>
-                                                        </div>
-                                                        <div className='mx-auto'>
-                                                            <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>send funds</button>
-                                                        </div>
-                                                    </div>
+                                            </div>
+                                            <div className='md:w-5/6 w-11/12 mx-auto flex flex-col gap-4'>
+                                                <div className='flex justify-between items-center'>
+                                                    <div className='italic '>account balance:</div>
+                                                    {Object.values(userFigures).length !== 0 && <div className='md:text-[0.95rem] text-sm'>${userFigures.wallet_balance.toLocaleString()}</div>}
                                                 </div>
-                                            }
+                                            </div>
                                         </div>
                                     }
-                                    {singleUser.role !== 'admin' &&
-                                        <div className='mt-2'>
-                                            {withdrawalScreen === 1 ?
-                                                <div className='flex justify-center'>
-                                                    <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setWithdrawalScreen(2); setSuspendScreen(1); setFundScreen(1); MoveToBottom() }}>set withdrawal minimum</button>
-                                                </div>
-                                                :
-                                                <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
-                                                    {loading && <Loading />}
-                                                    <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setWithdrawalScreen(1)} />
-                                                    <div className='font-[650] border-b text-center uppercase'>set {singleUser?.username} withdrawal minimum</div>
-                                                    <div className='flex flex-col gap-8 items-center justify-center mt-6'>
-                                                        <div className='flex gap-4 items-center'>
+                                    {singleUser?.account_deletion === 'true' &&
+                                        <div className='border p-2 flex items-center gap-3'>
+                                            <span className='italic text-[red]'>this acccount was deleted</span>
+                                            <div className='w-fit relative'>
+                                                <button className='w-fit h-fit py-2 px-4 text-xs capitalize bg-[#9f7ae7] rounded-md text-white font-medium flex items-center gap-1' onClick={ReactivateUsers}>
+                                                    <span>{reactivate ? 'reactived' : 'reactivate now'}</span>
+                                                    {reactivate && <IoMdCheckmarkCircleOutline className='text-sm' />}
+                                                </button>
+                                                {rvtloading && <div className="w-full h-full absolute left-0 top-0 flex items-center justify-center bg-[#2c1e69a4] rounded-md z-20">
+                                                    <div className='load'></div>
+                                                </div>}
+                                            </div>
+                                        </div>
+                                    }
+                                    {singleUser?.role !== 'admin' &&
+                                        <>
+                                            <div className='mt-4'>
+                                                {fundScreen === 1 ?
+                                                    <div className='flex justify-center'>
+                                                        <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setFundScreen(2); setSuspendScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>fund account</button>
+                                                    </div>
+                                                    :
+                                                    <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                                        {loading && <Loading />}
+                                                        <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setFundScreen(1)} />
+                                                        <div className='font-[650] border-b text-center uppercase'>Fund {singleUser?.username} account</div>
+                                                        <div className='flex flex-col gap-8 items-center justify-center mt-6'>
                                                             <div className='flex flex-col gap-1'>
                                                                 <div className='text-[0.8rem] capitalize'>Enter an amount ($)</div>
                                                                 <div className='relative'>
-                                                                    <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' name='minimumAmount' value={form.minimumAmount} onChange={formHandler}></input>
+                                                                    <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' name='fundAmount' value={form.fundAmount} onChange={formHandler}></input>
                                                                     <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
                                                                 </div>
                                                             </div>
-                                                            <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
-                                                                <div>current:</div>
-                                                                {Object.values(singleUser).length !== 0 && <div>${singleUser.withdrawal_minimum.toLocaleString()}</div>}
+                                                            <div className='mx-auto'>
+                                                                <button className='outline-none w-fit h-fit py-2 px-4 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>send funds</button>
                                                             </div>
                                                         </div>
-                                                        <div className='mx-auto'>
-                                                            <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>set</button>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <div>
+                                                {withdrawalScreen === 1 ?
+                                                    <div className='flex justify-center'>
+                                                        <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setWithdrawalScreen(2); setSuspendScreen(1); setFundScreen(1); MoveToBottom() }}>set withdrawal minimum</button>
+                                                    </div>
+                                                    :
+                                                    <div className='w-fit h-fit md:px-8 p-6 rounded-md bg-white adsha mx-auto  text-black relative'>
+                                                        {loading && <Loading />}
+                                                        <FaXmark className='absolute top-0 right-1 cursor-pointer text-xl' onClick={() => setWithdrawalScreen(1)} />
+                                                        <div className='font-[650] border-b text-center uppercase'>set {singleUser?.username} withdrawal minimum</div>
+                                                        <div className='flex flex-col gap-8 items-center justify-center mt-6'>
+                                                            <div className='flex gap-4 items-center'>
+                                                                <div className='flex flex-col gap-1'>
+                                                                    <div className='text-[0.8rem] capitalize'>Enter an amount ($)</div>
+                                                                    <div className='relative'>
+                                                                        <input className='outline-none lg:text-[0.85rem] text-base w-full border h-8 rounded-[3px] px-1.5 bg-semi-white ipt border-[#9f7ae7]' name='minimumAmount' value={form.minimumAmount} onChange={formHandler}></input>
+                                                                        <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{error}</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div className='text-xs py-1 px-3 h-fit w-fit bg-white sha flex flex-col gap-2 text-black items-center font-semibold rounded-md'>
+                                                                    <div>current:</div>
+                                                                    {Object.values(singleUser).length !== 0 && <div>${singleUser.withdrawal_minimum.toLocaleString()}</div>}
+                                                                </div>
+                                                            </div>
+                                                            <div className='mx-auto'>
+                                                                <button className='outline-none w-fit h-fit py-2 px-6 md:text-[0.8rem] text-xs text-white bg-[#9f7ae7] rounded-md capitalize font-semibold' onClick={UpdateUser}>set</button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            }
-                                        </div>
+                                                }
+                                            </div>
+                                        </>
                                     }
-                                    {singleUser.id !== 1 &&
-                                        <div className='mt-2'>
+                                    {singleUser?.id !== 1 &&
+                                        <div>
                                             {suspendScreen === 1 ?
                                                 <div className='flex justify-center'>
                                                     <button className='w-fit h-fit py-2.5 px-6 md:text-[0.85rem] text-xs capitalize bg-[#462c7c] rounded-md text-white font-medium' onClick={() => { setSuspendScreen(2); setFundScreen(1); setWithdrawalScreen(1); MoveToBottom() }}>{singleUser.suspend === 'true' ? 'unsuspend' : 'suspend'} account</button>
@@ -308,9 +345,9 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                     {suspendScreen === 2 &&
                                                         <div className='flex flex-col gap-8 items-center justify-center'>
                                                             <div className='flex flex-col gap-2'>
-                                                                <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>{singleUser.suspend === 'true' ? 'Are you sure you want to unsuspend this user?' : 'Are you sure you want to suspend this user?'}</div>
+                                                                <div className='text-center md:text-[1.1rem] text-sm text-black font-medium'>{singleUser?.suspend === 'true' ? 'Are you sure you want to unsuspend this user?' : 'Are you sure you want to suspend this user?'}</div>
                                                                 <div className='flex justify-center items-center gap-0.5  text-xs font-medium'>
-                                                                    <span className='text-center'>{singleUser.suspend === 'true' ? 'User will be now be able to access account' : 'User will be unable to access account'}</span>
+                                                                    <span className='text-center'>{singleUser?.suspend === 'true' ? 'User will be now be able to access account' : 'User will be unable to access account'}</span>
                                                                     <PiWarningCircleBold className='text-[red]' />
                                                                 </div>
                                                             </div>
@@ -328,7 +365,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                     }
                                                     {suspendScreen === 3 &&
                                                         <div className='flex flex-col gap-2 items-center justify-center'>
-                                                            <div className='md:text-[1.1rem] text-sm font-medium text-center'>{singleUser.suspend === 'true' ? `Last step to unsuspend ${singleUser?.username}'s account!` : `Last step to suspend ${singleUser?.username}'s account!`}</div>
+                                                            <div className='md:text-[1.1rem] text-sm font-medium text-center'>{singleUser?.suspend === 'true' ? `Last step to unsuspend ${singleUser?.username}'s account!` : `Last step to suspend ${singleUser?.username}'s account!`}</div>
                                                             <div className='flex gap-1 items-center justify-center text-xs text-[red]'>
                                                                 <span className='text-black font-medium text-center'>Admin, enter your password to finalize action</span>
                                                                 <SlLockOpen />
@@ -413,7 +450,7 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                 <div className='flex flex-col gap-2'>
                                                     <div className='flex justify-between items-center mt-3'>
                                                         <div className='italic '>valid ID:</div>
-                                                        <Image src={`${imageurl}/identity/${singleUser.kycUser[0]?.valid_id}`} width={200}/>
+                                                        <Image src={`${imageurl}/identity/${singleUser.kycUser[0]?.valid_id}`} width={200} />
                                                     </div>
                                                     <a href={`${imageurl}/identity/${singleUser.kycUser[0]?.valid_id}`} download="user valid ID">
                                                         <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5'>
