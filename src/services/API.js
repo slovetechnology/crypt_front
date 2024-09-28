@@ -2,8 +2,16 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { CookieName } from '../utils/utils'
 
-export const URL = "http://localhost:5005";
-export const imageurl = "http://localhost:5005"
+export let URL;
+export let imageurl
+
+if(window.location.origin.includes("localhost")) {
+    URL = "http://localhost:5005";
+    imageurl = "http://localhost:5005"
+}else {
+    URL = "https://api.cryptovilles.com";
+    imageurl = "https://api.cryptovilles.com";
+}
 // export const URL = import.meta.env.VITE_API_URL
 // export const imageurl = import.meta.env.VITE_API_URL
 
