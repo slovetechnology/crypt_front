@@ -1,39 +1,24 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
-import contactimg from '../../assets/images/contactimg2.webp'
+import contactimg from '../../assets/images/contactimg.webp'
 import { PiTelegramLogoLight } from "react-icons/pi";
 import { TfiInstagram } from "react-icons/tfi";
 import { GrFacebookOption } from "react-icons/gr";
 import { MdOutlineHearing } from "react-icons/md";
 import { BiMailSend } from "react-icons/bi";
 import { Alert } from '../../utils/utils';
-import { Apis, UserGetApi, UserPostApi } from '../../services/API';
+import { Apis, UserPostApi } from '../../services/API';
 import Loading from '../../GeneralComponents/Loading'
+import { ADMINSTORE } from '../../store';
+import { useAtom } from 'jotai';
 
 
 
 const ContactPage = () => {
-  const [adminstore, setAdminStore] = useState([])
+  const [adminstore] = useAtom(ADMINSTORE)
 
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-
-  const FetchAdminStore = useCallback(async () => {
-    try {
-      const response = await UserGetApi(Apis.admin.get_admin_store)
-      if (response.status === 200) {
-        setAdminStore(response.msg)
-      }
-
-    } catch (error) {
-      //
-    }
-  }, [])
-
-  useEffect(() => {
-    FetchAdminStore()
-  }, [FetchAdminStore])
-
 
   const [form, setForm] = useState({
     username: '',
@@ -104,12 +89,12 @@ const ContactPage = () => {
                     <div className='flex flex-col gap-4 mt-12'>
                       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                         <div className='flex flex-col gap-2 w-full'>
-                          <div className='text-xs uppercase font-bold text-[#636262] '>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none border-b-2 lg:text-[0.8rem] text-base capitalize pl-2 p-1 ${error === 'username' ? 'border-[red]' : ''} ipt input-off`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <div className='text-xs uppercase font-bold text-[#636262]'>full name</div>
+                          <input type='text' placeholder='Enter your full name' className={` outline-none focus:outline-orange border-b-2 focus:border-b-0 lg:text-[0.8rem] text-base capitalize pl-2 p-1 ${error === 'username' ? 'border-[red]' : ''} ipt input-off`} name='username' value={form.username} onChange={inputHandler}></input>
                         </div>
                         <div className='flex flex-col gap-2 w-full'>
-                          <div className='text-xs uppercase font-bold text-[#636262] '>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none border-b-2 lg:text-[0.8rem] text-base  p-1 pl-2 ${error === 'email' ? 'border-[red]' : ''} ipt input-off`} name='email' value={form.email} onChange={inputHandler}></input>
+                          <div className='text-xs uppercase font-bold text-[#636262]'>email address</div>
+                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none focus:outline-orange border-b-2 focus:border-b-0 lg:text-[0.8rem] text-base  p-1 pl-2 ${error === 'email' ? 'border-[red]' : ''} ipt input-off`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
                       <div className='flex flex-col gap-2'>
@@ -130,7 +115,7 @@ const ContactPage = () => {
             <div className='w-full h-fit py-4 bg-[#9e5c36] overflow-hidden trans relative'>
               <div className='w-11/12 mx-auto '>
                 <div className='grid grid-cols-1 gap-2 items-center lg:flex lg:justify-between h-full' >
-                  <div className='text-white text-[0.9rem] capitalize font-[550] text-center'>follow us on:</div>
+                  <div className='text-white text-[0.9rem] capitalize font-[550] text-center'>reach us via:</div>
                   <div className='flex gap-4 justify-center'>
                     <a href={adminstore.telegram}>
                       <div className='h-8 w-8 border-2 bg-white rounded-full flex items-center justify-center hover:translate-y-[-0.1rem] cursor-pointer  transition-all text-orange text-lg hover:text-black'>

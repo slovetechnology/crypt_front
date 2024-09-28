@@ -4,7 +4,7 @@ import { TfiAngleDown } from "react-icons/tfi";
 import { PiWindowsLogoThin } from "react-icons/pi";
 import { LuBoxes } from "react-icons/lu";
 import { MdMapsHomeWork, MdConnectWithoutContact, MdOutlineSecurity } from "react-icons/md";
-import { HiBars4 } from "react-icons/hi2";
+import { LiaBarsSolid } from "react-icons/lia";
 import { LuFileSearch } from "react-icons/lu";
 import { LuX } from "react-icons/lu";
 import { Link } from 'react-router-dom';
@@ -63,9 +63,9 @@ const Header = () => {
                 <div className={`flex items-center justify-between ${dropDown && 'border-b lg:border-0 border-[grey]'} px-6 lg:px-8 py-2`}>
                     <div className='flex gap-20'>
                         <div>
-                            <Link to='/' className='flex items-center'>
+                            <Link to='/' className='flex items-center' onClick={MoveToTop}>
                                 <img src={logo} className=' w-16 h-auto'></img>
-                                <div className='capitalize text-white font-bold'>the force</div>
+                                <div className='capitalize text-white font-bold'>ai algo trade</div>
                             </Link>
                         </div>
                         <div className='lg:flex gap-5 items-center hidden'>
@@ -123,9 +123,11 @@ const Header = () => {
                     </div>
                     <div className='lg:hidden'>
                         <div className='text-white text-3xl cursor-pointer' onClick={() => setDropDown(!dropDown)}>
-                            {!dropDown ? <HiBars4 />
+                            {!dropDown ?
+                                <LiaBarsSolid />
                                 :
-                                <LuX />}
+                                <LuX />
+                            }
                         </div>
                     </div>
                 </div>
@@ -169,10 +171,10 @@ const Header = () => {
                         </div>
                     </div>
                     <div className='flex gap-8 justify-center py-8'>
-                        <Link to='/login' onClick={MoveToTop}>
+                        <Link to='/login' onClick={() => { setDropDown(false); MoveToTop() }}>
                             <button className=' outline-0 w-fit h-fit py-1 px-6 border-2 text-[0.9rem] text-white font-medium rounded-lg border-orange hover:bg-orange hover:text-white flex items-center justify-center'>Sign In</button>
                         </Link>
-                        <Link to='/signup' onClick={MoveToTop}>
+                        <Link to='/signup' onClick={() => { setDropDown(false); MoveToTop() }}>
                             <button className=' outline-0 w-fit h-fit py-1 px-6 text-[0.9rem] text-white rounded-lg bg-orange hover:bg-[#1E2833] border-2 border-orange hover:border-orange font-medium flex items-center justify-center' >Sign Up</button>
                         </Link>
                     </div>

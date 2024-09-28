@@ -18,7 +18,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
     const [message, setMessage] = useState('')
     const [loading, setLoading] = useState(false)
     const [statusShow, setStatusShow] = useState(false)
-    const [status, setStatus] = useState(singleWithdrawal.status)
+    const [status, setStatus] = useState(singleWithdrawal?.status)
     const [update, setUpdate] = useState(false)
     const [beforeshow, setBeforeshow] = useState(true)
     const [copy, setCopy] = useState(false)
@@ -54,7 +54,7 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
         setTimeout(() => {
             setCopy(false)
         }, 2000)
-        navigator.clipboard.writeText(singleWithdrawal.wallet_address)
+        navigator.clipboard.writeText(singleWithdrawal.withdrawal_address)
         setCopy(true)
     }
 
@@ -159,9 +159,9 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                         {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm capitalize'>{singleWithdrawal.network}</div>}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <div className='italic '>wallet address:</div>
+                                        <div className='italic '>withdrawal address:</div>
                                         <div className='flex gap-1.5 items-center'>
-                                            {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.wallet_address?.slice(0, 5)}.....{singleWithdrawal.wallet_address?.slice(-8)}</div>}
+                                            {Object.values(singleWithdrawal).length !== 0 && <div className='md:text-[0.95rem] text-sm'>{singleWithdrawal.withdrawal_address?.slice(0, 5)}.....{singleWithdrawal.withdrawal_address?.slice(-8)}</div>}
                                             <button className='outline-none w-fit h-fit py-2 px-2.5 text-[0.8rem] text-black bg-[#c9b8eb] rounded-md capitalize flex items-center justify-center' onClick={() => copyFunction()}>
                                                 {!copy && <MdContentCopy />}
                                                 {copy && <FaCheck />}
@@ -176,15 +176,15 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                         <div className='italic'>message:</div>
                                         <div className='flex flex-col gap-1.5'>
                                             <textarea placeholder='Write A Message' className='p-2 md:w-52 w-44 h-32 text-black lg:text-[0.85rem] text-base outline-none bg-transparent border border-[#c9b8eb] rounded-md resize-none ipt scroll' value={message} onChange={e => setMessage(e.target.value)} onKeyUp={UpdateHandlerForText}></textarea>
-                                            <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5' onClick={GenerateWithdrawalMessage}>
+                                            {Object.values(adminStore).length !== 0 && <button className='bg-[#c9b8eb] py-1 px-4 text-black w-fit ml-auto rounded-full font-semibold text-[0.8rem] flex items-center gap-0.5' onClick={GenerateWithdrawalMessage}>
                                                 <span>Generate</span>
                                                 <RiAiGenerate className='text-xs'/>
-                                            </button>
+                                            </button>}
                                         </div>
                                     </div>
                                     <div className='flex justify-between items-center my-6'>
                                         <div className='italic '>status:</div>
-                                        {singleWithdrawal.status === 'processing' ?
+                                        {singleWithdrawal?.status === 'processing' ?
                                             <div className='relative'>
                                                 <div className='px-2 py-1 h-fit md:w-44 w-36 rounded-[3px] bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                     <div className='flex justify-between items-center text-[0.8rem]'>
@@ -197,11 +197,11 @@ const WithdrawalsModal = ({ singleWithdrawal, closeView, refetchAllWithdrawals }
                                                         </div>
                                                     </div>
                                                 </div>
-                                                {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                                {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-10 text-[0.85rem] font-bold'>
                                                     {Statuses.map((item, i) => (
-                                                        <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                                                            <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => UpdateHandlerForStatus(item)}>
-                                                                <div className={`text-[0.85rem] font-bold ${item === 'confirmed' && 'text-[green]'}`}>{item}</div>
+                                                        <div key={i} className={`flex flex-col px-2 py-0.5 cursor-pointer hover:bg-[#ececec] ${i !== Statuses.length - 1 && 'border-b border-[#ebeaea]'}`} onClick={() => UpdateHandlerForStatus(item)}>
+                                                            <div className='flex items-center'>
+                                                                <div className={`${item === 'confirmed' && 'text-[green]'}`}>{item}</div>
                                                             </div>
                                                         </div>
                                                     ))}

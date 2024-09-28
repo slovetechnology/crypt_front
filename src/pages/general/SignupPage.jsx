@@ -25,7 +25,6 @@ const SignupPage = () => {
   const EyeIcon2 = eye2 === true ? IoEye : IoMdEyeOff
   const [error, setError] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
-  const [verifycode, setVerifyCode] = useState('')
   const [loading, setLoading] = useState(false)
   const [countries, setCountries] = useState(countryApi)
   const [countryshow, setCountryShow] = useState(false)
@@ -47,7 +46,8 @@ const SignupPage = () => {
     email: '',
     referral_code: '',
     password: '',
-    confirm_password: ''
+    confirm_password: '',
+    verifycode: ''
   })
 
   const inputHandler = event => {
@@ -137,11 +137,11 @@ const SignupPage = () => {
       setErrorMsg('')
     }, 1000)
 
-    if (!verifycode) return setError('verify')
+    if (!form.verifycode) return setError('verify')
 
     const formbody = {
-      code: verifycode,
-      email: form.email
+      email: form.email,
+      code: form.verifycode
     }
 
     setLoading(true)
@@ -167,7 +167,7 @@ const SignupPage = () => {
     setLoading(true)
     try {
       const response = await UserPostApi(Apis.user.resend_otp, { email: form.email })
-      if (response.status === 200) return Alert('Code sent', 'Check your email for the new verification code just sent', 'success')
+      if (response.status === 200) return Alert('Code sent', 'Check your email for the new verification code', 'success')
     } catch (error) {
       Alert('Request Failed', `${error.message}`, 'error')
     } finally {
@@ -200,12 +200,12 @@ const SignupPage = () => {
             <div className='col-span-1'>
               <div className='bgs rounded-xl flex items-center lg:h-[100vh] h-fit py-16'>
                 <div className='w-11/12 mx-auto'>
-                  <div className={`w-full h-fit lg:w-[39vw] lg:absolute bg-white ${screen === 1 ? 'top-[2.85rem]' : 'top-[3.7rem]'}  lg:right-16 rounded-[20px] py-8 lg:shadow-sign-sha`}>
+                  <div className={`bg-white h-fit rounded-[20px] py-8 w-full lg:w-[39vw] lg:absolute ${screen === 1 ? 'lg:top-[2.85rem]' : 'lg:top-[3.7rem]'}  lg:right-16 lg:shadow-sign-sha`}>
                     <div className='relative w-full h-full'>
                       {loading && <Loading />}
                       {screen === 1 && <div className='w-11/12 md:w-[85%] mx-auto '>
                         <div className='text-center text-[1.7rem] capitalize font-[550]'>create an account</div>
-                        <div className='text-[0.8rem] mt-[0.1rem] text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
+                        <div className='text-sm mt-0.5 text-[#6b6a6a]  text-center font-[550]'>Start your trading journey today with the first step</div>
                         <form onSubmit={submitForm}>
                           <div className='flex flex-col gap-[0.7rem] mt-4'>
                             <div className='relative mx-auto'>
@@ -225,17 +225,17 @@ const SignupPage = () => {
                               {error === 'image' && <div className='absolute -bottom-4 -right-10 text-xs text-[red]'>{errorMsg}</div>}
                             </div>
                             <div className='flex flex-col gap-[0.3rem]'>
-                              <div className='text-sm capitalize font-[550] '>full name:</div>
+                              <div className='text-sm capitalize font-[550]'>full name:</div>
                               <input className={`outline-none w-full  border-b  ${error === 'name' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base  ipt input-off`} placeholder='Enter your full name' type='text' name='full_name' value={form.full_name} onChange={inputHandler} ></input>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 w-full md:gap-8 gap-[0.7rem]'>
-                              <div className='flex flex-col gap-[0.3rem] relative '>
-                                <div className='text-sm capitalize font-[550] '>username:</div>
-                                <input className={`outline-none w-full  border-b  ${error === 'user' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
+                              <div className='flex flex-col gap-[0.3rem] relative'>
+                                <div className='text-sm capitalize font-[550]'>username:</div>
+                                <input className={`outline-none w-full border-b  ${error === 'user' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter a username' type='text' name='username' value={form.username} onChange={inputHandler} ></input>
                               </div>
-                              <div className='flex flex-col gap-[0.3rem] relative '>
-                                <div className='text-sm capitalize font-[550] '>e-mail address:</div>
-                                <input className={`outline-none w-full   border-b   ${error === 'email' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
+                              <div className='flex flex-col gap-[0.3rem] relative'>
+                                <div className='text-sm capitalize font-[550]'>e-mail address:</div>
+                                <input className={`outline-none w-full border-b   ${error === 'email' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base ipt input-off`} placeholder='Enter your mail' type='email' name='email' value={form.email} onChange={inputHandler}></input>
                               </div>
                             </div>
                             <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8 gap-[0.7rem] w-full'>
@@ -273,7 +273,7 @@ const SignupPage = () => {
                                 }
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
-                                <div className='text-sm capitalize font-[550] '>referral code:</div>
+                                <div className='text-sm capitalize font-[550]'>referral code:</div>
                                 <input className='outline-none w-full   border-b border-[#4d4c4c] lg:text-sm text-base  ipt input-off' placeholder='Optional' code type='text' name='referral_code' value={form.referral_code} onChange={inputHandler}></input>
                               </div>
                             </div>
@@ -285,7 +285,7 @@ const SignupPage = () => {
                                 {error === 'password' && <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{errorMsg}</div>}
                               </div>
                               <div className='flex flex-col gap-[0.3rem] relative'>
-                                <div className='text-sm capitalize font-[550] '>confirm password:</div>
+                                <div className='text-sm capitalize font-[550]'>confirm password:</div>
                                 <input className={`outline-none w-full border-b  ${error === 'confirm_p' ? 'border-[red]' : 'border-[#4d4c4c]'} lg:text-sm text-base pr-6 ipt input-off`} placeholder='Re-type password' type={eye2 === true ? 'text' : 'password'} name='confirm_password' value={form.confirm_password} onChange={inputHandler}></input>
                                 <EyeIcon2 className='absolute bottom-0 right-0 text-base text-orange cursor-pointer' onClick={() => setEye2(!eye2)} />
                                 {error === 'confirm_p' && <div className='absolute -bottom-4 left-0 text-xs text-[red]'>{errorMsg}</div>}
@@ -314,7 +314,7 @@ const SignupPage = () => {
                           <form onSubmit={ValidateEmail}>
                             <div className='flex flex-col gap-1 mt-12 relative'>
                               <div className='capitalize text-[0.85rem]'>enter six digits code</div>
-                              <input className={`outline-none w-full h-10 border  ${error === 'verify' ? 'border-[red]' : 'border-[grey]'} text-sm px-2 ipt`} placeholder='Enter code here' value={verifycode} onChange={(e) => setVerifyCode(e.target.value)}></input>
+                              <input className={`outline-none w-full h-10 border  ${error === 'verify' ? 'border-[red]' : 'border-[grey]'} text-sm px-2 ipt`} placeholder='Enter code here' name='verifycode' value={form.verifycode} onChange={inputHandler}></input>
                               {error === 'verify' && <div className='absolute -bottom-5 left-0 text-xs text-[red]'>{errorMsg}</div>}
                             </div>
                             <div className='text-[0.85rem] text-right mt-2'>Didn't get code? <span className='text-orange cursor-pointer' onClick={ResendsCode}>Resend code</span></div>

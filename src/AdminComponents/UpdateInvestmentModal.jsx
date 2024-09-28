@@ -10,13 +10,24 @@ import ModalLayout from '../utils/ModalLayout';
 
 const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestments }) => {
     const toggler = useRef()
-    const [status, setStatus] = useState(singleInvestment.status)
+    const [status, setStatus] = useState(singleInvestment?.status)
     const [statusShow, setStatusShow] = useState(false)
     const [loading, setLoading] = useState(false)
     const [update, setUpdate] = useState(false)
     const [beforeshow, setBeforeshow] = useState(true)
     const [profitError, setProfitError] = useState(false)
     const [bonusError, setBonusError] = useState(false)
+    const [form, setForm] = useState({
+        profit: "",
+        bonus: ""
+    })
+
+    const inputHandler = event => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    }
 
     setTimeout(() => {
         setBeforeshow(false)
@@ -43,18 +54,6 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
         }
     }, [MoveToBottom]
     )
-
-    const [form, setForm] = useState({
-        profit: "",
-        bonus: ""
-    })
-
-    const inputHandler = event => {
-        setForm({
-            ...form,
-            [event.target.name]: event.target.value
-        })
-    }
 
     const UpdateHandlerForText = () => {
         if (form.profit === '' && form.bonus === '' && status === singleInvestment.status) {
@@ -185,7 +184,7 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                     <div className='flex flex-col gap-6 my-6'>
                                         <div className='flex justify-between items-center'>
                                             <div className='italic '>status:</div>
-                                            {singleInvestment.status === 'running' ?
+                                            {singleInvestment?.status === 'running' ?
                                                 <div className='relative'>
                                                     <div className='px-2 py-1 h-fit md:w-44 w-36 rounded-[3px] bg-white sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                                                         <div className='flex justify-between items-center text-[0.8rem]'>
@@ -198,11 +197,11 @@ const UpdateInvestmentModal = ({ closeView, singleInvestment, refetchAllInvestme
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                                                    {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-10 text-[0.85rem] font-bold'>
                                                         {Statuses.map((item, i) => (
-                                                            <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                                                                <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => UpdateHandlerForStatus(item)}>
-                                                                    <div className={`text-[0.85rem] font-bold ${item === 'completed' && 'text-[green]'}`}>{item}</div>
+                                                            <div key={i} className={`flex flex-col px-2 py-0.5 cursor-pointer hover:bg-[#ececec] ${i !== Statuses.length - 1 && 'border-b border-[#ebeaea]'}`} onClick={() => UpdateHandlerForStatus(item)}>
+                                                                <div className='flex items-center'>
+                                                                    <div className={`${item === 'completed' && 'text-[green]'}`}>{item}</div>
                                                                 </div>
                                                             </div>
                                                         ))}

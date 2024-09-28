@@ -148,7 +148,7 @@ const PrivacyPage = () => {
                                     </div>
                                     <div className='flex flex-col gap-4'>
                                         <span className='text-black font-bold'>3.4 We may use your Personal Information for the following purposes:</span>
-                                        <div className='w-[80%] mx-auto flex flex-col gap-4'>
+                                        <div className='w-[85%] mx-auto flex flex-col gap-4'>
                                             <div className='flex gap-2 w-full'>
                                                 <div className='w-[2%]'>
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>

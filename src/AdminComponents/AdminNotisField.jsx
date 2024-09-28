@@ -8,36 +8,6 @@ import { FaXmark } from 'react-icons/fa6'
 
 const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setShowNotis, start, end, pagestart, setStart, setEnd, setpagestart, setpageend, }) => {
 
-    const DeleteNotification = async () => {
-        const formbody = {
-            notification_id: item.id,
-        }
-
-        try {
-            const response = await PostApi(Apis.notification.delete_notification, formbody)
-            if (response.status === 200) {
-                refetchNotifications()
-                refetchUnreadNotis()
-                setpageend(response.msg.length / 3)
-                if (pagestart > Math.ceil(response.msg.length / 3)) {
-                    let altstart = start
-                    let altend = end
-                    let altlengthstart = pagestart
-
-                    altend -= 3
-                    setEnd(altend)
-
-                    altstart -= 3
-                    setStart(altstart)
-
-                    altlengthstart -= 1
-                    setpagestart(altlengthstart)
-                }
-            }
-        } catch (error) {
-        }
-    }
-
     const MarkSingleRead = async () => {
         const formbody = {
             notification_id: item.id,
@@ -52,8 +22,38 @@ const AdminNotisField = ({ item, refetchNotifications, refetchUnreadNotis, setSh
         }
     }
 
+    const DeleteNotification = async () => {
+        const formbody = {
+            notification_id: item.id,
+        }
+
+        try {
+            const response = await PostApi(Apis.notification.delete_notification, formbody)
+            if (response.status === 200) {
+                refetchNotifications()
+                refetchUnreadNotis()
+                setpageend(response.msg.length / 6)
+                if (pagestart > Math.ceil(response.msg.length / 6)) {
+                    let altstart = start
+                    let altend = end
+                    let altlengthstart = pagestart
+
+                    altend -= 6
+                    setEnd(altend)
+
+                    altstart -= 6
+                    setStart(altstart)
+
+                    altlengthstart -= 1
+                    setpagestart(altlengthstart)
+                }
+            }
+        } catch (error) {
+        }
+    }
+
     return (
-        <div className='flex flex-col items-center md:pt-2 pt-3 md:text-xs text-[0.8rem] text-black'>
+        <div className='flex flex-col items-center md:pt-2 pt-4 md:text-xs text-[0.8rem] text-black'>
             <div className={`p-2 rounded-md relative shantf w-full h-fit ${item.read === 'true' ? 'bg-white' : 'bg-[#bca2e6]'}`}>
                 <Link to={item.URL} onClick={() => { MarkSingleRead(); setShowNotis(false); MoveToTop() }}>
                     <div className='flex flex-col gap-2'>
