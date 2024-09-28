@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
 import { FaHandsClapping } from "react-icons/fa6";
 import { MdMarkEmailUnread, MdLock } from "react-icons/md";
@@ -115,7 +115,7 @@ const LoginPage = () => {
                                                     </div>
                                                     <div className='flex flex-col gap-2 items-center mt-12'>
                                                         <button className='outline-none bg-orange py-2 w-full md:px-32 h-fit md:w-fit rounded-md capitalize text-[0.9rem] text-[white] cursor-pointer font-[550]' type='submit' >login</button>
-                                                        <div className='text-[#6b6a6a] text-sm font-[550]'>Don't have an account?
+                                                        <div className='text-[#6b6a6a] text-sm font-[550]'>{`Don't`} have an account?
                                                             <Link to='/signup' onClick={MoveToTop} className='cursor-pointer text-orange font-[550]' > Sign Up</Link>
                                                         </div>
                                                     </div>
