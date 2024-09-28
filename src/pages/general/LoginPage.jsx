@@ -70,16 +70,16 @@ const LoginPage = () => {
     return (
         <Pagelayout>
             <div className='py-16 bg-[whitesmoke]'>
-                {forgotPass === true && <ForgottenPassword closePass={() => setForgotPass(false)} />}
+                {forgotPass === true && <ForgottenPassword closeView={() => setForgotPass(false)} />}
                 <div className="md:w-[85%] bg-white mx-auto py-4 rounded-xl relative shb">
-                    <div className='absolute top-4 left-4 lg:block '>
+                    <div className='absolute top-4 left-4 lg:block'>
                         <img src={logo} className='w-auto h-20'></img>
                     </div>
                     <div className='w-[95%] lg:w-[97%] mx-auto grid grid-cols-1 lg:grid-cols-2'>
                         <div className='col-span-1'>
-                            <div className='bgc rounded-xl flex items-center'>
+                            <div className='bgc rounded-xl flex items-center lg:h-[100vh] h-fit py-16'>
                                 <div className='w-11/12 mx-auto'>
-                                    <div className='w-full h-fit lg:w-[39vw] lg:absolute lg:top-[3.25rem] lg:right-16 lg:shadow-sign-sha bg-white rounded-[20px] py-16 lg:pt-16 lg:pb-24 '>
+                                    <div className='bg-white h-fit rounded-[20px] w-full lg:w-[39vw] lg:absolute lg:top-[3.25rem] lg:right-16 lg:shadow-sign-sha py-16 lg:pt-16 lg:pb-24'>
                                         <div className='relative w-full h-full'>
                                             {loading && <Loading />}
                                             <div className='w-11/12 md:w-[70%] mx-auto'>
@@ -87,7 +87,7 @@ const LoginPage = () => {
                                                     <FaHandsClapping className='text-[1.2rem] text-orange' />
                                                     <div className='text-[1.7rem] capitalize font-[550]'>welcome back!</div>
                                                 </div>
-                                                <div className='text-[0.9rem] mt-[0.1rem] text-[#6b6a6a] capitalize text-center font-[550]'>continue to log in</div>
+                                                <div className='text-[0.9rem] mt-0.5 text-[#6b6a6a] capitalize text-center font-[550]'>continue to log in</div>
                                                 <form onSubmit={submitForm}>
                                                     <div className='flex gap-4 mt-[2rem] flex-col'>
                                                         <div className='flex gap-2 flex-col relative'>

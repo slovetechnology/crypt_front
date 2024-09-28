@@ -10,7 +10,7 @@ import ModalLayout from '../../utils/ModalLayout';
 
 const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) => {
   const toggler = useRef()
-  const [status, setStatus] = useState(singleDeposit.status)
+  const [status, setStatus] = useState(singleDeposit?.status)
   const [statusShow, setStatusShow] = useState(false)
   const [loading, setLoading] = useState(false)
   const [update, setUpdate] = useState(false)
@@ -139,7 +139,7 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) =>
                   <div className='flex flex-col gap-6 my-6'>
                     <div className='flex justify-between items-center'>
                       <div className='italic'>status:</div>
-                      {singleDeposit.status === 'pending' ? <div className='relative'>
+                      {singleDeposit?.status === 'pending' ? <div className='relative'>
                         <div className='px-2 py-1 h-fit md:w-44 w-36 bg-white rounded-[3px] sha cursor-pointer' onClick={() => { setStatusShow(!statusShow); MoveToBottom() }} >
                           <div className='flex justify-between items-center text-[0.8rem]'>
                             <span >{status}</span>
@@ -151,11 +151,11 @@ const UpdateDepositModal = ({ closeView, refetchAllDeposits, singleDeposit }) =>
                             </div>
                           </div>
                         </div>
-                        {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-50'>
+                        {statusShow && <div className='h-fit w-full absolute top-[1.8rem] left-0 bg-white border border-[lightgrey] rounded-md z-10 text-[0.85rem] font-bold'>
                           {Statuses.map((item, i) => (
-                            <div key={i} className={`flex flex-col px-2 py-0.5 hover:bg-[#e6e5e5] ${i === Statuses.length - 1 ? 'hover:rounded-b-md' : 'border-b border-[#ebeaea]'}`}>
-                              <div className='flex items-center cursor-pointer hover:bg-[#e6e5e5]' onClick={() => UpdateHandlerForStatus(item)}>
-                                <div className={`text-[0.85rem] font-bold ${item === 'confirmed' && 'text-[green]'} ${item === 'failed' && 'text-[red]'}`}>{item}</div>
+                            <div key={i} className={`flex flex-col px-2 py-0.5 cursor-pointer hover:bg-[#ececec] ${i !== Statuses.length - 1 && 'border-b border-[#ebeaea]'}`} onClick={() => UpdateHandlerForStatus(item)}>
+                              <div className='flex items-center'>
+                                <div className={`${item === 'confirmed' && 'text-[green]'} ${item === 'failed' && 'text-[red]'}`}>{item}</div>
                               </div>
                             </div>
                           ))}
