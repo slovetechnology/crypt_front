@@ -12,10 +12,19 @@ import Dashboard from './Dashboard'
 const Feedback = () => {
     const [user] = useAtom(PROFILE)
 
-    const [message, setMessage] = useState('')
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
+    const [form, setForm] = useState({
+        title: '',
+        message: '',
+    })
 
+    const formHandler = (event) => {
+        setForm({
+            ...form,
+            [event.target.name]: event.target.value
+        })
+    }
 
     const submitForm = async event => {
         event.preventDefault()
@@ -23,11 +32,12 @@ const Feedback = () => {
             setError(false)
         }, 1000)
 
-        if (!message) return setError(true)
+        if (!form.message) return setError(true)
 
         const formbody = {
             email: user.email,
-            message: message
+            title: form.title,
+            message: form.message
         }
 
         setLoading(true)
@@ -35,7 +45,10 @@ const Feedback = () => {
             const response = await UserPostApi(Apis.user.contact, formbody)
             if (response.status === 200) {
                 Alert('Request Succcessful', `${response.msg}`, 'success')
-                setMessage('')
+                setForm({
+                    title: '',
+                    message: ''
+                })
             } else {
                 return Alert('Request Failed', response.msg, 'error')
             }
@@ -69,8 +82,12 @@ const Feedback = () => {
                     <form onSubmit={submitForm}>
                         <div className='flex flex-col gap-4'>
                             <div className='flex flex-col gap-2'>
-                                <div className='text-xs uppercase font-bold text-[#a09f9f]'>message</div>
-                                <textarea placeholder='Write A Message' className={`p-3 h-36 text-semi-white lg:text-[0.9rem]  outline-none bg-transparent rounded-md resize-none border  ${error === true ? 'border-[#c42e2e]' : 'border-light'} ipt`} value={message} onChange={e => setMessage(e.target.value)}></textarea>
+                                <div className='text-xs uppercase font-bold text-[#a09f9f]'>title</div>
+                                <input placeholder='Enter Message Title' className={`p-3 text-semi-white lg:text-[0.9rem]  outline-none bg-transparent rounded-md border border-light ipt`} name='title' value={form.title} onChange={formHandler}></input>
+                            </div>
+                            <div className='flex flex-col gap-2 mt-2'>
+                                <div className='text-xs uppercase font-bold text-[#a09f9f]'>message*</div>
+                                <textarea placeholder='Write A Message' className={`p-3 h-36 text-semi-white lg:text-[0.9rem]  outline-none bg-transparent rounded-md resize-none border  ${error ? 'border-[#c42e2e]' : 'border-light'} ipt`} name='message' value={form.message} onChange={formHandler}></textarea>
                             </div>
                             <div className='flex justify-end'>
                                 <button className='outline-none bg-light text-xs md:text-sm text-white flex gap-1 items-center justify-center w-fit h-fit md:px-8 px-6 py-2 md:py-1.5 rounded-[3px] capitalize font-[600]'>

@@ -274,8 +274,8 @@ const UpdateCrypto = ({ setScreen, singleCrypto, refetchCryptocurrency, refetchA
                             <div className='text-xs text-center italic text-[#eb2e2e]'>- Deleting this crypto will also delete all wallet addresses under it -</div>
                         </div>
                         <div className='flex items-center gap-6'>
-                            <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setdeleteState(false)}>no</button>
-                            <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={DeleteCryptocurrency}>yes</button>
+                            <button className='w-fit h-fit py-2 px-4 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setdeleteState(false)}>cancel</button>
+                            <button className='w-fit h-fit py-2 px-4 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={DeleteCryptocurrency}>proceed</button>
                         </div>
                     </div>}
                 </div>

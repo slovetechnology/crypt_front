@@ -8,6 +8,7 @@ import Loading from '../GeneralComponents/Loading'
 import { Alert } from '../utils/utils'
 import { Apis, imageurl, PostApi } from '../services/API'
 import nothnyet from '../assets/images/nothn.png'
+import QRCode from 'react-qr-code'
 
 const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
     const [adminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
@@ -150,9 +151,9 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                     }
                     {Object.values(secondValues).length !== 0 &&
                         <div>
-                            <div className='text-center italic text-sm'>or scan qr code:</div>
+                            <div className='text-center italic text-sm mb-0.5'>or scan qr code:</div>
                             <div className='flex items-center justify-center'>
-                                <img src={`${imageurl}/adminWallets/${secondValues.qrcode_img}`} className='h-32 w-auto'></img>
+                                <QRCode value={secondValues.address} className='h-32 w-auto' />
                             </div>
                         </div>
                     }
