@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
-import ModalLayout from '../../../../../utils/ModalLayout'
-import Loading from '../../../../../GeneralComponents/Loading'
 import { FaXmark } from 'react-icons/fa6'
-import { imageurl} from '../../../../../services/API'
 import { IoIosSettings } from 'react-icons/io'
-import nothnyet from '../../../../../assets/images/nothn.png'
+import nothnyet from '../../../assets/images/nothn.png'
 import UpdateCrypto from './UpdateCrypto'
+import Loading from '../../../GeneralComponents/Loading'
+import ModalLayout from '../../../utils/ModalLayout'
+import { imageurl } from '../../../services/API'
 
 const CryptocurrencyComponent = ({ closeView, cryptocurrency, refetchCryptocurrency, refetchAdminWallets }) => {
     const [singleCrypto, setSingleCrypto] = useState({})

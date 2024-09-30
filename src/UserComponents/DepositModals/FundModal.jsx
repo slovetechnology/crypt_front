@@ -11,7 +11,7 @@ import nothnyet from '../../assets/images/nothn.png'
 import QRCode from "react-qr-code";
 
 
-const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) => {
+const FundModal = ({ closeView, setScreen, refetchDeposits }) => {
   const [adminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
@@ -60,7 +60,6 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
         setNotifications(response.notis)
         setUnreadNotis(response.unread)
         Alert('Request Successful', `${response.msg}`, 'success')
-        setDepositTitle('deposit history')
         setScreen(2)
         closeView()
       } else {

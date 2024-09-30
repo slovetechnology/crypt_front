@@ -4,10 +4,10 @@ import nothnyet from '../../../../assets/images/nothn.png'
 import { IoIosSettings } from 'react-icons/io';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { BsThreeDots } from 'react-icons/bs';
-import SettingsLayout from '../SettingsComponents/SettingsLayout';
-import UpdatePackageModal from '../SettingsComponents/PackagesComponents/UpdatePackageModal';
-import CreatePackageModal from '../SettingsComponents/PackagesComponents/CreatePackageModal';
 import { Apis, UserGetApi } from '../../../../services/API';
+import UpdatePackageModal from '../../../../AdminComponents/SettingsComponents/PackagesComponents/UpdatePackageModal';
+import CreatePackageModal from '../../../../AdminComponents/SettingsComponents/PackagesComponents/CreatePackageModal';
+import SettingsLayout from '../../../../AdminComponents/SettingsComponents/SettingsLayout';
 
 
 const Package = () => {

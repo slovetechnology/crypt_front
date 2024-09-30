@@ -4,12 +4,12 @@ import nothnyet from '../../../../assets/images/nothn.png'
 import { IoIosSettings } from 'react-icons/io';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { BsThreeDots } from 'react-icons/bs';
-import SettingsLayout from '../SettingsComponents/SettingsLayout';
-import UpdateWalletModal from '../SettingsComponents/AdminWalletComponents/UpdateWalletModal';
-import CreateWalletModal from '../SettingsComponents/AdminWalletComponents/CreateWalletModal';
 import { Apis, UserGetApi } from '../../../../services/API';
-import CryptocurrencyComponent from '../SettingsComponents/Cryptocurrency/CryptocurrencyComponent';
 import QRCode from "react-qr-code";
+import CreateWalletModal from '../../../../AdminComponents/SettingsComponents/AdminWalletComponents/CreateWalletModal';
+import CryptocurrencyComponent from '../../../../AdminComponents/SettingsComponents/Cryptocurrency/CryptocurrencyComponent';
+import UpdateWalletModal from '../../../../AdminComponents/SettingsComponents/AdminWalletComponents/UpdateWalletModal';
+import SettingsLayout from '../../../../AdminComponents/SettingsComponents/SettingsLayout';
 
 
 const AddWallet = () => {

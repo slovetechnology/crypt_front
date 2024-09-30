@@ -22,10 +22,8 @@ const Investment = () => {
     const [original, setOriginal] = useState([])
     const [investment, setInvestment] = useState([])
     const [investmentUnclaim, setInvestUnclaim] = useState([])
-    const [investtitle, setInvestTitle] = useState('my investment')
     const [screen, setScreen] = useState(params ? parseInt(params) : 1)
     const [search, setSearch] = useState('')
-    const [write, setWrite] = useState(false)
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
@@ -74,7 +72,6 @@ const Investment = () => {
     const HandleSearch = () => {
         const altinvestment = original
         if (!search) {
-            setWrite(false)
             setInvestment(original)
             setpageend(original.length / 6)
             setpagestart(1)
@@ -82,7 +79,6 @@ const Investment = () => {
             setEnd(6)
 
         } else {
-            setWrite(true)
             const showSearch = altinvestment.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search) || moment(item.createdAt).format('h:mm').includes(search) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()) || item.claim.includes(search.toLowerCase()))
             setInvestment(showSearch)
             setpageend(showSearch.length / 6)
@@ -94,7 +90,6 @@ const Investment = () => {
 
     const CancelWrite = () => {
         setSearch('')
-        setWrite(false)
         setInvestment(original)
         setpageend(original.length / 6)
         setpagestart(1)
@@ -143,17 +138,12 @@ const Investment = () => {
         <Dashboard>
             <div>
                 <div className='flex justify-between items-center'>
-                    <div className='uppercase font-bold md:text-2xl text-lg text-semi-white'>{investtitle}</div>
-                    {screen === 1 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setInvestTitle('investment history') }}>
-                        <span>history</span>
-                        <RiHistoryFill />
-                    </div>}
-                    {screen === 2 && <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setInvestTitle('my investment') }}>
-                        <span>investments</span>
-                        <IoListOutline />
-                    </div>}
+                    <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{screen === 1 ? 'investment' : 'investment history'}</div>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => setScreen(screen === 1 ? 2 : 1)}>
+                        <span>{screen === 1 ? 'history' : 'my investments'}</span>
+                        {screen === 1 ? <RiHistoryFill /> : <IoListOutline />}
+                    </div>
                 </div>
-
                 {dataLoading ?
                     <>
                         {new Array(2).fill(0).map((ele, i) => (
@@ -259,7 +249,7 @@ const Investment = () => {
                             <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch}></input>
                             <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-[2.5rem] h-10 rounded-full flex items-center justify-center bg-light shlz'>
                                 <IoIosSearch />
-                                {write &&
+                                {search !== '' &&
                                     <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                                         <FiX />
                                     </div>

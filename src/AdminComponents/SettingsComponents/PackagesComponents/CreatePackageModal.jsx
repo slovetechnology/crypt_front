@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FaXmark } from 'react-icons/fa6'
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
-import Loading from '../../../../../GeneralComponents/Loading';
-import { Apis, PostApi } from '../../../../../services/API';
-import { Alert } from '../../../../../utils/utils';
-import ModalLayout from '../../../../../utils/ModalLayout';
+import { Alert } from '../../../utils/utils';
+import { Apis, PostApi } from '../../../services/API';
+import Loading from '../../../GeneralComponents/Loading';
+import ModalLayout from '../../../utils/ModalLayout';
 
 
 const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {

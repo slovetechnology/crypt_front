@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsCurrencyDollar } from "react-icons/bs";
 import { VscDebugDisconnect } from "react-icons/vsc";
 import { useAtom } from 'jotai';

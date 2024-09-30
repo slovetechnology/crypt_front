@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
 import { PiWarningCircleBold } from "react-icons/pi";
-import { Apis, PostApi, UserPutApi } from '../../../../../services/API';
-import Loading from '../../../../../GeneralComponents/Loading';
-import { Alert } from '../../../../../utils/utils';
-import ModalLayout from '../../../../../utils/ModalLayout';
+import ModalLayout from '../../../utils/ModalLayout';
+import Loading from '../../../GeneralComponents/Loading';
+import { Apis, PostApi, UserPutApi } from '../../../services/API';
+import { Alert } from '../../../utils/utils';
 import { FaXmark } from 'react-icons/fa6';
 
 const UpdateWalletModal = ({ closeView, singleWallet, refetchAdminWallets }) => {

@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
-import Loading from '../../../../../GeneralComponents/Loading';
 import { PiWarningCircleBold } from 'react-icons/pi';
-import { Apis, PostApi, UserPutApi } from '../../../../../services/API';
-import { Alert } from '../../../../../utils/utils';
-import ModalLayout from '../../../../../utils/ModalLayout';
 import { FaXmark } from 'react-icons/fa6';
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
+import Loading from '../../../GeneralComponents/Loading';
+import ModalLayout from '../../../utils/ModalLayout';
+import { Alert } from '../../../utils/utils';
+import { Apis, PostApi, UserPutApi } from '../../../services/API';
 
 
 const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {

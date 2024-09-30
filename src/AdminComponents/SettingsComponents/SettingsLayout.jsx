@@ -1,6 +1,6 @@
 import React from 'react'
-import AdminDashboard from '../AdminDashboard'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import AdminDashboard from '../../pages/auth/adminDashboardPages/AdminDashboard'
 
 
 const SettingsLinks = [
@@ -11,7 +11,6 @@ const SettingsLinks = [
 
 
 const SettingsLayout = ({ children }) => {
-  const location = useLocation()
 
   return (
     <AdminDashboard>

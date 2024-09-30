@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
-import Loading from '../../../../../GeneralComponents/Loading';
-import { Apis, imageurl, PostApi } from '../../../../../services/API';
-import { Alert } from '../../../../../utils/utils';
-import ModalLayout from '../../../../../utils/ModalLayout';
 import { FaXmark } from 'react-icons/fa6';
 import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
-import nothnyet from '../../../../../assets/images/nothn.png'
+import nothnyet from '../../../assets/images/nothn.png'
+import ModalLayout from '../../../utils/ModalLayout';
+import Loading from '../../../GeneralComponents/Loading';
+import { Apis, imageurl, PostApi } from '../../../services/API';
+import { Alert } from '../../../utils/utils';
 
 const CreateWalletModal = ({ closeView, refetchAdminWallets, cryptocurrency }) => {
     const [select, setSelect] = useState(false)

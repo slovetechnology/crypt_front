@@ -5,7 +5,7 @@ import { IoCheckmarkCircleOutline } from 'react-icons/io5'
 import { MdOutlineEdit } from 'react-icons/md'
 import { PiWarningCircleBold } from 'react-icons/pi'
 import { RiErrorWarningLine } from 'react-icons/ri'
-import { Apis, imageurl, PostApi, UserPutApi } from '../../../../../services/API'
+import { Apis, imageurl, PostApi, UserPutApi } from '../../../services/API'
 
 const UpdateCrypto = ({ setScreen, singleCrypto, refetchCryptocurrency, refetchAdminWallets, setLoading }) => {
     const [deleteState, setdeleteState] = useState(false)

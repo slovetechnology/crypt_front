@@ -10,7 +10,7 @@ import { Apis, imageurl, PostApi } from '../services/API'
 import nothnyet from '../assets/images/nothn.png'
 import QRCode from 'react-qr-code'
 
-const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
+const PayTaxModal = ({ closeView, setScreen, refetchTaxes }) => {
     const [adminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
     const [, setNotifications] = useAtom(NOTIFICATIONS)
     const [, setUnreadNotis] = useAtom(UNREADNOTIS)
@@ -58,7 +58,6 @@ const PayTaxModal = ({ closeView, setScreen, refetchTaxes, setTaxTitle }) => {
                 setNotifications(response.notis)
                 setUnreadNotis(response.unread)
                 Alert('Request Successful', `${response.msg}`, 'success')
-                setTaxTitle('tax history')
                 setScreen(2)
                 closeView()
             } else {
