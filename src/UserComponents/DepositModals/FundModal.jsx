@@ -8,9 +8,10 @@ import { Apis, imageurl, PostApi } from '../../services/API'
 import { ADMINCRYPTOWALLETS, ADMINSTORE, NOTIFICATIONS, UNREADNOTIS } from '../../store'
 import { SiBitcoincash } from 'react-icons/si'
 import nothnyet from '../../assets/images/nothn.png'
+import QRCode from "react-qr-code";
 
 
-const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) => {
+const FundModal = ({ closeView, setScreen, refetchDeposits }) => {
   const [adminCryptoWallets] = useAtom(ADMINCRYPTOWALLETS)
   const [, setNotifications] = useAtom(NOTIFICATIONS)
   const [, setUnreadNotis] = useAtom(UNREADNOTIS)
@@ -59,7 +60,6 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
         setNotifications(response.notis)
         setUnreadNotis(response.unread)
         Alert('Request Successful', `${response.msg}`, 'success')
-        setDepositTitle('deposit history')
         setScreen(2)
         closeView()
       } else {
@@ -152,9 +152,9 @@ const FundModal = ({ closeView, setScreen, setDepositTitle, refetchDeposits }) =
           }
           {Object.values(secondValues).length !== 0 &&
             <div>
-              <div className='text-[0.85rem] text-center italic'>or scan qr code:</div>
+              <div className='text-[0.85rem] text-center italic mb-0.5'>or scan qr code:</div>
               <div className='flex items-center justify-center'>
-                <img src={`${imageurl}/adminWallets/${secondValues.qrcode_img}`} className='h-32 w-auto'></img>
+                <QRCode value={secondValues.address} className='h-32 w-auto' />
               </div>
             </div>
           }

@@ -2,10 +2,10 @@ import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FaXmark } from 'react-icons/fa6'
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
-import Loading from '../../../../../GeneralComponents/Loading';
-import { Apis, PostApi } from '../../../../../services/API';
-import { Alert } from '../../../../../utils/utils';
-import ModalLayout from '../../../../../utils/ModalLayout';
+import { Alert } from '../../../utils/utils';
+import { Apis, PostApi } from '../../../services/API';
+import Loading from '../../../GeneralComponents/Loading';
+import ModalLayout from '../../../utils/ModalLayout';
 
 
 const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
@@ -102,7 +102,7 @@ const CreatePackageModal = ({ closeView, refetchTradingPlans }) => {
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>profit return (%):</div>
+                                <div className='italic'>profit return / ROI (%):</div>
                                 <div>
                                     <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_return} name='profit_return' onChange={inputHandler}></input>
                                 </div>

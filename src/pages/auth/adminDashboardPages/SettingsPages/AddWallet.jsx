@@ -4,11 +4,12 @@ import nothnyet from '../../../../assets/images/nothn.png'
 import { IoIosSettings } from 'react-icons/io';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { BsThreeDots } from 'react-icons/bs';
-import SettingsLayout from '../SettingsComponents/SettingsLayout';
-import UpdateWalletModal from '../SettingsComponents/AdminWalletComponents/UpdateWalletModal';
-import CreateWalletModal from '../SettingsComponents/AdminWalletComponents/CreateWalletModal';
-import { Apis, imageurl, UserGetApi } from '../../../../services/API';
-import CryptocurrencyComponent from '../SettingsComponents/Cryptocurrency/CryptocurrencyComponent';
+import { Apis, UserGetApi } from '../../../../services/API';
+import QRCode from "react-qr-code";
+import CreateWalletModal from '../../../../AdminComponents/SettingsComponents/AdminWalletComponents/CreateWalletModal';
+import CryptocurrencyComponent from '../../../../AdminComponents/SettingsComponents/Cryptocurrency/CryptocurrencyComponent';
+import UpdateWalletModal from '../../../../AdminComponents/SettingsComponents/AdminWalletComponents/UpdateWalletModal';
+import SettingsLayout from '../../../../AdminComponents/SettingsComponents/SettingsLayout';
 
 
 const AddWallet = () => {
@@ -149,7 +150,7 @@ const AddWallet = () => {
                         <td className='p-4  text-center truncate capitalize'>{item.crypto_name}</td>
                         <td className='p-4  text-center truncate capitalize'>{item.network}</td>
                         <td className={`p-4  text-center truncate`}>{item.address?.slice(0, 7)}.....{item.address?.slice(-8)}</td>
-                        <td className='p-4  text-center truncate'><img src={`${imageurl}/adminWallets/${item.qrcode_img}`} className='w-4 h-auto mx-auto'></img></td>
+                        <td className='p-4 truncate'><QRCode value={item.address} className='w-4 h-auto mx-auto' /></td>
                         <td className='text-center truncate  capitalize p-2  cursor-pointer text-black hover:text-[#895ee0]' onClick={() => SingleWalletFunction(item)}> <BsThreeDots className="mx-auto text-base" /></td>
                       </tr>
                     ))}

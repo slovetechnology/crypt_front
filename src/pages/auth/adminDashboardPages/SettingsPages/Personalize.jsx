@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react'
-import SettingsLayout from '../SettingsComponents/SettingsLayout'
 import { useAtom } from 'jotai'
 import { ADMINSTORE, PROFILE } from '../../../../store'
 import Loading from '../../../../GeneralComponents/Loading'
@@ -13,6 +12,7 @@ import { TfiInstagram } from "react-icons/tfi";
 import { GrFacebookOption } from 'react-icons/gr';
 import avatar from '../../../../assets/images/avatar.png'
 import { Alert } from '../../../../utils/utils'
+import SettingsLayout from '../../../../AdminComponents/SettingsComponents/SettingsLayout'
 
 const Personalize = () => {
   const [user, setUser] = useAtom(PROFILE)

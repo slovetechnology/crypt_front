@@ -21,8 +21,9 @@ const ContactPage = () => {
   const [loading, setLoading] = useState(false)
 
   const [form, setForm] = useState({
-    username: '',
+    name: '',
     email: '',
+    title: '',
     message: ''
   })
 
@@ -40,12 +41,12 @@ const ContactPage = () => {
       setError('')
     }, 1000)
 
-    if (!form.username) return setError('username')
     if (!form.email) return setError('email')
     if (!form.message) return setError('message')
 
     const formbody = {
       email: form.email,
+      title: form.title,
       message: form.message
     }
 
@@ -54,6 +55,12 @@ const ContactPage = () => {
       const response = await UserPostApi(Apis.user.contact, formbody)
       if (response.status === 200) {
         Alert('Request Succcessful', response.msg, 'success')
+        setForm({
+          name: '',
+          email: '',
+          title: '',
+          message: ''
+        })
       } else {
         return Alert('Request Failed', response.msg, 'error')
       }
@@ -67,11 +74,11 @@ const ContactPage = () => {
   return (
     <Pagelayout>
       <div className="bg-[#1E2833] py-16">
-        <div className='w-11/12 mx-auto '>
+        <div className='w-11/12 mx-auto'>
           <div className='flex flex-col shlct'>
-            <div className='w-full lg:h-[70vh] h-fit grid grid-cols-1 lg:grid-cols-2'>
-              <div className='col-span-1 lg:h-full h-[20vh] w-full'>
-                <img src={contactimg} className='lg:h-[70vh] h-[20vh] w-full object-cover'></img>
+            <div className='w-full lg:h-[80vh] h-fit grid grid-cols-1 lg:grid-cols-2'>
+              <div className='col-span-1'>
+                <img src={contactimg} className='lg:h-[80vh] md:h-[50vh] h-[30vh] w-full object-cover'></img>
               </div>
               <div className='col-span-1 lg:h-full h-fit bg-[#faf9f9] py-6 overflow-hidden relative'>
                 {loading && <Loading />}
@@ -86,20 +93,24 @@ const ContactPage = () => {
                     <span>-</span>
                   </div>
                   <form onSubmit={submitForm}>
-                    <div className='flex flex-col gap-4 mt-12'>
+                    <div className='flex flex-col gap-4 mt-8'>
                       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
-                        <div className='flex flex-col gap-2 w-full'>
+                        <div className='flex flex-col gap-2'>
                           <div className='text-xs uppercase font-bold text-[#636262]'>full name</div>
-                          <input type='text' placeholder='Enter your full name' className={` outline-none focus:outline-orange border-b-2 focus:border-b-0 lg:text-[0.8rem] text-base capitalize pl-2 p-1 ${error === 'username' ? 'border-[red]' : ''} ipt input-off`} name='username' value={form.username} onChange={inputHandler}></input>
+                          <input type='text' placeholder='Enter full name' className='outline-none focus:outline-orange border-b-2 focus:border-b-0 lg:text-sm text-base capitalize pl-2 p-1 ipt input-off' name='name' value={form.name} onChange={inputHandler}></input>
                         </div>
-                        <div className='flex flex-col gap-2 w-full'>
-                          <div className='text-xs uppercase font-bold text-[#636262]'>email address</div>
-                          <input type='email' placeholder='Enter Your Email Address' className={` outline-none focus:outline-orange border-b-2 focus:border-b-0 lg:text-[0.8rem] text-base  p-1 pl-2 ${error === 'email' ? 'border-[red]' : ''} ipt input-off`} name='email' value={form.email} onChange={inputHandler}></input>
+                        <div className='flex flex-col gap-2'>
+                          <div className='text-xs uppercase font-bold text-[#636262]'>email address*</div>
+                          <input type='email' placeholder='Enter Email Address' className={` outline-none focus:outline-orange border-b-2 focus:border-b-0 lg:text-sm text-base  p-1 pl-2 ${error === 'email' ? 'border-[red]' : ''} ipt input-off`} name='email' value={form.email} onChange={inputHandler}></input>
                         </div>
                       </div>
+                      <div className='flex flex-col gap-2 w-full'>
+                        <div className='text-xs uppercase font-bold text-[#636262]'>title</div>
+                        <input placeholder='Enter Message Title' className='outline-none focus:outline-orange border-b-2 focus:border-b-0 lg:text-sm text-base p-1 pl-2 ipt input-off' name='title' value={form.title} onChange={inputHandler}></input>
+                      </div>
                       <div className='flex flex-col gap-2'>
-                        <div className='text-xs uppercase font-bold text-[#636262]'>message</div>
-                        <textarea placeholder='Type A Message' className={` p-2 h-36 lg:text-[0.9rem] text-base resize-none outline-none focus:outline-orange  ${error === 'message' ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
+                        <div className='text-xs uppercase font-bold text-[#636262]'>message*</div>
+                        <textarea placeholder='Type A Message' className={` p-2 h-32 lg:text-[0.9rem] text-base resize-none outline-none focus:outline-orange  ${error === 'message' ? ' border border-[red]' : ''} ipt`} name='message' value={form.message} onChange={inputHandler}></textarea>
                       </div>
                       <div className='flex justify-center mt-2'>
                         <button className='outline-none bg-orange text-[0.9rem] text-white flex gap-1 items-center justify-center w-fit h-fit px-8 py-1 rounded-[3px] capitalize font-bold'>

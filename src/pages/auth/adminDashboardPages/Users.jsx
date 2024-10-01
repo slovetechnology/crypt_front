@@ -7,10 +7,11 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import { TbUsers } from "react-icons/tb";
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard'
-import UsersModal from '../../../AdminComponents/AdminUsersComponents/UsersModal'
-import CreateUsersModal from '../../../AdminComponents/AdminUsersComponents/CreateUsersModal'
-import SetReferralModal from '../../../AdminComponents/AdminUsersComponents/SetReferralModal'
-import UserTableBody from '../../../AdminComponents/AdminUsersComponents/UserTableBody';
+import UsersModal from '../../../AdminComponents/UsersComponents/UsersModal';
+import CreateUsersModal from '../../../AdminComponents/UsersComponents/CreateUsersModal';
+import SetReferralModal from '../../../AdminComponents/UsersComponents/SetReferralModal';
+import UserTableBody from '../../../AdminComponents/UsersComponents/UserTableBody';
+
 
 
 
@@ -21,7 +22,6 @@ const Users = () => {
   const [modal2, setModal2] = useState(false)
   const [modal3, setModal3] = useState(false)
   const [singleUser, setSingleUser] = useState({})
-  const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [userFigures, setUserFigures] = useState({})
   const [start, setStart] = useState(0)
@@ -42,7 +42,6 @@ const Users = () => {
         setEnd(6)
         setpagestart(1)
         setSearch('')
-        setWrite(false)
       }
 
     } catch (error) {
@@ -61,13 +60,11 @@ const Users = () => {
     if (!search) {
       setAllUsers(orignal)
       setpageend(orignal.length / 6)
-      setWrite(false)
       setpagestart(1)
       setStart(0)
       setEnd(6)
     }
     else {
-      setWrite(true)
       const showSearch = altusers.filter(item => item.full_name.includes(search.toLowerCase()) || item.username.includes(search.toLowerCase()) || item.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search))
       setAllUsers(showSearch)
       setpageend(showSearch.length / 6)
@@ -81,7 +78,6 @@ const Users = () => {
     setSearch('')
     setAllUsers(orignal)
     setpageend(orignal.length / 6)
-    setWrite(false)
     setpagestart(1)
     setStart(0)
     setEnd(6)
@@ -145,7 +141,7 @@ const Users = () => {
             <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
             <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10  rounded-full flex items-center justify-center bg-admin-page shantf2' >
               <IoIosSearch />
-              {write &&
+              {search !== '' &&
                 <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-zinc-400 rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                   <FiX />
                 </div>

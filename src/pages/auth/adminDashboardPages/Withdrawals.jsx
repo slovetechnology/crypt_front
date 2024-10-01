@@ -15,7 +15,6 @@ const Withdrawals = () => {
     const [allWithdrawals, setAllWithdrawals] = useState([])
     const [singleWithdrawal, setSingleWithdrawal] = useState({})
     const [modal, setModal] = useState(false)
-    const [write, setWrite] = useState(false)
     const [search, setSearch] = useState('')
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(6)
@@ -59,13 +58,11 @@ const Withdrawals = () => {
         if (!search) {
             setAllWithdrawals(original)
             setpageend(original.length / 6)
-            setWrite(false)
             setpagestart(1)
             setStart(0)
             setEnd(6)
         }
         else {
-            setWrite(true)
             const showSearch = altwithdrawals.filter(item => item.wthUser.username.includes(search.toLowerCase()) || item.wthUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search) || item.amount.toString().includes(search) || item.status.includes(search.toLowerCase()))
             setAllWithdrawals(showSearch)
             setpageend(showSearch.length / 6)
@@ -79,7 +76,6 @@ const Withdrawals = () => {
         setSearch('')
         setAllWithdrawals(original)
         setpageend(original.length / 6)
-        setWrite(false)
         setpagestart(1)
         setStart(0)
         setEnd(6)
@@ -133,7 +129,7 @@ const Withdrawals = () => {
                         <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
                         <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-admin-page shantf2'>
                             <IoIosSearch />
-                            {write &&
+                            {search !== '' &&
                                 <div className='absolute top-[1.2rem] right-12 text-xs cursor-pointer bg-zinc-400 rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                                     <FiX />
                                 </div>

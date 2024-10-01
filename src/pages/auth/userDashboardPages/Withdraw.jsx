@@ -30,7 +30,6 @@ const Withdraw = () => {
     const params = searchParams.get('screen')
     const [original, setOriginal] = useState([])
     const [withdrawals, setWithdrawals] = useState([])
-    const [withdrawTitle, setWithdrawTitle] = useState('withdraw')
     const [screen, setScreen] = useState(params ? parseInt(params) : 1)
     const [select, setSelect] = useState(false)
     const [mode, setMode] = useState(1)
@@ -40,7 +39,6 @@ const Withdraw = () => {
     const [error, setError] = useState('')
     const [errorMsg, setErrorMsg] = useState('')
     const [search, setSearch] = useState('')
-    const [write, setWrite] = useState(false)
     const [start, setStart] = useState(0)
     const [end, setEnd] = useState(6)
     const [pagestart, setpagestart] = useState(1)
@@ -121,7 +119,6 @@ const Withdraw = () => {
                 })
                 setCheck(!check)
                 setSecondValues({})
-                setWithdrawTitle('withdrawal history')
                 setScreen(2)
             } else {
                 Alert('Request Failed', `${response.msg}`, 'error')
@@ -136,7 +133,6 @@ const Withdraw = () => {
     const HandleSearch = () => {
         const altwithdrawals = original
         if (!search) {
-            setWrite(false)
             setWithdrawals(original)
             setpageend(original.length / 6)
             setpagestart(1)
@@ -144,7 +140,6 @@ const Withdraw = () => {
             setEnd(6)
         }
         else {
-            setWrite(true)
             const showSearch = altwithdrawals.filter(item => moment(item.createdAt).format('DD-MM-yyyy').includes(search) || moment(item.createdAt).format('h:mm').includes(search) || item.amount.toString().includes(search) || item.crypto.toLowerCase().includes(search.toLowerCase()) || item.network.toLowerCase().includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
             setWithdrawals(showSearch)
             setpageend(showSearch.length / 6)
@@ -156,7 +151,6 @@ const Withdraw = () => {
 
     const CancelWrite = () => {
         setSearch('')
-        setWrite(false)
         setWithdrawals(original)
         setpageend(original.length / 6)
         setpagestart(1)
@@ -205,16 +199,11 @@ const Withdraw = () => {
         <Dashboard>
             <div>
                 <div className='flex justify-between items-center'>
-                    <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{withdrawTitle}</div>
-                    {screen === 1 ? <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(2); setWithdrawTitle('withdawal history') }}>
-                        <span>history</span>
-                        <RiHistoryFill />
+                    <div className='uppercase font-bold md:text-2xl text-lg text-semi-white '>{screen === 1 ? 'withdraw' : 'withdrawal history'}</div>
+                    <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => setScreen(screen === 1 ? 2 : 1)}>
+                        <span>{screen === 1 ? 'history' : 'withdraw'}</span>
+                        {screen === 1 ? <RiHistoryFill /> : <BiMoneyWithdraw />}
                     </div>
-                        :
-                        <div className='flex gap-1 capitalize font-bold md:text-[0.9rem] text-xs text-light items-center justify-center cursor-pointer' onClick={() => { setScreen(1); setWithdrawTitle('withdaw') }}>
-                            <span>withdraw</span>
-                            <BiMoneyWithdraw />
-                        </div>}
                 </div>
                 {screen === 1 &&
                     <div className='flex justify-center'>
@@ -319,75 +308,77 @@ const Withdraw = () => {
                         </div>
                     </div>
                 }
-                {screen === 2 && <div className='mt-10'>
-                    <div className='relative w-fit mx-auto'>
-                        <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
-                        <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
-                            <IoIosSearch />
-                            {write &&
-                                <div className='absolute top-[1.2rem] md:right-12 right-11  text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
-                                    <FiX />
-                                </div>
-                            }
+                {screen === 2 &&
+                    <div className='mt-10'>
+                        <div className='relative w-fit mx-auto'>
+                            <input className='border border-white bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 lg:text-[0.9rem] rounded-full text-white ipa' type='text' value={search} onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
+                            <div className='text-[1.2rem] text-white absolute top-[-0.5rem] right-[-0.5rem] w-10 h-10 rounded-full flex items-center justify-center bg-light shlz'>
+                                <IoIosSearch />
+                                {search !== '' &&
+                                    <div className='absolute top-[1.2rem] md:right-12 right-11  text-xs cursor-pointer bg-[#414040] rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
+                                        <FiX />
+                                    </div>
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
-                        <table className='w-full'>
-                            <thead>
-                                <tr className='bg-light text-[0.8rem] font-bold text-white'>
-                                    <td className='text-center truncate  capitalize p-2'>date</td>
-                                    <td className='text-center truncate  capitalize p-2'>time</td>
-                                    <td className='text-center truncate  capitalize p-2'>amount</td>
-                                    <td className='text-center truncate  capitalize p-2'>crypto</td>
-                                    <td className='text-center truncate  capitalize p-2'>network</td>
-                                    <td className='text-center truncate  capitalize p-2'>address</td>
-                                    <td className='text-center truncate  capitalize p-2'>status </td>
-                                </tr>
-                            </thead>
-                            {dataLoading ?
-                                <tbody>
-                                    <tr className='bg-gray-400 animate-pulse h-10'>
-                                        <td colSpan="7"></td>
+                        <div className='relative overflow-x-auto shadow-md rounded-lg mt-4 scrollsdown'>
+                            <table className='w-full'>
+                                <thead>
+                                    <tr className='bg-light text-[0.8rem] font-bold text-white'>
+                                        <td className='text-center truncate  capitalize p-2'>date</td>
+                                        <td className='text-center truncate  capitalize p-2'>time</td>
+                                        <td className='text-center truncate  capitalize p-2'>amount</td>
+                                        <td className='text-center truncate  capitalize p-2'>crypto</td>
+                                        <td className='text-center truncate  capitalize p-2'>network</td>
+                                        <td className='text-center truncate  capitalize p-2'>address</td>
+                                        <td className='text-center truncate  capitalize p-2'>status </td>
                                     </tr>
-                                </tbody>
-                                :
-                                <>
-                                    {withdrawals.length > 0 ?
-                                        <tbody>
-                                            {withdrawals.slice(start, end).map((item, i) => (
-                                                <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
-                                                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
-                                                    <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
-                                                    <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
-                                                    <td className='p-4  text-center truncate'>{item.crypto}</td>
-                                                    <td className='p-4  text-center truncate'>{item.network}</td>
-                                                    <td className='p-4  text-center truncate'>{item.withdrawal_address?.slice(0, 5)}.....{item.withdrawal_address?.slice(-10)} </td>
-                                                    <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
+                                </thead>
+                                {dataLoading ?
+                                    <tbody>
+                                        <tr className='bg-gray-400 animate-pulse h-10'>
+                                            <td colSpan="7"></td>
+                                        </tr>
+                                    </tbody>
+                                    :
+                                    <>
+                                        {withdrawals.length > 0 ?
+                                            <tbody>
+                                                {withdrawals.slice(start, end).map((item, i) => (
+                                                    <tr className='text-[0.8rem]  text-semi-white bg-[#272727] even:bg-[#313131]' key={i}>
+                                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('DD-MM-yyyy')}</td>
+                                                        <td className='p-4  text-center truncate'>{moment(item.createdAt).format('h:mm')}</td>
+                                                        <td className='p-4  text-center truncate'>${item.amount.toLocaleString()}</td>
+                                                        <td className='p-4  text-center truncate'>{item.crypto}</td>
+                                                        <td className='p-4  text-center truncate'>{item.network}</td>
+                                                        <td className='p-4  text-center truncate'>{item.withdrawal_address?.slice(0, 5)}.....{item.withdrawal_address?.slice(-10)} </td>
+                                                        <td className={`p-4  text-center truncate italic ${item.status === 'confirmed' && 'text-[#adad40]'}  ${item.status === 'processing' && 'text-[#6f6ff5]'}  ${item.status === 'failed' && 'text-[#eb4242] '}`}>{item.status}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                            :
+                                            <tbody>
+                                                <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
+                                                    <td colSpan="7" className='py-2 italic text-center truncate'>
+                                                        <div className='flex gap-1 items-center justify-center'>
+                                                            <span>no withdrawals found...</span>
+                                                            <img src={nothnyet} className='h-4 w-auto'></img>
+                                                        </div>
+                                                    </td>
                                                 </tr>
-                                            ))}
-                                        </tbody>
-                                        :
-                                        <tbody>
-                                            <tr className='text-semi-white text-[0.8rem] bg-[#272727] '>
-                                                <td colSpan="7" className='py-2 italic text-center truncate'>
-                                                    <div className='flex gap-1 items-center justify-center'>
-                                                        <span>no withdrawals found...</span>
-                                                        <img src={nothnyet} className='h-4 w-auto'></img>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    }
-                                </>
-                            }
-                        </table>
+                                            </tbody>
+                                        }
+                                    </>
+                                }
+                            </table>
+                        </div>
+                        {withdrawals.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-light '>
+                            {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
+                            {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
+                            {end < withdrawals.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
+                        </div>}
                     </div>
-                    {withdrawals.length > 0 && <div className='flex gap-2 items-center md:text-xs text-sm mt-4 justify-end text-light '>
-                        {pagestart > 1 && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={BackPage}><FaAngleLeft /></div>}
-                        {Math.ceil(pageend) > 1 && <div className='font-bold text-[grey]'>{pagestart} of {Math.ceil(pageend)}</div>}
-                        {end < withdrawals.length && <div className='py-1 px-2 rounded-md border border-light hover:bg-light hover:text-white cursor-pointer' onClick={MovePage}><FaAngleRight /></div>}
-                    </div>}
-                </div>}
+                }
             </div>
         </Dashboard>
     )

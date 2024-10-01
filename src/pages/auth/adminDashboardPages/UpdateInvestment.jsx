@@ -15,7 +15,6 @@ const UpdateInvestment = () => {
   const [allInvestments, setAllInvestments] = useState([])
   const [singleInvestment, setSingleInvestment] = useState({})
   const [modal, setModal] = useState(false)
-  const [write, setWrite] = useState(false)
   const [search, setSearch] = useState('')
   const [start, setStart] = useState(0)
   const [end, setEnd] = useState(6)
@@ -35,7 +34,6 @@ const UpdateInvestment = () => {
         setEnd(6)
         setpagestart(1)
         setSearch('')
-        setWrite(false)
       }
 
     } catch (error) {
@@ -59,13 +57,11 @@ const UpdateInvestment = () => {
     if (!search) {
       setAllInvestments(original)
       setpageend(original.length / 6)
-      setWrite(false)
       setpagestart(1)
       setStart(0)
       setEnd(6)
     }
     else {
-      setWrite(true)
       const showSearch = altinvestments.filter(item => item.investmentUser.username.includes(search.toLowerCase()) || item.investmentUser.email.includes(search.toLowerCase()) || moment(item.createdAt).format('DD-MM-yyyy').includes(search) || item.amount.toString().includes(search) || item.trading_plan.includes(search.toLowerCase()) || item.status.includes(search.toLowerCase()))
       setAllInvestments(showSearch)
       setpageend(showSearch.length / 6)
@@ -79,7 +75,6 @@ const UpdateInvestment = () => {
     setSearch('')
     setAllInvestments(original)
     setpageend(original.length / 6)
-    setWrite(false)
     setpagestart(1)
     setStart(0)
     setEnd(6)
@@ -135,7 +130,7 @@ const UpdateInvestment = () => {
             <input className='border border-[grey] bg-transparent md:w-80 w-60 h-10 outline-none pl-4 pr-16 md:text-[0.9rem] text-base rounded-full text-black ipa' value={search} type='text' onChange={e => setSearch(e.target.value)} onKeyUp={HandleSearch} ></input>
             <div className='text-[1.2rem] text-white absolute -top-2 -right-2 w-10 h-10 rounded-full flex items-center justify-center bg-admin-page shantf2'>
               <IoIosSearch />
-              {write &&
+              {search !== '' &&
                 <div className='absolute top-[1.2rem] md:right-12 right-11 text-xs cursor-pointer bg-zinc-400 rounded-full w-fit h-fit p-0.5' onClick={CancelWrite}>
                   <FiX />
                 </div>

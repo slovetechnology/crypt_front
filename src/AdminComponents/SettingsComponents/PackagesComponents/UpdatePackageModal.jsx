@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react'
 import { RiErrorWarningLine } from "react-icons/ri";
-import Loading from '../../../../../GeneralComponents/Loading';
 import { PiWarningCircleBold } from 'react-icons/pi';
-import { Apis, PostApi, UserPutApi } from '../../../../../services/API';
-import { Alert } from '../../../../../utils/utils';
-import ModalLayout from '../../../../../utils/ModalLayout';
 import { FaXmark } from 'react-icons/fa6';
 import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
+import Loading from '../../../GeneralComponents/Loading';
+import ModalLayout from '../../../utils/ModalLayout';
+import { Alert } from '../../../utils/utils';
+import { Apis, PostApi, UserPutApi } from '../../../services/API';
 
 
 const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
@@ -150,7 +150,7 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                                 </div>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <div className='italic'>profit return (%):</div>
+                                <div className='italic'>profit return / ROI (%):</div>
                                 <div>
                                     <input className='outline-none border border-[#c9b8eb] md:w-48 w-40 py-1 px-1.5 lg:text-sm text-base' value={form.profit_return} name='profit_return' onChange={inputHandler} onKeyUp={CommitHandlerForText}></input>
                                 </div>
@@ -210,8 +210,8 @@ const UpdatePackageModal = ({ closeView, singlePlan, refetchTradingPlans }) => {
                                     <div className='text-xs text-center italic text-[#eb2e2e]'>- All investments under this trading plan will no longer update automatically -</div>
                                 </div>
                                 <div className='flex items-center gap-6'>
-                                    <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setDeleteState(false)}>no</button>
-                                    <button className='w-fit h-fit py-2 px-6 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={DeleteTradingPlan}>yes</button>
+                                    <button className='w-fit h-fit py-2 px-4 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={() => setDeleteState(false)}>cancel</button>
+                                    <button className='w-fit h-fit py-2 px-4 capitalize bg-zinc-500 text-white rounded-lg font-medium' onClick={DeleteTradingPlan}>proceed</button>
                                 </div>
                             </div>}
                         </div>
