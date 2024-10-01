@@ -65,3 +65,5 @@ export const AdminDashboardPagesLinks = [
     { path: admin + settings + '/packages', component: Package },
     { path: admin + settings + '/personalize', component: Personalize },
 ]
+
+export const SiteName = "Cryptovilles"

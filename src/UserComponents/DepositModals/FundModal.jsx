@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Loading from '../../GeneralComponents/Loading'
 import { FaAngleLeft, FaCheck, FaXmark } from 'react-icons/fa6'
 import { MdContentCopy } from 'react-icons/md'
@@ -94,7 +94,7 @@ const FundModal = ({ closeView, setScreen, refetchDeposits }) => {
             </div>
             {select &&
               <div className={`absolute top-9 left-0 ${adminCryptoWallets.length > 4 ? 'h-24 overflow-y-auto scroll ' : 'h-fit'} w-full bg-white border border-[#a3a3a3] rounded-md z-10 text-[0.85rem] font-bold capitalize`}>
-                {adminCryptoWallets.length > 1 ?
+                {adminCryptoWallets.length > 0 ?
                   <>
                     {mode === 1 ?
                       <>

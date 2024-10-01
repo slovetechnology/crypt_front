@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import logo from '../../../assets/images/logobrand.png'
 import { HiOutlineCollection } from "react-icons/hi";
 import { IoWalletOutline } from "react-icons/io5";
-import { FaAngleRight } from "react-icons/fa6";
+import { FaAngleRight, FaWhatsapp } from "react-icons/fa6";
 import { TbBuildingBank } from "react-icons/tb";
 import { LuSend, LuArrowDownUp } from "react-icons/lu";
 import { RiAccountPinCircleLine } from "react-icons/ri";
@@ -94,13 +94,13 @@ const Dashboard = ({ children }) => {
     }, [FetchUnreadNotis])
 
     useEffect(() => {
-        const FetchWallet = async() => {
+        const FetchWallet = async () => {
             try {
                 const response = await UserGetApi(Apis.user.wallet)
                 if (response.status === 200) {
                     setWallet(response.msg)
                 }
-    
+
             } catch (error) {
                 //
             }
@@ -115,11 +115,11 @@ const Dashboard = ({ children }) => {
                 if (response.status === 200) {
                     setAdminCryptoWallets(response.msg)
                 }
-    
+
             } catch (error) {
                 //
             }
-        }    
+        }
         FetchAdminCrypto_Wallets()
     }, [])
 
@@ -130,7 +130,7 @@ const Dashboard = ({ children }) => {
                 if (response.status === 200) {
                     setAdminStore(response.msg)
                 }
-    
+
             } catch (error) {
                 //
             }
@@ -167,6 +167,12 @@ const Dashboard = ({ children }) => {
                         <div className='flex gap-4 flex-col'>
                             <div className=' text-[0.65rem] uppercase lg:text-[#797878] text-[#c5c4c4]'>others</div>
                             <div className='flex flex-col gap-8'>
+                                <a href={`https://wa.me/+13372596715`} rel="noreferrer" target="_blank" onClick={MoveToTop}>
+                                    <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === "" && 'lg:border-r-[3px] lg:rounded-sm lg:border-light'}`} >
+                                        <FaWhatsapp className='text-[1.3rem] ' />
+                                        <div className='capitalize text-[0.85rem] lg:font-bold font-medium hover:font-bold'>Chat support</div>
+                                    </div>
+                                </a>
                                 {OtherLinks.map((item, i) => (
                                     <Link key={i} onClick={MoveToTop} to={item.url}>
                                         <div className={`flex gap-3 lg:hover:text-white hover:text-[green] items-center cursor-pointer w-fit lg:w-full ${location.pathname === item.url && 'lg:border-r-[3px] lg:rounded-sm lg:border-light'}`} >
@@ -247,7 +253,7 @@ const Dashboard = ({ children }) => {
                             </Link>
                         ))}
                         <div className={`flex flex-col gap-1 items-center justify-center rounded-full cursor-pointer  ${!toggleArray.includes(location.pathname) ? 'text-light' : 'text-white'} `} onClick={() => { setSlideShow(!slideShow) }}>
-                            <LiaBarsSolid className='md:text-lg text-base'/>
+                            <LiaBarsSolid className='md:text-lg text-base' />
                             <div className='capitalize md:text-[0.6rem] text-[0.55rem] font-medium'>a-z menu</div>
                         </div>
                     </div>

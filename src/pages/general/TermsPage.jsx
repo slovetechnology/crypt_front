@@ -2,6 +2,7 @@ import React from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
 import { Link } from 'react-router-dom'
 import { MoveToTop } from '../../utils/utils'
+import { SiteName } from '../../services/PageLinks'
 
 const TermsPage = () => {
     return (
@@ -16,7 +17,7 @@ const TermsPage = () => {
                             </div>
                             <div className='pt-8'>
                                 <div>
-                                    Welcome to our website. By browising and using this website, you signify your agreement to comply with and be bound with the following terms and conditions and <Link to='/privacy' onClick={MoveToTop} className='text-orange underline'>Privacy Policy</Link> of use which governs Ai Algo Trade relationship with you as related to this website. Please do not use this website if you disagree with any part of these terms and conditions.
+                                    Welcome to our website. By browising and using this website, you signify your agreement to comply with and be bound with the following terms and conditions and <Link to='/privacy' onClick={MoveToTop} className='text-orange underline'>Privacy Policy</Link> of use which governs {SiteName} relationship with you as related to this website. Please do not use this website if you disagree with any part of these terms and conditions.
                                 </div>
                                 <div>The use of the website is subject to the following terms:</div>
                                 <div className='flex flex-col gap-4 mt-8'>
@@ -28,7 +29,7 @@ const TermsPage = () => {
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
                                                 <div className='w-[98%]'>
-                                                    <div>“Account” or “AI ALGO TRADE Account” means a personal secure profile created by you on our Site. It allows you to access and use our services and manage your preferences.</div>
+                                                    <div>“Account” or “{SiteName} Account” means a personal secure profile created by you on our Site. It allows you to access and use our services and manage your preferences.</div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-2 w-full'>
@@ -68,7 +69,7 @@ const TermsPage = () => {
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
                                                 <div className='w-[98%]'>
-                                                    <div>“Services” means all and any technologies, products and/or functionalities provided by AI ALGO TRADE.</div>
+                                                    <div>“Services” means all and any technologies, products and/or functionalities provided by {SiteName}.</div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-2 w-full'>
@@ -92,7 +93,7 @@ const TermsPage = () => {
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
                                                 <div className='w-[98%]'>
-                                                    <div>“Test run” is a package outside the trading plan where users can make a deposit on to test the authenticy of the AI ALGO TRADE system but only once.</div>
+                                                    <div>“Test run” is a package outside the trading plan where users can make a deposit on to test the authenticy of the {SiteName} system but only once.</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -115,7 +116,7 @@ const TermsPage = () => {
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
                                                 <div className='w-[98%]'>
-                                                    <div>Taxes may be payable on any return and/or on any increase in the value of your Digital Assets and you should seek independent advice on your tax obligations. AI ALGO TRADE is not responsible for any violation made by the User due to his/her obligation to calculate and pay taxes and duties.</div>
+                                                    <div>Taxes may be payable on any return and/or on any increase in the value of your Digital Assets and you should seek independent advice on your tax obligations. {SiteName} is not responsible for any violation made by the User due to his/her obligation to calculate and pay taxes and duties.</div>
                                                 </div>
                                             </div>
                                             <div className='flex gap-2 w-full'>
@@ -162,7 +163,7 @@ const TermsPage = () => {
                                                     <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                                 </div>
                                                 <div className='w-[98%]'>
-                                                    <div>Your AI ALGO TRADE Wallet allows you to deposit, withdraw select Digital Assets and also view your trading investment porfolio</div>
+                                                    <div>Your {SiteName} Wallet allows you to deposit, withdraw select Digital Assets and also view your trading investment porfolio</div>
                                                 </div>
                                             </div>
                                         </div>

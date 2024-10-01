@@ -15,6 +15,7 @@ import spanish from '../../assets/images/spanish.jfif'
 import uk from '../../assets/images/uk.webp'
 import blackUs from '../../assets/images/us-black.webp'
 import india from '../../assets/images/india.jfif'
+import { SiteName } from '../../services/PageLinks';
 
 
 const HomePage = () => {
@@ -39,7 +40,7 @@ const HomePage = () => {
                 <div className='capitalize text-orange text-[0.7rem] font-[550] tracking-widest '> tech & crypto</div>
                 <MdOutlineDiversity2 className='text-white absolute top-0 -right-8  text-[1.1rem]' />
               </div>
-              <div className='capitalize text-white font-bold text-[2rem] md:text-[3rem] leading-[4rem] md:leading-[5rem] '>artificial intelligence algorithm  crypto trade</div>
+              <div className='capitalize text-white font-bold text-[2rem] md:text-[3rem] leading-[4rem] md:leading-[5rem] '>{SiteName} artificial intelligence algorithm  crypto trade</div>
               <Link to='/signup'>
                 <button className='outline-0 w-fit h-fit py-1 px-6 text-[0.9rem] text-white rounded-full bg-orange capitalize mt-5 flex gap-1 items-center font-[550] hover:bg-[#642626]'>
                   <MdJoinRight /><span>join</span>
@@ -67,22 +68,22 @@ const HomePage = () => {
             </div>
             <div className='flex items-center gap-4 flex-col'>
               <div className='text-white md:text-[2rem] text-2xl capitalize text-center font-bold'>what is the al algo trade?</div>
-              <div className='text-semi-white text-[0.95rem] text-center lg:w-[60%] tracking-[0.05rem]'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam nesciunt ut voluptatum! Qui quae inventore non totam laudantium, error provident aliquid, repudiandae, reiciendis praesentium excepturi libero nobis nostrum a eligendi.</div>
+              <div className='text-semi-white text-[0.95rem] text-center lg:w-[60%] tracking-[0.05rem]'>At Cryptoville, we specialize in AI algorithmic trading, a cutting-edge technology that is transforming the way cryptocurrency markets are navigated. So, what exactly is AI algorithmic trading? In simple terms, it`s the use of advanced artificial intelligence to automate and optimize the process of buying and selling assets in the crypto market. Traditional trading requires human effort—analyzing charts, watching the market 24/7, and making decisions based on patterns. However, AI-driven algorithms take that to the next level. These intelligent systems are capable of processing massive amounts of data in real-time, identifying trends, and predicting market movements faster than any human could.</div>
             </div>
             <div className='lg:w-3/5 w-11/12 mx-auto'>
               <div className='grid grid-cols-1 lg:grid-cols-2 gap-5 mt-16 '>
                 <div className='flex gap-4'>
                   <img src={rocket} className='w-auto h-12 z-20'></img>
                   <div className='flex flex-col gap-2'>
-                    <div className='font-[550] text-[1.1rem] text-white'> Lorem, ipsum.</div>
-                    <div className='text-xs text-white  tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>
+                    <div className='font-[550] text-[1.1rem] text-white'> Scale through</div>
+                    <div className='text-xs text-white  tracking-[0.05rem]'>Business innovative boost and security guaranteed</div>
                   </div>
                 </div>
                 <div className='flex gap-4'>
                   <img src={light} className='w-auto h-12 z-20'></img>
                   <div className='flex flex-col gap-2'>
-                    <div className='font-[550] text-[1.1rem] text-white'>Lorem, ipsum.</div>
-                    <div className='text-white text-xs tracking-[0.05rem]'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat, harum?</div>
+                    <div className='font-[550] text-[1.1rem] text-white'>Power packed trading</div>
+                    <div className='text-white text-xs tracking-[0.05rem]'>Explore an unending, trivilling crypto trading at your finger tips</div>
                   </div>
                 </div>
               </div>
@@ -131,7 +132,7 @@ const HomePage = () => {
                   <img src={us} className='w-16 h-16 rounded-full object-cover'></img>
                   <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
                 </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
+                <div className=' text-ground text-xs text-center mt-1'>I`ve been trading cryptocurrencies for years, but Cryptoville`s AI-powered trading system has revolutionized my strategy. The precision and speed of the algorithms helped me achieve consistent returns while minimizing risk. It`s like having a team of expert traders working around the clock!</div>
                 <div className='border-b-[3px] w-9 border-orange mt-3'></div>
                 <div className='flex flex-col gap-1'>
                   <div className='text-white capitalize'>henry calvin</div>
@@ -143,7 +144,7 @@ const HomePage = () => {
                   <img src={australia} className='w-16 h-16 rounded-full object-cover'></img>
                   <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
                 </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
+                <div className=' text-ground text-xs text-center mt-1'>What impressed me most about Cryptoville is its user-friendly interface and how it empowers traders with AI-backed insights. As someone relatively new to crypto, I felt confident in my trades, knowing that the AI was analyzing market data in real-time and guiding me toward smart decisions.</div>
                 <div className='border-b-[3px] w-9 border-orange mt-3'></div>
                 <div className='flex flex-col gap-1'>
                   <div className='text-white capitalize'>charlie brown</div>
@@ -155,7 +156,7 @@ const HomePage = () => {
                   <img src={spanish} className='w-16 h-16 rounded-full object-cover'></img>
                   <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
                 </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
+                <div className=' text-ground text-xs text-center mt-1'>Cryptoville’s AI algorithms have an uncanny ability to detect market trends before they happen. I’ve seen huge improvements in my portfolio, with profits I never thought possible. It’s the most innovative platform out there for serious crypto traders.</div>
                 <div className='border-b-[3px] w-9 border-orange mt-3'></div>
                 <div className='flex flex-col gap-1'>
                   <div className='text-white capitalize'>carlos rivera</div>
@@ -175,7 +176,7 @@ const HomePage = () => {
                   <img src={uk} className='w-16 h-16 rounded-full object-cover'></img>
                   <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
                 </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
+                <div className=' text-ground text-xs text-center mt-1'>I was initially skeptical of using an AI trading platform, but Cryptoville has completely changed my perspective. The results speak for themselves—my returns have increased by 35% in just a few months. The AI is spot-on with market predictions!</div>
                 <div className='border-b-[3px] w-9 border-orange mt-3'></div>
                 <div className='flex flex-col gap-1'>
                   <div className='text-white capitalize'>arthur allen</div>
@@ -187,7 +188,7 @@ const HomePage = () => {
                   <img src={blackUs} className='w-16 h-16 rounded-full object-cover'></img>
                   <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
                 </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
+                <div className=' text-ground text-xs text-center mt-1'>The level of automation Cryptoville offers is a game changer. With the AI monitoring and executing trades 24/7, I no longer worry about missing important market shifts. It’s allowed me to maximize gains without being glued to my computer all day.</div>
                 <div className='border-b-[3px] w-9 border-orange mt-3'></div>
                 <div className='flex flex-col gap-1'>
                   <div className='text-white capitalize'>jeremy davis</div>
@@ -199,7 +200,7 @@ const HomePage = () => {
                   <img src={india} className='w-16 h-16 rounded-full object-cover'></img>
                   <BsFillChatQuoteFill className='absolute bottom-2 -right-3 text-2xl text-orange' />
                 </div>
-                <div className=' text-ground text-xs text-center mt-1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro repellat nisi odit, corporis dicta deleniti nobis dolor omnis veritatis odio.</div>
+                <div className=' text-ground text-xs text-center mt-1'>What sets Cryptoville apart is its AI’s ability to adapt to market volatility. Even in choppy markets, the platform adjusted my strategy dynamically, protecting my capital while seizing growth opportunities. I`ve never felt so secure in crypto trading.</div>
                 <div className='border-b-[3px] w-9 border-orange mt-3'></div>
                 <div className='flex flex-col gap-1'>
                   <div className='text-white capitalize'>kabir kumar</div>
@@ -224,3 +225,4 @@ const HomePage = () => {
 }
 
 export default HomePage
+

@@ -2,6 +2,7 @@ import React from 'react'
 import Pagelayout from '../../GeneralComponents/Pagelayout'
 import { Link } from 'react-router-dom'
 import { MoveToTop } from '../../utils/utils'
+import { SiteName } from '../../services/PageLinks'
 
 const PrivacyPage = () => {
     return (
@@ -17,7 +18,7 @@ const PrivacyPage = () => {
                             <div className='flex flex-col gap-2 pt-8'>
                                 <div className='text-[1.5rem] lg:text-[1.7rem] capitalize font-bold'>general</div>
                                 <div>
-                                    The privacy policy applies to all users of the AI ALGO TRADE Site. By agreeing to this Privacy Policy and the <Link to='/terms' onClick={MoveToTop} className='text-orange underline'>Terms of Use</Link> you are entering into an electronic agreement between you and a specific AI ALGO TRADE entity. This Privacy Policy (together with our Terms of Use) describes our policies and procedures on the collection, use, and disclosure of personal information we collect when you use CEX.IO’s website, any and all services, products, and content, and tells you about your privacy rights and how the law protects you.
+                                    The privacy policy applies to all users of the {SiteName} Site. By agreeing to this Privacy Policy and the <Link to='/terms' onClick={MoveToTop} className='text-orange underline'>Terms of Use</Link> you are entering into an electronic agreement between you and a specific {SiteName} entity. This Privacy Policy (together with our Terms of Use) describes our policies and procedures on the collection, use, and disclosure of personal information we collect when you use CEX.IO’s website, any and all services, products, and content, and tells you about your privacy rights and how the law protects you.
 
                                 </div>
                                 <div>We adhere to the standards outlined in this Privacy Policy, ensuring we collect and process personal information lawfully, fairly, transparently, and with legitimate, legal reasons for doing so.</div>
@@ -82,7 +83,7 @@ const PrivacyPage = () => {
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
                                             <div className='w-[98%]'>
-                                                <div><span className='font-bold capitalize'>our site:</span> website with the following domains such as AI ALGO TRADE - our Platform used for providing our services to you and any other domains that is used for the purposes of informing our Users on our promotional, marketing campaigns and special offers.</div>
+                                                <div><span className='font-bold capitalize'>our site:</span> website with the following domains such as {SiteName} - our Platform used for providing our services to you and any other domains that is used for the purposes of informing our Users on our promotional, marketing campaigns and special offers.</div>
                                             </div>
                                         </div>
                                         <div className='flex gap-2 w-full'>
@@ -98,7 +99,7 @@ const PrivacyPage = () => {
                                                 <div className='w-1.5 h-1.5 rounded-full bg-[#504f4f] mt-2'></div>
                                             </div>
                                             <div className='w-[98%]'>
-                                                <div><span className='font-bold capitalize'>devices</span> means any device that can access the AI ALGO TRADE Site such as a computer, a mobile phone or tablet.</div>
+                                                <div><span className='font-bold capitalize'>devices</span> means any device that can access the {SiteName} Site such as a computer, a mobile phone or tablet.</div>
                                             </div>
                                         </div>
                                     </div>
@@ -108,10 +109,10 @@ const PrivacyPage = () => {
                                 <div className='text-[1.3rem] lg:text-[1.5rem] uppercase font-bold'>2. who we are</div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <span>
-                                        AI ALGO is a leading trading system ecosystem comprised of entities defined in Terms of Use.
+                                        {SiteName} is a leading trading system ecosystem comprised of entities defined in Terms of Use.
                                     </span>
                                     <span>
-                                        Established in 2019, AI ALGO has become one of the most powerful trading system, trusted by over 12 thousand users.
+                                        Established in 2019, {SiteName} has become one of the most powerful trading system, trusted by over 12 thousand users.
                                     </span>
                                     <span>
                                         The system has developed a multi-level account system with an individual approach to each customer, from crypto beginners to expert traders. Worldwide coverage in permissible jurisdictions, multiple payment options, and 24/7 support are accompanied by time-proven platform stability that focuses on the safety of assets and data.
@@ -207,7 +208,7 @@ const PrivacyPage = () => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div><span className='font-bold capitalize text-black'>3.5. Children's personal data  </span>Minors are not permitted to use AI ALGO. If you are a parent or guardian and believe that AI ALGO has information of a child under the age of 18 please contact us immediately from our contact with this complains so we remove any such information from our database.</div>
+                                    <div><span className='font-bold capitalize text-black'>3.5. Children's personal data  </span>Minors are not permitted to use {SiteName}. If you are a parent or guardian and believe that {SiteName} has information of a child under the age of 18 please contact us immediately from our contact with this complains so we remove any such information from our database.</div>
                                 </div>
                             </div>
                             <div className='flex flex-col gap-4 mt-[2rem]'>
@@ -219,10 +220,10 @@ const PrivacyPage = () => {
                                     <div><span className='font-bold capitalize'>4.2. Right to access:</span>  you have the right to access your Personal Information and request details about processing activities that we undertake with your data, you can do these actions in your account profile page. </div>
                                 </div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
-                                    <div><span className='font-bold capitalize'>4.3. Right to Rectification:</span>  you may request us to rectify or update any of your personal information held by AI ALGO, you can do these it in your account profile page. </div>
+                                    <div><span className='font-bold capitalize'>4.3. Right to Rectification:</span>  you may request us to rectify or update any of your personal information held by {SiteName}, you can do these it in your account profile page. </div>
                                 </div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
-                                    <div><span className='font-bold capitalize'>4.4. Right to Erasure: </span>  you have the right to request the erasure of both the Account and Personal Information held by AI ALGO on your account profile page. </div>
+                                    <div><span className='font-bold capitalize'>4.4. Right to Erasure: </span>  you have the right to request the erasure of both the Account and Personal Information held by {SiteName} on your account profile page. </div>
                                 </div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <div><span className='font-bold capitalize'>4.5. Right to object or to restrict processing  </span>  - you have the right to restrict and object to the processing of your personal data in certain circumstances, such as where the processing is carried out for direct marketing purposes.</div>
@@ -250,7 +251,7 @@ const PrivacyPage = () => {
                                     <div><span className='font-bold capitalize'>6.2. </span>   We will hold your Personal Information only for as long as it is necessary for the purposes described in this Privacy Policy and our legal and regulatory requirements.</div>
                                 </div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
-                                    <div><span className='font-bold capitalize'>6.3. </span>   To comply with relevant regulatory bodies and laws requirements, we must adhere to different retention periods for Personal Information. In accordance with AI ALGO's legal obligations, we will retain Personal Information for a period of three to five years in which the User conducts their last transaction in a case of inactivity.</div>
+                                    <div><span className='font-bold capitalize'>6.3. </span>   To comply with relevant regulatory bodies and laws requirements, we must adhere to different retention periods for Personal Information. In accordance with {SiteName}'s legal obligations, we will retain Personal Information for a period of three to five years in which the User conducts their last transaction in a case of inactivity.</div>
                                 </div>
                                 <div className='flex flex-col gap-2 text-[#494949]'>
                                     <div><span className='font-bold capitalize'>6.4. </span>Data stored for regulatory purposes will be protected from unnecessary processing and will be held only for the purpose of being able to provide information or access to relevant authorities.</div>

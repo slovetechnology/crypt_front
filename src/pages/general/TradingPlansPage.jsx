@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { MoveToTop } from '../../utils/utils'
 import { Apis, UserGetApi } from '../../services/API'
 import noplans from '../../assets/images/noplans.png'
+import { SiteName } from '../../services/PageLinks'
 
 const TradingPlansPage = () => {
   const [tradingPlans, setTradingPlans] = useState([])
@@ -32,7 +33,7 @@ const TradingPlansPage = () => {
         <div className='w-11/12 mx-auto'>
           <div className='flex flex-col gap-4 items-center justify-center'>
             <div className='z-20 font-bold capitalize text-4xl lg:text-5xl text-center'>trading plans</div>
-            <div className='md:text-[1.1rem] text-center'>- Below are the different trading plans on the AI Algorithm Trading System -</div>
+            <div className='md:text-[1.1rem] text-center'>- Below are the different trading plans on the {SiteName} AI Algorithm Trading System -</div>
           </div>
           <div className='flex flex-wrap gap-12 mt-20 text-[#30465c] justify-center'>
             {loading ?

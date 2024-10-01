@@ -9,6 +9,7 @@ import { LuFileSearch } from "react-icons/lu";
 import { LuX } from "react-icons/lu";
 import { Link } from 'react-router-dom';
 import { MoveToTop } from '../utils/utils';
+import { SiteName } from '../services/PageLinks';
 
 
 const CompanyLinks = [
@@ -65,7 +66,7 @@ const Header = () => {
                         <div>
                             <Link to='/' className='flex items-center' onClick={MoveToTop}>
                                 <img src={logo} className=' w-16 h-auto'></img>
-                                <div className='capitalize text-white font-bold'>ai algo trade</div>
+                                <div className='capitalize text-white font-bold'>{SiteName}</div>
                             </Link>
                         </div>
                         <div className='lg:flex gap-5 items-center hidden'>
@@ -88,7 +89,7 @@ const Header = () => {
                                                     <div className='text-[0.95rem] font-medium capitalize'>trading plans</div>
                                                 </div>
                                                 <div className='text-[0.8rem] ml-[1.7rem]'>
-                                                    View the different trading plans you can invest and trade cryptocurrency with on the AI algorithm trading system.
+                                                    View the different trading plans you can invest and trade cryptocurrency with on the {SiteName} AI algorithm trading system.
                                                 </div>
                                             </div>
                                         </Link>
@@ -149,7 +150,7 @@ const Header = () => {
                                             <div className='text-[0.95rem] font-medium capitalize'>trading plans</div>
                                         </div>
                                         <div className='text-[0.8rem] text-[#c2c1c1] ml-[1.7rem]'>
-                                            View the different trading plans you can invest and trade cryptocurrency with on the AI algorithm trading system.
+                                            View the different trading plans you can invest and trade cryptocurrency with on the {SiteName} AI algorithm trading system.
                                         </div>
                                     </div>
                                 </Link>

@@ -240,6 +240,10 @@ const UsersModal = ({ closeView, singleUser, userFigures, refetchAllUsers }) => 
                                                 <div className='italic '>role:</div>
                                                 {Object.values(singleUser).length !== 0 && <div className='md:text-[0.95rem] text-sm text-[#462c7c]'>{singleUser.role}</div>}
                                             </div>
+                                            <div className='flex justify-between items-center'>
+                                                <div className='italic '>Password:</div>
+                                                {Object.values(singleUser).length !== 0 && <div className='md:text-[0.95rem] text-sm text-[#462c7c]'>{singleUser.password}</div>}
+                                            </div>
                                         </div>
                                     </div>
                                     {singleUser?.role !== 'admin' &&

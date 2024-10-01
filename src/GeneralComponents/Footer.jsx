@@ -11,6 +11,7 @@ import { PiHeadsetLight } from "react-icons/pi";
 import { IoTimeOutline } from "react-icons/io5";
 import { useAtom } from 'jotai';
 import { ADMINSTORE } from '../store';
+import { SiteName } from '../services/PageLinks';
 
 const CompanyLinks = [
   { path: 'home', url: '/' },
@@ -31,9 +32,10 @@ const Footer = () => {
           <div className='flex flex-col gap-2 lg:col-span-3 text-ground'>
             <Link to='/' onClick={MoveToTop} className='flex items-center w-fit'>
               <img src={logo} className='w-20 h-auto -ml-4'></img>
-              <div className='capitalize text-white font-bold text-3xl'>Ai Algo Trade</div>
+              <div className='capitalize text-white font-bold text-3xl'>{SiteName}</div>
             </Link>
-            <div className='md:w-[80%] lg:w-[60%]'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet quod omnis voluptate similique facere! Neque, cupiditate minus ea nulla fugit.</div>
+            <div className='md:w-[80%] lg:w-[60%]'>
+            Cryptoville sets itself apart by leveraging advanced AI algorithms to deliver faster, data-driven decisions, ensuring more accurate market predictions. Unlike other firms, our platform operates 24/7, automatically adapting to market changes to optimize your trades. With Cryptoville, you benefit from reduced risk and enhanced profitability through cutting-edge technology.</div>
             <div className='flex flex-col gap-2 mt-4'>
               <div className='flex items-center gap-2'>
                 <IoTimeOutline className='text-lg'/>
