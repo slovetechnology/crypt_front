@@ -7,10 +7,11 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6'
 import { TbUsers } from "react-icons/tb";
 import nothnyet from '../../../assets/images/nothn.png'
 import AdminDashboard from './AdminDashboard'
-import UsersModal from '../../../AdminComponents/AdminUsersComponents/UsersModal'
-import CreateUsersModal from '../../../AdminComponents/AdminUsersComponents/CreateUsersModal'
-import SetReferralModal from '../../../AdminComponents/AdminUsersComponents/SetReferralModal'
-import UserTableBody from '../../../AdminComponents/AdminUsersComponents/UserTableBody';
+import UsersModal from '../../../AdminComponents/UsersComponents/UsersModal';
+import CreateUsersModal from '../../../AdminComponents/UsersComponents/CreateUsersModal';
+import SetReferralModal from '../../../AdminComponents/UsersComponents/SetReferralModal';
+import UserTableBody from '../../../AdminComponents/UsersComponents/UserTableBody';
+
 
 
 

@@ -78,7 +78,7 @@ const ContactPage = () => {
           <div className='flex flex-col shlct'>
             <div className='w-full lg:h-[80vh] h-fit grid grid-cols-1 lg:grid-cols-2'>
               <div className='col-span-1'>
-                <img src={contactimg} className='lg:h-[80vh] h-[50vh] w-full object-cover'></img>
+                <img src={contactimg} className='lg:h-[80vh] md:h-[50vh] h-[30vh] w-full object-cover'></img>
               </div>
               <div className='col-span-1 lg:h-full h-fit bg-[#faf9f9] py-6 overflow-hidden relative'>
                 {loading && <Loading />}
