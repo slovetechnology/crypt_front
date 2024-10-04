@@ -15,6 +15,17 @@ if(window.location.origin.includes("localhost")) {
 // export const URL = import.meta.env.VITE_API_URL
 // export const imageurl = import.meta.env.VITE_API_URL
 
+/*
+
+Email Account
+Email = support@cryptovilles.com
+Password = cryptovilles.com
+
+JIVO
+Email = support@cryptovilles.com
+Password = Cryptovilles.com  // C is capital letter
+
+*/
 
 const user = 'api/user/'
 const user_urls = {
